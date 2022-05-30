@@ -1,3 +1,5 @@
+![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)
+
 # MMO-Framework
 
 To launch Editor use [Hub](https://github.com/RamilGauss/TornadoHub/releases).

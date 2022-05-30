@@ -83,7 +83,7 @@ void TFileHierarchyWindowRefreshSystem::AddFileNodes(nsECSFramework::TEntityID p
     GetFiles(absoluteFilePath, paths, false);
 
     for (const auto& path : paths) {
-        fileNodeEid = prefabObjConstructor->InstatiateByGuid("3");
+        fileNodeEid = prefabObjConstructor->InstantiateByGuid("3");
         if (parentNodeEid != nsECSFramework::NONE) {
             prefabObjConstructor->Attach(parentNodeEid, fileNodeEid);
         }

@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_05_23 22:49:04.796
+// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
+// File has been generated at 2022_05_30 08:03:22.063
 	
 #pragma once
 
@@ -13,6 +13,10 @@
 #include "ButtonClickHandlerTerminatorSystem.h"
 #include "ButtonMakerSystem.h"
 #include "ButtonTerminatorSystem.h"
+#include "CameraBuilderFeature.h"
+#include "CameraMakerSystem.h"
+#include "CameraTerminatorSystem.h"
+#include "CameraUpdaterToModuleSystem.h"
 #include "CleanUpUniverseContextSystem.h"
 #include "DialogBuilderSystem.h"
 #include "DialogCloseEventHandlerMakerSystem.h"
@@ -30,6 +34,7 @@
 #include "FrameMouseWheelHandlerMakerSystem.h"
 #include "FrameMouseWheelHandlerTerminatorSystem.h"
 #include "GuiBuilderFeature.h"
+#include "GuiCameraBuilderSystem.h"
 #include "GuiMakerFeature.h"
 #include "GuiTerminatorFeature.h"
 #include "GuiUpdaterFromModuleFeature.h"

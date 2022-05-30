@@ -5,12 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "EntityManagerHeaderFileGenerator.h"
 #include <set>
+
+#include "EcsSystemExtensionHeaderFileGenerator.h"
 
 using namespace nsCodeGeneratorImplementation;
 
-void TEntityManagerHeaderFileGenerator::Work()
+void TEcsSystemExtensionHeaderFileGenerator::Work()
 {
     AddHeader(mConfig->targetForCodeGeneration.header);
     AddTimeHeader();
@@ -18,18 +19,10 @@ void TEntityManagerHeaderFileGenerator::Work()
     AddPragmaOnce();
     AddEmptyLine();
     AddStandartInclude("string");
-    AddStandartInclude("map");
+    AddStandartInclude("vector");
     AddStandartInclude("functional");
-    AddInclude("TypeDef.h");
 
-    auto fit = mSerializer->keyValueMap.find(s_EntityManagerHeaderPath);
-    std::string entityManagerHeaderPath = "EntityManager.h";
-    if (fit != mSerializer->keyValueMap.end()) {
-        entityManagerHeaderPath = mSerializer->keyValueMap[s_EntityManagerHeaderPath];
-        AddStandartInclude(entityManagerHeaderPath);
-    } else {
-        AddInclude(entityManagerHeaderPath);
-    }
+    AddInclude("TypeDef.h");
 
     AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");
     AddEmptyLine();

@@ -41,5 +41,7 @@ void TSystemMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWr
         logger->WriteF_time("Not converted typename \"%s\"", pC->typeName);
         return;
     }
-    pC->value = (nsECSFramework::TFeature*) (systemReflection->mTypeFactory->New(rtti));
+
+    auto newSystem = systemReflection->mTypeFactory->New(rtti);
+    pC->value = systemReflection->mEcsSystemExtension->DynamicCast(newSystem, rtti);
 }

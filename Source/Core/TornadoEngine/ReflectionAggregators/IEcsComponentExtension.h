@@ -14,12 +14,12 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    class DllExport IEntityManagerExtension
+    class DllExport IEcsComponentExtension
     {
     protected:
         nsECSFramework::TEntityManager* mEntMng = nullptr;
     public:
-        virtual ~IEntityManagerExtension() {}
+        virtual ~IEcsComponentExtension() {}
 
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng) { mEntMng = pEntMng; }
 

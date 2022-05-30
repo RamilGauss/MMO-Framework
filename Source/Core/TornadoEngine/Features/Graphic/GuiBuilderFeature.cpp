@@ -22,4 +22,5 @@ void TGuiBuilderFeature::InitConveyor()
     Add(&mTreeViewBuilderSystem);
 
     Add(&mMainWindowBuilderSystem);
+    Add(&mCameraBuilderFeature);
 }

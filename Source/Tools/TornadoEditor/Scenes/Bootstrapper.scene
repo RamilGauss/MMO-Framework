@@ -38,10 +38,6 @@
                     "jsonBody": "{\"value\":\"bootstrapper_1\"}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TNameComponent",
-                    "jsonBody": "{\"value\":\"Camera\"}"
-                },
-                {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"bootstrapper_0\"}"
                 },
@@ -56,6 +52,26 @@
                 {
                     "typeName": "nsLogicWrapper::TSystemComponent",
                     "jsonBody": "{\"typeName\":\"nsTornadoEditor::TBootstrapperFeature\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Camera\"}"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TCameraComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TGuiCameraTagComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TCameraWindowPositionComponent",
+                    "jsonBody": "{\"x\": 0, \"y\": 0}"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TCameraWindowSizeComponent",
+                    "jsonBody": "{\"x\": 1, \"y\": 1}"
                 }
             ]
         }

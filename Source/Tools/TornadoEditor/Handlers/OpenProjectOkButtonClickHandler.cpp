@@ -80,7 +80,7 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
             err = "File not found";
         }
 
-        auto warningDialogEid = prefabObjConstructor->InstatiateByGuid("2");
+        auto warningDialogEid = prefabObjConstructor->InstantiateByGuid("2");
 
         nsGuiWrapper::TTitleComponent titleComponent;
         titleComponent.value = "Tornado editor";

@@ -11,7 +11,7 @@
         "folder.png": "./Graphic/textures/folder.png",
         "scene.png": "./Graphic/textures/scene.png",
         "color.png": "./Graphic/textures/color.png",
-        "mesh0": "./Meshes/mesh.mesh"
+        "mesh0": "./Graphic/Meshes/mesh.mesh"
     },
     "gameEngine": {
         "sceneManagerContentMapPath": "../Scenes/SceneManagerContentMap.json",

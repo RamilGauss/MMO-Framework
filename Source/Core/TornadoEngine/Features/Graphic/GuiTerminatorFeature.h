@@ -32,6 +32,7 @@ See for more information LICENSE.md.
 #include "FrameMouseWheelHandlerTerminatorSystem.h"
 
 #include "TextureTerminatorSystem.h"
+#include "CameraTerminatorSystem.h"
 
 namespace nsGraphicWrapper
 {
@@ -60,6 +61,7 @@ namespace nsGraphicWrapper
         TFrameMouseWheelHandlerTerminatorSystem mFrameMouseWheelHandlerTerminatorSystem;
 
         TTextureTerminatorSystem mTextureTerminatorSystem;
+        TCameraTerminatorSystem mCameraTerminatorSystem;
     public:
         void InitConveyor() override;
     };

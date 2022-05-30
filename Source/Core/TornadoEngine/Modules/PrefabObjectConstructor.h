@@ -33,7 +33,7 @@ namespace nsTornadoEngine
 		void Setup(const std::list<std::string>& libPathList);
 
 		// Returns RootEid
-		nsECSFramework::TEntityID InstatiateByGuid(const std::string& prefabGuid);
+		nsECSFramework::TEntityID InstantiateByGuid(const std::string& prefabGuid);
 		nsECSFramework::TEntityID InstatiateByAbsPath(const std::string& absPath);
 
 		bool AttachByGuid(nsECSFramework::TEntityID prefabChildEid, const std::string& prefabGuid);

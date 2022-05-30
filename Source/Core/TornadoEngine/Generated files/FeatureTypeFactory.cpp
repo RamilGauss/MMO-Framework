@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_05_23 22:49:04.778
+// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
+// File has been generated at 2022_05_30 08:03:22.034
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -65,6 +65,34 @@ void TFeatureTypeFactory::Init()
     auto rtti_nsGraphicWrapper_TButtonTerminatorSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonTerminatorSystem>();
     
     m.insert({ rtti_nsGraphicWrapper_TButtonTerminatorSystem_Data, nsGraphicWrapper_TButtonTerminatorSystem_Data });
+    
+    Data nsGraphicWrapper_TCameraBuilderFeature_Data;
+    nsGraphicWrapper_TCameraBuilderFeature_Data.newFunc = [](){ return new nsGraphicWrapper::TCameraBuilderFeature(); };
+    nsGraphicWrapper_TCameraBuilderFeature_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TCameraBuilderFeature*)p; };
+    auto rtti_nsGraphicWrapper_TCameraBuilderFeature_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraBuilderFeature>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TCameraBuilderFeature_Data, nsGraphicWrapper_TCameraBuilderFeature_Data });
+    
+    Data nsGraphicWrapper_TCameraMakerSystem_Data;
+    nsGraphicWrapper_TCameraMakerSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TCameraMakerSystem(); };
+    nsGraphicWrapper_TCameraMakerSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TCameraMakerSystem*)p; };
+    auto rtti_nsGraphicWrapper_TCameraMakerSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraMakerSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TCameraMakerSystem_Data, nsGraphicWrapper_TCameraMakerSystem_Data });
+    
+    Data nsGraphicWrapper_TCameraTerminatorSystem_Data;
+    nsGraphicWrapper_TCameraTerminatorSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TCameraTerminatorSystem(); };
+    nsGraphicWrapper_TCameraTerminatorSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TCameraTerminatorSystem*)p; };
+    auto rtti_nsGraphicWrapper_TCameraTerminatorSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraTerminatorSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TCameraTerminatorSystem_Data, nsGraphicWrapper_TCameraTerminatorSystem_Data });
+    
+    Data nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data;
+    nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TCameraUpdaterToModuleSystem(); };
+    nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TCameraUpdaterToModuleSystem*)p; };
+    auto rtti_nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraUpdaterToModuleSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data, nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data });
     
     Data nsGraphicWrapper_TCleanUpUniverseContextSystem_Data;
     nsGraphicWrapper_TCleanUpUniverseContextSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TCleanUpUniverseContextSystem(); };
@@ -177,6 +205,13 @@ void TFeatureTypeFactory::Init()
     auto rtti_nsGraphicWrapper_TGuiBuilderFeature_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiBuilderFeature>();
     
     m.insert({ rtti_nsGraphicWrapper_TGuiBuilderFeature_Data, nsGraphicWrapper_TGuiBuilderFeature_Data });
+    
+    Data nsGraphicWrapper_TGuiCameraBuilderSystem_Data;
+    nsGraphicWrapper_TGuiCameraBuilderSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TGuiCameraBuilderSystem(); };
+    nsGraphicWrapper_TGuiCameraBuilderSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TGuiCameraBuilderSystem*)p; };
+    auto rtti_nsGraphicWrapper_TGuiCameraBuilderSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraBuilderSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TGuiCameraBuilderSystem_Data, nsGraphicWrapper_TGuiCameraBuilderSystem_Data });
     
     Data nsGraphicWrapper_TGuiMakerFeature_Data;
     nsGraphicWrapper_TGuiMakerFeature_Data.newFunc = [](){ return new nsGraphicWrapper::TGuiMakerFeature(); };

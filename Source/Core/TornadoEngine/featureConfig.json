@@ -47,6 +47,13 @@
                 "fileName": "FeatureTypeFactory",
                 "className": "TFeatureTypeFactory",
                 "keyValueMap": {}
+            },
+            "EcsSystemExtension": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "fileName": "EcsSystemExtension",
+                "className": "TEcsSystemExtension",
+                "keyValueMap": {}
             }
         }
     }

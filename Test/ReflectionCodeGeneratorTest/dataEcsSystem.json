@@ -1,0 +1,46 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "./DataSources"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ],
+        "inheritances": [
+            [ "nsECSFramework::TFeature" ],
+            [ "nsECSFramework::TInitSystem" ],
+            [ "nsECSFramework::TExecuteSystem" ],
+            [ "nsECSFramework::TTearDownSystem" ],
+            [ "nsECSFramework::TOnAddCollectReactiveSystem" ],
+            [ "nsECSFramework::TOnUpdateCollectReactiveSystem" ],
+            [ "nsECSFramework::TOnAddInstantReactiveSystem" ],
+            [ "nsECSFramework::TOnUpdateInstantReactiveSystem" ],
+            [ "nsECSFramework::TOnRemoveInstantReactiveSystem" ]
+        ],
+        "memberIgnore": "IGNORE_ATTRIBUTE"
+    },
+    "targetForCodeGeneration": {
+        "directory": "./",
+        "includeListFileName": "EcsSystemExtensionIncludeList",
+        "header": "\tReflectionCodeGeneratorTest",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "EcsSystemExtension": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTest",
+                "fileName": "EcsSystemExtension",
+                "className": "TEcsSystemExtension",
+                "keyValueMap": {}
+            }
+        }
+    }
+}

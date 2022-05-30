@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_05_23 22:48:56.293
+// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
+// File has been generated at 2022_05_30 08:03:15.072
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -245,6 +245,42 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGraphicWrapper_TCameraComponentTypeFunc, _nsGraphicWrapper_TCameraComponentTypeFunc });
     
+    TypeFunc _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc;
+    _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGraphicWrapper::TCameraWindowPositionComponent>((nsGraphicWrapper::TCameraWindowPositionComponent*) p, str);
+    };
+    _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGraphicWrapper::TCameraWindowPositionComponent>((nsGraphicWrapper::TCameraWindowPositionComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowPositionComponent>();
+    
+    m.insert({ rtti__nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc, _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc });
+    
+    TypeFunc _nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc;
+    _nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGraphicWrapper::TCameraWindowSizeComponent>((nsGraphicWrapper::TCameraWindowSizeComponent*) p, str);
+    };
+    _nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGraphicWrapper::TCameraWindowSizeComponent>((nsGraphicWrapper::TCameraWindowSizeComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowSizeComponent>();
+    
+    m.insert({ rtti__nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc, _nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc });
+    
+    TypeFunc _nsGraphicWrapper_TGuiCameraTagComponentTypeFunc;
+    _nsGraphicWrapper_TGuiCameraTagComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGraphicWrapper::TGuiCameraTagComponent>((nsGraphicWrapper::TGuiCameraTagComponent*) p, str);
+    };
+    _nsGraphicWrapper_TGuiCameraTagComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGraphicWrapper::TGuiCameraTagComponent>((nsGraphicWrapper::TGuiCameraTagComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGraphicWrapper_TGuiCameraTagComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraTagComponent>();
+    
+    m.insert({ rtti__nsGraphicWrapper_TGuiCameraTagComponentTypeFunc, _nsGraphicWrapper_TGuiCameraTagComponentTypeFunc });
+    
     TypeFunc _nsGraphicWrapper_TLightComponentTypeFunc;
     _nsGraphicWrapper_TLightComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGraphicWrapper::TLightComponent>((nsGraphicWrapper::TLightComponent*) p, str);
@@ -257,6 +293,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGraphicWrapper_TLightComponentTypeFunc, _nsGraphicWrapper_TLightComponentTypeFunc });
     
+    TypeFunc _nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc;
+    _nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGraphicWrapper::TRenderToTextureCameraComponent>((nsGraphicWrapper::TRenderToTextureCameraComponent*) p, str);
+    };
+    _nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGraphicWrapper::TRenderToTextureCameraComponent>((nsGraphicWrapper::TRenderToTextureCameraComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TRenderToTextureCameraComponent>();
+    
+    m.insert({ rtti__nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc, _nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc });
+    
     TypeFunc _nsGraphicWrapper_TTextureComponentTypeFunc;
     _nsGraphicWrapper_TTextureComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGraphicWrapper::TTextureComponent>((nsGraphicWrapper::TTextureComponent*) p, str);
@@ -268,6 +316,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGraphicWrapper_TTextureComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureComponent>();
     
     m.insert({ rtti__nsGraphicWrapper_TTextureComponentTypeFunc, _nsGraphicWrapper_TTextureComponentTypeFunc });
+    
+    TypeFunc _nsGraphicWrapper_TUniverseCameraComponentTypeFunc;
+    _nsGraphicWrapper_TUniverseCameraComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGraphicWrapper::TUniverseCameraComponent>((nsGraphicWrapper::TUniverseCameraComponent*) p, str);
+    };
+    _nsGraphicWrapper_TUniverseCameraComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGraphicWrapper::TUniverseCameraComponent>((nsGraphicWrapper::TUniverseCameraComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGraphicWrapper_TUniverseCameraComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TUniverseCameraComponent>();
+    
+    m.insert({ rtti__nsGraphicWrapper_TUniverseCameraComponentTypeFunc, _nsGraphicWrapper_TUniverseCameraComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc;
     _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -887,11 +947,51 @@ void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TCameraComponent* 
 {
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TCameraWindowPositionComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "x", p->x);
+    PUM::Push(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TCameraWindowPositionComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "x", p->x);
+    POM::PopNum(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TCameraWindowSizeComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "x", p->x);
+    PUM::Push(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TCameraWindowSizeComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "x", p->x);
+    POM::PopNum(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TGuiCameraTagComponent* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TGuiCameraTagComponent* p, const Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TLightComponent* p, Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TLightComponent* p, const Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TRenderToTextureCameraComponent* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TRenderToTextureCameraComponent* p, const Jobj& obj)
 {
 }
 //---------------------------------------------------------------------------------------
@@ -903,6 +1003,16 @@ void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TTextureComponent* p
 void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TTextureComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "resourceGuid", p->resourceGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TUniverseCameraComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "universeGuid", p->universeGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TUniverseCameraComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "universeGuid", p->universeGuid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TButtonClickHandlerComponent* p, Jobj& obj)

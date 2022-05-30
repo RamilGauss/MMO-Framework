@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_05_23 22:48:56.334
+// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
+// File has been generated at 2022_05_30 08:03:15.117
 	
 #include "ComponentTypeInformation.h"
 
@@ -129,17 +129,47 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGraphicWrapper_TCameraComponent_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TCameraComponent_n, nsGraphicWrapper_TCameraComponent_i });
     
+    int nsGraphicWrapper_TCameraWindowPositionComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowPositionComponent>();
+    std::string nsGraphicWrapper_TCameraWindowPositionComponent_n = "nsGraphicWrapper::TCameraWindowPositionComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TCameraWindowPositionComponent_n);
+    mRttiList.push_back(nsGraphicWrapper_TCameraWindowPositionComponent_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TCameraWindowPositionComponent_n, nsGraphicWrapper_TCameraWindowPositionComponent_i });
+    
+    int nsGraphicWrapper_TCameraWindowSizeComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowSizeComponent>();
+    std::string nsGraphicWrapper_TCameraWindowSizeComponent_n = "nsGraphicWrapper::TCameraWindowSizeComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TCameraWindowSizeComponent_n);
+    mRttiList.push_back(nsGraphicWrapper_TCameraWindowSizeComponent_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TCameraWindowSizeComponent_n, nsGraphicWrapper_TCameraWindowSizeComponent_i });
+    
+    int nsGraphicWrapper_TGuiCameraTagComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraTagComponent>();
+    std::string nsGraphicWrapper_TGuiCameraTagComponent_n = "nsGraphicWrapper::TGuiCameraTagComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TGuiCameraTagComponent_n);
+    mRttiList.push_back(nsGraphicWrapper_TGuiCameraTagComponent_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TGuiCameraTagComponent_n, nsGraphicWrapper_TGuiCameraTagComponent_i });
+    
     int nsGraphicWrapper_TLightComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TLightComponent>();
     std::string nsGraphicWrapper_TLightComponent_n = "nsGraphicWrapper::TLightComponent";
     mTypeNameList.push_back(nsGraphicWrapper_TLightComponent_n);
     mRttiList.push_back(nsGraphicWrapper_TLightComponent_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TLightComponent_n, nsGraphicWrapper_TLightComponent_i });
     
+    int nsGraphicWrapper_TRenderToTextureCameraComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TRenderToTextureCameraComponent>();
+    std::string nsGraphicWrapper_TRenderToTextureCameraComponent_n = "nsGraphicWrapper::TRenderToTextureCameraComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TRenderToTextureCameraComponent_n);
+    mRttiList.push_back(nsGraphicWrapper_TRenderToTextureCameraComponent_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TRenderToTextureCameraComponent_n, nsGraphicWrapper_TRenderToTextureCameraComponent_i });
+    
     int nsGraphicWrapper_TTextureComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureComponent>();
     std::string nsGraphicWrapper_TTextureComponent_n = "nsGraphicWrapper::TTextureComponent";
     mTypeNameList.push_back(nsGraphicWrapper_TTextureComponent_n);
     mRttiList.push_back(nsGraphicWrapper_TTextureComponent_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TTextureComponent_n, nsGraphicWrapper_TTextureComponent_i });
+    
+    int nsGraphicWrapper_TUniverseCameraComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TUniverseCameraComponent>();
+    std::string nsGraphicWrapper_TUniverseCameraComponent_n = "nsGraphicWrapper::TUniverseCameraComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TUniverseCameraComponent_n);
+    mRttiList.push_back(nsGraphicWrapper_TUniverseCameraComponent_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TUniverseCameraComponent_n, nsGraphicWrapper_TUniverseCameraComponent_i });
     
     int nsGuiWrapper_TButtonClickHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
     std::string nsGuiWrapper_TButtonClickHandlerComponent_n = "nsGuiWrapper::TButtonClickHandlerComponent";

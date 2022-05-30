@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_05_23 22:48:56.321
+// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
+// File has been generated at 2022_05_30 08:03:15.103
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -261,6 +261,48 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsGraphicWrapper_TCameraComponent_Data, nsGraphicWrapper_TCameraComponent_Data });
     
+    Data nsGraphicWrapper_TCameraWindowPositionComponent_Data;
+        nsGraphicWrapper_TCameraWindowPositionComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGraphicWrapper::TCameraWindowPositionComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGraphicWrapper::TCameraWindowPositionComponent>(eid, lambda, isNotify);
+    };
+    nsGraphicWrapper_TCameraWindowPositionComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TCameraWindowPositionComponent*)p), isNotify); };
+    nsGraphicWrapper_TCameraWindowPositionComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TCameraWindowPositionComponent>(eid); };
+    nsGraphicWrapper_TCameraWindowPositionComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TCameraWindowPositionComponent>(eid); };
+    nsGraphicWrapper_TCameraWindowPositionComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGraphicWrapper::TCameraWindowPositionComponent>(eid); };
+    nsGraphicWrapper_TCameraWindowPositionComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGraphicWrapper::TCameraWindowPositionComponent>(); };
+    auto rtti_nsGraphicWrapper_TCameraWindowPositionComponent_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowPositionComponent>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TCameraWindowPositionComponent_Data, nsGraphicWrapper_TCameraWindowPositionComponent_Data });
+    
+    Data nsGraphicWrapper_TCameraWindowSizeComponent_Data;
+        nsGraphicWrapper_TCameraWindowSizeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGraphicWrapper::TCameraWindowSizeComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGraphicWrapper::TCameraWindowSizeComponent>(eid, lambda, isNotify);
+    };
+    nsGraphicWrapper_TCameraWindowSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TCameraWindowSizeComponent*)p), isNotify); };
+    nsGraphicWrapper_TCameraWindowSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TCameraWindowSizeComponent>(eid); };
+    nsGraphicWrapper_TCameraWindowSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TCameraWindowSizeComponent>(eid); };
+    nsGraphicWrapper_TCameraWindowSizeComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGraphicWrapper::TCameraWindowSizeComponent>(eid); };
+    nsGraphicWrapper_TCameraWindowSizeComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGraphicWrapper::TCameraWindowSizeComponent>(); };
+    auto rtti_nsGraphicWrapper_TCameraWindowSizeComponent_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowSizeComponent>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TCameraWindowSizeComponent_Data, nsGraphicWrapper_TCameraWindowSizeComponent_Data });
+    
+    Data nsGraphicWrapper_TGuiCameraTagComponent_Data;
+        nsGraphicWrapper_TGuiCameraTagComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGraphicWrapper::TGuiCameraTagComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGraphicWrapper::TGuiCameraTagComponent>(eid, lambda, isNotify);
+    };
+    nsGraphicWrapper_TGuiCameraTagComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TGuiCameraTagComponent*)p), isNotify); };
+    nsGraphicWrapper_TGuiCameraTagComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TGuiCameraTagComponent>(eid); };
+    nsGraphicWrapper_TGuiCameraTagComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TGuiCameraTagComponent>(eid); };
+    nsGraphicWrapper_TGuiCameraTagComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGraphicWrapper::TGuiCameraTagComponent>(eid); };
+    nsGraphicWrapper_TGuiCameraTagComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGraphicWrapper::TGuiCameraTagComponent>(); };
+    auto rtti_nsGraphicWrapper_TGuiCameraTagComponent_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraTagComponent>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TGuiCameraTagComponent_Data, nsGraphicWrapper_TGuiCameraTagComponent_Data });
+    
     Data nsGraphicWrapper_TLightComponent_Data;
         nsGraphicWrapper_TLightComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
         auto lambda = [&](nsGraphicWrapper::TLightComponent* pC){ onAfterCreation((void*)pC); };
@@ -275,6 +317,20 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsGraphicWrapper_TLightComponent_Data, nsGraphicWrapper_TLightComponent_Data });
     
+    Data nsGraphicWrapper_TRenderToTextureCameraComponent_Data;
+        nsGraphicWrapper_TRenderToTextureCameraComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGraphicWrapper::TRenderToTextureCameraComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGraphicWrapper::TRenderToTextureCameraComponent>(eid, lambda, isNotify);
+    };
+    nsGraphicWrapper_TRenderToTextureCameraComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TRenderToTextureCameraComponent*)p), isNotify); };
+    nsGraphicWrapper_TRenderToTextureCameraComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TRenderToTextureCameraComponent>(eid); };
+    nsGraphicWrapper_TRenderToTextureCameraComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TRenderToTextureCameraComponent>(eid); };
+    nsGraphicWrapper_TRenderToTextureCameraComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGraphicWrapper::TRenderToTextureCameraComponent>(eid); };
+    nsGraphicWrapper_TRenderToTextureCameraComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGraphicWrapper::TRenderToTextureCameraComponent>(); };
+    auto rtti_nsGraphicWrapper_TRenderToTextureCameraComponent_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TRenderToTextureCameraComponent>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TRenderToTextureCameraComponent_Data, nsGraphicWrapper_TRenderToTextureCameraComponent_Data });
+    
     Data nsGraphicWrapper_TTextureComponent_Data;
         nsGraphicWrapper_TTextureComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
         auto lambda = [&](nsGraphicWrapper::TTextureComponent* pC){ onAfterCreation((void*)pC); };
@@ -288,6 +344,20 @@ void TComponentEntityManagerExtension::Init()
     auto rtti_nsGraphicWrapper_TTextureComponent_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureComponent>();
     
     m.insert({ rtti_nsGraphicWrapper_TTextureComponent_Data, nsGraphicWrapper_TTextureComponent_Data });
+    
+    Data nsGraphicWrapper_TUniverseCameraComponent_Data;
+        nsGraphicWrapper_TUniverseCameraComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsGraphicWrapper::TUniverseCameraComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsGraphicWrapper::TUniverseCameraComponent>(eid, lambda, isNotify);
+    };
+    nsGraphicWrapper_TUniverseCameraComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TUniverseCameraComponent*)p), isNotify); };
+    nsGraphicWrapper_TUniverseCameraComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TUniverseCameraComponent>(eid); };
+    nsGraphicWrapper_TUniverseCameraComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TUniverseCameraComponent>(eid); };
+    nsGraphicWrapper_TUniverseCameraComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGraphicWrapper::TUniverseCameraComponent>(eid); };
+    nsGraphicWrapper_TUniverseCameraComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGraphicWrapper::TUniverseCameraComponent>(); };
+    auto rtti_nsGraphicWrapper_TUniverseCameraComponent_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TUniverseCameraComponent>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TUniverseCameraComponent_Data, nsGraphicWrapper_TUniverseCameraComponent_Data });
     
     Data nsGuiWrapper_TButtonClickHandlerComponent_Data;
         nsGuiWrapper_TButtonClickHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

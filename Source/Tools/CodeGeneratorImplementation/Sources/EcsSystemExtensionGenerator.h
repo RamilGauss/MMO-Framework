@@ -11,14 +11,14 @@ See for more information LICENSE.md.
 
 namespace nsCodeGeneratorImplementation
 {
-    class DllExport TEntityManagerGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
+    class DllExport TEcsSystemExtensionGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TEntityManagerGenerator() : ITargetCodeGenerator("EntityManagerExtension") {}
+        TEcsSystemExtensionGenerator() :
+            nsReflectionCodeGenerator::ITargetCodeGenerator("EcsSystemExtension"){}
 
         void Work() override;
-
-        void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencies) override {}
+        void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames) override;
     private:
         void GenerateHeader();
         void GenerateSource();

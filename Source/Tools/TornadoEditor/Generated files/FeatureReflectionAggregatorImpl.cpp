@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include "FeatureTypeFactoryImpl.h"
 #include "FeatureTypeInformationImpl.h"
+#include "FeatureEcsSystemExtensionImpl.h"
 
 using namespace nsTornadoEditor;
 
@@ -16,11 +17,13 @@ TFeatureReflectionAggregatorImpl::TFeatureReflectionAggregatorImpl()
 {
     mTypeFactory = new TFeatureTypeFactoryImpl();
     mTypeInfo = new TFeatureTypeInformationImpl();
+    mEcsSystemExtension = new TFeatureEcsSystemExtensionImpl();
 }
 //-----------------------------------------------------------------------------
 TFeatureReflectionAggregatorImpl::~TFeatureReflectionAggregatorImpl()
 {
     delete mTypeFactory;
     delete mTypeInfo;
+    delete mEcsSystemExtension;
 }
 //-----------------------------------------------------------------------------

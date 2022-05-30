@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_05_23 22:48:56.286
+// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
+// File has been generated at 2022_05_30 08:03:15.064
 	
 #pragma once
 
@@ -93,11 +93,26 @@ namespace nsTornadoEngine
         static void _Serialize(nsGraphicWrapper::TCameraComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TCameraComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGraphicWrapper::TCameraWindowPositionComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TCameraWindowPositionComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGraphicWrapper::TCameraWindowSizeComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TCameraWindowSizeComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGraphicWrapper::TGuiCameraTagComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TGuiCameraTagComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGraphicWrapper::TLightComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TLightComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGraphicWrapper::TRenderToTextureCameraComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TRenderToTextureCameraComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGraphicWrapper::TTextureComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TTextureComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGraphicWrapper::TUniverseCameraComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TUniverseCameraComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TButtonClickHandlerComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TButtonClickHandlerComponent* p, const Jobj& obj);

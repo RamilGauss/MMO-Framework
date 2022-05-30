@@ -21,6 +21,8 @@ See for more information LICENSE.md.
 
 #include "MainWindowBuilderSystem.h"
 
+#include "CameraBuilderFeature.h"
+
 namespace nsGraphicWrapper
 {
     class DllExport TGuiBuilderFeature : public nsECSFramework::TFeature
@@ -36,6 +38,8 @@ namespace nsGraphicWrapper
         TTreeViewBuilderSystem mTreeViewBuilderSystem;
 
         TMainWindowBuilderSystem mMainWindowBuilderSystem;
+
+        TCameraBuilderFeature mCameraBuilderFeature;
     public:
         void InitConveyor() override;
     };

@@ -17,14 +17,17 @@
     <Filter Include="Generators\TypeInformation">
       <UniqueIdentifier>{97183178-db7e-415f-bcb4-de2804e06175}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generators\EntityManagerExtension">
-      <UniqueIdentifier>{4179af10-fa01-4759-b151-e8d542bb8b62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generators\TypeFactory">
       <UniqueIdentifier>{0a78cf14-c0c8-40df-b37c-fbe0e00e456f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Generators\ImGui">
       <UniqueIdentifier>{f9bb1a54-8136-4c27-b8db-0c8211679ce9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\EcsComponentExtension">
+      <UniqueIdentifier>{4179af10-fa01-4759-b151-e8d542bb8b62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\EcsSystemExtension">
+      <UniqueIdentifier>{d6ed6f06-38ce-4860-aa71-acd22c11ca84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -40,17 +43,17 @@
     <ClCompile Include="Sources\BinaryMarshallerSourceFileGenerator.cpp">
       <Filter>Generators\Binary</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\EntityManagerFileGenerator.cpp">
-      <Filter>Generators\EntityManagerExtension</Filter>
+    <ClCompile Include="Sources\EcsComponentExtensionFileGenerator.cpp">
+      <Filter>Generators\EcsComponentExtension</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\EntityManagerGenerator.cpp">
-      <Filter>Generators\EntityManagerExtension</Filter>
+    <ClCompile Include="Sources\EcsComponentExtensionGenerator.cpp">
+      <Filter>Generators\EcsComponentExtension</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\EntityManagerHeaderFileGenerator.cpp">
-      <Filter>Generators\EntityManagerExtension</Filter>
+    <ClCompile Include="Sources\EcsComponentExtensionHeaderFileGenerator.cpp">
+      <Filter>Generators\EcsComponentExtension</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\EntityManagerSourceFIleGenerator.cpp">
-      <Filter>Generators\EntityManagerExtension</Filter>
+    <ClCompile Include="Sources\EcsComponentExtensionSourceFIleGenerator.cpp">
+      <Filter>Generators\EcsComponentExtension</Filter>
     </ClCompile>
     <ClCompile Include="Sources\IncludeListFileGenerator.cpp">
       <Filter>Generators\IncludeList</Filter>
@@ -94,6 +97,18 @@
     <ClCompile Include="Sources\TypeInformationSourceFIleGenerator.cpp">
       <Filter>Generators\TypeInformation</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\EcsSystemExtensionFileGenerator.cpp">
+      <Filter>Generators\EcsSystemExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EcsSystemExtensionGenerator.cpp">
+      <Filter>Generators\EcsSystemExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EcsSystemExtensionHeaderFileGenerator.cpp">
+      <Filter>Generators\EcsSystemExtension</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\EcsSystemExtensionSourceFIleGenerator.cpp">
+      <Filter>Generators\EcsSystemExtension</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h">
@@ -108,17 +123,17 @@
     <ClInclude Include="Sources\BinaryMarshallerSourceFileGenerator.h">
       <Filter>Generators\Binary</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\EntityManagerFileGenerator.h">
-      <Filter>Generators\EntityManagerExtension</Filter>
+    <ClInclude Include="Sources\EcsComponentExtensionFileGenerator.h">
+      <Filter>Generators\EcsComponentExtension</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\EntityManagerGenerator.h">
-      <Filter>Generators\EntityManagerExtension</Filter>
+    <ClInclude Include="Sources\EcsComponentExtensionGenerator.h">
+      <Filter>Generators\EcsComponentExtension</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\EntityManagerHeaderFileGenerator.h">
-      <Filter>Generators\EntityManagerExtension</Filter>
+    <ClInclude Include="Sources\EcsComponentExtensionHeaderFileGenerator.h">
+      <Filter>Generators\EcsComponentExtension</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\EntityManagerSourceFIleGenerator.h">
-      <Filter>Generators\EntityManagerExtension</Filter>
+    <ClInclude Include="Sources\EcsComponentExtensionSourceFIleGenerator.h">
+      <Filter>Generators\EcsComponentExtension</Filter>
     </ClInclude>
     <ClInclude Include="Sources\IncludeListFileGenerator.h">
       <Filter>Generators\IncludeList</Filter>
@@ -161,6 +176,18 @@
     </ClInclude>
     <ClInclude Include="Sources\TypeInformationSourceFIleGenerator.h">
       <Filter>Generators\TypeInformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EcsSystemExtensionFileGenerator.h">
+      <Filter>Generators\EcsSystemExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EcsSystemExtensionGenerator.h">
+      <Filter>Generators\EcsSystemExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EcsSystemExtensionHeaderFileGenerator.h">
+      <Filter>Generators\EcsSystemExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EcsSystemExtensionSourceFIleGenerator.h">
+      <Filter>Generators\EcsSystemExtension</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

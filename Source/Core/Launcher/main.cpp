@@ -7,7 +7,6 @@ See for more information LICENSE.md.
 
 #ifdef WIN32
 #include <windows.h>
-#include <atlconv.h>
 #endif 
 
 #include <string>

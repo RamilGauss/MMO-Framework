@@ -12,14 +12,14 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
-#include <ECS/include/Feature.h>
+#include <ECS/include/System.h>
 
 namespace nsLogicWrapper
 {
     struct DllExport TSystemComponent : nsECSFramework::IComponent
     {
 #pragma IGNORE_ATTRIBUTE
-        mutable nsECSFramework::TFeature* value = nullptr;
+        mutable nsECSFramework::TSystem* value = nullptr;
 
         std::string typeName;
 

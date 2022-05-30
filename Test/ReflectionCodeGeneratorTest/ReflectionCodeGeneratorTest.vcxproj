@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>.;$(SolutionDir)/Source/Tools;$(SolutionDir)/Source/Base/include;./DataSources;$(SolutionDir)Source\Modules\ECS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -135,7 +135,8 @@
     <PreBuildEvent>
       <Message>Run Reflection code generator</Message>
       <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\ReflectionCodeGeneratorTest\data.json"
-$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\ReflectionCodeGeneratorTest\dataEcs.json"</Command>
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\ReflectionCodeGeneratorTest\dataEcs.json"
+$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\ReflectionCodeGeneratorTest\dataEcsSystem.json"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -159,9 +160,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\ReflectionCo
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AllTypesTest.cpp" />
-    <ClCompile Include="EntityManagerExtension.cpp" />
+    <ClCompile Include="EcsComponentExtensionExtension.cpp" />
+    <ClCompile Include="EcsSystemExtension.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PathOperationsTest.cpp" />
+    <ClCompile Include="EcsSystem.cpp" />
     <ClCompile Include="TypeFactorySerializer.cpp" />
     <ClCompile Include="TypeInformationSerializer.cpp" />
     <ClCompile Include="TypeManagerTest.cpp" />
@@ -173,8 +176,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\ReflectionCo
   <ItemGroup>
     <ClInclude Include="DataSources\AllTypes.h" />
     <ClInclude Include="DataSources\SimpleComponents.h" />
-    <ClInclude Include="EcsIncludeList.h" />
-    <ClInclude Include="EntityManagerExtension.h" />
+    <ClInclude Include="DataSources\Systems.h" />
+    <ClInclude Include="EcsComponentExtensionExtension.h" />
+    <ClInclude Include="EcsComponentExtensionIncludeList.h" />
+    <ClInclude Include="EcsSystemExtension.h" />
+    <ClInclude Include="EcsSystemExtensionIncludeList.h" />
     <ClInclude Include="IncludeList.h" />
     <ClInclude Include="TypeFactorySerializer.h" />
     <ClInclude Include="TypeInformationSerializer.h" />
@@ -182,6 +188,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\ReflectionCo
   <ItemGroup>
     <None Include="data.json" />
     <None Include="dataEcs.json" />
+    <None Include="dataEcsSystem.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

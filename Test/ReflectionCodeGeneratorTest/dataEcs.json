@@ -19,16 +19,16 @@
     },
     "targetForCodeGeneration": {
         "directory": "./",
-        "includeListFileName": "EcsIncludeList",
+        "includeListFileName": "EcsComponentExtensionIncludeList",
         "header": "\tReflectionCodeGeneratorTest",
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,
         "implementations": {
-            "EntityManagerExtension": {
+            "EcsComponentExtension": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsEntityManagerExtension",
-                "fileName": "EntityManagerExtension",
-                "className": "TEntityManagerExtension",
+                "nameSpaceName": "nsTest",
+                "fileName": "EcsComponentExtensionExtension",
+                "className": "TEcsComponentExtensionExtension",
                 "keyValueMap": {}
             }
         }

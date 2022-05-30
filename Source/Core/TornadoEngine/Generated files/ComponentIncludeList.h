@@ -1,14 +1,16 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_05_23 22:48:56.342
+// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
+// File has been generated at 2022_05_30 08:03:15.125
 	
 #pragma once
 
 #include "ButtonClickHandlerComponent.h"
 #include "ButtonComponent.h"
 #include "CameraComponent.h"
+#include "CameraWindowPositionComponent.h"
+#include "CameraWindowSizeComponent.h"
 #include "DialogCloseEventHandlerComponent.h"
 #include "DialogComponent.h"
 #include "FocusComponent.h"
@@ -17,6 +19,7 @@
 #include "FrameMouseClickHandlerComponent.h"
 #include "FrameMouseMoveHandlerComponent.h"
 #include "FrameMouseWheelHandlerComponent.h"
+#include "GuiCameraTagComponent.h"
 #include "GuidComponent.h"
 #include "HandlerTarget.h"
 #include "InputTextComponent.h"
@@ -41,6 +44,7 @@
 #include "PrefabOriginalGuidComponent.h"
 #include "PrefabReferenceComponent.h"
 #include "PrefabRootComponent.h"
+#include "RenderToTextureCameraComponent.h"
 #include "SceneGuidComponent.h"
 #include "SceneInstanceGuidComponent.h"
 #include "SceneObjectReferenceComponent.h"
@@ -55,6 +59,7 @@
 #include "TransformComponent.h"
 #include "TreeNodeComponent.h"
 #include "TreeViewComponent.h"
+#include "UniverseCameraComponent.h"
 #include "UniverseGuidComponent.h"
 #include "UniverseIndexComponent.h"
 #include "VisibilityComponent.h"

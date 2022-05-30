@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "EntityManagerGenerator.h"
-#include "EntityManagerHeaderFileGenerator.h"
-#include "EntityManagerSourceFileGenerator.h"
+#include "EcsSystemExtensionGenerator.h"
+#include "EcsSystemExtensionHeaderFileGenerator.h"
+#include "EcsSystemExtensionSourceFileGenerator.h"
 
 using namespace nsCodeGeneratorImplementation;
 
 //----------------------------------------------------------------------------------
-void TEntityManagerGenerator::Work()
+void TEcsSystemExtensionGenerator::Work()
 {
     if (!HasSerializer()) {
         return;
@@ -22,9 +22,9 @@ void TEntityManagerGenerator::Work()
     GenerateSource();
 }
 //----------------------------------------------------------------------------------
-void TEntityManagerGenerator::GenerateHeader()
+void TEcsSystemExtensionGenerator::GenerateHeader()
 {
-    TEntityManagerHeaderFileGenerator fileGenerator;
+    TEcsSystemExtensionHeaderFileGenerator fileGenerator;
 
     mPairList->push_back(TStrListPair());
 
@@ -37,9 +37,9 @@ void TEntityManagerGenerator::GenerateHeader()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-void TEntityManagerGenerator::GenerateSource()
+void TEcsSystemExtensionGenerator::GenerateSource()
 {
-    TEntityManagerSourceFileGenerator fileGenerator;
+    TEcsSystemExtensionSourceFileGenerator fileGenerator;
 
     mPairList->push_back(TStrListPair());
 
@@ -50,5 +50,10 @@ void TEntityManagerGenerator::GenerateSource()
 
     fileGenerator.Init(&mTypeNameDB, pair, impl);
     fileGenerator.Work();
+}
+//----------------------------------------------------------------------------------
+void TEcsSystemExtensionGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames)
+{
+    // empty
 }
 //----------------------------------------------------------------------------------

@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "EntityManagerFileGenerator.h"
+#include "EcsComponentExtensionFileGenerator.h"
 #include <functional>
 
 namespace nsCodeGeneratorImplementation
 {
-    class TEntityManagerSourceFileGenerator : public TEntityManagerFileGenerator
+    class TEcsComponentExtensionSourceFileGenerator : public TEcsComponentExtensionFileGenerator
     {
     public:
         virtual void Work() override;

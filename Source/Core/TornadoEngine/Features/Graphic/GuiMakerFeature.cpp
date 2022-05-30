@@ -34,4 +34,6 @@ void TGuiMakerFeature::InitConveyor()
     Add(&mFrameKeyHandlerMakerSystem);
     
     Add(&mTextureMakerSystem);
+
+    Add(&mCameraMakerSystem);
 }

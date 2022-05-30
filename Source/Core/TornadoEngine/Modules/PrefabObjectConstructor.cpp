@@ -30,7 +30,7 @@ void TPrefabObjectConstructor::Setup(const std::list<std::string>& libPathList)
     mEntityManager->Setup(libPathList);
 }
 //-----------------------------------------------------------------------------------------------------
-nsECSFramework::TEntityID TPrefabObjectConstructor::InstatiateByGuid(const std::string& prefabGuid)
+nsECSFramework::TEntityID TPrefabObjectConstructor::InstantiateByGuid(const std::string& prefabGuid)
 {
     // Convert to abs path
     auto fit = mResourceContentMap.guidPathMap.find(prefabGuid);

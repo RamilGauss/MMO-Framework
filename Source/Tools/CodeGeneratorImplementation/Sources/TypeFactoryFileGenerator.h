@@ -25,6 +25,6 @@ namespace nsCodeGeneratorImplementation
         const std::string s_newFunc = "newFunc";
         const std::string s_deleteFunc = "deleteFunc";
         const std::string s_mDataVector = "mDataVector";
-      };
+    };
 }
 

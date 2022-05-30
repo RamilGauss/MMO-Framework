@@ -14,7 +14,8 @@ See for more information LICENSE.md.
 #include "CodeGeneratorImplementation/Sources/JsonSerializerGenerator.h"
 #include "CodeGeneratorImplementation/Sources/BinaryMarshallerGenerator.h"
 #include "CodeGeneratorImplementation/Sources/TypeFactoryGenerator.h"
-#include "CodeGeneratorImplementation/Sources/EntityManagerGenerator.h"
+#include "CodeGeneratorImplementation/Sources/EcsComponentExtensionGenerator.h"
+#include "CodeGeneratorImplementation/Sources/EcsSystemExtensionGenerator.h"
 #include "CodeGeneratorImplementation/Sources/TypeInformationGenerator.h"
 
 using namespace nsReflectionCodeGenerator;
@@ -24,11 +25,11 @@ TReflectionCodeGenerator g_Rcg;
 
 TIncludeListGenerator g_IncludeListGenerator;
 
-//TMyGuiSerializerGenerator g_MyGuiGenerator;
 TJsonSerializerGenerator g_JsonGenerator;
 TBinaryMarshallerGenerator g_BinaryGenerator;
 TTypeFactoryGenerator g_ReflectionGenerator;
-TEntityManagerGenerator g_EntMngGenerator;
+TEcsComponentExtensionGenerator g_EcsComponentExtensionGenerator;
+TEcsSystemExtensionGenerator g_EcsSystemExtensionGenerator;
 TTypeInformationGenerator g_TypeInfoGenerator;
 
 //---------------------------------------------------------------------------------------
@@ -46,7 +47,8 @@ int main(int argc, char* argv[])
     g_Rcg.AddGenerator(&g_JsonGenerator);
     g_Rcg.AddGenerator(&g_BinaryGenerator);
     g_Rcg.AddGenerator(&g_ReflectionGenerator);
-    g_Rcg.AddGenerator(&g_EntMngGenerator);
+    g_Rcg.AddGenerator(&g_EcsComponentExtensionGenerator);
+    g_Rcg.AddGenerator(&g_EcsSystemExtensionGenerator);
     g_Rcg.AddGenerator(&g_TypeInfoGenerator);
 
     g_Rcg.SetIncludeListGenerator(&g_IncludeListGenerator);

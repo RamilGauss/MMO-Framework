@@ -23,8 +23,8 @@ namespace nsECSFramework
         void SetEntMng(TEntityManager* entMng) override
         {
             mEntMng = entMng;
-            auto callbacPool = mEntMng->RegisterOnRemoveComponent<Component>();
-            callbacPool->Register(this, [this](TEntityID eid, const IComponent* pC)
+            auto callbackPool = mEntMng->RegisterOnRemoveComponent<Component>();
+            callbackPool->Register(this, [this](TEntityID eid, const IComponent* pC)
             {
                 ((SystemTypeImplementation*) (this))->Reactive(eid, (const Component*) pC);
             });

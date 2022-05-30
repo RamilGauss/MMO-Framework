@@ -75,12 +75,6 @@ IContext* TGraphicEngineModule::CreateContext()
 
     auto pCtx = mGE->CreateContext(TGraphicEngine::PipeLineType::SIMPLE);
 
-    //###
-    auto pCamera = pCtx->CreateCamera();// TODO: delete me!
-    pCtx->SetGuiCamera(pCamera);
-    pCamera->SetWindowSize({ 800, 600 });
-    //###
-
     pModuleCtx->SetGraphicEngineContext(pCtx);
 
     return pModuleCtx;

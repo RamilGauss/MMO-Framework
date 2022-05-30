@@ -37,8 +37,14 @@
     <ClCompile Include="TypeInformationSerializer.cpp">
       <Filter>GeneratedFiles</Filter>
     </ClCompile>
-    <ClCompile Include="EntityManagerExtension.cpp">
+    <ClCompile Include="EcsComponentExtensionExtension.cpp">
       <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="EcsSystemExtension.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="EcsSystem.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,14 +63,23 @@
     <ClInclude Include="TypeInformationSerializer.h">
       <Filter>GeneratedFiles</Filter>
     </ClInclude>
-    <ClInclude Include="EntityManagerExtension.h">
-      <Filter>GeneratedFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="EcsIncludeList.h">
-      <Filter>GeneratedFiles</Filter>
-    </ClInclude>
     <ClInclude Include="DataSources\SimpleComponents.h">
       <Filter>DataSources</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSources\Systems.h">
+      <Filter>DataSources</Filter>
+    </ClInclude>
+    <ClInclude Include="EcsComponentExtensionExtension.h">
+      <Filter>GeneratedFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="EcsComponentExtensionIncludeList.h">
+      <Filter>GeneratedFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="EcsSystemExtension.h">
+      <Filter>GeneratedFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="EcsSystemExtensionIncludeList.h">
+      <Filter>GeneratedFiles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +87,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="dataEcs.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="dataEcsSystem.json">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

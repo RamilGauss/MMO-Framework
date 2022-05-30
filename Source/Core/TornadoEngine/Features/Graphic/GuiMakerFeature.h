@@ -33,6 +33,8 @@ See for more information LICENSE.md.
 
 #include "TextureMakerSystem.h"
 
+#include "CameraMakerSystem.h"
+
 namespace nsGraphicWrapper
 {
     class DllExport TGuiMakerFeature : public nsECSFramework::TFeature
@@ -61,6 +63,8 @@ namespace nsGraphicWrapper
         TFrameKeyHandlerMakerSystem mFrameKeyHandlerMakerSystem;
 
         TTextureMakerSystem mTextureMakerSystem;
+
+        TCameraMakerSystem mCameraMakerSystem;
     public:
         void InitConveyor() override;
     };

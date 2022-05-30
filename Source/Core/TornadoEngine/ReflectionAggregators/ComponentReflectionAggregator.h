@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "IJsonSerializer.h"
 #include "IBinaryMarshaller.h"
 #include "IImGuiSerializer.h"
-#include "IEntityManagerExtension.h"
+#include "IEcsComponentExtension.h"
 #include "ITypeInformation.h"
 #include "ITypeFactory.h"
 
@@ -25,6 +25,6 @@ namespace nsTornadoEngine
         IJsonSerializer* mJson = nullptr;
         IBinaryMarshaller* mBin = nullptr;
         IImGuiSerializer* mImGui = nullptr;
-        IEntityManagerExtension* mEntMng = nullptr;
+        IEcsComponentExtension* mEntMng = nullptr;
     };
 }

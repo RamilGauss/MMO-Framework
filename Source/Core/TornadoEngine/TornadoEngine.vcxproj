@@ -223,6 +223,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\ButtonTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Graphic\CameraBuilderFeature.cpp" />
+    <ClCompile Include="Features\Graphic\GuiCameraBuilderSystem.cpp" />
+    <ClCompile Include="Features\Graphic\CameraMakerSystem.cpp" />
+    <ClCompile Include="Features\Graphic\CameraTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Graphic\CameraUpdaterToModuleSystem.cpp" />
     <ClCompile Include="Features\Graphic\DialogBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\DialogCloseEventHandlerMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.cpp" />
@@ -294,6 +299,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
+    <ClCompile Include="Generated files\EcsSystemExtension.cpp" />
     <ClCompile Include="Generated files\FeatureTypeFactory.cpp" />
     <ClCompile Include="Generated files\FeatureTypeInformation.cpp" />
     <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
@@ -349,8 +355,13 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Components\Common\UniverseGuidComponent.h" />
     <ClInclude Include="Components\Common\UniverseIndexComponent.h" />
     <ClInclude Include="Components\Graphic\CameraComponent.h" />
+    <ClInclude Include="Components\Graphic\CameraWindowPositionComponent.h" />
+    <ClInclude Include="Components\Graphic\CameraWindowSizeComponent.h" />
+    <ClInclude Include="Components\Graphic\GuiCameraTagComponent.h" />
     <ClInclude Include="Components\Graphic\LightComponent.h" />
+    <ClInclude Include="Components\Graphic\RenderToTextureCameraComponent.h" />
     <ClInclude Include="Components\Graphic\TextureComponent.h" />
+    <ClInclude Include="Components\Graphic\UniverseCameraComponent.h" />
     <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h" />
     <ClInclude Include="Components\Gui\ButtonComponent.h" />
     <ClInclude Include="Components\Gui\DialogComponent.h" />
@@ -390,6 +401,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonMakerSystem.h" />
     <ClInclude Include="Features\Graphic\ButtonTerminatorSystem.h" />
+    <ClInclude Include="Features\Graphic\CameraBuilderFeature.h" />
+    <ClInclude Include="Features\Graphic\GuiCameraBuilderSystem.h" />
+    <ClInclude Include="Features\Graphic\CameraMakerSystem.h" />
+    <ClInclude Include="Features\Graphic\CameraTerminatorSystem.h" />
+    <ClInclude Include="Features\Graphic\CameraUpdaterToModuleSystem.h" />
     <ClInclude Include="Features\Graphic\DialogBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\DialogCloseEventHandlerMakerSystem.h" />
     <ClInclude Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.h" />
@@ -463,6 +479,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
     <ClInclude Include="Generated files\ComponentTypeInformation.h" />
+    <ClInclude Include="Generated files\EcsSystemExtension.h" />
     <ClInclude Include="Generated files\FeatureIncludeList.h" />
     <ClInclude Include="Generated files\FeatureTypeFactory.h" />
     <ClInclude Include="Generated files\FeatureTypeInformation.h" />
@@ -519,7 +536,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="ReflectionAggregators\FeatureReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\HandlerReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\IBinaryMarshaller.h" />
-    <ClInclude Include="ReflectionAggregators\IEntityManagerExtension.h" />
+    <ClInclude Include="ReflectionAggregators\IEcsComponentExtension.h" />
+    <ClInclude Include="ReflectionAggregators\IEcsSystemExtension.h" />
     <ClInclude Include="ReflectionAggregators\IImGuiSerializer.h" />
     <ClInclude Include="ReflectionAggregators\IJsonSerializer.h" />
     <ClInclude Include="ReflectionAggregators\ITypeFactory.h" />

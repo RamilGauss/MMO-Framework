@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include "ITypeFactory.h"
 #include "ITypeInformation.h"
+#include "IEcsSystemExtension.h"
 
 namespace nsTornadoEngine
 {
@@ -19,5 +20,7 @@ namespace nsTornadoEngine
         ITypeInformation* mTypeInfo = nullptr;
 
         ITypeFactory* mTypeFactory = nullptr;
+
+        IEcsSystemExtension* mEcsSystemExtension = nullptr;
     };
 }

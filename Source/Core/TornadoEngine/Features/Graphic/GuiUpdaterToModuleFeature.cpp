@@ -13,4 +13,5 @@ void TGuiUpdaterToModuleFeature::InitConveyor()
 {
     Add(&mTitleUpdaterSystem);
     Add(&mInputTextValueUpdaterSystem);
+    Add(&mCameraUpdaterToModuleSystem);
 }

@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "EntityManagerFileGenerator.h"
+#include "EcsComponentExtensionFileGenerator.h"
 #include "fmt/core.h"
 
 namespace nsCodeGeneratorImplementation
 {
-    class TEntityManagerHeaderFileGenerator : public TEntityManagerFileGenerator
+    class TEcsComponentExtensionHeaderFileGenerator : public TEcsComponentExtensionFileGenerator
     {
         const std::list<std::string> s_Decl =
         {

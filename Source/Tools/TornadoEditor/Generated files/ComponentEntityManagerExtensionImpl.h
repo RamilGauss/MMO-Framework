@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IEntityManagerExtension.h"
+#include "IEcsComponentExtension.h"
 
 namespace nsTornadoEditor
 {
-    struct DllExport TComponentEntityManagerExtensionImpl : public nsTornadoEngine::IEntityManagerExtension
+    struct DllExport TComponentEntityManagerExtensionImpl : public nsTornadoEngine::IEcsComponentExtension
     {
         TComponentEntityManagerExtensionImpl();
         virtual ~TComponentEntityManagerExtensionImpl();

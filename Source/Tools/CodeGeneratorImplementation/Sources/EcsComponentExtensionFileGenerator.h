@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsCodeGeneratorImplementation
 {
-    class TEntityManagerFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
+    class TEcsComponentExtensionFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
     {
     protected:
         const std::string s_Has = "Has";
@@ -49,7 +49,7 @@ namespace nsCodeGeneratorImplementation
         const std::string s_EntityManagerHeaderPath = "entityManagerHeaderPath";
 
     protected:
-        TEntityManagerFileGenerator();
+        TEcsComponentExtensionFileGenerator();
     };
 }
 

@@ -83,6 +83,12 @@
     <ClCompile Include="Features\MainFeature.cpp">
       <Filter>Features\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Generated files\FeatureEcsSystemExtensionImpl.cpp">
+      <Filter>Generated files\Features\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\EcsSystemExtension.cpp">
+      <Filter>Generated files\Features\GeneratedByReflection</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -341,6 +347,12 @@
     </ClInclude>
     <ClInclude Include="Features\MainFeature.h">
       <Filter>Features\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\FeatureEcsSystemExtensionImpl.h">
+      <Filter>Generated files\Features\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\EcsSystemExtension.h">
+      <Filter>Generated files\Features\GeneratedByReflection</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

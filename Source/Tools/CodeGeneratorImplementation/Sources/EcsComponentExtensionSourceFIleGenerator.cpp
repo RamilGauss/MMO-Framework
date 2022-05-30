@@ -9,13 +9,13 @@ See for more information LICENSE.md.
 
 #include <algorithm>
 
-#include "EntityManagerSourceFileGenerator.h"
+#include "EcsComponentExtensionSourceFileGenerator.h"
 #include "fmt/core.h"
 #include "BL_Debug.h"
 
 using namespace nsCodeGeneratorImplementation;
 
-void TEntityManagerSourceFileGenerator::Work()
+void TEcsComponentExtensionSourceFileGenerator::Work()
 {
     AddHeader(mConfig->targetForCodeGeneration.header);
     AddTimeHeader();
@@ -39,14 +39,14 @@ void TEntityManagerSourceFileGenerator::Work()
     AddImplementations();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TEntityManagerSourceFileGenerator::AddImplementations()
+void TEcsComponentExtensionSourceFileGenerator::AddImplementations()
 {
     AddInit();
 
     AddMethodDeinitions();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TEntityManagerSourceFileGenerator::AddInit()
+void TEcsComponentExtensionSourceFileGenerator::AddInit()
 {
     std::list<std::string> paramList;
     AddMethodImplementationBegin(s_Void, mSerializer->className, s_Init, paramList);
@@ -157,7 +157,7 @@ void TEntityManagerSourceFileGenerator::AddInit()
     AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TEntityManagerSourceFileGenerator::AddMethodDeinitions()
+void TEcsComponentExtensionSourceFileGenerator::AddMethodDeinitions()
 {
     // has
     std::list<std::string> paramList =

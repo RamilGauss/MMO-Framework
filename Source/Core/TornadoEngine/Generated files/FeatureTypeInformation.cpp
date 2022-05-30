@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.5, build 56 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2022_05_23 22:49:04.787
+// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
+// File has been generated at 2022_05_30 08:03:22.052
 	
 #include "FeatureTypeInformation.h"
 
@@ -62,6 +62,30 @@ void TFeatureTypeInformation::Init()
     mTypeNameList.push_back(nsGraphicWrapper_TButtonTerminatorSystem_n);
     mRttiList.push_back(nsGraphicWrapper_TButtonTerminatorSystem_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TButtonTerminatorSystem_n, nsGraphicWrapper_TButtonTerminatorSystem_i });
+    
+    int nsGraphicWrapper_TCameraBuilderFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraBuilderFeature>();
+    std::string nsGraphicWrapper_TCameraBuilderFeature_n = "nsGraphicWrapper::TCameraBuilderFeature";
+    mTypeNameList.push_back(nsGraphicWrapper_TCameraBuilderFeature_n);
+    mRttiList.push_back(nsGraphicWrapper_TCameraBuilderFeature_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TCameraBuilderFeature_n, nsGraphicWrapper_TCameraBuilderFeature_i });
+    
+    int nsGraphicWrapper_TCameraMakerSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraMakerSystem>();
+    std::string nsGraphicWrapper_TCameraMakerSystem_n = "nsGraphicWrapper::TCameraMakerSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TCameraMakerSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TCameraMakerSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TCameraMakerSystem_n, nsGraphicWrapper_TCameraMakerSystem_i });
+    
+    int nsGraphicWrapper_TCameraTerminatorSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraTerminatorSystem>();
+    std::string nsGraphicWrapper_TCameraTerminatorSystem_n = "nsGraphicWrapper::TCameraTerminatorSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TCameraTerminatorSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TCameraTerminatorSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TCameraTerminatorSystem_n, nsGraphicWrapper_TCameraTerminatorSystem_i });
+    
+    int nsGraphicWrapper_TCameraUpdaterToModuleSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraUpdaterToModuleSystem>();
+    std::string nsGraphicWrapper_TCameraUpdaterToModuleSystem_n = "nsGraphicWrapper::TCameraUpdaterToModuleSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TCameraUpdaterToModuleSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TCameraUpdaterToModuleSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TCameraUpdaterToModuleSystem_n, nsGraphicWrapper_TCameraUpdaterToModuleSystem_i });
     
     int nsGraphicWrapper_TCleanUpUniverseContextSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCleanUpUniverseContextSystem>();
     std::string nsGraphicWrapper_TCleanUpUniverseContextSystem_n = "nsGraphicWrapper::TCleanUpUniverseContextSystem";
@@ -158,6 +182,12 @@ void TFeatureTypeInformation::Init()
     mTypeNameList.push_back(nsGraphicWrapper_TGuiBuilderFeature_n);
     mRttiList.push_back(nsGraphicWrapper_TGuiBuilderFeature_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TGuiBuilderFeature_n, nsGraphicWrapper_TGuiBuilderFeature_i });
+    
+    int nsGraphicWrapper_TGuiCameraBuilderSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraBuilderSystem>();
+    std::string nsGraphicWrapper_TGuiCameraBuilderSystem_n = "nsGraphicWrapper::TGuiCameraBuilderSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TGuiCameraBuilderSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TGuiCameraBuilderSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TGuiCameraBuilderSystem_n, nsGraphicWrapper_TGuiCameraBuilderSystem_i });
     
     int nsGraphicWrapper_TGuiMakerFeature_i = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiMakerFeature>();
     std::string nsGraphicWrapper_TGuiMakerFeature_n = "nsGraphicWrapper::TGuiMakerFeature";

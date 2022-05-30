@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 
 #include "TitleUpdaterSystem.h"
 #include "InputTextValueUpdaterSystem.h"
+#include "CameraUpdaterToModuleSystem.h"
 
 namespace nsGraphicWrapper
 {
@@ -18,6 +19,7 @@ namespace nsGraphicWrapper
     {
         TTitleUpdaterSystem mTitleUpdaterSystem;
         TInputTextValueUpdaterSystem mInputTextValueUpdaterSystem;
+        TCameraUpdaterToModuleSystem mCameraUpdaterToModuleSystem;
     public:
         void InitConveyor() override;
     };

@@ -166,6 +166,9 @@
     <Filter Include="Features\Graphic\Terminator\Graphic">
       <UniqueIdentifier>{273ac64f-877e-4a90-8b85-aa0c4a0e1b17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Graphic\Builder\Graphic">
+      <UniqueIdentifier>{cb749c9e-967c-49c8-9926-216118e5b153}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -510,6 +513,24 @@
     <ClCompile Include="Features\Graphic\TextureTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Graphic</Filter>
     </ClCompile>
+    <ClCompile Include="Features\Graphic\GuiCameraBuilderSystem.cpp">
+      <Filter>Features\Graphic\Builder\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\CameraMakerSystem.cpp">
+      <Filter>Features\Graphic\Maker\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\CameraTerminatorSystem.cpp">
+      <Filter>Features\Graphic\Terminator\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\CameraUpdaterToModuleSystem.cpp">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\CameraBuilderFeature.cpp">
+      <Filter>Features\Graphic\Builder\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Generated files\EcsSystemExtension.cpp">
+      <Filter>Generated files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -596,7 +617,7 @@
     <ClInclude Include="ReflectionAggregators\IBinaryMarshaller.h">
       <Filter>ReflectionAggregators</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionAggregators\IEntityManagerExtension.h">
+    <ClInclude Include="ReflectionAggregators\IEcsComponentExtension.h">
       <Filter>ReflectionAggregators</Filter>
     </ClInclude>
     <ClInclude Include="ReflectionAggregators\IImGuiSerializer.h">
@@ -1138,6 +1159,42 @@
     </ClInclude>
     <ClInclude Include="Features\Graphic\TextureTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\CameraWindowSizeComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\CameraWindowPositionComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\GuiCameraTagComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\GuiCameraBuilderSystem.h">
+      <Filter>Features\Graphic\Builder\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\CameraMakerSystem.h">
+      <Filter>Features\Graphic\Maker\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\CameraTerminatorSystem.h">
+      <Filter>Features\Graphic\Terminator\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\CameraUpdaterToModuleSystem.h">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\CameraBuilderFeature.h">
+      <Filter>Features\Graphic\Builder\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionAggregators\IEcsSystemExtension.h">
+      <Filter>ReflectionAggregators</Filter>
+    </ClInclude>
+    <ClInclude Include="Generated files\EcsSystemExtension.h">
+      <Filter>Generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\UniverseCameraComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\RenderToTextureCameraComponent.h">
+      <Filter>Components\Graphic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

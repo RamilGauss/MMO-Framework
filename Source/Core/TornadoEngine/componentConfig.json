@@ -40,7 +40,7 @@
                 "className": "TComponentTypeInformation",
                 "keyValueMap": {}
             },
-            "EntityManagerExtension": {
+            "EcsComponentExtension": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
                 "fileName": "ComponentEntityManagerExtension",

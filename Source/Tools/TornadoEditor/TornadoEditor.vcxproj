@@ -222,6 +222,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClCompile Include="Generated files\ComponentReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializerImpl.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformationImpl.cpp" />
+    <ClCompile Include="Generated files\EcsSystemExtension.cpp" />
     <ClCompile Include="Generated files\FeatureReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\FeatureTypeFactory.cpp" />
     <ClCompile Include="Generated files\FeatureTypeFactoryImpl.cpp" />
@@ -234,6 +235,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClCompile Include="Generated files\HandlerTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\FeatureEcsSystemExtensionImpl.cpp" />
     <ClCompile Include="Handlers\OnFileHierarchyClickHandler.cpp" />
     <ClCompile Include="Handlers\OnMouseClickFileNodeHandler.cpp" />
     <ClCompile Include="Handlers\OnOpenProjectClickHandler.cpp" />
@@ -312,6 +314,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClInclude Include="Generated files\ComponentReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializerImpl.h" />
     <ClInclude Include="Generated files\ComponentTypeInformationImpl.h" />
+    <ClInclude Include="Generated files\EcsSystemExtension.h" />
     <ClInclude Include="Generated files\FeatureIncludeList.h" />
     <ClInclude Include="Generated files\FeatureReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\FeatureTypeFactory.h" />
@@ -326,6 +329,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClInclude Include="Generated files\HandlerTypeInformationImpl.h" />
     <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\FeatureEcsSystemExtensionImpl.h" />
     <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h" />
     <ClInclude Include="Handlers\OnFileHierarchyClickHandler.h" />
     <ClInclude Include="Handlers\OnMouseClickFileNodeHandler.h" />

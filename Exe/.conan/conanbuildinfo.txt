@@ -1,12 +1,12 @@
 [includedirs]
 C:/Users/Gauss/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
-C:/Users/Gauss/.conan/data/magic_enum/0.7.3/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/magic_enum/0.8.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 C:/Users/Gauss/.conan/data/lz4/1.9.3/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/include
 C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/include
-C:/.conan/b26edee/1/include
-C:/.conan/a87799/1/include
-C:/.conan/a87799/1/include/bullet
+C:/.conan/da4d35/1/include
+C:/.conan/15b0e0/1/include
+C:/.conan/15b0e0/1/include/bullet
 C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/include
 C:/Users/Gauss/.conan/data/sdl/2.0.20/_/_/package/7fbacd5d9c153ab2ef076669a9067213bac1a6f9/include
 C:/Users/Gauss/.conan/data/sdl/2.0.20/_/_/package/7fbacd5d9c153ab2ef076669a9067213bac1a6f9/include/SDL2
@@ -20,8 +20,8 @@ C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb76
 C:/Users/Gauss/.conan/data/lz4/1.9.3/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/lib
 C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib
-C:/.conan/b26edee/1/lib
-C:/.conan/a87799/1/lib
+C:/.conan/da4d35/1/lib
+C:/.conan/15b0e0/1/lib
 C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/lib
 C:/Users/Gauss/.conan/data/sdl/2.0.20/_/_/package/7fbacd5d9c153ab2ef076669a9067213bac1a6f9/lib
 C:/Users/Gauss/.conan/data/glad/0.1.35/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/lib
@@ -40,12 +40,12 @@ C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb76
 
 [builddirs]
 C:/Users/Gauss/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
-C:/Users/Gauss/.conan/data/magic_enum/0.7.3/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/magic_enum/0.8.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 C:/Users/Gauss/.conan/data/lz4/1.9.3/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
 C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/
 C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/
-C:/.conan/b26edee/1/
-C:/.conan/a87799/1/
+C:/.conan/da4d35/1/
+C:/.conan/15b0e0/1/
 C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/
 C:/Users/Gauss/.conan/data/sdl/2.0.20/_/_/package/7fbacd5d9c153ab2ef076669a9067213bac1a6f9/
 C:/Users/Gauss/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
@@ -237,7 +237,7 @@ cmake_find_package_multi=RapidJSON
 
 
 [includedirs_magic_enum]
-C:/Users/Gauss/.conan/data/magic_enum/0.7.3/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/magic_enum/0.8.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 
 [libdirs_magic_enum]
 
@@ -249,7 +249,7 @@ C:/Users/Gauss/.conan/data/magic_enum/0.7.3/_/_/package/5ab84d6acfe1f23c4fae0ab8
 
 
 [builddirs_magic_enum]
-C:/Users/Gauss/.conan/data/magic_enum/0.7.3/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/magic_enum/0.8.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 
 [libs_magic_enum]
 
@@ -285,13 +285,13 @@ C:/Users/Gauss/.conan/data/magic_enum/0.7.3/_/_/package/5ab84d6acfe1f23c4fae0ab8
 
 
 [rootpath_magic_enum]
-C:/Users/Gauss/.conan/data/magic_enum/0.7.3/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+C:/Users/Gauss/.conan/data/magic_enum/0.8.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
 
 [name_magic_enum]
 magic_enum
 
 [version_magic_enum]
-0.7.3
+0.8.0
 
 [generatornames_magic_enum]
 
@@ -454,6 +454,7 @@ crypt32
 ws2_32
 advapi32
 user32
+bcrypt
 
 [defines_openssl]
 
@@ -500,10 +501,10 @@ cmake_find_package_multi=OpenSSL
 
 
 [includedirs_boost]
-C:/.conan/b26edee/1/include
+C:/.conan/da4d35/1/include
 
 [libdirs_boost]
-C:/.conan/b26edee/1/lib
+C:/.conan/da4d35/1/lib
 
 [bindirs_boost]
 
@@ -512,7 +513,7 @@ C:/.conan/b26edee/1/lib
 
 
 [builddirs_boost]
-C:/.conan/b26edee/1/
+C:/.conan/da4d35/1/
 
 [libs_boost]
 libboost_contract
@@ -591,13 +592,13 @@ BOOST_ALL_NO_LIB
 
 
 [rootpath_boost]
-C:/.conan/b26edee/1
+C:/.conan/da4d35/1
 
 [name_boost]
 boost
 
 [version_boost]
-1.78.0
+1.79.0
 
 [generatornames_boost]
 cmake_find_package=Boost
@@ -609,11 +610,11 @@ cmake_find_package_multi=Boost
 
 
 [includedirs_bullet3]
-C:/.conan/a87799/1/include
-C:/.conan/a87799/1/include/bullet
+C:/.conan/15b0e0/1/include
+C:/.conan/15b0e0/1/include/bullet
 
 [libdirs_bullet3]
-C:/.conan/a87799/1/lib
+C:/.conan/15b0e0/1/lib
 
 [bindirs_bullet3]
 
@@ -622,7 +623,7 @@ C:/.conan/a87799/1/lib
 
 
 [builddirs_bullet3]
-C:/.conan/a87799/1/
+C:/.conan/15b0e0/1/
 
 [libs_bullet3]
 Bullet3OpenCL_clew_Debug
@@ -668,13 +669,13 @@ Bullet3Common_Debug
 
 
 [rootpath_bullet3]
-C:/.conan/a87799/1
+C:/.conan/15b0e0/1
 
 [name_bullet3]
 bullet3
 
 [version_bullet3]
-2.89
+3.24
 
 [generatornames_bullet3]
 cmake_find_package=Bullet
@@ -1174,7 +1175,7 @@ stacktrace_addr2line_available=False
 [ENV_fmt]
 [ENV_openssl]
 [ENV_boost]
-BOOST_ROOT=C:\.conan\b26edee\1
+BOOST_ROOT=C:\.conan\da4d35\1
 [ENV_bullet3]
 [ENV_gtest]
 [ENV_sdl]
