@@ -89,6 +89,12 @@
     <ClCompile Include="Generated files\EcsSystemExtension.cpp">
       <Filter>Generated files\Features\GeneratedByReflection</Filter>
     </ClCompile>
+    <ClCompile Include="Handlers\OnOpenComponentViewerClickHandler.cpp">
+      <Filter>Handlers\Menu\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Handlers\OnOpenSystemViewerClickHandler.cpp">
+      <Filter>Handlers\Menu\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -207,6 +213,9 @@
     </Filter>
     <Filter Include="Components\ProjectEntity">
       <UniqueIdentifier>{bc0b2afa-307f-4583-936d-c73df2e5500b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers\Menu\Tools">
+      <UniqueIdentifier>{ac0551c3-a4e0-41dd-aa2f-3654bfb3b2b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -353,6 +362,12 @@
     </ClInclude>
     <ClInclude Include="Generated files\EcsSystemExtension.h">
       <Filter>Generated files\Features\GeneratedByReflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OnOpenComponentViewerClickHandler.h">
+      <Filter>Handlers\Menu\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\OnOpenSystemViewerClickHandler.h">
+      <Filter>Handlers\Menu\Tools</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

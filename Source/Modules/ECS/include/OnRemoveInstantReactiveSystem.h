@@ -20,9 +20,10 @@ namespace nsECSFramework
             mEntMng->RegisterOnRemoveComponent<Component>()->Unregister(this);
         }
 
-        void SetEntMng(TEntityManager* entMng) override
+        void SetEntMng(TEntityManager* entMng) override final
         {
-            mEntMng = entMng;
+            TSystem::SetEntMng(entMng);
+
             auto callbackPool = mEntMng->RegisterOnRemoveComponent<Component>();
             callbackPool->Register(this, [this](TEntityID eid, const IComponent* pC)
             {

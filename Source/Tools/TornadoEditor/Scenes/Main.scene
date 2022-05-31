@@ -314,6 +314,110 @@
                     "jsonBody": "{}"
                 }
             ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"main_9\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Tools\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"main_1\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
+                    "jsonBody": "{\"value\":\"main\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"Tools\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMenuNodeComponent",
+                    "jsonBody": "{}"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"main_10\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"ComponentViewer\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"main_9\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
+                    "jsonBody": "{\"value\":\"main\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"Component viewer\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMenuNodeComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMenuNodeClickHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenComponentViewerClickHandler\", \"partOfGuid\":\"THIS_SCENE\", \"entityGuid\":\"main_10\"}"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"main_11\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"SystemViewer\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"main_9\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
+                    "jsonBody": "{\"value\":\"main\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"System viewer\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMenuNodeComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMenuNodeClickHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenSystemViewerClickHandler\", \"partOfGuid\":\"THIS_SCENE\", \"entityGuid\":\"main_11\"}"
+                }
+            ]
         }
     ]
 }

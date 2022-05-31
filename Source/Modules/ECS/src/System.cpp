@@ -28,8 +28,19 @@ TSystem::~TSystem()
     mEntMng->RemoveSystem(this);
 }
 //-------------------------------------------------------------------------
-const std::string& TSystem::GetTypeName() const
+const std::string TSystem::GetTypeName() const
 {
-    return typeid(*this).name();
+    const std::string CLASS = "class";
+    const std::string STRUCT = "struct";
+
+    std::string typeName = typeid(*this).name();
+    auto classIndex = typeName.find(CLASS);
+
+    if (classIndex != std::string::npos) {
+        return typeName.substr(classIndex + CLASS.size() + 1);
+    }
+
+    auto structIndex = typeName.find(STRUCT);
+    return typeName.substr(structIndex + STRUCT.size() + 1);
 }
 //-------------------------------------------------------------------------

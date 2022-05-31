@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_05_30 08:05:38.806
+// File has been generated at 2022_05_31 07:47:30.278
 	
 #include "HandlerTypeInformation.h"
 
@@ -69,11 +69,23 @@ void THandlerTypeInformation::Init()
     mRttiList.push_back(nsTornadoEditor_TOnMouseClickFileNodeHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TOnMouseClickFileNodeHandler_n, nsTornadoEditor_TOnMouseClickFileNodeHandler_i });
     
+    int nsTornadoEditor_TOnOpenComponentViewerClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenComponentViewerClickHandler>();
+    std::string nsTornadoEditor_TOnOpenComponentViewerClickHandler_n = "nsTornadoEditor::TOnOpenComponentViewerClickHandler";
+    mTypeNameList.push_back(nsTornadoEditor_TOnOpenComponentViewerClickHandler_n);
+    mRttiList.push_back(nsTornadoEditor_TOnOpenComponentViewerClickHandler_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TOnOpenComponentViewerClickHandler_n, nsTornadoEditor_TOnOpenComponentViewerClickHandler_i });
+    
     int nsTornadoEditor_TOnOpenProjectClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenProjectClickHandler>();
     std::string nsTornadoEditor_TOnOpenProjectClickHandler_n = "nsTornadoEditor::TOnOpenProjectClickHandler";
     mTypeNameList.push_back(nsTornadoEditor_TOnOpenProjectClickHandler_n);
     mRttiList.push_back(nsTornadoEditor_TOnOpenProjectClickHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TOnOpenProjectClickHandler_n, nsTornadoEditor_TOnOpenProjectClickHandler_i });
+    
+    int nsTornadoEditor_TOnOpenSystemViewerClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenSystemViewerClickHandler>();
+    std::string nsTornadoEditor_TOnOpenSystemViewerClickHandler_n = "nsTornadoEditor::TOnOpenSystemViewerClickHandler";
+    mTypeNameList.push_back(nsTornadoEditor_TOnOpenSystemViewerClickHandler_n);
+    mRttiList.push_back(nsTornadoEditor_TOnOpenSystemViewerClickHandler_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TOnOpenSystemViewerClickHandler_n, nsTornadoEditor_TOnOpenSystemViewerClickHandler_i });
     
     int nsTornadoEditor_TOpenProjectCancelButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOpenProjectCancelButtonClickHandler>();
     std::string nsTornadoEditor_TOpenProjectCancelButtonClickHandler_n = "nsTornadoEditor::TOpenProjectCancelButtonClickHandler";

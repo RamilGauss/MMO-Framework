@@ -13,11 +13,12 @@ See for more information LICENSE.md.
 
 #include "NameComponent.h"
 
-class TNameRemoveSystem : public nsECSFramework::TOnRemoveInstantReactiveSystem<TNameComponent>
+class TNameRemoveSystem : 
+    public nsECSFramework::TOnRemoveInstantReactiveSystem<TNameComponent, TNameRemoveSystem>
 {
 public:
-    void Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC) override
+    void Reactive(nsECSFramework::TEntityID eid, const TNameComponent* pC)
     {
-        fmt::print("name {} was removed\n", ((TNameComponent*) pC)->name);
+        fmt::print("name {} was removed\n", pC->name);
     }
 };

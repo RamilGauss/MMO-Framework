@@ -20,9 +20,10 @@ namespace nsECSFramework
             mEntMng->UnregisterOnUpdateCollectorComponent<Component>(mReactiveId);
         }
 
-        void SetEntMng(TEntityManager* entMng) override
+        void SetEntMng(TEntityManager* entMng) override final
         {
-            mEntMng = entMng;
+            TSystem::SetEntMng(entMng);
+
             mReactiveId = mEntMng->RegisterOnUpdateCollectorComponent<Component>();
         }
 

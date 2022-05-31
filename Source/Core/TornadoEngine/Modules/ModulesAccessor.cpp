@@ -84,3 +84,8 @@ void TModulesAccessor::SetHierarchyHelper(THierarchyHelper* value)
     Modules()->hierarchyHelper = value;
 }
 //--------------------------------------------------------------------------
+void TModulesAccessor::SetGizmo(TGizmo* value)
+{
+    Modules()->gizmo = value;
+}
+//--------------------------------------------------------------------------

@@ -169,6 +169,9 @@
     <Filter Include="Features\Graphic\Builder\Graphic">
       <UniqueIdentifier>{cb749c9e-967c-49c8-9926-216118e5b153}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Gizmos">
+      <UniqueIdentifier>{208b59a9-fade-4db1-ac2e-6a29838b614b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Share\MathTools.cpp">
@@ -530,6 +533,15 @@
     </ClCompile>
     <ClCompile Include="Generated files\EcsSystemExtension.cpp">
       <Filter>Generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Gizmo.cpp">
+      <Filter>Modules\Gizmos</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\SystemViewer.cpp">
+      <Filter>Modules\Gizmos</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\ComponentViewer.cpp">
+      <Filter>Modules\Gizmos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1195,6 +1207,15 @@
     </ClInclude>
     <ClInclude Include="Components\Graphic\RenderToTextureCameraComponent.h">
       <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\Gizmo.h">
+      <Filter>Modules\Gizmos</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ComponentViewer.h">
+      <Filter>Modules\Gizmos</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\SystemViewer.h">
+      <Filter>Modules\Gizmos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

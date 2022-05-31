@@ -89,7 +89,7 @@
     <ClInclude Include="include\LinkToList.h">
       <Filter>include\DataControl</Filter>
     </ClInclude>
-    <ClInclude Include="include\SystemConveyerContainer.h">
+    <ClInclude Include="include\SystemConveyorContainer.h">
       <Filter>include\DataControl</Filter>
     </ClInclude>
     <ClInclude Include="include\EntityManagerMaster.h">
@@ -112,7 +112,7 @@
     <ClCompile Include="src\IComponent.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\SystemConveyerContainer.cpp">
+    <ClCompile Include="src\SystemConveyorContainer.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\EntityManagerMaster.cpp">

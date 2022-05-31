@@ -42,7 +42,7 @@
     <ClInclude Include="include\OnUpdateCollectReactiveSystem.h" />
     <ClInclude Include="include\OnUpdateInstantReactiveSystem.h" />
     <ClInclude Include="include\System.h" />
-    <ClInclude Include="include\SystemConveyerContainer.h" />
+    <ClInclude Include="include\SystemConveyorContainer.h" />
     <ClInclude Include="include\TearDownSystem.h" />
     <ClInclude Include="include\FastAllocatorForeachVector.h" />
   </ItemGroup>
@@ -53,7 +53,7 @@
     <ClCompile Include="src\Feature.cpp" />
     <ClCompile Include="src\IComponent.cpp" />
     <ClCompile Include="src\System.cpp" />
-    <ClCompile Include="src\SystemConveyerContainer.cpp" />
+    <ClCompile Include="src\SystemConveyorContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

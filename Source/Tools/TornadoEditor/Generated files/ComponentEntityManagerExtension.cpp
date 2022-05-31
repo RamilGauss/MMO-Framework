@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_05_30 08:05:38.316
+// File has been generated at 2022_05_31 07:47:29.703
 	
 #include "ComponentEntityManagerExtension.h"
 

@@ -305,6 +305,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
     <ClCompile Include="Generated files\HandlerTypeInformation.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
+    <ClCompile Include="Modules\ComponentViewer.cpp" />
+    <ClCompile Include="Modules\Gizmo.cpp" />
     <ClCompile Include="Modules\GraphicEngineContext.cpp" />
     <ClCompile Include="Modules\HierarchyHelper.cpp" />
     <ClCompile Include="Modules\IContext.cpp" />
@@ -328,6 +330,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\SoundEngineModule.cpp" />
     <ClCompile Include="Modules\PrefabManager.cpp" />
     <ClCompile Include="Modules\SceneManager.cpp" />
+    <ClCompile Include="Modules\SystemViewer.cpp" />
     <ClCompile Include="Modules\UniverseManager.cpp" />
     <ClCompile Include="Share\MathStructs.cpp" />
     <ClCompile Include="Share\MathTools.cpp" />
@@ -499,6 +502,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Handlers\IObjectInstanceEndHandler.h" />
     <ClInclude Include="Handlers\IWindowCloseEventHandler.h" />
     <ClInclude Include="Modules\ComponentInMemory.h" />
+    <ClInclude Include="Modules\ComponentViewer.h" />
+    <ClInclude Include="Modules\Gizmo.h" />
     <ClInclude Include="Modules\GraphicEngineContext.h" />
     <ClInclude Include="Modules\HierarchyHelper.h" />
     <ClInclude Include="Modules\IContextManager.h" />
@@ -531,6 +536,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\SoundEngineModule.h" />
     <ClInclude Include="Modules\PrefabManager.h" />
     <ClInclude Include="Modules\SceneManager.h" />
+    <ClInclude Include="Modules\SystemViewer.h" />
     <ClInclude Include="Modules\UniverseManager.h" />
     <ClInclude Include="ReflectionAggregators\ComponentReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\FeatureReflectionAggregator.h" />

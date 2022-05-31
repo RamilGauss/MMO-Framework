@@ -19,13 +19,14 @@ bool TFeature::IsFeature() const
     return true; 
 }
 //--------------------------------------------------------------------------------------
-bool TFeature::Add(TSystem* system)
+bool TFeature::AddSystem(TSystem* system)
 {
-    if (mSystems.find(system) != mSystems.end()) {
+    if (Has(system)) {
         return false;
     }
+    mSystems.push_back(system);
+
     system->SetEntMng(mEntMng);
-    mSystems.insert(system);
 
     if (system->IsInit()) {
         mInitSystems.push_back(dynamic_cast<TInitSystem*>(system));
@@ -36,9 +37,9 @@ bool TFeature::Add(TSystem* system)
     return true;
 }
 //--------------------------------------------------------------------------------------
-void TFeature::Remove(TSystem* system)
+void TFeature::RemoveSystem(TSystem* system)
 {
-    if (mSystems.find(system) == mSystems.end()) {
+    if (!Has(system)) {
         return;
     }
 
@@ -53,17 +54,18 @@ void TFeature::Remove(TSystem* system)
         tearDownSystem->TearDown();
     }
 
-    mSystems.erase(system);
+    mSystems.remove(system);
 }
 //--------------------------------------------------------------------------------------
-bool TFeature::Has(TSystem* system) const
+bool TFeature::HasSystem(TSystem* system) const
 {
-    return mSystems.find(system) != mSystems.end();
+    auto fit = std::find(mSystems.begin(), mSystems.end(), system);
+    return fit != mSystems.end();
 }
 //--------------------------------------------------------------------------------------
-const std::set<TSystem*>* TFeature::GetSystems()
+const std::list<TSystem*>& TFeature::GetSystems() const
 {
-    return &mSystems;
+    return mSystems;
 }
 //--------------------------------------------------------------------------------------
 void TFeature::Execute()

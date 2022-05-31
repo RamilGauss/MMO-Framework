@@ -8,7 +8,6 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Modules.h"
-//#include <ECS/include/EntityManager.h>
 
 namespace nsTornadoEngine
 {
@@ -31,5 +30,6 @@ namespace nsTornadoEngine
         static void SetHandlerCall(THandlerCallCollector* value);
         static void SetPrefabObjConstructor(TPrefabObjectConstructor* value);
         static void SetHierarchyHelper(THierarchyHelper* value);
+        static void SetGizmo(TGizmo* value);
     };
 }

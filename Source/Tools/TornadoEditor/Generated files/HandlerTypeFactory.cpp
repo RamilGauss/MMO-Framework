@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_05_30 08:05:38.804
+// File has been generated at 2022_05_31 07:47:30.275
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -73,12 +73,26 @@ void THandlerTypeFactory::Init()
     
     m.insert({ rtti_nsTornadoEditor_TOnMouseClickFileNodeHandler_Data, nsTornadoEditor_TOnMouseClickFileNodeHandler_Data });
     
+    Data nsTornadoEditor_TOnOpenComponentViewerClickHandler_Data;
+    nsTornadoEditor_TOnOpenComponentViewerClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnOpenComponentViewerClickHandler(); };
+    nsTornadoEditor_TOnOpenComponentViewerClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnOpenComponentViewerClickHandler*)p; };
+    auto rtti_nsTornadoEditor_TOnOpenComponentViewerClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenComponentViewerClickHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TOnOpenComponentViewerClickHandler_Data, nsTornadoEditor_TOnOpenComponentViewerClickHandler_Data });
+    
     Data nsTornadoEditor_TOnOpenProjectClickHandler_Data;
     nsTornadoEditor_TOnOpenProjectClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnOpenProjectClickHandler(); };
     nsTornadoEditor_TOnOpenProjectClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnOpenProjectClickHandler*)p; };
     auto rtti_nsTornadoEditor_TOnOpenProjectClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenProjectClickHandler>();
     
     m.insert({ rtti_nsTornadoEditor_TOnOpenProjectClickHandler_Data, nsTornadoEditor_TOnOpenProjectClickHandler_Data });
+    
+    Data nsTornadoEditor_TOnOpenSystemViewerClickHandler_Data;
+    nsTornadoEditor_TOnOpenSystemViewerClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnOpenSystemViewerClickHandler(); };
+    nsTornadoEditor_TOnOpenSystemViewerClickHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnOpenSystemViewerClickHandler*)p; };
+    auto rtti_nsTornadoEditor_TOnOpenSystemViewerClickHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenSystemViewerClickHandler>();
+    
+    m.insert({ rtti_nsTornadoEditor_TOnOpenSystemViewerClickHandler_Data, nsTornadoEditor_TOnOpenSystemViewerClickHandler_Data });
     
     Data nsTornadoEditor_TOpenProjectCancelButtonClickHandler_Data;
     nsTornadoEditor_TOpenProjectCancelButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOpenProjectCancelButtonClickHandler(); };

@@ -13,11 +13,12 @@ See for more information LICENSE.md.
 
 #include "NameComponent.h"
 
-class TTestAddCollectorReactiveSystem : public nsECSFramework::TOnAddCollectReactiveSystem<TNameComponent>
+class TTestAddCollectorReactiveSystem : 
+    public nsECSFramework::TOnAddCollectReactiveSystem<TNameComponent, TTestAddCollectorReactiveSystem>
 {
 public:
-    void Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC) override
+    void Reactive(nsECSFramework::TEntityID eid, const TNameComponent* pC)
     {
-        fmt::print("name {} was added collector\n", ((TNameComponent*) pC)->name);
+        fmt::print("name {} was added collector\n", pC->name);
     }
 };

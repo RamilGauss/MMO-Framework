@@ -9,7 +9,6 @@ See for more information LICENSE.md.
 
 #include <list>
 #include <vector>
-#include <set>
 
 #include "InitSystem.h"
 #include "TearDownSystem.h"
@@ -23,7 +22,7 @@ namespace nsECSFramework
         std::list<TInitSystem*> mInitSystems;
         std::list<TExecuteSystem*> mExecuteSystems;
 
-        std::set<TSystem*> mSystems;
+        std::list<TSystem*> mSystems;
     public:
         virtual ~TFeature();
 
@@ -32,15 +31,26 @@ namespace nsECSFramework
 
         bool IsFeature() const override final;
 
-        bool Add(TSystem* system);
-        void Remove(TSystem* system);
-        bool Has(TSystem* system) const;
+        template <typename T>
+        bool Add(T* system) { return AddSystem(dynamic_cast<TSystem*>(system)); }
 
-        const std::set<TSystem*>* GetSystems();
+        template <typename T>
+        void Remove(T* system) { RemoveSystem(dynamic_cast<TSystem*>(system)); }
+
+        template <typename T>
+        bool Has(T* system) const { return HasSystem(dynamic_cast<TSystem*>(system)); }
+
+
+        const std::list<TSystem*>& GetSystems() const;
 
         void Clear();
 
         void Execute() override final;
         void TearDown() override final;
+
+    private:
+        bool AddSystem(TSystem* system);
+        void RemoveSystem(TSystem* system);
+        bool HasSystem(TSystem* system) const;
     };
 }

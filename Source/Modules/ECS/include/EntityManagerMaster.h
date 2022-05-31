@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include <set>
+#include <vector>
 
 namespace nsECSFramework
 {
@@ -17,11 +17,11 @@ namespace nsECSFramework
 
     class DllExport TEntityManagerMaster
     {
-        std::set<TEntityManager*> mEntMngs;
+        std::vector<TEntityManager*> mEntMngs;
     public:
         void AddEntityManager(TEntityManager* pEntMng);
         void RemoveEntityManager(TEntityManager* pEntMng);
 
-        const std::set<TEntityManager*>& GetEntityManager() const;
+        const std::vector<TEntityManager*>& GetEntityManager() const;
     };
 }

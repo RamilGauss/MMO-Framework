@@ -29,10 +29,8 @@ class TMyFeature : public nsECSFramework::TFeature
     TTestUpdateCollectorReactiveSystem mTestUpdateCollectorReactiveSystem;
 
 public:
-    void SetEntMng(nsECSFramework::TEntityManager* entMng) override
+    void InitConveyor() override
     {
-        TFeature::SetEntMng(entMng);
-
         Add(&mInitSystem);
         Add(&mExecuteSystem);
         Add(&mNameAddSystem);

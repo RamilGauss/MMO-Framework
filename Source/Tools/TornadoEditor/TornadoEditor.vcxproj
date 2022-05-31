@@ -238,7 +238,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClCompile Include="Generated files\FeatureEcsSystemExtensionImpl.cpp" />
     <ClCompile Include="Handlers\OnFileHierarchyClickHandler.cpp" />
     <ClCompile Include="Handlers\OnMouseClickFileNodeHandler.cpp" />
+    <ClCompile Include="Handlers\OnOpenComponentViewerClickHandler.cpp" />
     <ClCompile Include="Handlers\OnOpenProjectClickHandler.cpp" />
+    <ClCompile Include="Handlers\OnOpenSystemViewerClickHandler.cpp" />
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +335,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h" />
     <ClInclude Include="Handlers\OnFileHierarchyClickHandler.h" />
     <ClInclude Include="Handlers\OnMouseClickFileNodeHandler.h" />
+    <ClInclude Include="Handlers\OnOpenComponentViewerClickHandler.h" />
+    <ClInclude Include="Handlers\OnOpenSystemViewerClickHandler.h" />
     <ClInclude Include="Handlers\OpenProjectCancelButtonClickHandler.h" />
     <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h" />
     <ClInclude Include="Handlers\OnCloseDialogHandler.h" />

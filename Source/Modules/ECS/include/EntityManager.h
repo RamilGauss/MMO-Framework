@@ -29,11 +29,11 @@ See for more information LICENSE.md.
 #include "ComplexType.h"
 #include "HelpStructs.h"
 #include "FastAllocatorForeachVector.h"
-#include "SystemConveyerContainer.h"
+#include "SystemConveyorContainer.h"
 
 namespace nsECSFramework
 {
-    class DllExport TEntityManager : public TSystemConveyerContainer
+    class DllExport TEntityManager : public TSystemConveyorContainer
     {
         typedef TRunTimeTypeIndex<> TTypeID;
         TTypeID* mTypeIndex;

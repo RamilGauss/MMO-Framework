@@ -93,3 +93,8 @@ THierarchyHelper* TModules::HierarchyHelper() const
     return hierarchyHelper;
 }
 //----------------------------------------------------------
+TGizmo* TModules::Gizmo() const
+{
+    return gizmo;
+}
+//----------------------------------------------------------

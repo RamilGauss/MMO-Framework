@@ -11,15 +11,18 @@ using namespace nsECSFramework;
 
 void TEntityManagerMaster::AddEntityManager(TEntityManager* pEntMng)
 {
-    mEntMngs.insert(pEntMng);
+    mEntMngs.push_back(pEntMng);
 }
 //--------------------------------------------------------------------------------------
 void TEntityManagerMaster::RemoveEntityManager(TEntityManager* pEntMng)
 {
-    mEntMngs.erase(pEntMng);
+    auto it = std::remove_if(mEntMngs.begin(), mEntMngs.end(), 
+        [pEntMng](const TEntityManager* p) {return p == pEntMng; });
+
+    mEntMngs.erase(it, mEntMngs.end());
 }
 //--------------------------------------------------------------------------------------
-const std::set<TEntityManager*>& TEntityManagerMaster::GetEntityManager() const
+const std::vector<TEntityManager*>& TEntityManagerMaster::GetEntityManager() const
 {
     return mEntMngs;
 }

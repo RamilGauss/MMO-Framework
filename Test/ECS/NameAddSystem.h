@@ -13,11 +13,11 @@ See for more information LICENSE.md.
 
 #include "NameComponent.h"
 
-class TNameAddSystem : public nsECSFramework::TOnAddInstantReactiveSystem<TNameComponent>
+class TNameAddSystem : public nsECSFramework::TOnAddInstantReactiveSystem<TNameComponent, TNameAddSystem>
 {
 public:
-    void Reactive(nsECSFramework::TEntityID eid, nsECSFramework::IComponent* pC) override
+    void Reactive(nsECSFramework::TEntityID eid, const TNameComponent* pC)
     {
-        fmt::print("name {} was added instant\n", ((TNameComponent*) pC)->name);
+        fmt::print("name {} was added instant\n", pC->name);
     }
 };
