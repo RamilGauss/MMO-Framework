@@ -27,34 +27,46 @@ namespace nsTornadoEngine
 
         nsECSFramework::TEntityID mSelectedEid = nsECSFramework::NONE;
 
-        ImVec2 mSize = {300, 600};
+        ImVec2 mSize = {400, 600};
+
     public:
+        TComponentViewer();
         void Render() override;
     private:
+
+        struct TComponent
+        {
+            std::string typeName;
+            std::string content;
+        };
 
         struct TEntity
         {
             std::string name;
-            nsECSFramework::TEntityID eid;
+            int eid;
         };
 
         struct TModel
         {
             std::list<TEntity> nameEntities;
-            std::map<std::string, std::list<std::string>> nsSelectedEntityComponents;
+            std::map<std::string, std::list<TComponent>> nsSelectedEntityComponents;
 
-            void Clear() 
+            void Clear()
             {
-                nameEntities.clear(); 
+                nameEntities.clear();
                 nsSelectedEntityComponents.clear();
             }
         };
-        
+
         TModel mModel;
 
         int mEntMngCount = 0;
 
+        std::vector<ImVec4> mColors;
+
         void FillModel();
         void RenderModel();
+
+        void SeparateToLines(const std::string& content, std::list<std::string>& lines);
     };
 }
