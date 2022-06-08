@@ -16,6 +16,8 @@ See for more information LICENSE.md.
 #include "GuidComponent.h"
 #include "NameComponent.h"
 
+#include "GraphicEngine/imgui/imgui_internal.h"
+
 using namespace nsTornadoEngine;
 
 TComponentViewer::TComponentViewer()
@@ -36,16 +38,170 @@ TComponentViewer::TComponentViewer()
     }
 }
 //----------------------------------------------------------------------------------------------------------------
+void TComponentViewer::Init()
+{
+    if (!mIsNeedInited) {
+        return;
+    }
+
+    mIsNeedInited = false;
+
+    auto& componentNames = *(Project()->mScenePartAggregator->mComponents->mTypeInfo->GetTypeNameList());
+    for (auto& fullComponentName : componentNames) {
+
+        TComponentType componentType;
+
+        componentType.componentName = fullComponentName;
+        Project()->mScenePartAggregator->mComponents->mTypeInfo->ConvertNameToType(fullComponentName, componentType.rtti);
+
+        mComponentTypes.insert({ fullComponentName, componentType });
+    }
+}
+//----------------------------------------------------------------------------------------------------------------
 void TComponentViewer::Render()
 {
-    FillModel();
+    Init();
+
+    auto t = ImGui::GetTime();
+    auto delta = t - mLastTimeUpdateModel;
+
+    if (delta > 0.1) {
+        UpdatelModel();
+        mLastTimeUpdateModel = t;
+    }
+
     RenderModel();
+}
+//----------------------------------------------------------------------------------------------------------------
+void TComponentViewer::UpdateComponents()
+{
+    mComponentTypesMinusFilter = mComponentTypes;
+
+    for (auto& component : mComponentFilter) {
+        mComponentTypesMinusFilter.erase(component.first);
+    }
+
+    mNsComponentsMap.clear();
+
+    for (auto& component : mComponentTypesMinusFilter) {
+
+        if (component.first.find(mInputFilterValue) == std::string::npos) {
+            continue;
+        }
+
+        auto fit = mNsComponentsMap.find(component.second.GetNs());
+        if (fit == mNsComponentsMap.end()) {
+            mNsComponentsMap.insert({ component.second.GetNs(), {} });
+            fit = mNsComponentsMap.find(component.second.GetNs());
+        }
+
+        fit->second.push_back(component.second);
+    }
+}
+//----------------------------------------------------------------------------------------------------------------
+bool TComponentViewer::IsCanApplyComponentToFilter(const std::string& inputFilterValue)
+{
+    return mComponentTypesMinusFilter.find(inputFilterValue) != mComponentTypesMinusFilter.end();
+}
+//----------------------------------------------------------------------------------------------------------------
+int InputTextCallback(ImGuiInputTextCallbackData* data)
+{
+    return 0;
+}
+//----------------------------------------------------------------------------------------------------------------
+void TComponentViewer::RenderFilterSearching()
+{
+    // Search and add to the filter
+    ImGui::Text("Search:");
+    ImGui::SameLine();
+
+    ImGui::PushID("SearchInputText");
+    auto isInputTextEdited = ImGui::InputText("", mInputFilterValue, sizeof(mInputFilterValue), (int)ImGuiInputTextFlags_CallbackEdit, InputTextCallback);
+    if (isInputTextEdited) {
+        UpdateComponents();
+    }
+    ImGui::PopID();
+
+    auto isActiveInputText = ImGui::IsItemActive();
+
+    auto inputTextId = ImGui::GetItemID();
+    ImVec2 textPos{ ImGui::GetItemRectMin().x, ImGui::GetItemRectMax().y };
+
+
+    bool disabledButton = !IsCanApplyComponentToFilter(mInputFilterValue);
+
+    if (disabledButton) {
+        ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+        ImGui::PushStyleVar(ImGuiStyleVar_Alpha, ImGui::GetStyle().Alpha * 0.5f);
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Add")) {
+        auto component = mComponentTypesMinusFilter.find(mInputFilterValue)->second;
+        mComponentFilter.insert({ mInputFilterValue, component });
+
+        UpdateComponents();
+    }
+
+    if (disabledButton) {
+        ImGui::PopItemFlag();
+        ImGui::PopStyleVar();
+    }
+
+    if (isInputTextEdited) {
+        ImGui::OpenPopup("##SearchComponent");
+    }
+    ImGui::PushItemWidth(200);
+    ImGui::SetNextWindowPos(textPos, ImGuiCond_Always);
+    if (ImGui::BeginPopup("##SearchComponent", ImGuiWindowFlags_ChildWindow)) {
+        ImGui::PushAllowKeyboardFocus(false);
+
+        for (auto& components : mNsComponentsMap) {
+
+            if (ImGui::BeginMenu(components.first.c_str())) {
+
+                for (auto& component : components.second) {
+                    if (ImGui::Selectable(component.GetTypeName().c_str())) {
+                        strcpy(mInputFilterValue, component.componentName.c_str());
+                    }
+                }
+                ImGui::EndMenu();
+            }
+        }
+
+        ImGui::PopAllowKeyboardFocus();
+        ImGui::EndPopup();
+    }
+
+    ImGui::SameLine();
+    auto isClearFilter = ImGui::Button("Clear filters");
+    if (isClearFilter) {
+        mComponentFilter.clear();
+    }
+
+    ImGui::BeginChild("Applyed components");
+
+    int i = 0;
+    auto componentFilter = mComponentFilter;
+    for (auto& component : componentFilter) {
+        
+        std::string s = component.second.GetNs() + "\n" + component.second.GetTypeName();
+
+        auto isRemoveFilter = ImGui::Button(s.c_str());
+        if (i < componentFilter.size()) {
+            ImGui::SameLine();
+        }
+        i++;
+
+        if (isRemoveFilter) {
+            mComponentFilter.erase(component.first);
+        }
+    }
+    ImGui::EndChild();
 }
 //----------------------------------------------------------------------------------------------------------------
 void TComponentViewer::RenderModel()
 {
     std::string entMngItems;
-
     for (int i = 0; i < mEntMngCount; i++) {
         entMngItems += std::to_string(i) + '\0';
     }
@@ -55,12 +211,25 @@ void TComponentViewer::RenderModel()
     bool isOpen = true;
     ImGui::Begin("Component viewer", &isOpen, (int)ImGuiWindowFlags_NoDocking);
 
-    ImGui::Combo("EntityManager", &mCurrentEntityManagerIndex, entMngItems.c_str());
+    ImGui::Text("EntityManager:"); 
+    ImGui::SameLine();
+    
+    ImGui::SetNextItemWidth(50);
+    ImGui::PushID("EntityManagerCombo");
+    ImGui::Combo("", &mCurrentEntityManagerIndex, entMngItems.c_str());
+    ImGui::PopID();
+    
+    ImGui::SameLine();
     ImGui::Text("Count: %d, FPS=%f", mModel.nameEntities.size(), ImGui::GetIO().Framerate);
+
+    // Search and add to the filter
+    RenderFilterSearching();
+
+    float beginY = 200;
 
     auto entitiesId = ImGui::GetID("Entities");
 
-    ImGui::SetCursorPos({ 0,70 });
+    ImGui::SetCursorPos({ 0, beginY });
     ImGui::BeginChildFrame(entitiesId, { 200, 500 });
 
     for (auto& entity : mModel.nameEntities) {
@@ -82,7 +251,7 @@ void TComponentViewer::RenderModel()
     ImGui::EndChildFrame();
 
     auto componentsId = ImGui::GetID("Components");
-    ImGui::SetCursorPos({ 200, 70 });
+    ImGui::SetCursorPos({ 200, beginY });
     ImGui::BeginChildFrame(componentsId, { 500, 500 });
 
     int colorIndex = 0;
@@ -110,7 +279,7 @@ void TComponentViewer::RenderModel()
     ImGui::End();
 }
 //----------------------------------------------------------------------------------------------------------------
-void TComponentViewer::FillModel()
+void TComponentViewer::UpdatelModel()
 {
     mModel.Clear();
 
@@ -118,14 +287,23 @@ void TComponentViewer::FillModel()
     mEntMngCount = entMngs.size();
 
     auto entMng = entMngs[mCurrentEntityManagerIndex];
-    auto& guidEids = *(entMng->GetByHas<nsCommonWrapper::TGuidComponent>());
+    std::list<nsECSFramework::TEntityID> eids;
+    entMng->GetAllEntities(eids);
 
-    for (auto& eid : guidEids) {
+    for (auto& eid : eids) {
+
+        auto isPassedByFilter = IsPassedByFilter(eid);
+        if (!isPassedByFilter) {
+            continue;
+        }
 
         TEntity entity;
 
         entity.eid = eid;
-        entity.name = entMng->ViewComponent<nsCommonWrapper::TNameComponent>(eid)->value;
+
+        auto pNameComponent = entMng->ViewComponent<nsCommonWrapper::TNameComponent>(eid);
+        entity.name = pNameComponent == nullptr ?
+            std::to_string(eid) : entMng->ViewComponent<nsCommonWrapper::TNameComponent>(eid)->value;
 
         if (eid == mSelectedEid) {
             std::list<short> componentIndexes;
@@ -156,14 +334,14 @@ void TComponentViewer::FillModel()
 
                 std::list<std::string> lines;
                 SeparateToLines(content, lines);
-                
+
                 if (lines.size() > 0) {
                     lines.pop_front();
                 }
                 if (lines.size() > 0) {
                     lines.pop_back();
                 }
-                
+
                 content = "";
                 for (auto& line : lines) {
                     content += line.substr(4);
@@ -208,5 +386,35 @@ void TComponentViewer::SeparateToLines(const std::string& content, std::list<std
         offset += delta;
         lastRetIndex = retIndex;
     }
+}
+//----------------------------------------------------------------------------------------------------------------
+bool TComponentViewer::IsPassedByFilter(nsECSFramework::TEntityID eid)
+{
+    for (auto& filter : mComponentFilter) {
+        auto has = Project()->mScenePartAggregator->mComponents->mEntMng->HasComponent(eid, filter.second.rtti);
+        if (!has) {
+            return false;
+        }
+    }
+
+    return true;
+}
+//----------------------------------------------------------------------------------------------------------------
+const std::string TComponentViewer::TComponentType::GetNs() const
+{
+    auto nsEndIndex = componentName.find("::");
+    if (nsEndIndex != std::string::npos) {
+        return componentName.substr(0, nsEndIndex);
+    }
+    return "";
+}
+//----------------------------------------------------------------------------------------------------------------
+const std::string TComponentViewer::TComponentType::GetTypeName() const
+{
+    auto nsEndIndex = componentName.find("::");
+    if (nsEndIndex != std::string::npos) {
+        return componentName.substr(nsEndIndex + strlen("::"));
+    }
+    return componentName;
 }
 //----------------------------------------------------------------------------------------------------------------

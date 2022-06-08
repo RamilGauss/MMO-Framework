@@ -46,7 +46,7 @@ TEntityManager::TEntityManager(const std::string& name, int entityCount)
         auto components = *(pEntity->GetComponentIndexInUse());
 
         for (auto& index : components) {
-            auto pC = (IComponent*) pEntity->GetComponent(index);
+            auto pC = (IComponent*)pEntity->GetComponent(index);
             NotifyOnRemoveComponent(index, eid, pC);
         }
 
@@ -104,20 +104,20 @@ void TEntityManager::Fill(const std::string& methodName, std::string& demangled,
     for (int i = argsBeginIndex; i < demangled.size(); i++) {
         auto symbol = pData[i];
         switch (symbol) {
-            case LEFT_CORNER_LITERAL:
-                cornerBalance++;
-                break;
-            case RIGHT_CORNER_LITERAL:
-                cornerBalance--;
-                break;
-            case COMMA_LITERAL:
-                if (cornerBalance == 1) {
-                    addFunc(i);
-                    offset += sizeof(COMMA_LITERAL);
-                    if (pData[i + 1] == SPACE_LITERAL)
-                        offset += sizeof(SPACE_LITERAL);
-                }
-                break;
+        case LEFT_CORNER_LITERAL:
+            cornerBalance++;
+            break;
+        case RIGHT_CORNER_LITERAL:
+            cornerBalance--;
+            break;
+        case COMMA_LITERAL:
+            if (cornerBalance == 1) {
+                addFunc(i);
+                offset += sizeof(COMMA_LITERAL);
+                if (pData[i + 1] == SPACE_LITERAL)
+                    offset += sizeof(SPACE_LITERAL);
+            }
+            break;
         }
 
         if (cornerBalance == 0) {
@@ -166,7 +166,7 @@ void TEntityManager::FindTypeIndex(const std::string& methodName, TStrSetStrMap&
         Fill(methodName, demangled, strSet);
 
         if (strSet.size() > 0) {
-            resultMap.insert({strSet, demangled});
+            resultMap.insert({ strSet, demangled });
         }
     }
 }
@@ -223,8 +223,9 @@ void TEntityManager::Setup(std::string libName)
 
             //      printf( "%s => %u\n", funcName.data(), typeIndexFunc );
 
-            mComponentsTypeIndexMap.insert({strSetFunc.first, typeIndexFunc});
-        } catch (std::exception e) {
+            mComponentsTypeIndexMap.insert({ strSetFunc.first, typeIndexFunc });
+        }
+        catch (std::exception e) {
 #ifdef _DEBUG
             printf(e.what());
 #endif
@@ -337,6 +338,21 @@ void TEntityManager::DestroyEntity(TEntityID eid)
     mEntities.Destroy(eid);
 }
 //----------------------------------------------------------------------------------------------------
+void TEntityManager::GetAllEntities(std::list<TEntityID>& entities) const
+{
+    entities.clear();
+    auto& entitiesContainer = mEntities.GetVector();
+
+    TEntityID eid = 0;
+    for (auto& pEntity : entitiesContainer) {
+        if (pEntity != nullptr) {
+            entities.push_back(eid);
+        }
+
+        eid++;
+    }
+}
+//----------------------------------------------------------------------------------------------------
 void TEntityManager::Clear()
 {
     mEntities.Clear();
@@ -349,7 +365,7 @@ TEntity* TEntityManager::GetEntity(TEntityID eid) const
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::RemoveComponent(TEntityID eid, TEntity* pEntity, int index, bool isNotify)
 {
-    auto pC = (IComponent*) pEntity->GetComponent(index);
+    auto pC = (IComponent*)pEntity->GetComponent(index);
 
     // Notify before the removing
     if (isNotify) {
@@ -375,7 +391,7 @@ void TEntityManager::TryAddInUnique(TEntityID eid, IComponent* pC, int index)
         return;
     }
 #endif
-    pMap->insert({pC, eid});
+    pMap->insert({ pC, eid });
 }
 //----------------------------------------------------------------------------------------------------
 void TEntityManager::TryAddInHas(TEntityID eid, int index, TEntity* pEntity)
@@ -445,7 +461,7 @@ void TEntityManager::TryAddInValue(TEntityID eid, int index, TEntity* pEntity)
         if (fit == ctListMap->end()) {
             pList = mEntityListMemoryPool->Pop();
             pList->push_back(eid);// original
-            ctListMap->insert({pComplexType, pList});
+            ctListMap->insert({ pComplexType, pList });
         } else {
             pComplexType->Done();
             mComplexTypeMemoryPool->Push(pComplexType);
@@ -559,7 +575,7 @@ void TEntityManager::TryRemoveFromValue(TEntityID eid, int index, TEntity* pEnti
             pOriginalComplexType->parts[typeInCollection] = pC;
             pOriginalComplexType->mComponentTypeIdentifierList.push_back(typeInCollection);
         }
-        ctListMap->insert({pOriginalComplexType, pList});
+        ctListMap->insert({ pOriginalComplexType, pList });
     }
 }
 //----------------------------------------------------------------------------------------------------

@@ -50,6 +50,8 @@ namespace nsECSFramework
         TEntityID CreateEntity();
         void DestroyEntity(TEntityID id);
 
+        void GetAllEntities(std::list<TEntityID>& entities) const;
+
         void Clear();
 
         // components
@@ -231,7 +233,7 @@ namespace nsECSFramework
         void NotifyOnAddComponent(int index, TEntityID entity, const IComponent* pC);
         void NotifyOnUpdateComponent(int index, TEntityID entity, const IComponent* pC);
         void NotifyOnRemoveComponent(int index, TEntityID entity, const IComponent* pC);
-        
+
         void NotifyComponent(int index, TEntityID entity, const IComponent* pC, TCBVector& cbVector);
 
     private:
@@ -302,7 +304,7 @@ namespace nsECSFramework
         const auto index = TypeIndex<Component>();
         auto const has = pEntity->HasComponent(index);
         if (has) {
-            pC = (Component*) pEntity->GetComponent(index);
+            pC = (Component*)pEntity->GetComponent(index);
 
             TryRemoveFromUnique(eid, pC, index);
             TryRemoveFromValue(eid, index, pEntity);
@@ -339,7 +341,7 @@ namespace nsECSFramework
         }
 #endif
         const auto index = TypeIndex<Component>();
-        return (const Component*) pEntity->GetComponent(index);
+        return (const Component*)pEntity->GetComponent(index);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
@@ -353,7 +355,7 @@ namespace nsECSFramework
         }
 #endif
         const auto index = TypeIndex<Component>();
-        auto pC = (Component*) pEntity->GetComponent(index);
+        auto pC = (Component*)pEntity->GetComponent(index);
         if (pC == nullptr) {
             return;
         }
@@ -601,7 +603,7 @@ namespace nsECSFramework
     DllExport const TEntityList* NoInline TEntityManager::GetByHas()
     {// definition must be after declaration!
         auto index = TypeIndex<Args...>();
-        return (const TEntityList*) mHasCollectionVec[index];
+        return (const TEntityList*)mHasCollectionVec[index];
     }
     //---------------------------------------------------------------------------------------
     template <typename ... Args>

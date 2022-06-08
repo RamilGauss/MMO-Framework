@@ -30,6 +30,8 @@ namespace nsECSFramework
         virtual void Destroy(IndexType index);
         void Clear();
         ElementType* GetElement(IndexType index) const;
+
+        const std::vector<ElementType*>& GetVector() const;
     };
     //----------------------------------------------------------------------------------------------------
     template <typename ElementType, typename IndexType>
@@ -41,7 +43,7 @@ namespace nsECSFramework
     template <typename ElementType, typename IndexType>
     IndexType TFastAllocatorVector<ElementType, IndexType>::Create(ElementType* newElement)
     {
-        auto index = (IndexType) mElements.mCounter;
+        auto index = (IndexType)mElements.mCounter;
 
         if (mFreeIndexes.size() > 0) {
             index = mFreeIndexes.back();
@@ -88,6 +90,12 @@ namespace nsECSFramework
     ElementType* TFastAllocatorVector<ElementType, IndexType>::GetElement(IndexType index) const
     {
         return mElements.mVec[index];
+    }
+    //----------------------------------------------------------------------------------------------------
+    template <typename ElementType, typename IndexType>
+    const std::vector<ElementType*>& TFastAllocatorVector<ElementType, IndexType>::GetVector() const
+    {
+        return mElements.mVec;
     }
     //----------------------------------------------------------------------------------------------------
 }
