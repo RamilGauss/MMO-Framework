@@ -28,7 +28,7 @@ namespace nsTornadoEngine
 
         nsECSFramework::TEntityID mSelectedEid = nsECSFramework::NONE;
 
-        ImVec2 mSize = { 400, 600 };
+        ImVec2 mSize = { 400, 640 };
 
         double mLastTimeUpdateModel = 0;
 

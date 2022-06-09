@@ -183,8 +183,14 @@ void TEntityManager::Setup(const std::list<std::string>& pathList)
 void TEntityManager::Setup(std::string libName)
 {
     mLib.load(libName);
+
     // для разделения пространства имен классов, на случай когда более чем один EntityManager
     auto entMngClassName = typeid(*this).name();
+
+    mUniqueSet.clear();
+    mHasComponentList.clear();
+    mValueComponentList.clear();
+    mTypeIndexNameFuncMap.clear();
 
     FindTypesOfMethod(GET_BY_UNIQUE_METHOD_NAME, mUniqueSet);
     FindTypesOfMethod(GET_BY_HAS_METHOD_NAME, mHasComponentList);
@@ -200,6 +206,8 @@ void TEntityManager::Setup(std::string libName)
     printf("uniqueCnt = %u, hasCnt = %u, valueCnt = %u, typeIndexCount = %u\n",
         mUniqueSet.size(), mHasComponentList.size(), mValueComponentList.size(), mTypeIndexNameFuncMap.size());
 #endif
+
+    std::string excFunc;
 
     using TypeIndexFunc = unsigned int(TEntityManager::*)(void);
     for (auto strSetFunc : mTypeIndexNameFuncMap) {
@@ -218,16 +226,22 @@ void TEntityManager::Setup(std::string libName)
 
             auto funcName = demangled.substr(beginFound, endFound - beginFound);
 
-            auto func = bexp::import_mangled<nsECSFramework::TEntityManager, unsigned int(void)>(mLib, funcName.data());
+            auto cornerCount = std::count(funcName.begin(), funcName.end(), '<');
+            if (cornerCount != 1) {
+                continue;
+            }
+            excFunc = funcName;
+
+            auto func = bexp::import_mangled<nsECSFramework::TEntityManager, unsigned int(void)>(mLib, funcName.c_str());
             auto typeIndexFunc = func(this);
 
-            //      printf( "%s => %u\n", funcName.data(), typeIndexFunc );
+            //printf( "%s => %u\n", funcName.data(), typeIndexFunc );
 
             mComponentsTypeIndexMap.insert({ strSetFunc.first, typeIndexFunc });
         }
         catch (std::exception e) {
 #ifdef _DEBUG
-            printf(e.what());
+            printf("func=%s, %s\n", excFunc.c_str(), e.what());
 #endif
         }
     }

@@ -239,6 +239,9 @@
     <ClInclude Include="include\CallbackPool.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\StopWatch.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -374,6 +377,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\PathOperations.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StopWatch.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

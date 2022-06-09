@@ -22,20 +22,15 @@ using namespace nsTornadoEngine;
 
 TComponentViewer::TComponentViewer()
 {
-    std::srand(std::time(nullptr));
-
-    for (int i = 0; i < 10; i++) {
-
-        ImVec4 color;
-
-        color.x = std::rand() * 0.3f / RAND_MAX;
-        color.y = std::rand() * 0.3f / RAND_MAX;
-        color.z = std::rand() * 0.3f / RAND_MAX;
-
-        color.w = 1.0f;
-
-        mColors.push_back(color);
-    }
+    mColors.push_back({ 0.3f, 0.3f, 0.0f, 1.0f });
+    mColors.push_back({ 0.4f, 0.1f, 0.0f, 1.0f });
+    mColors.push_back({ 0.1f, 0.1f, 0.3f, 1.0f });
+    mColors.push_back({ 0.3f, 0.1f, 0.3f, 1.0f });
+    mColors.push_back({ 0.1f, 0.3f, 0.1f, 1.0f });
+    mColors.push_back({ 0.0f, 0.3f, 0.2f, 1.0f });
+    mColors.push_back({ 0.0f, 0.3f, 0.3f, 1.0f });
+    mColors.push_back({ 0.0f, 0.0f, 0.3f, 1.0f });
+    mColors.push_back({ 0.3f, 0.3f, 0.3f, 1.0f });
 }
 //----------------------------------------------------------------------------------------------------------------
 void TComponentViewer::Init()
@@ -140,6 +135,8 @@ void TComponentViewer::RenderFilterSearching()
         mComponentFilter.insert({ mInputFilterValue, component });
 
         UpdateComponents();
+
+        mInputFilterValue[0] = '\0';
     }
 
     if (disabledButton) {
@@ -147,9 +144,14 @@ void TComponentViewer::RenderFilterSearching()
         ImGui::PopStyleVar();
     }
 
-    if (isInputTextEdited) {
+    if (isInputTextEdited && strlen(mInputFilterValue)) {
         ImGui::OpenPopup("##SearchComponent");
     }
+
+    if (strlen(mInputFilterValue) == 0) {
+        ImGui::CloseCurrentPopup();
+    }
+
     ImGui::PushItemWidth(200);
     ImGui::SetNextWindowPos(textPos, ImGuiCond_Always);
     if (ImGui::BeginPopup("##SearchComponent", ImGuiWindowFlags_ChildWindow)) {
@@ -178,7 +180,7 @@ void TComponentViewer::RenderFilterSearching()
         mComponentFilter.clear();
     }
 
-    ImGui::BeginChild("Applyed components");
+    ImGui::BeginChildFrame(ImGui::GetID("Applyed components"), {500,40});
 
     int i = 0;
     auto componentFilter = mComponentFilter;
@@ -196,7 +198,7 @@ void TComponentViewer::RenderFilterSearching()
             mComponentFilter.erase(component.first);
         }
     }
-    ImGui::EndChild();
+    ImGui::EndChildFrame();
 }
 //----------------------------------------------------------------------------------------------------------------
 void TComponentViewer::RenderModel()
@@ -225,12 +227,9 @@ void TComponentViewer::RenderModel()
     // Search and add to the filter
     RenderFilterSearching();
 
-    float beginY = 200;
-
     auto entitiesId = ImGui::GetID("Entities");
 
-    ImGui::SetCursorPos({ 0, beginY });
-    ImGui::BeginChildFrame(entitiesId, { 200, 500 });
+    ImGui::BeginChildFrame(entitiesId, {200, 450});
 
     for (auto& entity : mModel.nameEntities) {
 
@@ -251,8 +250,8 @@ void TComponentViewer::RenderModel()
     ImGui::EndChildFrame();
 
     auto componentsId = ImGui::GetID("Components");
-    ImGui::SetCursorPos({ 200, beginY });
-    ImGui::BeginChildFrame(componentsId, { 500, 500 });
+    ImGui::SameLine();
+    ImGui::BeginChildFrame(componentsId, { 500, 450 });
 
     int colorIndex = 0;
     for (auto& nsComponentName : mModel.nsSelectedEntityComponents) {
