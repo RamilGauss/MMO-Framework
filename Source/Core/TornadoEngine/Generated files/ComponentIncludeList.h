@@ -2,13 +2,14 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_02 08:26:50.214
+// File has been generated at 2022_06_21 20:52:37.275
 	
 #pragma once
 
 #include "ButtonClickHandlerComponent.h"
 #include "ButtonComponent.h"
 #include "CameraComponent.h"
+#include "CameraTextureTagComponent.h"
 #include "CameraWindowPositionComponent.h"
 #include "CameraWindowSizeComponent.h"
 #include "DialogCloseEventHandlerComponent.h"
@@ -54,7 +55,8 @@
 #include "SelectedTreeNodeGuidComponent.h"
 #include "SizeComponent.h"
 #include "SystemComponent.h"
-#include "TextureComponent.h"
+#include "TextureFromCameraComponent.h"
+#include "TextureFromFileComponent.h"
 #include "TitleComponent.h"
 #include "TransformComponent.h"
 #include "TreeNodeComponent.h"

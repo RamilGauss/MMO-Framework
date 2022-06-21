@@ -178,7 +178,7 @@
                     "jsonBody": "{\"width\":16, \"height\":16}"
                 },
                 {
-                    "typeName": "nsGraphicWrapper::TTextureComponent",
+                    "typeName": "nsGraphicWrapper::TTextureFromFileComponent",
                     "jsonBody": "{\"resourceGuid\":\"exit.png\"}"
                 }
             ]

@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Logger.h"
 #include "TimeSliceEngine.h"
 #include "TextFile.h"
-#include "HierarchyHelper.h"
+#include "GameObject.h"
 
 using namespace nsTornadoEngine;
 using namespace nsECSFramework;
@@ -142,32 +142,53 @@ bool TPrefabObjectConstructor::Attach(TEntityID prefabChildEid, TEntityID prefab
 //-----------------------------------------------------------------------------------------------------
 nsECSFramework::TEntityID TPrefabObjectConstructor::GetParent(nsECSFramework::TEntityID eid)
 {
-    return mHierarchyHelper.GetParent(eid);
+    TGameObject go(eid);
+
+    return go.GetParent().GetEid();
 }
 //-----------------------------------------------------------------------------------------------------
 nsECSFramework::TEntityList TPrefabObjectConstructor::GetChilds(nsECSFramework::TEntityID eid)
 {
-    return mHierarchyHelper.GetChilds(eid);
+    TGameObject go(eid);
+    nsECSFramework::TEntityList eids;
+    go.GetChilds(eids);
+    return eids;
 }
 //-----------------------------------------------------------------------------------------------------
 nsECSFramework::TEntityID TPrefabObjectConstructor::GetChildByName(nsECSFramework::TEntityID eid, const std::string& name)
 {
-    return mHierarchyHelper.GetChildByName(eid, name);
+    TGameObject go(eid);
+    return go.GetChildByName(name).GetEid();
 }
 //-----------------------------------------------------------------------------------------------------
 nsECSFramework::TEntityID TPrefabObjectConstructor::GetBrotherByName(nsECSFramework::TEntityID eid, const std::string& name)
 {
-    return mHierarchyHelper.GetBrotherByName(eid, name);
+    TGameObject go(eid);
+    return go.GetBrotherByName(name).GetEid();
 }
 //-----------------------------------------------------------------------------------------------------
 nsECSFramework::TEntityList TPrefabObjectConstructor::GetChildsByName(nsECSFramework::TEntityID eid, const std::string& name)
 {
-    return mHierarchyHelper.GetChildsByName(eid, name);
+    TGameObject go(eid);
+    nsECSFramework::TEntityList eids;
+    auto childs = go.GetChildsByName(name);
+    for (auto& child : childs) {
+        eids.push_back(child.GetEid());
+    }
+
+    return eids;
 }
 //-----------------------------------------------------------------------------------------------------
 nsECSFramework::TEntityList TPrefabObjectConstructor::GetBrothersByName(nsECSFramework::TEntityID eid, const std::string& name)
 {
-    return mHierarchyHelper.GetBrothersByName(eid, name);
+    TGameObject go(eid);
+    nsECSFramework::TEntityList eids;
+    auto brothers = go.GetBrothersByName(name);
+    for (auto& brother : brothers) {
+        eids.push_back(brother.GetEid());
+    }
+
+    return eids;
 }
 //-----------------------------------------------------------------------------------------------------
 nsECSFramework::TEntityList TPrefabObjectConstructor::GetRoots()
@@ -183,6 +204,5 @@ nsECSFramework::TEntityManager* TPrefabObjectConstructor::EntMng()
 void TPrefabObjectConstructor::SetEntityManager(nsECSFramework::TEntityManager* entMng)
 {
     TObjectManager::SetEntityManager(entMng);
-    mHierarchyHelper.SetEntMng(entMng);
 }
 //-----------------------------------------------------------------------------------------------------

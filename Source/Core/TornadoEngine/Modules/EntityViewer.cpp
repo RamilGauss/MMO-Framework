@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ComponentViewer.h"
+#include "EntityViewer.h"
 
 #include "ProjectConfigContainer.h"
 
@@ -20,7 +20,7 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-TComponentViewer::TComponentViewer()
+TEntityViewer::TEntityViewer()
 {
     mColors.push_back({ 0.3f, 0.3f, 0.0f, 1.0f });
     mColors.push_back({ 0.4f, 0.1f, 0.0f, 1.0f });
@@ -33,7 +33,7 @@ TComponentViewer::TComponentViewer()
     mColors.push_back({ 0.3f, 0.3f, 0.3f, 1.0f });
 }
 //----------------------------------------------------------------------------------------------------------------
-void TComponentViewer::Init()
+void TEntityViewer::Init()
 {
     if (!mIsNeedInited) {
         return;
@@ -53,7 +53,7 @@ void TComponentViewer::Init()
     }
 }
 //----------------------------------------------------------------------------------------------------------------
-void TComponentViewer::Render()
+void TEntityViewer::Render()
 {
     Init();
 
@@ -68,7 +68,7 @@ void TComponentViewer::Render()
     RenderModel();
 }
 //----------------------------------------------------------------------------------------------------------------
-void TComponentViewer::UpdateComponents()
+void TEntityViewer::UpdateComponents()
 {
     mComponentTypesMinusFilter = mComponentTypes;
 
@@ -94,7 +94,7 @@ void TComponentViewer::UpdateComponents()
     }
 }
 //----------------------------------------------------------------------------------------------------------------
-bool TComponentViewer::IsCanApplyComponentToFilter(const std::string& inputFilterValue)
+bool TEntityViewer::IsCanApplyComponentToFilter(const std::string& inputFilterValue)
 {
     return mComponentTypesMinusFilter.find(inputFilterValue) != mComponentTypesMinusFilter.end();
 }
@@ -104,7 +104,7 @@ int InputTextCallback(ImGuiInputTextCallbackData* data)
     return 0;
 }
 //----------------------------------------------------------------------------------------------------------------
-void TComponentViewer::RenderFilterSearching()
+void TEntityViewer::RenderFilterSearching()
 {
     // Search and add to the filter
     ImGui::Text("Search:");
@@ -201,7 +201,7 @@ void TComponentViewer::RenderFilterSearching()
     ImGui::EndChildFrame();
 }
 //----------------------------------------------------------------------------------------------------------------
-void TComponentViewer::RenderModel()
+void TEntityViewer::RenderModel()
 {
     std::string entMngItems;
     for (int i = 0; i < mEntMngCount; i++) {
@@ -278,7 +278,7 @@ void TComponentViewer::RenderModel()
     ImGui::End();
 }
 //----------------------------------------------------------------------------------------------------------------
-void TComponentViewer::UpdatelModel()
+void TEntityViewer::UpdatelModel()
 {
     mModel.Clear();
 
@@ -361,7 +361,7 @@ void TComponentViewer::UpdatelModel()
     }
 }
 //----------------------------------------------------------------------------------------------------------------
-void TComponentViewer::SeparateToLines(const std::string& content, std::list<std::string>& lines)
+void TEntityViewer::SeparateToLines(const std::string& content, std::list<std::string>& lines)
 {
     size_t offset = 0;
     size_t lastRetIndex = 0;
@@ -387,7 +387,7 @@ void TComponentViewer::SeparateToLines(const std::string& content, std::list<std
     }
 }
 //----------------------------------------------------------------------------------------------------------------
-bool TComponentViewer::IsPassedByFilter(nsECSFramework::TEntityID eid)
+bool TEntityViewer::IsPassedByFilter(nsECSFramework::TEntityID eid)
 {
     for (auto& filter : mComponentFilter) {
         auto has = Project()->mScenePartAggregator->mComponents->mEntMng->HasComponent(eid, filter.second.rtti);
@@ -399,7 +399,7 @@ bool TComponentViewer::IsPassedByFilter(nsECSFramework::TEntityID eid)
     return true;
 }
 //----------------------------------------------------------------------------------------------------------------
-const std::string TComponentViewer::TComponentType::GetNs() const
+const std::string TEntityViewer::TComponentType::GetNs() const
 {
     auto nsEndIndex = componentName.find("::");
     if (nsEndIndex != std::string::npos) {
@@ -408,7 +408,7 @@ const std::string TComponentViewer::TComponentType::GetNs() const
     return "";
 }
 //----------------------------------------------------------------------------------------------------------------
-const std::string TComponentViewer::TComponentType::GetTypeName() const
+const std::string TEntityViewer::TComponentType::GetTypeName() const
 {
     auto nsEndIndex = componentName.find("::");
     if (nsEndIndex != std::string::npos) {

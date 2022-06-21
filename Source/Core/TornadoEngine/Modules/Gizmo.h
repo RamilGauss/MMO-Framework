@@ -13,14 +13,14 @@ See for more information LICENSE.md.
 
 #include "GraphicEngine/IRenderable.h"
 
-#include "ComponentViewer.h"
+#include "EntityViewer.h"
 #include "SystemViewer.h"
 
 namespace nsTornadoEngine
 {
     class DllExport TGizmo
     {
-        TComponentViewer mComponentViewer;
+        TEntityViewer mComponentViewer;
         TSystemViewer mSystemViewer;
 
     public:

@@ -64,8 +64,6 @@ namespace nsTornadoEngine
         THandlerCallCollector* HandlerCalls() const;
         TPrefabObjectConstructor* PrefabObjConstructor() const;
 
-        THierarchyHelper* HierarchyHelper() const;
-
         TGizmo* Gizmo() const;
     protected:
         friend class TModulesAccessor;
@@ -90,8 +88,6 @@ namespace nsTornadoEngine
 
         THandlerCallCollector* handlerCallCollector = nullptr;
         TPrefabObjectConstructor* prefabObjectConstructor = nullptr;
-
-        THierarchyHelper* hierarchyHelper = nullptr;
 
         TGizmo* gizmo = nullptr;
     };

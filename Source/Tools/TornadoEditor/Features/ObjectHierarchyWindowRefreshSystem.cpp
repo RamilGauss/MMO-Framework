@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "ObjectHierarchyWindowRefreshSystem.h"
 
 #include "Modules.h"
-#include "HierarchyHelper.h"
+#include "GameObject.h"
 #include <filesystem>
 #include "Modules.h"
 #include "StopAccessor.h"
@@ -37,7 +37,9 @@ void TObjectHierarchyWindowRefreshSystem::Reactive(nsECSFramework::TEntityID eid
 
     entMng->RemoveComponent<TObjectHierarchyWindowRefreshTagComponent>(eid);
 
-    auto treeViewEid = nsTornadoEngine::Modules()->HierarchyHelper()->GetChildByName(eid, "TreeView");
+
+    nsTornadoEngine::TGameObject go(eid);
+    auto treeViewEid = go.GetChildByName("TreeView").GetEid();
 
     //Handle(treeViewEid);
 }

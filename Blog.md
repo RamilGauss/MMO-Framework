@@ -19,6 +19,12 @@ See for more information LICENSE.md.
 
 #### "DONE"
 
+2022.06.16:
+ - Может перенести весь генерируемый код из ядра в проект. Тогда ядро не будет знать что какой-то редакторе генерирует код. Что в принципе правильно.
+Но тогда увеличится в первый компиляция проекта.
+ - TCameraTextureTagComponent, TTextureFromCameraComponent, TTextureFromFileComponent.
+ - Нужно заменить THieararchyHelper на TGameObject.
+
 2022.02.04:
  - Удалить Load из Prefab и SceneManager. Оставить Save. Использовать в редакторе конвейер для редактирования.
 

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_02 08:26:56.209
+// File has been generated at 2022_06_21 20:52:44.687
 	
 #include "FeatureTypeInformation.h"
 
@@ -314,6 +314,12 @@ void TFeatureTypeInformation::Init()
     mTypeNameList.push_back(nsGraphicWrapper_TOnRemoveUniverseContextSystem_n);
     mRttiList.push_back(nsGraphicWrapper_TOnRemoveUniverseContextSystem_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TOnRemoveUniverseContextSystem_n, nsGraphicWrapper_TOnRemoveUniverseContextSystem_i });
+    
+    int nsGraphicWrapper_TPositionUpdaterSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionUpdaterSystem>();
+    std::string nsGraphicWrapper_TPositionUpdaterSystem_n = "nsGraphicWrapper::TPositionUpdaterSystem";
+    mTypeNameList.push_back(nsGraphicWrapper_TPositionUpdaterSystem_n);
+    mRttiList.push_back(nsGraphicWrapper_TPositionUpdaterSystem_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TPositionUpdaterSystem_n, nsGraphicWrapper_TPositionUpdaterSystem_i });
     
     int nsGraphicWrapper_TTextureMakerSystem_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureMakerSystem>();
     std::string nsGraphicWrapper_TTextureMakerSystem_n = "nsGraphicWrapper::TTextureMakerSystem";

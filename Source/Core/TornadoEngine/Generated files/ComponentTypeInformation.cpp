@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_02 08:26:50.208
+// File has been generated at 2022_06_21 20:52:37.268
 	
 #include "ComponentTypeInformation.h"
 
@@ -129,6 +129,12 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGraphicWrapper_TCameraComponent_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TCameraComponent_n, nsGraphicWrapper_TCameraComponent_i });
     
+    int nsGraphicWrapper_TCameraTextureTagComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraTextureTagComponent>();
+    std::string nsGraphicWrapper_TCameraTextureTagComponent_n = "nsGraphicWrapper::TCameraTextureTagComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TCameraTextureTagComponent_n);
+    mRttiList.push_back(nsGraphicWrapper_TCameraTextureTagComponent_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TCameraTextureTagComponent_n, nsGraphicWrapper_TCameraTextureTagComponent_i });
+    
     int nsGraphicWrapper_TCameraWindowPositionComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowPositionComponent>();
     std::string nsGraphicWrapper_TCameraWindowPositionComponent_n = "nsGraphicWrapper::TCameraWindowPositionComponent";
     mTypeNameList.push_back(nsGraphicWrapper_TCameraWindowPositionComponent_n);
@@ -159,11 +165,17 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGraphicWrapper_TRenderToTextureCameraComponent_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TRenderToTextureCameraComponent_n, nsGraphicWrapper_TRenderToTextureCameraComponent_i });
     
-    int nsGraphicWrapper_TTextureComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureComponent>();
-    std::string nsGraphicWrapper_TTextureComponent_n = "nsGraphicWrapper::TTextureComponent";
-    mTypeNameList.push_back(nsGraphicWrapper_TTextureComponent_n);
-    mRttiList.push_back(nsGraphicWrapper_TTextureComponent_i);
-    mNameRttiMap.insert({ nsGraphicWrapper_TTextureComponent_n, nsGraphicWrapper_TTextureComponent_i });
+    int nsGraphicWrapper_TTextureFromCameraComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureFromCameraComponent>();
+    std::string nsGraphicWrapper_TTextureFromCameraComponent_n = "nsGraphicWrapper::TTextureFromCameraComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TTextureFromCameraComponent_n);
+    mRttiList.push_back(nsGraphicWrapper_TTextureFromCameraComponent_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TTextureFromCameraComponent_n, nsGraphicWrapper_TTextureFromCameraComponent_i });
+    
+    int nsGraphicWrapper_TTextureFromFileComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureFromFileComponent>();
+    std::string nsGraphicWrapper_TTextureFromFileComponent_n = "nsGraphicWrapper::TTextureFromFileComponent";
+    mTypeNameList.push_back(nsGraphicWrapper_TTextureFromFileComponent_n);
+    mRttiList.push_back(nsGraphicWrapper_TTextureFromFileComponent_i);
+    mNameRttiMap.insert({ nsGraphicWrapper_TTextureFromFileComponent_n, nsGraphicWrapper_TTextureFromFileComponent_i });
     
     int nsGraphicWrapper_TUniverseCameraComponent_i = globalTypeIdentifier->Type<nsGraphicWrapper::TUniverseCameraComponent>();
     std::string nsGraphicWrapper_TUniverseCameraComponent_n = "nsGraphicWrapper::TUniverseCameraComponent";

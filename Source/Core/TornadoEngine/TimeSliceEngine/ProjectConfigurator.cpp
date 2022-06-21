@@ -36,8 +36,6 @@ void TProjectConfigurator::Setup()
     Modules()->PrefabObjConstructor()->Setup(dllPathList);
     Modules()->PrefabObjConstructor()->SetContentMap(Project()->mPrefabContentMap);
 
-    Modules()->HierarchyHelper()->SetEntMng(entMng);
-
     auto sceneMng = Modules()->SceneMng();
 
     sceneMng->SetEntityManager(entMng);

@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 #include "StopAccessor.h"
 #include "SceneManager.h"
 #include "PrefabManager.h"
-#include "HierarchyHelper.h"
+#include "GameObject.h"
 #include "PrefabObjectConstructor.h"
 #include "SceneInstanceGuidComponent.h"
 #include "FilePathNodeComponent.h"
@@ -51,8 +51,6 @@ void TOnMouseClickFileNodeHandler::Handle(nsECSFramework::TEntityID eid, const n
     prefabObjConstructor->EntMng()->Clear();
 
     auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid)->value;
-
-    auto hierarchy = nsTornadoEngine::Modules()->HierarchyHelper();
 
     auto selectedTreeNodeGuidComponent = entMng->ViewComponent<nsGuiWrapper::TSelectedTreeNodeGuidComponent>(eid);
 
@@ -93,11 +91,11 @@ void TOnMouseClickFileNodeHandler::Handle(nsECSFramework::TEntityID eid, const n
     } else {
 
         // Destroy file hierarchy
-        auto hierarchyHelper = nsTornadoEngine::Modules()->HierarchyHelper();
+        TGameObject go(fileHierarchyWindowEid);
+        auto treeViewGo = go.GetChildByName("TreeView");
 
-        auto treeViewEid = hierarchyHelper->GetChildByName(fileHierarchyWindowEid, "TreeView");
-
-        auto treeNodeEids = hierarchyHelper->GetChilds(treeViewEid);
+        nsECSFramework::TEntityList treeNodeEids;
+        treeViewGo.GetChilds(treeNodeEids);
         for (auto& treeNodeEid : treeNodeEids) {
             prefabMng->Destroy(treeNodeEid);
         }

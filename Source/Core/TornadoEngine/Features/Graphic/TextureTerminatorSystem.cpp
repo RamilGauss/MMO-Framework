@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TTextureTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsGraphicWrapper::TTextureComponent* pTextureComponent)
+void TTextureTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsGraphicWrapper::TTextureFromFileComponent* pTextureComponent)
 {
     nsGraphicEngine::TTextureFactory::Unload(pTextureComponent->value);
 

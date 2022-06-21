@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_02 08:26:50.163
+// File has been generated at 2022_06_21 20:52:37.216
 	
 #pragma once
 
@@ -93,6 +93,9 @@ namespace nsTornadoEngine
         static void _Serialize(nsGraphicWrapper::TCameraComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TCameraComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGraphicWrapper::TCameraTextureTagComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TCameraTextureTagComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGraphicWrapper::TCameraWindowPositionComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TCameraWindowPositionComponent* p, const Jobj& obj);
         
@@ -108,8 +111,11 @@ namespace nsTornadoEngine
         static void _Serialize(nsGraphicWrapper::TRenderToTextureCameraComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TRenderToTextureCameraComponent* p, const Jobj& obj);
         
-        static void _Serialize(nsGraphicWrapper::TTextureComponent* p, Jobj& obj);
-        static void _Deserialize(nsGraphicWrapper::TTextureComponent* p, const Jobj& obj);
+        static void _Serialize(nsGraphicWrapper::TTextureFromCameraComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TTextureFromCameraComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGraphicWrapper::TTextureFromFileComponent* p, Jobj& obj);
+        static void _Deserialize(nsGraphicWrapper::TTextureFromFileComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGraphicWrapper::TUniverseCameraComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TUniverseCameraComponent* p, const Jobj& obj);

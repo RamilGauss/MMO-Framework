@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "TextureComponent.h"
+#include "TextureFromFileComponent.h"
 
 namespace nsGraphicWrapper
 {
     class DllExport TTextureMakerSystem :
-        public nsECSFramework::TOnAddCollectReactiveSystem<nsGraphicWrapper::TTextureComponent, TTextureMakerSystem>
+        public nsECSFramework::TOnAddCollectReactiveSystem<nsGraphicWrapper::TTextureFromFileComponent, TTextureMakerSystem>
     {
     public:
-        void Reactive(nsECSFramework::TEntityID eid, const nsGraphicWrapper::TTextureComponent* pC);
+        void Reactive(nsECSFramework::TEntityID eid, const nsGraphicWrapper::TTextureFromFileComponent* pC);
     };
 }

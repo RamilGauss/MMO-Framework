@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "FileHierarchyWindowRefreshSystem.h"
 
 #include "Modules.h"
-#include "HierarchyHelper.h"
+#include "GameObject.h"
 #include <filesystem>
 #include "Modules.h"
 #include "StopAccessor.h"
@@ -24,7 +24,7 @@ See for more information LICENSE.md.
 #include "EditorInfoTagComponent.h"
 #include "FilePathNodeComponent.h"
 #include "NodeIconComponent.h"
-#include "TextureComponent.h"
+#include "TextureFromFileComponent.h"
 
 #include <iostream>
 
@@ -38,7 +38,8 @@ void TFileHierarchyWindowRefreshSystem::Reactive(nsECSFramework::TEntityID eid, 
 
     entMng->RemoveComponent<TFileHierarchyWindowRefreshTagComponent>(eid);
 
-    auto treeViewEid = nsTornadoEngine::Modules()->HierarchyHelper()->GetChildByName(eid, "TreeView");
+    nsTornadoEngine::TGameObject go(eid);
+    auto treeViewEid = go.GetChildByName("TreeView").GetEid();
 
     Handle(treeViewEid);
 }
@@ -111,7 +112,7 @@ void TFileHierarchyWindowRefreshSystem::AddFileNodes(nsECSFramework::TEntityID p
         filePathNodeComponent.value = absFilePathStr;
         prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, filePathNodeComponent);
 
-        nsGraphicWrapper::TTextureComponent textureComponent;
+        nsGraphicWrapper::TTextureFromFileComponent textureComponent;
         textureComponent.resourceGuid = icon;
         prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, textureComponent);
 

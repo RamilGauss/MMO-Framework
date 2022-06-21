@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "UnitBuilderHelper.h"
 
 #include "TitleComponent.h"
-#include "TextureComponent.h"
+#include "TextureFromFileComponent.h"
 
 #include "MenuNodeClickHandlerComponent.h"
 
@@ -43,7 +43,7 @@ void TMenuNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
     auto pTreeNodeIconComponent = entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid);
     if (pTreeNodeIconComponent) {
 
-        auto pTexture = entMng->ViewComponent<TTextureComponent>(eid)->value;
+        auto pTexture = entMng->ViewComponent<TTextureFromFileComponent>(eid)->value;
 
         auto handle = (void*)(pTexture->mId);
         pMenuNodeComponent->value->SetTexture(handle, pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);

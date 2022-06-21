@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include "Logger.h"
 #include "TimeSliceEngine.h"
 #include "TextFile.h"
+#include "GameObject.h"
 
 
 #include "PrefabRootComponent.h"
@@ -146,8 +147,9 @@ void TPrefabManager::Destroy(const std::string& prefabInstanceGuid)
 
     BL_ASSERT(rootEid != nsECSFramework::NONE);
 
+    TGameObject go(rootEid);
     nsECSFramework::TEntityList eids;
-    Modules()->HierarchyHelper()->GetAllTree(rootEid, eids);
+    go.GetAllTree(eids);
 
     nsCommonWrapper::TNeedDestroyObjectTagComponent needDestroyObjectTagComponent;
     for (auto& eid : eids) {

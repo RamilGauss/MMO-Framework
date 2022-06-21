@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_02 08:26:50.169
+// File has been generated at 2022_06_21 20:52:37.223
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -245,6 +245,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGraphicWrapper_TCameraComponentTypeFunc, _nsGraphicWrapper_TCameraComponentTypeFunc });
     
+    TypeFunc _nsGraphicWrapper_TCameraTextureTagComponentTypeFunc;
+    _nsGraphicWrapper_TCameraTextureTagComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGraphicWrapper::TCameraTextureTagComponent>((nsGraphicWrapper::TCameraTextureTagComponent*) p, str);
+    };
+    _nsGraphicWrapper_TCameraTextureTagComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGraphicWrapper::TCameraTextureTagComponent>((nsGraphicWrapper::TCameraTextureTagComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGraphicWrapper_TCameraTextureTagComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraTextureTagComponent>();
+    
+    m.insert({ rtti__nsGraphicWrapper_TCameraTextureTagComponentTypeFunc, _nsGraphicWrapper_TCameraTextureTagComponentTypeFunc });
+    
     TypeFunc _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc;
     _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGraphicWrapper::TCameraWindowPositionComponent>((nsGraphicWrapper::TCameraWindowPositionComponent*) p, str);
@@ -305,17 +317,29 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc, _nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc });
     
-    TypeFunc _nsGraphicWrapper_TTextureComponentTypeFunc;
-    _nsGraphicWrapper_TTextureComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGraphicWrapper::TTextureComponent>((nsGraphicWrapper::TTextureComponent*) p, str);
+    TypeFunc _nsGraphicWrapper_TTextureFromCameraComponentTypeFunc;
+    _nsGraphicWrapper_TTextureFromCameraComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGraphicWrapper::TTextureFromCameraComponent>((nsGraphicWrapper::TTextureFromCameraComponent*) p, str);
     };
-    _nsGraphicWrapper_TTextureComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGraphicWrapper::TTextureComponent>((nsGraphicWrapper::TTextureComponent*) p, str, err);
+    _nsGraphicWrapper_TTextureFromCameraComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGraphicWrapper::TTextureFromCameraComponent>((nsGraphicWrapper::TTextureFromCameraComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TTextureComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureComponent>();
+    auto rtti__nsGraphicWrapper_TTextureFromCameraComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureFromCameraComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TTextureComponentTypeFunc, _nsGraphicWrapper_TTextureComponentTypeFunc });
+    m.insert({ rtti__nsGraphicWrapper_TTextureFromCameraComponentTypeFunc, _nsGraphicWrapper_TTextureFromCameraComponentTypeFunc });
+    
+    TypeFunc _nsGraphicWrapper_TTextureFromFileComponentTypeFunc;
+    _nsGraphicWrapper_TTextureFromFileComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGraphicWrapper::TTextureFromFileComponent>((nsGraphicWrapper::TTextureFromFileComponent*) p, str);
+    };
+    _nsGraphicWrapper_TTextureFromFileComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGraphicWrapper::TTextureFromFileComponent>((nsGraphicWrapper::TTextureFromFileComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGraphicWrapper_TTextureFromFileComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureFromFileComponent>();
+    
+    m.insert({ rtti__nsGraphicWrapper_TTextureFromFileComponentTypeFunc, _nsGraphicWrapper_TTextureFromFileComponentTypeFunc });
     
     TypeFunc _nsGraphicWrapper_TUniverseCameraComponentTypeFunc;
     _nsGraphicWrapper_TUniverseCameraComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -947,6 +971,14 @@ void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TCameraComponent* 
 {
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TCameraTextureTagComponent* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TCameraTextureTagComponent* p, const Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TCameraWindowPositionComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "x", p->x);
@@ -995,12 +1027,22 @@ void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TRenderToTextureCa
 {
 }
 //---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TTextureComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TTextureFromCameraComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "cameraGuid", p->cameraGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TTextureFromCameraComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "cameraGuid", p->cameraGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGraphicWrapper::TTextureFromFileComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "resourceGuid", p->resourceGuid);
 }
 //---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TTextureComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TTextureFromFileComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "resourceGuid", p->resourceGuid);
 }

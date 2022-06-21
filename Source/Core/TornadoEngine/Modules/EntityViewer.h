@@ -22,7 +22,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    class DllExport TComponentViewer : public nsGraphicEngine::IRenderable
+    class DllExport TEntityViewer : public nsGraphicEngine::IRenderable
     {
         int mCurrentEntityManagerIndex = 0;
 
@@ -34,7 +34,7 @@ namespace nsTornadoEngine
 
         char mInputFilterValue [200] = {0};
     public:
-        TComponentViewer();
+        TEntityViewer();
         void Render() override;
     private:
 

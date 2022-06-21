@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 #include "StopAccessor.h"
 #include "SceneManager.h"
 #include "PrefabManager.h"
-#include "HierarchyHelper.h"
+#include "GameObject.h"
 #include "PrefabObjectConstructor.h"
 
 #include "SceneInstanceGuidComponent.h"
@@ -64,11 +64,10 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
 
     auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid)->value;
 
-    auto hierarchy = nsTornadoEngine::Modules()->HierarchyHelper();
+    TGameObject go(eid);
 
-    auto textInputEid = hierarchy->GetBrotherByName(eid, "Project path");
-    auto absPath =
-        entMng->ViewComponent<nsGuiWrapper::TInputTextValueComponent>(textInputEid)->value;
+    auto textInputEid = go.GetBrotherByName("Project path").GetEid();
+    auto absPath = entMng->ViewComponent<nsGuiWrapper::TInputTextValueComponent>(textInputEid)->value;
 
     TProjectConfigComponent projectConfigComponent;
     std::string err;
@@ -112,11 +111,12 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
     } else {
 
         // Destroy file hierarchy
-        auto hierarchyHelper = nsTornadoEngine::Modules()->HierarchyHelper();
+        TGameObject go(fileHierarchyWindowEid);
         
-        auto treeViewEid = hierarchyHelper->GetChildByName(fileHierarchyWindowEid, "TreeView");
+        auto treeViewGo = go.GetChildByName("TreeView");
 
-        auto treeNodeEids = hierarchyHelper->GetChilds(treeViewEid);
+        nsECSFramework::TEntityList treeNodeEids;
+        treeViewGo.GetChilds(treeNodeEids);
         for (auto& treeNodeEid : treeNodeEids) {
             prefabMng->Destroy(treeNodeEid);
         }

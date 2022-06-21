@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_02 08:26:56.218
+// File has been generated at 2022_06_21 20:52:44.697
 	
 #pragma once
 
@@ -65,6 +65,7 @@
 #include "ObjectInstanceEndHandlerTerminatorSystem.h"
 #include "OnAddUniverseContextSystem.h"
 #include "OnRemoveUniverseContextSystem.h"
+#include "PositionUpdaterSystem.h"
 #include "SceneFeature.h"
 #include "StartedScenesInitSystem.h"
 #include "SystemBuilderSystem.h"

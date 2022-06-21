@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "UnitBuilderHelper.h"
 
 #include "TitleComponent.h"
-#include "TextureComponent.h"
+#include "TextureFromFileComponent.h"
 
 #include "ButtonClickHandlerComponent.h"
 
@@ -44,7 +44,7 @@ void TTreeNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
     if (pTreeNodeIconComponent) {
         
         try {
-            auto pTexture = entMng->ViewComponent<TTextureComponent>(eid)->value;
+            auto pTexture = entMng->ViewComponent<TTextureFromFileComponent>(eid)->value;
 
             auto handle = (void*) (pTexture->mId);
             pTreeNodeComponent->value->SetTexture(handle, pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);

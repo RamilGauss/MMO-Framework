@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 
 namespace nsGraphicWrapper
 {
-    struct DllExport TTextureComponent : nsECSFramework::IComponent
+    struct DllExport TTextureFromFileComponent : nsECSFramework::IComponent
     {
         std::string resourceGuid;
 

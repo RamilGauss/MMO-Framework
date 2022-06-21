@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnRemoveInstantReactiveSystem.h>
 
-#include "TextureComponent.h"
+#include "TextureFromFileComponent.h"
 
 namespace nsGraphicWrapper
 {
     class DllExport TTextureTerminatorSystem :
-        public nsECSFramework::TOnRemoveInstantReactiveSystem<nsGraphicWrapper::TTextureComponent, TTextureTerminatorSystem>
+        public nsECSFramework::TOnRemoveInstantReactiveSystem<nsGraphicWrapper::TTextureFromFileComponent, TTextureTerminatorSystem>
     {
     public:
-        void Reactive(nsECSFramework::TEntityID eid, const nsGraphicWrapper::TTextureComponent* pC);
+        void Reactive(nsECSFramework::TEntityID eid, const nsGraphicWrapper::TTextureFromFileComponent* pC);
     };
 }

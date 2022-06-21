@@ -540,8 +540,17 @@
     <ClCompile Include="Modules\SystemViewer.cpp">
       <Filter>Modules\Gizmos</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ComponentViewer.cpp">
+    <ClCompile Include="Modules\EntityViewer.cpp">
       <Filter>Modules\Gizmos</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\PositionUpdaterSystem.cpp">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Graphic\SizeUpdaterSystem.cpp">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\GameObject.cpp">
+      <Filter>Share</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1163,7 +1172,7 @@
     <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerTerminatorSystem.h">
       <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Graphic\TextureComponent.h">
+    <ClInclude Include="Components\Graphic\TextureFromFileComponent.h">
       <Filter>Components\Graphic</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\TextureMakerSystem.h">
@@ -1211,11 +1220,26 @@
     <ClInclude Include="Modules\Gizmo.h">
       <Filter>Modules\Gizmos</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ComponentViewer.h">
+    <ClInclude Include="Modules\EntityViewer.h">
       <Filter>Modules\Gizmos</Filter>
     </ClInclude>
     <ClInclude Include="Modules\SystemViewer.h">
       <Filter>Modules\Gizmos</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\PositionUpdaterSystem.h">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Graphic\SizeUpdaterSystem.h">
+      <Filter>Features\Graphic\UpdaterToModule</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\GameObject.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\TextureFromCameraComponent.h">
+      <Filter>Components\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Graphic\CameraTextureTagComponent.h">
+      <Filter>Components\Graphic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -25,8 +25,6 @@ namespace nsTornadoEngine
 	class DllExport TPrefabObjectConstructor : public TObjectManager
 	{
 		nsECSFramework::TEntityManager mInnerEntityManager;
-
-		THierarchyHelper mHierarchyHelper;
 	public:
 		TPrefabObjectConstructor();
 

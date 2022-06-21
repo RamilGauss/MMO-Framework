@@ -267,6 +267,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\OnAddUniverseContextSystem.cpp" />
     <ClCompile Include="Features\Graphic\OnRemoveUniverseContextSystem.cpp" />
+    <ClCompile Include="Features\Graphic\PositionUpdaterSystem.cpp" />
+    <ClCompile Include="Features\Graphic\SizeUpdaterSystem.cpp" />
     <ClCompile Include="Features\Graphic\TextureMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\TextureTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\TitleUpdaterSystem.cpp" />
@@ -305,7 +307,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
     <ClCompile Include="Generated files\HandlerTypeInformation.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
-    <ClCompile Include="Modules\ComponentViewer.cpp" />
+    <ClCompile Include="Modules\EntityViewer.cpp" />
     <ClCompile Include="Modules\Gizmo.cpp" />
     <ClCompile Include="Modules\GraphicEngineContext.cpp" />
     <ClCompile Include="Modules\HierarchyHelper.cpp" />
@@ -332,6 +334,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\SceneManager.cpp" />
     <ClCompile Include="Modules\SystemViewer.cpp" />
     <ClCompile Include="Modules\UniverseManager.cpp" />
+    <ClCompile Include="Share\GameObject.cpp" />
     <ClCompile Include="Share\MathStructs.cpp" />
     <ClCompile Include="Share\MathTools.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigContainer.cpp" />
@@ -358,12 +361,14 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Components\Common\UniverseGuidComponent.h" />
     <ClInclude Include="Components\Common\UniverseIndexComponent.h" />
     <ClInclude Include="Components\Graphic\CameraComponent.h" />
+    <ClInclude Include="Components\Graphic\CameraTextureTagComponent.h" />
     <ClInclude Include="Components\Graphic\CameraWindowPositionComponent.h" />
     <ClInclude Include="Components\Graphic\CameraWindowSizeComponent.h" />
     <ClInclude Include="Components\Graphic\GuiCameraTagComponent.h" />
     <ClInclude Include="Components\Graphic\LightComponent.h" />
     <ClInclude Include="Components\Graphic\RenderToTextureCameraComponent.h" />
-    <ClInclude Include="Components\Graphic\TextureComponent.h" />
+    <ClInclude Include="Components\Graphic\TextureFromCameraComponent.h" />
+    <ClInclude Include="Components\Graphic\TextureFromFileComponent.h" />
     <ClInclude Include="Components\Graphic\UniverseCameraComponent.h" />
     <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h" />
     <ClInclude Include="Components\Gui\ButtonComponent.h" />
@@ -449,6 +454,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\OnAddUniverseContextSystem.h" />
     <ClInclude Include="Features\Graphic\OnRemoveUniverseContextSystem.h" />
+    <ClInclude Include="Features\Graphic\PositionUpdaterSystem.h" />
+    <ClInclude Include="Features\Graphic\SizeUpdaterSystem.h" />
     <ClInclude Include="Features\Graphic\TextureMakerSystem.h" />
     <ClInclude Include="Features\Graphic\TextureTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\TitleUpdaterSystem.h" />
@@ -502,7 +509,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Handlers\IObjectInstanceEndHandler.h" />
     <ClInclude Include="Handlers\IWindowCloseEventHandler.h" />
     <ClInclude Include="Modules\ComponentInMemory.h" />
-    <ClInclude Include="Modules\ComponentViewer.h" />
+    <ClInclude Include="Modules\EntityViewer.h" />
     <ClInclude Include="Modules\Gizmo.h" />
     <ClInclude Include="Modules\GraphicEngineContext.h" />
     <ClInclude Include="Modules\HierarchyHelper.h" />
@@ -551,6 +558,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="ReflectionAggregators\MenuItemReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\ScenePartReflectionAggregator.h" />
     <ClInclude Include="Share\FrameworkResources.h" />
+    <ClInclude Include="Share\GameObject.h" />
     <ClInclude Include="Share\HandlerPool.h" />
     <ClInclude Include="Share\MathStructs.h" />
     <ClInclude Include="Share\MathTools.h" />

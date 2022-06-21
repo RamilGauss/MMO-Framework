@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TTextureMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGraphicWrapper::TTextureComponent* pTextureComponent)
+void TTextureMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGraphicWrapper::TTextureFromFileComponent* pTextureComponent)
 {
     auto resourceAbsPath = nsTornadoEngine::Project()->GetResourcesAbsPath(pTextureComponent->resourceGuid);
     pTextureComponent->value = nsGraphicEngine::TTextureFactory::Load(resourceAbsPath);

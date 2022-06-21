@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_02 08:26:56.194
+// File has been generated at 2022_06_21 20:52:44.670
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -359,6 +359,13 @@ void TFeatureTypeFactory::Init()
     auto rtti_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TOnRemoveUniverseContextSystem>();
     
     m.insert({ rtti_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data, nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data });
+    
+    Data nsGraphicWrapper_TPositionUpdaterSystem_Data;
+    nsGraphicWrapper_TPositionUpdaterSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TPositionUpdaterSystem(); };
+    nsGraphicWrapper_TPositionUpdaterSystem_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TPositionUpdaterSystem*)p; };
+    auto rtti_nsGraphicWrapper_TPositionUpdaterSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionUpdaterSystem>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TPositionUpdaterSystem_Data, nsGraphicWrapper_TPositionUpdaterSystem_Data });
     
     Data nsGraphicWrapper_TTextureMakerSystem_Data;
     nsGraphicWrapper_TTextureMakerSystem_Data.newFunc = [](){ return new nsGraphicWrapper::TTextureMakerSystem(); };
