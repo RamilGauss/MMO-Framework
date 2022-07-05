@@ -32,6 +32,10 @@
                 {
                     "typeName": "nsLogicWrapper::TSystemComponent",
                     "jsonBody": "{\"typeName\":\"nsTornadoEditor::TMainFeature\"}"
+                },
+                {
+                    "typeName": "nsTornadoEditor::TMainWindowTagComponent",
+                    "jsonBody": "{}"
                 }
             ]
         },
@@ -355,7 +359,7 @@
                 },
                 {
                     "typeName": "nsCommonWrapper::TNameComponent",
-                    "jsonBody": "{\"value\":\"ComponentViewer\"}"
+                    "jsonBody": "{\"value\":\"EntityViewer\"}"
                 },
                 {
                     "typeName": "nsCommonWrapper::TTransformComponent",
@@ -371,7 +375,7 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
-                    "jsonBody": "{\"value\":\"Component viewer\"}"
+                    "jsonBody": "{\"value\":\"Entity viewer\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TMenuNodeComponent",

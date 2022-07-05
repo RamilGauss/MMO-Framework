@@ -54,20 +54,15 @@ bool TOpenProjectOkButtonClickHandler::LoadProjectConfig(const std::string& absP
 //---------------------------------------------------------------------------------------------------------------------
 void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pC)
 {
-    auto sceneMng = nsTornadoEngine::Modules()->SceneMng();
     auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
-    auto stopAccessor = nsTornadoEngine::Modules()->StopAccessor();
     auto entMng = nsTornadoEngine::Modules()->EntMng();
-    auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
-
-    prefabObjConstructor->EntMng()->Clear();
 
     auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid)->value;
 
     TGameObject go(eid);
 
-    auto textInputEid = go.GetBrotherByName("Project path").GetEid();
-    auto absPath = entMng->ViewComponent<nsGuiWrapper::TInputTextValueComponent>(textInputEid)->value;
+    auto textInput = go.GetBrotherByName("Project path");
+    auto absPath = textInput.GetComponent<nsGuiWrapper::TInputTextValueComponent>().value;
 
     TProjectConfigComponent projectConfigComponent;
     std::string err;
@@ -79,6 +74,8 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
             err = "File not found";
         }
 
+        auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
+        prefabObjConstructor->EntMng()->Clear();
         auto warningDialogEid = prefabObjConstructor->InstantiateByGuid("2");
 
         nsGuiWrapper::TTitleComponent titleComponent;
@@ -98,30 +95,30 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
 
     TAbsoluteFilePathComponent absoluteFilePathComponent;
     absoluteFilePathComponent.value = absPath;
-    entMng->SetComponent(editorInfoEid, absoluteFilePathComponent);
 
+    entMng->SetComponent(editorInfoEid, absoluteFilePathComponent);
     entMng->SetComponent(editorInfoEid, projectConfigComponent);
 
     prefabMng->Destroy(eid);
 
-    auto fileHierarchyWindowEid = nsECSFramework::SingleEntity<TFileHierarchyWindowTagComponent>(entMng);
+    //auto fileHierarchyWindowEid = nsECSFramework::SingleEntity<TFileHierarchyWindowTagComponent>(entMng);
 
-    if (fileHierarchyWindowEid == nsECSFramework::NONE) {
-        prefabMng->InstantiateByGuid("0", sceneInstanceGuid);
-    } else {
+    //if (fileHierarchyWindowEid == nsECSFramework::NONE) {
+    //    prefabMng->InstantiateByGuid("0", sceneInstanceGuid);
+    //} else {
 
-        // Destroy file hierarchy
-        TGameObject go(fileHierarchyWindowEid);
-        
-        auto treeViewGo = go.GetChildByName("TreeView");
+    //    // Destroy file hierarchy
+    //    TGameObject go(fileHierarchyWindowEid);
+    //    
+    //    auto treeViewGo = go.GetChildByName("TreeView");
 
-        nsECSFramework::TEntityList treeNodeEids;
-        treeViewGo.GetChilds(treeNodeEids);
-        for (auto& treeNodeEid : treeNodeEids) {
-            prefabMng->Destroy(treeNodeEid);
-        }
+    //    nsECSFramework::TEntityList treeNodeEids;
+    //    treeViewGo.GetChilds(treeNodeEids);
+    //    for (auto& treeNodeEid : treeNodeEids) {
+    //        prefabMng->Destroy(treeNodeEid);
+    //    }
 
-        entMng->SetComponent(fileHierarchyWindowEid, TFileHierarchyWindowRefreshTagComponent());
-    }
+    //    entMng->SetComponent(fileHierarchyWindowEid, TFileHierarchyWindowRefreshTagComponent());
+    //}
 }
 //---------------------------------------------------------------------------------------------------------------------

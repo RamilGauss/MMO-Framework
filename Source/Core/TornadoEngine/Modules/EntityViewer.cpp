@@ -211,7 +211,7 @@ void TEntityViewer::RenderModel()
     ImGui::SetWindowSize(mSize);
 
     bool isOpen = true;
-    ImGui::Begin("Component viewer", &isOpen, (int)ImGuiWindowFlags_NoDocking);
+    ImGui::Begin("Entity viewer", &isOpen, (int)ImGuiWindowFlags_NoDocking);
 
     ImGui::Text("EntityManager:"); 
     ImGui::SameLine();

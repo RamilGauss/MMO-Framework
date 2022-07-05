@@ -86,7 +86,7 @@ void TGameObject::GetAllChilds(std::list<TGameObject>& gos)
 {
     std::list<TGameObject> selfGos;
     GetChilds(selfGos);
-    gos.insert(selfGos.begin(), selfGos.size());
+    gos.insert(gos.end(), selfGos.begin(), selfGos.end());
 
     for (auto& child : selfGos) {
         child.GetAllChilds(gos);
@@ -103,8 +103,8 @@ void TGameObject::GetAllTree(nsECSFramework::TEntityList& eids)
 void TGameObject::GetAllChilds(nsECSFramework::TEntityList& eids)
 {
     nsECSFramework::TEntityList selfEids;
-    GetChilds(eids);
-    eids.insert(selfEids.begin(), selfEids.size());
+    GetChilds(selfEids);
+    eids.insert(eids.end(), selfEids.begin(), selfEids.end());
 
     std::list<TGameObject> selfGos;
     GetChilds(selfGos);
@@ -160,7 +160,7 @@ std::list<TGameObject> TGameObject::GetChildsByName(const std::string& childName
 void TGameObject::GetChildsByNameRecursively(const std::string& name, std::list<TGameObject>& gos)
 {
     auto childsByName = GetChildsByName(name);
-    gos.insert(childsByName.begin(), childsByName.size());
+    gos.insert(gos.end(), childsByName.begin(), childsByName.end());
 
     std::list<TGameObject> childs;
     GetChilds(childs);

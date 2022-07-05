@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
-
-#include <ECS/include/IComponent.h>
+#include <ECS/include/InitSystem.h>
 
 namespace nsTornadoEditor
 {
-    struct DllExport TInspectorWindowTagComponent : nsECSFramework::IComponent
+    class DllExport TInitMainSystem :  public nsECSFramework::TInitSystem
     {
+    public:
+        void Init() override;
     };
 }

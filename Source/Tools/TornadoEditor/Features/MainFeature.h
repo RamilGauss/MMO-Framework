@@ -8,13 +8,17 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <ECS/include/Feature.h>
+
 #include "FileHierarchyWindowRefreshSystem.h"
 #include "ObjectHierarchyWindowRefreshSystem.h"
+#include "InitMainSystem.h"
 
 namespace nsTornadoEditor
 {
     class DllExport TMainFeature : public nsECSFramework::TFeature
     {
+        TInitMainSystem mInitMainSystem;
+
         TFileHierarchyWindowRefreshSystem mFileHierarchyWindowRefreshSystem;
         TObjectHierarchyWindowRefreshSystem mObjectHierarchyWindowRefreshSystem;
 

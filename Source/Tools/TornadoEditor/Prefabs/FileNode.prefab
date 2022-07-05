@@ -46,7 +46,7 @@
                     "jsonBody": "{\"width\":16, \"height\":16}"
                 },
                 {
-                    "typeName": "nsGraphicWrapper::TTextureFromComponent",
+                    "typeName": "nsGraphicWrapper::TTextureFromFileComponent",
                     "jsonBody": "{\"resourceGuid\":\"folder.png\"}"
                 }
             ]

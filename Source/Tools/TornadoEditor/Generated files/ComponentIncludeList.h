@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_21 20:54:59.505
+// File has been generated at 2022_07_05 08:08:48.515
 	
 #pragma once
 
@@ -13,6 +13,7 @@
 #include "FileHierarchyWindowTagComponent.h"
 #include "FilePathNodeComponent.h"
 #include "InspectorWindowTagComponent.h"
+#include "MainWindowTagComponent.h"
 #include "ObjectHierarchyWindowRefreshTagComponent.h"
 #include "ObjectHierarchyWindowTagComponent.h"
 #include "ProjectConfigComponent.h"

@@ -17,9 +17,6 @@ namespace nsTornadoEditor
     {
         TBootstrapperSystem mBootstrapperSystem;
     public:
-        void InitConveyor() override
-        {
-            Add(&mBootstrapperSystem);
-        }
+        void InitConveyor() override;
     };
 }

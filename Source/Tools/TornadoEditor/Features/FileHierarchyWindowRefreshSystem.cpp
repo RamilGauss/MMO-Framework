@@ -145,13 +145,13 @@ std::string TFileHierarchyWindowRefreshSystem::GetIcon(const std::filesystem::pa
 {
     std::map<std::string, std::string> extIconMap = 
     {
-        {".cpp", "cpp.png"},
-        {".h", "cpp.png"},
-        {".json", "json.png"},
-        {".png", "image.png"},
-        {".jpg", "image.png"},
-        {".jpeg", "image.png"},
-        {".scene", "scene.png"},
+        {".cpp",    "cpp.png"},
+        {".h",      "cpp.png"},
+        {".json",   "json.png"},
+        {".png",    "image.png"},
+        {".jpg",    "image.png"},
+        {".jpeg",   "image.png"},
+        {".scene",  "scene.png"},
         {".prefab", "prefab.png"},
     };
 

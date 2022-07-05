@@ -16,7 +16,7 @@
     "gameEngine": {
         "sceneManagerContentMapPath": "../Scenes/SceneManagerContentMap.json",
         "startScenesGuid": [
-            "0"
+            "Bootstrapper.scene"
         ],
         "prefabManagerContentMapPath": "../Prefabs/PrefabManagerContentMap.json"
     }

@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEditor
 {
-    struct DllExport TInspectorWindowTagComponent : nsECSFramework::IComponent
+    struct DllExport TMainWindowTagComponent : nsECSFramework::IComponent
     {
     };
 }

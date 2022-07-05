@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_21 20:55:00.568
+// File has been generated at 2022_07_05 08:08:49.469
 	
 #include "EcsSystemExtension.h"
 #include "SingletonManager.h"
@@ -41,6 +41,12 @@ void TEcsSystemExtension::Init()
     auto rtti_nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowRefreshSystem>();
     
     m.insert({ rtti_nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data, nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data });
+    
+    Data nsTornadoEditor_TInitMainSystem_Data;
+    nsTornadoEditor_TInitMainSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<nsTornadoEditor::TInitMainSystem*>(p)); };
+    auto rtti_nsTornadoEditor_TInitMainSystem_Data = globalTypeIdentifier->Type<nsTornadoEditor::TInitMainSystem>();
+    
+    m.insert({ rtti_nsTornadoEditor_TInitMainSystem_Data, nsTornadoEditor_TInitMainSystem_Data });
     
     Data nsTornadoEditor_TMainFeature_Data;
     nsTornadoEditor_TMainFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<nsTornadoEditor::TMainFeature*>(p)); };

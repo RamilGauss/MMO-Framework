@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_21 20:54:59.503
+// File has been generated at 2022_07_05 08:08:48.513
 	
 #include "ComponentTypeInformation.h"
 
@@ -68,6 +68,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TInspectorWindowTagComponent_n);
     mRttiList.push_back(nsTornadoEditor_TInspectorWindowTagComponent_i);
     mNameRttiMap.insert({ nsTornadoEditor_TInspectorWindowTagComponent_n, nsTornadoEditor_TInspectorWindowTagComponent_i });
+    
+    int nsTornadoEditor_TMainWindowTagComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TMainWindowTagComponent>();
+    std::string nsTornadoEditor_TMainWindowTagComponent_n = "nsTornadoEditor::TMainWindowTagComponent";
+    mTypeNameList.push_back(nsTornadoEditor_TMainWindowTagComponent_n);
+    mRttiList.push_back(nsTornadoEditor_TMainWindowTagComponent_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TMainWindowTagComponent_n, nsTornadoEditor_TMainWindowTagComponent_i });
     
     int nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowRefreshTagComponent>();
     std::string nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_n = "nsTornadoEditor::TObjectHierarchyWindowRefreshTagComponent";

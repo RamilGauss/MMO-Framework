@@ -95,6 +95,12 @@
     <ClCompile Include="Handlers\OnOpenSystemViewerClickHandler.cpp">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="Features\BootstrapperFeature.cpp">
+      <Filter>Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\InitMainSystem.cpp">
+      <Filter>Features\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -368,6 +374,12 @@
     </ClInclude>
     <ClInclude Include="Handlers\OnOpenSystemViewerClickHandler.h">
       <Filter>Handlers\Menu\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\InitMainSystem.h">
+      <Filter>Features\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MainWindowTagComponent.h">
+      <Filter>Components\WindowTags</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
