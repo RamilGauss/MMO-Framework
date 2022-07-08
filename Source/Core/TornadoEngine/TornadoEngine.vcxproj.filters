@@ -1241,6 +1241,9 @@
     <ClInclude Include="Components\Graphic\CameraTextureTagComponent.h">
       <Filter>Components\Graphic</Filter>
     </ClInclude>
+    <ClInclude Include="Modules\GuidReference.h">
+      <Filter>Modules\Resources\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />

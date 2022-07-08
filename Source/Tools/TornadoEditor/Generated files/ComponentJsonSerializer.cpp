@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_07_05 08:08:48.501
+// File has been generated at 2022_07_07 08:07:52.619
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -112,6 +112,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsTornadoEditor_TInspectorWindowTagComponentTypeFunc = globalTypeIdentifier->Type<nsTornadoEditor::TInspectorWindowTagComponent>();
     
     m.insert({ rtti__nsTornadoEditor_TInspectorWindowTagComponentTypeFunc, _nsTornadoEditor_TInspectorWindowTagComponentTypeFunc });
+    
+    TypeFunc _nsTornadoEditor_TMainWindowPrefabGuidComponentTypeFunc;
+    _nsTornadoEditor_TMainWindowPrefabGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEditor::TMainWindowPrefabGuidComponent>((nsTornadoEditor::TMainWindowPrefabGuidComponent*) p, str);
+    };
+    _nsTornadoEditor_TMainWindowPrefabGuidComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEditor::TMainWindowPrefabGuidComponent>((nsTornadoEditor::TMainWindowPrefabGuidComponent*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEditor_TMainWindowPrefabGuidComponentTypeFunc = globalTypeIdentifier->Type<nsTornadoEditor::TMainWindowPrefabGuidComponent>();
+    
+    m.insert({ rtti__nsTornadoEditor_TMainWindowPrefabGuidComponentTypeFunc, _nsTornadoEditor_TMainWindowPrefabGuidComponentTypeFunc });
     
     TypeFunc _nsTornadoEditor_TMainWindowTagComponentTypeFunc;
     _nsTornadoEditor_TMainWindowTagComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -253,6 +265,18 @@ void TComponentJsonSerializer::_Serialize(nsTornadoEditor::TInspectorWindowTagCo
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsTornadoEditor::TInspectorWindowTagComponent* p, const Jobj& obj)
 {
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsTornadoEditor::TMainWindowPrefabGuidComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "fileHierarchyGuid", p->fileHierarchyGuid);
+    PUM::Push(obj, "objectHierarchyGuid", p->objectHierarchyGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsTornadoEditor::TMainWindowPrefabGuidComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "fileHierarchyGuid", p->fileHierarchyGuid);
+    POM::PopStr(obj, "objectHierarchyGuid", p->objectHierarchyGuid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsTornadoEditor::TMainWindowTagComponent* p, Jobj& obj)

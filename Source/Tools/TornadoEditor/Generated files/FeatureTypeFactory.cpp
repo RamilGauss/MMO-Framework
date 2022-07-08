@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_07_05 08:08:49.468
+// File has been generated at 2022_07_07 08:07:53.678
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -38,6 +38,13 @@ void TFeatureTypeFactory::Init()
     
     m.insert({ rtti_nsTornadoEditor_TBootstrapperSystem_Data, nsTornadoEditor_TBootstrapperSystem_Data });
     
+    Data nsTornadoEditor_TFileHierarchyWindowInitSystem_Data;
+    nsTornadoEditor_TFileHierarchyWindowInitSystem_Data.newFunc = [](){ return new nsTornadoEditor::TFileHierarchyWindowInitSystem(); };
+    nsTornadoEditor_TFileHierarchyWindowInitSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TFileHierarchyWindowInitSystem*)p; };
+    auto rtti_nsTornadoEditor_TFileHierarchyWindowInitSystem_Data = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowInitSystem>();
+    
+    m.insert({ rtti_nsTornadoEditor_TFileHierarchyWindowInitSystem_Data, nsTornadoEditor_TFileHierarchyWindowInitSystem_Data });
+    
     Data nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data;
     nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data.newFunc = [](){ return new nsTornadoEditor::TFileHierarchyWindowRefreshSystem(); };
     nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TFileHierarchyWindowRefreshSystem*)p; };
@@ -45,12 +52,12 @@ void TFeatureTypeFactory::Init()
     
     m.insert({ rtti_nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data, nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data });
     
-    Data nsTornadoEditor_TInitMainSystem_Data;
-    nsTornadoEditor_TInitMainSystem_Data.newFunc = [](){ return new nsTornadoEditor::TInitMainSystem(); };
-    nsTornadoEditor_TInitMainSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TInitMainSystem*)p; };
-    auto rtti_nsTornadoEditor_TInitMainSystem_Data = globalTypeIdentifier->Type<nsTornadoEditor::TInitMainSystem>();
+    Data nsTornadoEditor_TInitWindowsFeature_Data;
+    nsTornadoEditor_TInitWindowsFeature_Data.newFunc = [](){ return new nsTornadoEditor::TInitWindowsFeature(); };
+    nsTornadoEditor_TInitWindowsFeature_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TInitWindowsFeature*)p; };
+    auto rtti_nsTornadoEditor_TInitWindowsFeature_Data = globalTypeIdentifier->Type<nsTornadoEditor::TInitWindowsFeature>();
     
-    m.insert({ rtti_nsTornadoEditor_TInitMainSystem_Data, nsTornadoEditor_TInitMainSystem_Data });
+    m.insert({ rtti_nsTornadoEditor_TInitWindowsFeature_Data, nsTornadoEditor_TInitWindowsFeature_Data });
     
     Data nsTornadoEditor_TMainFeature_Data;
     nsTornadoEditor_TMainFeature_Data.newFunc = [](){ return new nsTornadoEditor::TMainFeature(); };
@@ -58,6 +65,13 @@ void TFeatureTypeFactory::Init()
     auto rtti_nsTornadoEditor_TMainFeature_Data = globalTypeIdentifier->Type<nsTornadoEditor::TMainFeature>();
     
     m.insert({ rtti_nsTornadoEditor_TMainFeature_Data, nsTornadoEditor_TMainFeature_Data });
+    
+    Data nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data;
+    nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data.newFunc = [](){ return new nsTornadoEditor::TObjectHierarchyWindowInitSystem(); };
+    nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TObjectHierarchyWindowInitSystem*)p; };
+    auto rtti_nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowInitSystem>();
+    
+    m.insert({ rtti_nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data, nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data });
     
     Data nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_Data;
     nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_Data.newFunc = [](){ return new nsTornadoEditor::TObjectHierarchyWindowRefreshSystem(); };

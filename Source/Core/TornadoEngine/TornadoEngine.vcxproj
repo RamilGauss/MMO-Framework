@@ -512,6 +512,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\EntityViewer.h" />
     <ClInclude Include="Modules\Gizmo.h" />
     <ClInclude Include="Modules\GraphicEngineContext.h" />
+    <ClInclude Include="Modules\GuidReference.h" />
     <ClInclude Include="Modules\HierarchyHelper.h" />
     <ClInclude Include="Modules\IContextManager.h" />
     <ClInclude Include="Modules\LogicWrapperModule.h" />

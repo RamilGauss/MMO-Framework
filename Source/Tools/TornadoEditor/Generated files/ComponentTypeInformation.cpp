@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_07_05 08:08:48.513
+// File has been generated at 2022_07_07 08:07:52.628
 	
 #include "ComponentTypeInformation.h"
 
@@ -68,6 +68,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TInspectorWindowTagComponent_n);
     mRttiList.push_back(nsTornadoEditor_TInspectorWindowTagComponent_i);
     mNameRttiMap.insert({ nsTornadoEditor_TInspectorWindowTagComponent_n, nsTornadoEditor_TInspectorWindowTagComponent_i });
+    
+    int nsTornadoEditor_TMainWindowPrefabGuidComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TMainWindowPrefabGuidComponent>();
+    std::string nsTornadoEditor_TMainWindowPrefabGuidComponent_n = "nsTornadoEditor::TMainWindowPrefabGuidComponent";
+    mTypeNameList.push_back(nsTornadoEditor_TMainWindowPrefabGuidComponent_n);
+    mRttiList.push_back(nsTornadoEditor_TMainWindowPrefabGuidComponent_i);
+    mNameRttiMap.insert({ nsTornadoEditor_TMainWindowPrefabGuidComponent_n, nsTornadoEditor_TMainWindowPrefabGuidComponent_i });
     
     int nsTornadoEditor_TMainWindowTagComponent_i = globalTypeIdentifier->Type<nsTornadoEditor::TMainWindowTagComponent>();
     std::string nsTornadoEditor_TMainWindowTagComponent_n = "nsTornadoEditor::TMainWindowTagComponent";

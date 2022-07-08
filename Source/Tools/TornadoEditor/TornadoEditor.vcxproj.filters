@@ -59,9 +59,6 @@
     <ClCompile Include="Generated files\FeatureTypeInformationImpl.cpp">
       <Filter>Generated files\Features\Impl</Filter>
     </ClCompile>
-    <ClCompile Include="Features\BootstrapperSystem.cpp">
-      <Filter>Features</Filter>
-    </ClCompile>
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
@@ -69,7 +66,7 @@
       <Filter>Handlers</Filter>
     </ClCompile>
     <ClCompile Include="Features\FileHierarchyWindowRefreshSystem.cpp">
-      <Filter>Features\Windows</Filter>
+      <Filter>Features\Main\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Handlers\OnFileHierarchyClickHandler.cpp">
       <Filter>Handlers\Menu\View</Filter>
@@ -78,10 +75,7 @@
       <Filter>Handlers\Menu\File</Filter>
     </ClCompile>
     <ClCompile Include="Features\ObjectHierarchyWindowRefreshSystem.cpp">
-      <Filter>Features\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Features\MainFeature.cpp">
-      <Filter>Features\Windows</Filter>
+      <Filter>Features\Main\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\FeatureEcsSystemExtensionImpl.cpp">
       <Filter>Generated files\Features\Impl</Filter>
@@ -95,11 +89,23 @@
     <ClCompile Include="Handlers\OnOpenSystemViewerClickHandler.cpp">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Features\BootstrapperFeature.cpp">
-      <Filter>Features</Filter>
+    <ClCompile Include="Features\InitWindowsFeature.cpp">
+      <Filter>Features\Main\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Features\InitMainSystem.cpp">
-      <Filter>Features\Windows</Filter>
+    <ClCompile Include="Features\MainFeature.cpp">
+      <Filter>Features\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\BootstrapperFeature.cpp">
+      <Filter>Features\Bootstrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\BootstrapperSystem.cpp">
+      <Filter>Features\Bootstrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\FileHierarchyWindowInitSystem.cpp">
+      <Filter>Features\Main\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\ObjectHierarchyWindowInitSystem.cpp">
+      <Filter>Features\Main\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,9 +208,6 @@
     <Filter Include="Components\ServiceTags">
       <UniqueIdentifier>{05ac273a-0353-470b-a744-6f2ee2aac637}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Features\Windows">
-      <UniqueIdentifier>{8d488379-421f-4a89-b14b-8ed4d02dcf98}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Handlers\Menu">
       <UniqueIdentifier>{f7107922-864a-4f30-8c96-0887daf1dd4a}</UniqueIdentifier>
     </Filter>
@@ -222,6 +225,15 @@
     </Filter>
     <Filter Include="Handlers\Menu\Tools">
       <UniqueIdentifier>{ac0551c3-a4e0-41dd-aa2f-3654bfb3b2b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Main">
+      <UniqueIdentifier>{ddfc8093-3b31-4073-847f-0861653e84c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Main\Windows">
+      <UniqueIdentifier>{8d488379-421f-4a89-b14b-8ed4d02dcf98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Bootstrapper">
+      <UniqueIdentifier>{2884ca41-7b96-4efa-8e3d-c4b964db28a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -279,12 +291,6 @@
     <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\BootstrapperFeature.h">
-      <Filter>Features</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\BootstrapperSystem.h">
-      <Filter>Features</Filter>
-    </ClInclude>
     <ClInclude Include="Generated files\FeatureIncludeList.h">
       <Filter>Generated files\Features\GeneratedByReflection</Filter>
     </ClInclude>
@@ -331,7 +337,7 @@
       <Filter>Components\ServiceTags</Filter>
     </ClInclude>
     <ClInclude Include="Features\FileHierarchyWindowRefreshSystem.h">
-      <Filter>Features\Windows</Filter>
+      <Filter>Features\Main\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\OnExitClickHandler.h">
       <Filter>Handlers\Menu\File</Filter>
@@ -346,7 +352,7 @@
       <Filter>Components\ServiceTags</Filter>
     </ClInclude>
     <ClInclude Include="Features\ObjectHierarchyWindowRefreshSystem.h">
-      <Filter>Features\Windows</Filter>
+      <Filter>Features\Main\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Components\ProjectConfigComponent.h">
       <Filter>Components\ProjectEntity</Filter>
@@ -360,9 +366,6 @@
     <ClInclude Include="Components\AssetAbsoluteFilePathComponent.h">
       <Filter>Components\ProjectEntity</Filter>
     </ClInclude>
-    <ClInclude Include="Features\MainFeature.h">
-      <Filter>Features\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="Generated files\FeatureEcsSystemExtensionImpl.h">
       <Filter>Generated files\Features\Impl</Filter>
     </ClInclude>
@@ -375,10 +378,28 @@
     <ClInclude Include="Handlers\OnOpenSystemViewerClickHandler.h">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Features\InitMainSystem.h">
-      <Filter>Features\Windows</Filter>
+    <ClInclude Include="Features\InitWindowsFeature.h">
+      <Filter>Features\Main\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Components\MainWindowTagComponent.h">
+      <Filter>Components\WindowTags</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\MainFeature.h">
+      <Filter>Features\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\BootstrapperFeature.h">
+      <Filter>Features\Bootstrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\BootstrapperSystem.h">
+      <Filter>Features\Bootstrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\FileHierarchyWindowInitSystem.h">
+      <Filter>Features\Main\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\ObjectHierarchyWindowInitSystem.h">
+      <Filter>Features\Main\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MainWindowPrefabGuidComponent.h">
       <Filter>Components\WindowTags</Filter>
     </ClInclude>
   </ItemGroup>

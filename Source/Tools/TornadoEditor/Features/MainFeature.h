@@ -11,16 +11,17 @@ See for more information LICENSE.md.
 
 #include "FileHierarchyWindowRefreshSystem.h"
 #include "ObjectHierarchyWindowRefreshSystem.h"
-#include "InitMainSystem.h"
+
+#include "InitWindowsFeature.h"
 
 namespace nsTornadoEditor
 {
     class DllExport TMainFeature : public nsECSFramework::TFeature
     {
-        TInitMainSystem mInitMainSystem;
+        TInitWindowsFeature mInitWindowsFeature;
 
-        TFileHierarchyWindowRefreshSystem mFileHierarchyWindowRefreshSystem;
-        TObjectHierarchyWindowRefreshSystem mObjectHierarchyWindowRefreshSystem;
+        //TFileHierarchyWindowRefreshSystem mFileHierarchyWindowRefreshSystem;
+        //TObjectHierarchyWindowRefreshSystem mObjectHierarchyWindowRefreshSystem;
 
     public:
         void InitConveyor() override;

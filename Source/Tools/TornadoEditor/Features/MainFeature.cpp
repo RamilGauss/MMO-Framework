@@ -11,7 +11,7 @@ using namespace nsTornadoEditor;
 
 void TMainFeature::InitConveyor()
 {
-    Add(&mInitMainSystem);
-    Add(&mFileHierarchyWindowRefreshSystem);
-    Add(&mObjectHierarchyWindowRefreshSystem);
+    Add(&mInitWindowsFeature);
+    //Add(&mFileHierarchyWindowRefreshSystem);
+    //Add(&mObjectHierarchyWindowRefreshSystem);
 }

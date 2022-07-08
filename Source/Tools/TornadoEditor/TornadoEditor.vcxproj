@@ -212,9 +212,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
   <ItemGroup>
     <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
     <ClCompile Include="Features\BootstrapperSystem.cpp" />
+    <ClCompile Include="Features\FileHierarchyWindowInitSystem.cpp" />
     <ClCompile Include="Features\FileHierarchyWindowRefreshSystem.cpp" />
-    <ClCompile Include="Features\InitMainSystem.cpp" />
+    <ClCompile Include="Features\InitWindowsFeature.cpp" />
     <ClCompile Include="Features\MainFeature.cpp" />
+    <ClCompile Include="Features\ObjectHierarchyWindowInitSystem.cpp" />
     <ClCompile Include="Features\ObjectHierarchyWindowRefreshSystem.cpp" />
     <ClCompile Include="Features\BootstrapperFeature.cpp" />
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
@@ -302,15 +304,18 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClInclude Include="Components\FilePathNodeComponent.h" />
     <ClInclude Include="Components\FileHierarchyWindowTagComponent.h" />
     <ClInclude Include="Components\InspectorWindowTagComponent.h" />
+    <ClInclude Include="Components\MainWindowPrefabGuidComponent.h" />
     <ClInclude Include="Components\MainWindowTagComponent.h" />
     <ClInclude Include="Components\ObjectHierarchyWindowRefreshTagComponent.h" />
     <ClInclude Include="Components\ObjectHierarchyWindowTagComponent.h" />
     <ClInclude Include="Components\ProjectConfigComponent.h" />
     <ClInclude Include="Features\BootstrapperFeature.h" />
     <ClInclude Include="Features\BootstrapperSystem.h" />
+    <ClInclude Include="Features\FileHierarchyWindowInitSystem.h" />
     <ClInclude Include="Features\FileHierarchyWindowRefreshSystem.h" />
-    <ClInclude Include="Features\InitMainSystem.h" />
+    <ClInclude Include="Features\InitWindowsFeature.h" />
     <ClInclude Include="Features\MainFeature.h" />
+    <ClInclude Include="Features\ObjectHierarchyWindowInitSystem.h" />
     <ClInclude Include="Features\ObjectHierarchyWindowRefreshSystem.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
     <ClInclude Include="Generated files\ComponentEntityManagerExtensionImpl.h" />

@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEditor
 {
-    class DllExport TInitMainSystem :  public nsECSFramework::TInitSystem
+    class DllExport TObjectHierarchyWindowInitSystem : public nsECSFramework::TInitSystem
     {
     public:
         void Init() override;
