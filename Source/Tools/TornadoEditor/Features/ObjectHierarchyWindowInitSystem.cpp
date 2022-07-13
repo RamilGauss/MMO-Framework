@@ -12,10 +12,16 @@ See for more information LICENSE.md.
 #include "FileHierarchyWindowTagComponent.h"
 #include "Modules.h"
 #include "PrefabManager.h"
+#include "PrefabObjectConstructor.h"
+
 #include "IGraphicEngineModule.h"
 #include "MainWindowTagComponent.h"
+#include "MainWindowPrefabGuidComponent.h"
 
 #include "SceneInstanceGuidComponent.h"
+
+#include "PositionComponent.h"
+#include "SizeComponent.h"
 
 namespace nsTornadoEditor
 {
@@ -25,13 +31,28 @@ namespace nsTornadoEditor
         auto displayWidth = pGE->GetWidth();
         auto displayHeight = pGE->GetHeight();
 
+        auto entMng = nsTornadoEngine::Modules()->EntMng();
+        auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
+        auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
 
-        //auto entMng = nsTornadoEngine::Modules()->EntMng();
-        //auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
+        auto mainWindowEid = nsECSFramework::SingleEntity<TMainWindowTagComponent>(entMng);
+        auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(mainWindowEid)->value;
 
-        //auto mainWindowEid = nsECSFramework::SingleEntity<TMainWindowTagComponent>(entMng);
-        //auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(mainWindowEid)->value;
+        auto mainWindowPrefabGuidComponent = entMng->ViewComponent<TMainWindowPrefabGuidComponent>(mainWindowEid);
 
-        //prefabMng->InstantiateByGuid("0", sceneInstanceGuid);
+        //prefabObjConstructor->EntMng()->Clear();
+        //auto eid = prefabObjConstructor->InstantiateByGuid(mainWindowPrefabGuidComponent->objectHierarchyGuid);
+
+        //nsGuiWrapper::TPositionComponent posComponent;
+        //posComponent.x = 100;
+        //posComponent.y = 100;
+        //prefabObjConstructor->EntMng()->SetComponent(eid, posComponent);
+
+        //nsGuiWrapper::TSizeComponent sizeComponent;
+        //sizeComponent.x = 100;
+        //sizeComponent.y = 100;
+        //prefabObjConstructor->EntMng()->SetComponent(eid, sizeComponent);
+
+        //prefabMng->InstantiateByObjectInMemory(prefabObjConstructor, eid, sceneInstanceGuid);
     }
 }

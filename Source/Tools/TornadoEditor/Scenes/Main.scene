@@ -39,7 +39,7 @@
                 },
                 {
                     "typeName": "nsTornadoEditor::TMainWindowPrefabGuidComponent",
-                    "jsonBody": "{\"fileHierarchyGuid\" : \"0\", \"objectHierarchyGuid\" : \"1\"}"
+                    "jsonBody": "{\"fileHierarchyGuid\" : \"0\", \"objectHierarchyGuid\" : \"4\"}"
                 }
             ]
         },
