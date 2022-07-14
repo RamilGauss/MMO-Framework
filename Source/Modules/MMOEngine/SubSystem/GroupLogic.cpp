@@ -226,10 +226,10 @@ void TGroupLogic::CalculateLoadMap(std::map<int, nsECSFramework::TEntityID>& loa
 
         int loadByGroup = 0;
         if (clientOnSlaveCount > 0) {
-            loadByGroup = (int) ((slaveLoadComponent->v / clientOnSlaveCount) * clientCountInGroup);
+            loadByGroup = (int)((slaveLoadComponent->v / clientOnSlaveCount) * clientCountInGroup);
         }
 
-        loadSlaveEntityMap.insert({loadByGroup, slaveEntity});
+        loadSlaveEntityMap.insert({ loadByGroup, slaveEntity });
     }
 }
 //-------------------------------------------------------------------------------------------

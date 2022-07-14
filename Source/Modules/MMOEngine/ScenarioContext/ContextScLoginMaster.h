@@ -12,17 +12,17 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  // сценарии, содержащиеся в контейнере взаимно блокируются
-  class TContextScLoginMaster : public IScenarioContext
-  {
-    unsigned int mTimeWait;
-  public:
-    TContextScLoginMaster();
-    virtual ~TContextScLoginMaster();
+    // сценарии, содержащиеся в контейнере взаимно блокируются
+    class TContextScLoginMaster : public IScenarioContext
+    {
+        unsigned int mTimeWait;
+    public:
+        TContextScLoginMaster();
+        virtual ~TContextScLoginMaster();
 
-    void SetTimeWait( unsigned int v );
-    unsigned int GetTimeWait();
+        void SetTimeWait(unsigned int v);
+        unsigned int GetTimeWait();
 
-  private:
-  };
+    private:
+    };
 }

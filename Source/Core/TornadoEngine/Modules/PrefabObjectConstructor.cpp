@@ -143,6 +143,7 @@ bool TPrefabObjectConstructor::Attach(TEntityID prefabChildEid, TEntityID prefab
 nsECSFramework::TEntityID TPrefabObjectConstructor::GetParent(nsECSFramework::TEntityID eid)
 {
     TGameObject go(eid);
+    go.SetEntityManager(&mInnerEntityManager);
 
     return go.GetParent().GetEid();
 }
@@ -150,6 +151,8 @@ nsECSFramework::TEntityID TPrefabObjectConstructor::GetParent(nsECSFramework::TE
 nsECSFramework::TEntityList TPrefabObjectConstructor::GetChilds(nsECSFramework::TEntityID eid)
 {
     TGameObject go(eid);
+    go.SetEntityManager(&mInnerEntityManager);
+
     nsECSFramework::TEntityList eids;
     go.GetChilds(eids);
     return eids;
@@ -158,18 +161,24 @@ nsECSFramework::TEntityList TPrefabObjectConstructor::GetChilds(nsECSFramework::
 nsECSFramework::TEntityID TPrefabObjectConstructor::GetChildByName(nsECSFramework::TEntityID eid, const std::string& name)
 {
     TGameObject go(eid);
+    go.SetEntityManager(&mInnerEntityManager);
+
     return go.GetChildByName(name).GetEid();
 }
 //-----------------------------------------------------------------------------------------------------
 nsECSFramework::TEntityID TPrefabObjectConstructor::GetBrotherByName(nsECSFramework::TEntityID eid, const std::string& name)
 {
     TGameObject go(eid);
+    go.SetEntityManager(&mInnerEntityManager);
+
     return go.GetBrotherByName(name).GetEid();
 }
 //-----------------------------------------------------------------------------------------------------
 nsECSFramework::TEntityList TPrefabObjectConstructor::GetChildsByName(nsECSFramework::TEntityID eid, const std::string& name)
 {
     TGameObject go(eid);
+    go.SetEntityManager(&mInnerEntityManager);
+
     nsECSFramework::TEntityList eids;
     auto childs = go.GetChildsByName(name);
     for (auto& child : childs) {
@@ -182,6 +191,8 @@ nsECSFramework::TEntityList TPrefabObjectConstructor::GetChildsByName(nsECSFrame
 nsECSFramework::TEntityList TPrefabObjectConstructor::GetBrothersByName(nsECSFramework::TEntityID eid, const std::string& name)
 {
     TGameObject go(eid);
+    go.SetEntityManager(&mInnerEntityManager);
+
     nsECSFramework::TEntityList eids;
     auto brothers = go.GetBrothersByName(name);
     for (auto& brother : brothers) {

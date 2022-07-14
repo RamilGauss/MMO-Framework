@@ -122,7 +122,7 @@ bool TBaseMasterLogic::FindMinimumLoad(unsigned int& slaveSessionID, unsigned ch
     for (auto slaveEntity : slaves) {
         auto load = mEntMng->ViewComponent<TSlaveLoadInfoComponent>(slaveEntity)->v;
         if (load < load_procent) {
-            load_procent = (unsigned char) load;
+            load_procent = (unsigned char)load;
             slaveSessionID = mEntMng->ViewComponent<TSlaveSessionIdentityComponent>(slaveEntity)->v;
         }
     }

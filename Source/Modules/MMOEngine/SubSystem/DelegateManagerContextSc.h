@@ -9,17 +9,17 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class TContainerContextSc;
-  class TBase;
-  class TDelegateManagerContextSc
-  {
-    TBase* mBase;
-  public:
-    TDelegateManagerContextSc( TBase* pBase );
-    virtual ~TDelegateManagerContextSc();
+    class TContainerContextSc;
+    class TBase;
+    class TDelegateManagerContextSc
+    {
+        TBase* mBase;
+    public:
+        TDelegateManagerContextSc(TBase* pBase);
+        virtual ~TDelegateManagerContextSc();
 
-  protected:
-    TContainerContextSc * AddContainer();
-    void DeleteContainer( TContainerContextSc* pC );
-  };
+    protected:
+        TContainerContextSc* AddContainer();
+        void DeleteContainer(TContainerContextSc* pC);
+    };
 }

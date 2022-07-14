@@ -12,32 +12,32 @@ See for more information LICENSE.md.
 
 using namespace nsMMOEngine;
 
-TReceiverTransport::TReceiverTransport( INetTransport* pTransport, TSessionManager* pMS )
+TReceiverTransport::TReceiverTransport(INetTransport* pTransport, TSessionManager* pMS)
 {
-  mTransport = pTransport;
-  mMngSession = pMS;
+    mTransport = pTransport;
+    mMngSession = pMS;
 
-  mTransport->GetCallbackRecv()->Register( &TReceiverTransport::Recv, this );
-  mTransport->GetCallbackDisconnect()->Register( &TReceiverTransport::Disconnect, this );
-  mTransport->GetCallbackConnectFrom()->Register( &TReceiverTransport::ConnectFrom, this );
+    mTransport->GetCallbackRecv()->Register(&TReceiverTransport::Recv, this);
+    mTransport->GetCallbackDisconnect()->Register(&TReceiverTransport::Disconnect, this);
+    mTransport->GetCallbackConnectFrom()->Register(&TReceiverTransport::ConnectFrom, this);
 }
 //----------------------------------------------------------------------
 TReceiverTransport::~TReceiverTransport()
 {
 }
 //----------------------------------------------------------------------
-void TReceiverTransport::Recv( INetTransport::TDescRecv* pDescRecv )
+void TReceiverTransport::Recv(INetTransport::TDescRecv* pDescRecv)
 {
-  mMngSession->Recv( pDescRecv );
+    mMngSession->Recv(pDescRecv);
 }
 //----------------------------------------------------------------------
-void TReceiverTransport::Disconnect( TIP_Port* ip_port )
+void TReceiverTransport::Disconnect(TIP_Port* ip_port)
 {
-  mMngSession->Disconnect( ip_port );
+    mMngSession->Disconnect(ip_port);
 }
 //----------------------------------------------------------------------
-void TReceiverTransport::ConnectFrom( TIP_Port* ip_port )
+void TReceiverTransport::ConnectFrom(TIP_Port* ip_port)
 {
-  mMngSession->ConnectFrom( ip_port, mTransport );
+    mMngSession->ConnectFrom(ip_port, mTransport);
 }
 //----------------------------------------------------------------------

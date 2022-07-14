@@ -42,7 +42,7 @@ void TSlaveOnMasterLogic::GetDescDown(std::list<unsigned int>& sessionIDList)
 //---------------------------------------------------------------------------------------
 void TSlaveOnMasterLogic::EndLoginSlave(IScenario* pSc)
 {
-    auto pContext = (TContextScLoginSlave*) pSc->GetContext();
+    auto pContext = (TContextScLoginSlave*)pSc->GetContext();
     auto sessionID = pContext->GetSessionID();
 
     TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
@@ -154,7 +154,7 @@ void TSlaveOnMasterLogic::NeedContextSynchroSlave(unsigned int sessionID)
 //-------------------------------------------------------------------------
 void TSlaveOnMasterLogic::EndSynchroSlave(IScenario* pSc)
 {
-    auto pContextSynchroSlave = (TContextScSynchroSlave*) pSc->GetContext();
+    auto pContextSynchroSlave = (TContextScSynchroSlave*)pSc->GetContext();
     auto slaveSessionID = pContextSynchroSlave->GetSessionID();
 
     TSlaveSessionIdentityComponent slaveSessionIdentityComponent;
@@ -188,7 +188,7 @@ bool TSlaveOnMasterLogic::DisconnectSlave(unsigned int sessionID)
         return false;// нет такого Slave
     }
 
-      // исключить из всего набора клиентов потерявших связь ( т.к. находятся в группах и их нельзя было удалять )
+    // исключить из всего набора клиентов потерявших связь ( т.к. находятся в группах и их нельзя было удалять )
     DestroyAllLostClientsBySlaveSession(sessionID);
 
     std::vector<unsigned int> clientKeyVector;

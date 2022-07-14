@@ -11,18 +11,18 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class INetTransport;
-  class TSessionManager;
-  class TReceiverTransport
-  {
-    INetTransport*   mTransport;
-    TSessionManager* mMngSession;
-  public:
-    TReceiverTransport( INetTransport* pTransport, TSessionManager* pMS );
-    ~TReceiverTransport();
-  private:
-    void Recv( INetTransport::TDescRecv* pDescRecv );
-    void Disconnect( TIP_Port* ip_port );
-    void ConnectFrom( TIP_Port* ip_port );
-  };
+    class INetTransport;
+    class TSessionManager;
+    class TReceiverTransport
+    {
+        INetTransport* mTransport;
+        TSessionManager* mMngSession;
+    public:
+        TReceiverTransport(INetTransport* pTransport, TSessionManager* pMS);
+        ~TReceiverTransport();
+    private:
+        void Recv(INetTransport::TDescRecv* pDescRecv);
+        void Disconnect(TIP_Port* ip_port);
+        void ConnectFrom(TIP_Port* ip_port);
+    };
 }

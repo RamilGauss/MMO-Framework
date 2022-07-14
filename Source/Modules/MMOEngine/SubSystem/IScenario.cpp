@@ -14,11 +14,11 @@ using namespace nsMMOEngine;
 
 IScenario::IScenario()
 {
-  mCurContext = nullptr;
+    mCurContext = nullptr;
 
-  AddCallBack( eContextBySession,   &mCBNeedContextBySession );
-  AddCallBack( eEnd,                &mCBEnd );
-  AddCallBack( eContextByClientKey, &mCBContextByClientKey );
+    AddCallBack(eContextBySession, &mCBNeedContextBySession);
+    AddCallBack(eEnd, &mCBEnd);
+    AddCallBack(eContextByClientKey, &mCBContextByClientKey);
 }
 //---------------------------------------------------------------------
 IScenario::~IScenario()
@@ -28,20 +28,20 @@ IScenario::~IScenario()
 //---------------------------------------------------------------------
 bool IScenario::Begin()
 {
-  return mCurContext->Activate();
+    return mCurContext->Activate();
 }
 //---------------------------------------------------------------------
 void IScenario::End()
 {
-  // уведомить об окончании сценария
-  Notify( eEnd, this );
-  // сценарий закончен
-  mCurContext->Deactivate();
+    // уведомить об окончании сценария
+    Notify(eEnd, this);
+    // сценарий закончен
+    mCurContext->Deactivate();
 }
 //---------------------------------------------------------------------
 void IScenario::DelayBegin()
 {
-  BL_FIX_BUG();
+    BL_FIX_BUG();
 }
 //---------------------------------------------------------------------
 void IScenario::Work()
@@ -49,33 +49,33 @@ void IScenario::Work()
 
 }
 //---------------------------------------------------------------------
-void IScenario::SetContext( IScenarioContext* pCSc )
+void IScenario::SetContext(IScenarioContext* pCSc)
 {
-  mCurContext = pCSc;
+    mCurContext = pCSc;
 }
 //---------------------------------------------------------------------
 IScenarioContext* IScenario::GetContext()
 {
-  return mCurContext;
+    return mCurContext;
 }
 //---------------------------------------------------------------------
-void IScenario::NeedContextBySession( unsigned int sessionID )
+void IScenario::NeedContextBySession(unsigned int sessionID)
 {
-  Notify( eContextBySession, sessionID );
+    Notify(eContextBySession, sessionID);
 }
 //---------------------------------------------------------------------
 unsigned char IScenario::GetType()
 {
-  return mType;
+    return mType;
 }
 //---------------------------------------------------------------------
-void IScenario::SetType( unsigned char type )
+void IScenario::SetType(unsigned char type)
 {
-  mType = type;
+    mType = type;
 }
 //---------------------------------------------------------------------
-void IScenario::NeedContextByClientKey( unsigned int clientKey )
+void IScenario::NeedContextByClientKey(unsigned int clientKey)
 {
-  Notify( eContextByClientKey, clientKey );
+    Notify(eContextByClientKey, clientKey);
 }
 //---------------------------------------------------------------------

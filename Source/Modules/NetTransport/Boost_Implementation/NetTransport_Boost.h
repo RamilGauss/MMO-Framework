@@ -19,72 +19,72 @@ See for more information LICENSE.md.
 
 class TNetTransport_Boost : public nsMMOEngine::INetTransport
 {
-  unsigned short mLocalPort;
-  unsigned char  mNumNetWork;
+    unsigned short mLocalPort;
+    unsigned char  mNumNetWork;
 
-  TMutex mMutexSend;
-  TMutex mMutexMapIP_TCP;
+    TMutex mMutexSend;
+    TMutex mMutexMapIP_TCP;
 
-  TNetWorkThread mNetWorkThread;
+    TNetWorkThread mNetWorkThread;
 
-  std::shared_ptr<TNetControlUDP>      mUDP;
-  std::shared_ptr<TNetControlAcceptor> mAcceptor;
-  std::shared_ptr<TNetControlTCP>      mTCP_Up;
+    std::shared_ptr<TNetControlUDP>      mUDP;
+    std::shared_ptr<TNetControlAcceptor> mAcceptor;
+    std::shared_ptr<TNetControlTCP>      mTCP_Up;
 
-  typedef std::map<TIP_Port, TNetControlTCP*> TMapIP_Ptr;
-  typedef TMapIP_Ptr::iterator TMapIP_PtrIt;
+    typedef std::map<TIP_Port, TNetControlTCP*> TMapIP_Ptr;
+    typedef TMapIP_Ptr::iterator TMapIP_PtrIt;
 
-  TMapIP_Ptr mMapIP_TCP;
+    TMapIP_Ptr mMapIP_TCP;
 
-  TCallBackRegistrator1<nsMMOEngine::INetTransport::TDescRecv*> mCallBackRecv;
-  TCallBackRegistrator1<TIP_Port*>                              mCallBackConnectFrom;
-  TCallBackRegistrator1<TIP_Port*>                              mCallBackDisconnect;
+    TCallBackRegistrator1<nsMMOEngine::INetTransport::TDescRecv*> mCallBackRecv;
+    TCallBackRegistrator1<TIP_Port*>                              mCallBackConnectFrom;
+    TCallBackRegistrator1<TIP_Port*>                              mCallBackDisconnect;
 
 public:
-  TNetTransport_Boost();
-  virtual ~TNetTransport_Boost();
+    TNetTransport_Boost();
+    virtual ~TNetTransport_Boost();
 
-  virtual bool Open( unsigned short port, unsigned char numNetWork = 0 );
-  virtual unsigned short GetLocalPort();
-  virtual unsigned char GetNumNetWork();
+    virtual bool Open(unsigned short port, unsigned char numNetWork = 0);
+    virtual unsigned short GetLocalPort();
+    virtual unsigned char GetNumNetWork();
 
-  virtual void Send( unsigned int ip, unsigned short port, TBreakPacket& packet, bool check = true );
+    virtual void Send(unsigned int ip, unsigned short port, TBreakPacket& packet, bool check = true);
 
-  virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv()
-  {
-    return &mCallBackRecv;
-  }
-  virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackConnectFrom()
-  {
-    return &mCallBackConnectFrom;
-  }
-  virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect()
-  {
-    return &mCallBackDisconnect;
-  }
+    virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv()
+    {
+        return &mCallBackRecv;
+    }
+    virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackConnectFrom()
+    {
+        return &mCallBackConnectFrom;
+    }
+    virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect()
+    {
+        return &mCallBackDisconnect;
+    }
 
-  virtual void Start();
-  virtual void Stop();
-  virtual bool IsActive();
+    virtual void Start();
+    virtual void Stop();
+    virtual bool IsActive();
 
-  // синхронная функция
-  virtual bool Connect( unsigned int ip, unsigned short port ); // вызов только для клиента
+    // синхронная функция
+    virtual bool Connect(unsigned int ip, unsigned short port); // вызов только для клиента
 
-  virtual void Close( unsigned int ip, unsigned short port );
+    virtual void Close(unsigned int ip, unsigned short port);
 public:
 
-  void AddInMapTCP( TIP_Port& ip_port, TNetControlTCP* pNetControl );
-  void RemoveFromMapTCP( TIP_Port* ip_port, TNetControlTCP* pControl );
+    void AddInMapTCP(TIP_Port& ip_port, TNetControlTCP* pNetControl);
+    void RemoveFromMapTCP(TIP_Port* ip_port, TNetControlTCP* pControl);
 
-  TNetWorkThread* GetNetWorkThread();
+    TNetWorkThread* GetNetWorkThread();
 
 protected:
-  void CloseAll();
-  void DeleteMapControlTCP();
+    void CloseAll();
+    void DeleteMapControlTCP();
 
-  //void CreateControlTcpUp();
-  void DeleteControlTCP( TNetControlTCP* pControl );
+    //void CreateControlTcpUp();
+    void DeleteControlTCP(TNetControlTCP* pControl);
 
-  TNetControlTCP* GetTCP_ByIP( TIP_Port& ip_port );
-  void Done();
+    TNetControlTCP* GetTCP_ByIP(TIP_Port& ip_port);
+    void Done();
 };

@@ -12,22 +12,22 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class TManagerManagerContextSc
-  {
-    typedef std::set<TScContextManager*> TSetPtr;
-    TSetPtr mSetManagerContextSc;
+    class TManagerManagerContextSc
+    {
+        typedef std::set<TScContextManager*> TSetPtr;
+        TSetPtr mSetManagerContextSc;
 
-    TSetPtr mSetActiveManagerContextSc;
-  public:
-    TManagerManagerContextSc();
-    ~TManagerManagerContextSc();
+        TSetPtr mSetActiveManagerContextSc;
+    public:
+        TManagerManagerContextSc();
+        ~TManagerManagerContextSc();
 
-    TScContextManager* Add();
-    void Remove( TScContextManager* pMCSc );
-    // для обработки внутренних событий
-    void Work();
-  protected:
-    void ActiveEvent( TScContextManager* pMCSc );
-    void DisactiveEvent( TScContextManager* pMCSc );
-  };
+        TScContextManager* Add();
+        void Remove(TScContextManager* pMCSc);
+        // для обработки внутренних событий
+        void Work();
+    protected:
+        void ActiveEvent(TScContextManager* pMCSc);
+        void DisactiveEvent(TScContextManager* pMCSc);
+    };
 }

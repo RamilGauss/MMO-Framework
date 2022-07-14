@@ -13,24 +13,24 @@ See for more information LICENSE.md.
 
 class TNetDeviceTCP : public INetDevice
 {
-  boost::asio::ip::tcp::socket mSocket;
+    boost::asio::ip::tcp::socket mSocket;
 public:
-  TNetDeviceTCP( boost::asio::io_context* context );
-  virtual ~TNetDeviceTCP();
+    TNetDeviceTCP(boost::asio::io_context* context);
+    virtual ~TNetDeviceTCP();
 
-  virtual bool Open( unsigned short port, unsigned char numNetWork = 0 ); // ret local sock
-  virtual void Close();
+    virtual bool Open(unsigned short port, unsigned char numNetWork = 0); // ret local sock
+    virtual void Close();
 
-  virtual bool SetRecvBuffer( unsigned int size );
-  virtual bool SetSendBuffer( unsigned int size );
+    virtual bool SetRecvBuffer(unsigned int size);
+    virtual bool SetSendBuffer(unsigned int size);
 
-  boost::asio::ip::tcp::socket* GetSocket()
-  {
-    return &mSocket;
-  }
+    boost::asio::ip::tcp::socket* GetSocket()
+    {
+        return &mSocket;
+    }
 protected:
-  void OffNagl();
-  void SetReUse();
-  void Set_HardClose();
-  void SetNonBlockingMode( bool value );
+    void OffNagl();
+    void SetReUse();
+    void Set_HardClose();
+    void SetNonBlockingMode(bool value);
 };

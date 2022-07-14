@@ -11,10 +11,10 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-	class DllExport IMakerTransport
-	{
-	public:
-		virtual INetTransport* New() = 0;
-		virtual void Delete( INetTransport* pTransport ) = 0;
-	};
+    class DllExport IMakerTransport
+    {
+    public:
+        virtual INetTransport* New() = 0;
+        virtual void Delete(INetTransport* pTransport) = 0;
+    };
 }

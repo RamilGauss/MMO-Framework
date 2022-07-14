@@ -21,37 +21,37 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  // сценарии, содержащиеся в контейнере взаимно блокируются
-  class TContainerContextSc
-  {
-    typedef std::list<IScenarioContext*> TListPtr;
-    TListPtr mListContext;
+    // сценарии, содержащиеся в контейнере взаимно блокируются
+    class TContainerContextSc
+    {
+        typedef std::list<IScenarioContext*> TListPtr;
+        TListPtr mListContext;
 
-    unsigned int mSessionID;
-  protected:
-    TScContextManager * mManagerContextSc;
-  public:
-    TContextScDisconnectClient    mDisClient;
-    TContextScFlow                mFlow;
-    TContextScLoginClient         mLoginClient;
-    TContextScLoginSlave          mLoginSlave;
-    TContextScLoginMaster         mLoginMaster;
-    TContextScRecommutationClient mRcm;
-    TContextScSynchroSlave        mSynchroSlave;
-    TContextScSendToClient        mSendToClient;
+        unsigned int mSessionID;
+    protected:
+        TScContextManager* mManagerContextSc;
+    public:
+        TContextScDisconnectClient    mDisClient;
+        TContextScFlow                mFlow;
+        TContextScLoginClient         mLoginClient;
+        TContextScLoginSlave          mLoginSlave;
+        TContextScLoginMaster         mLoginMaster;
+        TContextScRecommutationClient mRcm;
+        TContextScSynchroSlave        mSynchroSlave;
+        TContextScSendToClient        mSendToClient;
 
-    TContainerContextSc();
+        TContainerContextSc();
 
-    void SetMCSc( TScContextManager* pMCSc );
-    TScContextManager* GetMCSc();
+        void SetMCSc(TScContextManager* pMCSc);
+        TScContextManager* GetMCSc();
 
-    void SetSessionID( unsigned int sessionID );
-    unsigned int GetSessionID();
-    void SetMS( TSessionManager* pMS );
-    void SetSE( TSrcEvent* pSE );
-    void SetUserPtr( void* p );
+        void SetSessionID(unsigned int sessionID);
+        unsigned int GetSessionID();
+        void SetMS(TSessionManager* pMS);
+        void SetSE(TSrcEvent* pSE);
+        void SetUserPtr(void* p);
 
-    bool IsRcmActive();
-    bool IsLoginClientActive();
-  };
+        bool IsRcmActive();
+        bool IsLoginClientActive();
+    };
 }

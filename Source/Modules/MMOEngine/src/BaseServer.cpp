@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 
 using namespace nsMMOEngine;
 
-TBaseServer::TBaseServer() 
+TBaseServer::TBaseServer()
 {
 
 }
@@ -20,18 +20,18 @@ TBaseServer::~TBaseServer()
 
 }
 //-------------------------------------------------------------------------
-void TBaseServer::Accept( int sessionID, std::string& password )
+void TBaseServer::Accept(int sessionID, std::string& password)
 {
-  mSessionManager->Accept( sessionID, password );
+    mSessionManager->Accept(sessionID, password);
 }
 //-------------------------------------------------------------------------
-void TBaseServer::Reject( int sessionID )
+void TBaseServer::Reject(int sessionID)
 {
-  mSessionManager->Reject( sessionID );
+    mSessionManager->Reject(sessionID);
 }
 //-------------------------------------------------------------------------
 //###
-void TBaseServer::DisconnectByClientKey( unsigned int clientKey )
+void TBaseServer::DisconnectByClientKey(unsigned int clientKey)
 {
 
 }

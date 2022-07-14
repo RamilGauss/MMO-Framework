@@ -104,7 +104,7 @@ void TMaster::EndLoginMaster(IScenario* pSc)
     mSessionUpID = pSc->GetContext()->GetSessionID();
     mContainerUp->SetSessionID(mSessionUpID);
 
-    if (IsConnectUp())   {
+    if (IsConnectUp()) {
         // вход в кластер закончен
         TConnectUpEvent event;
         event.sessionID = mSessionUpID;

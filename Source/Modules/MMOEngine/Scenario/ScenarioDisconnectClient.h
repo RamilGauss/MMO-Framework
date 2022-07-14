@@ -59,7 +59,7 @@ namespace nsMMOEngine
         void RecvFromSlave(TDescRecvSession* pDesc);
 
     private:
-        TContextScDisconnectClient* Context() { return (TContextScDisconnectClient*) mCurContext; }
+        TContextScDisconnectClient* Context() { return (TContextScDisconnectClient*)mCurContext; }
     };
 }
 

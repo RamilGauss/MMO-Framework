@@ -11,36 +11,36 @@ See for more information LICENSE.md.
 
 class TStateTimeWait
 {
-  typedef short State;
+    typedef short State;
 
-  struct TDesc
-  {
-    unsigned int waitTime = 0;
-    unsigned int errorCode = 0;
-  };
+    struct TDesc
+    {
+        unsigned int waitTime = 0;
+        unsigned int errorCode = 0;
+    };
 
-  typedef std::map<State, TDesc> TMapIntDesc;
-  typedef TMapIntDesc::value_type TMapIntDescVT;
+    typedef std::map<State, TDesc> TMapIntDesc;
+    typedef TMapIntDesc::value_type TMapIntDescVT;
 
-  TMapIntDesc mStateDescMap;
+    TMapIntDesc mStateDescMap;
 
-  enum
-  {
-    MaxState = std::numeric_limits<State>::max(),
-    UndefState = MaxState
-  };
-  State mCurrentState = UndefState;
-  // начало нахождения в текущем состоянии
-  unsigned int mCurrentStateTime = 0;
+    enum
+    {
+        MaxState = std::numeric_limits<State>::max(),
+        UndefState = MaxState
+    };
+    State mCurrentState = UndefState;
+    // начало нахождения в текущем состоянии
+    unsigned int mCurrentStateTime = 0;
 
 public:
-  void AddOrUpdateState( State state, unsigned int waitTime, unsigned int errorCode = 0 );
-  void SetCurrentState( State state );
-  void SetCurrentStateToUndef();
-  // for current state                                                      
-  bool IsStateTimeExpired( unsigned int now );
+    void AddOrUpdateState(State state, unsigned int waitTime, unsigned int errorCode = 0);
+    void SetCurrentState(State state);
+    void SetCurrentStateToUndef();
+    // for current state                                                      
+    bool IsStateTimeExpired(unsigned int now);
 
-  unsigned int ErrorCode();
+    unsigned int ErrorCode();
 protected:
-  unsigned int TimeWait();
+    unsigned int TimeWait();
 };

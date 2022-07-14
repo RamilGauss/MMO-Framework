@@ -9,6 +9,8 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Helper.h>
 
+#include "PrefabObjectConstructor.h"
+
 #include "FileHierarchyWindowTagComponent.h"
 #include "Modules.h"
 #include "PrefabManager.h"
@@ -17,6 +19,9 @@ See for more information LICENSE.md.
 #include "MainWindowPrefabGuidComponent.h"
 
 #include "SceneInstanceGuidComponent.h"
+
+#include "PositionComponent.h"
+#include "SizeComponent.h"
 
 namespace nsTornadoEditor
 {
@@ -28,12 +33,26 @@ namespace nsTornadoEditor
 
         auto entMng = nsTornadoEngine::Modules()->EntMng();
         auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
+        auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
 
         auto mainWindowEid = nsECSFramework::SingleEntity<TMainWindowTagComponent>(entMng);
         auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(mainWindowEid)->value;
 
         auto mainWindowPrefabGuidComponent = entMng->ViewComponent<TMainWindowPrefabGuidComponent>(mainWindowEid);
 
-        prefabMng->InstantiateByGuid(mainWindowPrefabGuidComponent->fileHierarchyGuid, sceneInstanceGuid);
+        prefabObjConstructor->EntMng()->Clear();
+        auto eid = prefabObjConstructor->InstantiateByGuid(mainWindowPrefabGuidComponent->fileHierarchyGuid);
+
+        nsGuiWrapper::TPositionComponent posComponent;
+        posComponent.x = 0;
+        posComponent.y = 0;
+        prefabObjConstructor->EntMng()->SetComponent(eid, posComponent);
+
+        nsGuiWrapper::TSizeComponent sizeComponent;
+        sizeComponent.x = displayWidth / 3;
+        sizeComponent.y = displayHeight / 2;
+        prefabObjConstructor->EntMng()->SetComponent(eid, sizeComponent);
+
+        prefabMng->InstantiateByObjectInMemory(prefabObjConstructor, eid, sceneInstanceGuid);
     }
 }

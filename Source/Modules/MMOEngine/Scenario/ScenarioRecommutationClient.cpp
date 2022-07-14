@@ -13,17 +13,17 @@ See for more information LICENSE.md.
 using namespace nsMMOEngine;
 
 TScenarioRecommutationClient::TScenarioRecommutationClient() :
-  mClient( this ), mSlave( this ), mMaster( this )
+    mClient(this), mSlave(this), mMaster(this)
 {
-  mCurBehavior = nullptr;
+    mCurBehavior = nullptr;
 
-  AddCallBack( eNeedContextByClientKeyForSlave,     &mCBNeedContextByClientKeyForSlave );
-  AddCallBack( eNeedContextByClientSessionForSlave, &mCBNeedContextByClientSessionForSlave );
-  AddCallBack( eNeedSessionDonor,                   &mCBNeedSessionDonorByClientKey );
-  AddCallBack( eEventActivate,                      &mCBActivate );
-  AddCallBack( eEventDisconnectClient,              &mCBDisconnectByClientKey );
-  AddCallBack( eEventTimeClientElapsed,             &mCBTimeClientElapsed );
-  AddCallBack( eNeedContextByRequestForRecipient,   &mCBNeedContextByRequestForRecipient );
+    AddCallBack(eNeedContextByClientKeyForSlave, &mCBNeedContextByClientKeyForSlave);
+    AddCallBack(eNeedContextByClientSessionForSlave, &mCBNeedContextByClientSessionForSlave);
+    AddCallBack(eNeedSessionDonor, &mCBNeedSessionDonorByClientKey);
+    AddCallBack(eEventActivate, &mCBActivate);
+    AddCallBack(eEventDisconnectClient, &mCBDisconnectByClientKey);
+    AddCallBack(eEventTimeClientElapsed, &mCBTimeClientElapsed);
+    AddCallBack(eNeedContextByRequestForRecipient, &mCBNeedContextByRequestForRecipient);
 }
 //--------------------------------------------------------------
 TScenarioRecommutationClient::~TScenarioRecommutationClient()
@@ -33,61 +33,59 @@ TScenarioRecommutationClient::~TScenarioRecommutationClient()
 //--------------------------------------------------------------
 void TScenarioRecommutationClient::Work()
 {
-  if( mCurBehavior )
-  {
-    unsigned int time_ms = ht_GetMSCount();
-    mCurBehavior->Work( time_ms );
-  }
+    if (mCurBehavior) {
+        unsigned int time_ms = ht_GetMSCount();
+        mCurBehavior->Work(time_ms);
+    }
 }
 //--------------------------------------------------------------
-void TScenarioRecommutationClient::Start( unsigned int recipientSessionID, unsigned int clientKey )
+void TScenarioRecommutationClient::Start(unsigned int recipientSessionID, unsigned int clientKey)
 {
-  mMaster.Start( recipientSessionID, clientKey );
+    mMaster.Start(recipientSessionID, clientKey);
 }
 //--------------------------------------------------------------
 void TScenarioRecommutationClient::DelayBegin()
 {
-  mMaster.DelayBegin();
+    mMaster.DelayBegin();
 }
 //--------------------------------------------------------------
-void TScenarioRecommutationClient::SaveContext( void* data, int size )
+void TScenarioRecommutationClient::SaveContext(void* data, int size)
 {
-  mSlave.SaveContext( data, size );
+    mSlave.SaveContext(data, size);
 }
 //---------------------------------------------------------------------
-void TScenarioRecommutationClient::Recv( TDescRecvSession* pDesc )
+void TScenarioRecommutationClient::Recv(TDescRecvSession* pDesc)
 {
-  mCurBehavior->Recv( pDesc );
+    mCurBehavior->Recv(pDesc);
 }
 //---------------------------------------------------------------------
-void TScenarioRecommutationClient::SetBehavior( eBehavior v )
+void TScenarioRecommutationClient::SetBehavior(eBehavior v)
 {
-  switch( v )
-  {
+    switch (v) {
     case eClient:
-      mCurBehavior = &mClient;
-      break;
+        mCurBehavior = &mClient;
+        break;
     case eSlave:
-      mCurBehavior = &mSlave;
-      break;
+        mCurBehavior = &mSlave;
+        break;
     case eMaster:
-      mCurBehavior = &mMaster;
-      break;
-  }
+        mCurBehavior = &mMaster;
+        break;
+    }
 }
 //---------------------------------------------------------------------
 void TScenarioRecommutationClient::DisconnectClient()
 {
-  mMaster.DisconnectClient();
+    mMaster.DisconnectClient();
 }
 //---------------------------------------------------------------------
-void TScenarioRecommutationClient::DisconnectFromClient( unsigned char subNet )
+void TScenarioRecommutationClient::DisconnectFromClient(unsigned char subNet)
 {
-  mClient.DisconnectClient( subNet );
+    mClient.DisconnectClient(subNet);
 }
 //---------------------------------------------------------------------
-void TScenarioRecommutationClient::SetClientLoginPassword( std::string& login, std::string& password )
+void TScenarioRecommutationClient::SetClientLoginPassword(std::string& login, std::string& password)
 {
-  mClient.SetLoginPassword( login, password );
+    mClient.SetLoginPassword(login, password);
 }
 //---------------------------------------------------------------------

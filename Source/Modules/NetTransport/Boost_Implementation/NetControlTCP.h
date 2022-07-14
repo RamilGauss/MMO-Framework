@@ -17,56 +17,56 @@ See for more information LICENSE.md.
 
 class TNetControlTCP : public INetControl
 {
-  TNetDeviceTCP mDevice;// для соединения с сервером
-  THistoryPacketTCP mHistory;
+    TNetDeviceTCP mDevice;// для соединения с сервером
+    THistoryPacketTCP mHistory;
 
-  enum
-  {
-    eSizeBuffer = 64000,
-    eWaitConnect = 40,// мс
-    eTimeRepeatSend = 0,//20,// мс
-  };
+    enum
+    {
+        eSizeBuffer = 64000,
+        eWaitConnect = 40,// мс
+        eTimeRepeatSend = 0,//20,// мс
+    };
 
-  char mBuffer[eSizeBuffer];
-  int mReadSize;
+    char mBuffer[eSizeBuffer];
+    int mReadSize;
 
-  volatile bool flgWaitConnect;
-  volatile bool flgResConnect;
+    volatile bool flgWaitConnect;
+    volatile bool flgResConnect;
 public:
 
-  TNetControlTCP( TNetTransport_Boost* pNTB, boost::asio::io_context* context );
-  virtual ~TNetControlTCP();
+    TNetControlTCP(TNetTransport_Boost* pNTB, boost::asio::io_context* context);
+    virtual ~TNetControlTCP();
 
-  // TNetTransport_XXX
-  virtual void Init();
-  virtual bool Open( unsigned short port, unsigned char numNetWork = 0 );
-  virtual bool Connect( unsigned int ip, unsigned short port );
-  virtual void Send( unsigned int ip, unsigned short port, TBreakPacket& bp );
-  virtual void Close();
-  virtual TNetDeviceTCP* GetDevice()
-  {
-    return &mDevice;
-  }
+    // TNetTransport_XXX
+    virtual void Init();
+    virtual bool Open(unsigned short port, unsigned char numNetWork = 0);
+    virtual bool Connect(unsigned int ip, unsigned short port);
+    virtual void Send(unsigned int ip, unsigned short port, TBreakPacket& bp);
+    virtual void Close();
+    virtual TNetDeviceTCP* GetDevice()
+    {
+        return &mDevice;
+    }
 
-  virtual char* GetBuffer()
-  {
-    return &mBuffer[0];
-  }
-  virtual int   GetSize()
-  {
-    return eSizeBuffer;
-  }
+    virtual char* GetBuffer()
+    {
+        return &mBuffer[0];
+    }
+    virtual int   GetSize()
+    {
+        return eSizeBuffer;
+    }
 protected:
-  void DeleteSelf();
+    void DeleteSelf();
 
-  // asio event
-  void RecvEvent( const boost::system::error_code& error, size_t bytes_transferred );
-  void SendEvent( const boost::system::error_code& error, size_t bytes_transferred );
-  void ConnectEvent( const boost::system::error_code& error );
+    // asio event
+    void RecvEvent(const boost::system::error_code& error, size_t bytes_transferred);
+    void SendEvent(const boost::system::error_code& error, size_t bytes_transferred);
+    void ConnectEvent(const boost::system::error_code& error);
 
-  void ReadyRecv();
-  void RequestSend( char* data, int size );
-  void RequestConnect( TIP_Port& ip_port );
+    void ReadyRecv();
+    void RequestSend(char* data, int size);
+    void RequestConnect(TIP_Port& ip_port);
 
-  boost::asio::ip::tcp::endpoint mConnectEndpoint;
+    boost::asio::ip::tcp::endpoint mConnectEndpoint;
 };

@@ -13,9 +13,9 @@ using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;
 
 //--------------------------------------------------------------
-TBaseScLoginClient::TBaseScLoginClient( IScenario* pSc )
+TBaseScLoginClient::TBaseScLoginClient(IScenario* pSc)
 {
-  mScenario = pSc;
+    mScenario = pSc;
 }
 //--------------------------------------------------------------
 TBaseScLoginClient::~TBaseScLoginClient()
@@ -25,116 +25,116 @@ TBaseScLoginClient::~TBaseScLoginClient()
 //--------------------------------------------------------------
 TContextScLoginClient* TBaseScLoginClient::Context()
 {
-  return (TContextScLoginClient*) mScenario->GetContext();
+    return (TContextScLoginClient*)mScenario->GetContext();
 }
 //--------------------------------------------------------------
-void TBaseScLoginClient::SetContext( TContextScLoginClient* pContext )
+void TBaseScLoginClient::SetContext(TContextScLoginClient* pContext)
 {
-  mScenario->SetContext( pContext );
+    mScenario->SetContext(pContext);
 }
 //--------------------------------------------------------------
 unsigned int TBaseScLoginClient::GetID_SessionClientMaster()
 {
-  return Context()->GetID_SessionClientMaster();
+    return Context()->GetID_SessionClientMaster();
 }
 //--------------------------------------------------------------
-void TBaseScLoginClient::SetClientSessionID_Master( unsigned int id )
+void TBaseScLoginClient::SetClientSessionID_Master(unsigned int id)
 {
-  Context()->SetID_SessionClientMaster( id );
+    Context()->SetID_SessionClientMaster(id);
 }
 //--------------------------------------------------------------
 unsigned int TBaseScLoginClient::GetID_SessionClientSlave()
 {
-  return Context()->GetID_SessionClientSlave();
+    return Context()->GetID_SessionClientSlave();
 }
 //--------------------------------------------------------------
-void TBaseScLoginClient::SetID_SessionClientSlave( unsigned int id )
+void TBaseScLoginClient::SetID_SessionClientSlave(unsigned int id)
 {
-  Context()->SetID_SessionClientSlave( id );
+    Context()->SetID_SessionClientSlave(id);
 }
 //--------------------------------------------------------------
 unsigned int TBaseScLoginClient::GetID_SessionMasterSlave()
 {
-  return Context()->GetID_SessionMasterSlave();
+    return Context()->GetID_SessionMasterSlave();
 }
 //--------------------------------------------------------------
-void TBaseScLoginClient::SetID_SessionMasterSlave( unsigned int id )
+void TBaseScLoginClient::SetID_SessionMasterSlave(unsigned int id)
 {
-  Context()->SetID_SessionMasterSlave( id );
+    Context()->SetID_SessionMasterSlave(id);
 }
 //--------------------------------------------------------------
 unsigned int TBaseScLoginClient::GetID_SessionMasterSS()
 {
-  return Context()->GetID_SessionMasterSS();
+    return Context()->GetID_SessionMasterSS();
 }
 //--------------------------------------------------------------
-void TBaseScLoginClient::SetID_SessionMasterSS( unsigned int id )
+void TBaseScLoginClient::SetID_SessionMasterSS(unsigned int id)
 {
-  Context()->SetID_SessionMasterSS( id );
+    Context()->SetID_SessionMasterSS(id);
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::Recv( TDescRecvSession* pDesc )
+void TBaseScLoginClient::Recv(TDescRecvSession* pDesc)
 {
-  RecvInherit( pDesc );
+    RecvInherit(pDesc);
 }
 //---------------------------------------------------------------------
 bool TBaseScLoginClient::Begin()
 {
-  return mScenario->Begin();
+    return mScenario->Begin();
 }
 //---------------------------------------------------------------------
 void TBaseScLoginClient::End()
 {
-  mScenario->End();
+    mScenario->End();
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::NeedContextByClientKey( unsigned int clientKey )
+void TBaseScLoginClient::NeedContextByClientKey(unsigned int clientKey)
 {
-  mScenario->NeedContextByClientKey( clientKey );
+    mScenario->NeedContextByClientKey(clientKey);
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::NeedContextByClientKey_SecondCallSlave( unsigned int clientKey )
+void TBaseScLoginClient::NeedContextByClientKey_SecondCallSlave(unsigned int clientKey)
 {
-  mScenario->Notify( TScenarioLoginClient::eContextByClientKey_SecondCallSlave, clientKey );
+    mScenario->Notify(TScenarioLoginClient::eContextByClientKey_SecondCallSlave, clientKey);
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::NeedNumInQueueByClientKey( unsigned int clientKey )
+void TBaseScLoginClient::NeedNumInQueueByClientKey(unsigned int clientKey)
 {
-  mScenario->Notify( TScenarioLoginClient::eNumInQueueByClientKey, clientKey );
+    mScenario->Notify(TScenarioLoginClient::eNumInQueueByClientKey, clientKey);
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::NeedContextByMasterSessionByClientKey( unsigned int masterSessionID, unsigned int clientKey )
+void TBaseScLoginClient::NeedContextByMasterSessionByClientKey(unsigned int masterSessionID, unsigned int clientKey)
 {
-  mScenario->Notify(
-    TScenarioLoginClient::eContextByMasterSessionByClientKey, masterSessionID, clientKey );
+    mScenario->Notify(
+        TScenarioLoginClient::eContextByMasterSessionByClientKey, masterSessionID, clientKey);
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::EventSetClientKey( unsigned int clientKey )
+void TBaseScLoginClient::EventSetClientKey(unsigned int clientKey)
 {
-  mScenario->Notify( TScenarioLoginClient::eSetClientKey, clientKey );
+    mScenario->Notify(TScenarioLoginClient::eSetClientKey, clientKey);
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::NeedContextBySession( unsigned int sessionID )
+void TBaseScLoginClient::NeedContextBySession(unsigned int sessionID)
 {
-  mScenario->NeedContextBySession( sessionID );
+    mScenario->NeedContextBySession(sessionID);
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::NeedContextByClientSessionByClientKey( unsigned int clientSessionID, unsigned int clientKey )
+void TBaseScLoginClient::NeedContextByClientSessionByClientKey(unsigned int clientSessionID, unsigned int clientKey)
 {
-  mScenario->Notify(
-    TScenarioLoginClient::eContextByClientSessionByClientKey, clientSessionID, clientKey );
+    mScenario->Notify(
+        TScenarioLoginClient::eContextByClientSessionByClientKey, clientSessionID, clientKey);
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::NeedContextBySessionAfterAuthorised( unsigned int clientSessionID )
+void TBaseScLoginClient::NeedContextBySessionAfterAuthorised(unsigned int clientSessionID)
 {
-  mScenario->Notify(
-    TScenarioLoginClient::eContextByClientSessionAfterAuthorised, clientSessionID );
+    mScenario->Notify(
+        TScenarioLoginClient::eContextByClientSessionAfterAuthorised, clientSessionID);
 }
 //---------------------------------------------------------------------
-void TBaseScLoginClient::NeedContextBySessionLeaveQueue( unsigned int sessionID )
+void TBaseScLoginClient::NeedContextBySessionLeaveQueue(unsigned int sessionID)
 {
-  mScenario->Notify(
-    TScenarioLoginClient::eContextByClientSessionLeaveQueue, sessionID );
+    mScenario->Notify(
+        TScenarioLoginClient::eContextByClientSessionLeaveQueue, sessionID);
 }
 //--------------------------------------------------------------
 //void TBaseScLoginClient::SetTimeWaitForNow()

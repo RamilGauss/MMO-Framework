@@ -13,20 +13,20 @@ See for more information LICENSE.md.
 
 class TNetDeviceUDP : public INetDevice
 {
-  boost::asio::ip::udp::socket mSocket;
+    boost::asio::ip::udp::socket mSocket;
 
 public:
-  TNetDeviceUDP( boost::asio::io_context* io_context );
-  virtual ~TNetDeviceUDP();
+    TNetDeviceUDP(boost::asio::io_context* io_context);
+    virtual ~TNetDeviceUDP();
 
-  virtual bool Open( unsigned short port, unsigned char numNetWork = 0 );
-  virtual void Close();
+    virtual bool Open(unsigned short port, unsigned char numNetWork = 0);
+    virtual void Close();
 
-  virtual bool SetRecvBuffer( unsigned int size );
-  virtual bool SetSendBuffer( unsigned int size );
+    virtual bool SetRecvBuffer(unsigned int size);
+    virtual bool SetSendBuffer(unsigned int size);
 
-  boost::asio::ip::udp::socket* GetSocket()
-  {
-    return &mSocket;
-  }
+    boost::asio::ip::udp::socket* GetSocket()
+    {
+        return &mSocket;
+    }
 };

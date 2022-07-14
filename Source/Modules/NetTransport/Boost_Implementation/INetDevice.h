@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -12,18 +12,18 @@ See for more information LICENSE.md.
 class INetDevice
 {
 protected:
-  TIP_Port mIP_Port;
+    TIP_Port mIP_Port;
 public:
 
-  INetDevice(){};
-  virtual ~INetDevice(){};
+    INetDevice() {};
+    virtual ~INetDevice() {};
 
-  virtual bool Open( unsigned short port, unsigned char numNetWork = 0 ) = 0;
-  virtual void Close() = 0;
+    virtual bool Open(unsigned short port, unsigned char numNetWork = 0) = 0;
+    virtual void Close() = 0;
 
-  virtual bool SetRecvBuffer(unsigned int size) = 0;
-  virtual bool SetSendBuffer(unsigned int size) = 0;
+    virtual bool SetRecvBuffer(unsigned int size) = 0;
+    virtual bool SetSendBuffer(unsigned int size) = 0;
 
-  TIP_Port* GetIP_Port(){return &mIP_Port;}
-  void SetIP_Port(TIP_Port& ip_port){mIP_Port = ip_port;}
+    TIP_Port* GetIP_Port() { return &mIP_Port; }
+    void SetIP_Port(TIP_Port& ip_port) { mIP_Port = ip_port; }
 };

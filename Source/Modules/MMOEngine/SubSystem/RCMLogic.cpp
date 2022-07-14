@@ -9,27 +9,27 @@ See for more information LICENSE.md.
 
 using namespace nsMMOEngine;
 
-TRCMLogic::TRCMLogic( TBase* p ) : TBaseMasterLogic( p )
+TRCMLogic::TRCMLogic(TBase* p) : TBaseMasterLogic(p)
 {
 
 }
 //-------------------------------------------------------------------------------------------
-void TRCMLogic::EndRcm( IScenario* pSc )
+void TRCMLogic::EndRcm(IScenario* pSc)
 {
-  
+
 }
 //-------------------------------------------------------------------------
-void TRCMLogic::NeedContextByClientKeyRcm( unsigned int clientKey )
+void TRCMLogic::NeedContextByClientKeyRcm(unsigned int clientKey)
 {
-  
+
 }
 //-------------------------------------------------------------------------
-void TRCMLogic::NeedSlaveSessionDonorRcm( IScenario* pSc )
+void TRCMLogic::NeedSlaveSessionDonorRcm(IScenario* pSc)
 {
-  
+
 }
 //-------------------------------------------------------------------------
-void TRCMLogic::EventActivateRcm( IScenario* pSc )
+void TRCMLogic::EventActivateRcm(IScenario* pSc)
 {
 
 }

@@ -11,7 +11,7 @@ using namespace nsMMOEngine;
 
 TContextScSynchroSlave::TContextScSynchroSlave()
 {
-  mLoadProcent = 0;
+    mLoadProcent = 0;
 }
 //------------------------------------------------------------------
 TContextScSynchroSlave::~TContextScSynchroSlave()
@@ -19,13 +19,13 @@ TContextScSynchroSlave::~TContextScSynchroSlave()
 
 }
 //------------------------------------------------------------------    
-void TContextScSynchroSlave::SetLoadProcent( float v )
+void TContextScSynchroSlave::SetLoadProcent(float v)
 {
-  mLoadProcent = v;
+    mLoadProcent = v;
 }
 //------------------------------------------------------------------    
 float TContextScSynchroSlave::GetLoadProcent()
 {
-  return mLoadProcent;
+    return mLoadProcent;
 }
 //------------------------------------------------------------------    

@@ -16,71 +16,71 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  struct TDescRequestConnectForRecipient;
+    struct TDescRequestConnectForRecipient;
 
-  class TScenarioRecommutationClient : public IScenario
-  {
-    // по ключу дать контекст, с учетом Донор или Реципиент
-    TCallBackRegistrator2<unsigned int, bool> mCBNeedContextByClientKeyForSlave;
-    // по сессии дать контекст, с учетом Донор или Реципиент
-    TCallBackRegistrator2<unsigned int, bool> mCBNeedContextByClientSessionForSlave;
-    // на каком Slave находится Клиент? назначить сессию через Context()->SetSessionDonor()
-    TCallBackRegistrator1<IScenario*> mCBNeedSessionDonorByClientKey;
-    // при вызове DelayBegin или при (Begin()==true)
-    // сценарий активировался и начался обмен пакетами
-    // это нужно учесть в статистике
-    TCallBackRegistrator1<IScenario*>   mCBActivate;
-    // если с Донором разорвется соединение, то Мастер сообщит о разрыве связи с Клиентом на Реципиенте
-    // и он должен уничтожить информацию о Клиенте
-    TCallBackRegistrator1<unsigned int> mCBDisconnectByClientKey;
-
-    // по структуре, описывающей запрос на соединение со стороны Клиента
-    TCallBackRegistrator1<TDescRequestConnectForRecipient*> mCBNeedContextByRequestForRecipient;
-    // время ожидания ответа от Клиента на Slave истекло
-    TCallBackRegistrator1<unsigned int> mCBTimeClientElapsed;
-
-    TScRecommutationClient_ClientImpl mClient;
-    TScRecommutationClient_SlaveImpl  mSlave;// Donor/Recipient
-    TScRecommutationClient_MasterImpl mMaster;
-
-    TBaseScRecommutationClient*       mCurBehavior;
-  public:
-    enum eTypeCallBack
+    class TScenarioRecommutationClient : public IScenario
     {
-      eNeedContextByClientKeyForSlave = IScenario::eCountCallBack,
-      eNeedContextByClientSessionForSlave,
-      eNeedSessionDonor,
-      eEventActivate,
-      eEventDisconnectClient,
-      eEventTimeClientElapsed,
-      eNeedContextByRequestForRecipient,
+        // по ключу дать контекст, с учетом Донор или Реципиент
+        TCallBackRegistrator2<unsigned int, bool> mCBNeedContextByClientKeyForSlave;
+        // по сессии дать контекст, с учетом Донор или Реципиент
+        TCallBackRegistrator2<unsigned int, bool> mCBNeedContextByClientSessionForSlave;
+        // на каком Slave находится Клиент? назначить сессию через Context()->SetSessionDonor()
+        TCallBackRegistrator1<IScenario*> mCBNeedSessionDonorByClientKey;
+        // при вызове DelayBegin или при (Begin()==true)
+        // сценарий активировался и начался обмен пакетами
+        // это нужно учесть в статистике
+        TCallBackRegistrator1<IScenario*>   mCBActivate;
+        // если с Донором разорвется соединение, то Мастер сообщит о разрыве связи с Клиентом на Реципиенте
+        // и он должен уничтожить информацию о Клиенте
+        TCallBackRegistrator1<unsigned int> mCBDisconnectByClientKey;
+
+        // по структуре, описывающей запрос на соединение со стороны Клиента
+        TCallBackRegistrator1<TDescRequestConnectForRecipient*> mCBNeedContextByRequestForRecipient;
+        // время ожидания ответа от Клиента на Slave истекло
+        TCallBackRegistrator1<unsigned int> mCBTimeClientElapsed;
+
+        TScRecommutationClient_ClientImpl mClient;
+        TScRecommutationClient_SlaveImpl  mSlave;// Donor/Recipient
+        TScRecommutationClient_MasterImpl mMaster;
+
+        TBaseScRecommutationClient* mCurBehavior;
+    public:
+        enum eTypeCallBack
+        {
+            eNeedContextByClientKeyForSlave = IScenario::eCountCallBack,
+            eNeedContextByClientSessionForSlave,
+            eNeedSessionDonor,
+            eEventActivate,
+            eEventDisconnectClient,
+            eEventTimeClientElapsed,
+            eNeedContextByRequestForRecipient,
+        };
+    public:
+        typedef enum
+        {
+            eClient,
+            eSlave,
+            eMaster,
+        }eBehavior;
+
+        TScenarioRecommutationClient();
+        virtual ~TScenarioRecommutationClient();
+
+        void SetBehavior(eBehavior v);
+        virtual void Recv(TDescRecvSession* pDesc);
+    public:
+        void Start(unsigned int recipientSessionID, unsigned int clientKey);
+
+        void SaveContext(void* data, int size);
+
+        void DisconnectClient();
+
+        void DisconnectFromClient(unsigned char subNet);
+
+        void SetClientLoginPassword(std::string& login, std::string& password);
+
+    protected:
+        virtual void Work();
+        virtual void DelayBegin();
     };
-  public:
-    typedef enum
-    {
-      eClient,
-      eSlave,
-      eMaster,
-    }eBehavior;
-
-    TScenarioRecommutationClient();
-    virtual ~TScenarioRecommutationClient();
-
-    void SetBehavior( eBehavior v );
-    virtual void Recv( TDescRecvSession* pDesc );
-  public:
-    void Start( unsigned int recipientSessionID, unsigned int clientKey );
-
-    void SaveContext( void* data, int size );
-
-    void DisconnectClient();
-
-    void DisconnectFromClient( unsigned char subNet );
-
-    void SetClientLoginPassword( std::string& login, std::string& password );
-
-  protected:
-    virtual void Work();
-    virtual void DelayBegin();
-  };
 }

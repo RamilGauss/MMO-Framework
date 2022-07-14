@@ -122,9 +122,6 @@
     <ClCompile Include="SubSystem\ContextCrypto.cpp">
       <Filter>SubSystem\Crypto</Filter>
     </ClCompile>
-    <ClCompile Include="SubSystem\CryptMITM.cpp">
-      <Filter>SubSystem\Crypto</Filter>
-    </ClCompile>
     <ClCompile Include="Scenario\ScenarioDisconnectClient.cpp">
       <Filter>Scenario\Source Files</Filter>
     </ClCompile>
@@ -344,9 +341,6 @@
       <Filter>SubSystem\Scenario</Filter>
     </ClInclude>
     <ClInclude Include="SubSystem\ContextCrypto.h">
-      <Filter>SubSystem\Crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="SubSystem\CryptMITM.h">
       <Filter>SubSystem\Crypto</Filter>
     </ClInclude>
     <ClInclude Include="Scenario\ScenarioDisconnectClient.h">

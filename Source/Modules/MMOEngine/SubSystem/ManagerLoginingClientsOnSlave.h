@@ -11,26 +11,26 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class TManagerLoginingClientsOnSlave
-  {
-    typedef std::set<unsigned int> TUintSet;
-    typedef std::map<unsigned int, TUintSet> TUintSetUintMap;
+    class TManagerLoginingClientsOnSlave
+    {
+        typedef std::set<unsigned int> TUintSet;
+        typedef std::map<unsigned int, TUintSet> TUintSetUintMap;
 
-    typedef std::map<unsigned int, unsigned int> TUintUintMap;
+        typedef std::map<unsigned int, unsigned int> TUintUintMap;
 
-    TUintUintMap mClientKeySlaveSessionIDMap;
+        TUintUintMap mClientKeySlaveSessionIDMap;
 
-    TUintSetUintMap mSlaveSession_ClientSetMap;
-  public:
-    void AddSlave( unsigned int slaveSessionID );
-    void RemoveSlave( unsigned int slaveSessionID );
+        TUintSetUintMap mSlaveSession_ClientSetMap;
+    public:
+        void AddSlave(unsigned int slaveSessionID);
+        void RemoveSlave(unsigned int slaveSessionID);
 
-    void AddClient( unsigned int slaveSessionID, unsigned int clientKey );
-    void RemoveClient( unsigned int clientKey );
+        void AddClient(unsigned int slaveSessionID, unsigned int clientKey);
+        void RemoveClient(unsigned int clientKey);
 
-    int GetClientCountBySlave( unsigned int slaveSessionID );
-  private:
-    bool FindSlaveSessionByClientKey( unsigned int clientKey, unsigned int& slaveSessionID );
-    void AddClientKeySlaveSession( unsigned int clientKey, unsigned int slaveSessionID );
-  };
+        int GetClientCountBySlave(unsigned int slaveSessionID);
+    private:
+        bool FindSlaveSessionByClientKey(unsigned int clientKey, unsigned int& slaveSessionID);
+        void AddClientKeySlaveSession(unsigned int clientKey, unsigned int slaveSessionID);
+    };
 }

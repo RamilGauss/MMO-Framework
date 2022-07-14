@@ -15,12 +15,12 @@ using namespace nsMMOEngine;
 
 IScenarioContext::IScenarioContext()
 {
-  mUserPtr = nullptr;
-  mSessionID = INVALID_HANDLE_SESSION;
-  mManagerContextSc = nullptr;
-  mSessionManager = nullptr;
-  mSrcEvent = nullptr;
-  mScenario = nullptr;
+    mUserPtr = nullptr;
+    mSessionID = INVALID_HANDLE_SESSION;
+    mManagerContextSc = nullptr;
+    mSessionManager = nullptr;
+    mSrcEvent = nullptr;
+    mScenario = nullptr;
 }
 //-----------------------------------------------------------------
 IScenarioContext::~IScenarioContext()
@@ -28,87 +28,87 @@ IScenarioContext::~IScenarioContext()
 
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetSessionID( unsigned int id )
+void IScenarioContext::SetSessionID(unsigned int id)
 {
-  mSessionID = id;
+    mSessionID = id;
 }
 //-----------------------------------------------------------------
 unsigned int IScenarioContext::GetSessionID()
 {
-  return mSessionID;
+    return mSessionID;
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetMSc( TScContextManager* pMSc )
+void IScenarioContext::SetMSc(TScContextManager* pMSc)
 {
-  mManagerContextSc = pMSc;
+    mManagerContextSc = pMSc;
 }
 //-----------------------------------------------------------------
 TScContextManager* IScenarioContext::GetMSc()
 {
-  return mManagerContextSc;
+    return mManagerContextSc;
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetMS( TSessionManager* pMS )
+void IScenarioContext::SetMS(TSessionManager* pMS)
 {
-  mSessionManager = pMS;
+    mSessionManager = pMS;
 }
 //-----------------------------------------------------------------
 TSessionManager* IScenarioContext::GetMS()
 {
-  return mSessionManager;
+    return mSessionManager;
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetSE( TSrcEvent* pS )
+void IScenarioContext::SetSE(TSrcEvent* pS)
 {
-  mSrcEvent = pS;
+    mSrcEvent = pS;
 }
 //-----------------------------------------------------------------
 TSrcEvent* IScenarioContext::GetSE()
 {
-  return mSrcEvent;
+    return mSrcEvent;
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetSc( IScenario* pSc )
+void IScenarioContext::SetSc(IScenario* pSc)
 {
-  mScenario = pSc;
+    mScenario = pSc;
 }
 //-----------------------------------------------------------------
 IScenario* IScenarioContext::GetSc()
 {
-  return mScenario;
+    return mScenario;
 }
 //-----------------------------------------------------------------
 void IScenarioContext::DelayBegin()
 {
-  mScenario->SetContext( this );
-  mScenario->DelayBegin();
+    mScenario->SetContext(this);
+    mScenario->DelayBegin();
 }
 //-----------------------------------------------------------------
 void IScenarioContext::Work()
 {
-  mScenario->SetContext( this );
-  mScenario->Work();
+    mScenario->SetContext(this);
+    mScenario->Work();
 }
 //-----------------------------------------------------------------
 bool IScenarioContext::Activate()
 {
-  return mManagerContextSc->Activate( this );
+    return mManagerContextSc->Activate(this);
 }
 //-----------------------------------------------------------------
 void IScenarioContext::Deactivate()
 {
-  mStateTimeWait.SetCurrentStateToUndef();// окончание должно приводит к неопределенному состоянию контекста
+    mStateTimeWait.SetCurrentStateToUndef();// окончание должно приводит к неопределенному состоянию контекста
 
-  mManagerContextSc->Deactivate();
+    mManagerContextSc->Deactivate();
 }
 //-----------------------------------------------------------------
-void IScenarioContext::SetUserPtr( void* p )
+void IScenarioContext::SetUserPtr(void* p)
 {
-  mUserPtr = p;
+    mUserPtr = p;
 }
 //------------------------------------------------------------
 void* IScenarioContext::GetUserPtr()
 {
-  return mUserPtr;
+    return mUserPtr;
 }
 //------------------------------------------------------------

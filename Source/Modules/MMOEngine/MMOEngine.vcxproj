@@ -245,7 +245,6 @@
     <ClCompile Include="SubSystem\ContainerContextSc.cpp" />
     <ClCompile Include="SubSystem\ContextCrypto.cpp" />
     <ClCompile Include="SubSystem\ControlScenario.cpp" />
-    <ClCompile Include="SubSystem\CryptMITM.cpp" />
     <ClCompile Include="SubSystem\DelegateManagerContextSc.cpp" />
     <ClCompile Include="SubSystem\GroupLogic.cpp" />
     <ClCompile Include="SubSystem\IScenarioContext.cpp" />
@@ -322,7 +321,6 @@
     <ClInclude Include="SubSystem\ContainerContextSc.h" />
     <ClInclude Include="SubSystem\ContextCrypto.h" />
     <ClInclude Include="SubSystem\ControlScenario.h" />
-    <ClInclude Include="SubSystem\CryptMITM.h" />
     <ClInclude Include="SubSystem\DelegateManagerContextSc.h" />
     <ClInclude Include="SubSystem\DescRecvSession.h" />
     <ClInclude Include="SubSystem\GroupLogic.h" />

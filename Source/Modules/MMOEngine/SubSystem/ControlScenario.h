@@ -12,41 +12,41 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class IScenario;
-  class TScenarioDisconnectClient;
-  class TScenarioFlow;
-  class TScenarioLoginClient;
-  class TScenarioLoginSlave;
-  class TScenarioLoginMaster;
-  class TScenarioRecommutationClient;
-  class TScenarioSendToClient;
-  class TScenarioSynchroSlave;
-  struct TDescRecvSession;
-  struct TDescConnectUp;
-  class TControlScenario
-  {
-    typedef std::map<int, IScenario*> TMapIntPtr;
-    typedef TMapIntPtr::iterator TMapIntPtrIt;
+    class IScenario;
+    class TScenarioDisconnectClient;
+    class TScenarioFlow;
+    class TScenarioLoginClient;
+    class TScenarioLoginSlave;
+    class TScenarioLoginMaster;
+    class TScenarioRecommutationClient;
+    class TScenarioSendToClient;
+    class TScenarioSynchroSlave;
+    struct TDescRecvSession;
+    struct TDescConnectUp;
+    class TControlScenario
+    {
+        typedef std::map<int, IScenario*> TMapIntPtr;
+        typedef TMapIntPtr::iterator TMapIntPtrIt;
 
-    TMapIntPtr mMapTypeSc;
+        TMapIntPtr mMapTypeSc;
 
-    TMakerScenario mMakerScenario;
+        TMakerScenario mMakerScenario;
 
-  public:
-    TControlScenario();
-    ~TControlScenario();
-    // для обработки внутренних событий
-    void Recv( TDescRecvSession* pDesc );
+    public:
+        TControlScenario();
+        ~TControlScenario();
+        // для обработки внутренних событий
+        void Recv(TDescRecvSession* pDesc);
 
-    TScenarioDisconnectClient*    mDisClient;
-    TScenarioFlow*                mFlow;
-    TScenarioLoginClient*         mLoginClient;
-    TScenarioLoginSlave*          mLoginSlave;
-    TScenarioLoginMaster*         mLoginMaster;
-    TScenarioRecommutationClient* mRcm;
-    TScenarioSendToClient*        mSendToClient;
-    TScenarioSynchroSlave*        mSynchroSlave;
-  protected:
-    void Add( IScenario* pSc );
-  };
+        TScenarioDisconnectClient* mDisClient;
+        TScenarioFlow* mFlow;
+        TScenarioLoginClient* mLoginClient;
+        TScenarioLoginSlave* mLoginSlave;
+        TScenarioLoginMaster* mLoginMaster;
+        TScenarioRecommutationClient* mRcm;
+        TScenarioSendToClient* mSendToClient;
+        TScenarioSynchroSlave* mSynchroSlave;
+    protected:
+        void Add(IScenario* pSc);
+    };
 }

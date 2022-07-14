@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -11,7 +11,7 @@ using namespace nsMMOEngine;
 
 TContextScDisconnectClient::TContextScDisconnectClient()
 {
-  mIDClient = (unsigned int)-1;
+    mIDClient = (unsigned int)-1;
 }
 //-----------------------------------------------------------------
 TContextScDisconnectClient::~TContextScDisconnectClient()
@@ -21,11 +21,11 @@ TContextScDisconnectClient::~TContextScDisconnectClient()
 //-----------------------------------------------------------------
 unsigned int TContextScDisconnectClient::GetIDClient()
 {
-  return mIDClient;
+    return mIDClient;
 }
 //-----------------------------------------------------------------
 void TContextScDisconnectClient::SetIDClient(unsigned int val)
 {
-  mIDClient = val;
+    mIDClient = val;
 }
 //-----------------------------------------------------------------

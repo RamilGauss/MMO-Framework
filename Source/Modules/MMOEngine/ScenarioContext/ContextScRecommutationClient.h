@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -13,78 +13,78 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class TContextScRecommutationClient : public IScenarioContext
-  {
-    unsigned int mID_SessionMasterSlave;
-
-    unsigned int mClientKey;
-    unsigned int mSessionDonor;
-    unsigned int mSessionRecipient;
-
-    TContainer mContextData;
-
-    // для самоопределения на Slave
-    typedef enum
+    class TContextScRecommutationClient : public IScenarioContext
     {
-      eUndef,
-      eDonor,
-      eRecipient,
-    }TypeSlave;
-    TypeSlave mTypeSlave;
+        unsigned int mID_SessionMasterSlave;
 
-    unsigned int mTimeWaitAnswer;
+        unsigned int mClientKey;
+        unsigned int mSessionDonor;
+        unsigned int mSessionRecipient;
 
-    TIP_Port mIP_PortRecipient;
+        TContainer mContextData;
 
-    unsigned int mRandomNum;
+        // для самоопределения на Slave
+        typedef enum
+        {
+            eUndef,
+            eDonor,
+            eRecipient,
+        }TypeSlave;
+        TypeSlave mTypeSlave;
 
-    std::string mLogin;
-    std::string mPassword;
-  public:
-    TContextScRecommutationClient();
-    virtual ~TContextScRecommutationClient();
+        unsigned int mTimeWaitAnswer;
 
-    // сессии для Slave, в остальных случаях для Мастера и Клиента использовать G(S)etID_Session
-    unsigned int GetID_SessionClientSlave();
-    void SetID_SessionClientSlave(unsigned int sessionID);
+        TIP_Port mIP_PortRecipient;
 
-    unsigned int GetID_SessionMasterSlave();
-    void SetID_SessionMasterSlave(unsigned int sessionID);
+        unsigned int mRandomNum;
 
-    void SetClientKey(unsigned int v);
-    unsigned int GetClientKey();
+        std::string mLogin;
+        std::string mPassword;
+    public:
+        TContextScRecommutationClient();
+        virtual ~TContextScRecommutationClient();
 
-    void SetSessionDonor(unsigned int v);
-    unsigned int GetSessionDonor();
-    
-    void SetSessionRecipient(unsigned int v);
-    unsigned int GetSessionRecipient();
+        // сессии для Slave, в остальных случаях для Мастера и Клиента использовать G(S)etID_Session
+        unsigned int GetID_SessionClientSlave();
+        void SetID_SessionClientSlave(unsigned int sessionID);
 
-    void  SaveContextData(char* p, int size);
-    char* GetContextDataPtr();
-    int   GetContextDataSize();
-    void  CleanContextData();
+        unsigned int GetID_SessionMasterSlave();
+        void SetID_SessionMasterSlave(unsigned int sessionID);
 
-    // необходимо для определения поведения при Дисконнекте Клиента
-    void SetRoleAsDonor();
-    bool IsDonor();
-    void SetRoleAsRecipient();
-    bool IsRecipient();
+        void SetClientKey(unsigned int v);
+        unsigned int GetClientKey();
 
-    void SetTimeWait(unsigned int v);
-    unsigned int GetTimeWait();
+        void SetSessionDonor(unsigned int v);
+        unsigned int GetSessionDonor();
 
-    void SetIP_PortRecipient(TIP_Port& ip_port);
-    void GetIP_PortRecipient(TIP_Port& ip_port);
+        void SetSessionRecipient(unsigned int v);
+        unsigned int GetSessionRecipient();
 
-    void SetRandomNum(unsigned int random_num);
-    unsigned int GetRandomNum();
+        void  SaveContextData(char* p, int size);
+        char* GetContextDataPtr();
+        int   GetContextDataSize();
+        void  CleanContextData();
 
-    void SetLogin( std::string& login );
-    std::string GetLogin();
+        // необходимо для определения поведения при Дисконнекте Клиента
+        void SetRoleAsDonor();
+        bool IsDonor();
+        void SetRoleAsRecipient();
+        bool IsRecipient();
 
-    void SetPassword( std::string& password );
-    std::string GetPassword();
-  private:
-  };
-}  
+        void SetTimeWait(unsigned int v);
+        unsigned int GetTimeWait();
+
+        void SetIP_PortRecipient(TIP_Port& ip_port);
+        void GetIP_PortRecipient(TIP_Port& ip_port);
+
+        void SetRandomNum(unsigned int random_num);
+        unsigned int GetRandomNum();
+
+        void SetLogin(std::string& login);
+        std::string GetLogin();
+
+        void SetPassword(std::string& password);
+        std::string GetPassword();
+    private:
+    };
+}

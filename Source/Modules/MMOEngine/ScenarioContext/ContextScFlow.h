@@ -15,28 +15,28 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  // сценарии, содержащиеся в контейнере, взаимно блокируются
-  class TContextScFlow : public IScenarioContext
-  {
-    struct TSavePacket
+    // сценарии, содержащиеся в контейнере, взаимно блокируются
+    class TContextScFlow : public IScenarioContext
     {
-      bool check;
-      TContainerRise c;
+        struct TSavePacket
+        {
+            bool check;
+            TContainerRise c;
+        };
+
+        typedef std::list<TMemoryPool<TSavePacket>::TPointerDesc*> TListPtr;
+        TListPtr mListSave;
+
+        TMemoryPool<TSavePacket>* mSavePacketMemoryPool = nullptr;
+
+    public:
+        TContextScFlow()
+        {
+            mSavePacketMemoryPool = SingletonManager()->Get<TMemoryPool<TSavePacket>>();
+        }
+
+        void Send(TBreakPacket& bp, bool check);
+        void SaveBreakPacket(TBreakPacket& bp, bool check);
+        void SendAndRemoveFirst();
     };
-
-    typedef std::list<TMemoryPool<TSavePacket>::TPointerDesc*> TListPtr;
-    TListPtr mListSave;
-
-    TMemoryPool<TSavePacket>* mSavePacketMemoryPool = nullptr;
-
-  public:
-    TContextScFlow()
-    {
-      mSavePacketMemoryPool = SingletonManager()->Get<TMemoryPool<TSavePacket>>();
-    }
-
-    void Send( TBreakPacket& bp, bool check );
-    void SaveBreakPacket( TBreakPacket& bp, bool check );
-    void SendAndRemoveFirst();
-  };
 }

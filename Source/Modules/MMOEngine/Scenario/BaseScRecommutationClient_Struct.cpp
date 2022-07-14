@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -13,76 +13,76 @@ using namespace nsRecommutationClientStruct;
 
 THeader::THeader()
 {
-  type      = TMakerScenario::eRecommutationClient;
-  clientKey = -1;
+    type = TMakerScenario::eRecommutationClient;
+    clientKey = -1;
 }
 //---------------------------------------------------------------------------------------
 THeaderBeginDonor::THeaderBeginDonor()
 {
-  subType = eBeginDonor;
+    subType = eBeginDonor;
 }
 //---------------------------------------------------------------------------------------
 THeaderBeginClient::THeaderBeginClient()
 {
-  subType = eBeginClient;
+    subType = eBeginClient;
 }
 //---------------------------------------------------------------------------------------
 THeaderCheckBeginClient::THeaderCheckBeginClient()
 {
-  subType = eCheckBeginClient;
+    subType = eCheckBeginClient;
 }
 //---------------------------------------------------------------------------------------
 THeaderCheckBeginDonor::THeaderCheckBeginDonor()
 {
-  subType = eCheckBeginDonor;
+    subType = eCheckBeginDonor;
 }
 //---------------------------------------------------------------------------------------
 THeaderBeginRecipient::THeaderBeginRecipient()
 {
-  subType = eBeginRecipient;
-  random_num = 0;
+    subType = eBeginRecipient;
+    random_num = 0;
 }
 //---------------------------------------------------------------------------------------
 THeaderCheckBeginRecipient::THeaderCheckBeginRecipient()
 {
-  subType = eCheckBeginRecipient;
+    subType = eCheckBeginRecipient;
 }
 //---------------------------------------------------------------------------------------
 THeaderInfoRecipientToDonor::THeaderInfoRecipientToDonor()
 {
-  subType = eInfoRecipientToDonor;
-  random_num = 0;
+    subType = eInfoRecipientToDonor;
+    random_num = 0;
 }
 //---------------------------------------------------------------------------------------
 THeaderInfoRecipientToClient::THeaderInfoRecipientToClient()
 {
-  subType = eInfoRecipientToClient;
-  random_num = 0;
+    subType = eInfoRecipientToClient;
+    random_num = 0;
 }
 //---------------------------------------------------------------------------------------
 THeaderCheckInfoRecipient::THeaderCheckInfoRecipient()
 {
-  subType = eCheckInfoRecipient;
+    subType = eCheckInfoRecipient;
 }
 //---------------------------------------------------------------------------------------
 THeaderRequestConnect::THeaderRequestConnect()
 {
-  subType = eRequestConnect;
-  random_num = 0;
+    subType = eRequestConnect;
+    random_num = 0;
 }
 //---------------------------------------------------------------------------------------
 THeaderCheckRequestConnect::THeaderCheckRequestConnect()
 {
-  subType = eCheckRequestConnect;
+    subType = eCheckRequestConnect;
 }
 //---------------------------------------------------------------------------------------
 THeaderClientConnect::THeaderClientConnect()
 {
-  subType = eClientConnect;
+    subType = eClientConnect;
 }
 //---------------------------------------------------------------------------------------
 THeaderDisconnectClient::THeaderDisconnectClient()
 {
-  subType = eDisconnectClient;
+    subType = eDisconnectClient;
 }
 //---------------------------------------------------------------------------------------

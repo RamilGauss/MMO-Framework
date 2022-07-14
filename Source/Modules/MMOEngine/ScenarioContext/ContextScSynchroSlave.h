@@ -12,16 +12,16 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  // сценарии, содержащиеся в контейнере взаимно блокируются
-  class TContextScSynchroSlave : public IScenarioContext
-  {
-    float mLoadProcent;
-  public:
-    TContextScSynchroSlave();
-    virtual ~TContextScSynchroSlave();
+    // сценарии, содержащиеся в контейнере взаимно блокируются
+    class TContextScSynchroSlave : public IScenarioContext
+    {
+        float mLoadProcent;
+    public:
+        TContextScSynchroSlave();
+        virtual ~TContextScSynchroSlave();
 
-    void SetLoadProcent( float v );
-    float GetLoadProcent();
-  private:
-  };
+        void SetLoadProcent(float v);
+        float GetLoadProcent();
+    private:
+    };
 }

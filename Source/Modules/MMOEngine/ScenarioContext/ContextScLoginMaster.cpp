@@ -11,7 +11,7 @@ using namespace nsMMOEngine;
 
 TContextScLoginMaster::TContextScLoginMaster()
 {
-  mTimeWait = 0;
+    mTimeWait = 0;
 }
 //------------------------------------------------------------------
 TContextScLoginMaster::~TContextScLoginMaster()
@@ -19,13 +19,13 @@ TContextScLoginMaster::~TContextScLoginMaster()
 
 }
 //------------------------------------------------------------------
-void TContextScLoginMaster::SetTimeWait( unsigned int v )
+void TContextScLoginMaster::SetTimeWait(unsigned int v)
 {
-  mTimeWait = v;
+    mTimeWait = v;
 }
 //------------------------------------------------------------------
 unsigned int TContextScLoginMaster::GetTimeWait()
 {
-  return mTimeWait;
+    return mTimeWait;
 }
 //------------------------------------------------------------------

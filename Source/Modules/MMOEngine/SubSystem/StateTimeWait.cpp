@@ -8,42 +8,42 @@ See for more information LICENSE.md.
 #include "StateTimeWait.h"
 #include "HiTimer.h"
 
-void TStateTimeWait::AddOrUpdateState( State state, unsigned int waitTime, unsigned int errorCode )
+void TStateTimeWait::AddOrUpdateState(State state, unsigned int waitTime, unsigned int errorCode)
 {
-  TDesc desc{ waitTime, errorCode };
-  auto fit = mStateDescMap.find( state );
-  if( fit == mStateDescMap.end() )
-    mStateDescMap.insert( TMapIntDescVT( state, desc ) );
-  else
-    fit->second = desc;
+    TDesc desc{ waitTime, errorCode };
+    auto fit = mStateDescMap.find(state);
+    if (fit == mStateDescMap.end())
+        mStateDescMap.insert(TMapIntDescVT(state, desc));
+    else
+        fit->second = desc;
 }
 //--------------------------------------------------------------------------------
 unsigned int TStateTimeWait::TimeWait()
 {
-  return mStateDescMap[mCurrentState].waitTime;
+    return mStateDescMap[mCurrentState].waitTime;
 }
 //--------------------------------------------------------------------------------
 unsigned int TStateTimeWait::ErrorCode()
 {
-  return mStateDescMap[mCurrentState].errorCode;
+    return mStateDescMap[mCurrentState].errorCode;
 }
 //--------------------------------------------------------------------------------
-void TStateTimeWait::SetCurrentState( State state )
+void TStateTimeWait::SetCurrentState(State state)
 {
-  mCurrentState = state;
-  mCurrentStateTime = ht_GetMSCount();
+    mCurrentState = state;
+    mCurrentStateTime = ht_GetMSCount();
 }
 //--------------------------------------------------------------------------------
 void TStateTimeWait::SetCurrentStateToUndef()
 {
-  SetCurrentState( UndefState );
+    SetCurrentState(UndefState);
 }
 //--------------------------------------------------------------------------------
-bool TStateTimeWait::IsStateTimeExpired( unsigned int now )
+bool TStateTimeWait::IsStateTimeExpired(unsigned int now)
 {
-  if( mCurrentState == UndefState )
-    return false;// когда не выставлено начальное состояние - время истечь не может
+    if (mCurrentState == UndefState)
+        return false;// когда не выставлено начальное состояние - время истечь не может
 
-  return now > mCurrentStateTime + TimeWait();
+    return now > mCurrentStateTime + TimeWait();
 }
 //--------------------------------------------------------------------------------

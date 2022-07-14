@@ -21,35 +21,34 @@ TScenarioSynchroSlave::~TScenarioSynchroSlave()
 
 }
 //---------------------------------------------------------------------
-void TScenarioSynchroSlave::SendSynchro( float loadProcent )
+void TScenarioSynchroSlave::SendSynchro(float loadProcent)
 {
-  mBP.Reset();
-  THeaderSynchroSlave h;
-  h.loadProcent = loadProcent;
-  mBP.PushFront( (char*) &h, sizeof( h ) );
-  Context()->GetMS()->Send( Context()->GetSessionID(), mBP );
+    mBP.Reset();
+    THeaderSynchroSlave h;
+    h.loadProcent = loadProcent;
+    mBP.PushFront((char*)&h, sizeof(h));
+    Context()->GetMS()->Send(Context()->GetSessionID(), mBP);
 }
 //---------------------------------------------------------------------
-void TScenarioSynchroSlave::Recv( TDescRecvSession* pDesc )
+void TScenarioSynchroSlave::Recv(TDescRecvSession* pDesc)
 {
-  NeedContextBySession( pDesc->sessionID );
-  THeaderSynchroSlave* pPacket = (THeaderSynchroSlave*) pDesc->data;
-  switch ( pPacket->subType )
-  {
+    NeedContextBySession(pDesc->sessionID);
+    THeaderSynchroSlave* pPacket = (THeaderSynchroSlave*)pDesc->data;
+    switch (pPacket->subType) {
     case eFromSlave:
-      RecvFromSlave( pDesc );
-      break;
+        RecvFromSlave(pDesc);
+        break;
     default:BL_FIX_BUG();
-  }
+    }
 }
 //---------------------------------------------------------------------
-void TScenarioSynchroSlave::RecvFromSlave( TDescRecvSession* pDesc )
+void TScenarioSynchroSlave::RecvFromSlave(TDescRecvSession* pDesc)
 {
-  THeaderSynchroSlave* pPacket = (THeaderSynchroSlave*) pDesc->data;
-  bool res = Begin();
-  BL_ASSERT( res );
-  Context()->SetSessionID( pDesc->sessionID );
-  Context()->SetLoadProcent( pPacket->loadProcent );
-  End();
+    THeaderSynchroSlave* pPacket = (THeaderSynchroSlave*)pDesc->data;
+    bool res = Begin();
+    BL_ASSERT(res);
+    Context()->SetSessionID(pDesc->sessionID);
+    Context()->SetLoadProcent(pPacket->loadProcent);
+    End();
 }
 //--------------------------------------------------------------------------

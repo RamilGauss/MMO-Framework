@@ -11,16 +11,15 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class IScenario;
-  class TRCMLogic : public TBaseMasterLogic
-  {
-  public:
-    TRCMLogic( TBase* p );
+    class IScenario;
+    class TRCMLogic : public TBaseMasterLogic
+    {
+    public:
+        TRCMLogic(TBase* p);
 
-    void EndRcm( IScenario* pSc );
-    void NeedContextByClientKeyRcm( unsigned int clientKey );
-    void NeedSlaveSessionDonorRcm( IScenario* pSc );
-    void EventActivateRcm( IScenario* pSc );
-
-  };
+        void EndRcm(IScenario* pSc);
+        void NeedContextByClientKeyRcm(unsigned int clientKey);
+        void NeedSlaveSessionDonorRcm(IScenario* pSc);
+        void EventActivateRcm(IScenario* pSc);
+    };
 }

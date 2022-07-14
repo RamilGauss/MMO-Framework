@@ -40,19 +40,19 @@ namespace nsTornadoEditor
 
         auto mainWindowPrefabGuidComponent = entMng->ViewComponent<TMainWindowPrefabGuidComponent>(mainWindowEid);
 
-        //prefabObjConstructor->EntMng()->Clear();
-        //auto eid = prefabObjConstructor->InstantiateByGuid(mainWindowPrefabGuidComponent->objectHierarchyGuid);
+        prefabObjConstructor->EntMng()->Clear();
+        auto eid = prefabObjConstructor->InstantiateByGuid(mainWindowPrefabGuidComponent->objectHierarchyGuid);
 
-        //nsGuiWrapper::TPositionComponent posComponent;
-        //posComponent.x = 100;
-        //posComponent.y = 100;
-        //prefabObjConstructor->EntMng()->SetComponent(eid, posComponent);
+        nsGuiWrapper::TPositionComponent posComponent;
+        posComponent.x = 0;
+        posComponent.y = displayHeight / 2;
+        prefabObjConstructor->EntMng()->SetComponent(eid, posComponent);
 
-        //nsGuiWrapper::TSizeComponent sizeComponent;
-        //sizeComponent.x = 100;
-        //sizeComponent.y = 100;
-        //prefabObjConstructor->EntMng()->SetComponent(eid, sizeComponent);
+        nsGuiWrapper::TSizeComponent sizeComponent;
+        sizeComponent.x = displayWidth / 3;
+        sizeComponent.y = displayHeight / 2;
+        prefabObjConstructor->EntMng()->SetComponent(eid, sizeComponent);
 
-        //prefabMng->InstantiateByObjectInMemory(prefabObjConstructor, eid, sceneInstanceGuid);
+        prefabMng->InstantiateByObjectInMemory(prefabObjConstructor, eid, sceneInstanceGuid);
     }
 }

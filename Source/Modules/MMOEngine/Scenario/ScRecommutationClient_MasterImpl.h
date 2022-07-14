@@ -11,33 +11,33 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class TScRecommutationClient_MasterImpl : public TBaseScRecommutationClient
-  {
-  protected:
-    //enum{
-    //  eTimeWait = 20000,
-    //  eDeltaTimeNumInQueue = 1000,
-    //};
+    class TScRecommutationClient_MasterImpl : public TBaseScRecommutationClient
+    {
+    protected:
+        //enum{
+        //  eTimeWait = 20000,
+        //  eDeltaTimeNumInQueue = 1000,
+        //};
 
-  public:
-    TScRecommutationClient_MasterImpl( IScenario* pSc );
+    public:
+        TScRecommutationClient_MasterImpl(IScenario* pSc);
 
-    virtual void Work( unsigned int time_ms );
-    void Start( unsigned int recipientSessionID, unsigned int clientKey );
-    void DelayBegin();
+        virtual void Work(unsigned int time_ms);
+        void Start(unsigned int recipientSessionID, unsigned int clientKey);
+        void DelayBegin();
 
-    void DisconnectClient();
+        void DisconnectClient();
 
-  protected:
-    virtual void RecvInherit( TDescRecvSession* pDesc );
-  private:
-    void RecvFromSlaveDonor( TDescRecvSession* pDesc );
-    void RecvFromSlaveRecipient( TDescRecvSession* pDesc );
-  private:
-    void CheckBeginDonor( TDescRecvSession* pDesc );
-    void CheckBeginRecipient( TDescRecvSession* pDesc );
-    void ClientConnect( TDescRecvSession* pDesc );
-  private:
-    void SendFirstPacket();
-  };
+    protected:
+        virtual void RecvInherit(TDescRecvSession* pDesc);
+    private:
+        void RecvFromSlaveDonor(TDescRecvSession* pDesc);
+        void RecvFromSlaveRecipient(TDescRecvSession* pDesc);
+    private:
+        void CheckBeginDonor(TDescRecvSession* pDesc);
+        void CheckBeginRecipient(TDescRecvSession* pDesc);
+        void ClientConnect(TDescRecvSession* pDesc);
+    private:
+        void SendFirstPacket();
+    };
 }

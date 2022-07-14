@@ -13,13 +13,13 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  struct DllExport TDescRequestConnectForRecipient
-  {
-    unsigned int key = 0;
-    unsigned int random_num = 0;
-    unsigned int sessionID = 0;
-    void Generate();
-  };
+    struct DllExport TDescRequestConnectForRecipient
+    {
+        unsigned int key = 0;
+        unsigned int random_num = 0;
+        unsigned int sessionID = 0;
+        void Generate();
+    };
 }
 
 #pragma pack(pop)

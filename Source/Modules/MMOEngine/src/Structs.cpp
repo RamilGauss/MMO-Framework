@@ -11,12 +11,12 @@ using namespace nsMMOEngine;
 
 TDescOpen::TDescOpen()
 {
-	subNet = 0;
+    subNet = 0;
 }
 //-------------------------------------------------------------------------
-TDescOpen::TDescOpen( unsigned short p, unsigned char  sN )
+TDescOpen::TDescOpen(unsigned short p, unsigned char  sN)
 {
-	port = p;
-	subNet = sN;
+    port = p;
+    subNet = sN;
 }
 //-------------------------------------------------------------------------

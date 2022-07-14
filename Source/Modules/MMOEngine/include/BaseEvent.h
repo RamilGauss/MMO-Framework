@@ -14,12 +14,11 @@ See for more information LICENSE.md.
 namespace nsMMOEngine
 {
 #pragma pack(push, 1)
-  struct DllExport TBaseEvent
-  {
-    // переназначить в наследуемом классе
-    EventType mType;
-    TContainer c;
-  };
+    struct DllExport TBaseEvent
+    {
+        // переназначить в наследуемом классе
+        EventType mType;
+        TContainer c;
+    };
 #pragma pack(pop)
-
 }

@@ -13,15 +13,15 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class TContextScDisconnectClient : public IScenarioContext
-  {
-    unsigned int mIDClient;
-  public:
-    TContextScDisconnectClient();
-    virtual ~TContextScDisconnectClient();
+    class TContextScDisconnectClient : public IScenarioContext
+    {
+        unsigned int mIDClient;
+    public:
+        TContextScDisconnectClient();
+        virtual ~TContextScDisconnectClient();
 
-    unsigned int GetIDClient();
-    void SetIDClient( unsigned int val );
-  private:
-  };
+        unsigned int GetIDClient();
+        void SetIDClient(unsigned int val);
+    private:
+    };
 }

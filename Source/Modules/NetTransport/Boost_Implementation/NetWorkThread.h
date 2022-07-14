@@ -12,18 +12,18 @@ See for more information LICENSE.md.
 
 class TNetWorkThread : public TThreadBoost
 {
-  boost::asio::io_context mIO_Context;
+    boost::asio::io_context mIO_Context;
 
 public:
-  TNetWorkThread();
-  virtual ~TNetWorkThread();
+    TNetWorkThread();
+    virtual ~TNetWorkThread();
 
-  boost::asio::io_context* GetIO_Context()
-  {
-    return &mIO_Context;
-  }
+    boost::asio::io_context* GetIO_Context()
+    {
+        return &mIO_Context;
+    }
 
-  virtual void Stop();
+    virtual void Stop();
 protected:
-  virtual void Work();
+    virtual void Work();
 };

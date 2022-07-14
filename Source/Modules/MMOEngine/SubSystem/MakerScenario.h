@@ -11,27 +11,27 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class IScenario;
-  class TMakerScenario
-  {
-    typedef std::set<IScenario*> TSetPtr;
-    TSetPtr mSetMakeSc;
-  public:
-    enum
+    class IScenario;
+    class TMakerScenario
     {
-      eDisconnectClient,
-      eFlow,
-      eLoginClient,
-      eLoginMaster,
-      eLoginSlave,
-      eRecommutationClient,
-      eSendToClient,
-      eSynchroSlave,
-    };
+        typedef std::set<IScenario*> TSetPtr;
+        TSetPtr mSetMakeSc;
+    public:
+        enum
+        {
+            eDisconnectClient,
+            eFlow,
+            eLoginClient,
+            eLoginMaster,
+            eLoginSlave,
+            eRecommutationClient,
+            eSendToClient,
+            eSynchroSlave,
+        };
 
-    TMakerScenario();
-    ~TMakerScenario();
-    IScenario* New( unsigned int ID_Implementation );
-    void Delete( IScenario* p );
-  };
+        TMakerScenario();
+        ~TMakerScenario();
+        IScenario* New(unsigned int ID_Implementation);
+        void Delete(IScenario* p);
+    };
 }

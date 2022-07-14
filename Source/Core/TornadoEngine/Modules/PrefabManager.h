@@ -20,7 +20,7 @@ namespace nsTornadoEngine
 
         void LoadByGuid(const std::string& prefabGuid);
         void LoadByAbsPath(const std::string& absPath);
-        void LoadByObjectInMemory(nsECSFramework::TEntityID eid);
+        void LoadByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor, nsECSFramework::TEntityID eid);
 
         void Save(const std::string& prefabGuid);
 
@@ -46,6 +46,9 @@ namespace nsTornadoEngine
             nsECSFramework::TEntityID eid, std::list<nsECSFramework::TEntityID>& newEntities);
 
         void InstantiateEntities(const std::list<nsECSFramework::TEntityID>& newEntities, 
+            const std::string& sceneInstanceGuid, const std::string& parentGuid);
+
+        void SetupUniverse(const std::list<nsECSFramework::TEntityID>& newEntities,
             const std::string& sceneInstanceGuid, const std::string& parentGuid);
     };
 }

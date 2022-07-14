@@ -10,22 +10,22 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class TBase;
-  class TContainerContextSc;
-  class TBaseLogic
-  {
-    unsigned int mCreationID = 1;
-  protected:
-    TBase* mBase = nullptr;
+    class TBase;
+    class TContainerContextSc;
+    class TBaseLogic
+    {
+        unsigned int mCreationID = 1;
+    protected:
+        TBase* mBase = nullptr;
 
-    nsECSFramework::TEntityManager* mEntMng = nullptr;
-  public:
-    TBaseLogic( TBase* p );
+        nsECSFramework::TEntityManager* mEntMng = nullptr;
+    public:
+        TBaseLogic(TBase* p);
 
-  protected:
-    unsigned int GetNewID();
+    protected:
+        unsigned int GetNewID();
 
-    TContainerContextSc* AddContainer();
-    void DeleteContainer( TContainerContextSc* pC );
-  };
+        TContainerContextSc* AddContainer();
+        void DeleteContainer(TContainerContextSc* pC);
+    };
 }

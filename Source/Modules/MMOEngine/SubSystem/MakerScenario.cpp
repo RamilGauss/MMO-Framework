@@ -29,52 +29,51 @@ TMakerScenario::TMakerScenario()
 //----------------------------------------------------------------------
 TMakerScenario::~TMakerScenario()
 {
-  for( IScenario* p : mSetMakeSc )
-    delete p;
+    for (IScenario* p : mSetMakeSc) {
+        delete p;
+    }
 }
 //----------------------------------------------------------------------
-IScenario* TMakerScenario::New( unsigned int ID_Implementation )
+IScenario* TMakerScenario::New(unsigned int ID_Implementation)
 {
-  IScenario* pSc = nullptr;
-  switch( ID_Implementation )
-  {
+    IScenario* pSc = nullptr;
+    switch (ID_Implementation) {
     case eDisconnectClient:
-      pSc = new TScenarioDisconnectClient;
-      break;
+        pSc = new TScenarioDisconnectClient;
+        break;
     case eFlow:
-      pSc = new TScenarioFlow;
-      break;
+        pSc = new TScenarioFlow;
+        break;
     case eLoginClient:
-      pSc = new TScenarioLoginClient;
-      break;
+        pSc = new TScenarioLoginClient;
+        break;
     case eLoginMaster:
-      pSc = new TScenarioLoginMaster;
-      break;
+        pSc = new TScenarioLoginMaster;
+        break;
     case eLoginSlave:
-      pSc = new TScenarioLoginSlave;
-      break;
+        pSc = new TScenarioLoginSlave;
+        break;
     case eRecommutationClient:
-      pSc = new TScenarioRecommutationClient;
-      break;
+        pSc = new TScenarioRecommutationClient;
+        break;
     case eSendToClient:
-      pSc = new TScenarioSendToClient;
-      break;
+        pSc = new TScenarioSendToClient;
+        break;
     case eSynchroSlave:
-      pSc = new TScenarioSynchroSlave;
-      break;
+        pSc = new TScenarioSynchroSlave;
+        break;
     default:BL_FIX_BUG();
-  }
-  if( pSc )
-  {
-    pSc->SetType( ID_Implementation );
-    mSetMakeSc.insert( pSc );
-  }
-  return pSc;
+    }
+    if (pSc) {
+        pSc->SetType(ID_Implementation);
+        mSetMakeSc.insert(pSc);
+    }
+    return pSc;
 }
 //----------------------------------------------------------------------
-void TMakerScenario::Delete( IScenario* p )
+void TMakerScenario::Delete(IScenario* p)
 {
-  mSetMakeSc.erase( p );
-  delete p;
+    mSetMakeSc.erase(p);
+    delete p;
 }
 //----------------------------------------------------------------------

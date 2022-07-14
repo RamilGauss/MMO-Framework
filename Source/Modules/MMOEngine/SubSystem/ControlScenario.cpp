@@ -24,23 +24,23 @@ using namespace nsMMOEngine;
 
 TControlScenario::TControlScenario()
 {
-  mDisClient = (TScenarioDisconnectClient*) mMakerScenario.New( TMakerScenario::eDisconnectClient );
-  mFlow = (TScenarioFlow*) mMakerScenario.New( TMakerScenario::eFlow );
-  mLoginClient = (TScenarioLoginClient*) mMakerScenario.New( TMakerScenario::eLoginClient );
-  mLoginSlave = (TScenarioLoginSlave*) mMakerScenario.New( TMakerScenario::eLoginSlave );
-  mLoginMaster = (TScenarioLoginMaster*) mMakerScenario.New( TMakerScenario::eLoginMaster );
-  mRcm = (TScenarioRecommutationClient*) mMakerScenario.New( TMakerScenario::eRecommutationClient );
-  mSendToClient = (TScenarioSendToClient*) mMakerScenario.New( TMakerScenario::eSendToClient );
-  mSynchroSlave = (TScenarioSynchroSlave*) mMakerScenario.New( TMakerScenario::eSynchroSlave );
+    mDisClient = (TScenarioDisconnectClient*)mMakerScenario.New(TMakerScenario::eDisconnectClient);
+    mFlow = (TScenarioFlow*)mMakerScenario.New(TMakerScenario::eFlow);
+    mLoginClient = (TScenarioLoginClient*)mMakerScenario.New(TMakerScenario::eLoginClient);
+    mLoginSlave = (TScenarioLoginSlave*)mMakerScenario.New(TMakerScenario::eLoginSlave);
+    mLoginMaster = (TScenarioLoginMaster*)mMakerScenario.New(TMakerScenario::eLoginMaster);
+    mRcm = (TScenarioRecommutationClient*)mMakerScenario.New(TMakerScenario::eRecommutationClient);
+    mSendToClient = (TScenarioSendToClient*)mMakerScenario.New(TMakerScenario::eSendToClient);
+    mSynchroSlave = (TScenarioSynchroSlave*)mMakerScenario.New(TMakerScenario::eSynchroSlave);
 
-  Add( mDisClient );
-  Add( mFlow );
-  Add( mLoginClient );
-  Add( mLoginSlave );
-  Add( mLoginMaster );
-  Add( mRcm );
-  Add( mSendToClient );
-  Add( mSynchroSlave );
+    Add(mDisClient);
+    Add(mFlow);
+    Add(mLoginClient);
+    Add(mLoginSlave);
+    Add(mLoginMaster);
+    Add(mRcm);
+    Add(mSendToClient);
+    Add(mSynchroSlave);
 }
 //----------------------------------------------------------------------
 TControlScenario::~TControlScenario()
@@ -48,27 +48,24 @@ TControlScenario::~TControlScenario()
 
 }
 //----------------------------------------------------------------------
-void TControlScenario::Add( IScenario* pSc )
+void TControlScenario::Add(IScenario* pSc)
 {
-  mMapTypeSc.insert( {pSc->GetType(), pSc} );
+    mMapTypeSc.insert({ pSc->GetType(), pSc });
 }
 //----------------------------------------------------------------------
-void TControlScenario::Recv( TDescRecvSession* pDesc )
+void TControlScenario::Recv(TDescRecvSession* pDesc)
 {
-  TScenarioBaseHeader* pPacket = (TScenarioBaseHeader*) pDesc->data;
-  TMapIntPtrIt fit = mMapTypeSc.find( pPacket->type );
-  if( fit != mMapTypeSc.end() )
-  {
-    auto scenario = fit->second;
-    // защита от получения незащищенных UDP пакетов
-    if( pDesc->type == INetTransport::eUdp )
-      if( scenario != mFlow )// только Flow использует UDP, остальным нельзя
-        return;
-    scenario->Recv( pDesc );
-  }
-  else
-  {
-    BL_FIX_BUG();
-  }
+    TScenarioBaseHeader* pPacket = (TScenarioBaseHeader*)pDesc->data;
+    TMapIntPtrIt fit = mMapTypeSc.find(pPacket->type);
+    if (fit != mMapTypeSc.end()) {
+        auto scenario = fit->second;
+        // защита от получения незащищенных UDP пакетов
+        if (pDesc->type == INetTransport::eUdp)
+            if (scenario != mFlow)// только Flow использует UDP, остальным нельзя
+                return;
+        scenario->Recv(pDesc);
+    } else {
+        BL_FIX_BUG();
+    }
 }
 //----------------------------------------------------------------------

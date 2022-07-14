@@ -42,7 +42,7 @@ namespace nsTornadoEngine
         void DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities, const TResourceContent& content);
 
         template <typename Component>
-        void AddComponent(std::list<nsECSFramework::TEntityID>& newEntities, Component* pComponent);
+        void AddComponent(const std::list<nsECSFramework::TEntityID>& newEntities, Component* pComponent);
 
         template <typename OriginalGuidType, typename InstanceGuidType>
         void UpdateGuidsAndInstantiate(const std::list<nsECSFramework::TEntityID>& newEntities,
@@ -50,7 +50,7 @@ namespace nsTornadoEngine
     };
     //--------------------------------------------------------------------------------
     template <typename Component>
-    void TObjectManager::AddComponent(std::list<nsECSFramework::TEntityID>& newEntities, Component* pComponent)
+    void TObjectManager::AddComponent(const std::list<nsECSFramework::TEntityID>& newEntities, Component* pComponent)
     {
         auto copyComponent = *pComponent;
         for (auto& eid : newEntities) {

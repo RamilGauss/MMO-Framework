@@ -22,11 +22,11 @@ namespace nsMMOEngine
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return v < ((TClientIdentityComponent*) pOther)->v;
+            return v < ((TClientIdentityComponent*)pOther)->v;
         }
         bool IsEqual(const IComponent* pOther) const override
         {
-            return v == ((TClientIdentityComponent*) pOther)->v;
+            return v == ((TClientIdentityComponent*)pOther)->v;
         }
     };
     struct TClientSessionIdentityComponent : nsECSFramework::IComponent
@@ -35,11 +35,11 @@ namespace nsMMOEngine
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return v < ((TClientSessionIdentityComponent*) pOther)->v;
+            return v < ((TClientSessionIdentityComponent*)pOther)->v;
         }
         bool IsEqual(const IComponent* pOther) const override
         {
-            return v == ((TClientSessionIdentityComponent*) pOther)->v;
+            return v == ((TClientSessionIdentityComponent*)pOther)->v;
         }
     };
     struct TGroupIdentityComponent : nsECSFramework::IComponent
@@ -48,11 +48,11 @@ namespace nsMMOEngine
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return v < ((TGroupIdentityComponent*) pOther)->v;
+            return v < ((TGroupIdentityComponent*)pOther)->v;
         }
         bool IsEqual(const IComponent* pOther) const override
         {
-            return v == ((TGroupIdentityComponent*) pOther)->v;
+            return v == ((TGroupIdentityComponent*)pOther)->v;
         }
     };
     struct TSlaveSessionIdentityComponent : nsECSFramework::IComponent
@@ -61,11 +61,11 @@ namespace nsMMOEngine
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return v < ((TSlaveSessionIdentityComponent*) pOther)->v;
+            return v < ((TSlaveSessionIdentityComponent*)pOther)->v;
         }
         bool IsEqual(const IComponent* pOther) const override
         {
-            return v == ((TSlaveSessionIdentityComponent*) pOther)->v;
+            return v == ((TSlaveSessionIdentityComponent*)pOther)->v;
         }
     };
     // multi
@@ -86,11 +86,11 @@ namespace nsMMOEngine
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return v < ((TClientStateComponent*) pOther)->v;
+            return v < ((TClientStateComponent*)pOther)->v;
         }
         bool IsEqual(const IComponent* pOther) const override
         {
-            return v == ((TClientStateComponent*) pOther)->v;
+            return v == ((TClientStateComponent*)pOther)->v;
         }
     };
     struct TGroupIDComponent : nsECSFramework::IComponent
@@ -99,11 +99,11 @@ namespace nsMMOEngine
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return v < ((TGroupIDComponent*) pOther)->v;
+            return v < ((TGroupIDComponent*)pOther)->v;
         }
         bool IsEqual(const IComponent* pOther) const override
         {
-            return v == ((TGroupIDComponent*) pOther)->v;
+            return v == ((TGroupIDComponent*)pOther)->v;
         }
     };
     struct TSlaveSessionByClientComponent : nsECSFramework::IComponent
@@ -112,11 +112,11 @@ namespace nsMMOEngine
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return v < ((TSlaveSessionByClientComponent*) pOther)->v;
+            return v < ((TSlaveSessionByClientComponent*)pOther)->v;
         }
         bool IsEqual(const IComponent* pOther) const override
         {
-            return v == ((TSlaveSessionByClientComponent*) pOther)->v;
+            return v == ((TSlaveSessionByClientComponent*)pOther)->v;
         }
     };
     struct TSlaveSessionByGroupComponent : nsECSFramework::IComponent
@@ -125,11 +125,11 @@ namespace nsMMOEngine
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return v < ((TSlaveSessionByGroupComponent*) pOther)->v;
+            return v < ((TSlaveSessionByGroupComponent*)pOther)->v;
         }
         bool IsEqual(const IComponent* pOther) const override
         {
-            return v == ((TSlaveSessionByGroupComponent*) pOther)->v;
+            return v == ((TSlaveSessionByGroupComponent*)pOther)->v;
         }
     };
     struct TDonorSessionComponent : nsECSFramework::IComponent
@@ -138,11 +138,11 @@ namespace nsMMOEngine
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return v < ((TDonorSessionComponent*) pOther)->v;
+            return v < ((TDonorSessionComponent*)pOther)->v;
         }
         bool IsEqual(const IComponent* pOther) const override
         {
-            return v == ((TDonorSessionComponent*) pOther)->v;
+            return v == ((TDonorSessionComponent*)pOther)->v;
         }
     };
     struct TSlaveLoadInfoComponent : nsECSFramework::IComponent

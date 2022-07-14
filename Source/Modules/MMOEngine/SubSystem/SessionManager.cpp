@@ -188,7 +188,7 @@ void TSessionManager::RecvHandler(TRecvTransportEvent* pEvent)
         return;
     //===================================================================
     // данные, пришедшие от сессии содержат заголовок, учесть при формировании
-    auto pHeader = (TSession::THeader*) pEvent->data.GetPtr();
+    auto pHeader = (TSession::THeader*)pEvent->data.GetPtr();
     // определить новая сессия или нет
     TSession* pSession = mNavigateSession->FindSessionByIP(pEvent->ip_port);
     if (pSession == nullptr)
@@ -204,25 +204,25 @@ void TSessionManager::RecvHandler(TRecvTransportEvent* pEvent)
     descRecvSession.sessionID = pSession->GetID();
     // данные, пришедшие от сессии содержат заголовок, учесть при формировании
     switch (pHeader->type) {
-        case TSession::eEcho:
-            break;
-        case TSession::eData:
-            RecvData(descRecvSession, pSession);
-            break;
-        case TSession::eLogin:
-            RecvLogin(descRecvSession, pSession);
-            break;
-        case TSession::eKeyAES:
-            RecvKeyAES(descRecvSession, pSession);
-            break;
-        case TSession::eIDconfirmation:
-            RecvIDconfirmation(descRecvSession, pSession);
-            break;
-        default:
-        {
-            BL_FIX_BUG();
-            FixHack("Undefined type packet");
-        }
+    case TSession::eEcho:
+        break;
+    case TSession::eData:
+        RecvData(descRecvSession, pSession);
+        break;
+    case TSession::eLogin:
+        RecvLogin(descRecvSession, pSession);
+        break;
+    case TSession::eKeyAES:
+        RecvKeyAES(descRecvSession, pSession);
+        break;
+    case TSession::eIDconfirmation:
+        RecvIDconfirmation(descRecvSession, pSession);
+        break;
+    default:
+    {
+        BL_FIX_BUG();
+        FixHack("Undefined type packet");
+    }
     }
 }
 //--------------------------------------------------------------------------------------------
@@ -327,7 +327,7 @@ void TSessionManager::RecvData(TDescRecvSession& descRecvSession, TSession* pSes
             return;
         }
         // поместить результат
-        descRecvSession.data = (char*) c_decrypt.GetPtr();
+        descRecvSession.data = (char*)c_decrypt.GetPtr();
         descRecvSession.dataSize = c_decrypt.GetSize();
     }
     mCallBackRecv.Notify(&descRecvSession);
@@ -425,15 +425,15 @@ void TSessionManager::TransportEventHandler()
     while (ppFirst) {
         auto pFirst = *ppFirst;
         switch (pFirst->type) {
-            case TBaseTransportEvent::Recv:
-                RecvHandler((TRecvTransportEvent*) pFirst);
-                break;
-            case TBaseTransportEvent::Disconnect:
-                DisconnectHandler((TDisconnectTransportEvent*) pFirst);
-                break;
-            case TBaseTransportEvent::ConnectFrom:
-                ConnectFromHandler((TConnectFromTransportEvent*) pFirst);
-                break;
+        case TBaseTransportEvent::Recv:
+            RecvHandler((TRecvTransportEvent*)pFirst);
+            break;
+        case TBaseTransportEvent::Disconnect:
+            DisconnectHandler((TDisconnectTransportEvent*)pFirst);
+            break;
+        case TBaseTransportEvent::ConnectFrom:
+            ConnectFromHandler((TConnectFromTransportEvent*)pFirst);
+            break;
         }
 
         mTransportEventList.RemoveFirst();

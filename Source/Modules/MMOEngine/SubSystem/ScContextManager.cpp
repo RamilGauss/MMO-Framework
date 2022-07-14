@@ -16,7 +16,7 @@ using namespace nsMMOEngine;
 
 TScContextManager::TScContextManager()
 {
-  mPtrActiveContextSc = nullptr;
+    mPtrActiveContextSc = nullptr;
 }
 //---------------------------------------------------------------------
 TScContextManager::~TScContextManager()
@@ -24,76 +24,71 @@ TScContextManager::~TScContextManager()
 
 }
 //---------------------------------------------------------------------
-bool TScContextManager::Activate( IScenarioContext* pCSc )
+bool TScContextManager::Activate(IScenarioContext* pCSc)
 {
-  bool res;
-  if( mPtrActiveContextSc )// если есть активный, то поместить в очередь на активацию
-  {
-    // даже если сейчас активен тот же сценарий, поместить в очередь
-    mListWaitActivation.push_back( pCSc );
-    res = false;
-  }
-  else
-  {
-    mPtrActiveContextSc = pCSc;
-    res = true;
-  }
+    bool res;
+    if (mPtrActiveContextSc) { // если есть активный, то поместить в очередь на активацию
+        // даже если сейчас активен тот же сценарий, поместить в очередь
+        mListWaitActivation.push_back(pCSc);
+        res = false;
+    } else {
+        mPtrActiveContextSc = pCSc;
+        res = true;
+    }
 
-  NotifyActiveEvent();
-  return res;
+    NotifyActiveEvent();
+    return res;
 }
 //---------------------------------------------------------------------
 void TScContextManager::Deactivate()
 {
-  BL_ASSERT( mPtrActiveContextSc );
+    BL_ASSERT(mPtrActiveContextSc);
 
-  // следующий сценарий
-  if( mListWaitActivation.size() )
-  {
-    mPtrActiveContextSc = mListWaitActivation.front();
-    mListWaitActivation.pop_front();
+    // следующий сценарий
+    if (mListWaitActivation.size()) {
+        mPtrActiveContextSc = mListWaitActivation.front();
+        mListWaitActivation.pop_front();
 
-    mPtrActiveContextSc->DelayBegin();
-  }
-  else
-    mPtrActiveContextSc = nullptr;
+        mPtrActiveContextSc->DelayBegin();
+    } else
+        mPtrActiveContextSc = nullptr;
 
-  NotifyDisactiveEvent();
+    NotifyDisactiveEvent();
 }
 //---------------------------------------------------------------------
 void TScContextManager::Work()
 {
-  if( mPtrActiveContextSc )
-    mPtrActiveContextSc->Work();
+    if (mPtrActiveContextSc)
+        mPtrActiveContextSc->Work();
 }
 //---------------------------------------------------------------------
 bool TScContextManager::IsActive()
 {
-  return mPtrActiveContextSc != nullptr;
+    return mPtrActiveContextSc != nullptr;
 }
 //---------------------------------------------------------------------
 TCallBackRegistrator1<TScContextManager*>* TScContextManager::GetCallBackActivate()
 {
-  return &mCallBackActivateEvent;
+    return &mCallBackActivateEvent;
 }
 //---------------------------------------------------------------------
 TCallBackRegistrator1<TScContextManager*>* TScContextManager::GetCallBackDisactivate()
 {
-  return &mCallBackDisactivateEvent;
+    return &mCallBackDisactivateEvent;
 }
 //---------------------------------------------------------------------
 void TScContextManager::NotifyActiveEvent()
 {
-  mCallBackActivateEvent.Notify( this );
+    mCallBackActivateEvent.Notify(this);
 }
 //---------------------------------------------------------------------
 void TScContextManager::NotifyDisactiveEvent()
 {
-  mCallBackDisactivateEvent.Notify( this );
+    mCallBackDisactivateEvent.Notify(this);
 }
 //---------------------------------------------------------------------
 IScenarioContext* TScContextManager::GetActive()
 {
-  return mPtrActiveContextSc;
+    return mPtrActiveContextSc;
 }
 //---------------------------------------------------------------------

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
@@ -12,74 +12,74 @@ using namespace nsMMOEngine;
 //------------------------------------------------------------
 TContainerContextSc::TContainerContextSc()
 {
-  mManagerContextSc = nullptr;
+    mManagerContextSc = nullptr;
 
-  mListContext.push_back( &mDisClient );
-  mListContext.push_back( &mFlow );
-  mListContext.push_back( &mLoginClient );
-  mListContext.push_back( &mLoginSlave );
-  mListContext.push_back( &mLoginMaster );
-  mListContext.push_back( &mRcm );
-  mListContext.push_back( &mSynchroSlave );
-  mListContext.push_back( &mSendToClient );
+    mListContext.push_back(&mDisClient);
+    mListContext.push_back(&mFlow);
+    mListContext.push_back(&mLoginClient);
+    mListContext.push_back(&mLoginSlave);
+    mListContext.push_back(&mLoginMaster);
+    mListContext.push_back(&mRcm);
+    mListContext.push_back(&mSynchroSlave);
+    mListContext.push_back(&mSendToClient);
 
-  mSessionID = 0;
+    mSessionID = 0;
 }
 //------------------------------------------------------------
-void TContainerContextSc::SetSessionID( unsigned int sessionID )
+void TContainerContextSc::SetSessionID(unsigned int sessionID)
 {
-  mSessionID = sessionID;
-  for( auto p : mListContext )
-    p->SetSessionID( sessionID );
+    mSessionID = sessionID;
+    for (auto p : mListContext)
+        p->SetSessionID(sessionID);
 }
 //------------------------------------------------------------
 unsigned int TContainerContextSc::GetSessionID()
 {
-  return mSessionID;
+    return mSessionID;
 }
 //------------------------------------------------------------
-void TContainerContextSc::SetMCSc( TScContextManager* pMCSc )
+void TContainerContextSc::SetMCSc(TScContextManager* pMCSc)
 {
-  mManagerContextSc = pMCSc;
+    mManagerContextSc = pMCSc;
 
-  for( auto p : mListContext )
-    p->SetMSc( mManagerContextSc );
+    for (auto p : mListContext)
+        p->SetMSc(mManagerContextSc);
 }
 //------------------------------------------------------------
-void TContainerContextSc::SetMS( TSessionManager* pMS )
+void TContainerContextSc::SetMS(TSessionManager* pMS)
 {
-  for( auto p : mListContext )
-    p->SetMS( pMS );
+    for (auto p : mListContext)
+        p->SetMS(pMS);
 }
 //------------------------------------------------------------
-void TContainerContextSc::SetSE( TSrcEvent* pSE )
+void TContainerContextSc::SetSE(TSrcEvent* pSE)
 {
-  for( auto p : mListContext )
-    p->SetSE( pSE );
+    for (auto p : mListContext)
+        p->SetSE(pSE);
 }
 //------------------------------------------------------------
-void TContainerContextSc::SetUserPtr( void* p )
+void TContainerContextSc::SetUserPtr(void* p)
 {
-  for( auto p : mListContext )
-    p->SetUserPtr( p );
+    for (auto p : mListContext)
+        p->SetUserPtr(p);
 }
 //------------------------------------------------------------
 TScContextManager* TContainerContextSc::GetMCSc()
 {
-  return mManagerContextSc;
+    return mManagerContextSc;
 }
 //------------------------------------------------------------
 bool TContainerContextSc::IsRcmActive()
 {
-  if( GetMCSc()->GetActive() == &mRcm )
-    return true;
-  return false;
+    if (GetMCSc()->GetActive() == &mRcm)
+        return true;
+    return false;
 }
 //------------------------------------------------------------
 bool TContainerContextSc::IsLoginClientActive()
 {
-  if( GetMCSc()->GetActive() == &mLoginClient )
-    return true;
-  return false;
+    if (GetMCSc()->GetActive() == &mLoginClient)
+        return true;
+    return false;
 }
 //------------------------------------------------------------

@@ -16,42 +16,43 @@ TManagerManagerContextSc::TManagerManagerContextSc()
 //-----------------------------------------------------------------------------
 TManagerManagerContextSc::~TManagerManagerContextSc()
 {
-  for( TScContextManager* pMSc : mSetManagerContextSc )
-    delete pMSc;
-  mSetManagerContextSc.clear();
+    for (TScContextManager* pMSc : mSetManagerContextSc) {
+        delete pMSc;
+    }
+    mSetManagerContextSc.clear();
 }
 //-----------------------------------------------------------------------------
 TScContextManager* TManagerManagerContextSc::Add()
 {
-  TScContextManager* pMCSc = new TScContextManager();
-  pMCSc->GetCallBackActivate()->Register( &TManagerManagerContextSc::ActiveEvent, this );
-  pMCSc->GetCallBackDisactivate()->Register( &TManagerManagerContextSc::DisactiveEvent, this );
-  mSetManagerContextSc.insert( pMCSc );
-  return pMCSc;
+    TScContextManager* pMCSc = new TScContextManager();
+    pMCSc->GetCallBackActivate()->Register(&TManagerManagerContextSc::ActiveEvent, this);
+    pMCSc->GetCallBackDisactivate()->Register(&TManagerManagerContextSc::DisactiveEvent, this);
+    mSetManagerContextSc.insert(pMCSc);
+    return pMCSc;
 }
 //-----------------------------------------------------------------------------
-void TManagerManagerContextSc::Remove( TScContextManager* pMCSc )
+void TManagerManagerContextSc::Remove(TScContextManager* pMCSc)
 {
-  mSetManagerContextSc.erase( pMCSc );
-  mSetActiveManagerContextSc.erase( pMCSc );
-  delete pMCSc;
+    mSetManagerContextSc.erase(pMCSc);
+    mSetActiveManagerContextSc.erase(pMCSc);
+    delete pMCSc;
 }
 //-----------------------------------------------------------------------------
 void TManagerManagerContextSc::Work()
 {
-  TSetPtr copySetActiveManagerContextSc = mSetActiveManagerContextSc;
-  for( TScContextManager* pMSc : copySetActiveManagerContextSc )
-    pMSc->Work();// работает только активный сценарий
+    TSetPtr copySetActiveManagerContextSc = mSetActiveManagerContextSc;
+    for (TScContextManager* pMSc : copySetActiveManagerContextSc)
+        pMSc->Work();// работает только активный сценарий
 }
 //-----------------------------------------------------------------------------
-void TManagerManagerContextSc::ActiveEvent( TScContextManager* pMCSc )
+void TManagerManagerContextSc::ActiveEvent(TScContextManager* pMCSc)
 {
-  mSetActiveManagerContextSc.insert( pMCSc );
+    mSetActiveManagerContextSc.insert(pMCSc);
 }
 //-----------------------------------------------------------------------------
-void TManagerManagerContextSc::DisactiveEvent( TScContextManager* pMCSc )
+void TManagerManagerContextSc::DisactiveEvent(TScContextManager* pMCSc)
 {
-  if( pMCSc->IsActive() == false )
-    mSetActiveManagerContextSc.erase( pMCSc );
+    if (pMCSc->IsActive() == false)
+        mSetActiveManagerContextSc.erase(pMCSc);
 }
 //-----------------------------------------------------------------------------

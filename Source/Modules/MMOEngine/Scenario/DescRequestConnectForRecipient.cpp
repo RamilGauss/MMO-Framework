@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  void TDescRequestConnectForRecipient::Generate()
-  {
-    srand( (unsigned)time( nullptr ) );
-    short* pShort = (short*)&random_num;
-    pShort[0] = rand();
-    pShort[1] = rand();
-  }
+    void TDescRequestConnectForRecipient::Generate()
+    {
+        srand((unsigned)time(nullptr));
+        short* pShort = (short*)&random_num;
+        pShort[0] = rand();
+        pShort[1] = rand();
+    }
 }

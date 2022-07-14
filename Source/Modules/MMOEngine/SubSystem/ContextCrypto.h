@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -11,14 +11,14 @@ See for more information LICENSE.md.
 
 class TContextCrypto
 {
-  TCryptoAES_Impl mSendAES;
-  TCryptoAES_Impl mRecvAES;
+    TCryptoAES_Impl mSendAES;
+    TCryptoAES_Impl mRecvAES;
 
 public:
-  TContextCrypto();
-  ~TContextCrypto();
+    TContextCrypto();
+    ~TContextCrypto();
 
-  TCryptoAES_Impl* GetSendAES();
-  TCryptoAES_Impl* GetRecvAES();
+    TCryptoAES_Impl* GetSendAES();
+    TCryptoAES_Impl* GetRecvAES();
 protected:
 };

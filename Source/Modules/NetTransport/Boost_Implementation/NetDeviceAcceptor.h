@@ -13,29 +13,29 @@ See for more information LICENSE.md.
 
 class TNetDeviceAcceptor : public INetDevice
 {
-  enum
-  {
-    eMaxCountListen = 20000,
-  };
+    enum
+    {
+        eMaxCountListen = 20000,
+    };
 
-  boost::asio::ip::tcp::acceptor mSocket;
+    boost::asio::ip::tcp::acceptor mSocket;
 
 public:
-  TNetDeviceAcceptor( boost::asio::io_context* io_context );
-  virtual ~TNetDeviceAcceptor();
+    TNetDeviceAcceptor(boost::asio::io_context* io_context);
+    virtual ~TNetDeviceAcceptor();
 
-  virtual bool Open( unsigned short port, unsigned char numNetWork = 0 ); // ret local sock
-  virtual void Close();
+    virtual bool Open(unsigned short port, unsigned char numNetWork = 0); // ret local sock
+    virtual void Close();
 
-  virtual bool SetRecvBuffer( unsigned int size );
-  virtual bool SetSendBuffer( unsigned int size );
+    virtual bool SetRecvBuffer(unsigned int size);
+    virtual bool SetSendBuffer(unsigned int size);
 
-  virtual boost::asio::ip::tcp::acceptor* GetSocket()
-  {
-    return &mSocket;
-  }
+    virtual boost::asio::ip::tcp::acceptor* GetSocket()
+    {
+        return &mSocket;
+    }
 protected:
-  void OffNagl();
-  void SetReUse();
-  void Set_HardClose();
+    void OffNagl();
+    void SetReUse();
+    void Set_HardClose();
 };
