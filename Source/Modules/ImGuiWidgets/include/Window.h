@@ -8,13 +8,12 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <list>
-#include "Frame.h"
+
+#include "RootFrame.h"
 
 namespace nsImGuiWidgets
 {
-    class TDockTreeManager;
-
-    class DllExport TWindow : public TFrame
+    class DllExport TWindow : public TRootFrame
     {
     public:
         using TShowCallback = TCallbackPool<bool>;

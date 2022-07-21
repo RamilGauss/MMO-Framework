@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "imgui.h"
-#include "Typedef.h"
+#include "TypeDef.h"
 
 #include "IRenderable.h"
 #include "Title.h"

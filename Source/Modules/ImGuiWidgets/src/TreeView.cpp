@@ -110,7 +110,7 @@ void TTreeView::BeginRender()
         node->Hide();
     }
 
-    TFrame::BeginRender();
+    TProtoFrame::BeginRender();
 }
 //---------------------------------------------------------------------------------------
 const std::list<TTreeNode*>* TTreeView::GetAllNodes() const

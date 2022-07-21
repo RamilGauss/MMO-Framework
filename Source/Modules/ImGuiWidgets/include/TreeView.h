@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Frame.h"
+#include "ProtoFrame.h"
 
 #include <functional>
 #include <list>
@@ -17,7 +17,7 @@ namespace nsImGuiWidgets
     class TNode;
     class TTreeNode;
 
-    class DllExport TTreeView : public TFrame
+    class DllExport TTreeView : public TProtoFrame
     {
         std::list<TTreeNode*> mAllNodes;
 

@@ -13,11 +13,10 @@ using namespace nsImGuiWidgets;
 
 void TWindow::BeginRender()
 {
-    auto oldIsShown = mIsShown;
-
     ImGui::SetNextWindowSize(GetSize());
     ImGui::SetNextWindowPos(GetPos(), ImGuiCond_Appearing);
 
+    auto oldIsShown = mIsShown;
     ImGui::Begin(mTitle.c_str(), &mIsShown);
 
     if (oldIsShown != mIsShown) {

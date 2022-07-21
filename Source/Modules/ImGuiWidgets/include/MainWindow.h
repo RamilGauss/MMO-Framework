@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Window.h"
+#include "ProtoFrame.h"
 #include "MenuNode.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TMainWindow : public TWindow
+    class DllExport TMainWindow : public TProtoFrame
     {
     protected:
         const int TOOLBAR_HEIGHT = 20;

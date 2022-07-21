@@ -5,19 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Frame.h"
+#include "RootFrame.h"
 #include "Helper.h"
 
 using namespace nsImGuiWidgets;
 using namespace nsGraphicEngine;
 
-TFrame::TFrame()
+TRootFrame::TRootFrame()
 {
 
-}
-//---------------------------------------------------------------------------------------
-void TFrame::BeginRender()
-{
-    TProtoFrame::BeginRender();
 }
 //---------------------------------------------------------------------------------------

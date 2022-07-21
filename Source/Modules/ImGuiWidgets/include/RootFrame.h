@@ -7,19 +7,17 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <imgui.h>
-#include "TypeDef.h"
+#include "Frame.h"
+#include "Events.h"
+#include "CallbackPool.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TIdentity
+    class DllExport TRootFrame : public TFrame
     {
-        static ImGuiID mLastId;
-
-        ImGuiID mId;
     public:
-        TIdentity();
+        TRootFrame();
 
-        ImGuiID GetId() const;
+    protected:
     };
 }

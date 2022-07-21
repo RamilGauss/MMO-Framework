@@ -7,19 +7,19 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <imgui.h>
+#include <limits>
+#include "imgui.h"
+
 #include "TypeDef.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TIdentity
+    class DllExport TMinSize
     {
-        static ImGuiID mLastId;
-
-        ImGuiID mId;
     public:
-        TIdentity();
-
-        ImGuiID GetId() const;
+        void SetMinSize(const ImVec2& value);
+        ImVec2 GetMinSize() const;
+    protected:
+        ImVec2 mValue = { 0, 0 };
     };
 }

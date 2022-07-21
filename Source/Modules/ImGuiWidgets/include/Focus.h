@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Typedef.h"
+#include "TypeDef.h"
 #include "CallbackPool.h"
 
 namespace nsImGuiWidgets

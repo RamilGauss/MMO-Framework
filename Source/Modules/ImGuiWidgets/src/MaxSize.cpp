@@ -5,21 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#pragma once
-
-#include <imgui.h>
-#include "TypeDef.h"
+#include "MaxSize.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TIdentity
+    void TMaxSize::SetMaxSize(const ImVec2& value)
     {
-        static ImGuiID mLastId;
+        mValue = value;
+    }
 
-        ImGuiID mId;
-    public:
-        TIdentity();
-
-        ImGuiID GetId() const;
-    };
+    ImVec2 TMaxSize::GetMaxSize() const
+    {
+        return mValue;
+    }
 }

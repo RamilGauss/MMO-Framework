@@ -7,19 +7,17 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <imgui.h>
 #include "TypeDef.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TIdentity
+    struct DllExport TTextureReference
     {
-        static ImGuiID mLastId;
-
-        ImGuiID mId;
     public:
-        TIdentity();
+        virtual void SetTexture(unsigned int id);
+        virtual unsigned int GetTexture() const;
 
-        ImGuiID GetId() const;
+    protected:
+        unsigned int mTextureId = -1;
     };
 }

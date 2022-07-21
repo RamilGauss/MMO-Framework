@@ -9,14 +9,18 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "Typedef.h"
+#include "TypeDef.h"
 
 #include "Widget.h"
 #include "Focus.h"
+#include "Anchors.h"
+#include "MinSize.h"
+#include "MaxSize.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TUnit : public TWidget, public TFocus
+    class DllExport TUnit : 
+        public TWidget, public TFocus, public TAnchors, public TMinSize, public TMaxSize
     {
     public:
         void Render() override final;

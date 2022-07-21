@@ -143,6 +143,27 @@
     <ClInclude Include="include\ImGuiCustom.h">
       <Filter>Custom</Filter>
     </ClInclude>
+    <ClInclude Include="include\Anchors.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MaxSize.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MinSize.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RootFrame.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ProtoFrame.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TexturedFrame.h">
+      <Filter>Frames</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TextureReference.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Helper.cpp">
@@ -255,6 +276,27 @@
     </ClCompile>
     <ClCompile Include="src\ImGuiCustom.cpp">
       <Filter>Custom</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Anchors.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MaxSize.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MinSize.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RootFrame.cpp">
+      <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TexturedFrame.cpp">
+      <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ProtoFrame.cpp">
+      <Filter>Frames</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextureReference.cpp">
+      <Filter>Properties</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

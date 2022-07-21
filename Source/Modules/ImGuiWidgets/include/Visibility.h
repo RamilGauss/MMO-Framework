@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "Typedef.h"
+#include "TypeDef.h"
 
 namespace nsImGuiWidgets
 {
