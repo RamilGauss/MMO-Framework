@@ -19,5 +19,7 @@ namespace nsImGuiWidgets
         TRootFrame();
 
     protected:
+
+        void BeforeBeginRender() override;
     };
 }

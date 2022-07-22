@@ -44,5 +44,9 @@ namespace nsImGuiWidgets
 
         void SearchInputEvents();
 
+        virtual void BeforeBeginRender() = 0;
+
+        virtual ImVec2 GetChildMinSize() const = 0;
+        virtual ImVec2 GetChildMaxSize() const = 0;
     };
 }

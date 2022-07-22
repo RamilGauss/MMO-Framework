@@ -8,11 +8,18 @@ See for more information LICENSE.md.
 #include "RootFrame.h"
 #include "Helper.h"
 
-using namespace nsImGuiWidgets;
 using namespace nsGraphicEngine;
 
-TRootFrame::TRootFrame()
+namespace nsImGuiWidgets
 {
+    TRootFrame::TRootFrame()
+    {
 
+    }
+    //---------------------------------------------------------------------------------------
+    void TRootFrame::BeforeBeginRender()
+    {
+        ImGui::SetNextWindowSizeConstraints(GetChildMinSize(), GetChildMaxSize());
+    }
+    //---------------------------------------------------------------------------------------
 }
-//---------------------------------------------------------------------------------------

@@ -22,6 +22,9 @@ namespace nsImGuiWidgets
 
     protected:
 
-        void BeginRender() override;
+        void BeforeBeginRender() override;
+
+        ImVec2 GetChildMinSize() const override;
+        ImVec2 GetChildMaxSize() const override;
     };
 }

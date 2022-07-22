@@ -8,9 +8,10 @@ See for more information LICENSE.md.
 #pragma once
 
 //-------------------------------------------------------------
-// например:
-// Register( &TClass::Method, &object )
-// Unregister( &object )
+// For example:
+// Register(&object, &TClass::Method);
+// Register(&object, [this](){this->Foo();});
+// Unregister(&object);
 //-------------------------------------------------------------
 
 #include <map>

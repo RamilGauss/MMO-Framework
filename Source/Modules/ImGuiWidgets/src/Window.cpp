@@ -13,6 +13,8 @@ using namespace nsImGuiWidgets;
 
 void TWindow::BeginRender()
 {
+    BeforeBeginRender();
+
     ImGui::SetNextWindowSize(GetSize());
     ImGui::SetNextWindowPos(GetPos(), ImGuiCond_Appearing);
 

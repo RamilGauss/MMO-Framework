@@ -8,16 +8,28 @@ See for more information LICENSE.md.
 #include "Frame.h"
 #include "Helper.h"
 
-using namespace nsImGuiWidgets;
 using namespace nsGraphicEngine;
 
-TFrame::TFrame()
+namespace nsImGuiWidgets
 {
+    TFrame::TFrame()
+    {
 
+    }
+    //---------------------------------------------------------------------------------------
+    void TFrame::BeforeBeginRender()
+    {
+
+    }
+    //---------------------------------------------------------------------------------------
+    ImVec2 TFrame::GetChildMinSize() const
+    {
+        return GetMinSize();
+    }
+    //---------------------------------------------------------------------------------------
+    ImVec2 TFrame::GetChildMaxSize() const
+    {
+        return GetMaxSize();
+    }
+    //---------------------------------------------------------------------------------------
 }
-//---------------------------------------------------------------------------------------
-void TFrame::BeginRender()
-{
-    TProtoFrame::BeginRender();
-}
-//---------------------------------------------------------------------------------------

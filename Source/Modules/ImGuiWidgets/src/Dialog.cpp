@@ -18,6 +18,8 @@ void TDialog::SetStack(TDialogStack* pDialogStack)
 //---------------------------------------------------------------------------------------
 void TDialog::BeginRender()
 {
+    BeforeBeginRender();
+
     auto oldIsShown = IsShown();
 
     if (mLastIsShown != oldIsShown) {

@@ -42,7 +42,6 @@ C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb76
 C:/Users/Gauss/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 C:/Users/Gauss/.conan/data/magic_enum/0.8.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 C:/Users/Gauss/.conan/data/lz4/1.9.3/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
-C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/
 C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/
 C:/.conan/da4d35/1/
 C:/.conan/15b0e0/1/
@@ -377,7 +376,7 @@ C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce
 
 
 [builddirs_fmt]
-C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/
+
 
 [libs_fmt]
 fmtd
@@ -419,7 +418,7 @@ C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce
 fmt
 
 [version_fmt]
-8.1.1
+None
 
 [generatornames_fmt]
 cmake_find_package=fmt

@@ -18,6 +18,8 @@ TProtoFrame::TProtoFrame() : TWidgetContainer(this)
 //---------------------------------------------------------------------------------------
 void TProtoFrame::BeginRender()
 {
+    BeforeBeginRender();
+
     ImGui::SetCursorPos(GetPos());
 
     ImGui::BeginChildFrame(GetId(), GetSize());
