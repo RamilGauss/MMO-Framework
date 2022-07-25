@@ -19,6 +19,9 @@ See for more information LICENSE.md.
 
 #### "DONE"
 
+2022.07.25:
+ - Grid режим работы Frame.
+
 2022.07.22:
  - ??? TProjectionToUniverseComponent - проекция объекта в другую вселенную. Но появляется лишняя зависимость одних компонентов от других.
  В объекте же кроме него есть еще и другие компоненты - TUniverseGuidComponent и TUniverseIndexComponent.

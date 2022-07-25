@@ -5,41 +5,48 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Frame.h"
-#include "Helper.h"
-
-using namespace nsGraphicEngine;
+#include "Padding.h"
 
 namespace nsImGuiWidgets
 {
-    TFrame::TFrame()
+    void TPadding::SetLeft(int value)
     {
-
+        mLeft = value;
     }
     //---------------------------------------------------------------------------------------
-    void TFrame::BeforeBeginRender()
+    void TPadding::SetTop(int value)
     {
-
+        mTop = value;
     }
     //---------------------------------------------------------------------------------------
-    ImVec2 TFrame::GetChildMinSize() const
+    void TPadding::SetRight(int value)
     {
-        return GetMinSize();
+        mRight = value;
     }
     //---------------------------------------------------------------------------------------
-    ImVec2 TFrame::GetChildMaxSize() const
+    void TPadding::SetBottom(int value)
     {
-        return GetMaxSize();
+        mBottom = value;
     }
     //---------------------------------------------------------------------------------------
-    void TFrame::SetUseGrid(bool value)
+    int TPadding::GetLeft() const
     {
-        mIsUsedGrid = value;
+        return mLeft;
     }
     //---------------------------------------------------------------------------------------
-    bool TFrame::GetUseGrid() const
+    int TPadding::GetTop() const
     {
-        return mIsUsedGrid;
+        return mTop;
+    }
+    //---------------------------------------------------------------------------------------
+    int TPadding::GetRight() const
+    {
+        return mRight;
+    }
+    //---------------------------------------------------------------------------------------
+    int TPadding::GetBottom() const
+    {
+        return mBottom;
     }
     //---------------------------------------------------------------------------------------
 }

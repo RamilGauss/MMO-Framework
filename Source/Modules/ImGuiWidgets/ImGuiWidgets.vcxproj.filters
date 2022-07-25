@@ -164,6 +164,18 @@
     <ClInclude Include="include\TextureReference.h">
       <Filter>Properties</Filter>
     </ClInclude>
+    <ClInclude Include="include\VerticalAlign.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HorizontalAlign.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Padding.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Grid.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Helper.cpp">
@@ -296,6 +308,18 @@
       <Filter>Frames</Filter>
     </ClCompile>
     <ClCompile Include="src\TextureReference.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HorizontalAlign.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VerticalAlign.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Grid.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Padding.cpp">
       <Filter>Properties</Filter>
     </ClCompile>
   </ItemGroup>

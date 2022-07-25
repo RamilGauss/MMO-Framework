@@ -16,11 +16,14 @@ See for more information LICENSE.md.
 #include "Anchors.h"
 #include "MinSize.h"
 #include "MaxSize.h"
+#include "VerticalAlign.h"
+#include "HorizontalAlign.h"
 
 namespace nsImGuiWidgets
 {
     class DllExport TUnit : 
-        public TWidget, public TFocus, public TAnchors, public TMinSize, public TMaxSize
+        public TWidget, public TFocus, public TAnchors, public TMinSize, public TMaxSize,
+        public TVerticalAlign, public THorizontalAlign
     {
     public:
         void Render() override final;
