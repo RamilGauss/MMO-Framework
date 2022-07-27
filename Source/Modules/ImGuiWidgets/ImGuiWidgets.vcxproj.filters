@@ -176,6 +176,9 @@
     <ClInclude Include="include\Grid.h">
       <Filter>Properties</Filter>
     </ClInclude>
+    <ClInclude Include="include\Spacing.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Helper.cpp">
@@ -320,6 +323,9 @@
       <Filter>Properties</Filter>
     </ClCompile>
     <ClCompile Include="src\Padding.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Spacing.cpp">
       <Filter>Properties</Filter>
     </ClCompile>
   </ItemGroup>

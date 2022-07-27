@@ -1244,6 +1244,9 @@
     <ClInclude Include="Modules\GuidReference.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Common\ProjectionToUniverseComponent.h">
+      <Filter>Components\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />

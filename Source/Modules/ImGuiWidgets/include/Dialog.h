@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Frame.h"
+#include "RootFrame.h"
 
 namespace nsImGuiWidgets
 {
     class TDialogStack;
-    class DllExport TDialog : public TFrame
+    class DllExport TDialog : public TRootFrame
     {
         bool mLastIsShown = false;
 

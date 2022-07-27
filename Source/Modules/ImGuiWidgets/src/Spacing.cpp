@@ -5,18 +5,18 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "VerticalAlign.h"
+#include "Spacing.h"
 
 namespace nsImGuiWidgets
 {
-    void TVerticalAlign::SetVerticalAlign(Type value)
+    void TSpacing::SetSpacing(int value)
     {
-        mValue = value;
+        mSpacing = value;
     }
     //------------------------------------------------------------------------------
-    TVerticalAlign::Type TVerticalAlign::GetVerticalAlign() const
+    int TSpacing::GetSpacing() const
     {
-        return mValue;
+        return mSpacing;
     }
     //------------------------------------------------------------------------------
 }

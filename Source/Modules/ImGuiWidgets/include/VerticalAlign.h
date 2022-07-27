@@ -21,8 +21,8 @@ namespace nsImGuiWidgets
             BOTTOM,
         };
 
-        virtual void SetAlign(Type value);
-        virtual Type GetAlign() const;
+        virtual void SetVerticalAlign(Type value);
+        virtual Type GetVerticalAlign() const;
 
     protected:
         Type mValue = Type::CENTER;

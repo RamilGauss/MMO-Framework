@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_21 20:52:37.223
+// File has been generated at 2022_07_26 07:58:00.306
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -148,6 +148,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsCommonWrapper_TPrefabRootComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabRootComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TPrefabRootComponentTypeFunc, _nsCommonWrapper_TPrefabRootComponentTypeFunc });
+    
+    TypeFunc _nsCommonWrapper_TProjectionToUniverseComponentTypeFunc;
+    _nsCommonWrapper_TProjectionToUniverseComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TProjectionToUniverseComponent>((nsCommonWrapper::TProjectionToUniverseComponent*) p, str);
+    };
+    _nsCommonWrapper_TProjectionToUniverseComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TProjectionToUniverseComponent>((nsCommonWrapper::TProjectionToUniverseComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TProjectionToUniverseComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TProjectionToUniverseComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TProjectionToUniverseComponentTypeFunc, _nsCommonWrapper_TProjectionToUniverseComponentTypeFunc });
     
     TypeFunc _nsCommonWrapper_TSceneGuidComponentTypeFunc;
     _nsCommonWrapper_TSceneGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -891,6 +903,16 @@ void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TPrefabRootComponent*
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TPrefabRootComponent* p, const Jobj& obj)
 {
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TProjectionToUniverseComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "guid", p->guid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsCommonWrapper::TProjectionToUniverseComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "guid", p->guid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsCommonWrapper::TSceneGuidComponent* p, Jobj& obj)

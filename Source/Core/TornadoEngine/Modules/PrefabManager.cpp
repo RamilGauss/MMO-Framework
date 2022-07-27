@@ -31,6 +31,7 @@ See for more information LICENSE.md.
 #include "SceneRootComponent.h"
 #include "PrefabObjectConstructor.h"
 
+#include "ProjectionToUniverseComponent.h"
 #include "UniverseGuidComponent.h"
 #include "UniverseIndexComponent.h"
 
@@ -323,10 +324,24 @@ void TPrefabManager::SetupUniverse(const std::list<nsECSFramework::TEntityID>& n
 
     BL_ASSERT(sceneRootEid != nsECSFramework::NONE);
 
-    auto universeGuidComponent = mEntityManager->ViewComponent<TUniverseGuidComponent>(sceneRootEid);
-    AddComponent(newEntities, universeGuidComponent);
+    auto universeGuidComponent = *(mEntityManager->ViewComponent<TUniverseGuidComponent>(sceneRootEid));
+    auto universeIndexComponent = *(mEntityManager->ViewComponent<TUniverseIndexComponent>(sceneRootEid));
 
-    auto universeIndexComponent = mEntityManager->ViewComponent<TUniverseIndexComponent>(sceneRootEid);
-    AddComponent(newEntities, universeIndexComponent);
+    for (auto& eid : newEntities) {
+        auto projectionToUniverseComponent = mEntityManager->ViewComponent<TProjectionToUniverseComponent>(eid);
+        if (projectionToUniverseComponent) {
+            TUniverseGuidComponent fromUniverseGuidComponent;
+            fromUniverseGuidComponent.value = projectionToUniverseComponent->guid;
+            auto otherUniverseEid = mEntityManager->GetByValue(fromUniverseGuidComponent);
+
+            mEntityManager->SetComponent(eid, fromUniverseGuidComponent);
+
+            auto fromUniverseIndexComponent = *(mEntityManager->ViewComponent<TUniverseIndexComponent>(otherUniverseEid->front()));
+            mEntityManager->SetComponent(eid, fromUniverseIndexComponent);
+        } else {
+            mEntityManager->SetComponent(eid, universeGuidComponent);
+            mEntityManager->SetComponent(eid, universeIndexComponent);
+        }
+    }
 }
 //--------------------------------------------------------------------------------

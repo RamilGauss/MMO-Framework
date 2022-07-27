@@ -20,6 +20,9 @@ namespace nsImGuiWidgets
 
     protected:
 
-        void BeforeBeginRender() override;
+        virtual void BeforeBeginRender();
+
+    private:
+        ImVec2 mChildMinSize;
     };
 }

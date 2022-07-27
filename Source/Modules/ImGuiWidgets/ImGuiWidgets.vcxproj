@@ -58,6 +58,7 @@
     <ClInclude Include="include\ProtoFrame.h" />
     <ClInclude Include="include\RootFrame.h" />
     <ClInclude Include="include\Separator.h" />
+    <ClInclude Include="include\Spacing.h" />
     <ClInclude Include="include\TextureReference.h" />
     <ClInclude Include="include\TexturedFrame.h" />
     <ClInclude Include="include\Title.h" />
@@ -108,6 +109,7 @@
     <ClCompile Include="src\ProtoFrame.cpp" />
     <ClCompile Include="src\RootFrame.cpp" />
     <ClCompile Include="src\Separator.cpp" />
+    <ClCompile Include="src\Spacing.cpp" />
     <ClCompile Include="src\TextureReference.cpp" />
     <ClCompile Include="src\TexturedFrame.cpp" />
     <ClCompile Include="src\Title.cpp" />

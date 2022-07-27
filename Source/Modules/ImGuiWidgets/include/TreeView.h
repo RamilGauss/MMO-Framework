@@ -54,13 +54,11 @@ namespace nsImGuiWidgets
 
         void ContinueDrag(bool result);
         void ContinueDrop(bool result);
-
     protected:
         void BeginRender() override;
 
     private:
         TTreeNode* FoundNode(const std::string& id);
         void OnSelection(TNode* pSelectedNode);
-        void OnClicked(TNode* pSelectedNode);
     };
 }

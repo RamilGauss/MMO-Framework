@@ -18,8 +18,6 @@ TProtoFrame::TProtoFrame() : TWidgetContainer(this)
 //---------------------------------------------------------------------------------------
 void TProtoFrame::BeginRender()
 {
-    BeforeBeginRender();
-
     ImGui::SetCursorPos(GetPos());
 
     ImGui::BeginChildFrame(GetId(), GetSize());
@@ -75,6 +73,7 @@ TWidget* TProtoFrame::GetChildByGlobalPos(const ImVec2& mousePos)
     for (auto& child : mWidgets) {
         switch (child->GetSubType()) {
         case SubType::UNIT:
+        case SubType::PROTO_FRAME:
         case SubType::FRAME:
         {
             auto childPos = child->GetGlobalPos();
@@ -95,6 +94,16 @@ TWidget* TProtoFrame::GetChildByGlobalPos(const ImVec2& mousePos)
 //---------------------------------------------------------------------------------------
 TWidget::SubType TProtoFrame::GetSubType() const
 {
-    return SubType::FRAME;
+    return SubType::PROTO_FRAME;
+}
+//---------------------------------------------------------------------------------------
+ImVec2 TProtoFrame::GetChildMinSize() const
+{
+    return GetMinSize();
+}
+//---------------------------------------------------------------------------------------
+ImVec2 TProtoFrame::GetChildMaxSize() const
+{
+    return GetMaxSize();
 }
 //---------------------------------------------------------------------------------------

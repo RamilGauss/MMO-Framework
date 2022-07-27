@@ -9,12 +9,12 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    void THorizontalAlign::SetAlign(Type value)
+    void THorizontalAlign::SetHorizontalAlign(Type value)
     {
         mValue = value;
     }
     //------------------------------------------------------------------------------
-    THorizontalAlign::Type THorizontalAlign::GetAlign() const
+    THorizontalAlign::Type THorizontalAlign::GetHorizontalAlign() const
     {
         return mValue;
     }

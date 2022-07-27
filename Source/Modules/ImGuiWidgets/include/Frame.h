@@ -13,11 +13,12 @@ See for more information LICENSE.md.
 #include "Events.h"
 #include "CallbackPool.h"
 #include "Padding.h"
+#include "Spacing.h"
 #include "Grid.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TFrame : public TProtoFrame, public TPadding, public TGrid
+    class DllExport TFrame : public TProtoFrame, public TPadding, public TSpacing, public TGrid
     {
     public:
         TFrame();
@@ -25,12 +26,19 @@ namespace nsImGuiWidgets
         void SetUseGrid(bool value);
         bool GetUseGrid() const;
 
-    protected:
+        void GridUpdateChildGeometry();// Padding, Spacing, Anchor, Min, Max, VAlign, HAlign
+        void UpdateChildGeometry();    // Anchor, Min, Max, VAlign, HAlign
 
-        void BeforeBeginRender() override;
+        ImVec2 GridCalculateMinSize();
+        ImVec2 CalculateMinSize();
+
+        TWidget::SubType GetSubType() const override;
+    protected:
 
         ImVec2 GetChildMinSize() const override;
         ImVec2 GetChildMaxSize() const override;
+
+        ImVec2 mCalculatedMinSize;
 
     private:
         bool mIsUsedGrid = false;

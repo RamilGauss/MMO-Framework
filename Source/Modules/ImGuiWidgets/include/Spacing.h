@@ -11,20 +11,14 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    struct DllExport THorizontalAlign
+    struct DllExport TSpacing
     {
     public:
-        enum class Type
-        {
-            LEFT,
-            CENTER,
-            RIGHT,
-        };
 
-        virtual void SetHorizontalAlign(Type value);
-        virtual Type GetHorizontalAlign() const;
+        virtual void SetSpacing(int value);
 
+        virtual int GetSpacing() const;
     protected:
-        Type mValue = Type::CENTER;
+        int mSpacing = 0;
     };
 }

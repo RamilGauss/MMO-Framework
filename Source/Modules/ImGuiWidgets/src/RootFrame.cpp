@@ -19,6 +19,14 @@ namespace nsImGuiWidgets
     //---------------------------------------------------------------------------------------
     void TRootFrame::BeforeBeginRender()
     {
+        if (GetUseGrid()) {
+            GridUpdateChildGeometry();
+            mChildMinSize = GridCalculateMinSize();
+        } else {
+            UpdateChildGeometry();
+            mChildMinSize = CalculateMinSize();
+        }
+
         ImGui::SetNextWindowSizeConstraints(GetChildMinSize(), GetChildMaxSize());
     }
     //---------------------------------------------------------------------------------------

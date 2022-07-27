@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_06_21 20:52:37.275
+// File has been generated at 2022_07_26 07:58:00.351
 	
 #pragma once
 
@@ -45,6 +45,7 @@
 #include "PrefabOriginalGuidComponent.h"
 #include "PrefabReferenceComponent.h"
 #include "PrefabRootComponent.h"
+#include "ProjectionToUniverseComponent.h"
 #include "RenderToTextureCameraComponent.h"
 #include "SceneGuidComponent.h"
 #include "SceneInstanceGuidComponent.h"

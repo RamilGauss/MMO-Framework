@@ -31,7 +31,7 @@ namespace nsImGuiWidgets
     public:
         enum class SubType
         {
-            WIDGET, NODE, UNIT, FRAME
+            WIDGET, NODE, UNIT, PROTO_FRAME, FRAME
         };
         virtual SubType GetSubType() const;
 
