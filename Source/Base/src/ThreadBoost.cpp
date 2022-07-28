@@ -12,65 +12,69 @@ See for more information LICENSE.md.
 
 TThreadBoost::TThreadBoost()
 {
-  flgActive = false;
-  flgNeedStop = false;
+    flgActive = false;
+    flgNeedStop = false;
 
-  mTimeStart = -1;
+    mTimeStart = -1;
 }
 //-----------------------------------------------------------------
 TThreadBoost::~TThreadBoost()
 {
-  Stop();
+    Stop();
 }
 //-----------------------------------------------------------------
 void TThreadBoost::Engine()
 {
-  flgNeedStop = false;
-  flgActive = true;
+    flgNeedStop = false;
+    flgActive = true;
 
-  StartEvent();
+    StartEvent();
 
-  while( flgNeedStop == false )
-    Work();
+    while (flgNeedStop == false) {
+        Work();
+    }
 
-  StopEvent();
+    StopEvent();
 
-  flgActive = false;
+    flgActive = false;
 }
 //----------------------------------------------------------------------------------
 void TThreadBoost::Start()
 {
-  boost::thread work_thread( boost::bind( &TThreadBoost::Engine, this ) );
+    boost::thread work_thread(boost::bind(&TThreadBoost::Engine, this));
 
-  while( IsActive() == false )
-    ht_msleep( eWaitFeedBack );
+    while (IsActive() == false) {
+        ht_msleep(eWaitFeedBack);
+    }
 
-  mTimeStart = ht_GetMSCount();
+    mTimeStart = ht_GetMSCount();
 }
 //----------------------------------------------------------------------------------
 void TThreadBoost::Stop()
 {
-  flgNeedStop = true;
+    flgNeedStop = true;
 
-  while( IsActive() )
-    ht_msleep( eWaitFeedBack );
+    while (IsActive()) {
+        ht_msleep(eWaitFeedBack);
+    }
 }
 //----------------------------------------------------------------------------------
 bool TThreadBoost::IsActive()
 {
-  return flgActive;
+    return flgActive;
 }
 //---------------------------------------------------------------------------------
 unsigned int TThreadBoost::GetTimeLastStart()
 {
-  return mTimeStart;
+    return mTimeStart;
 }
 //---------------------------------------------------------------------------------
 unsigned int TThreadBoost::GetTimeWork()
 {
-  if( IsActive() == false )
-    return 0;
-  unsigned int now_ms = ht_GetMSCount();
-  return now_ms - mTimeStart;
+    if (IsActive() == false) {
+        return 0;
+    }
+    unsigned int now_ms = ht_GetMSCount();
+    return now_ms - mTimeStart;
 }
 //---------------------------------------------------------------------------------

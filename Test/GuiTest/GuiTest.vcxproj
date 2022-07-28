@@ -148,9 +148,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="WindowAndFrameTest.cpp" />
+    <ClCompile Include="WindowGridTest.cpp" />
+    <ClCompile Include="WindowTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WindowAndFrameTest.h" />
+    <ClInclude Include="WindowGridTest.h" />
+    <ClInclude Include="WindowTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

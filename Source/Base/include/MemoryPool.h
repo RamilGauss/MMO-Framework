@@ -17,106 +17,101 @@ template<typename Type>
 class DllExport TMemoryPool
 {
 public:
-  struct TPointerDesc
-  {
-    Type* p = nullptr;
-    int size = 0;
-  private:
-    friend class TMemoryPool;
-    unsigned char poped = false;
-  };
+    struct TPointerDesc
+    {
+        Type* p = nullptr;
+        int size = 0;
+    private:
+        friend class TMemoryPool;
+        unsigned char poped = false;
+    };
 
-  TPointerDesc* Pop( int size );
-  void Push( TPointerDesc* pDesc );
+    TPointerDesc* Pop(int size);
+    void Push(TPointerDesc* pDesc);
 
-  void Clear();
+    void Clear();
 private:
-  typedef TVectorRise<TPointerDesc*> TVectorRiseDescPtr;
+    typedef TVectorRise<TPointerDesc*> TVectorRiseDescPtr;
 
-  typedef std::map<int, TVectorRiseDescPtr*> TIntVectorDescPtrMap;
-  typedef typename TIntVectorDescPtrMap::iterator   TIntVectorDescPtrMapIt;
-  typedef typename TIntVectorDescPtrMap::value_type TIntVectorDescPtrMapVT;
+    typedef std::map<int, TVectorRiseDescPtr*> TIntVectorDescPtrMap;
+    typedef typename TIntVectorDescPtrMap::iterator   TIntVectorDescPtrMapIt;
+    typedef typename TIntVectorDescPtrMap::value_type TIntVectorDescPtrMapVT;
 
-  TIntVectorDescPtrMap mSizePtrMap;
+    TIntVectorDescPtrMap mSizePtrMap;
 
-  // для хранения всех указателей
-  TVectorRiseDescPtr mPool;
+    // для хранения всех указателей
+    TVectorRiseDescPtr mPool;
 
-  TPointerDesc* Allocate( int size );
+    TPointerDesc* Allocate(int size);
 
-  TVectorRiseDescPtr* GetVectorRiseDescPtr( int size );
+    TVectorRiseDescPtr* GetVectorRiseDescPtr(int size);
 };
 //--------------------------------------------------------------------------------------
 template<typename Type>
-typename TMemoryPool<Type>::TPointerDesc* TMemoryPool<Type>::Pop( int size )
+typename TMemoryPool<Type>::TPointerDesc* TMemoryPool<Type>::Pop(int size)
 {
-  TPointerDesc* pDesc = nullptr;
-  auto pVecRise = GetVectorRiseDescPtr( size );
-  if ( pVecRise->mCounter == 0 )
-  {
-    pDesc = Allocate( size );
-  }
-  else
-  {
-    pDesc = pVecRise->mVec[pVecRise->mCounter - 1];
-    pVecRise->PopBack();
-  }
+    TPointerDesc* pDesc = nullptr;
+    auto pVecRise = GetVectorRiseDescPtr(size);
+    if (pVecRise->mCounter == 0) {
+        pDesc = Allocate(size);
+    } else {
+        pDesc = pVecRise->mVec[pVecRise->mCounter - 1];
+        pVecRise->PopBack();
+    }
 
-  pDesc->poped = true;
-  return pDesc;
+    pDesc->poped = true;
+    return pDesc;
 }
 //--------------------------------------------------------------------------------------
 template<typename Type>
-void TMemoryPool<Type>::Push( TPointerDesc* pDesc )
+void TMemoryPool<Type>::Push(TPointerDesc* pDesc)
 {
-  if( pDesc->poped == false )
-    return;
-  pDesc->poped = false;
+    if (pDesc->poped == false)
+        return;
+    pDesc->poped = false;
 
-  auto pVecRise = GetVectorRiseDescPtr( pDesc->size );
-  pVecRise->Append( pDesc );
+    auto pVecRise = GetVectorRiseDescPtr(pDesc->size);
+    pVecRise->Append(pDesc);
 }
 //--------------------------------------------------------------------------------------
 template<typename Type>
-typename TMemoryPool<Type>::TVectorRiseDescPtr* TMemoryPool<Type>::GetVectorRiseDescPtr( int size )
+typename TMemoryPool<Type>::TVectorRiseDescPtr* TMemoryPool<Type>::GetVectorRiseDescPtr(int size)
 {
-  auto fit = mSizePtrMap.find( size );
-  if ( fit == mSizePtrMap.end() )
-  {
-    mSizePtrMap.insert( {size, new TVectorRiseDescPtr()} );
-    fit = mSizePtrMap.find( size );
-  }
-  return fit->second;
+    auto fit = mSizePtrMap.find(size);
+    if (fit == mSizePtrMap.end()) {
+        mSizePtrMap.insert({ size, new TVectorRiseDescPtr() });
+        fit = mSizePtrMap.find(size);
+    }
+    return fit->second;
 }
 //--------------------------------------------------------------------------------------
 template<typename Type>
-typename TMemoryPool<Type>::TPointerDesc* TMemoryPool<Type>::Allocate( int size )
+typename TMemoryPool<Type>::TPointerDesc* TMemoryPool<Type>::Allocate(int size)
 {
-  auto* pDesc = new TPointerDesc();
-  pDesc->p = new Type[size];
-  pDesc->size = size;
+    auto* pDesc = new TPointerDesc();
+    pDesc->p = new Type[size];
+    pDesc->size = size;
 
-  mPool.Append( pDesc );
-  return pDesc;
+    mPool.Append(pDesc);
+    return pDesc;
 }
 //--------------------------------------------------------------------------------------
 template<typename Type>
 void TMemoryPool<Type>::Clear()
 {
-  for ( size_t i = 0; i < mPool.mCounter; i++ )
-  {
-    auto pDesc = mPool.mVec[i];
-    if ( pDesc->size == 1 )
-      delete mPool.mVec[i]->p;
-    else if ( pDesc->size > 0 )
-      delete[] mPool.mVec[i]->p;
-    delete mPool.mVec[i];
-  }
-  mPool.Clear();
+    for (size_t i = 0; i < mPool.mCounter; i++) {
+        auto pDesc = mPool.mVec[i];
+        if (pDesc->size == 1)
+            delete mPool.mVec[i]->p;
+        else if (pDesc->size > 0)
+            delete[] mPool.mVec[i]->p;
+        delete mPool.mVec[i];
+    }
+    mPool.Clear();
 
-  for ( auto pair : mSizePtrMap )
-    delete pair.second;
+    for (auto pair : mSizePtrMap)
+        delete pair.second;
 
-  mSizePtrMap.clear();
+    mSizePtrMap.clear();
 }
 //--------------------------------------------------------------------------------------

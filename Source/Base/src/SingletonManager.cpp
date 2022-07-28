@@ -11,5 +11,5 @@ TSingletonManager g_SingletonManager;
 
 TSingletonManager* SingletonManager()
 {
-  return &g_SingletonManager;
+    return &g_SingletonManager;
 }

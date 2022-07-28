@@ -12,23 +12,23 @@ See for more information LICENSE.md.
 
 class DllExport TReversedContainerRise
 {
-  TContainer mC;
-  int  mSizeUse;
+    TContainer mC;
+    int  mSizeUse;
 public:
-  TReversedContainerRise();
-  TReversedContainerRise( const TReversedContainerRise& c );
-  TReversedContainerRise& operator = ( const TReversedContainerRise& c );
+    TReversedContainerRise();
+    TReversedContainerRise(const TReversedContainerRise& c);
+    TReversedContainerRise& operator = (const TReversedContainerRise& c);
 
-  void Clear();
-  // offset > 0
-  void Shift( int offset );
-  // size > 0,  p != nullptr
-  // добавит к размеру и скопирует внутрь
-  void Append( int size, char* p );
+    void Clear();
+    // offset > 0
+    void Shift(int offset);
+    // size > 0,  p != nullptr
+    // добавит к размеру и скопирует внутрь
+    void Append(int size, char* p);
 
-  char* GetPtr() const;
-  int GetSize() const;
+    char* GetPtr() const;
+    int GetSize() const;
 
-  void Alloc( int new_size );  // не копирует 
-  void Realloc( int new_size );// копирует старый кусок
+    void Alloc(int new_size);  // не копирует 
+    void Realloc(int new_size);// копирует старый кусок
 };

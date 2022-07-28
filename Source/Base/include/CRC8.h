@@ -12,8 +12,8 @@ See for more information LICENSE.md.
 class DllExport TCRC8
 {
 public:
-  TCRC8();
-  ~TCRC8();
+    TCRC8();
+    ~TCRC8();
 
-  void Calc( void* pIn, int sizeIn, unsigned char& crc );
+    void Calc(void* pIn, int sizeIn, unsigned char& crc);
 };

@@ -14,17 +14,17 @@ See for more information LICENSE.md.
 class DllExport TMemoryObjectPoolAllocator
 {
 public:
-  template<typename Type>
-  static Type* AllocateFunc()
-  {
-    return SingletonManager()->Get<TMemoryObjectPool<Type>>()->Pop();
-  }
-  template<typename Type>
-  static void DeallocateFunc( Type* p )
-  {
-    if ( p == nullptr )
-      return;
+    template<typename Type>
+    static Type* AllocateFunc()
+    {
+        return SingletonManager()->Get<TMemoryObjectPool<Type>>()->Pop();
+    }
+    template<typename Type>
+    static void DeallocateFunc(Type* p)
+    {
+        if (p == nullptr)
+            return;
 
-    SingletonManager()->Get<TMemoryObjectPool<Type>>()->Push( p );
-  }
+        SingletonManager()->Get<TMemoryObjectPool<Type>>()->Push(p);
+    }
 };

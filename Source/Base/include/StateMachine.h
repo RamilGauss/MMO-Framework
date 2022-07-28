@@ -15,26 +15,25 @@ template<typename Type>
 class DllExport TStateMachine
 {
 public:
-  using TCallBackFunc = std::function<bool( Type& )>;
+    using TCallBackFunc = std::function<bool(Type&)>;
 private:
-  TCallBackFunc* mPtrStateFunc = nullptr;
+    TCallBackFunc* mPtrStateFunc = nullptr;
 public:
-  TStateMachine( TCallBackFunc* pStateFunc ) : mPtrStateFunc( pStateFunc )
-  {
-  }
-
-  void Work( Type* pThis, TCallBackFunc beforeAction = nullptr, TCallBackFunc afterAction = nullptr )
-  {
-    while ( true )
+    TStateMachine(TCallBackFunc* pStateFunc) : mPtrStateFunc(pStateFunc)
     {
-      if ( beforeAction && beforeAction( *pThis ) == false )
-        return;
-      auto result = mPtrStateFunc[0]( *pThis );
-      if ( result == false )
-        return;
-      if ( afterAction && afterAction( *pThis ) == false )
-        return;
     }
-  }
+
+    void Work(Type* pThis, TCallBackFunc beforeAction = nullptr, TCallBackFunc afterAction = nullptr)
+    {
+        while (true) {
+            if (beforeAction && beforeAction(*pThis) == false)
+                return;
+            auto result = mPtrStateFunc[0](*pThis);
+            if (result == false)
+                return;
+            if (afterAction && afterAction(*pThis) == false)
+                return;
+        }
+    }
 };
 //---------------------------------------------------------------------------------------

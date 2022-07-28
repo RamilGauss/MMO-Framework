@@ -20,7 +20,7 @@ namespace nsImGuiWidgets
 
     protected:
 
-        virtual void BeforeBeginRender();
+        void BeforeBeginRender();
 
     private:
         ImVec2 mChildMinSize;

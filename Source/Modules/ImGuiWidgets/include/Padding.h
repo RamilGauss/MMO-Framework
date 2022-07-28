@@ -15,16 +15,16 @@ namespace nsImGuiWidgets
     {
     public:
 
-        virtual void SetLeft(int value);
-        virtual void SetTop(int value);
-        virtual void SetRight(int value);
-        virtual void SetBottom(int value);
+        virtual void SetLeftPadding(int value);
+        virtual void SetTopPadding(int value);
+        virtual void SetRightPadding(int value);
+        virtual void SetBottomPadding(int value);
 
-        virtual int GetLeft() const;
-        virtual int GetTop() const;
-        virtual int GetRight() const;
-        virtual int GetBottom() const;
-    protected:
+        virtual int GetLeftPadding() const;
+        virtual int GetTopPadding() const;
+        virtual int GetRightPadding() const;
+        virtual int GetBottomPadding() const;
+    private:
         int mTop = 0;
         int mLeft = 0;
         int mBottom = 0;

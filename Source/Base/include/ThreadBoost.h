@@ -11,31 +11,31 @@ See for more information LICENSE.md.
 
 class DllExport TThreadBoost
 {
-  volatile bool flgActive;
-  volatile bool flgNeedStop;
+    volatile bool flgActive;
+    volatile bool flgNeedStop;
 
-  volatile unsigned int mTimeStart;
-  enum
-  {
-    eWaitFeedBack = 1, // ждать пока активизируется двигатель, мс
-  };
+    volatile unsigned int mTimeStart;
+    enum
+    {
+        eWaitFeedBack = 1, // ждать пока активизируется двигатель, мс
+    };
 
 public:
-  TThreadBoost();
-  virtual ~TThreadBoost();
+    TThreadBoost();
+    virtual ~TThreadBoost();
 
-  virtual bool IsActive();
-  virtual void Start();
-  virtual void Stop();
+    virtual bool IsActive();
+    virtual void Start();
+    virtual void Stop();
 
-  virtual unsigned int GetTimeLastStart();
-  virtual unsigned int GetTimeWork();
+    virtual unsigned int GetTimeLastStart();
+    virtual unsigned int GetTimeWork();
 protected:
-  void Engine();
+    void Engine();
 protected:
-  virtual void Work() = 0;
-  virtual void StartEvent()
-  {}
-  virtual void StopEvent()
-  {}
+    virtual void Work() = 0;
+    virtual void StartEvent()
+    {}
+    virtual void StopEvent()
+    {}
 };

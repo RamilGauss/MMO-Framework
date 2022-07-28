@@ -17,11 +17,12 @@ TCRC8::~TCRC8()
 
 }
 //-------------------------------------------------------------
-void TCRC8::Calc( void* pIn, int sizeIn, unsigned char& crc )
+void TCRC8::Calc(void* pIn, int sizeIn, unsigned char& crc)
 {
-  crc = 0;
-  unsigned char* pUchar = (unsigned char*) pIn;
-  for( int i = 0; i < sizeIn; i++ )
-    crc += pUchar[i];
+    crc = 0;
+    unsigned char* pUchar = (unsigned char*)pIn;
+    for (int i = 0; i < sizeIn; i++) {
+        crc += pUchar[i];
+    }
 }
 //-------------------------------------------------------------

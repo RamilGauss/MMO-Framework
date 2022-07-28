@@ -11,5 +11,5 @@ TGlobalTypeIdentifier g_GlobalTypeIdentifier;
 
 TGlobalTypeIdentifier* GlobalTypeIdentifier()
 {
-  return &g_GlobalTypeIdentifier;
+    return &g_GlobalTypeIdentifier;
 }

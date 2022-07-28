@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 TDescCallBack::TDescCallBack()
 {
-  mPtrCallBack = nullptr;
+    mPtrCallBack = nullptr;
 }
 //-------------------------------------------------------------------------
 TDescCallBack::~TDescCallBack()
@@ -19,11 +19,11 @@ TDescCallBack::~TDescCallBack()
 //-------------------------------------------------------------------------
 void TDescCallBack::Notify()
 {
-  ( (TCallBackRegistrator0*) mPtrCallBack )->Notify();
+    ((TCallBackRegistrator0*)mPtrCallBack)->Notify();
 }
 //-------------------------------------------------------------------------
-void TDescCallBack::Set( void* pCB )
+void TDescCallBack::Set(void* pCB)
 {
-  mPtrCallBack = pCB;
+    mPtrCallBack = pCB;
 }
 //-------------------------------------------------------------------------

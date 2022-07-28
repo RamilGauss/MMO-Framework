@@ -12,15 +12,15 @@ See for more information LICENSE.md.
 
 class DllExport TSHA256
 {
-  void* mContext; // контекст хэша
+    void* mContext; // контекст хэша
 
 public:
-  TSHA256();
-  ~TSHA256();
+    TSHA256();
+    ~TSHA256();
 
-  void Begin();
-  void Calc( void* pIn, int sizeIn );
-  void End( TContainer& result );
+    void Begin();
+    void Calc(void* pIn, int sizeIn);
+    void End(TContainer& result);
 
-  void FastCalc( void* pIn, int sizeIn, TContainer& result );
+    void FastCalc(void* pIn, int sizeIn, TContainer& result);
 };

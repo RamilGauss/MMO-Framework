@@ -8,25 +8,24 @@ See for more information LICENSE.md.
 #include "MapCallBack.h"
 #include "BL_Debug.h"
 
-TDescCallBack* TMapCallBack::FindDesc( int type )
+TDescCallBack* TMapCallBack::FindDesc(int type)
 {
-  TMapIntDescCBIt fit = mMapTypeCallBack.find( type );
-  if( fit == mMapTypeCallBack.end() )
-  {
-    BL_FIX_BUG();
-    return nullptr;
-  }
-  return &(fit->second);
+    TMapIntDescCBIt fit = mMapTypeCallBack.find(type);
+    if (fit == mMapTypeCallBack.end()) {
+        BL_FIX_BUG();
+        return nullptr;
+    }
+    return &(fit->second);
 }
 //--------------------------------------------------------------
-void TMapCallBack::AddCallBack( int type, TCallBackRegistrator0* pCB )
+void TMapCallBack::AddCallBack(int type, TCallBackRegistrator0* pCB)
 {
-  mMapTypeCallBack.insert( TMapIntDescCB::value_type( type, TDescCallBack() ) );
-  FindDesc( type )->Set( pCB );
+    mMapTypeCallBack.insert(TMapIntDescCB::value_type(type, TDescCallBack()));
+    FindDesc(type)->Set(pCB);
 }
 //--------------------------------------------------------------
-void TMapCallBack::Notify( int type )
+void TMapCallBack::Notify(int type)
 {
-  FindDesc( type )->Notify();
+    FindDesc(type)->Notify();
 }
 //--------------------------------------------------------------

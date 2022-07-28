@@ -15,20 +15,20 @@ See for more information LICENSE.md.
 
 class DllExport TExecuteInstructionEngine : public TThreadBoost
 {
-  std::mutex mMutex;
-  std::condition_variable mCondVar;
+    std::mutex mMutex;
+    std::condition_variable mCondVar;
 public:
-  typedef std::function <void()> InstructionResult;
-  typedef std::function <InstructionResult*()> Instruction;
+    typedef std::function <void()> InstructionResult;
+    typedef std::function <InstructionResult* ()> Instruction;
 protected:
-  TDataExchange2Thread<Instruction> mConcurrentInstruction;
-  TDataExchange2Thread<InstructionResult> mConcurrentInstructionResult;
+    TDataExchange2Thread<Instruction> mConcurrentInstruction;
+    TDataExchange2Thread<InstructionResult> mConcurrentInstructionResult;
 public:
-  void Push( Instruction& instruction );
-  void Pop();
+    void Push(Instruction& instruction);
+    void Pop();
 protected:
-  void Work() override;
+    void Work() override;
 
-  void TrySleep();
-  void WakeUp();
+    void TrySleep();
+    void WakeUp();
 };

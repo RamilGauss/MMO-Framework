@@ -25,7 +25,7 @@ public:
 
     inline Type* Begin() const
     {
-        return (Type*) &mVec[0];
+        return (Type*)&mVec[0];
     }
 
     int Size()

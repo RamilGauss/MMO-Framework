@@ -24,41 +24,41 @@ See for more information LICENSE.md.
 
 class DllExport TBreakPacket
 {
-  int mSizeBuffer;
+    int mSizeBuffer;
 
-  //TContainer mBackBuffer;
-  TContainerRise mBackBuffer;
-  //int mBackOffset;
+    //TContainer mBackBuffer;
+    TContainerRise mBackBuffer;
+    //int mBackOffset;
 
-  //TContainer mFrontBuffer;
-  TReversedContainerRise mFrontBuffer;
-  //int mFrontOffset;
+    //TContainer mFrontBuffer;
+    TReversedContainerRise mFrontBuffer;
+    //int mFrontOffset;
 
-  TContainerRise mCollect;
+    TContainerRise mCollect;
 public:
-  enum
-  {
-    DEFAULT_MEMORY_SIZE = 100
-  };
-  TBreakPacket( int sizeBuffer = DEFAULT_MEMORY_SIZE/*0xFFFF*/ );
-  TBreakPacket( const TBreakPacket& bp );
-  virtual ~TBreakPacket();
+    enum
+    {
+        DEFAULT_MEMORY_SIZE = 100
+    };
+    TBreakPacket(int sizeBuffer = DEFAULT_MEMORY_SIZE/*0xFFFF*/);
+    TBreakPacket(const TBreakPacket& bp);
+    virtual ~TBreakPacket();
 
-  // копировать кусок памяти
-  void PushBack( char* p, int size );
-  void PushFront( char* p, int size );
+    // копировать кусок памяти
+    void PushBack(char* p, int size);
+    void PushFront(char* p, int size);
 
-  void CopyInBuffer( TContainerRise& receiveBuffer, int offset = 0 );
+    void CopyInBuffer(TContainerRise& receiveBuffer, int offset = 0);
 
-  // собрать кусочки в одно целое
-  // теперь можно получить указатель на собранный пакет через GetPtr
-  void Collect();
-  void* GetCollectPtr();
-  int GetSize();
+    // собрать кусочки в одно целое
+    // теперь можно получить указатель на собранный пакет через GetPtr
+    void Collect();
+    void* GetCollectPtr();
+    int GetSize();
 
-  void Reset();
+    void Reset();
 
-  TBreakPacket& operator =( const TBreakPacket& b );
+    TBreakPacket& operator =(const TBreakPacket& b);
 protected:
-  void CopyFrom( const TBreakPacket& bp );
+    void CopyFrom(const TBreakPacket& bp);
 };

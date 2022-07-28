@@ -26,8 +26,8 @@ class TCallbackPool
     class TDescFunc
     {
         static const size_t POINTER_SIZE = sizeof(int*);
-        char mFunc[POINTER_SIZE] = {0};
-        char mObject[POINTER_SIZE] = {0};
+        char mFunc[POINTER_SIZE] = { 0 };
+        char mObject[POINTER_SIZE] = { 0 };
     public:
         template<typename F, class A1>
         void Set(F pFunc, A1 pObject)
@@ -89,7 +89,7 @@ public:
     }
     int RegisteredCount()
     {
-        return (int) mObjFuncMap.size();
+        return (int)mObjFuncMap.size();
     }
     void Clear()
     {
@@ -104,7 +104,7 @@ private:
     {
         auto fit = mObjFuncMap.find(pObject);
         if (fit == mObjFuncMap.end()) {
-            mObjFuncMap.insert({pObject, TDescFuncList()});
+            mObjFuncMap.insert({ pObject, TDescFuncList() });
             fit = mObjFuncMap.find(pObject);
         }
         return fit->second;

@@ -7,27 +7,28 @@ See for more information LICENSE.md.
 
 #include "BinaryPushMaster.h"
 
-void TBinaryPushMaster::CopyInBuffer( TContainerRise& receiveBuffer, int offset )
+void TBinaryPushMaster::CopyInBuffer(TContainerRise& receiveBuffer, int offset)
 {
-  mCollectorMember.CopyInBuffer( receiveBuffer, offset );
+    mCollectorMember.CopyInBuffer(receiveBuffer, offset);
 }
 //-----------------------------------------------------------------------
 void TBinaryPushMaster::Clear()
 {
-  mCollectorMember.Reset();
+    mCollectorMember.Reset();
 }
 //-----------------------------------------------------------------------
-void TBinaryPushMaster::PushBool( const bool& t )
+void TBinaryPushMaster::PushBool(const bool& t)
 {
-  BoolType v = t;
-  PushNum( v );
+    BoolType v = t;
+    PushNum(v);
 }
 //-----------------------------------------------------------------------
-void TBinaryPushMaster::PushStr( const std::string& str )
+void TBinaryPushMaster::PushStr(const std::string& str)
 {
-  StrSizeType len = str.length();
-  PushNum( len );
-  if( len )
-    mCollectorMember.PushBack( (char*) str.data(), len );
+    StrSizeType len = str.length();
+    PushNum(len);
+    if (len) {
+        mCollectorMember.PushBack((char*)str.data(), len);
+    }
 }
 //-----------------------------------------------------------------------

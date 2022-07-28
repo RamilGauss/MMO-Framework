@@ -11,6 +11,8 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
+#include "imgui.h"
+
 namespace nsImGuiWidgets
 {
     class TUnit;
@@ -38,9 +40,12 @@ namespace nsImGuiWidgets
             TCellSize size;
         };
 
-        virtual void Begin();
-        virtual void AddCell(const TCell& cell);
-        virtual void End();
+        virtual void BeginAddingInGrid();
+        virtual void AddCellInGrid(const TCell& cell);
+        virtual void EndAddingInGrid();
+
+        virtual int GetHorizontalCellCount() const;
+        virtual int GetVerticalCellCount() const;
 
     protected:
 

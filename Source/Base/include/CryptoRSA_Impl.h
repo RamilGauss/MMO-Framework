@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -12,32 +12,32 @@ See for more information LICENSE.md.
 
 class DllExport TCryptoRSA_Impl
 {
-  void* mRSAKey;
+    void* mRSAKey;
 
-  int mMaxSizePartBeforeCrypt;
-  int mMaxSizePartAfterCrypt;
+    int mMaxSizePartBeforeCrypt;
+    int mMaxSizePartAfterCrypt;
 
-  TContainer mContainerPrivateKey;
-  TContainer mContainerPublicKey;
+    TContainer mContainerPrivateKey;
+    TContainer mContainerPublicKey;
 
 public:
-  TCryptoRSA_Impl();
-  ~TCryptoRSA_Impl();
-  
-  bool GenerateKey(int bits = 2048);
-  bool GenerateKey_OnlyOneExample(int bits = 2048);
+    TCryptoRSA_Impl();
+    ~TCryptoRSA_Impl();
 
-  bool Encrypt( void* pIn, int sizeIn, TContainer& c_out);
-  bool Decrypt(void* pIn, int sizeIn, TContainer& c_out);
+    bool GenerateKey(int bits = 2048);
+    bool GenerateKey_OnlyOneExample(int bits = 2048);
 
-  bool GetPublicKey(TContainer& c_out);
-  bool SetPublicKey(void* pKey, int sizeKey);
+    bool Encrypt(void* pIn, int sizeIn, TContainer& c_out);
+    bool Decrypt(void* pIn, int sizeIn, TContainer& c_out);
 
-  bool GetPrivateKey(TContainer& c_out);
+    bool GetPublicKey(TContainer& c_out);
+    bool SetPublicKey(void* pKey, int sizeKey);
 
-  bool SetupAllKeys(void* pPrivateKey, int sizePrivateKey, 
-                    void* pPublicKey,  int sizePublicKey);
+    bool GetPrivateKey(TContainer& c_out);
+
+    bool SetupAllKeys(void* pPrivateKey, int sizePrivateKey,
+        void* pPublicKey, int sizePublicKey);
 private:
-  void MakeContainerForPrivateKey();
-  void MakeContainerForPublicKey();
+    void MakeContainerForPrivateKey();
+    void MakeContainerForPublicKey();
 };

@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -14,19 +14,19 @@ See for more information LICENSE.md.
 // надстройка над мьютексом
 class DllExport TMutex
 {
-  boost::recursive_mutex m;
+    boost::recursive_mutex m;
 
-  std::string mDbgName;
+    std::string mDbgName;
 public:
-  TMutex( const char * _dbgname = nullptr );
-  virtual ~TMutex();
+    TMutex(const char* _dbgname = nullptr);
+    virtual ~TMutex();
 
-  void setDbgName( const char *_dbgname ) { mDbgName = _dbgname; }
-  std::string dbgName() { return mDbgName; }
+    void setDbgName(const char* _dbgname) { mDbgName = _dbgname; }
+    std::string dbgName() { return mDbgName; }
 
-  bool tryLock();
-  void lock();
-  void unlock();
+    bool tryLock();
+    void lock();
+    void unlock();
 };
 
 //---------------------------------------------------------------------------
@@ -36,13 +36,13 @@ public:
 // Предназначен для создания объектов на стеке
 class TBL_Locker
 {
-  TMutex* mCS;
+    TMutex* mCS;
 public:
-  TBL_Locker( TMutex* cs )     { mCS = cs; mCS->lock(); }
+    TBL_Locker(TMutex* cs) { mCS = cs; mCS->lock(); }
 
-  virtual ~TBL_Locker()             { done(); }
+    virtual ~TBL_Locker() { done(); }
 
-  void done()               { if( mCS ) { mCS->unlock(); mCS = NULL; } }
+    void done() { if (mCS) { mCS->unlock(); mCS = NULL; } }
 };
 
 #define AUTO_LOCK( cs )     TBL_Locker locker( cs )

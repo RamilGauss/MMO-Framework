@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -35,8 +35,8 @@ void TTimeManager::SetTimeToEnd()
 //------------------------------------------------------------------------
 int TTimeManager::GetCountTimeStamp()
 {
-  return 0;
-} 
+    return 0;
+}
 //------------------------------------------------------------------------
 void TTimeManager::SetTimeStamp(int stamp)
 {
@@ -45,6 +45,6 @@ void TTimeManager::SetTimeStamp(int stamp)
 //------------------------------------------------------------------------
 unsigned int TTimeManager::GetTime()
 {
-  return 0;
+    return 0;
 }
 //------------------------------------------------------------------------

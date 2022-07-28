@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -12,14 +12,14 @@ See for more information LICENSE.md.
 class DllExport TTimeManager
 {
 public:
-  TTimeManager();
-  virtual ~TTimeManager();
+    TTimeManager();
+    virtual ~TTimeManager();
 
-  // управление игровым временем
-  virtual void SetTimeSpeed(float relative = 1.0f);// отношение реального к игровому
-  virtual void SetTimeToBegin();
-  virtual void SetTimeToEnd();
-  virtual int  GetCountTimeStamp();
-  virtual void SetTimeStamp(int stamp);
-  virtual unsigned int GetTime();
+    // управление игровым временем
+    virtual void SetTimeSpeed(float relative = 1.0f);// отношение реального к игровому
+    virtual void SetTimeToBegin();
+    virtual void SetTimeToEnd();
+    virtual int  GetCountTimeStamp();
+    virtual void SetTimeStamp(int stamp);
+    virtual unsigned int GetTime();
 };

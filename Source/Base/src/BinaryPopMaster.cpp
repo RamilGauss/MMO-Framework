@@ -7,40 +7,41 @@ See for more information LICENSE.md.
 
 #include "BinaryPopMaster.h"
 
-void TBinaryPopMaster::SetBuffer( TContainerRise* pC, int offset )
+void TBinaryPopMaster::SetBuffer(TContainerRise* pC, int offset)
 {
-  mPtrData = pC->GetPtr();
-  mSizeData = pC->GetSize();
-  mOffset = offset;
+    mPtrData = pC->GetPtr();
+    mSizeData = pC->GetSize();
+    mOffset = offset;
 }
 //------------------------------------------------------------------------
-void TBinaryPopMaster::SetBuffer( char* pData, int size, int offset )
+void TBinaryPopMaster::SetBuffer(char* pData, int size, int offset)
 {
-  mPtrData = pData;
-  mSizeData = size;
-  mOffset = offset;
+    mPtrData = pData;
+    mSizeData = size;
+    mOffset = offset;
 }
 //------------------------------------------------------------------------
 int TBinaryPopMaster::GetOffset()
 {
-  return mOffset;
+    return mOffset;
 }
 //------------------------------------------------------------------------
-void TBinaryPopMaster::PopBool( bool& t )
+void TBinaryPopMaster::PopBool(bool& t)
 {
-  BoolType v;
-  PopNum( v );
-  t = v;
+    BoolType v;
+    PopNum(v);
+    t = v;
 }
 //------------------------------------------------------------------------
-void TBinaryPopMaster::PopStr( std::string& str )
+void TBinaryPopMaster::PopStr(std::string& str)
 {
-  StrSizeType len = 0;
-  PopNum( len );
-  if ( len == 0 )
-    return;
-  char* pStr = mPtrData + mOffset;
-  str.assign( pStr, len );
-  mOffset += len;
+    StrSizeType len = 0;
+    PopNum(len);
+    if (len == 0) {
+        return;
+    }
+    char* pStr = mPtrData + mOffset;
+    str.assign(pStr, len);
+    mOffset += len;
 }
 //------------------------------------------------------------------------

@@ -42,5 +42,11 @@ namespace nsImGuiWidgets
 
     private:
         bool mIsUsedGrid = false;
+
+        ImVec2 CalculateCellPos(const TCell& cell);
+        ImVec2 CalculateCellSize();
+
+        
+        void CalculateUnitGeometry(TUnit* pUnit, const ImVec2& contentSize, ImVec2& newPos, ImVec2& newSize);
     };
 }

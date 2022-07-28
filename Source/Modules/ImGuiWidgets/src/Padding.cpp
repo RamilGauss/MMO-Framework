@@ -9,42 +9,42 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    void TPadding::SetLeft(int value)
+    void TPadding::SetLeftPadding(int value)
     {
         mLeft = value;
     }
     //---------------------------------------------------------------------------------------
-    void TPadding::SetTop(int value)
+    void TPadding::SetTopPadding(int value)
     {
         mTop = value;
     }
     //---------------------------------------------------------------------------------------
-    void TPadding::SetRight(int value)
+    void TPadding::SetRightPadding(int value)
     {
         mRight = value;
     }
     //---------------------------------------------------------------------------------------
-    void TPadding::SetBottom(int value)
+    void TPadding::SetBottomPadding(int value)
     {
         mBottom = value;
     }
     //---------------------------------------------------------------------------------------
-    int TPadding::GetLeft() const
+    int TPadding::GetLeftPadding() const
     {
         return mLeft;
     }
     //---------------------------------------------------------------------------------------
-    int TPadding::GetTop() const
+    int TPadding::GetTopPadding() const
     {
         return mTop;
     }
     //---------------------------------------------------------------------------------------
-    int TPadding::GetRight() const
+    int TPadding::GetRightPadding() const
     {
         return mRight;
     }
     //---------------------------------------------------------------------------------------
-    int TPadding::GetBottom() const
+    int TPadding::GetBottomPadding() const
     {
         return mBottom;
     }

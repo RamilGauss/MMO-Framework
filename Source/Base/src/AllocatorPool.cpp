@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -17,32 +17,32 @@ using namespace DataExchange2Thread;
 TAllocatorPool::TAllocatorPool()
 {
 #ifdef USE_BOOST_MEMORY_POOL
-  mAlloc = new boost::pool<>(sizeof(TElement));
+    mAlloc = new boost::pool<>(sizeof(TElement));
 #else
-  mAlloc = NULL;
+    mAlloc = NULL;
 #endif
 }
 //-----------------------------------------------------------------------------------
 TAllocatorPool::~TAllocatorPool()
 {
-  delete mAlloc;
+    delete mAlloc;
 }
 //-----------------------------------------------------------------------------------
 TElement* TAllocatorPool::Allocate()
 {
 #ifdef USE_BOOST_MEMORY_POOL
-  return (TElement*)ALLOCATOR->malloc();
+    return (TElement*)ALLOCATOR->malloc();
 #else
-  return new TElement();
+    return new TElement();
 #endif
 }
 //-----------------------------------------------------------------------------------
-void TAllocatorPool::Deallocate( TElement* pElement )
+void TAllocatorPool::Deallocate(TElement* pElement)
 {
 #ifdef USE_BOOST_MEMORY_POOL
-  ALLOCATOR->free(pElement);
+    ALLOCATOR->free(pElement);
 #else
-  delete pElement;
+    delete pElement;
 #endif
 }
 //-----------------------------------------------------------------------------------
