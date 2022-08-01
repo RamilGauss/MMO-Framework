@@ -85,6 +85,10 @@ namespace nsImGuiWidgets
     //---------------------------------------------------------------------------------------
     void TFrame::UpdateChildGeometry()
     {
+        auto contentPadding = GetContentPadding();
+
+        auto selfSize = ImVec2(GetSize().x - contentPadding.x - contentPadding.z, GetSize().y - contentPadding.y - contentPadding.w);
+
         for (auto& child : mWidgets) {
             if (child->GetSubType() == SubType::UNIT || child->GetSubType() == SubType::FRAME) {
                 auto pUnit = dynamic_cast<TUnit*>(child);
@@ -93,7 +97,10 @@ namespace nsImGuiWidgets
                     ImVec2 newPos = pUnit->GetPos();
                     ImVec2 newSize = pUnit->GetSize();
 
-                    CalculateUnitGeometry(pUnit, GetSize(), newPos, newSize);
+                    CalculateUnitGeometry(pUnit, selfSize, newPos, newSize);
+
+                    newPos.x += contentPadding.x;
+                    newPos.y += contentPadding.y;
 
                     pUnit->SetPos(newPos);
                     pUnit->SetSize(newSize);
@@ -116,9 +123,15 @@ namespace nsImGuiWidgets
             return;
         }
 
+        auto contentPadding = GetContentPadding();
+
+        auto selfSize = ImVec2(GetSize().x - contentPadding.x - contentPadding.z, GetSize().y - contentPadding.y - contentPadding.w);
+
         auto cellSize = CalculateCellSize();
 
-        for (auto& cell : mCells) {
+        for (auto& it : mCells) {
+            auto& cell = it.second;
+
             auto child = cell.p;
             if (child == nullptr) {
                 continue;
@@ -129,13 +142,16 @@ namespace nsImGuiWidgets
             if (child->GetSubType() == SubType::UNIT || child->GetSubType() == SubType::FRAME) {
                 auto pUnit = dynamic_cast<TUnit*>(child);
 
-                ImVec2 newPos = {0,0};
+                ImVec2 newPos = { contentPadding.x, contentPadding.y};
                 ImVec2 newSize = cellSize;
                 // Не должен выходить за границу ячейки.
                 // Приоритет размером ячейки выше якорей, мин/макс размеров.
                 if (pUnit->IsAnyAnchor()) {
 
                     CalculateUnitGeometry(pUnit, cellSize, newPos, newSize);
+
+                    newPos.x += contentPadding.x;
+                    newPos.y += contentPadding.y;
 
                     pUnit->SetPos(newPos + cellPos);
                     pUnit->SetSize(newSize);
@@ -152,7 +168,7 @@ namespace nsImGuiWidgets
                     newSize.y = std::min(newSize.y, unitMaxSize.y);
 
                     if (newSize.x < cellSize.x) {
-                        auto delta = newSize.x - cellSize.x;
+                        auto delta = cellSize.x - newSize.x;
 
                         switch (pUnit->GetHorizontalAlign()) {
                         case THorizontalAlign::Type::LEFT:
@@ -166,7 +182,7 @@ namespace nsImGuiWidgets
                         }
                     }
                     if (newSize.y < cellSize.y) {
-                        auto delta = newSize.y - cellSize.y;
+                        auto delta = cellSize.y - newSize.y;
 
                         switch (pUnit->GetVerticalAlign()) {
                         case TVerticalAlign::Type::TOP:
@@ -209,15 +225,24 @@ namespace nsImGuiWidgets
         pos.x = GetLeftPadding() + (cellSize.x + GetSpacing()) * cell.pos.x;
         pos.y = GetTopPadding() + (cellSize.y + GetSpacing()) * cell.pos.y;
 
+        auto contentPadding = GetContentPadding();
+
+        pos.x += contentPadding.x;
+        pos.y += contentPadding.y;
+
         return pos;
     }
     //---------------------------------------------------------------------------------------
     ImVec2 TFrame::CalculateCellSize()
     {
+        auto contentPadding = GetContentPadding();
+
+        auto selfSize = ImVec2(GetSize().x - contentPadding.x - contentPadding.z, GetSize().y - contentPadding.y - contentPadding.w);
+
         ImVec2 size;
 
-        auto cellsWidth = GetSize().x - GetLeftPadding() - GetRightPadding() - (GetHorizontalCellCount() - 1) * GetSpacing();
-        auto cellsHeight = GetSize().y - GetTopPadding() - GetBottomPadding() - (GetVerticalCellCount() - 1) * GetSpacing();
+        auto cellsWidth = selfSize.x - GetLeftPadding() - GetRightPadding() - (GetHorizontalCellCount() - 1) * GetSpacing();
+        auto cellsHeight = selfSize.y - GetTopPadding() - GetBottomPadding() - (GetVerticalCellCount() - 1) * GetSpacing();
 
         size.x = cellsWidth / GetHorizontalCellCount();
         size.y = cellsHeight / GetVerticalCellCount();
@@ -248,7 +273,7 @@ namespace nsImGuiWidgets
         newSize.y = std::max(newSize.y, unitMinSize.y);
 
         if (newSize.x > unitMaxSize.x) {
-            auto delta = newSize.x - unitMaxSize.x;
+            auto delta = unitMaxSize.x - newSize.x;
             newSize.x = unitMaxSize.x;
 
             switch (pUnit->GetHorizontalAlign()) {
@@ -264,7 +289,7 @@ namespace nsImGuiWidgets
         }
 
         if (newSize.y > unitMaxSize.y) {
-            auto delta = newSize.y - unitMaxSize.y;
+            auto delta = unitMaxSize.y - newSize.y;
             newSize.y = unitMaxSize.y;
 
             switch (pUnit->GetVerticalAlign()) {
@@ -278,6 +303,11 @@ namespace nsImGuiWidgets
                 break;
             }
         }
+    }
+    //---------------------------------------------------------------------------------------
+    ImVec4 TFrame::GetContentPadding() const
+    {
+        return { 0, 0, 0, 0 };
     }
     //---------------------------------------------------------------------------------------
 }

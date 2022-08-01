@@ -22,6 +22,8 @@ namespace nsImGuiWidgets
 
         void BeforeBeginRender();
 
+        ImVec4 GetContentPadding() const override;
+
     private:
         ImVec2 mChildMinSize;
     };

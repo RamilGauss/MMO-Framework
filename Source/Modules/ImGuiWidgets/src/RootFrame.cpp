@@ -30,4 +30,9 @@ namespace nsImGuiWidgets
         ImGui::SetNextWindowSizeConstraints(GetChildMinSize(), GetChildMaxSize());
     }
     //---------------------------------------------------------------------------------------
+    ImVec4 TRootFrame::GetContentPadding() const
+    {
+        return {1, 19, 8, 8};
+    }
+    //---------------------------------------------------------------------------------------
 }

@@ -11,29 +11,22 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    void TGrid::BeginAddingInGrid()
-    {
-        mCells.clear();
-        mWidth = 0;
-        mHeight = 0;
-    }
-    //-----------------------------------------------------------------------------------
     void TGrid::AddCellInGrid(const TCell& cell)
     {
-        mCells.push_back(cell);
+        const int id = cell.p->GetId();
+
+        mCells.insert({ id, cell });
+
+        InitCells();
     }
     //-----------------------------------------------------------------------------------
-    void TGrid::EndAddingInGrid()
+    void TGrid::RemoveCellInGrid(TUnit* p)
     {
-        for (auto& cell : mCells) {
-            auto w = cell.pos.x + cell.size.width;
-            mWidth = std::max(mWidth, w);
+        const int id = p->GetId();
 
-            auto h = cell.pos.y + cell.size.height;
-            mHeight = std::max(mHeight, h);
+        mCells.erase(id);
 
-            auto& addedCell = mCells.back();
-        }
+        InitCells();
     }
     //-----------------------------------------------------------------------------------
     int TGrid::GetHorizontalCellCount() const
@@ -46,4 +39,16 @@ namespace nsImGuiWidgets
         return mHeight;
     }
     //-----------------------------------------------------------------------------------
+    void TGrid::InitCells()
+    {
+        for (auto& it : mCells) {
+            auto& cell = it.second;
+
+            auto w = cell.pos.x + cell.size.width;
+            mWidth = std::max(mWidth, w);
+
+            auto h = cell.pos.y + cell.size.height;
+            mHeight = std::max(mHeight, h);
+        }
+    }
 }

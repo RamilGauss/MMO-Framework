@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <list>
+#include <map>
 
 #include "TypeDef.h"
 
@@ -40,18 +40,20 @@ namespace nsImGuiWidgets
             TCellSize size;
         };
 
-        virtual void BeginAddingInGrid();
         virtual void AddCellInGrid(const TCell& cell);
-        virtual void EndAddingInGrid();
+        virtual void RemoveCellInGrid(TUnit* p);
 
         virtual int GetHorizontalCellCount() const;
         virtual int GetVerticalCellCount() const;
 
     protected:
 
-        std::list<TCell> mCells;
-
         int mWidth = 0;
         int mHeight = 0;
+
+        std::map<int, TCell> mCells;
+    private:
+
+        void InitCells();
     };
 }

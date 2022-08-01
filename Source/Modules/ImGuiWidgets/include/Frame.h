@@ -38,6 +38,8 @@ namespace nsImGuiWidgets
         ImVec2 GetChildMinSize() const override;
         ImVec2 GetChildMaxSize() const override;
 
+        virtual ImVec4 GetContentPadding() const;
+
         ImVec2 mCalculatedMinSize;
 
     private:

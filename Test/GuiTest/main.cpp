@@ -30,7 +30,8 @@ using namespace nsImGuiWidgets;
 
 TCamera* g_Camera;
 
-nsTest::TWindowGridTest g_WindowTest;
+nsTest::TWindowTest g_WindowTest;
+//nsTest::TWindowGridTest g_WindowTest;
 
 void CreateContext(TGraphicEngine& ge)
 {
