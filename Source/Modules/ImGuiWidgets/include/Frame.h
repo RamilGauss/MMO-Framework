@@ -46,9 +46,14 @@ namespace nsImGuiWidgets
         bool mIsUsedGrid = false;
 
         ImVec2 CalculateCellPos(const TCell& cell);
-        ImVec2 CalculateCellSize();
+        ImVec2 CalculateCellSize(const TCell& cell);
+
+        ImVec2 CalculateOneCellSize();
 
         
-        void CalculateUnitGeometry(TUnit* pUnit, const ImVec2& contentSize, ImVec2& newPos, ImVec2& newSize);
+        void CalculateUnitGeometry(TUnit* pUnit, const ImVec2& contentOffset,
+        const ImVec2& contentSize, const ImVec2& oldSize, ImVec2& newPos, ImVec2& newSize);
+
+        ImVec2 GetUnitMinSize(TUnit* pUnit, bool inGrid);
     };
 }

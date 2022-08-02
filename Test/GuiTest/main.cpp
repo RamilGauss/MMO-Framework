@@ -22,6 +22,9 @@ See for more information LICENSE.md.
 #include "WindowTest.h"
 #include "WindowGridTest.h"
 
+#include "WindowAndFrameTest.h"
+#include "WindowGridedFrameTest.h"
+
 const int W = 1024;
 const int H = 800;
 
@@ -30,8 +33,10 @@ using namespace nsImGuiWidgets;
 
 TCamera* g_Camera;
 
-nsTest::TWindowTest g_WindowTest;
+//nsTest::TWindowTest g_WindowTest;
 //nsTest::TWindowGridTest g_WindowTest;
+//nsTest::TWindowAndFrameTest g_WindowTest;
+nsTest::TWindowGridedFrameTest g_WindowTest;
 
 void CreateContext(TGraphicEngine& ge)
 {

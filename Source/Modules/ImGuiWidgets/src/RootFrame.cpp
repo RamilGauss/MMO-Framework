@@ -21,10 +21,10 @@ namespace nsImGuiWidgets
     {
         if (GetUseGrid()) {
             GridUpdateChildGeometry();
-            mChildMinSize = GridCalculateMinSize();
+            mCalculatedMinSize = GridCalculateMinSize();
         } else {
             UpdateChildGeometry();
-            mChildMinSize = CalculateMinSize();
+            mCalculatedMinSize = CalculateMinSize();
         }
 
         ImGui::SetNextWindowSizeConstraints(GetChildMinSize(), GetChildMaxSize());

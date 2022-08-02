@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="WindowAndFrameTest.cpp" />
+    <ClCompile Include="WindowGridedFrameTest.cpp" />
     <ClCompile Include="WindowGridTest.cpp" />
     <ClCompile Include="WindowTest.cpp" />
   </ItemGroup>
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowAndFrameTest.h" />
+    <ClInclude Include="WindowGridedFrameTest.h" />
     <ClInclude Include="WindowGridTest.h" />
     <ClInclude Include="WindowTest.h" />
   </ItemGroup>

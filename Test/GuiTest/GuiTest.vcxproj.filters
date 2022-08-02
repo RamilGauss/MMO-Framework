@@ -23,6 +23,9 @@
     <ClCompile Include="WindowGridTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WindowGridedFrameTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
@@ -35,6 +38,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowGridTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowGridedFrameTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,9 +13,9 @@ namespace nsTest
 {
     void TWindowAndFrameTest::Create(nsGraphicEngine::TGraphicEngineContext* pCtx)
     {
-        mWindow.SetTitle("Layout window");
+        mWindow.SetTitle("TWindowAndFrameTest");
 
-        mWindow.SetSize({ 200, 200 });
+        mWindow.SetSize({ 250, 250 });
         mWindow.SetPos({ 100, 100 });
 
         mWindow.SetMinSize({ 10, 10 });
@@ -56,6 +56,9 @@ namespace nsTest
         mCButton.SetMaxSize({ 100, 45 });
         mCButton.SetSize({ 70, 30 });
         mCButton.SetPos({ 110, 90 });
+
+        mFrame.SetSize({200, 200});
+        mFrame.SetPos({ 0, 0 });
 
         mFrame.Add(&mExitButton);
         mFrame.Add(&mAButton);

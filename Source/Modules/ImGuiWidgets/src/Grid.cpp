@@ -41,6 +41,9 @@ namespace nsImGuiWidgets
     //-----------------------------------------------------------------------------------
     void TGrid::InitCells()
     {
+        mWidth = 0;
+        mHeight = 0;
+
         for (auto& it : mCells) {
             auto& cell = it.second;
 
