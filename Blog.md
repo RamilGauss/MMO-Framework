@@ -34,7 +34,7 @@ See for more information LICENSE.md.
 
 2022.06.16:
  - Может перенести весь генерируемый код из ядра в проект. Тогда ядро не будет знать что какой-то редакторе генерирует код. Что в принципе правильно.
-Но тогда увеличится в первый компиляция проекта.
+Но тогда увеличится время компиляции в первой сборке проекта.
  - TCameraTextureTagComponent, TTextureFromCameraComponent, TTextureFromFileComponent.
  - Нужно заменить THieararchyHelper на TGameObject.
 

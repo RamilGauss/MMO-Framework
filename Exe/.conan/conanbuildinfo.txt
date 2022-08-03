@@ -3,6 +3,7 @@ C:/Users/Gauss/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88
 C:/Users/Gauss/.conan/data/magic_enum/0.8.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 C:/Users/Gauss/.conan/data/lz4/1.9.3/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/include
+C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/include
 C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/include
 C:/.conan/da4d35/1/include
 C:/.conan/15b0e0/1/include
@@ -19,6 +20,7 @@ C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb76
 [libdirs]
 C:/Users/Gauss/.conan/data/lz4/1.9.3/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/lib
+C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/lib
 C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib
 C:/.conan/da4d35/1/lib
 C:/.conan/15b0e0/1/lib
@@ -29,6 +31,7 @@ C:/Users/Gauss/.conan/data/zlib/1.2.12/_/_/package/d057732059ea44a47760900cb5e48
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib
 
 [bindirs]
+C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/bin
 C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/bin
 C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/bin
 C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/bin
@@ -365,11 +368,14 @@ pkg_config=liblz4
 
 [includedirs_fmt]
 C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/include
+C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/include
 
 [libdirs_fmt]
 C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/lib
+C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/lib
 
 [bindirs_fmt]
+C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/bin
 C:/Users/Gauss/.conan/data/fmt/8.1.1/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/bin
 
 [resdirs_fmt]

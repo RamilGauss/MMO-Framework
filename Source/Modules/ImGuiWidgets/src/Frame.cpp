@@ -39,24 +39,43 @@ namespace nsImGuiWidgets
     //---------------------------------------------------------------------------------------
     ImVec2 TFrame::GridCalculateMinSize()
     {
+        int spacing = GetSpacing();
         ImVec2 minCellSize = { 0,0 };
         for (auto& cell : mCells) {
+
+            ImVec2 currentMinCellSize = { 0,0 };
             auto child = cell.second.p;
 
-            if (child->GetSubType() == SubType::UNIT || child->GetSubType() == SubType::FRAME) {
+            if (child->GetSubType() == SubType::UNIT) {
                 auto pUnit = dynamic_cast<TUnit*>(child);
-
-                auto unitMinSize = GetUnitMinSize(pUnit, true);
-
-                minCellSize.x = std::max(minCellSize.x, unitMinSize.x);
-                minCellSize.y = std::max(minCellSize.y, unitMinSize.y);
+                currentMinCellSize = GetUnitMinSize(pUnit, true);
             }
+
+            if (child->GetSubType() == SubType::FRAME) {
+
+                auto pFrame = dynamic_cast<TFrame*>(child);
+                if (pFrame->GetUseGrid()) {
+                    currentMinCellSize = pFrame->GridCalculateMinSize();
+                } else {
+                    currentMinCellSize = pFrame->CalculateMinSize();
+                }
+            }
+
+            auto cellSize = cell.second.size;
+            currentMinCellSize.x -= (cellSize.width - 1) * spacing;
+            currentMinCellSize.y -= (cellSize.height - 1) * spacing;
+
+            currentMinCellSize.x /= cellSize.width;
+            currentMinCellSize.y /= cellSize.height;
+
+            minCellSize.x = std::max(minCellSize.x, currentMinCellSize.x);
+            minCellSize.y = std::max(minCellSize.y, currentMinCellSize.y);
         }
 
         ImVec2 minSummaCellSize = { minCellSize.x * GetHorizontalCellCount(), minCellSize.y * GetVerticalCellCount() };
 
-        minSummaCellSize.x += (GetHorizontalCellCount() - 1) * GetSpacing();
-        minSummaCellSize.y += (GetVerticalCellCount() - 1) * GetSpacing();
+        minSummaCellSize.x += (GetHorizontalCellCount() - 1) * spacing;
+        minSummaCellSize.y += (GetVerticalCellCount() - 1) * spacing;
 
         minSummaCellSize.x += GetLeftPadding() + GetRightPadding();
         minSummaCellSize.y += GetTopPadding() + GetBottomPadding();
@@ -66,21 +85,6 @@ namespace nsImGuiWidgets
             std::max(minSummaCellSize.x, GetMinSize().x),
             std::max(minSummaCellSize.y, GetMinSize().y)
         };
-
-        for (auto& child : mWidgets) {
-            if (child->GetSubType() == SubType::FRAME) {
-
-                auto pFrame = dynamic_cast<TFrame*>(child);
-                ImVec2 frameMinSize;
-                if (pFrame->GetUseGrid()) {
-                    frameMinSize = pFrame->GridCalculateMinSize();
-                } else {
-                    frameMinSize = pFrame->CalculateMinSize();
-                }
-                minSize.x = std::max(minSize.x, frameMinSize.x);
-                minSize.y = std::max(minSize.y, frameMinSize.y);
-            }
-        }
 
         auto contentPadding = GetContentPadding();
 
@@ -201,9 +205,6 @@ namespace nsImGuiWidgets
                     if (pUnit->GetBottom().isUsed) {
                         oldSize.y -= pUnit->GetBottom().offset;
                     }
-
-                    oldSize.x = std::min(oldSize.x, pUnit->GetMaxSize().x);
-                    oldSize.y = std::min(oldSize.y, pUnit->GetMaxSize().y);
 
                     CalculateUnitGeometry(pUnit, contentOffset, cellSize, oldSize, newPos, newSize);
 
@@ -337,10 +338,11 @@ namespace nsImGuiWidgets
         newSize.x = std::max(newSize.x, unitMinSize.x);
         newSize.y = std::max(newSize.y, unitMinSize.y);
 
-        if (pUnit->GetLeft().isUsed && pUnit->GetRight().isUsed) {
-            if (newSize.x > unitMaxSize.x) {
-                auto delta = newSize.x - unitMaxSize.x;
-                newSize.x = unitMaxSize.x;
+        if (newSize.x > unitMaxSize.x) {
+            auto delta = newSize.x - unitMaxSize.x;
+            newSize.x = unitMaxSize.x;
+            if ((pUnit->GetLeft().isUsed && pUnit->GetRight().isUsed) ||
+                (!pUnit->GetLeft().isUsed && !pUnit->GetRight().isUsed)) {
 
                 switch (pUnit->GetHorizontalAlign()) {
                 case THorizontalAlign::Type::LEFT:
@@ -352,14 +354,17 @@ namespace nsImGuiWidgets
                     newPos.x += delta;
                     break;
                 }
+            } else if (pUnit->GetRight().isUsed) {
+                newPos.x += delta;
             }
             newPos.x += contentOffset.x;
         }
 
-        if (pUnit->GetTop().isUsed && pUnit->GetBottom().isUsed) {
-            if (newSize.y > unitMaxSize.y) {
-                auto delta = newSize.y - unitMaxSize.y;
-                newSize.y = unitMaxSize.y;
+        if (newSize.y > unitMaxSize.y) {
+            auto delta = newSize.y - unitMaxSize.y;
+            newSize.y = unitMaxSize.y;
+            if ((pUnit->GetTop().isUsed && pUnit->GetBottom().isUsed) ||
+                (!pUnit->GetTop().isUsed && !pUnit->GetBottom().isUsed)) {
 
                 switch (pUnit->GetVerticalAlign()) {
                 case TVerticalAlign::Type::TOP:
@@ -371,6 +376,8 @@ namespace nsImGuiWidgets
                     newPos.y += delta;
                     break;
                 }
+            } else if (pUnit->GetBottom().isUsed) {
+                newPos.y += delta;
             }
             newPos.y += contentOffset.y;
         }

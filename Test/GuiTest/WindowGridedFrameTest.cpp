@@ -78,10 +78,10 @@ namespace nsTest
         mFrame.AddCellInGrid({ &mCButton,    {1,1}, {1,1} });
 
         mWindow.SetSpacing(3);
-        mWindow.SetLeftPadding(3);
-        mWindow.SetRightPadding(3);
-        mWindow.SetTopPadding(3);
-        mWindow.SetBottomPadding(3);
+        mWindow.SetLeftPadding(0);
+        mWindow.SetRightPadding(0);
+        mWindow.SetTopPadding(0);
+        mWindow.SetBottomPadding(0);
 
         mWindow.AddCellInGrid({ &mDButton, {0,0}, {1,1} });
         mWindow.AddCellInGrid({ &mEButton, {1,0}, {1,1} });
