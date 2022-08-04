@@ -1,5 +1,5 @@
-1659417122
-C:\Sources\MMOFramework\Exe\SDL2d.dll: 605d2c1ee60875b5778bd39ef4b88711
+1659585283
+C:\Sources\MMOFramework\Exe\SDL2d.dll: 1a8ca57aa4c63971d8bb5c016887e16e
 C:\Sources\MMOFramework\Exe\fmtd.dll: a36c5fba1ea0e6150a67b301f538edb5
 C:\Sources\MMOFramework\Exe\gmock_maind.dll: 5bac601b7fe59126452be0564efd163d
 C:\Sources\MMOFramework\Exe\gmockd.dll: 84395b842a0f114fedff63821ae5f291
@@ -18,8 +18,8 @@ C:\Sources\MMOFramework\Lib\BulletDynamics_Debug.lib: 2300e55cc5d5ef895ebb1bf99f
 C:\Sources\MMOFramework\Lib\BulletInverseDynamics_Debug.lib: 76b1642010b2414b90ec5a6f86edd09e
 C:\Sources\MMOFramework\Lib\BulletSoftBody_Debug.lib: 5bb343555350c51b86e2462ecda42613
 C:\Sources\MMOFramework\Lib\LinearMath_Debug.lib: ee05134531278b60f78e7a2ca9529d94
-C:\Sources\MMOFramework\Lib\SDL2d.lib: 8840922df15fb213a302d313e817828f
-C:\Sources\MMOFramework\Lib\SDL2maind.lib: e2f409496237a5938389e80514057ec9
+C:\Sources\MMOFramework\Lib\SDL2d.lib: bb737637445b694950bee5cff4e723d8
+C:\Sources\MMOFramework\Lib\SDL2maind.lib: 2233d6d9f26a309d174a43e2711cd81e
 C:\Sources\MMOFramework\Lib\bz2.lib: 72d62a6fce43f75276f9108ed03a3e68
 C:\Sources\MMOFramework\Lib\fmtd.lib: 2d1afed21d8a163b8da423bbbeb0547a
 C:\Sources\MMOFramework\Lib\glad.lib: aa2e69f8252bded420b1261f7b0cfae4

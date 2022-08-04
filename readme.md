@@ -27,8 +27,13 @@ Only free and open source engines / libraries / frameworks!
 |----------     | ------------| ------------|--------|-------------|---------|------------|
 |Implementaion  | [Dear ImGui](https://github.com/ocornut/imgui)  |   [BigJack](https://github.com/RamilGauss/MMO-Framework/tree/master/Source/Modules/GraphicEngine)      | [Bullet](https://github.com/bulletphysics/bullet3) | High: [MMO Engine](https://github.com/RamilGauss/MMO-Framework/tree/master/Source/Modules/MMOEngine)<br>Low: [NetTransport](https://github.com/RamilGauss/MMO-Framework/tree/master/Source/Modules/NetTransport)  |    ?     |      ?     |
 
-## GUI
-
+## GUI  
+Grid and layouts
+<br>
+<img src="./Doc/guiTest.gif">
+<br>
+Component viewer
+<br>
 <img src="./Doc/componentViewer.gif">
 <br>
 <img src="./Doc/open_project_file.gif">

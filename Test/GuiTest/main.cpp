@@ -33,10 +33,10 @@ using namespace nsImGuiWidgets;
 
 TCamera* g_Camera;
 
-//nsTest::TWindowTest g_WindowTest;
-//nsTest::TWindowGridTest g_WindowTest;
-//nsTest::TWindowAndFrameTest g_WindowTest;
-nsTest::TWindowGridedFrameTest g_WindowTest;
+nsTest::TWindowTest g_WindowTest;
+nsTest::TWindowGridTest g_WindowGridTest;
+nsTest::TWindowAndFrameTest g_WindowAndFrameTest;
+nsTest::TWindowGridedFrameTest g_WindowGridedFrameTest;
 
 void CreateContext(TGraphicEngine& ge)
 {
@@ -48,6 +48,10 @@ void CreateContext(TGraphicEngine& ge)
     g_Camera->SetWindowSize({ W , H });
 
     g_WindowTest.Create(pCtx);
+    g_WindowGridTest.Create(pCtx);
+    g_WindowAndFrameTest.Create(pCtx);
+    g_WindowGridedFrameTest.Create(pCtx);
+
     pCtx->SetGuiCamera(g_Camera);
 }
 
@@ -58,7 +62,7 @@ int main(int argc, char** argv)
 
     ge.SetKeyMouseEventContainer(&kmc);
 
-    ge.SetTitle("BigJack");
+    ge.SetTitle("Gui test");
     ge.SetPosition(100, 100);
     ge.SetSize(W, H);
 
