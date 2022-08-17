@@ -13,7 +13,7 @@ namespace nsTest
 {
     void TWindowAndFrameTest::Create(nsGraphicEngine::TGraphicEngineContext* pCtx)
     {
-        mWindow.SetTitle("TWindowAndFrameTest");
+        mWindow.SetTitle("WindowAndFrameTest");
 
         mWindow.SetSize({ 250, 250 });
         mWindow.SetPos({ 100, 100 });

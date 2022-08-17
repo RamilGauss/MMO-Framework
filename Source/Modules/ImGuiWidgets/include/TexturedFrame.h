@@ -17,5 +17,7 @@ namespace nsImGuiWidgets
     public:
         TTexturedFrame();
     protected:
+
+        void RenderInheritance() override;
     };
 }

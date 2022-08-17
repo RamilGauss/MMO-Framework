@@ -19,6 +19,19 @@ See for more information LICENSE.md.
 
 #### "DONE"
 
+2022.08.10:
+ - Код в TFrame ужасен. Надо заново провести анализ и переписать.
+ Неструктурировано. По какому принципу так сделано? Где ключевая идея?
+ Три категории: Unit or frame, Grid or not grid, with anchor or without anchor.
+ MinDistanceToParent - используется в NotGrid.
+
+ Условия применения MinDistanceToParent:
+ 1. (Left && !Right) - Left.
+ 2. (!Left && Right) - Right.
+ 3. (Top && !Bottom) - Top.
+ 4. (!Top && Bottom) - Bottom.
+ 5. !IsAnyAnchor().
+
 2022.08.02:
  - Почти доделал grid и layout. Осталось доделать случай grid с ячейками размером больше 1 х 1 и с пустотами.
  Сейчас расчет неправильный. Нужно доделать. Потом TexturedFrame.

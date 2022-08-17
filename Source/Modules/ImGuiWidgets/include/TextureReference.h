@@ -15,9 +15,14 @@ namespace nsImGuiWidgets
     {
     public:
         virtual void SetTexture(unsigned int id);
-        virtual unsigned int GetTexture() const;
+        virtual void SetTextureSize(unsigned int width, unsigned int height);
 
+        virtual unsigned int GetTexture() const;
+        virtual unsigned int GetTextureWidth() const;
+        virtual unsigned int GetTextureHeight() const;
     protected:
         unsigned int mTextureId = -1;
+        unsigned int mTextureWidth = 0;
+        unsigned int mTextureHeight = 0;
     };
 }

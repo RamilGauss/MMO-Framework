@@ -148,7 +148,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TexturedWindowTest.cpp" />
     <ClCompile Include="WindowAndFrameTest.cpp" />
+    <ClCompile Include="WindowFrameTest.cpp" />
     <ClCompile Include="WindowGridedFrameTest.cpp" />
     <ClCompile Include="WindowGridTest.cpp" />
     <ClCompile Include="WindowTest.cpp" />
@@ -157,7 +159,9 @@
     <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TexturedWindowTest.h" />
     <ClInclude Include="WindowAndFrameTest.h" />
+    <ClInclude Include="WindowFrameTest.h" />
     <ClInclude Include="WindowGridedFrameTest.h" />
     <ClInclude Include="WindowGridTest.h" />
     <ClInclude Include="WindowTest.h" />

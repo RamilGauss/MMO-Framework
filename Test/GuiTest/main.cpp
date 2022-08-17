@@ -24,6 +24,9 @@ See for more information LICENSE.md.
 
 #include "WindowAndFrameTest.h"
 #include "WindowGridedFrameTest.h"
+#include "WindowFrameTest.h"
+
+#include "TexturedWindowTest.h"
 
 const int W = 1024;
 const int H = 800;
@@ -37,6 +40,10 @@ nsTest::TWindowTest g_WindowTest;
 nsTest::TWindowGridTest g_WindowGridTest;
 nsTest::TWindowAndFrameTest g_WindowAndFrameTest;
 nsTest::TWindowGridedFrameTest g_WindowGridedFrameTest;
+nsTest::TWindowFrameTest g_WindowFrameTest;
+
+
+nsTest::TTexturedWindowTest g_TexturedWindowTest;
 
 void CreateContext(TGraphicEngine& ge)
 {
@@ -47,10 +54,12 @@ void CreateContext(TGraphicEngine& ge)
     g_Camera->SetWindowPosition({ 0 , 0 });
     g_Camera->SetWindowSize({ W , H });
 
-    g_WindowTest.Create(pCtx);
-    g_WindowGridTest.Create(pCtx);
-    g_WindowAndFrameTest.Create(pCtx);
-    g_WindowGridedFrameTest.Create(pCtx);
+    //g_WindowTest.Create(pCtx);
+    //g_WindowGridTest.Create(pCtx);
+    //g_WindowAndFrameTest.Create(pCtx);
+    //g_WindowGridedFrameTest.Create(pCtx);
+    g_WindowFrameTest.Create(pCtx);
+    //g_TexturedWindowTest.Create(pCtx);
 
     pCtx->SetGuiCamera(g_Camera);
 }

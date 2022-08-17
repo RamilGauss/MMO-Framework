@@ -12,4 +12,16 @@ namespace nsImGuiWidgets
     TTexturedFrame::TTexturedFrame()
     {
     }
+    //----------------------------------------------------------------------------------------------------
+
+    void TTexturedFrame::RenderInheritance()
+    {
+        TFrame::RenderInheritance();
+
+        auto textureId = GetTexture();
+        if (textureId != -1) {
+            ImGui::Image((void*)(intptr_t)GetTexture(), GetSize());
+        }
+    }
+    //----------------------------------------------------------------------------------------------------
 }

@@ -13,7 +13,7 @@ namespace nsTest
 {
     void TWindowGridedFrameTest::Create(nsGraphicEngine::TGraphicEngineContext* pCtx)
     {
-        mWindow.SetTitle("TWindowGridedFrameTest");
+        mWindow.SetTitle("WindowGridedFrameTest");
 
         mWindow.SetSize({ 250, 250 });
         mWindow.SetPos({ 100, 100 });

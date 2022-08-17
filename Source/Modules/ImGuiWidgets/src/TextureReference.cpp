@@ -19,4 +19,20 @@ unsigned int TTextureReference::GetTexture() const
     return mTextureId;
 }
 //---------------------------------------------------------
+void TTextureReference::SetTextureSize(unsigned int width, unsigned int height)
+{
+    mTextureWidth = width;
+    mTextureHeight = height;
+}
+//---------------------------------------------------------
+unsigned int TTextureReference::GetTextureWidth() const
+{
+    return mTextureWidth;
+}
+//---------------------------------------------------------
+unsigned int TTextureReference::GetTextureHeight() const
+{
+    return mTextureHeight;
+}
+//---------------------------------------------------------
 

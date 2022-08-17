@@ -18,22 +18,27 @@ See for more information LICENSE.md.
 #include "MaxSize.h"
 #include "VerticalAlign.h"
 #include "HorizontalAlign.h"
+#include "MinDistanceToParent.h"
 
 namespace nsImGuiWidgets
 {
     class DllExport TUnit : 
         public TWidget, public TFocus, public TAnchors, public TMinSize, public TMaxSize,
-        public TVerticalAlign, public THorizontalAlign
+        public TVerticalAlign, public THorizontalAlign, public TMinDistanceToParent
     {
     public:
         void Render() override final;
 
         SubType GetSubType() const override;
+
+        // Maths
+        ImVec2 CalculateMinSizeForAnchoredUnit() const;
     protected:
         virtual void BeginRender();
         virtual void RenderInheritance() = 0;
         virtual void EndRender();
 
         ImGuiID mIdFromWindow = 0;
+
     };
 }

@@ -50,6 +50,7 @@
     <ClInclude Include="include\MainWindow.h" />
     <ClInclude Include="include\MaxSize.h" />
     <ClInclude Include="include\MenuNode.h" />
+    <ClInclude Include="include\MinDistanceToParent.h" />
     <ClInclude Include="include\MinSize.h" />
     <ClInclude Include="include\Node.h" />
     <ClInclude Include="include\Padding.h" />
@@ -101,6 +102,7 @@
     <ClCompile Include="src\MainWindow.cpp" />
     <ClCompile Include="src\MaxSize.cpp" />
     <ClCompile Include="src\MenuNode.cpp" />
+    <ClCompile Include="src\MinDistanceToParent.cpp" />
     <ClCompile Include="src\MinSize.cpp" />
     <ClCompile Include="src\Node.cpp" />
     <ClCompile Include="src\Padding.cpp" />

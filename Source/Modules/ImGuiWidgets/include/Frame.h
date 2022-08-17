@@ -26,10 +26,7 @@ namespace nsImGuiWidgets
         void SetUseGrid(bool value);
         bool GetUseGrid() const;
 
-        void GridUpdateChildGeometry();// Padding, Spacing, Anchor, Min, Max, VAlign, HAlign
-        void UpdateChildGeometry();    // Anchor, Min, Max, VAlign, HAlign
-
-        ImVec2 GridCalculateMinSize();
+        void UpdateChildGeometry();
         ImVec2 CalculateMinSize();
 
         TWidget::SubType GetSubType() const override;
@@ -55,5 +52,31 @@ namespace nsImGuiWidgets
         const ImVec2& contentSize, const ImVec2& oldSize, ImVec2& newPos, ImVec2& newSize);
 
         ImVec2 GetUnitMinSize(TUnit* pUnit, bool inGrid);
+
+        ImVec2 GridCalculateMinSize();
+        ImVec2 FreeCalculateMinSize();
+
+        ImVec2 GridAnchorUnitCalculate(TUnit* pUnit);
+        ImVec2 GridAnchorFrameCalculate(TFrame* pFrame);
+        ImVec2 GridFixedUnitCalculate(TUnit* pUnit);
+        ImVec2 GridFixedFrameCalculate(TFrame* pFrame);
+
+        ImVec2 FreeAnchorUnitCalculate(TUnit* pUnit);
+        ImVec2 FreeAnchorFrameCalculate(TFrame* pFrame);
+        ImVec2 FreeFixedUnitCalculate(TUnit* pUnit);
+        ImVec2 FreeFixedFrameCalculate(TFrame* pFrame);
+
+        void GridUpdateChildGeometry();// Padding, Spacing, Anchor, Min, Max, VAlign, HAlign
+        void FreeUpdateChildGeometry();// Anchor, Min, Max, VAlign, HAlign
+
+        void GridAnchorUnitUpdate(TUnit* pUnit);
+        void GridAnchorFrameUpdate(TFrame* pFrame);
+        void GridFixedUnitUpdate(TUnit* pUnit);
+        void GridFixedFrameUpdate(TFrame* pFrame);
+
+        void FreeAnchorUnitUpdate(TUnit* pUnit);
+        void FreeAnchorFrameUpdate(TFrame* pFrame);
+        void FreeFixedUnitUpdate(TUnit* pUnit);
+        void FreeFixedFrameUpdate(TFrame* pFrame);
     };
 }

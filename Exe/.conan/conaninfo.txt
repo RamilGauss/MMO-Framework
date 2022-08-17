@@ -19,6 +19,7 @@
     rapidjson/1.Y.Z
     sdl/2.Y.Z
     stb/20200203.Y.Z
+    termcolor/2.Y.Z
 
 [options]
 
@@ -48,6 +49,7 @@
     rapidjson/1.1.0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
     sdl/2.0.20:7fbacd5d9c153ab2ef076669a9067213bac1a6f9
     stb/20200203:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+    termcolor/2.1.0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
     zlib/1.2.12:d057732059ea44a47760900cb5e4855d2bea8714
 
 [full_options]
