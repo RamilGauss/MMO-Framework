@@ -22,19 +22,19 @@ namespace nsImGuiWidgets
 
         bool IsAnyAnchor() const;
 
-        TAnchor GetLeft() const;
-        TAnchor GetRight() const;
-        TAnchor GetTop() const;
-        TAnchor GetBottom() const;
+        TAnchor GetLeftAnchor() const;
+        TAnchor GetRightAnchor() const;
+        TAnchor GetTopAnchor() const;
+        TAnchor GetBottomAnchor() const;
 
-        void SetLeft(const TAnchor& value);
-        void SetRight(const TAnchor& value);
-        void SetTop(const TAnchor& value);
-        void SetBottom(const TAnchor& value);
+        void SetLeftAnchor(const TAnchor& value);
+        void SetRightAnchor(const TAnchor& value);
+        void SetTopAnchor(const TAnchor& value);
+        void SetBottomAnchor(const TAnchor& value);
     private:
-        TAnchor mLeft;
-        TAnchor mRight;
-        TAnchor mTop;
-        TAnchor mBottom;
+        TAnchor mLeftAnchor;
+        TAnchor mRightAnchor;
+        TAnchor mTopAnchor;
+        TAnchor mBottomAnchor;
     };
 }

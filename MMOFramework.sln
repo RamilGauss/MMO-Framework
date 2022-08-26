@@ -187,6 +187,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GuiTest", "Test\GuiTest\Gui
 	ProjectSection(ProjectDependencies) = postProject
 		{74EEF00F-1AD6-4730-A279-C04072D4420A} = {74EEF00F-1AD6-4730-A279-C04072D4420A}
 		{8B82CD16-9638-4299-9BA1-A7D363FE68BA} = {8B82CD16-9638-4299-9BA1-A7D363FE68BA}
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
 	EndProjectSection
 EndProject
 Global
@@ -655,8 +656,8 @@ Global
 		{B9F08DB3-C209-4C44-B0C7-349D3B1FFF69} = {D3DADEE4-12D6-46C7-87CF-A921168CEE1D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

@@ -11,46 +11,46 @@ namespace nsImGuiWidgets
 {
     bool TAnchors::IsAnyAnchor() const
     {
-        return mLeft.isUsed | mRight.isUsed | mTop.isUsed| mBottom.isUsed;
+        return mLeftAnchor.isUsed | mRightAnchor.isUsed | mTopAnchor.isUsed| mBottomAnchor.isUsed;
     }
 
-    TAnchors::TAnchor TAnchors::GetLeft() const
+    TAnchors::TAnchor TAnchors::GetLeftAnchor() const
     {
-        return mLeft;
+        return mLeftAnchor;
     }
 
-    TAnchors::TAnchor TAnchors::GetRight() const
+    TAnchors::TAnchor TAnchors::GetRightAnchor() const
     {
-        return mRight;
+        return mRightAnchor;
     }
 
-    TAnchors::TAnchor TAnchors::GetTop() const
+    TAnchors::TAnchor TAnchors::GetTopAnchor() const
     {
-        return mTop;
+        return mTopAnchor;
     }
 
-    TAnchors::TAnchor TAnchors::GetBottom() const
+    TAnchors::TAnchor TAnchors::GetBottomAnchor() const
     {
-        return mBottom;
+        return mBottomAnchor;
     }
 
-    void TAnchors::SetLeft(const TAnchor& value)
+    void TAnchors::SetLeftAnchor(const TAnchor& value)
     {
-        mLeft = value;
+        mLeftAnchor = value;
     }
 
-    void TAnchors::SetRight(const TAnchor& value)
+    void TAnchors::SetRightAnchor(const TAnchor& value)
     {
-        mRight = value;
+        mRightAnchor = value;
     }
 
-    void TAnchors::SetTop(const TAnchor& value)
+    void TAnchors::SetTopAnchor(const TAnchor& value)
     {
-        mTop = value;
+        mTopAnchor = value;
     }
 
-    void TAnchors::SetBottom(const TAnchor& value)
+    void TAnchors::SetBottomAnchor(const TAnchor& value)
     {
-        mBottom = value;
+        mBottomAnchor = value;
     }
 }

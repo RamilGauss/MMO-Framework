@@ -29,22 +29,22 @@ namespace nsTest
         mDButton.SetTitle("D");
         mEButton.SetTitle("E");
 
-        mExitButton.SetLeft({ true, 10 });
-        mExitButton.SetRight({ true, 10 });
-        mExitButton.SetTop({ true, 10 });
-        mExitButton.SetBottom({ true, 10 });
+        mExitButton.SetLeftAnchor({ true, 10 });
+        mExitButton.SetRightAnchor({ true, 10 });
+        mExitButton.SetTopAnchor({ true, 10 });
+        mExitButton.SetBottomAnchor({ true, 10 });
         mExitButton.SetMinSize({ 65, 25 });
         mExitButton.SetMaxSize({ 100, 100 });
 
         mExitButton.SetVerticalAlign(TVerticalAlign::Type::BOTTOM);
         mExitButton.SetHorizontalAlign(THorizontalAlign::Type::LEFT);
 
-        mAButton.SetRight({ true, 10 });
-        mAButton.SetBottom({ true, 10 });
+        mAButton.SetRightAnchor({ true, 10 });
+        mAButton.SetBottomAnchor({ true, 10 });
         mAButton.SetMinSize({ 65, 25 });
         mAButton.SetMaxSize({ 100, 100 });
 
-        mBButton.SetBottom({ true, 10 });
+        mBButton.SetBottomAnchor({ true, 10 });
         mBButton.SetMinSize({ 65, 25 });
         mBButton.SetMaxSize({ 100, 100 });
 

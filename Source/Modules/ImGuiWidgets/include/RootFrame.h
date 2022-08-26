@@ -21,7 +21,5 @@ namespace nsImGuiWidgets
     protected:
 
         void BeforeBeginRender();
-
-        ImVec4 GetContentPadding() const override;
     };
 }

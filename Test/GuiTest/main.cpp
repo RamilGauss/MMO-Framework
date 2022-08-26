@@ -56,9 +56,9 @@ void CreateContext(TGraphicEngine& ge)
 
     //g_WindowTest.Create(pCtx);
     //g_WindowGridTest.Create(pCtx);
-    //g_WindowAndFrameTest.Create(pCtx);
+    g_WindowAndFrameTest.Create(pCtx);
     //g_WindowGridedFrameTest.Create(pCtx);
-    g_WindowFrameTest.Create(pCtx);
+    //g_WindowFrameTest.Create(pCtx);
     //g_TexturedWindowTest.Create(pCtx);
 
     pCtx->SetGuiCamera(g_Camera);

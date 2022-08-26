@@ -22,10 +22,10 @@ namespace nsTest
 
         mWindow.Add(&mTFrame);
 
-        mTFrame.SetLeft({ true, 0 });
-        mTFrame.SetRight({ true, 0 });
-        mTFrame.SetTop({ true, 0 });
-        mTFrame.SetBottom({ true, 0 });
+        mTFrame.SetLeftAnchor({ true, 0 });
+        mTFrame.SetRightAnchor({ true, 0 });
+        mTFrame.SetTopAnchor({ true, 0 });
+        mTFrame.SetBottomAnchor({ true, 0 });
 
         mTFrame.Add(&mExitButton);
 

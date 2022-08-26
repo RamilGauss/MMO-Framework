@@ -35,10 +35,15 @@ namespace nsTest
         
         mFrame.SetPos({ 30, 30 });
         mFrame.SetSize({110, 90});
-        //mFrame.SetLeft({ true, 10 });
-        //mFrame.SetRight({ true, 10 });
-        //mFrame.SetTop({ true, 10 });
-        //mFrame.SetBottom({ true, 10 });
+        //mFrame.SetLeftAnchor({ true, 10 });
+        //mFrame.SetRightAnchor({ true, 10 });
+        //mFrame.SetTopAnchor({ true, 10 });
+        //mFrame.SetBottomAnchor({ true, 10 });
+
+        mFrame.SetLeftMinDistance(10);
+        mFrame.SetRightMinDistance(10);
+        mFrame.SetTopMinDistance(10);
+        mFrame.SetBottomMinDistance(10);
 
         mWindow.Add(&mFrame);
 

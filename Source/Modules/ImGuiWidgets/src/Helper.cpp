@@ -17,18 +17,29 @@ bool nsImGuiWidgets::operator != (const ImVec2& l, const ImVec2& r)
 //-------------------------------------------------------------------------
 ImVec2 nsImGuiWidgets::operator + (const ImVec2& l, const ImVec2& r)
 {
-    return {l.x + r.x, l.y + r.y};
+    return { l.x + r.x, l.y + r.y };
 }
 //-------------------------------------------------------------------------
 ImVec2 nsImGuiWidgets::operator - (const ImVec2& l, const ImVec2& r)
 {
-    return {l.x - r.x, l.y - r.y};
+    return { l.x - r.x, l.y - r.y };
 }
 //-------------------------------------------------------------------------
 ImVec2& nsImGuiWidgets::operator += (ImVec2& l, const ImVec2& r)
 {
     l = l + r;
     return l;
+}
+//-------------------------------------------------------------------------
+ImVec2& nsImGuiWidgets::operator -= (ImVec2& l, const ImVec2& r)
+{
+    l = l - r;
+    return l;
+}
+//-------------------------------------------------------------------------
+ImVec2 nsImGuiWidgets::Max(const ImVec2& l, const ImVec2& r)
+{
+    return { std::max(l.x, r.x), std::max(l.y, r.y) };
 }
 //-------------------------------------------------------------------------
 bool nsImGuiWidgets::InRect(const ImVec2& pos, const ImVec2& size, const ImVec2& point)

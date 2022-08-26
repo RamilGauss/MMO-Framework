@@ -19,14 +19,14 @@ namespace nsImGuiWidgets
         void SetPos(const ImVec2& newPos);
         void SetSize(const ImVec2& newSize);
 
-        const ImVec2& GetPos();
-        const ImVec2& GetSize();
+        const ImVec2& GetPos() const;
+        const ImVec2& GetSize() const;
 
         TCallbackPool<> mOnPositionCB;
         TCallbackPool<> mOnSizeCB;
 
     private:
-        ImVec2 mPos;
-        ImVec2 mSize;
+        ImVec2 mPos = { 0, 0 };
+        ImVec2 mSize = { 0, 0 };
     };
 }

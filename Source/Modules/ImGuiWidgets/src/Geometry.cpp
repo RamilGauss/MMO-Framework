@@ -26,12 +26,12 @@ void TGeometry::SetSize(const ImVec2& newSize)
     }
 }
 //--------------------------------------------------------------------------------
-const ImVec2& TGeometry::GetPos()
+const ImVec2& TGeometry::GetPos() const
 {
     return mPos;
 }
 //--------------------------------------------------------------------------------
-const ImVec2& TGeometry::GetSize()
+const ImVec2& TGeometry::GetSize() const
 {
     return mSize;
 }

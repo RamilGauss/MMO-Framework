@@ -32,13 +32,16 @@ namespace nsImGuiWidgets
         SubType GetSubType() const override;
 
         // Maths
-        ImVec2 CalculateMinSizeForAnchoredUnit() const;
+        ImVec2 CalculateMinSizeInGrid() const;
+        ImVec2 CalculateMinSizeInFree() const;
+
+        void UpdateGeometryInGrid(const ImVec2& offset, const ImVec2& contentSize);
+        void UpdateGeometryInFree(const ImVec2& contentSize);
     protected:
         virtual void BeginRender();
         virtual void RenderInheritance() = 0;
         virtual void EndRender();
 
         ImGuiID mIdFromWindow = 0;
-
     };
 }

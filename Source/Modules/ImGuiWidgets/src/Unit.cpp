@@ -9,6 +9,8 @@ See for more information LICENSE.md.
 
 #include <imgui_internal.h>
 
+#include "Helper.h"
+
 using namespace nsImGuiWidgets;
 using namespace nsGraphicEngine;
 
@@ -57,21 +59,254 @@ TWidget::SubType TUnit::GetSubType() const
     return SubType::UNIT;
 }
 //------------------------------------------------------------------------
-ImVec2 TUnit::CalculateMinSizeForAnchoredUnit() const
+ImVec2 TUnit::CalculateMinSizeInGrid() const
 {
     ImVec2 unitMinSize = GetMinSize();
-    if (GetLeft().isUsed && GetRight().isUsed) {
-        unitMinSize.x = GetMinSize().x + GetLeft().offset + GetRight().offset;
-    } else if (GetRight().isUsed) {
-        unitMinSize.x = GetMinSize().x + GetRight().offset;
+
+    if (GetLeftAnchor().isUsed) {
+        unitMinSize.x += GetLeftAnchor().offset;
+    } else {
+        unitMinSize.x += GetLeftMinDistance();
     }
 
-    if (GetTop().isUsed && GetBottom().isUsed) {
-        unitMinSize.y = GetMinSize().y + GetTop().offset + GetBottom().offset;
-    } else if (GetBottom().isUsed) {
-        unitMinSize.y = GetMinSize().y + GetBottom().offset;
+    if (GetRightAnchor().isUsed) {
+        unitMinSize.x += GetRightAnchor().offset;
+    } else {
+        unitMinSize.x += GetRightMinDistance();
+    }
+
+    if (GetTopAnchor().isUsed) {
+        unitMinSize.y += GetTopAnchor().offset;
+    } else {
+        unitMinSize.y += GetTopMinDistance();
+    }
+
+    if (GetBottomAnchor().isUsed) {
+        unitMinSize.y += GetBottomAnchor().offset;
+    } else {
+        unitMinSize.y += GetBottomMinDistance();
     }
 
     return unitMinSize;
+}
+//------------------------------------------------------------------------
+ImVec2 TUnit::CalculateMinSizeInFree() const
+{
+    ImVec2 unitMinSize = GetMinSize();
+    // Полной покрытие
+    if (GetLeftAnchor().isUsed && GetRightAnchor().isUsed) {
+        unitMinSize.x += GetLeftAnchor().offset + GetRightAnchor().offset;
+    }
+
+    if (GetTopAnchor().isUsed && GetBottomAnchor().isUsed) {
+        unitMinSize.y += GetTopAnchor().offset + GetBottomAnchor().offset;
+    }
+
+    // Частичное покрытие
+    if (GetLeftAnchor().isUsed && !GetRightAnchor().isUsed) {
+        unitMinSize.x = GetLeftAnchor().offset + GetSize().x + GetRightMinDistance();
+    }
+    if (!GetLeftAnchor().isUsed && GetRightAnchor().isUsed) {
+        unitMinSize.x = GetLeftMinDistance() + GetSize().x + GetRightAnchor().offset;
+    }
+
+    if (GetTopAnchor().isUsed && !GetBottomAnchor().isUsed) {
+        unitMinSize.y = GetTopAnchor().offset + GetSize().y + GetBottomMinDistance();
+    }
+    if (!GetTopAnchor().isUsed && GetBottomAnchor().isUsed) {
+        unitMinSize.y = GetTopMinDistance() + GetSize().y + GetBottomAnchor().offset;
+    }
+
+    // !IsAnyAnchor по каждой из осей
+    if (!GetLeftAnchor().isUsed && !GetRightAnchor().isUsed) {
+        unitMinSize.x = GetPos().x + GetSize().x + GetRightMinDistance();
+    }
+
+    if (!GetTopAnchor().isUsed && !GetBottomAnchor().isUsed) {
+        unitMinSize.y = GetPos().y + GetSize().y + GetBottomMinDistance();
+    }
+
+    return unitMinSize;
+}
+//------------------------------------------------------------------------
+void TUnit::UpdateGeometryInGrid(const ImVec2& offset, const ImVec2& contentSize)
+{
+    ImVec2 newPos = { 0,0 };
+    ImVec2 newSize = contentSize;
+
+    // X
+    if (GetLeftAnchor().isUsed && GetRightAnchor().isUsed) {
+        newPos.x = GetLeftAnchor().offset;
+        newSize.x -= GetLeftAnchor().offset + GetRightAnchor().offset;
+
+        if (newSize.x > GetMinSize().x) {
+            auto delta = newSize.x - GetMinSize().x;
+            newSize.x = GetMinSize().x;
+            switch (GetHorizontalAlign()) {
+            case THorizontalAlign::Type::LEFT:
+                break;
+            case THorizontalAlign::Type::CENTER:
+                newPos.x += delta / 2;
+                break;
+            case THorizontalAlign::Type::RIGHT:
+                newPos.x += delta;
+                break;
+            }
+        }
+    }
+    if (GetLeftAnchor().isUsed && !GetRightAnchor().isUsed) {
+        newPos.x = GetLeftAnchor().offset;
+        newSize.x -= GetLeftAnchor().offset + GetRightMinDistance();
+
+        newSize.x = std::max(newSize.x, GetMinSize().x);
+    }
+    if (!GetLeftAnchor().isUsed && GetRightAnchor().isUsed) {
+        newSize.x -= GetLeftMinDistance() + GetRightAnchor().offset;
+        
+        newSize.x = std::max(newSize.x, GetMinSize().x);
+        newPos.x = contentSize.x - newSize.x;
+    }
+    if (!GetLeftAnchor().isUsed && !GetRightAnchor().isUsed) {
+        newPos.x = GetLeftMinDistance();
+        newSize.x -= GetLeftMinDistance() + GetRightMinDistance();
+
+        if (newSize.x > GetMinSize().x) {
+            auto delta = newSize.x - GetMinSize().x;
+            newSize.x = GetMinSize().x;
+            switch (GetHorizontalAlign()) {
+            case THorizontalAlign::Type::LEFT:
+                break;
+            case THorizontalAlign::Type::CENTER:
+                newPos.x += delta / 2;
+                break;
+            case THorizontalAlign::Type::RIGHT:
+                newPos.x += delta;
+                break;
+            }
+        }
+    }    
+    // Y
+    if (GetTopAnchor().isUsed && GetBottomAnchor().isUsed) {
+        newPos.y = GetTopAnchor().offset;
+        newSize.y -= GetTopAnchor().offset + GetBottomAnchor().offset;
+
+        if (newSize.y > GetMinSize().y) {
+            auto delta = newSize.y - GetMinSize().y;
+            newSize.y = GetMinSize().y;
+            switch (GetVerticalAlign()) {
+            case TVerticalAlign::Type::TOP:
+                break;
+            case TVerticalAlign::Type::CENTER:
+                newPos.y += delta / 2;
+                break;
+            case TVerticalAlign::Type::BOTTOM:
+                newPos.y += delta;
+                break;
+            }
+        }
+    }
+    if (GetTopAnchor().isUsed && !GetBottomAnchor().isUsed) {
+        newPos.y = GetTopAnchor().offset;
+        newSize.y -= GetTopAnchor().offset + GetBottomMinDistance();
+
+        newSize.y = std::max(newSize.y, GetMinSize().y);
+    }
+    if (!GetTopAnchor().isUsed && GetBottomAnchor().isUsed) {
+        newSize.y -= GetTopMinDistance() + GetBottomAnchor().offset;
+
+        newSize.y = std::max(newSize.y, GetMinSize().y);
+        newPos.y = contentSize.y - newSize.y;
+    }
+    if (!GetTopAnchor().isUsed && !GetBottomAnchor().isUsed) {
+        newPos.y = GetBottomMinDistance();
+        newSize.y -= GetTopMinDistance() + GetBottomMinDistance();
+
+        if (newSize.y > GetMinSize().y) {
+            auto delta = newSize.y - GetMinSize().y;
+            newSize.y = GetMinSize().y;
+            switch (GetVerticalAlign()) {
+            case TVerticalAlign::Type::TOP:
+                break;
+            case TVerticalAlign::Type::CENTER:
+                newPos.y += delta / 2;
+                break;
+            case TVerticalAlign::Type::BOTTOM:
+                newPos.y += delta;
+                break;
+            }
+        }
+    }
+    // Set up
+    newPos += offset;
+
+    SetPos(newPos);
+    SetSize(newSize);
+}
+//------------------------------------------------------------------------
+void TUnit::UpdateGeometryInFree(const ImVec2& contentSize)
+{
+    ImVec2 newPos = { 0,0 };
+    ImVec2 newSize = GetSize();
+
+    // X
+    if (GetLeftAnchor().isUsed && GetRightAnchor().isUsed) {
+        newPos.x = GetLeftAnchor().offset;
+        newSize.x = contentSize.x - GetLeftAnchor().offset - GetRightAnchor().offset;
+
+        if (newSize.x > GetMaxSize().x) {
+            auto delta = newSize.x - GetMaxSize().x;
+            newSize.x = GetMaxSize().x;
+            switch (GetHorizontalAlign()) {
+            case THorizontalAlign::Type::LEFT:
+                break;
+            case THorizontalAlign::Type::CENTER:
+                newPos.x += delta / 2;
+                break;
+            case THorizontalAlign::Type::RIGHT:
+                newPos.x += delta;
+                break;
+            }
+        }
+    }
+    if (GetLeftAnchor().isUsed && !GetRightAnchor().isUsed) {
+        newPos.x = GetLeftAnchor().offset;
+    }
+    if (!GetLeftAnchor().isUsed && GetRightAnchor().isUsed) {
+        newPos.x = contentSize.x - newSize.x - GetRightAnchor().offset;
+    }
+    // Y
+    if (GetTopAnchor().isUsed && GetBottomAnchor().isUsed) {
+        newPos.y = GetTopAnchor().offset;
+        newSize.y = contentSize.y - GetTopAnchor().offset - GetBottomAnchor().offset;
+
+        if (newSize.y > GetMaxSize().y) {
+            auto delta = newSize.y - GetMaxSize().y;
+            newSize.y = GetMaxSize().y;
+            switch (GetVerticalAlign()) {
+            case TVerticalAlign::Type::TOP:
+                break;
+            case TVerticalAlign::Type::CENTER:
+                newPos.y += delta / 2;
+                break;
+            case TVerticalAlign::Type::BOTTOM:
+                newPos.y += delta;
+                break;
+            }
+        }
+    }
+    if (GetTopAnchor().isUsed && !GetBottomAnchor().isUsed) {
+        newPos.y = GetTopAnchor().offset;
+    }
+    if (!GetTopAnchor().isUsed && GetBottomAnchor().isUsed) {
+        newPos.y = contentSize.y - newSize.y - GetBottomAnchor().offset;
+    }
+
+    // Set up
+    if (!IsAnyAnchor()) {
+        newPos = GetPos();
+    }
+
+    SetPos(newPos);
+    SetSize(newSize);
 }
 //------------------------------------------------------------------------
