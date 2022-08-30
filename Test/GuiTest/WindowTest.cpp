@@ -22,10 +22,10 @@ namespace nsTest
         mWindow.SetMaxSize({ 500, 500 });
 
         mExitButton.mOnClickCB.Register(nullptr, [](auto) { _exit(0); });
-        mExitButton.SetTitle("Exit");
-        mAButton.SetTitle("A");
-        mBButton.SetTitle("B");
-        mCButton.SetTitle("C");
+        mExitButton.SetTitle("Anchor 30 100 50 120");
+        mAButton.SetTitle("Anchor R 100 B 80");
+        mBButton.SetTitle("Anchor B 120 ");
+        mCButton.SetTitle("Pos 110 90, size 110 50");
 
         mExitButton.SetLeftAnchor({ true, 30 });
         mExitButton.SetRightAnchor({ true, 100 });

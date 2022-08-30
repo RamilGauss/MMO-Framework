@@ -139,9 +139,9 @@ void TUnit::UpdateGeometryInGrid(const ImVec2& offset, const ImVec2& contentSize
         newPos.x = GetLeftAnchor().offset;
         newSize.x -= GetLeftAnchor().offset + GetRightAnchor().offset;
 
-        if (newSize.x > GetMinSize().x) {
-            auto delta = newSize.x - GetMinSize().x;
-            newSize.x = GetMinSize().x;
+        if (newSize.x > GetMaxSize().x) {
+            auto delta = newSize.x - GetMaxSize().x;
+            newSize.x = GetMaxSize().x;
             switch (GetHorizontalAlign()) {
             case THorizontalAlign::Type::LEFT:
                 break;
@@ -170,9 +170,9 @@ void TUnit::UpdateGeometryInGrid(const ImVec2& offset, const ImVec2& contentSize
         newPos.x = GetLeftMinDistance();
         newSize.x -= GetLeftMinDistance() + GetRightMinDistance();
 
-        if (newSize.x > GetMinSize().x) {
-            auto delta = newSize.x - GetMinSize().x;
-            newSize.x = GetMinSize().x;
+        if (newSize.x > GetMaxSize().x) {
+            auto delta = newSize.x - GetMaxSize().x;
+            newSize.x = GetMaxSize().x;
             switch (GetHorizontalAlign()) {
             case THorizontalAlign::Type::LEFT:
                 break;
@@ -190,9 +190,9 @@ void TUnit::UpdateGeometryInGrid(const ImVec2& offset, const ImVec2& contentSize
         newPos.y = GetTopAnchor().offset;
         newSize.y -= GetTopAnchor().offset + GetBottomAnchor().offset;
 
-        if (newSize.y > GetMinSize().y) {
-            auto delta = newSize.y - GetMinSize().y;
-            newSize.y = GetMinSize().y;
+        if (newSize.y > GetMaxSize().y) {
+            auto delta = newSize.y - GetMaxSize().y;
+            newSize.y = GetMaxSize().y;
             switch (GetVerticalAlign()) {
             case TVerticalAlign::Type::TOP:
                 break;
@@ -221,9 +221,9 @@ void TUnit::UpdateGeometryInGrid(const ImVec2& offset, const ImVec2& contentSize
         newPos.y = GetBottomMinDistance();
         newSize.y -= GetTopMinDistance() + GetBottomMinDistance();
 
-        if (newSize.y > GetMinSize().y) {
-            auto delta = newSize.y - GetMinSize().y;
-            newSize.y = GetMinSize().y;
+        if (newSize.y > GetMaxSize().y) {
+            auto delta = newSize.y - GetMaxSize().y;
+            newSize.y = GetMaxSize().y;
             switch (GetVerticalAlign()) {
             case TVerticalAlign::Type::TOP:
                 break;

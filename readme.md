@@ -30,7 +30,7 @@ Only free and open source engines / libraries / frameworks!
 ## GUI  
 Grid and layouts
 <br>
-<img src="./Doc/guiTest.gif">
+<img src="./Doc/gridAndLayouts.gif">
 <br>
 Component viewer
 <br>

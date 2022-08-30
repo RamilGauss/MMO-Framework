@@ -33,6 +33,10 @@
    "False"
   ],
   [
+   "boost:filesystem_version",
+   "None"
+  ],
+  [
    "boost:header_only",
    "False"
   ],

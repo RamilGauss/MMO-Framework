@@ -191,6 +191,9 @@ namespace nsImGuiWidgets
         size.x *= cell.size.width;
         size.y *= cell.size.height;
 
+        size.x += (cell.size.width - 1) * GetSpacing();
+        size.y += (cell.size.height - 1) * GetSpacing();
+
         return size;
     }
     //---------------------------------------------------------------------------------------

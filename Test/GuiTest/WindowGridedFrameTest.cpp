@@ -62,10 +62,10 @@ namespace nsTest
         mWindow.SetUseGrid(true);
 
         mFrame.SetSpacing(3);
-        mFrame.SetLeftPadding(3);
-        mFrame.SetRightPadding(3);
-        mFrame.SetTopPadding(3);
-        mFrame.SetBottomPadding(3);
+        mFrame.SetLeftPadding(5);
+        mFrame.SetRightPadding(5);
+        mFrame.SetTopPadding(5);
+        mFrame.SetBottomPadding(5);
 
         mFrame.Add(&mExitButton);
         mFrame.Add(&mAButton);
@@ -78,10 +78,10 @@ namespace nsTest
         mFrame.AddCellInGrid({ &mCButton,    {1,1}, {1,1} });
 
         mWindow.SetSpacing(3);
-        mWindow.SetLeftPadding(0);
-        mWindow.SetRightPadding(0);
-        mWindow.SetTopPadding(0);
-        mWindow.SetBottomPadding(0);
+        mWindow.SetLeftPadding(5);
+        mWindow.SetRightPadding(8);
+        mWindow.SetTopPadding(19);
+        mWindow.SetBottomPadding(8);
 
         mWindow.AddCellInGrid({ &mDButton, {0,0}, {1,1} });
         mWindow.AddCellInGrid({ &mEButton, {1,0}, {1,1} });

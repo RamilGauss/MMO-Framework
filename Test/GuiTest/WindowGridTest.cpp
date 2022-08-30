@@ -51,10 +51,10 @@ namespace nsTest
         mWindow.AddCellInGrid({ &mBButton,    {1,0}, {1,1} });
         mWindow.AddCellInGrid({ &mCButton,    {1,1}, {1,1} });
 
-        mWindow.SetTopPadding(1);
-        mWindow.SetRightPadding(1);
-        mWindow.SetLeftPadding(1);
-        mWindow.SetBottomPadding(1);
+        mWindow.SetTopPadding(20);
+        mWindow.SetRightPadding(9);
+        mWindow.SetLeftPadding(6);
+        mWindow.SetBottomPadding(9);
 
         mWindow.SetSpacing(1);
 
