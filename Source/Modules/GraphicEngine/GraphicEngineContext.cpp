@@ -23,11 +23,38 @@ void TGraphicEngineContext::Init(TGraphicEngine* pGE)
     mRenderableObjectShader = CreateRenderableObjectShader();
 
     mImGuiContext.Init(pGE->GetSdlWindow(), pGE->GetSdlCtx());
+
+
+    mCamerasRenderOnDisplayShader = CreateCamerasRenderOnDisplayShader();
+    mCamerasRenderOnDisplayObject = new TRenderableObject();
+
+    mCamerasRenderOnDisplayObjectMesh.AddPoint({ -1, -1, 0, 0, 0 });
+    mCamerasRenderOnDisplayObjectMesh.AddPoint({  1, -1, 0, 1, 0 });
+    mCamerasRenderOnDisplayObjectMesh.AddPoint({ -1,  1, 0, 0, 1 });
+
+    mCamerasRenderOnDisplayObjectMesh.AddPoint({ -1,  1, 0, 0, 1 });
+    mCamerasRenderOnDisplayObjectMesh.AddPoint({  1, -1, 0, 1, 0 });
+    mCamerasRenderOnDisplayObjectMesh.AddPoint({  1,  1, 0, 1, 1 });
+
+    mCamerasRenderOnDisplayObject->SetMesh(&mCamerasRenderOnDisplayObjectMesh);
 }
 //--------------------------------------------------------------------------------------------
 TGraphicEngineContext::~TGraphicEngineContext()
 {
+    delete mCamerasRenderOnDisplayObject;
+}
+//--------------------------------------------------------------------------------------------
+TShader* TGraphicEngineContext::CreateCamerasRenderOnDisplayShader()
+{
+    auto vertexShaderText = TShaderPrefabs::GetRenderTextureOnDisplayVertex();
+    auto fragmentShaderText = TShaderPrefabs::GetRenderTextureOnDisplayFragment();
 
+    std::list<nsGraphicEngine::TShaderFactory::TParams> params;
+
+    params.push_back({ GL_VERTEX_SHADER, vertexShaderText });
+    params.push_back({ GL_FRAGMENT_SHADER, fragmentShaderText });
+
+    return nsGraphicEngine::TShaderFactory::Create(params);
 }
 //--------------------------------------------------------------------------------------------
 TShader* TGraphicEngineContext::CreateRenderableObjectShader()
@@ -40,9 +67,7 @@ TShader* TGraphicEngineContext::CreateRenderableObjectShader()
     params.push_back({ GL_VERTEX_SHADER, vertexShaderText });
     params.push_back({ GL_FRAGMENT_SHADER, fragmentShaderText });
 
-    auto pShader = nsGraphicEngine::TShaderFactory::Create(params);
-
-    return pShader;
+    return nsGraphicEngine::TShaderFactory::Create(params);
 }
 //--------------------------------------------------------------------------------------------
 void TGraphicEngineContext::Render()
@@ -81,6 +106,20 @@ void TGraphicEngineContext::Render()
         }
 
         camera->End();
+    }
+
+    for (auto& camera : mCameras) {
+        if (camera->IsRenderOnDisplay()) {
+            mCamerasRenderOnDisplayShader->MakeCurrentInConveyer();
+            mCamerasRenderOnDisplayShader->SetInt("texture1", 0);
+            mCamerasRenderOnDisplayShader->SetFloat2("pos", 0.0f, 0.0f);
+            mCamerasRenderOnDisplayShader->SetFloat2("size", 2.0f, 2.0f);
+
+            auto pTexture = camera->GetRenderedTexture();
+            mCamerasRenderOnDisplayObject->SetTexture(pTexture);
+
+            mCamerasRenderOnDisplayObject->Draw();
+        }
     }
 }
 //--------------------------------------------------------------------------------------------

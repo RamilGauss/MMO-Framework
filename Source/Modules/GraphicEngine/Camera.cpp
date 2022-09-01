@@ -13,6 +13,21 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicEngine;
 
+TCamera::TCamera()
+{
+
+}
+//-------------------------------------------------------------------------------------------------------
+bool TCamera::IsRenderOnDisplay() const
+{
+    return mIsRenderOnDisplay;
+}
+//-------------------------------------------------------------------------------------------------------
+void TCamera::SetRenderOnDisplay(bool value)
+{
+    mIsRenderOnDisplay = value;
+}
+//-------------------------------------------------------------------------------------------------------
 void TCamera::SetZoom(float value)
 {
     mZoom = value;
@@ -20,7 +35,13 @@ void TCamera::SetZoom(float value)
 //-------------------------------------------------------------------------------------------------------
 void TCamera::SetWindowSize(const glm::vec2& value)
 {
+    if (mWindowSize == value) {
+        return;
+    }
+
     mWindowSize = value;
+
+    SetTextureSize(mWindowSize);
 }
 //-------------------------------------------------------------------------------------------------------
 void TCamera::SetWindowPosition(const glm::vec2& value)
@@ -81,7 +102,7 @@ void TCamera::AddRotation(const glm::vec3& angles)
     glm::mat4 mU(1.0f);
     auto up = GetUp();
     mU = glm::rotate(mU, angles.y, up);
-    m = mU *m;
+    m = mU * m;
     glm::extractEulerAngleXYZ(m, mRotation.x, mRotation.y, mRotation.z);
 
     m = glm::eulerAngleXYZ(mRotation.x, mRotation.y, mRotation.z);
@@ -120,7 +141,7 @@ void TCamera::MoveUp(float value)
 glm::vec3 TCamera::GetRight() const
 {
     auto right = glm::cross(GetUp(), GetForward());
-    
+
     return glm::normalize(right);
 }
 //-------------------------------------------------------------------------------------------------------
@@ -144,16 +165,26 @@ glm::vec3 TCamera::GetUp() const
     return glm::normalize(up);
 }
 //-------------------------------------------------------------------------------------------------------
-void TCamera::SetTextureSize(const glm::vec2 & textureSize)
+void TCamera::FreeResources()
 {
+    if (mTexture) {
+        glDeleteFramebuffers(1, &mFrameBuffer);
+        glDeleteTextures(1, &mTexture->mId);
+        glDeleteRenderbuffers(1, &mRenderBufferForDepthStensilTest);
+    }
+
     delete mTexture;
+    mTexture = nullptr;
+}
+//-------------------------------------------------------------------------------------------------------
+void TCamera::SetTextureSize(const glm::vec2& textureSize)
+{
+    FreeResources();
+
     mTexture = new TTexture();
 
     mTexture->mWidth = textureSize.x;
     mTexture->mHeight = textureSize.y;
-
-    mWindowSize = textureSize;
-    mWindowPosition = {0,0};
 
     // framebuffer configuration
     glGenFramebuffers(1, &mFrameBuffer);
@@ -181,10 +212,6 @@ void TCamera::SetTextureSize(const glm::vec2 & textureSize)
 //-------------------------------------------------------------------------------------------------------
 void TCamera::Begin()
 {
-    if (mTexture == nullptr) {
-        return;
-    }
-
     glBindFramebuffer(GL_FRAMEBUFFER, mFrameBuffer);
 
     glEnable(GL_DEPTH_TEST); // enable depth testing (is disabled for rendering screen-space quad)
@@ -194,10 +221,6 @@ void TCamera::Begin()
 //-------------------------------------------------------------------------------------------------------
 void TCamera::End()
 {
-    if (mTexture == nullptr) {
-        return;
-    }
-
     // now bind back to default framebuffer and draw a quad plane with the attached framebuffer color texture
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }

@@ -27,7 +27,10 @@ namespace nsGraphicEngine
         TImGuiContext mImGuiContext;
 
         TShader* mRenderableObjectShader = nullptr;
-        TShader* mGuiShader = nullptr;
+        TShader* mCamerasRenderOnDisplayShader = nullptr;
+
+        TRenderableObject* mCamerasRenderOnDisplayObject = nullptr;
+        TMesh mCamerasRenderOnDisplayObjectMesh;
 
         TGraphicEngine* mGE = nullptr;
 
@@ -61,5 +64,6 @@ namespace nsGraphicEngine
         TGraphicEngineContext();
 
         TShader* CreateRenderableObjectShader();
+        TShader* CreateCamerasRenderOnDisplayShader();
     };
 }

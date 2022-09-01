@@ -19,5 +19,8 @@ namespace nsGraphicEngine
     public:
         static const std::list<std::string> GetRenderObjectVertex();
         static const std::list<std::string> GetRenderObjectFragment();
+
+        static const std::list<std::string> GetRenderTextureOnDisplayVertex();
+        static const std::list<std::string> GetRenderTextureOnDisplayFragment();
     };
 }

@@ -45,8 +45,10 @@ void TRenderableObject::SetTexture(const TTexture* pTexture)
 void TRenderableObject::Draw()
 {
     glBindVertexArray(mVAO);
+    
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, mTexture->mId);
+
     glDrawArrays(GL_TRIANGLES, 0, mMesh->GetPointCount());
 }
 //-------------------------------------------------------------------------------------------------------

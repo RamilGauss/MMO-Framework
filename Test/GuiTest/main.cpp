@@ -54,12 +54,12 @@ void CreateContext(TGraphicEngine& ge)
     g_Camera->SetWindowPosition({ 0 , 0 });
     g_Camera->SetWindowSize({ W , H });
 
-    g_WindowTest.Create(pCtx);
-    g_WindowGridTest.Create(pCtx);
-    g_WindowAndFrameTest.Create(pCtx);
-    g_WindowGridedFrameTest.Create(pCtx);
+    //g_WindowTest.Create(pCtx);
+    //g_WindowGridTest.Create(pCtx);
+    //g_WindowAndFrameTest.Create(pCtx);
+    //g_WindowGridedFrameTest.Create(pCtx);
     g_WindowFrameTest.Create(pCtx);
-    //g_TexturedWindowTest.Create(pCtx);
+    //g_TexturedWindowTest.Create(pCtx, g_Camera);
 
     pCtx->SetGuiCamera(g_Camera);
 }

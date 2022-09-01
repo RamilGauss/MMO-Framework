@@ -39,8 +39,14 @@ namespace nsGraphicEngine
         unsigned int mRenderBufferForDepthStensilTest = -1;
 
         TTexture* mTexture = nullptr;
+        bool mIsRenderOnDisplay = true;
 
     public:
+        TCamera();
+
+        bool IsRenderOnDisplay() const;
+        void SetRenderOnDisplay(bool value);
+
         void SetTextureSize(const glm::vec2& textureSize);
         const TTexture* GetRenderedTexture() const;
 
@@ -76,6 +82,8 @@ namespace nsGraphicEngine
         glm::vec3 GetForward() const;
         glm::vec3 GetUp() const;
         glm::vec3 GetRight() const;
+
+        void FreeResources();
     };
 }
 

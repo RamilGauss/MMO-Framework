@@ -39,3 +39,18 @@ void TShader::SetMat4(const std::string& name, const glm::mat4& mat) const
     glUniformMatrix4fv(glGetUniformLocation(mId, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
 //------------------------------------------------------------------------
+void TShader::SetFloat2(const std::string& name, float value0, float value1) const
+{
+    glUniform2f(glGetUniformLocation(mId, name.c_str()), value0, value1);
+}
+//------------------------------------------------------------------------
+void TShader::SetFloat3(const std::string& name, float value0, float value1, float value2) const
+{
+    glUniform3f(glGetUniformLocation(mId, name.c_str()), value0, value1, value2);
+}
+//------------------------------------------------------------------------
+void TShader::SetFloat4(const std::string& name, float value0, float value1, float value2, float value3) const
+{
+    glUniform4f(glGetUniformLocation(mId, name.c_str()), value0, value1, value2, value3);
+}
+//------------------------------------------------------------------------
