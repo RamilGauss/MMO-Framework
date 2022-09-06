@@ -64,7 +64,7 @@ const std::list<std::string> TShaderPrefabs::GetRenderTextureOnDisplayVertex()
     "\n" \
     "void main()\n" \
     "{\n" \
-    "    gl_Position = vec4(pos, 0.0f, 1.0f) + vec4(aPos.x * size.x, aPos.y * size.x, aPos.z, 1.0f);\n" \
+    "    gl_Position = vec4(pos, 0.0f, 1.0f) + vec4(aPos.x * size.x, aPos.y * size.y, aPos.z, 1.0f);\n" \
     "    TexCoord = vec2(aTexCoord.x, aTexCoord.y);\n" \
     "}";
 

@@ -18,10 +18,10 @@ See for more information LICENSE.md.
 #include <glm/mat4x4.hpp>
 #include <glm/vec2.hpp>
 
+#include "Texture.h"
+
 namespace nsGraphicEngine
 {
-    class TTexture;
-
     class DllExport TCamera
     {
         glm::vec3 mPosition = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -38,8 +38,10 @@ namespace nsGraphicEngine
         unsigned int mFrameBuffer = -1;
         unsigned int mRenderBufferForDepthStensilTest = -1;
 
-        TTexture* mTexture = nullptr;
+        TTexture mTexture;
         bool mIsRenderOnDisplay = true;
+
+        bool mHasResources = false;
 
     public:
         TCamera();

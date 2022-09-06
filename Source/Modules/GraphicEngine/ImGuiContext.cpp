@@ -47,7 +47,7 @@ void TImGuiContext::Render(float glPosX, float glPosY, float width, float height
 
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplSDL2_NewFrame({ width, height });
+    ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
 
     for (auto pRenderable : mRenderables) {
@@ -57,7 +57,7 @@ void TImGuiContext::Render(float glPosX, float glPosY, float width, float height
     ImGui::Render();
 
     auto pDrawData = ImGui::GetDrawData();
-    ImGui_ImplOpenGL3_RenderDrawData(pDrawData, glPosX, glPosY, width, height);
+    ImGui_ImplOpenGL3_RenderDrawData(pDrawData);
 }
 //-------------------------------------------------------------------------------
 void TImGuiContext::HandleEvents(const std::list<SDL_Event>& events, std::list<SDL_Event>& unusedEvents,

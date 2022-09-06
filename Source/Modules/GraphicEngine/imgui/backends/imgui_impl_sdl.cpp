@@ -408,12 +408,16 @@ static bool ImGui_ImplSDL2_Init(SDL_Window* window, SDL_Renderer* renderer, void
     // Our mouse update function expect PlatformHandle to be filled for the main viewport
     ImGuiViewport* main_viewport = ImGui::GetMainViewport();
     main_viewport->PlatformHandle = (void*)window;
-#ifdef _WIN32
     SDL_SysWMinfo info;
     SDL_VERSION(&info.version);
     if (SDL_GetWindowWMInfo(window, &info))
+    {
+#ifdef _WIN32
         main_viewport->PlatformHandleRaw = (void*)info.info.win.window;
+#elif defined(__APPLE__)
+        main_viewport->PlatformHandleRaw = (void*)info.info.cocoa.window;
 #endif
+    }
 
     // Set SDL hint to receive mouse click events on window focus, otherwise SDL doesn't emit the event.
     // Without this, when clicking to gain focus, our widgets wouldn't activate even though they showed as hovered.
@@ -576,7 +580,7 @@ static void ImGui_ImplSDL2_UpdateMouseCursor()
 static void ImGui_ImplSDL2_UpdateGamepads()
 {
     ImGuiIO& io = ImGui::GetIO();
-    if ((io.ConfigFlags & ImGuiConfigFlags_NavEnableGamepad) == 0)
+    if ((io.ConfigFlags & ImGuiConfigFlags_NavEnableGamepad) == 0) // FIXME: Technically feeding gamepad shouldn't depend on this now that they are regular inputs.
         return;
 
     // Get gamepad
@@ -593,10 +597,10 @@ static void ImGui_ImplSDL2_UpdateGamepads()
     const int thumb_dead_zone = 8000;           // SDL_gamecontroller.h suggests using this value.
     MAP_BUTTON(ImGuiKey_GamepadStart,           SDL_CONTROLLER_BUTTON_START);
     MAP_BUTTON(ImGuiKey_GamepadBack,            SDL_CONTROLLER_BUTTON_BACK);
-    MAP_BUTTON(ImGuiKey_GamepadFaceDown,        SDL_CONTROLLER_BUTTON_A);              // Xbox A, PS Cross
-    MAP_BUTTON(ImGuiKey_GamepadFaceRight,       SDL_CONTROLLER_BUTTON_B);              // Xbox B, PS Circle
     MAP_BUTTON(ImGuiKey_GamepadFaceLeft,        SDL_CONTROLLER_BUTTON_X);              // Xbox X, PS Square
+    MAP_BUTTON(ImGuiKey_GamepadFaceRight,       SDL_CONTROLLER_BUTTON_B);              // Xbox B, PS Circle
     MAP_BUTTON(ImGuiKey_GamepadFaceUp,          SDL_CONTROLLER_BUTTON_Y);              // Xbox Y, PS Triangle
+    MAP_BUTTON(ImGuiKey_GamepadFaceDown,        SDL_CONTROLLER_BUTTON_A);              // Xbox A, PS Cross
     MAP_BUTTON(ImGuiKey_GamepadDpadLeft,        SDL_CONTROLLER_BUTTON_DPAD_LEFT);
     MAP_BUTTON(ImGuiKey_GamepadDpadRight,       SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
     MAP_BUTTON(ImGuiKey_GamepadDpadUp,          SDL_CONTROLLER_BUTTON_DPAD_UP);
@@ -639,6 +643,8 @@ static void ImGui_ImplSDL2_UpdateMonitors()
         monitor.WorkSize = ImVec2((float)r.w, (float)r.h);
 #endif
 #if SDL_HAS_PER_MONITOR_DPI
+        // FIXME-VIEWPORT: On MacOS SDL reports actual monitor DPI scale, ignoring OS configuration. We may want to set
+        //  DpiScale to cocoa_window.backingScaleFactor here.
         float dpi = 0.0f;
         if (!SDL_GetDisplayDPI(n, &dpi, NULL, NULL))
             monitor.DpiScale = dpi / 96.0f;
@@ -647,32 +653,25 @@ static void ImGui_ImplSDL2_UpdateMonitors()
     }
 }
 
-//### void ImGui_ImplSDL2_NewFrame()
-void ImGui_ImplSDL2_NewFrame(const ImVec2& renderSize)
+void ImGui_ImplSDL2_NewFrame()
 {
     ImGui_ImplSDL2_Data* bd = ImGui_ImplSDL2_GetBackendData();
     IM_ASSERT(bd != NULL && "Did you call ImGui_ImplSDL2_Init()?");
     ImGuiIO& io = ImGui::GetIO();
 
-    //// Setup display size (every frame to accommodate for window resizing)
-    //int w, h;
-    //int display_w, display_h;
-    //SDL_GetWindowSize(bd->Window, &w, &h);
-    //if (SDL_GetWindowFlags(bd->Window) & SDL_WINDOW_MINIMIZED)
-    //    w = h = 0;
-    //if (bd->Renderer != NULL)
-    //    SDL_GetRendererOutputSize(bd->Renderer, &display_w, &display_h);
-    //else
-    //    SDL_GL_GetDrawableSize(bd->Window, &display_w, &display_h);
-    //io.DisplaySize = ImVec2((float)w, (float)h);
-    //if (w > 0 && h > 0)
-    //    io.DisplayFramebufferScale = ImVec2((float)display_w / w, (float)display_h / h);
-
-    //###
-    io.DisplaySize = renderSize;
-    io.DisplayFramebufferScale = ImVec2((float)1, (float)1);
-    //###
-
+    // Setup display size (every frame to accommodate for window resizing)
+    int w, h;
+    int display_w, display_h;
+    SDL_GetWindowSize(bd->Window, &w, &h);
+    if (SDL_GetWindowFlags(bd->Window) & SDL_WINDOW_MINIMIZED)
+        w = h = 0;
+    if (bd->Renderer != NULL)
+        SDL_GetRendererOutputSize(bd->Renderer, &display_w, &display_h);
+    else
+        SDL_GL_GetDrawableSize(bd->Window, &display_w, &display_h);
+    io.DisplaySize = ImVec2((float)w, (float)h);
+    if (w > 0 && h > 0)
+        io.DisplayFramebufferScale = ImVec2((float)display_w / w, (float)display_h / h);
 
     // Setup time step (we don't use SDL_GetTicks() because it is using millisecond resolution)
     static Uint64 frequency = SDL_GetPerformanceFrequency();
@@ -687,9 +686,7 @@ void ImGui_ImplSDL2_NewFrame(const ImVec2& renderSize)
         io.AddMousePosEvent(-FLT_MAX, -FLT_MAX);
     }
 
-    // Gauss 2022.05.15
-    // Вот уж точно messy code. Что-то скрытно работает, хотя снаружи задаются события SDL. Очень грязный код.
-    //### ImGui_ImplSDL2_UpdateMouseData();
+    ImGui_ImplSDL2_UpdateMouseData();
     ImGui_ImplSDL2_UpdateMouseCursor();
 
     // Update game controllers (if enabled and available)
@@ -757,12 +754,16 @@ static void ImGui_ImplSDL2_CreateWindow(ImGuiViewport* viewport)
         SDL_GL_MakeCurrent(vd->Window, backup_context);
 
     viewport->PlatformHandle = (void*)vd->Window;
-#if defined(_WIN32)
     SDL_SysWMinfo info;
     SDL_VERSION(&info.version);
     if (SDL_GetWindowWMInfo(vd->Window, &info))
+    {
+#if defined(_WIN32)
         viewport->PlatformHandleRaw = info.info.win.window;
+#elif defined(__APPLE__)
+        viewport->PlatformHandleRaw = (void*)info.info.cocoa.window;
 #endif
+    }
 }
 
 static void ImGui_ImplSDL2_DestroyWindow(ImGuiViewport* viewport)

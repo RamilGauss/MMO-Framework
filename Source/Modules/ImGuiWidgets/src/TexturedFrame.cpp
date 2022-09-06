@@ -7,20 +7,23 @@ See for more information LICENSE.md.
 
 #include "TexturedFrame.h"
 
+#include "TextureFactory.h"
+#include "Texture.h"
+
+
 namespace nsImGuiWidgets
 {
     TTexturedFrame::TTexturedFrame()
     {
     }
     //----------------------------------------------------------------------------------------------------
-
     void TTexturedFrame::RenderInheritance()
     {
         TFrame::RenderInheritance();
 
         auto textureId = GetTexture();
         if (textureId != -1) {
-            ImGui::Image((void*)(intptr_t)GetTexture(), GetSize());
+            ImGui::Image((void*)(intptr_t)textureId, GetSize());
         }
     }
     //----------------------------------------------------------------------------------------------------

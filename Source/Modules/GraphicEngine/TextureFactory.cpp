@@ -11,7 +11,9 @@ See for more information LICENSE.md.
 #include <glad/glad.h>
 
 #define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
 
+#include "stb_image_write.h"
 #include "stb_image.h"
 
 #include "TextureFactory.h"
@@ -61,8 +63,17 @@ TTexture* TTextureFactory::Load(const std::string& absPath)
     return pTexture;
 }
 //----------------------------------------------------------------------------------------------
-bool TTextureFactory::Save(TTexture* pTexture, const std::string& absPath)
+bool TTextureFactory::Save(const TTexture* pTexture, const std::string& absPath)
 {
+    auto size = pTexture->mWidth * pTexture->mHeight * 4;
+    uint8_t* pixelspTexture = new uint8_t[size]; // 4 because of RGBA * 1 byte
+
+    glReadPixels(0, 0, pTexture->mWidth, pTexture->mHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixelspTexture);
+
+    stbi_write_png(absPath.c_str(), pTexture->mWidth, pTexture->mHeight, 4, pixelspTexture, pTexture->mWidth * 4);
+
+    delete[] pixelspTexture;
+
     return false;
 }
 //----------------------------------------------------------------------------------------------

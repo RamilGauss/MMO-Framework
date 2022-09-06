@@ -21,8 +21,8 @@ namespace nsImGuiWidgets
             return false;
 
         ImGuiContext& g = *GImGui;
-        const char* label_end = g.TempBuffer + ImFormatString(g.TempBuffer, IM_ARRAYSIZE(g.TempBuffer), fmt);
-        return TreeNodeBehavior(window->GetID(str_id), flags, g.TempBuffer, label_end, user_texture_id, size);
+        const char* label_end = g.TempBuffer.begin() + ImFormatString(g.TempBuffer.begin(), g.TempBuffer.size(), fmt);
+        return TreeNodeBehavior(window->GetID(str_id), flags, g.TempBuffer.begin(), label_end, user_texture_id, size);
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     bool TImGuiCustom::MenuItem(const char* label, const char* shortcut, bool selected, bool enabled,

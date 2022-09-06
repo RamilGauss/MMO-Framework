@@ -9,6 +9,9 @@ See for more information LICENSE.md.
 #include "ShaderFactory.h"
 #include "ShaderPrefabs.h"
 
+#include "TextureFactory.h"
+#include "Texture.h"
+
 using namespace nsGraphicEngine;
 
 TGraphicEngineContext::TGraphicEngineContext()
