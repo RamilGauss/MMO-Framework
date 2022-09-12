@@ -18,9 +18,9 @@ namespace nsLogicWrapper
 {
     struct DllExport TObjectInstanceEndHandlerComponent : nsECSFramework::IComponent
     {
+        std::string handlerTypeName;
+
 #pragma IGNORE_ATTRIBUTE
         mutable IObjectInstanceEndHandler* handler = nullptr;
-
-        std::string handlerTypeName;
     };
 }

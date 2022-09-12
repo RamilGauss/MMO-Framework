@@ -18,10 +18,10 @@ namespace nsLogicWrapper
 {
     struct DllExport TSystemComponent : nsECSFramework::IComponent
     {
+        std::string typeName;
+
 #pragma IGNORE_ATTRIBUTE
         mutable nsECSFramework::TSystem* value = nullptr;
-
-        std::string typeName;
 
         bool IsLess(const IComponent* pOther) const override
         {

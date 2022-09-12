@@ -19,6 +19,7 @@ namespace nsGraphicWrapper
     struct DllExport TUniverseCameraComponent : nsECSFramework::IComponent
     {
         std::string universeGuid;
+
 #pragma IGNORE_ATTRIBUTE
         mutable nsGraphicEngine::TCamera* value = nullptr;
 
