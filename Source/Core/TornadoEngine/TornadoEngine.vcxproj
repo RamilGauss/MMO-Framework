@@ -80,7 +80,7 @@
     <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)_d</TargetName>
-    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\Exe\</OutDir>
@@ -127,7 +127,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Logic;./Generated files;./Features/Logic;./Features/Graphic;./Features/Gui;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules\GraphicEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Widgets;./Components/Logic;./Generated files;./Features/Logic;./Features/Graphic;./Features/Gui;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules\GraphicEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -187,7 +187,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\Torna
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Logic;./Generated files;./Features/Logic;./Features/Graphic;./Features/Gui;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine;$(DEP_PATH_MMO_FRAMEWORK)\Include\OgreMain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Bites\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Overlay\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\Terrain\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\Components\RTShaderSystem\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDK;$(DEP_PATH_MMO_FRAMEWORK)\Include\SDL2\include;$(DEP_PATH_MMO_FRAMEWORK)\Include\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Widgets;./Components/Logic;./Generated files;./Features/Logic;./Features/Graphic;./Features/Gui;./Handlers;./Modules;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules\GraphicEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -371,33 +371,33 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Components\Graphic\TextureFromCameraComponent.h" />
     <ClInclude Include="Components\Graphic\TextureFromFileComponent.h" />
     <ClInclude Include="Components\Graphic\UniverseCameraComponent.h" />
-    <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h" />
-    <ClInclude Include="Components\Gui\ButtonComponent.h" />
-    <ClInclude Include="Components\Gui\DialogComponent.h" />
-    <ClInclude Include="Components\Gui\DialogCloseEventHandlerComponent.h" />
-    <ClInclude Include="Components\Gui\FocusComponent.h" />
-    <ClInclude Include="Components\Gui\FrameComponent.h" />
-    <ClInclude Include="Components\Gui\FrameKeyHandlerComponent.h" />
-    <ClInclude Include="Components\Gui\FrameMouseClickHandlerComponent.h" />
-    <ClInclude Include="Components\Gui\FrameMouseMoveHandlerComponent.h" />
-    <ClInclude Include="Components\Gui\FrameMouseWheelHandlerComponent.h" />
-    <ClInclude Include="Components\Gui\InputTextComponent.h" />
-    <ClInclude Include="Components\Gui\InputTextValueComponent.h" />
-    <ClInclude Include="Components\Gui\LabelComponent.h" />
-    <ClInclude Include="Components\Gui\LabelValueComponent.h" />
-    <ClInclude Include="Components\Gui\MainWindowComponent.h" />
-    <ClInclude Include="Components\Gui\MenuNodeClickHandlerComponent.h" />
-    <ClInclude Include="Components\Gui\MenuNodeComponent.h" />
-    <ClInclude Include="Components\Gui\PositionComponent.h" />
-    <ClInclude Include="Components\Gui\SelectedTreeNodeGuidComponent.h" />
-    <ClInclude Include="Components\Gui\SizeComponent.h" />
-    <ClInclude Include="Components\Gui\TitleComponent.h" />
-    <ClInclude Include="Components\Gui\TreeNodeComponent.h" />
-    <ClInclude Include="Components\Gui\NodeIconComponent.h" />
-    <ClInclude Include="Components\Gui\TreeViewComponent.h" />
-    <ClInclude Include="Components\Gui\VisibilityComponent.h" />
-    <ClInclude Include="Components\Gui\WindowComponent.h" />
-    <ClInclude Include="Components\Gui\WindowCloseEventHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\Handlers\ButtonClickHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\ButtonComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\DialogComponent.h" />
+    <ClInclude Include="Components\Gui\Handlers\DialogCloseEventHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\FocusComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\FrameComponent.h" />
+    <ClInclude Include="Components\Gui\Handlers\FrameKeyHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\Handlers\FrameMouseClickHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\Handlers\FrameMouseMoveHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\Handlers\FrameMouseWheelHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\InputTextComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\InputTextValueComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\LabelComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\LabelValueComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\MainWindowComponent.h" />
+    <ClInclude Include="Components\Gui\Handlers\MenuNodeClickHandlerComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\MenuNodeComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\PositionComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\SelectedTreeNodeGuidComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\SizeComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\TitleComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\TreeNodeComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\NodeIconComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\TreeViewComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\VisibilityComponent.h" />
+    <ClInclude Include="Components\Gui\Widgets\WindowComponent.h" />
+    <ClInclude Include="Components\Gui\Handlers\WindowCloseEventHandlerComponent.h" />
     <ClInclude Include="Components\Logic\SystemComponent.h" />
     <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerComponent.h" />
     <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h" />

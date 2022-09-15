@@ -986,67 +986,67 @@
     <ClInclude Include="Features\Graphic\LabelTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\WindowCloseEventHandlerComponent.h">
+    <ClInclude Include="Components\Gui\Handlers\WindowCloseEventHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\MenuNodeClickHandlerComponent.h">
+    <ClInclude Include="Components\Gui\Handlers\MenuNodeClickHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\DialogCloseEventHandlerComponent.h">
+    <ClInclude Include="Components\Gui\Handlers\DialogCloseEventHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\ButtonClickHandlerComponent.h">
+    <ClInclude Include="Components\Gui\Handlers\ButtonClickHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\ButtonComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\ButtonComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\DialogComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\DialogComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\FocusComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\FocusComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\FrameComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\FrameComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\InputTextComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\InputTextComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\InputTextValueComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\InputTextValueComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\LabelComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\LabelComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\LabelValueComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\LabelValueComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\MainWindowComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\MainWindowComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\MenuNodeComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\MenuNodeComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\PositionComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\PositionComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\SizeComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\SizeComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\TitleComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\TitleComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\TreeNodeComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\TreeNodeComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\TreeViewComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\TreeViewComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\VisibilityComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\VisibilityComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\WindowComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\WindowComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerComponent.h">
@@ -1067,7 +1067,7 @@
     <ClInclude Include="Components\Logic\SceneReferenceComponent.h">
       <Filter>Components\Logic\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\FrameMouseClickHandlerComponent.h">
+    <ClInclude Include="Components\Gui\Handlers\FrameMouseClickHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\IFrameMouseClickHandler.h">
@@ -1082,16 +1082,16 @@
     <ClInclude Include="Handlers\IFrameKeyHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\FrameMouseWheelHandlerComponent.h">
+    <ClInclude Include="Components\Gui\Handlers\FrameMouseWheelHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\FrameMouseMoveHandlerComponent.h">
+    <ClInclude Include="Components\Gui\Handlers\FrameMouseMoveHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\FrameKeyHandlerComponent.h">
+    <ClInclude Include="Components\Gui\Handlers\FrameKeyHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\NodeIconComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\NodeIconComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\FrameMouseClickHandlerMakerSystem.h">
@@ -1133,7 +1133,7 @@
     <ClInclude Include="Components\Common\NeedDestroyObjectTagComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\SelectedTreeNodeGuidComponent.h">
+    <ClInclude Include="Components\Gui\Widgets\SelectedTreeNodeGuidComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Modules\IContextManager.h">
