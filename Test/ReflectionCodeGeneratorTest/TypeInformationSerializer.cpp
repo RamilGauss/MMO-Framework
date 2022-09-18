@@ -2,7 +2,7 @@
 	ReflectionCodeGeneratorTest
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_05_27 20:01:08.035
+// File has been generated at 2022_09_18 22:21:05.304
 	
 #include "TypeInformationSerializer.h"
 
@@ -81,6 +81,12 @@ void TTypeInformationSerializer::Init()
     mRttiList.push_back(System_i);
     mNameRttiMap.insert({ System_n, System_i });
     
+    int TUnit_i = globalTypeIdentifier->Type<TUnit>();
+    std::string TUnit_n = "TUnit";
+    mTypeNameList.push_back(TUnit_n);
+    mRttiList.push_back(TUnit_i);
+    mNameRttiMap.insert({ TUnit_n, TUnit_i });
+    
     int TearDownSystem_i = globalTypeIdentifier->Type<TearDownSystem>();
     std::string TearDownSystem_n = "TearDownSystem";
     mTypeNameList.push_back(TearDownSystem_n);
@@ -116,6 +122,12 @@ void TTypeInformationSerializer::Init()
     mTypeNameList.push_back(nsSimpleComponents_TSimpleComponent_n);
     mRttiList.push_back(nsSimpleComponents_TSimpleComponent_i);
     mNameRttiMap.insert({ nsSimpleComponents_TSimpleComponent_n, nsSimpleComponents_TSimpleComponent_i });
+    
+    int nsSimpleComponents_TSizeComponent_i = globalTypeIdentifier->Type<nsSimpleComponents::TSizeComponent>();
+    std::string nsSimpleComponents_TSizeComponent_n = "nsSimpleComponents::TSizeComponent";
+    mTypeNameList.push_back(nsSimpleComponents_TSizeComponent_n);
+    mRttiList.push_back(nsSimpleComponents_TSizeComponent_i);
+    mNameRttiMap.insert({ nsSimpleComponents_TSizeComponent_n, nsSimpleComponents_TSizeComponent_i });
     
     int nsSimpleComponents_TValueComponent_i = globalTypeIdentifier->Type<nsSimpleComponents::TValueComponent>();
     std::string nsSimpleComponents_TValueComponent_n = "nsSimpleComponents::TValueComponent";

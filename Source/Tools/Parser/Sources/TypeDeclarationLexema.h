@@ -25,20 +25,26 @@ namespace nsCppParser
 
         std::string mName;
 
+        struct TTemplateInfo
+        {
+            std::vector<std::string> args;
+
+            bool HasSome() const;
+        };
+
+        TTemplateInfo mTemplateInfo;
+
         struct TInheritance
         {
             AccessLevel accessLevel;
             std::string typeName;
 
-            bool HasSome() const
-            {
-                return typeName.length() > 0;
-            }
+            bool HasSome() const;
         };
 
         std::list<TInheritance> mInheritanceList;
 
-        TTypeDeclarationLexema(boost::wave::token_id id) : mTypeDecl(id) {};
+        TTypeDeclarationLexema(boost::wave::token_id id);
 
         bool CanFill(const TLineTokenEntity* line) const override;
 
@@ -47,5 +53,9 @@ namespace nsCppParser
         ~TTypeDeclarationLexema() {}
 
         std::string ToString() override;
+    private:
+        void SearchTemplateArgs(const TLineTokenEntity* line);
+        void SearchName(const TLineTokenEntity* line);
+        void SearchInheritances(const TLineTokenEntity* line);
     };
 }

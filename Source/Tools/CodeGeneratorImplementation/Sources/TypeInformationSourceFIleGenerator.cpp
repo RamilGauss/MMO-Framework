@@ -86,6 +86,10 @@ void TTypeInformationSourceFileGenerator::AddInit()
     for (auto& type : forGenerate) {
         auto pTypeInfo = mTypeManager->Get(type.GetFullType());
 
+        if (pTypeInfo->mTemplateArgs.size() > 0) {
+            continue;
+        }
+
         auto t = pTypeInfo->GetTypeNameWithNameSpace();
 
         auto rtti = fmt::format("{}_i", pTypeInfo->GetTypeNameWithNameSpaceAsVar());

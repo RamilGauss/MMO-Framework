@@ -1247,6 +1247,7 @@
     <ClInclude Include="Components\Common\ProjectionToUniverseComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Share\PropertyOf.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />

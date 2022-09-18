@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_09_14 08:06:51.038
+// File has been generated at 2022_09_18 22:47:39.106
 	
 #include "FeatureTypeInformation.h"
 
@@ -45,12 +45,6 @@ void TFeatureTypeInformation::Init()
     mRttiList.push_back(nsTornadoEditor_TFileHierarchyWindowInitSystem_i);
     mNameRttiMap.insert({ nsTornadoEditor_TFileHierarchyWindowInitSystem_n, nsTornadoEditor_TFileHierarchyWindowInitSystem_i });
     
-    int nsTornadoEditor_TFileHierarchyWindowRefreshSystem_i = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowRefreshSystem>();
-    std::string nsTornadoEditor_TFileHierarchyWindowRefreshSystem_n = "nsTornadoEditor::TFileHierarchyWindowRefreshSystem";
-    mTypeNameList.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshSystem_n);
-    mRttiList.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshSystem_i);
-    mNameRttiMap.insert({ nsTornadoEditor_TFileHierarchyWindowRefreshSystem_n, nsTornadoEditor_TFileHierarchyWindowRefreshSystem_i });
-    
     int nsTornadoEditor_TInitWindowsFeature_i = globalTypeIdentifier->Type<nsTornadoEditor::TInitWindowsFeature>();
     std::string nsTornadoEditor_TInitWindowsFeature_n = "nsTornadoEditor::TInitWindowsFeature";
     mTypeNameList.push_back(nsTornadoEditor_TInitWindowsFeature_n);
@@ -68,12 +62,6 @@ void TFeatureTypeInformation::Init()
     mTypeNameList.push_back(nsTornadoEditor_TObjectHierarchyWindowInitSystem_n);
     mRttiList.push_back(nsTornadoEditor_TObjectHierarchyWindowInitSystem_i);
     mNameRttiMap.insert({ nsTornadoEditor_TObjectHierarchyWindowInitSystem_n, nsTornadoEditor_TObjectHierarchyWindowInitSystem_i });
-    
-    int nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_i = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowRefreshSystem>();
-    std::string nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_n = "nsTornadoEditor::TObjectHierarchyWindowRefreshSystem";
-    mTypeNameList.push_back(nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_n);
-    mRttiList.push_back(nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_i);
-    mNameRttiMap.insert({ nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_n, nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

@@ -22,7 +22,7 @@ TEST(Parser, InheritanceTemplate)
         if (type->mName == "A") {
             ASSERT_TRUE(type->mInheritanceVec.size() == 1);
 
-            if (type->mInheritanceVec[0].mShortTypeName == "B") {
+            if (type->mInheritanceVec[0].mShortTypeName == "B<X,Y>") {
                 hasParent = true;
             }
 

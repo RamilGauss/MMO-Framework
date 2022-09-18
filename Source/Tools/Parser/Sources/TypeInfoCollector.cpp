@@ -248,6 +248,8 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
     typeInfo->mType = baseLexema->mDeclType;
     typeInfo->mName = baseLexema->mName;
 
+    typeInfo->mTemplateArgs = baseLexema->mTemplateInfo.args;
+
     for (auto& block : mBlockStack) {
         if (block.type == BlockType::CLASS_STRUCT_OR_ENUM ||
             block.type == BlockType::NAMESPACE) {

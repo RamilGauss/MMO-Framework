@@ -161,9 +161,11 @@
     <ClCompile Include="MembersTest.cpp" />
     <ClCompile Include="MethodNames.cpp" />
     <ClCompile Include="MethodsTest.cpp" />
+    <ClCompile Include="MutableMembersTest.cpp" />
     <ClCompile Include="NamespacesDefinitionTest.cpp" />
     <ClCompile Include="PragmasTest.cpp" />
     <ClCompile Include="FileParserTest.cpp" />
+    <ClCompile Include="TemplateClassTest.cpp" />
     <ClCompile Include="TypeDefInClassTest.cpp" />
     <ClCompile Include="UsingTest.cpp" />
   </ItemGroup>
@@ -190,12 +192,15 @@
     <ClInclude Include="MethodCategory.h" />
     <ClInclude Include="MethodNames.h" />
     <ClInclude Include="MethodPragma.h" />
+    <ClInclude Include="MutableMembers.h" />
     <ClInclude Include="PragmaPack.h" />
     <ClInclude Include="Pragmas.h" />
     <ClInclude Include="Inheritance.h" />
     <ClInclude Include="Members.h" />
     <ClInclude Include="NamespaceDefinition.h" />
     <ClInclude Include="SizeOfInMethod.h" />
+    <ClInclude Include="TemplateArgsInClass.h" />
+    <ClInclude Include="TemplateClass.h" />
     <ClInclude Include="TypeDefInClass.h" />
     <ClInclude Include="Using.h" />
     <ClInclude Include="VirtualMethodOverride.h" />

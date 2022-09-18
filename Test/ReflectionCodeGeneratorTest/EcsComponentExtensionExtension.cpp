@@ -2,7 +2,7 @@
 	ReflectionCodeGeneratorTest
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_05_27 20:01:08.262
+// File has been generated at 2022_09_18 22:21:05.375
 	
 #include "EcsComponentExtensionExtension.h"
 
@@ -50,6 +50,20 @@ void TEcsComponentExtensionExtension::Init()
     auto rtti_nsSimpleComponents_TSimpleComponent_Data = globalTypeIdentifier->Type<nsSimpleComponents::TSimpleComponent>();
     
     m.insert({ rtti_nsSimpleComponents_TSimpleComponent_Data, nsSimpleComponents_TSimpleComponent_Data });
+    
+    Data nsSimpleComponents_TSizeComponent_Data;
+        nsSimpleComponents_TSizeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsSimpleComponents::TSizeComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsSimpleComponents::TSizeComponent>(eid, lambda, isNotify);
+    };
+    nsSimpleComponents_TSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsSimpleComponents::TSizeComponent*)p), isNotify); };
+    nsSimpleComponents_TSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsSimpleComponents::TSizeComponent>(eid); };
+    nsSimpleComponents_TSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsSimpleComponents::TSizeComponent>(eid); };
+    nsSimpleComponents_TSizeComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsSimpleComponents::TSizeComponent>(eid); };
+    nsSimpleComponents_TSizeComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsSimpleComponents::TSizeComponent>(); };
+    auto rtti_nsSimpleComponents_TSizeComponent_Data = globalTypeIdentifier->Type<nsSimpleComponents::TSizeComponent>();
+    
+    m.insert({ rtti_nsSimpleComponents_TSizeComponent_Data, nsSimpleComponents_TSizeComponent_Data });
     
     Data nsSimpleComponents_TValueComponent_Data;
         nsSimpleComponents_TValueComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

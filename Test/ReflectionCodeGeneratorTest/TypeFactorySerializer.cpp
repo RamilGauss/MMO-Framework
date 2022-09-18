@@ -2,7 +2,7 @@
 	ReflectionCodeGeneratorTest
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_05_27 20:01:08.033
+// File has been generated at 2022_09_18 22:21:05.302
 	
 #include "TypeFactorySerializer.h"
 #include "SingletonManager.h"
@@ -87,6 +87,13 @@ void TTypeFactorySerializer::Init()
     
     m.insert({ rtti_System_Data, System_Data });
     
+    Data TUnit_Data;
+    TUnit_Data.newFunc = [](){ return new TUnit(); };
+    TUnit_Data.deleteFunc = [](void* p){ delete (TUnit*)p; };
+    auto rtti_TUnit_Data = globalTypeIdentifier->Type<TUnit>();
+    
+    m.insert({ rtti_TUnit_Data, TUnit_Data });
+    
     Data TearDownSystem_Data;
     TearDownSystem_Data.newFunc = [](){ return new TearDownSystem(); };
     TearDownSystem_Data.deleteFunc = [](void* p){ delete (TearDownSystem*)p; };
@@ -128,6 +135,13 @@ void TTypeFactorySerializer::Init()
     auto rtti_nsSimpleComponents_TSimpleComponent_Data = globalTypeIdentifier->Type<nsSimpleComponents::TSimpleComponent>();
     
     m.insert({ rtti_nsSimpleComponents_TSimpleComponent_Data, nsSimpleComponents_TSimpleComponent_Data });
+    
+    Data nsSimpleComponents_TSizeComponent_Data;
+    nsSimpleComponents_TSizeComponent_Data.newFunc = [](){ return new nsSimpleComponents::TSizeComponent(); };
+    nsSimpleComponents_TSizeComponent_Data.deleteFunc = [](void* p){ delete (nsSimpleComponents::TSizeComponent*)p; };
+    auto rtti_nsSimpleComponents_TSizeComponent_Data = globalTypeIdentifier->Type<nsSimpleComponents::TSizeComponent>();
+    
+    m.insert({ rtti_nsSimpleComponents_TSizeComponent_Data, nsSimpleComponents_TSizeComponent_Data });
     
     Data nsSimpleComponents_TValueComponent_Data;
     nsSimpleComponents_TValueComponent_Data.newFunc = [](){ return new nsSimpleComponents::TValueComponent(); };

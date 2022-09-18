@@ -46,6 +46,9 @@
     <ClCompile Include="EcsSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JsonSerializer.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
@@ -79,6 +82,9 @@
       <Filter>GeneratedFiles</Filter>
     </ClInclude>
     <ClInclude Include="EcsSystemExtensionIncludeList.h">
+      <Filter>GeneratedFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonSerializer.h">
       <Filter>GeneratedFiles</Filter>
     </ClInclude>
   </ItemGroup>

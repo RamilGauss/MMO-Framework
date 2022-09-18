@@ -68,6 +68,12 @@
     <ClCompile Include="InheritanceTemplateTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MutableMembersTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TemplateClassTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\conanfile.txt" />
@@ -155,6 +161,15 @@
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
     <ClInclude Include="InheritanceTemplate.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="MutableMembers.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="TemplateClass.h">
+      <Filter>SourcesForParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="TemplateArgsInClass.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>
   </ItemGroup>

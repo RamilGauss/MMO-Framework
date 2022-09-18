@@ -9,11 +9,14 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
+#include "PropertyOf.h"
+
 #include <ECS/include/IComponent.h>
+#include <ImGuiWidgets/include/Unit.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TSizeComponent : nsECSFramework::IComponent
+    struct DllExport TSizeComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TUnit>, nsECSFramework::IComponent
     {
         int x = 0;
         int y = 0;

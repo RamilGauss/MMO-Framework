@@ -2,7 +2,7 @@
 	ReflectionCodeGeneratorTest
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_05_27 20:01:08.328
+// File has been generated at 2022_09_18 22:21:05.444
 	
 #pragma once
 

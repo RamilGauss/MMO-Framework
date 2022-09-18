@@ -9,8 +9,23 @@ See for more information LICENSE.md.
 
 #include "IComponent.h"
 
+template <typename T>
+struct TPropertyOf
+{
+    mutable T* p = nullptr;
+};
+
+class TUnit
+{};
+
 namespace nsSimpleComponents
 {
+    struct TSizeComponent : TPropertyOf<TUnit>, nsECSFramework::IComponent
+    {
+        int x;
+        int y;
+    };
+
     struct TSimpleComponent : nsECSFramework::IComponent
     {
         int x = 42;

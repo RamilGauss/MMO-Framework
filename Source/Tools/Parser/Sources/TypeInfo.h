@@ -33,16 +33,17 @@ namespace nsCppParser
 
         std::string mName;
         std::vector<std::string> mNamespaceVec;
+        std::vector<std::string> mTemplateArgs;
 
-        typedef std::shared_ptr<TMethodInfo> TMethodInfoPtr;
-        typedef std::vector<TMethodInfoPtr> TMethodInfoPtrVec;
-        typedef std::array<TMethodInfoPtrVec, (size_t)AccessLevel::COUNT> TAccessLevelMethodInfoPtrVecArray;
+        using TMethodInfoPtr = std::shared_ptr<TMethodInfo>;
+        using TMethodInfoPtrVec = std::vector<TMethodInfoPtr>;
+        using TAccessLevelMethodInfoPtrVecArray = std::array<TMethodInfoPtrVec, (size_t)AccessLevel::COUNT>;
 
         TAccessLevelMethodInfoPtrVecArray mMethods;
 
-        typedef std::shared_ptr<TMemberInfo> TMemberInfoPtr;
-        typedef std::vector<TMemberInfoPtr> TMemberInfoPtrVec;
-        typedef std::array<TMemberInfoPtrVec, (size_t)AccessLevel::COUNT> TAccessLevelMemberInfoPtrVecArray;
+        using TMemberInfoPtr = std::shared_ptr<TMemberInfo>;
+        using TMemberInfoPtrVec = std::vector<TMemberInfoPtr>;
+        using TAccessLevelMemberInfoPtrVecArray = std::array<TMemberInfoPtrVec, (size_t)AccessLevel::COUNT>;
 
         TAccessLevelMemberInfoPtrVecArray mMembers;
 

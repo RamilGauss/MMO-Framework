@@ -564,6 +564,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Share\HandlerPool.h" />
     <ClInclude Include="Share\MathStructs.h" />
     <ClInclude Include="Share\MathTools.h" />
+    <ClInclude Include="Share\PropertyOf.h" />
     <ClInclude Include="TimeSliceEngine\ConveyorConfig.h" />
     <ClInclude Include="TimeSliceEngine\DeveloperTool_DLL.h" />
     <ClInclude Include="TimeSliceEngine\IModule.h" />

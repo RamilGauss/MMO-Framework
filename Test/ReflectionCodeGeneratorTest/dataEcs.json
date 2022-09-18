@@ -30,6 +30,13 @@
                 "fileName": "EcsComponentExtensionExtension",
                 "className": "TEcsComponentExtensionExtension",
                 "keyValueMap": {}
+            },
+            "JsonSerializerGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTest",
+                "fileName": "JsonSerializer",
+                "className": "TJsonSerializer",
+                "keyValueMap": {}
             }
         }
     }

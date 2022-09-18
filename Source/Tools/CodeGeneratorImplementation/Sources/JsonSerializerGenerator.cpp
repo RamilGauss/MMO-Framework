@@ -59,7 +59,14 @@ void TJsonSerializerGenerator::GetDependencies(const nsCppParser::TTypeInfo* typ
         TMemberExtendedTypeInfo* pMemberExtendedInfo = nullptr;
         switch (member->mExtendedInfo.mCategory) {
             case TypeCategory::REFLECTION:
+            {
                 pMemberExtendedInfo = &(member->mExtendedInfo);
+
+                auto lessIndex = pMemberExtendedInfo->mShortType.find("<");
+                if (lessIndex != std::string::npos) {
+                    pMemberExtendedInfo = nullptr;
+                }
+            }
                 break;
             case TypeCategory::SMART_POINTER:
             case TypeCategory::VECTOR:
@@ -92,6 +99,11 @@ void TJsonSerializerGenerator::GetDependencies(const nsCppParser::TTypeInfo* typ
     }
 
     for (auto inheritance : typeName->mInheritanceVec) {
+        auto lessIndex = inheritance.mShortTypeName.find("<");
+        if (lessIndex != std::string::npos) {
+            continue;
+        }
+
         dependencies.insert(inheritance.mLongTypeName);
         dependencies.insert(inheritance.mOriginalName);
     }
