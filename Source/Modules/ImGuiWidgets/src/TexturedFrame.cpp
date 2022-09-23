@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "TexturedFrame.h"
 
-#include "TextureFactory.h"
-#include "Texture.h"
+#include "GraphicEngine/TextureFactory.h"
+#include "GraphicEngine/Texture.h"
 
 
 namespace nsImGuiWidgets

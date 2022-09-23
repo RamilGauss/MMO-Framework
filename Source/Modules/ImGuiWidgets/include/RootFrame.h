@@ -7,8 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include "GraphicEngine/Events.h"
+
 #include "Frame.h"
-#include "Events.h"
 #include "CallbackPool.h"
 
 namespace nsImGuiWidgets

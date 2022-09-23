@@ -9,8 +9,9 @@ See for more information LICENSE.md.
 
 #include <list>
 
+#include "GraphicEngine/Events.h"
+
 #include "ProtoFrame.h"
-#include "Events.h"
 #include "CallbackPool.h"
 #include "Padding.h"
 #include "Spacing.h"

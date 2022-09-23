@@ -16,27 +16,18 @@ See for more information LICENSE.md.
 
 namespace nsGuiWrapper
 {
-    struct DllExport TSizeComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TUnit>, nsECSFramework::IComponent
+    struct DllExport TTitleComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TWidget>, nsECSFramework::IComponent
     {
-        int x = 0;
-        int y = 0;
+        std::string value;
 
         bool IsLess(const IComponent* pOther) const override
         {
-            if (x < ((TSizeComponent*) pOther)->x) {
-                return false;
-            }
-
-            if (x == ((TSizeComponent*) pOther)->x) {
-                return y < ((TSizeComponent*) pOther)->y;
-            }
-
-            return true;
+            return value < ((TTitleComponent*) pOther)->value;
         }
 
         bool IsEqual(const IComponent* pOther) const override
         {
-            return x == ((TSizeComponent*) pOther)->x && y == ((TSizeComponent*) pOther)->y;
+            return value == ((TTitleComponent*) pOther)->value;
         }
     };
 }

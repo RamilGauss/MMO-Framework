@@ -204,46 +204,46 @@
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Modules.cpp">
+    <ClCompile Include="Modules\Common\Modules.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\SceneManager.cpp">
+    <ClCompile Include="Modules\Resources\Scene\SceneManager.cpp">
       <Filter>Modules\Resources\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModulesAccessor.cpp">
+    <ClCompile Include="Modules\Common\ModulesAccessor.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleManager.cpp">
+    <ClCompile Include="Modules\Common\ModuleManager.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\DataBaseModule.cpp">
+    <ClCompile Include="Modules\Implementations\DataBaseModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\GraphicEngineModule.cpp">
+    <ClCompile Include="Modules\Implementations\GraphicEngineModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\LogicModule.cpp">
+    <ClCompile Include="Modules\Implementations\LogicModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\MMOEngineModule.cpp">
+    <ClCompile Include="Modules\Implementations\MMOEngineModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\NetTransportModule.cpp">
+    <ClCompile Include="Modules\Implementations\NetTransportModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\PhysicEngineModule.cpp">
+    <ClCompile Include="Modules\Implementations\PhysicEngineModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\SoundEngineModule.cpp">
+    <ClCompile Include="Modules\Implementations\SoundEngineModule.cpp">
       <Filter>Modules\Implementations</Filter>
     </ClCompile>
     <ClCompile Include="TimeSliceEngine\ProjectConfigurator.cpp">
       <Filter>TimeSliceEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\LogicWrapperModule.cpp">
+    <ClCompile Include="Modules\Common\LogicWrapperModule.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\FeatureManager.cpp">
+    <ClCompile Include="Modules\Common\FeatureManager.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
     <ClCompile Include="Features\Logic\BeginLogicFeature.cpp">
@@ -258,10 +258,10 @@
     <ClCompile Include="Features\Graphic\EndGraphicFeature.cpp">
       <Filter>Features\Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\GuiMakerFeature.cpp">
+    <ClCompile Include="Features\Graphic\Maker\GuiMakerFeature.cpp">
       <Filter>Features\Graphic\Maker</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\GuiBuilderFeature.cpp">
+    <ClCompile Include="Features\Graphic\Builder\GuiBuilderFeature.cpp">
       <Filter>Features\Graphic\Builder</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\HandlerTypeFactory.cpp">
@@ -270,7 +270,7 @@
     <ClCompile Include="Generated files\HandlerTypeInformation.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\GuiTerminatorFeature.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\GuiTerminatorFeature.cpp">
       <Filter>Features\Graphic\Terminator</Filter>
     </ClCompile>
     <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h">
@@ -282,271 +282,271 @@
     <ClCompile Include="Generated files\FeatureTypeInformation.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\StartedScenesInitSystem.cpp">
+    <ClCompile Include="Features\Logic\Scene\StartedScenesInitSystem.cpp">
       <Filter>Features\Logic\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\SceneFeature.cpp">
+    <ClCompile Include="Features\Logic\Scene\SceneFeature.cpp">
       <Filter>Features\Logic\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\LogicMakerFeature.cpp">
+    <ClCompile Include="Features\Logic\Maker\LogicMakerFeature.cpp">
       <Filter>Features\Logic\Maker</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\SystemMakerSystem.cpp">
+    <ClCompile Include="Features\Logic\Maker\SystemMakerSystem.cpp">
       <Filter>Features\Logic\Maker</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\SystemBuilderSystem.cpp">
+    <ClCompile Include="Features\Logic\Builder\SystemBuilderSystem.cpp">
       <Filter>Features\Logic\Builder</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\LogicBuilderFeature.cpp">
+    <ClCompile Include="Features\Logic\Builder\LogicBuilderFeature.cpp">
       <Filter>Features\Logic\Builder</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\LogicTerminatorFeature.cpp">
+    <ClCompile Include="Features\Logic\Terminator\LogicTerminatorFeature.cpp">
       <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\SystemTerminatorSystem.cpp">
+    <ClCompile Include="Features\Logic\Terminator\SystemTerminatorSystem.cpp">
       <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\PrefabManager.cpp">
+    <ClCompile Include="Modules\Resources\Prefab\PrefabManager.cpp">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\GuidGenerator.cpp">
+    <ClCompile Include="Modules\Resources\Common\GuidGenerator.cpp">
       <Filter>Modules\Resources\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\PrefabObjectConstructor.cpp">
+    <ClCompile Include="Modules\Resources\Prefab\PrefabObjectConstructor.cpp">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\HandlerCallCollector.cpp">
+    <ClCompile Include="Modules\Resources\Common\HandlerCallCollector.cpp">
       <Filter>Modules\Resources\Common</Filter>
     </ClCompile>
     <ClCompile Include="Features\Logic\HandlerCallCollectorNotifySystem.cpp">
       <Filter>Features\Logic</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\NeedDestroyObjectSystem.cpp">
+    <ClCompile Include="Features\Logic\Object\NeedDestroyObjectSystem.cpp">
       <Filter>Features\Logic\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\ObjectFeature.cpp">
+    <ClCompile Include="Features\Logic\Object\ObjectFeature.cpp">
       <Filter>Features\Logic\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ObjectManager.cpp">
+    <ClCompile Include="Modules\Resources\Common\ObjectManager.cpp">
       <Filter>Modules\Resources\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\InputTextValueUpdaterSystem.cpp">
+    <ClCompile Include="Features\Graphic\UpdateToModule\InputTextValueUpdaterSystem.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\GuiUpdaterToModuleFeature.cpp">
+    <ClCompile Include="Features\Graphic\UpdateToModule\GuiUpdaterToModuleFeature.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\TitleUpdaterSystem.cpp">
+    <ClCompile Include="Features\Graphic\UpdateToModule\TitleUpdaterSystem.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\UnitBuilderHelper.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Helpers\UnitBuilderHelper.cpp">
       <Filter>Features\Graphic\Builder\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\ButtonBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Units\ButtonBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\InputTextBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Units\InputTextBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\MenuNodeBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Units\MenuNodeBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\TreeNodeBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Units\TreeNodeBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\MainWindowBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Frames\MainWindowBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\TreeViewBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Frames\TreeViewBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\WindowBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Frames\WindowBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\DialogBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Frames\DialogBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\ButtonClickHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Handlers\ButtonClickHandlerMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Handlers\DialogCloseEventHandlerMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Handlers\WindowCloseEventHandlerMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\MenuNodeClickHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Handlers\MenuNodeClickHandlerMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\ButtonMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Units\ButtonMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\InputTextMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Units\InputTextMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\TreeNodeMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Units\TreeNodeMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\WindowMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Frames\WindowMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\TreeViewMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Frames\TreeViewMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\MainWindowMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Frames\MainWindowMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\DialogMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Frames\DialogMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\MenuNodeMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Units\MenuNodeMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\WindowTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Frames\WindowTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\TreeViewTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Frames\TreeViewTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\MainWindowTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Frames\MainWindowTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\DialogTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Frames\DialogTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\ButtonTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Units\ButtonTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\InputTextTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Units\InputTextTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\MenuNodeTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Units\MenuNodeTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\TreeNodeTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Units\TreeNodeTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\HierarchyHelper.cpp">
+    <ClCompile Include="Modules\Helpers\HierarchyHelper.cpp">
       <Filter>Modules\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\LabelBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Units\LabelBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\LabelMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Units\LabelMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\LabelTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Units\LabelTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\FrameMouseClickHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Handlers\FrameMouseClickHandlerMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\FrameKeyHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Handlers\FrameKeyHandlerMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\FrameMouseMoveHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Handlers\FrameMouseMoveHandlerMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\FrameMouseWheelHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Handlers\FrameMouseWheelHandlerMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Handlers\ButtonClickHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Handlers\DialogCloseEventHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Handlers\MenuNodeClickHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Handlers\WindowCloseEventHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\FrameKeyHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Handlers\FrameKeyHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\FrameMouseClickHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Handlers\FrameMouseClickHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\FrameMouseMoveHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Handlers\FrameMouseMoveHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\FrameMouseWheelHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Handlers\FrameMouseWheelHandlerTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\GraphicEngineContext.cpp">
+    <ClCompile Include="Modules\Contexts\GraphicEngineContext.cpp">
       <Filter>Modules\Contexts</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\OnAddUniverseContextSystem.cpp">
+    <ClCompile Include="Features\Graphic\GraphicContext\OnAddUniverseContextSystem.cpp">
       <Filter>Features\Graphic\GraphicContext</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\OnRemoveUniverseContextSystem.cpp">
+    <ClCompile Include="Features\Graphic\GraphicContext\OnRemoveUniverseContextSystem.cpp">
       <Filter>Features\Graphic\GraphicContext</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\CleanUpUniverseContextSystem.cpp">
+    <ClCompile Include="Features\Graphic\GraphicContext\CleanUpUniverseContextSystem.cpp">
       <Filter>Features\Graphic\GraphicContext</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\IContext.h">
+    <ClCompile Include="Modules\Common\IContext.h">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\IContextManager.cpp">
+    <ClCompile Include="Modules\Common\IContextManager.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\IContext.cpp">
+    <ClCompile Include="Modules\Common\IContext.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\UniverseManager.cpp">
+    <ClCompile Include="Modules\Resources\Scene\UniverseManager.cpp">
       <Filter>Modules\Resources\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\GuiUpdaterFromModuleFeature.cpp">
+    <ClCompile Include="Features\Graphic\UpdateFromModule\GuiUpdaterFromModuleFeature.cpp">
       <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerBuilderSystem.cpp">
+    <ClCompile Include="Features\Logic\Builder\ObjectInstanceEndHandlerBuilderSystem.cpp">
       <Filter>Features\Logic\Builder</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Logic\Maker\ObjectInstanceEndHandlerMakerSystem.cpp">
       <Filter>Features\Logic\Maker</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\ObjectInstanceEndHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Logic\Terminator\ObjectInstanceEndHandlerTerminatorSystem.cpp">
       <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\TextureMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Graphic\TextureMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\TextureTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Graphic\TextureTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\GuiCameraBuilderSystem.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Graphic\GuiCameraBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\CameraMakerSystem.cpp">
+    <ClCompile Include="Features\Graphic\Maker\Graphic\CameraMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\CameraTerminatorSystem.cpp">
+    <ClCompile Include="Features\Graphic\Terminator\Graphic\CameraTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\CameraUpdaterToModuleSystem.cpp">
+    <ClCompile Include="Features\Graphic\UpdateToModule\CameraUpdaterToModuleSystem.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\CameraBuilderFeature.cpp">
+    <ClCompile Include="Features\Graphic\Builder\Graphic\CameraBuilderFeature.cpp">
       <Filter>Features\Graphic\Builder\Graphic</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\EcsSystemExtension.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Gizmo.cpp">
+    <ClCompile Include="Modules\Gizmos\Gizmo.cpp">
       <Filter>Modules\Gizmos</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\SystemViewer.cpp">
+    <ClCompile Include="Modules\Gizmos\SystemViewer.cpp">
       <Filter>Modules\Gizmos</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\EntityViewer.cpp">
+    <ClCompile Include="Modules\Gizmos\EntityViewer.cpp">
       <Filter>Modules\Gizmos</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\PositionUpdaterSystem.cpp">
+    <ClCompile Include="Features\Graphic\UpdateToModule\PositionUpdaterSystem.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\SizeUpdaterSystem.cpp">
+    <ClCompile Include="Features\Graphic\UpdateToModule\SizeUpdaterSystem.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClCompile>
     <ClCompile Include="Share\GameObject.cpp">
@@ -659,40 +659,40 @@
     <ClInclude Include="ReflectionAggregators\ScenePartReflectionAggregator.h">
       <Filter>ReflectionAggregators</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Modules.h">
+    <ClInclude Include="Modules\Common\Modules.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\LogicWrapperModule.h">
+    <ClInclude Include="Modules\Common\LogicWrapperModule.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\SceneManager.h">
+    <ClInclude Include="Modules\Resources\Scene\SceneManager.h">
       <Filter>Modules\Resources\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModulesAccessor.h">
+    <ClInclude Include="Modules\Common\ModulesAccessor.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleManager.h">
+    <ClInclude Include="Modules\Common\ModuleManager.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\DataBaseModule.h">
+    <ClInclude Include="Modules\Implementations\DataBaseModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\GraphicEngineModule.h">
+    <ClInclude Include="Modules\Implementations\GraphicEngineModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\LogicModule.h">
+    <ClInclude Include="Modules\Implementations\LogicModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\MMOEngineModule.h">
+    <ClInclude Include="Modules\Implementations\MMOEngineModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\NetTransportModule.h">
+    <ClInclude Include="Modules\Implementations\NetTransportModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\PhysicEngineModule.h">
+    <ClInclude Include="Modules\Implementations\PhysicEngineModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\SoundEngineModule.h">
+    <ClInclude Include="Modules\Implementations\SoundEngineModule.h">
       <Filter>Modules\Implementations</Filter>
     </ClInclude>
     <ClInclude Include="TimeSliceEngine\ProjectConfigurator.h">
@@ -701,28 +701,28 @@
     <ClInclude Include="TimeSliceEngine\ModuleType.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\FeatureManager.h">
+    <ClInclude Include="Modules\Common\FeatureManager.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\IDataBaseModule.h">
+    <ClInclude Include="Modules\Interfaces\IDataBaseModule.h">
       <Filter>Modules\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\IGraphicEngineModule.h">
+    <ClInclude Include="Modules\Interfaces\IGraphicEngineModule.h">
       <Filter>Modules\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ILogicModule.h">
+    <ClInclude Include="Modules\Interfaces\ILogicModule.h">
       <Filter>Modules\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\IMMOEngineModule.h">
+    <ClInclude Include="Modules\Interfaces\IMMOEngineModule.h">
       <Filter>Modules\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\INetTransportModule.h">
+    <ClInclude Include="Modules\Interfaces\INetTransportModule.h">
       <Filter>Modules\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\IPhysicEngineModule.h">
+    <ClInclude Include="Modules\Interfaces\IPhysicEngineModule.h">
       <Filter>Modules\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ISoundEngineModule.h">
+    <ClInclude Include="Modules\Interfaces\ISoundEngineModule.h">
       <Filter>Modules\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Features\Logic\BeginLogicFeature.h">
@@ -737,16 +737,16 @@
     <ClInclude Include="Features\Graphic\EndGraphicFeature.h">
       <Filter>Features\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IButtonClickHandler.h">
+    <ClInclude Include="Handlers\Gui\IButtonClickHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IHandler.h">
+    <ClInclude Include="Handlers\Common\IHandler.h">
       <Filter>Handlers\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\GuiMakerFeature.h">
+    <ClInclude Include="Features\Graphic\Maker\GuiMakerFeature.h">
       <Filter>Features\Graphic\Maker</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\GuiBuilderFeature.h">
+    <ClInclude Include="Features\Graphic\Builder\GuiBuilderFeature.h">
       <Filter>Features\Graphic\Builder</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\SceneRootComponent.h">
@@ -776,7 +776,7 @@
     <ClInclude Include="Generated files\HandlerTypeInformation.h">
       <Filter>Generated files</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\GuiTerminatorFeature.h">
+    <ClInclude Include="Features\Graphic\Terminator\GuiTerminatorFeature.h">
       <Filter>Features\Graphic\Terminator</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h">
@@ -791,199 +791,199 @@
     <ClInclude Include="Generated files\FeatureIncludeList.h">
       <Filter>Generated files</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\StartedScenesInitSystem.h">
+    <ClInclude Include="Features\Logic\Scene\StartedScenesInitSystem.h">
       <Filter>Features\Logic\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\SceneFeature.h">
+    <ClInclude Include="Features\Logic\Scene\SceneFeature.h">
       <Filter>Features\Logic\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\LogicMakerFeature.h">
+    <ClInclude Include="Features\Logic\Maker\LogicMakerFeature.h">
       <Filter>Features\Logic\Maker</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\SystemMakerSystem.h">
+    <ClInclude Include="Features\Logic\Maker\SystemMakerSystem.h">
       <Filter>Features\Logic\Maker</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\SystemBuilderSystem.h">
+    <ClInclude Include="Features\Logic\Builder\SystemBuilderSystem.h">
       <Filter>Features\Logic\Builder</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\LogicBuilderFeature.h">
+    <ClInclude Include="Features\Logic\Builder\LogicBuilderFeature.h">
       <Filter>Features\Logic\Builder</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\LogicTerminatorFeature.h">
+    <ClInclude Include="Features\Logic\Terminator\LogicTerminatorFeature.h">
       <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\SystemTerminatorSystem.h">
+    <ClInclude Include="Features\Logic\Terminator\SystemTerminatorSystem.h">
       <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\PrefabManager.h">
+    <ClInclude Include="Modules\Resources\Prefab\PrefabManager.h">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ResourceContentMap.h">
+    <ClInclude Include="Modules\Resources\Scene\ResourceContentMap.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\GuidConstants.h">
+    <ClInclude Include="Modules\Resources\Common\GuidConstants.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\GuidGenerator.h">
+    <ClInclude Include="Modules\Resources\Common\GuidGenerator.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ResourceContent.h">
+    <ClInclude Include="Modules\Resources\Scene\ResourceContent.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\PrefabObjectConstructor.h">
+    <ClInclude Include="Modules\Resources\Prefab\PrefabObjectConstructor.h">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ObjectInMemory.h">
+    <ClInclude Include="Modules\Resources\Prefab\ObjectInMemory.h">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ComponentInMemory.h">
+    <ClInclude Include="Modules\Resources\Prefab\ComponentInMemory.h">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\ObjectInMemoryComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\HandlerCallCollector.h">
+    <ClInclude Include="Modules\Resources\Common\HandlerCallCollector.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
     <ClInclude Include="Features\Logic\HandlerCallCollectorNotifySystem.h">
       <Filter>Features\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\NeedDestroyObjectSystem.h">
+    <ClInclude Include="Features\Logic\Object\NeedDestroyObjectSystem.h">
       <Filter>Features\Logic\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\ObjectFeature.h">
+    <ClInclude Include="Features\Logic\Object\ObjectFeature.h">
       <Filter>Features\Logic\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IDialogCloseEventHandler.h">
+    <ClInclude Include="Handlers\Gui\IDialogCloseEventHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IWindowCloseEventHandler.h">
+    <ClInclude Include="Handlers\Gui\IWindowCloseEventHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\HandlerTarget.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ObjectManager.h">
+    <ClInclude Include="Modules\Resources\Common\ObjectManager.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IMenuNodeClickHandler.h">
+    <ClInclude Include="Handlers\Gui\IMenuNodeClickHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IObjectInstanceEndHandler.h">
+    <ClInclude Include="Handlers\Logic\IObjectInstanceEndHandler.h">
       <Filter>Handlers\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Share\HandlerPool.h">
       <Filter>Share</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\InputTextValueUpdaterSystem.h">
+    <ClInclude Include="Features\Graphic\UpdateToModule\InputTextValueUpdaterSystem.h">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\GuiUpdaterToModuleFeature.h">
+    <ClInclude Include="Features\Graphic\UpdateToModule\GuiUpdaterToModuleFeature.h">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\TitleUpdaterSystem.h">
+    <ClInclude Include="Features\Graphic\UpdateToModule\TitleUpdaterSystem.h">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\UnitBuilderHelper.h">
+    <ClInclude Include="Features\Graphic\Builder\Helpers\UnitBuilderHelper.h">
       <Filter>Features\Graphic\Builder\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\HandlerLinkHelper.h">
+    <ClInclude Include="Features\Graphic\Builder\Helpers\HandlerLinkHelper.h">
       <Filter>Features\Graphic\Builder\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\ButtonBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Units\ButtonBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\InputTextBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Units\InputTextBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\MenuNodeBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Units\MenuNodeBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\TreeNodeBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Units\TreeNodeBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\WindowBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Frames\WindowBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\MainWindowBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Frames\MainWindowBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\TreeViewBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Frames\TreeViewBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\DialogBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Frames\DialogBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\ButtonClickHandlerMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Handlers\ButtonClickHandlerMakerSystem.h">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Handlers\DialogCloseEventHandlerMakerSystem.h">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Handlers\WindowCloseEventHandlerMakerSystem.h">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\MenuNodeClickHandlerMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Handlers\MenuNodeClickHandlerMakerSystem.h">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\ButtonMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Units\ButtonMakerSystem.h">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\InputTextMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Units\InputTextMakerSystem.h">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\TreeNodeMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Units\TreeNodeMakerSystem.h">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\WindowMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Frames\WindowMakerSystem.h">
       <Filter>Features\Graphic\Maker\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\TreeViewMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Frames\TreeViewMakerSystem.h">
       <Filter>Features\Graphic\Maker\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\MainWindowMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Frames\MainWindowMakerSystem.h">
       <Filter>Features\Graphic\Maker\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\DialogMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Frames\DialogMakerSystem.h">
       <Filter>Features\Graphic\Maker\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\MenuNodeMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Units\MenuNodeMakerSystem.h">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\WindowTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Frames\WindowTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\TreeViewTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Frames\TreeViewTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\MainWindowTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Frames\MainWindowTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\DialogTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Frames\DialogTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Frames</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\ButtonTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Units\ButtonTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\InputTextTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Units\InputTextTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\MenuNodeTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Units\MenuNodeTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\TreeNodeTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Units\TreeNodeTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\HierarchyHelper.h">
+    <ClInclude Include="Modules\Helpers\HierarchyHelper.h">
       <Filter>Modules\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\LabelBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Units\LabelBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\LabelMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Units\LabelMakerSystem.h">
       <Filter>Features\Graphic\Maker\Units</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\LabelTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Units\LabelTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClInclude>
     <ClInclude Include="Components\Gui\Handlers\WindowCloseEventHandlerComponent.h">
@@ -1004,7 +1004,7 @@
     <ClInclude Include="Components\Gui\Widgets\DialogComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\Widgets\FocusComponent.h">
+    <ClInclude Include="Components\Gui\Properties\FocusComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Components\Gui\Widgets\FrameComponent.h">
@@ -1013,13 +1013,13 @@
     <ClInclude Include="Components\Gui\Widgets\InputTextComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\Widgets\InputTextValueComponent.h">
+    <ClInclude Include="Components\Gui\Properties\InputTextValueComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Components\Gui\Widgets\LabelComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\Widgets\LabelValueComponent.h">
+    <ClInclude Include="Components\Gui\Properties\LabelValueComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Components\Gui\Widgets\MainWindowComponent.h">
@@ -1028,13 +1028,13 @@
     <ClInclude Include="Components\Gui\Widgets\MenuNodeComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\Widgets\PositionComponent.h">
+    <ClInclude Include="Components\Gui\Properties\PositionComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\Widgets\SizeComponent.h">
+    <ClInclude Include="Components\Gui\Properties\SizeComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\Widgets\TitleComponent.h">
+    <ClInclude Include="Components\Gui\Properties\TitleComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Components\Gui\Widgets\TreeNodeComponent.h">
@@ -1043,7 +1043,7 @@
     <ClInclude Include="Components\Gui\Widgets\TreeViewComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\Widgets\VisibilityComponent.h">
+    <ClInclude Include="Components\Gui\Properties\VisibilityComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Components\Gui\Widgets\WindowComponent.h">
@@ -1070,16 +1070,16 @@
     <ClInclude Include="Components\Gui\Handlers\FrameMouseClickHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IFrameMouseClickHandler.h">
+    <ClInclude Include="Handlers\Gui\IFrameMouseClickHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IFrameMouseMoveHandler.h">
+    <ClInclude Include="Handlers\Gui\IFrameMouseMoveHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IFrameMouseWheelHandler.h">
+    <ClInclude Include="Handlers\Gui\IFrameMouseWheelHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\IFrameKeyHandler.h">
+    <ClInclude Include="Handlers\Gui\IFrameKeyHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Components\Gui\Handlers\FrameMouseWheelHandlerComponent.h">
@@ -1091,94 +1091,94 @@
     <ClInclude Include="Components\Gui\Handlers\FrameKeyHandlerComponent.h">
       <Filter>Components\Gui\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\Widgets\NodeIconComponent.h">
+    <ClInclude Include="Components\Gui\Properties\NodeIconComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\FrameMouseClickHandlerMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Handlers\FrameMouseClickHandlerMakerSystem.h">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\FrameKeyHandlerMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Handlers\FrameKeyHandlerMakerSystem.h">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\FrameMouseMoveHandlerMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Handlers\FrameMouseMoveHandlerMakerSystem.h">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\FrameMouseWheelHandlerMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Handlers\FrameMouseWheelHandlerMakerSystem.h">
       <Filter>Features\Graphic\Maker\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\ButtonClickHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Handlers\ButtonClickHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\DialogCloseEventHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Handlers\DialogCloseEventHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\MenuNodeClickHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Handlers\MenuNodeClickHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\WindowCloseEventHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Handlers\WindowCloseEventHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\FrameKeyHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Handlers\FrameKeyHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\FrameMouseClickHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Handlers\FrameMouseClickHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\FrameMouseMoveHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Handlers\FrameMouseMoveHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\FrameMouseWheelHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Handlers\FrameMouseWheelHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\NeedDestroyObjectTagComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Gui\Widgets\SelectedTreeNodeGuidComponent.h">
+    <ClInclude Include="Components\Gui\Properties\SelectedTreeNodeGuidComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\IContextManager.h">
+    <ClInclude Include="Modules\Common\IContextManager.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\UniverseGuidComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\GraphicEngineContext.h">
+    <ClInclude Include="Modules\Contexts\GraphicEngineContext.h">
       <Filter>Modules\Contexts</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\OnAddUniverseContextSystem.h">
+    <ClInclude Include="Features\Graphic\GraphicContext\OnAddUniverseContextSystem.h">
       <Filter>Features\Graphic\GraphicContext</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\OnRemoveUniverseContextSystem.h">
+    <ClInclude Include="Features\Graphic\GraphicContext\OnRemoveUniverseContextSystem.h">
       <Filter>Features\Graphic\GraphicContext</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\CleanUpUniverseContextSystem.h">
+    <ClInclude Include="Features\Graphic\GraphicContext\CleanUpUniverseContextSystem.h">
       <Filter>Features\Graphic\GraphicContext</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\UniverseManager.h">
+    <ClInclude Include="Modules\Resources\Scene\UniverseManager.h">
       <Filter>Modules\Resources\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\UniverseIndexComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\GuiUpdaterFromModuleFeature.h">
+    <ClInclude Include="Features\Graphic\UpdateFromModule\GuiUpdaterFromModuleFeature.h">
       <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerBuilderSystem.h">
+    <ClInclude Include="Features\Logic\Builder\ObjectInstanceEndHandlerBuilderSystem.h">
       <Filter>Features\Logic\Builder</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerMakerSystem.h">
+    <ClInclude Include="Features\Logic\Maker\ObjectInstanceEndHandlerMakerSystem.h">
       <Filter>Features\Logic\Maker</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\ObjectInstanceEndHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Logic\Terminator\ObjectInstanceEndHandlerTerminatorSystem.h">
       <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\TextureFromFileComponent.h">
       <Filter>Components\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\TextureMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Graphic\TextureMakerSystem.h">
       <Filter>Features\Graphic\Maker\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\TextureTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Graphic\TextureTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Graphic</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\CameraWindowSizeComponent.h">
@@ -1190,19 +1190,19 @@
     <ClInclude Include="Components\Graphic\GuiCameraTagComponent.h">
       <Filter>Components\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\GuiCameraBuilderSystem.h">
+    <ClInclude Include="Features\Graphic\Builder\Graphic\GuiCameraBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\CameraMakerSystem.h">
+    <ClInclude Include="Features\Graphic\Maker\Graphic\CameraMakerSystem.h">
       <Filter>Features\Graphic\Maker\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\CameraTerminatorSystem.h">
+    <ClInclude Include="Features\Graphic\Terminator\Graphic\CameraTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\CameraUpdaterToModuleSystem.h">
+    <ClInclude Include="Features\Graphic\UpdateToModule\CameraUpdaterToModuleSystem.h">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\CameraBuilderFeature.h">
+    <ClInclude Include="Features\Graphic\Builder\Graphic\CameraBuilderFeature.h">
       <Filter>Features\Graphic\Builder\Graphic</Filter>
     </ClInclude>
     <ClInclude Include="ReflectionAggregators\IEcsSystemExtension.h">
@@ -1217,19 +1217,19 @@
     <ClInclude Include="Components\Graphic\RenderToTextureCameraComponent.h">
       <Filter>Components\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Gizmo.h">
+    <ClInclude Include="Modules\Gizmos\Gizmo.h">
       <Filter>Modules\Gizmos</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\EntityViewer.h">
+    <ClInclude Include="Modules\Gizmos\EntityViewer.h">
       <Filter>Modules\Gizmos</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\SystemViewer.h">
+    <ClInclude Include="Modules\Gizmos\SystemViewer.h">
       <Filter>Modules\Gizmos</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\PositionUpdaterSystem.h">
+    <ClInclude Include="Features\Graphic\UpdateToModule\PositionUpdaterSystem.h">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\SizeUpdaterSystem.h">
+    <ClInclude Include="Features\Graphic\UpdateToModule\SizeUpdaterSystem.h">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClInclude>
     <ClInclude Include="Share\GameObject.h">
@@ -1241,13 +1241,24 @@
     <ClInclude Include="Components\Graphic\CameraTextureTagComponent.h">
       <Filter>Components\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\GuidReference.h">
+    <ClInclude Include="Modules\Resources\Common\GuidReference.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\ProjectionToUniverseComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Share\PropertyOf.h" />
+    <ClInclude Include="Components\Gui\Properties\GridComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\MaxSizeComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\MinSizeComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\SizeInGridComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\PositionInGridComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\HorizontalAlignComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\VerticalAlignComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\MinDistanceToParentComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\PaddingComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\SpacingComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\AnchorsComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />

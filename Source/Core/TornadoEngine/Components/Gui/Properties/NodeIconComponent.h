@@ -7,14 +7,19 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <string>
+
 #include "TypeDef.h"
 
+#include "PropertyOf.h"
 #include <ECS/include/IComponent.h>
+#include <ImGuiWidgets/include/MenuNode.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TFocusComponent : nsECSFramework::IComponent
+    struct DllExport TNodeIconComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TMenuNode>, nsECSFramework::IComponent
     {
-
+        int width;
+        int height;
     };
 }

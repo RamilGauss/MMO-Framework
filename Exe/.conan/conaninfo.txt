@@ -146,7 +146,6 @@
     openssl:386=False
     openssl:capieng_dialog=False
     openssl:enable_capieng=False
-    openssl:enable_weak_ssl_ciphers=False
     openssl:no_aria=False
     openssl:no_asm=False
     openssl:no_async=False
@@ -192,8 +191,6 @@
     openssl:no_sse2=False
     openssl:no_ssl=False
     openssl:no_ssl3=False
-    openssl:no_stdio=False
-    openssl:no_tests=False
     openssl:no_threads=False
     openssl:no_tls1=False
     openssl:no_ts=False

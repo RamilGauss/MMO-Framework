@@ -22,6 +22,7 @@ namespace nsTornadoEngine
         virtual ~IEcsComponentExtension() {}
 
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng) { mEntMng = pEntMng; }
+        nsECSFramework::TEntityManager* GetEntityManager() { return mEntMng; }
 
         virtual void CreateComponent(nsECSFramework::TEntityID eid, int rtti, 
             std::function<void(void*)> onAfterCreation, bool isNotify = true) = 0;

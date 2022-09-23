@@ -12,12 +12,13 @@ See for more information LICENSE.md.
 #include "imgui.h"
 #include "TypeDef.h"
 
-#include "IRenderable.h"
+#include "GraphicEngine/IRenderable.h"
+#include "GraphicEngine/KeyMouseEventContainer.h"
+
 #include "Title.h"
 #include "Geometry.h"
 #include "Visibility.h"
 #include "Identity.h"
-#include "KeyMouseEventContainer.h"
 
 namespace nsImGuiWidgets
 {

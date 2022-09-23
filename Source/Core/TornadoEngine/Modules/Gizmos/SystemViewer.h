@@ -15,7 +15,15 @@ namespace nsTornadoEngine
 {
     class DllExport TSystemViewer : public nsGraphicEngine::IRenderable
     {
+        double mLastTimeUpdateModel = 0;
     public:
         void Render() override;
+    protected:
+        void UpdatelModel();
+        void RenderModel();
+        void RenderFilterSearching();
+
+        bool mIsNeedInited = true;
+        void Init();
     };
 }

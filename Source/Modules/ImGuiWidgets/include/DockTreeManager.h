@@ -9,7 +9,8 @@ See for more information LICENSE.md.
 
 #include "CallbackPool.h"
 
-#include "IRenderable.h"
+#include "GraphicEngine/IRenderable.h"
+
 #include "DockTree.h"
 #include "LightDockTreeManager.h"
 

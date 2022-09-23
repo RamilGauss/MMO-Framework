@@ -64,7 +64,6 @@ namespace nsTornadoEngine
 
         TModel mModel;
 
-
         int mEntMngCount = 0;
 
         std::vector<ImVec4> mColors;

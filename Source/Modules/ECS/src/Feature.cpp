@@ -7,16 +7,18 @@ See for more information LICENSE.md.
 
 #include "Feature.h"
 
+#include "HiTimer.h"
+
 using namespace nsECSFramework;
 
 TFeature::~TFeature()
-{ 
-    Clear(); 
+{
+    Clear();
 }
 //--------------------------------------------------------------------------------------
 bool TFeature::IsFeature() const
-{ 
-    return true; 
+{
+    return true;
 }
 //--------------------------------------------------------------------------------------
 bool TFeature::AddSystem(TSystem* system)
@@ -70,6 +72,8 @@ const std::list<TSystem*>& TFeature::GetSystems() const
 //--------------------------------------------------------------------------------------
 void TFeature::Execute()
 {
+    auto start = ht_GetUSCount();
+
     // Initialize
     if (mInitSystems.size() > 0) {
         for (auto& system : mInitSystems) {
@@ -81,6 +85,8 @@ void TFeature::Execute()
     for (auto& system : mExecuteSystems) {
         system->Execute();
     }
+
+    mLastExecutionTime = (ht_GetUSCount() - start) / 1'000'000.0;
 }
 //--------------------------------------------------------------------------------------
 void TFeature::TearDown()
@@ -101,5 +107,10 @@ void TFeature::SetEntMng(TEntityManager* entMng)
     TSystem::SetEntMng(entMng);
 
     InitConveyor();
+}
+//--------------------------------------------------------------------------------------
+double TFeature::GetLastExecutionTime() const
+{
+    return mLastExecutionTime;
 }
 //--------------------------------------------------------------------------------------

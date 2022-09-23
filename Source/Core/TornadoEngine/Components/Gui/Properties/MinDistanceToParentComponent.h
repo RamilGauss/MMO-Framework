@@ -7,16 +7,20 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <string>
-
 #include "TypeDef.h"
+
+#include "PropertyOf.h"
+
 #include <ECS/include/IComponent.h>
+#include <ImGuiWidgets/include/Frame.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TNodeIconComponent : nsECSFramework::IComponent
+    struct DllExport TMinDistanceToParentComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TUnit>, nsECSFramework::IComponent
     {
-        int width;
-        int height;
+        int left = 0;
+        int right = 0;
+        int top = 0;
+        int bottom = 0;
     };
 }

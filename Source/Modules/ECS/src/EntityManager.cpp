@@ -68,6 +68,11 @@ TEntityManager::TEntityManager(const std::string& name, int entityCount)
     mTypeIndex = SingletonManager()->Get<TRunTimeTypeIndex<>>();
 }
 //----------------------------------------------------------------------------------------------------
+std::string TEntityManager::GetName() const
+{
+    return mName;
+}
+//----------------------------------------------------------------------------------------------------
 TEntityManager::~TEntityManager()
 {
     Destroy(mAddCBVector);

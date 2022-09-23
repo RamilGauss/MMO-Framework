@@ -122,7 +122,6 @@ void TEntityViewer::RenderFilterSearching()
     auto inputTextId = ImGui::GetItemID();
     ImVec2 textPos{ ImGui::GetItemRectMin().x, ImGui::GetItemRectMax().y };
 
-
     bool disabledButton = !IsCanApplyComponentToFilter(mInputFilterValue);
 
     if (disabledButton) {
@@ -280,14 +279,17 @@ void TEntityViewer::RenderModel()
 //----------------------------------------------------------------------------------------------------------------
 void TEntityViewer::UpdatelModel()
 {
-    mModel.Clear();
-
     auto& entMngs = SingletonManager()->Get<nsECSFramework::TEntityManagerMaster>()->GetEntityManager();
     mEntMngCount = entMngs.size();
 
     auto entMng = entMngs[mCurrentEntityManagerIndex];
     std::list<nsECSFramework::TEntityID> eids;
     entMng->GetAllEntities(eids);
+
+    auto prevEntMng = Project()->mScenePartAggregator->mComponents->mEntMng->GetEntityManager();
+    Project()->mScenePartAggregator->mComponents->mEntMng->SetEntityManager(entMng);
+
+    mModel.Clear();
 
     for (auto& eid : eids) {
 
@@ -359,6 +361,8 @@ void TEntityViewer::UpdatelModel()
 
         mModel.nameEntities.push_back(entity);
     }
+
+    Project()->mScenePartAggregator->mComponents->mEntMng->SetEntityManager(prevEntMng);
 }
 //----------------------------------------------------------------------------------------------------------------
 void TEntityViewer::SeparateToLines(const std::string& content, std::list<std::string>& lines)

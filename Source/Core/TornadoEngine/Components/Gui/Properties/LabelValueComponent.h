@@ -9,12 +9,14 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
+#include "PropertyOf.h"
+
 #include <ECS/include/IComponent.h>
 #include <ImGuiWidgets/include/Label.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TLabelValueComponent : nsECSFramework::IComponent
+    struct DllExport TLabelValueComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TLabel>, nsECSFramework::IComponent
     {
         std::string value;
 

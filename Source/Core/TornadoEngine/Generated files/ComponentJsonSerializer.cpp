@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_09_18 22:26:01.157
+// File has been generated at 2022_09_22 17:41:27.420
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -365,6 +365,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGraphicWrapper_TUniverseCameraComponentTypeFunc, _nsGraphicWrapper_TUniverseCameraComponentTypeFunc });
     
+    TypeFunc _nsGuiWrapper_TAnchorsComponentTypeFunc;
+    _nsGuiWrapper_TAnchorsComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TAnchorsComponent>((nsGuiWrapper::TAnchorsComponent*) p, str);
+    };
+    _nsGuiWrapper_TAnchorsComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TAnchorsComponent>((nsGuiWrapper::TAnchorsComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TAnchorsComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TAnchorsComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TAnchorsComponentTypeFunc, _nsGuiWrapper_TAnchorsComponentTypeFunc });
+    
     TypeFunc _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc;
     _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TButtonClickHandlerComponent>((nsGuiWrapper::TButtonClickHandlerComponent*) p, str);
@@ -485,6 +497,30 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc, _nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc });
     
+    TypeFunc _nsGuiWrapper_TGridComponentTypeFunc;
+    _nsGuiWrapper_TGridComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TGridComponent>((nsGuiWrapper::TGridComponent*) p, str);
+    };
+    _nsGuiWrapper_TGridComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TGridComponent>((nsGuiWrapper::TGridComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TGridComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TGridComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TGridComponentTypeFunc, _nsGuiWrapper_TGridComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_THorizontalAlignComponentTypeFunc;
+    _nsGuiWrapper_THorizontalAlignComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::THorizontalAlignComponent>((nsGuiWrapper::THorizontalAlignComponent*) p, str);
+    };
+    _nsGuiWrapper_THorizontalAlignComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::THorizontalAlignComponent>((nsGuiWrapper::THorizontalAlignComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_THorizontalAlignComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::THorizontalAlignComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_THorizontalAlignComponentTypeFunc, _nsGuiWrapper_THorizontalAlignComponentTypeFunc });
+    
     TypeFunc _nsGuiWrapper_TInputTextComponentTypeFunc;
     _nsGuiWrapper_TInputTextComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TInputTextComponent>((nsGuiWrapper::TInputTextComponent*) p, str);
@@ -545,6 +581,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGuiWrapper_TMainWindowComponentTypeFunc, _nsGuiWrapper_TMainWindowComponentTypeFunc });
     
+    TypeFunc _nsGuiWrapper_TMaxSizeComponentTypeFunc;
+    _nsGuiWrapper_TMaxSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TMaxSizeComponent>((nsGuiWrapper::TMaxSizeComponent*) p, str);
+    };
+    _nsGuiWrapper_TMaxSizeComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TMaxSizeComponent>((nsGuiWrapper::TMaxSizeComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TMaxSizeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMaxSizeComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TMaxSizeComponentTypeFunc, _nsGuiWrapper_TMaxSizeComponentTypeFunc });
+    
     TypeFunc _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc;
     _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TMenuNodeClickHandlerComponent>((nsGuiWrapper::TMenuNodeClickHandlerComponent*) p, str);
@@ -569,6 +617,30 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGuiWrapper_TMenuNodeComponentTypeFunc, _nsGuiWrapper_TMenuNodeComponentTypeFunc });
     
+    TypeFunc _nsGuiWrapper_TMinDistanceToParentComponentTypeFunc;
+    _nsGuiWrapper_TMinDistanceToParentComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TMinDistanceToParentComponent>((nsGuiWrapper::TMinDistanceToParentComponent*) p, str);
+    };
+    _nsGuiWrapper_TMinDistanceToParentComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TMinDistanceToParentComponent>((nsGuiWrapper::TMinDistanceToParentComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TMinDistanceToParentComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMinDistanceToParentComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TMinDistanceToParentComponentTypeFunc, _nsGuiWrapper_TMinDistanceToParentComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_TMinSizeComponentTypeFunc;
+    _nsGuiWrapper_TMinSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TMinSizeComponent>((nsGuiWrapper::TMinSizeComponent*) p, str);
+    };
+    _nsGuiWrapper_TMinSizeComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TMinSizeComponent>((nsGuiWrapper::TMinSizeComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TMinSizeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMinSizeComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TMinSizeComponentTypeFunc, _nsGuiWrapper_TMinSizeComponentTypeFunc });
+    
     TypeFunc _nsGuiWrapper_TNodeIconComponentTypeFunc;
     _nsGuiWrapper_TNodeIconComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TNodeIconComponent>((nsGuiWrapper::TNodeIconComponent*) p, str);
@@ -581,6 +653,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGuiWrapper_TNodeIconComponentTypeFunc, _nsGuiWrapper_TNodeIconComponentTypeFunc });
     
+    TypeFunc _nsGuiWrapper_TPaddingComponentTypeFunc;
+    _nsGuiWrapper_TPaddingComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TPaddingComponent>((nsGuiWrapper::TPaddingComponent*) p, str);
+    };
+    _nsGuiWrapper_TPaddingComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TPaddingComponent>((nsGuiWrapper::TPaddingComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TPaddingComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TPaddingComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TPaddingComponentTypeFunc, _nsGuiWrapper_TPaddingComponentTypeFunc });
+    
     TypeFunc _nsGuiWrapper_TPositionComponentTypeFunc;
     _nsGuiWrapper_TPositionComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TPositionComponent>((nsGuiWrapper::TPositionComponent*) p, str);
@@ -592,6 +676,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGuiWrapper_TPositionComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TPositionComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TPositionComponentTypeFunc, _nsGuiWrapper_TPositionComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_TPositionInGridComponentTypeFunc;
+    _nsGuiWrapper_TPositionInGridComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TPositionInGridComponent>((nsGuiWrapper::TPositionInGridComponent*) p, str);
+    };
+    _nsGuiWrapper_TPositionInGridComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TPositionInGridComponent>((nsGuiWrapper::TPositionInGridComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TPositionInGridComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TPositionInGridComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TPositionInGridComponentTypeFunc, _nsGuiWrapper_TPositionInGridComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc;
     _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -616,6 +712,30 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGuiWrapper_TSizeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TSizeComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TSizeComponentTypeFunc, _nsGuiWrapper_TSizeComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_TSizeInGridComponentTypeFunc;
+    _nsGuiWrapper_TSizeInGridComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TSizeInGridComponent>((nsGuiWrapper::TSizeInGridComponent*) p, str);
+    };
+    _nsGuiWrapper_TSizeInGridComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TSizeInGridComponent>((nsGuiWrapper::TSizeInGridComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TSizeInGridComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TSizeInGridComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TSizeInGridComponentTypeFunc, _nsGuiWrapper_TSizeInGridComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_TSpacingComponentTypeFunc;
+    _nsGuiWrapper_TSpacingComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TSpacingComponent>((nsGuiWrapper::TSpacingComponent*) p, str);
+    };
+    _nsGuiWrapper_TSpacingComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TSpacingComponent>((nsGuiWrapper::TSpacingComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TSpacingComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TSpacingComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TSpacingComponentTypeFunc, _nsGuiWrapper_TSpacingComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TTitleComponentTypeFunc;
     _nsGuiWrapper_TTitleComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -652,6 +772,18 @@ void TComponentJsonSerializer::Init()
     auto rtti__nsGuiWrapper_TTreeViewComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TTreeViewComponent>();
     
     m.insert({ rtti__nsGuiWrapper_TTreeViewComponentTypeFunc, _nsGuiWrapper_TTreeViewComponentTypeFunc });
+    
+    TypeFunc _nsGuiWrapper_TVerticalAlignComponentTypeFunc;
+    _nsGuiWrapper_TVerticalAlignComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TVerticalAlignComponent>((nsGuiWrapper::TVerticalAlignComponent*) p, str);
+    };
+    _nsGuiWrapper_TVerticalAlignComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TVerticalAlignComponent>((nsGuiWrapper::TVerticalAlignComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiWrapper_TVerticalAlignComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TVerticalAlignComponent>();
+    
+    m.insert({ rtti__nsGuiWrapper_TVerticalAlignComponentTypeFunc, _nsGuiWrapper_TVerticalAlignComponentTypeFunc });
     
     TypeFunc _nsGuiWrapper_TVisibilityComponentTypeFunc;
     _nsGuiWrapper_TVisibilityComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -1079,6 +1211,30 @@ void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TUniverseCameraCom
     POM::PopStr(obj, "universeGuid", p->universeGuid);
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TAnchorsComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "leftIsUsed", p->leftIsUsed);
+    PUM::Push(obj, "leftOffset", p->leftOffset);
+    PUM::Push(obj, "rightIsUsed", p->rightIsUsed);
+    PUM::Push(obj, "rightOffset", p->rightOffset);
+    PUM::Push(obj, "topIsUsed", p->topIsUsed);
+    PUM::Push(obj, "topOffset", p->topOffset);
+    PUM::Push(obj, "bottomIsUsed", p->bottomIsUsed);
+    PUM::Push(obj, "bottomOffset", p->bottomOffset);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TAnchorsComponent* p, const Jobj& obj)
+{
+    POM::PopBool(obj, "leftIsUsed", p->leftIsUsed);
+    POM::PopNum(obj, "leftOffset", p->leftOffset);
+    POM::PopBool(obj, "rightIsUsed", p->rightIsUsed);
+    POM::PopNum(obj, "rightOffset", p->rightOffset);
+    POM::PopBool(obj, "topIsUsed", p->topIsUsed);
+    POM::PopNum(obj, "topOffset", p->topOffset);
+    POM::PopBool(obj, "bottomIsUsed", p->bottomIsUsed);
+    POM::PopNum(obj, "bottomOffset", p->bottomOffset);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TButtonClickHandlerComponent* p, Jobj& obj)
 {
     _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
@@ -1117,10 +1273,12 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TDialogComponent* p, c
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TFocusComponent* p, Jobj& obj)
 {
+    PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TFocusComponent* p, const Jobj& obj)
 {
+    POM::PopBool(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TFrameComponent* p, Jobj& obj)
@@ -1171,6 +1329,29 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TFrameMouseWheelHandle
     _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TGridComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TGridComponent* p, const Jobj& obj)
+{
+    POM::PopBool(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::THorizontalAlignComponent* p, Jobj& obj)
+{
+    auto value_c0 = _SerializeEnum(&(p->value));
+    PUM::Push(obj, "value", value_c0);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::THorizontalAlignComponent* p, const Jobj& obj)
+{
+    std::string value_c0;
+    POM::PopStr(obj, "value", value_c0);
+    _DeserializeEnum(value_c0, &(p->value));
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TInputTextComponent* p, Jobj& obj)
 {
 }
@@ -1215,6 +1396,18 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMainWindowComponent* 
 {
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TMaxSizeComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "x", p->x);
+    PUM::Push(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMaxSizeComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "x", p->x);
+    POM::PopNum(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TMenuNodeClickHandlerComponent* p, Jobj& obj)
 {
     _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
@@ -1233,6 +1426,34 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMenuNodeComponent* p,
 {
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TMinDistanceToParentComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "left", p->left);
+    PUM::Push(obj, "right", p->right);
+    PUM::Push(obj, "top", p->top);
+    PUM::Push(obj, "bottom", p->bottom);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMinDistanceToParentComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "left", p->left);
+    POM::PopNum(obj, "right", p->right);
+    POM::PopNum(obj, "top", p->top);
+    POM::PopNum(obj, "bottom", p->bottom);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TMinSizeComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "x", p->x);
+    PUM::Push(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMinSizeComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "x", p->x);
+    POM::PopNum(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TNodeIconComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "width", p->width);
@@ -1245,6 +1466,22 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TNodeIconComponent* p,
     POM::PopNum(obj, "height", p->height);
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TPaddingComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "left", p->left);
+    PUM::Push(obj, "right", p->right);
+    PUM::Push(obj, "top", p->top);
+    PUM::Push(obj, "bottom", p->bottom);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TPaddingComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "left", p->left);
+    POM::PopNum(obj, "right", p->right);
+    POM::PopNum(obj, "top", p->top);
+    POM::PopNum(obj, "bottom", p->bottom);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TPositionComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "x", p->x);
@@ -1252,6 +1489,18 @@ void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TPositionComponent* p, J
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TPositionComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "x", p->x);
+    POM::PopNum(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TPositionInGridComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "x", p->x);
+    PUM::Push(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TPositionInGridComponent* p, const Jobj& obj)
 {
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
@@ -1277,6 +1526,28 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TSizeComponent* p, con
 {
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TSizeInGridComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "x", p->x);
+    PUM::Push(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TSizeInGridComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "x", p->x);
+    POM::PopNum(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TSpacingComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TSpacingComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TTitleComponent* p, Jobj& obj)
@@ -1305,6 +1576,19 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TTreeViewComponent* p,
 {
 }
 //---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TVerticalAlignComponent* p, Jobj& obj)
+{
+    auto value_c0 = _SerializeEnum(&(p->value));
+    PUM::Push(obj, "value", value_c0);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TVerticalAlignComponent* p, const Jobj& obj)
+{
+    std::string value_c0;
+    POM::PopStr(obj, "value", value_c0);
+    _DeserializeEnum(value_c0, &(p->value));
+}
+//---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TVisibilityComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "value", p->value);
@@ -1331,6 +1615,52 @@ void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TWindowComponent* p, Job
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TWindowComponent* p, const Jobj& obj)
 {
+}
+//---------------------------------------------------------------------------------------
+std::string TComponentJsonSerializer::_SerializeEnum(nsGuiWrapper::THorizontalAlignComponent::Type* p)
+{
+    switch (*p) {
+        case nsGuiWrapper::THorizontalAlignComponent::Type::CENTER:
+            return "CENTER";
+        case nsGuiWrapper::THorizontalAlignComponent::Type::LEFT:
+            return "LEFT";
+        case nsGuiWrapper::THorizontalAlignComponent::Type::RIGHT:
+            return "RIGHT";
+        default:;
+    }
+    return "";
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_DeserializeEnum(std::string& str, nsGuiWrapper::THorizontalAlignComponent::Type* p)
+{
+    std::map<std::string, nsGuiWrapper::THorizontalAlignComponent::Type> m;
+    m.insert({"CENTER", nsGuiWrapper::THorizontalAlignComponent::Type::CENTER});
+    m.insert({"LEFT", nsGuiWrapper::THorizontalAlignComponent::Type::LEFT});
+    m.insert({"RIGHT", nsGuiWrapper::THorizontalAlignComponent::Type::RIGHT});
+    *p = m[str];
+}
+//---------------------------------------------------------------------------------------
+std::string TComponentJsonSerializer::_SerializeEnum(nsGuiWrapper::TVerticalAlignComponent::Type* p)
+{
+    switch (*p) {
+        case nsGuiWrapper::TVerticalAlignComponent::Type::CENTER:
+            return "CENTER";
+        case nsGuiWrapper::TVerticalAlignComponent::Type::LEFT:
+            return "LEFT";
+        case nsGuiWrapper::TVerticalAlignComponent::Type::RIGHT:
+            return "RIGHT";
+        default:;
+    }
+    return "";
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_DeserializeEnum(std::string& str, nsGuiWrapper::TVerticalAlignComponent::Type* p)
+{
+    std::map<std::string, nsGuiWrapper::TVerticalAlignComponent::Type> m;
+    m.insert({"CENTER", nsGuiWrapper::TVerticalAlignComponent::Type::CENTER});
+    m.insert({"LEFT", nsGuiWrapper::TVerticalAlignComponent::Type::LEFT});
+    m.insert({"RIGHT", nsGuiWrapper::TVerticalAlignComponent::Type::RIGHT});
+    *p = m[str];
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsLogicWrapper::TObjectInstanceEndHandlerComponent* p, Jobj& obj)

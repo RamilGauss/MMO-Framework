@@ -22,11 +22,14 @@ namespace nsECSFramework
         virtual void SetEntMng(TEntityManager* entMng);
         TEntityManager* GetEntMng();
 
-        virtual bool IsInit()     const { return false; }
-        virtual bool IsExecute()  const { return false; }
-        virtual bool IsTearDown() const { return false; }
-        virtual bool IsFeature()  const { return false; }
+        virtual bool IsInit()     const;
+        virtual bool IsExecute()  const;
+        virtual bool IsTearDown() const;
+        virtual bool IsFeature()  const;
 
         const std::string GetTypeName() const;
+
+        // Statistics
+        virtual double GetLastExecutionTime() const;
     };
 }

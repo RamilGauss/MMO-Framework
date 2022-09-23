@@ -43,6 +43,8 @@ namespace nsECSFramework
         TEntityManager(const std::string& name, int entityCount = 1024);
         virtual ~TEntityManager();
 
+        std::string GetName() const;
+
         void Setup(const std::list<std::string>& pathList);
         void Setup(std::string path = boost::dll::this_line_location().string());
 

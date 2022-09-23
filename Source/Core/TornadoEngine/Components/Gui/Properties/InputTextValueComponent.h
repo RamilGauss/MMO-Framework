@@ -8,27 +8,27 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
-
 #include "TypeDef.h"
 
-#include <ECS/include/IComponent.h>
+#include "PropertyOf.h"
 
-#include "GuidConstants.h"
+#include <ECS/include/IComponent.h>
+#include <ImGuiWidgets/include/InputText.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TSelectedTreeNodeGuidComponent : nsECSFramework::IComponent
+    struct DllExport TInputTextValueComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TInputText>, nsECSFramework::IComponent
     {
-        std::string value = nsTornadoEngine::TGuidConstants::NONE;
+        std::string value;
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return value < ((TSelectedTreeNodeGuidComponent*) pOther)->value;
+            return value < ((TInputTextValueComponent*) pOther)->value;
         }
 
         bool IsEqual(const IComponent* pOther) const override
         {
-            return value == ((TSelectedTreeNodeGuidComponent*) pOther)->value;
+            return value == ((TInputTextValueComponent*) pOther)->value;
         }
     };
 }

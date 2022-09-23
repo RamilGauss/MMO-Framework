@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_09_18 22:26:01.150
+// File has been generated at 2022_09_22 17:41:27.415
 	
 #pragma once
 
@@ -123,6 +123,9 @@ namespace nsTornadoEngine
         static void _Serialize(nsGraphicWrapper::TUniverseCameraComponent* p, Jobj& obj);
         static void _Deserialize(nsGraphicWrapper::TUniverseCameraComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TAnchorsComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TAnchorsComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TButtonClickHandlerComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TButtonClickHandlerComponent* p, const Jobj& obj);
         
@@ -153,6 +156,12 @@ namespace nsTornadoEngine
         static void _Serialize(nsGuiWrapper::TFrameMouseWheelHandlerComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TFrameMouseWheelHandlerComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TGridComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TGridComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::THorizontalAlignComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::THorizontalAlignComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TInputTextComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TInputTextComponent* p, const Jobj& obj);
         
@@ -168,23 +177,44 @@ namespace nsTornadoEngine
         static void _Serialize(nsGuiWrapper::TMainWindowComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TMainWindowComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TMaxSizeComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TMaxSizeComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TMenuNodeClickHandlerComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TMenuNodeClickHandlerComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TMenuNodeComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TMenuNodeComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TMinDistanceToParentComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TMinDistanceToParentComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TMinSizeComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TMinSizeComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TNodeIconComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TNodeIconComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TPaddingComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TPaddingComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TPositionComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TPositionComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TPositionInGridComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TPositionInGridComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TSelectedTreeNodeGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TSelectedTreeNodeGuidComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TSizeComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TSizeComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TSizeInGridComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TSizeInGridComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TSpacingComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TSpacingComponent* p, const Jobj& obj);
         
         static void _Serialize(nsGuiWrapper::TTitleComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TTitleComponent* p, const Jobj& obj);
@@ -195,6 +225,9 @@ namespace nsTornadoEngine
         static void _Serialize(nsGuiWrapper::TTreeViewComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TTreeViewComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TVerticalAlignComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TVerticalAlignComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TVisibilityComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TVisibilityComponent* p, const Jobj& obj);
         
@@ -203,6 +236,12 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsGuiWrapper::TWindowComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TWindowComponent* p, const Jobj& obj);
+        
+        static std::string _SerializeEnum(nsGuiWrapper::THorizontalAlignComponent::Type* p);
+        static void _DeserializeEnum(std::string& str, nsGuiWrapper::THorizontalAlignComponent::Type* p);
+        
+        static std::string _SerializeEnum(nsGuiWrapper::TVerticalAlignComponent::Type* p);
+        static void _DeserializeEnum(std::string& str, nsGuiWrapper::TVerticalAlignComponent::Type* p);
         
         static void _Serialize(nsLogicWrapper::TObjectInstanceEndHandlerComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TObjectInstanceEndHandlerComponent* p, const Jobj& obj);

@@ -9,23 +9,26 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
+#include "PropertyOf.h"
+
 #include <ECS/include/IComponent.h>
+#include <ImGuiWidgets/include/Unit.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TPositionComponent : nsECSFramework::IComponent
+    struct DllExport TMinSizeComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TUnit>, nsECSFramework::IComponent
     {
         int x = 0;
         int y = 0;
 
         bool IsLess(const IComponent* pOther) const override
         {
-            if (x < ((TPositionComponent*) pOther)->x) {
+            if (x < ((TMinSizeComponent*)pOther)->x) {
                 return false;
             }
 
-            if (x == ((TPositionComponent*) pOther)->x) {
-                return y < ((TPositionComponent*) pOther)->y;
+            if (x == ((TMinSizeComponent*)pOther)->x) {
+                return y < ((TMinSizeComponent*)pOther)->y;
             }
 
             return true;
@@ -33,8 +36,7 @@ namespace nsGuiWrapper
 
         bool IsEqual(const IComponent* pOther) const override
         {
-            return x == ((TPositionComponent*) pOther)->x && y == ((TPositionComponent*) pOther)->y;
+            return x == ((TMinSizeComponent*)pOther)->x && y == ((TMinSizeComponent*)pOther)->y;
         }
-
     };
 }

@@ -7,11 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Widget.h"
-#include "WidgetContainer.h"
 #include "CallbackPool.h"
 
-#include "Texture.h"
+#include "GraphicEngine/Texture.h"
+
+#include "Widget.h"
+#include "WidgetContainer.h"
+
 
 namespace nsImGuiWidgets
 {

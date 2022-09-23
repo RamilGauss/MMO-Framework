@@ -2,10 +2,11 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_09_18 22:26:01.210
+// File has been generated at 2022_09_22 17:41:27.458
 	
 #pragma once
 
+#include "AnchorsComponent.h"
 #include "ButtonClickHandlerComponent.h"
 #include "ButtonComponent.h"
 #include "CameraComponent.h"
@@ -20,9 +21,11 @@
 #include "FrameMouseClickHandlerComponent.h"
 #include "FrameMouseMoveHandlerComponent.h"
 #include "FrameMouseWheelHandlerComponent.h"
+#include "GridComponent.h"
 #include "GuiCameraTagComponent.h"
 #include "GuidComponent.h"
 #include "HandlerTarget.h"
+#include "HorizontalAlignComponent.h"
 #include "InputTextComponent.h"
 #include "InputTextValueComponent.h"
 #include "LabelComponent.h"
@@ -30,15 +33,20 @@
 #include "LightComponent.h"
 #include "MainWindowComponent.h"
 #include "MathStructs.h"
+#include "MaxSizeComponent.h"
 #include "MenuNodeClickHandlerComponent.h"
 #include "MenuNodeComponent.h"
+#include "MinDistanceToParentComponent.h"
+#include "MinSizeComponent.h"
 #include "NameComponent.h"
 #include "NeedDestroyObjectTagComponent.h"
 #include "NodeIconComponent.h"
 #include "ObjectInMemoryComponent.h"
 #include "ObjectInstanceEndHandlerComponent.h"
+#include "PaddingComponent.h"
 #include "ParentGuidComponent.h"
 #include "PositionComponent.h"
+#include "PositionInGridComponent.h"
 #include "PrefabGuidComponent.h"
 #include "PrefabInstanceGuidComponent.h"
 #include "PrefabObjectReferenceComponent.h"
@@ -55,6 +63,8 @@
 #include "SceneRootComponent.h"
 #include "SelectedTreeNodeGuidComponent.h"
 #include "SizeComponent.h"
+#include "SizeInGridComponent.h"
+#include "SpacingComponent.h"
 #include "SystemComponent.h"
 #include "TextureFromCameraComponent.h"
 #include "TextureFromFileComponent.h"
@@ -65,6 +75,7 @@
 #include "UniverseCameraComponent.h"
 #include "UniverseGuidComponent.h"
 #include "UniverseIndexComponent.h"
+#include "VerticalAlignComponent.h"
 #include "VisibilityComponent.h"
 #include "WindowCloseEventHandlerComponent.h"
 #include "WindowComponent.h"

@@ -18,6 +18,7 @@ namespace nsECSFramework
 {
     class DllExport TFeature : public TExecuteSystem, public TTearDownSystem
     {
+        double mLastExecutionTime = 0;
     protected:
         std::list<TInitSystem*> mInitSystems;
         std::list<TExecuteSystem*> mExecuteSystems;
@@ -40,13 +41,14 @@ namespace nsECSFramework
         template <typename T>
         bool Has(T* system) const { return HasSystem(dynamic_cast<TSystem*>(system)); }
 
-
         const std::list<TSystem*>& GetSystems() const;
 
         void Clear();
 
         void Execute() override final;
         void TearDown() override final;
+
+        double GetLastExecutionTime() const override final;
 
     private:
         bool AddSystem(TSystem* system);

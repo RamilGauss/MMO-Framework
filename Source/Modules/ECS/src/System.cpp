@@ -12,15 +12,15 @@ See for more information LICENSE.md.
 using namespace nsECSFramework;
 
 void TSystem::SetEntMng(TEntityManager* entMng)
-{ 
+{
     mEntMng = entMng;
 
     mEntMng->AddSystem(this);
 }
 //-------------------------------------------------------------------------
-TEntityManager* TSystem::GetEntMng() 
-{ 
-    return mEntMng; 
+TEntityManager* TSystem::GetEntMng()
+{
+    return mEntMng;
 }
 //-------------------------------------------------------------------------
 TSystem::~TSystem()
@@ -42,5 +42,30 @@ const std::string TSystem::GetTypeName() const
 
     auto structIndex = typeName.find(STRUCT);
     return typeName.substr(structIndex + STRUCT.size() + 1);
+}
+//-------------------------------------------------------------------------
+bool TSystem::IsInit()     const
+{
+    return false;
+}
+//-------------------------------------------------------------------------
+bool TSystem::IsExecute()  const
+{
+    return false;
+}
+//-------------------------------------------------------------------------
+bool TSystem::IsTearDown() const
+{
+    return false;
+}
+//-------------------------------------------------------------------------
+bool TSystem::IsFeature()  const
+{
+    return false;
+}
+//-------------------------------------------------------------------------
+double TSystem::GetLastExecutionTime() const
+{
+    return 0;
 }
 //-------------------------------------------------------------------------

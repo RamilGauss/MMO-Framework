@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <list>
 
-#include "IRenderable.h"
+#include "GraphicEngine/IRenderable.h"
 
 namespace nsImGuiWidgets
 {

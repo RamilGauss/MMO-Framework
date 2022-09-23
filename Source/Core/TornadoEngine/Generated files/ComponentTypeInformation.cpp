@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_09_18 22:26:01.203
+// File has been generated at 2022_09_22 17:41:27.452
 	
 #include "ComponentTypeInformation.h"
 
@@ -189,6 +189,12 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGraphicWrapper_TUniverseCameraComponent_i);
     mNameRttiMap.insert({ nsGraphicWrapper_TUniverseCameraComponent_n, nsGraphicWrapper_TUniverseCameraComponent_i });
     
+    int nsGuiWrapper_TAnchorsComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TAnchorsComponent>();
+    std::string nsGuiWrapper_TAnchorsComponent_n = "nsGuiWrapper::TAnchorsComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TAnchorsComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TAnchorsComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TAnchorsComponent_n, nsGuiWrapper_TAnchorsComponent_i });
+    
     int nsGuiWrapper_TButtonClickHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
     std::string nsGuiWrapper_TButtonClickHandlerComponent_n = "nsGuiWrapper::TButtonClickHandlerComponent";
     mTypeNameList.push_back(nsGuiWrapper_TButtonClickHandlerComponent_n);
@@ -249,6 +255,18 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TFrameMouseWheelHandlerComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TFrameMouseWheelHandlerComponent_n, nsGuiWrapper_TFrameMouseWheelHandlerComponent_i });
     
+    int nsGuiWrapper_TGridComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TGridComponent>();
+    std::string nsGuiWrapper_TGridComponent_n = "nsGuiWrapper::TGridComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TGridComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TGridComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TGridComponent_n, nsGuiWrapper_TGridComponent_i });
+    
+    int nsGuiWrapper_THorizontalAlignComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::THorizontalAlignComponent>();
+    std::string nsGuiWrapper_THorizontalAlignComponent_n = "nsGuiWrapper::THorizontalAlignComponent";
+    mTypeNameList.push_back(nsGuiWrapper_THorizontalAlignComponent_n);
+    mRttiList.push_back(nsGuiWrapper_THorizontalAlignComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_THorizontalAlignComponent_n, nsGuiWrapper_THorizontalAlignComponent_i });
+    
     int nsGuiWrapper_TInputTextComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TInputTextComponent>();
     std::string nsGuiWrapper_TInputTextComponent_n = "nsGuiWrapper::TInputTextComponent";
     mTypeNameList.push_back(nsGuiWrapper_TInputTextComponent_n);
@@ -279,6 +297,12 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TMainWindowComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TMainWindowComponent_n, nsGuiWrapper_TMainWindowComponent_i });
     
+    int nsGuiWrapper_TMaxSizeComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TMaxSizeComponent>();
+    std::string nsGuiWrapper_TMaxSizeComponent_n = "nsGuiWrapper::TMaxSizeComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TMaxSizeComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TMaxSizeComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TMaxSizeComponent_n, nsGuiWrapper_TMaxSizeComponent_i });
+    
     int nsGuiWrapper_TMenuNodeClickHandlerComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
     std::string nsGuiWrapper_TMenuNodeClickHandlerComponent_n = "nsGuiWrapper::TMenuNodeClickHandlerComponent";
     mTypeNameList.push_back(nsGuiWrapper_TMenuNodeClickHandlerComponent_n);
@@ -291,17 +315,41 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TMenuNodeComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TMenuNodeComponent_n, nsGuiWrapper_TMenuNodeComponent_i });
     
+    int nsGuiWrapper_TMinDistanceToParentComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TMinDistanceToParentComponent>();
+    std::string nsGuiWrapper_TMinDistanceToParentComponent_n = "nsGuiWrapper::TMinDistanceToParentComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TMinDistanceToParentComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TMinDistanceToParentComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TMinDistanceToParentComponent_n, nsGuiWrapper_TMinDistanceToParentComponent_i });
+    
+    int nsGuiWrapper_TMinSizeComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TMinSizeComponent>();
+    std::string nsGuiWrapper_TMinSizeComponent_n = "nsGuiWrapper::TMinSizeComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TMinSizeComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TMinSizeComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TMinSizeComponent_n, nsGuiWrapper_TMinSizeComponent_i });
+    
     int nsGuiWrapper_TNodeIconComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TNodeIconComponent>();
     std::string nsGuiWrapper_TNodeIconComponent_n = "nsGuiWrapper::TNodeIconComponent";
     mTypeNameList.push_back(nsGuiWrapper_TNodeIconComponent_n);
     mRttiList.push_back(nsGuiWrapper_TNodeIconComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TNodeIconComponent_n, nsGuiWrapper_TNodeIconComponent_i });
     
+    int nsGuiWrapper_TPaddingComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TPaddingComponent>();
+    std::string nsGuiWrapper_TPaddingComponent_n = "nsGuiWrapper::TPaddingComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TPaddingComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TPaddingComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TPaddingComponent_n, nsGuiWrapper_TPaddingComponent_i });
+    
     int nsGuiWrapper_TPositionComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TPositionComponent>();
     std::string nsGuiWrapper_TPositionComponent_n = "nsGuiWrapper::TPositionComponent";
     mTypeNameList.push_back(nsGuiWrapper_TPositionComponent_n);
     mRttiList.push_back(nsGuiWrapper_TPositionComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TPositionComponent_n, nsGuiWrapper_TPositionComponent_i });
+    
+    int nsGuiWrapper_TPositionInGridComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TPositionInGridComponent>();
+    std::string nsGuiWrapper_TPositionInGridComponent_n = "nsGuiWrapper::TPositionInGridComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TPositionInGridComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TPositionInGridComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TPositionInGridComponent_n, nsGuiWrapper_TPositionInGridComponent_i });
     
     int nsGuiWrapper_TSelectedTreeNodeGuidComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TSelectedTreeNodeGuidComponent>();
     std::string nsGuiWrapper_TSelectedTreeNodeGuidComponent_n = "nsGuiWrapper::TSelectedTreeNodeGuidComponent";
@@ -314,6 +362,18 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TSizeComponent_n);
     mRttiList.push_back(nsGuiWrapper_TSizeComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TSizeComponent_n, nsGuiWrapper_TSizeComponent_i });
+    
+    int nsGuiWrapper_TSizeInGridComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TSizeInGridComponent>();
+    std::string nsGuiWrapper_TSizeInGridComponent_n = "nsGuiWrapper::TSizeInGridComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TSizeInGridComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TSizeInGridComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TSizeInGridComponent_n, nsGuiWrapper_TSizeInGridComponent_i });
+    
+    int nsGuiWrapper_TSpacingComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TSpacingComponent>();
+    std::string nsGuiWrapper_TSpacingComponent_n = "nsGuiWrapper::TSpacingComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TSpacingComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TSpacingComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TSpacingComponent_n, nsGuiWrapper_TSpacingComponent_i });
     
     int nsGuiWrapper_TTitleComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TTitleComponent>();
     std::string nsGuiWrapper_TTitleComponent_n = "nsGuiWrapper::TTitleComponent";
@@ -332,6 +392,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsGuiWrapper_TTreeViewComponent_n);
     mRttiList.push_back(nsGuiWrapper_TTreeViewComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TTreeViewComponent_n, nsGuiWrapper_TTreeViewComponent_i });
+    
+    int nsGuiWrapper_TVerticalAlignComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TVerticalAlignComponent>();
+    std::string nsGuiWrapper_TVerticalAlignComponent_n = "nsGuiWrapper::TVerticalAlignComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TVerticalAlignComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TVerticalAlignComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TVerticalAlignComponent_n, nsGuiWrapper_TVerticalAlignComponent_i });
     
     int nsGuiWrapper_TVisibilityComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TVisibilityComponent>();
     std::string nsGuiWrapper_TVisibilityComponent_n = "nsGuiWrapper::TVisibilityComponent";
