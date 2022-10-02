@@ -311,7 +311,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\Gizmos\EntityViewer.cpp" />
     <ClCompile Include="Modules\Gizmos\Gizmo.cpp" />
     <ClCompile Include="Modules\Contexts\GraphicEngineContext.cpp" />
-    <ClCompile Include="Modules\Helpers\HierarchyHelper.cpp" />
     <ClCompile Include="Modules\Common\IContext.cpp" />
     <ClCompile Include="Modules\Common\IContext.h" />
     <ClCompile Include="Modules\Common\IContextManager.cpp" />
@@ -526,7 +525,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Gizmos\Gizmo.h" />
     <ClInclude Include="Modules\Contexts\GraphicEngineContext.h" />
     <ClInclude Include="Modules\Resources\Common\GuidReference.h" />
-    <ClInclude Include="Modules\Helpers\HierarchyHelper.h" />
     <ClInclude Include="Modules\Common\IContextManager.h" />
     <ClInclude Include="Modules\Common\LogicWrapperModule.h" />
     <ClInclude Include="Modules\Resources\Common\GuidConstants.h" />

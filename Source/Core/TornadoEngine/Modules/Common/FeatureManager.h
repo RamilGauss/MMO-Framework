@@ -31,6 +31,7 @@ namespace nsTornadoEngine
         nsECSFramework::TEntityManager* GetCurrentEntMng() const;
 
         int GetSlotCount() const;
+        nsECSFramework::TFeature* GetSlotByIndex(int index);
 
         void SetCurrentSlotIndex(int index);
         int GetCurrentSlotIndex() const;

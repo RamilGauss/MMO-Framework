@@ -164,7 +164,7 @@
     <ClInclude Include="include\StateMachine.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\StatisticValue.h">
+    <ClInclude Include="include\StatisticsValue.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ThreadBoost.h">
@@ -386,6 +386,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\StringExtensions.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StatisticsValue.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -19,11 +19,12 @@ See for more information LICENSE.md.
 #include "Geometry.h"
 #include "Visibility.h"
 #include "Identity.h"
+#include "Color.h"
 
 namespace nsImGuiWidgets
 {
     class DllExport TWidget : public nsGraphicEngine::IRenderable, 
-        public TTitle, public TGeometry, public TVisibility, public TIdentity
+        public TTitle, public TColor, public TGeometry, public TVisibility, public TIdentity
     {
         static nsGraphicEngine::TKeyMouseEventContainer* mKeyMouseInputContainer;
     protected:

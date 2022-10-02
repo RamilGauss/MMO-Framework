@@ -64,12 +64,15 @@ namespace nsImGuiWidgets
 
             auto child = cell.second.p;
 
-            if (child->GetSubType() == SubType::UNIT) {
+            auto childSubType = child->GetSubType();
+
+            if (childSubType == SubType::UNIT ||
+                childSubType == SubType::PROTO_FRAME) {
                 auto pUnit = dynamic_cast<TUnit*>(child);
                 currentMinCellSize = GridUnitCalculate(pUnit);
             }
 
-            if (child->GetSubType() == SubType::FRAME) {
+            if (childSubType == SubType::FRAME) {
                 auto pFrame = dynamic_cast<TFrame*>(child);
                 currentMinCellSize = GridFrameCalculate(pFrame);
                 currentMinCellSize = Max(pFrame->CalculateMinSizeInGrid(), currentMinCellSize);
@@ -112,11 +115,14 @@ namespace nsImGuiWidgets
         for (auto& child : mWidgets) {
             ImVec2 unitMinSize = { 0,0 };
 
-            if (child->GetSubType() == SubType::UNIT) {
+            auto childSubType = child->GetSubType();
+
+            if (childSubType == SubType::UNIT ||
+                childSubType == SubType::PROTO_FRAME) {
                 auto pUnit = dynamic_cast<TUnit*>(child);
                 unitMinSize = FreeUnitCalculate(pUnit);
             }
-            if (child->GetSubType() == SubType::FRAME) {
+            if (childSubType == SubType::FRAME) {
                 auto pFrame = dynamic_cast<TFrame*>(child);
                 unitMinSize = FreeFrameCalculate(pFrame);
                 unitMinSize = Max(pFrame->CalculateMinSizeInFree(), unitMinSize);
@@ -132,11 +138,14 @@ namespace nsImGuiWidgets
     void TFrame::FreeUpdateChildGeometry()
     {
         for (auto& child : mWidgets) {
-            if (child->GetSubType() == SubType::UNIT) {
+            auto childSubType = child->GetSubType();
+
+            if (childSubType == SubType::UNIT ||
+                childSubType == SubType::PROTO_FRAME) {
                 auto pUnit = dynamic_cast<TUnit*>(child);
                 FreeUnitUpdate(pUnit);
             }
-            if (child->GetSubType() == SubType::FRAME) {
+            if (childSubType == SubType::FRAME) {
                 auto pFrame = dynamic_cast<TFrame*>(child);
                 FreeFrameUpdate(pFrame);
             }
@@ -156,11 +165,14 @@ namespace nsImGuiWidgets
             auto cellPos = CalculateCellPos(cell);
             auto cellSize = CalculateCellSize(cell);
 
-            if (child->GetSubType() == SubType::UNIT) {
+            auto childSubType = child->GetSubType();
+
+            if (childSubType == SubType::UNIT ||
+                childSubType == SubType::PROTO_FRAME) {
                 auto pUnit = dynamic_cast<TUnit*>(child);
                 GridUnitUpdate(pUnit, cellPos, cellSize);
             }
-            if (child->GetSubType() == SubType::FRAME) {
+            if (childSubType == SubType::FRAME) {
                 auto pFrame = dynamic_cast<TFrame*>(child);
                 GridFrameUpdate(pFrame, cellPos, cellSize);
             }

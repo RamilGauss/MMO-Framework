@@ -48,7 +48,6 @@ namespace nsImGuiWidgets
 
     private:
         void SearchEvents();
-        //void RenderContent();
 
         void EndEditing();
     };

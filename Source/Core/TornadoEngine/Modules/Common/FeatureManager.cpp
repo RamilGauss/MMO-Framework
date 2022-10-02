@@ -81,6 +81,11 @@ int TFeatureManager::GetSlotCount() const
     return mSlots.size();
 }
 //--------------------------------------------------------------------
+nsECSFramework::TFeature* TFeatureManager::GetSlotByIndex(int index)
+{
+    return mSlots[index];
+}
+//--------------------------------------------------------------------
 TFeature* TFeatureManager::GetCurrentSlot() const
 {
     return mSlots[mCurrentIndex];

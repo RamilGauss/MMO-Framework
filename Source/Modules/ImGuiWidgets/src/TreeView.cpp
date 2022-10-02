@@ -58,6 +58,8 @@ void TTreeView::RemoveAllNodes()
     for (auto& node : allNodesCopy) {
         RemoveNode(node->mStrId);
     }
+
+    mAllNodes.clear();
 }
 //---------------------------------------------------------------------------------------
 TTreeNode* TTreeView::FoundNode(const std::string& id)

@@ -6,10 +6,8 @@
 
 #include "Modules.h"
 #include "ModuleManager.h"
-#include "HierarchyHelper.h"
 
 using namespace nsTornadoEngine;
-
 
 bool TProjectConfigurator::LoadProject(const std::string& absPathToProjectFile)
 {

@@ -20,8 +20,6 @@ See for more information LICENSE.md.
 // Получение тиков процессора (с тактовой частотой процессора)
 uint64_t DllExport ht_GetUSCount();
 
-uint64_t DllExport ht_GetCycleCPUCount();
-
 // Задержка на микросекунды
 void DllExport ht_usleep( unsigned int us );
 

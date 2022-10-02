@@ -165,13 +165,13 @@ void TUnitBuilderHelper::SetupTreeNode(nsECSFramework::TEntityManager* entMng,
 }
 //-----------------------------------------------------------------------------------------------------------------------
 void TUnitBuilderHelper::SetupTreeView(nsECSFramework::TEntityManager* entMng,
-    nsECSFramework::TEntityID eid, nsImGuiWidgets::TTreeView* pTreeNode)
+    nsECSFramework::TEntityID eid, nsImGuiWidgets::TTreeView* pTreeView)
 {
     auto posComponent = entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid);
-    pTreeNode->SetPos({(float) posComponent->x,(float) posComponent->y});
+    pTreeView->SetPos({(float) posComponent->x,(float) posComponent->y});
 
     auto sizeComponent = entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid);
-    pTreeNode->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});
+    pTreeView->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});
 
     auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid)->value;
 
@@ -182,9 +182,9 @@ void TUnitBuilderHelper::SetupTreeView(nsECSFramework::TEntityManager* entMng,
         return;
     }
 
-    AddWidgetToParent(entMng, parentEid, pTreeNode);
+    AddWidgetToParent(entMng, parentEid, pTreeView);
 
-    pTreeNode->mOnSelectionEventCB.Register(pTreeNode, [eid, entMng](nsImGuiWidgets::TTreeNode* pSelectedTreeNode)
+    pTreeView->mOnSelectionEventCB.Register(pTreeView, [eid, entMng](nsImGuiWidgets::TTreeNode* pSelectedTreeNode)
     {
         nsGuiWrapper::TSelectedTreeNodeGuidComponent selectedTreeNodeGuidComponent;
         selectedTreeNodeGuidComponent.value =

@@ -121,7 +121,7 @@
       <PreprocessorDefinitions>_DEBUG;_WIN32;__WIN32__;WIN32;_WINDOWS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Modules/GraphicEngine/imgui;$(SolutionDir)Source/Modules/ImGuiWidgets/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules;$(SolutionDir)Source/Modules/GraphicEngine/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TexturedWindowTest.cpp" />
+    <ClCompile Include="TreeNodeTest.cpp" />
     <ClCompile Include="WindowAndFrameTest.cpp" />
     <ClCompile Include="WindowFrameTest.cpp" />
     <ClCompile Include="WindowGridedFrameTest.cpp" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TexturedWindowTest.h" />
+    <ClInclude Include="TreeNodeTest.h" />
     <ClInclude Include="WindowAndFrameTest.h" />
     <ClInclude Include="WindowFrameTest.h" />
     <ClInclude Include="WindowGridedFrameTest.h" />

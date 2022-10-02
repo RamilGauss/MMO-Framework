@@ -426,9 +426,6 @@
     <ClCompile Include="Features\Graphic\Terminator\Units\TreeNodeTerminatorSystem.cpp">
       <Filter>Features\Graphic\Terminator\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Helpers\HierarchyHelper.cpp">
-      <Filter>Modules\Helpers</Filter>
-    </ClCompile>
     <ClCompile Include="Features\Graphic\Builder\Units\LabelBuilderSystem.cpp">
       <Filter>Features\Graphic\Builder\Units</Filter>
     </ClCompile>
@@ -973,9 +970,6 @@
     </ClInclude>
     <ClInclude Include="Features\Graphic\Terminator\Units\TreeNodeTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Helpers\HierarchyHelper.h">
-      <Filter>Modules\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\Builder\Units\LabelBuilderSystem.h">
       <Filter>Features\Graphic\Builder\Units</Filter>

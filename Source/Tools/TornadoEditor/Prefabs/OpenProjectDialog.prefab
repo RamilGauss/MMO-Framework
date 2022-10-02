@@ -134,6 +134,38 @@
                     "jsonBody": "{}"
                 },
                 {
+                    "typeName": "nsGuiWrapper::TVisibilityComponent",
+                    "jsonBody": "{\"value\":true}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TAnchorsComponent",
+                    "jsonBody": "{\"leftIsUsed\":false, \"leftOffset\":0, \"rightIsUsed\":false, \"rightOffset\":0,\"topIsUsed\":false, \"topOffset\":0,\"bottomIsUsed\":false, \"bottomOffset\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMinSizeComponent",
+                    "jsonBody": "{\"x\":0, \"y\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMaxSizeComponent",
+                    "jsonBody": "{\"x\":100000, \"y\":100000}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TVerticalAlignComponent",
+                    "jsonBody": "{\"value\":\"CENTER\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::THorizontalAlignComponent",
+                    "jsonBody": "{\"value\":\"CENTER\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMinDistanceToParentComponent",
+                    "jsonBody": "{\"left\":0, \"right\":0, \"top\":0, \"bottom\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TFocusComponent",
+                    "jsonBody": "{\"value\":false}"
+                },
+                {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"OK\"}"
                 },
@@ -176,6 +208,38 @@
                 {
                     "typeName": "nsGuiWrapper::TButtonComponent",
                     "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TVisibilityComponent",
+                    "jsonBody": "{\"value\":true}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TAnchorsComponent",
+                    "jsonBody": "{\"leftIsUsed\":false, \"leftOffset\":0, \"rightIsUsed\":false, \"rightOffset\":0,\"topIsUsed\":false, \"topOffset\":0,\"bottomIsUsed\":false, \"bottomOffset\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMinSizeComponent",
+                    "jsonBody": "{\"x\":0, \"y\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMaxSizeComponent",
+                    "jsonBody": "{\"x\":100000, \"y\":100000}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TVerticalAlignComponent",
+                    "jsonBody": "{\"value\":\"CENTER\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::THorizontalAlignComponent",
+                    "jsonBody": "{\"value\":\"CENTER\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMinDistanceToParentComponent",
+                    "jsonBody": "{\"left\":0, \"right\":0, \"top\":0, \"bottom\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TFocusComponent",
+                    "jsonBody": "{\"value\":false}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",

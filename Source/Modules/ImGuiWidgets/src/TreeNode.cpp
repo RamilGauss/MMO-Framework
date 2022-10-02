@@ -54,7 +54,7 @@ void TTreeNode::Render()
 {
     Show();
 
-    ImGuiTreeNodeFlags mode = ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_OpenOnArrow;
+    ImGuiTreeNodeFlags mode = ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_Framed;
     if (mWidgets.size() == 0) {
         mode |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_SpanAvailWidth;
     }
@@ -89,7 +89,9 @@ void TTreeNode::Render()
 
         const auto textureSize = ImVec2(mWidth, mHeight);
 
+        ImGui::PushStyleColor((int)ImGuiCol_Header, GetColor());
         mIsOpen = TImGuiCustom::TreeNodeExV(mStrId.c_str(), mode, GetTitle().c_str(), mTextureId, textureSize);
+        ImGui::PopStyleColor();
         
         SearchEvents();
 

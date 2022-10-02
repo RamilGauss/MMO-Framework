@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Window.h"
-#include "Button.h"
+#include "ImGuiWidgets/include/Window.h"
+#include "ImGuiWidgets/include/Button.h"
 
-#include "GraphicEngineContext.h"
+#include "GraphicEngine/GraphicEngineContext.h"
 
 namespace nsTest
 {

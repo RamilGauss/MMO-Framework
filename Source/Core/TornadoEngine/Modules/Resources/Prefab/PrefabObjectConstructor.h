@@ -18,7 +18,6 @@ See for more information LICENSE.md.
 #include "ResourceContentMap.h"
 #include "ResourceContent.h"
 #include "ObjectManager.h"
-#include "HierarchyHelper.h"
 
 namespace nsTornadoEngine
 {

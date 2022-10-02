@@ -8,20 +8,18 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "ImGuiWidgets/include/Window.h"
-#include "ImGuiWidgets/include/Frame.h"
-#include "ImGuiWidgets/include/Button.h"
+#include "ImGuiWidgets/include/TreeView.h"
+#include "ImGuiWidgets/include/TreeNode.h"
 
 #include "GraphicEngine/GraphicEngineContext.h"
 
-
 namespace nsTest
 {
-    class TWindowFrameTest
+    class TTreeNodeTest
     {
         nsImGuiWidgets::TWindow mWindow;
 
-        nsImGuiWidgets::TFrame mFrame;
-        nsImGuiWidgets::TButton mExitButton;
+        nsImGuiWidgets::TTreeView mTreeView;
 
     public:
         void Create(nsGraphicEngine::TGraphicEngineContext* pCtx);

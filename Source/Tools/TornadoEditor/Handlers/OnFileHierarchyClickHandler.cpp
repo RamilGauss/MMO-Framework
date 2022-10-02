@@ -13,7 +13,6 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 #include "FileHierarchyWindowTagComponent.h"
 #include "SceneInstanceGuidComponent.h"
-#include "HierarchyHelper.h"
 
 using namespace nsTornadoEditor;
 

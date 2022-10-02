@@ -5,7 +5,7 @@
 namespace nsTornadoEngine
 {
     template <typename T>
-    class DllExport TPropertyOf
+    struct DllExport TPropertyOf
     {
 #pragma IGNORE_ATTRIBUTE
         mutable T* pOwner = nullptr;

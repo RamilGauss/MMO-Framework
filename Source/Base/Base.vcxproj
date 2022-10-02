@@ -273,7 +273,7 @@
     <ClInclude Include="include\SrcEvent.h" />
     <ClInclude Include="include\SrcEvent_ex.h" />
     <ClInclude Include="include\StateMachine.h" />
-    <ClInclude Include="include\StatisticValue.h" />
+    <ClInclude Include="include\StatisticsValue.h" />
     <ClInclude Include="include\StopWatch.h" />
     <ClInclude Include="include\StringExtensions.h" />
     <ClInclude Include="include\TextFile.h" />
@@ -328,6 +328,7 @@
     <ClCompile Include="src\SingletonManager.cpp" />
     <ClCompile Include="src\SortedVecWithKeyMap.cpp" />
     <ClCompile Include="src\SrcEvent.cpp" />
+    <ClCompile Include="src\StatisticsValue.cpp" />
     <ClCompile Include="src\StopWatch.cpp" />
     <ClCompile Include="src\StringExtensions.cpp" />
     <ClCompile Include="src\TextFile.cpp" />

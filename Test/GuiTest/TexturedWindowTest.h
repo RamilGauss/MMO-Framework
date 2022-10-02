@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Window.h"
-#include "TexturedFrame.h"
-#include "Button.h"
+#include "ImGuiWidgets/include/Window.h"
+#include "ImGuiWidgets/include/TexturedFrame.h"
+#include "ImGuiWidgets/include/Button.h"
 
-#include "GraphicEngineContext.h"
+#include "GraphicEngine/GraphicEngineContext.h"
 
 namespace nsTest
 {

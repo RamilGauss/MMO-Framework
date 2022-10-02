@@ -22,49 +22,24 @@ See for more information LICENSE.md.
 #include <time.h>
 #endif
 
-//#include <boost/thread/thread.hpp>
-#include <boost/chrono/include.hpp>
-#include <boost/chrono/time_point.hpp>
-
-using namespace boost;
-
 //------------------------------------------------------------------------------
 uint64_t ht_GetUSCount()
 {
-    typedef chrono::process_real_cpu_clock type_clock;
-
-    type_clock::time_point t = type_clock::now();
-    return t.time_since_epoch().count();
-}
-//------------------------------------------------------------------------------
-uint64_t ht_GetCycleCPUCount()
-{
-    typedef chrono::high_resolution_clock type_clock;
-
-    type_clock::time_point t = type_clock::now();
-    return t.time_since_epoch().count();
+    auto now = std::chrono::high_resolution_clock::now().time_since_epoch();
+    return std::chrono::duration_cast<std::chrono::microseconds>(now).count();
 }
 //------------------------------------------------------------------------------
 // Задержка на миллисекунды
 void ht_msleep(unsigned int ms)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-    //  // в силу того что под Windows XP boost кидается ассертом (см. chrono)
-    //#ifdef WIN32
-    //  Sleep(ms);
-    //#else
-    //  chrono::milliseconds time_sleep(ms);
-    //  this_thread::sleep_for( time_sleep );
-    //#endif
 }
 //------------------------------------------------------------------------------
 unsigned int ht_GetMSCount()
 {
 #ifdef WIN32
-    typedef chrono::process_real_cpu_clock type_clock;
-
-    type_clock::time_point t = type_clock::now();
-    return (unsigned int)(t.time_since_epoch().count() / 1000000);
+    auto now = std::chrono::high_resolution_clock::now().time_since_epoch();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(now).count();
 #else
     timespec v;
     clock_gettime(CLOCK_REALTIME, &v);

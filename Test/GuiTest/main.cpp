@@ -12,12 +12,12 @@ See for more information LICENSE.md.
 
 #include <SDL_main.h>
 
-#include "GraphicEngine.h"
-#include "GraphicEngineContext.h"
+#include "GraphicEngine/GraphicEngine.h"
+#include "GraphicEngine/GraphicEngineContext.h"
 
-#include "TextureFactory.h"
-#include "ShaderFactory.h"
-#include "MeshFactory.h"
+#include "GraphicEngine/TextureFactory.h"
+#include "GraphicEngine/ShaderFactory.h"
+#include "GraphicEngine/MeshFactory.h"
 
 #include "WindowTest.h"
 #include "WindowGridTest.h"
@@ -25,6 +25,7 @@ See for more information LICENSE.md.
 #include "WindowAndFrameTest.h"
 #include "WindowGridedFrameTest.h"
 #include "WindowFrameTest.h"
+#include "TreeNodeTest.h"
 
 #include "TexturedWindowTest.h"
 
@@ -42,6 +43,7 @@ nsTest::TWindowAndFrameTest g_WindowAndFrameTest;
 nsTest::TWindowGridedFrameTest g_WindowGridedFrameTest;
 nsTest::TWindowFrameTest g_WindowFrameTest;
 
+nsTest::TTreeNodeTest g_TreNodeTest;
 
 nsTest::TTexturedWindowTest g_TexturedWindowTest;
 
@@ -54,12 +56,15 @@ void CreateContext(TGraphicEngine& ge)
     g_Camera->SetWindowPosition({ 0 , 0 });
     g_Camera->SetWindowSize({ W , H });
 
-    //g_WindowTest.Create(pCtx);
-    //g_WindowGridTest.Create(pCtx);
-    //g_WindowAndFrameTest.Create(pCtx);
-    //g_WindowGridedFrameTest.Create(pCtx);
-    //g_WindowFrameTest.Create(pCtx);
-    g_TexturedWindowTest.Create(pCtx, g_Camera);
+    g_WindowTest.Create(pCtx);
+    g_WindowGridTest.Create(pCtx);
+    g_WindowAndFrameTest.Create(pCtx);
+    g_WindowGridedFrameTest.Create(pCtx);
+    g_WindowFrameTest.Create(pCtx);
+
+    g_TreNodeTest.Create(pCtx);
+
+    //g_TexturedWindowTest.Create(pCtx, g_Camera);
 
     pCtx->SetGuiCamera(g_Camera);
 }

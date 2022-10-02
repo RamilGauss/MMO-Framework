@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "TexturedWindowTest.h"
 
-#include "TextureFactory.h"
+#include "GraphicEngine/TextureFactory.h"
 
 namespace nsTest
 {
