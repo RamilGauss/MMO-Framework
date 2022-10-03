@@ -70,6 +70,8 @@ namespace nsTornadoEngine
 
         struct TComponentType
         {
+            std::string lowCaseComponentName;
+
             std::string componentName;
             int rtti = 0;
 

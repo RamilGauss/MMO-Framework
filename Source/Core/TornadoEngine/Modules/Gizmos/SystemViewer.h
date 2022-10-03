@@ -74,6 +74,10 @@ namespace nsTornadoEngine
             TFeatureManager* beginFeatureMng = nullptr;
             TFeatureManager* logicFeatureMng = nullptr;
             TFeatureManager* endFeatureMng = nullptr;
+
+            TLogicWrapperModule* pLogicWrapperModule = nullptr;
+
+            TStatisticsValue stat;
         };
 
         std::list<TModuleNode> mModules;
@@ -81,10 +85,11 @@ namespace nsTornadoEngine
         struct TStatistics
         {
             nsImGuiWidgets::TTreeNode* pNode = nullptr;
+            std::string name;
             TStatisticsValue stat;
         };
 
-        std::map<nsECSFramework::TFeature*, TStatistics> mFeatureStatisticsMap;
+        std::map<void*, TStatistics> mFeatureStatisticsMap;
 
         std::list<nsImGuiWidgets::TTreeNode*> mNodes;
 

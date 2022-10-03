@@ -17,11 +17,15 @@ namespace nsTornadoEngine
     {
         TFeatureManager mBeginLogicSlotManager;
         TFeatureManager mEndLogicSlotManager;
+
+        double mLastExecutionTime = 0;
     public:
         void Work() override final;
 
         TFeatureManager* GetBeginLogicSlotManager();
         TFeatureManager* GetEndLogicSlotManager();
+
+        double GetLastExecutionTime() const;
     protected:
         virtual void ModuleWork() = 0;
     };

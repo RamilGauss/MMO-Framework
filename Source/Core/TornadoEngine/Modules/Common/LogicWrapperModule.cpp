@@ -13,7 +13,11 @@ void TLogicWrapperModule::Work()
 {
     mBeginLogicSlotManager.Work();
     
+    auto start = ht_GetUSCount();
+
     ModuleWork();
+
+    mLastExecutionTime = (ht_GetUSCount() - start) / 1'000'000.0;
     
     mEndLogicSlotManager.Work();
 }
@@ -26,5 +30,10 @@ TFeatureManager* TLogicWrapperModule::GetBeginLogicSlotManager()
 TFeatureManager* TLogicWrapperModule::GetEndLogicSlotManager()
 {
     return &mEndLogicSlotManager;
+}
+//-------------------------------------------------------------------
+double TLogicWrapperModule::GetLastExecutionTime() const
+{
+    return mLastExecutionTime;
 }
 //-------------------------------------------------------------------

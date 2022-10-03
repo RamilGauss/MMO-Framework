@@ -341,6 +341,10 @@
    "True"
   ],
   [
+   "gtest:debug_postfix",
+   "d"
+  ],
+  [
    "gtest:hide_symbols",
    "False"
   ],

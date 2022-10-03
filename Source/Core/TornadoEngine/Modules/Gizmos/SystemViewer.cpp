@@ -51,11 +51,11 @@ void TSystemViewer::Init()
     mTreeView.SetBottomAnchor({ true, 8 });
     mWindow.Add(&mTreeView);
 
-    mStat.SetPos({ 3, 20 });
+    mStat.SetPos({ 6, 20 });
     mStat.SetSize({ 200, 25 });
     mWindow.Add(&mStat);
 
-    mRefresh.SetPos({ 205, 20 });
+    mRefresh.SetPos({ 211, 20 });
     mRefresh.SetSize({ 60, 25 });
     mRefresh.SetTitle("Refresh");
     mRefresh.mOnClickCB.Register(this, [this](nsImGuiWidgets::TButton* pButton) { UpdateGui(); });
@@ -75,17 +75,17 @@ void TSystemViewer::Init()
 
     auto physic = nsTornadoEngine::Modules()->P();
     if (physic != nullptr) {
-        AddLogicWrapper(dynamic_cast<TLogicWrapperModule*>(physic), "Physic", { 0.0f, 0.0f, 0.0f, 1.0f });
+        AddLogicWrapper(dynamic_cast<TLogicWrapperModule*>(physic), "Physic", { 0.34f, 0.31f, 0.82f, 1.0f });
     }
 
     auto mmo = nsTornadoEngine::Modules()->MMO();
     if (mmo != nullptr) {
-        AddLogicWrapper(dynamic_cast<TLogicWrapperModule*>(mmo), "MmoEngine", { 0.0f, 0.0f, 0.0f, 1.0f });
+        AddLogicWrapper(dynamic_cast<TLogicWrapperModule*>(mmo), "MmoEngine", { 0.55f, 0.18f, 0.50f, 1.0f });
     }
 
     auto net = nsTornadoEngine::Modules()->Net();
     if (net != nullptr) {
-        AddLogicWrapper(dynamic_cast<TLogicWrapperModule*>(net), "NetTransport", { 0.0f, 0.0f, 0.0f, 1.0f });
+        AddLogicWrapper(dynamic_cast<TLogicWrapperModule*>(net), "NetTransport", { 0.25f, 0.65f, 0.13f, 1.0f });
     }
 
     auto sound = nsTornadoEngine::Modules()->S();
@@ -137,9 +137,20 @@ void TSystemViewer::UpdateStat()
 
         mCommonSummaDt += summaDt;
 
+        auto moduleLastExecutionTime = module.pLogicWrapperModule->GetLastExecutionTime();
+        if (module.stat.GetCount() > 1000) {
+            module.stat.Exchange(moduleLastExecutionTime);
+        } else {
+            module.stat.Add(moduleLastExecutionTime);
+        }
+
         auto fit = mModuleNodeMap.find(module.name);
         if (fit != mModuleNodeMap.end()) {
-            fit->second->SetTitle(module.name + " " + std::to_string((int)(summaDt * 1'000'000.0)) + " us");
+
+            auto moduleLastExecutionTime = module.stat.GetAverage() * 1'000'000.0;
+
+            auto str = module.name + " Work=" + std::to_string((int)moduleLastExecutionTime) + " us, ECS dt=" + std::to_string((int)(summaDt * 1'000'000.0)) + " us";
+            fit->second->SetTitle(str);
         }
     }
 }
@@ -150,6 +161,8 @@ void TSystemViewer::UpdateStat(TFeatureManager* pFeatureMng, double& summaDt)
         return;
     }
 
+    double moduleSummaDt = 0;
+
     auto slotCount = pFeatureMng->GetSlotCount();
     for (int i = 0; i < slotCount; i++) {
         auto slot = pFeatureMng->GetSlotByIndex(i);
@@ -157,9 +170,21 @@ void TSystemViewer::UpdateStat(TFeatureManager* pFeatureMng, double& summaDt)
 
         auto fit = mFeatureStatisticsMap.find(slot);
         if (fit != mFeatureStatisticsMap.end()) {
-            summaDt += fit->second.stat.GetAverage();
+            moduleSummaDt += fit->second.stat.GetAverage();
+
+            auto dt = fit->second.stat.GetAverage() * 1'000'000.0;
+
+            fit->second.pNode->SetTitle(slot->GetTypeName() + " " + std::to_string((int)dt) + " us");
         }
     }
+
+    auto featureMngFit = mFeatureStatisticsMap.find(pFeatureMng);
+    if (featureMngFit != mFeatureStatisticsMap.end()) {
+        auto dt = moduleSummaDt * 1'000'000.0;
+        featureMngFit->second.pNode->SetTitle(featureMngFit->second.name + " " + std::to_string((int)dt) + " us");
+    }
+
+    summaDt += moduleSummaDt;
 }
 //----------------------------------------------------------------------------------------------------------------
 void TSystemViewer::UpdateStat(nsECSFramework::TFeature* pFeature)
@@ -230,7 +255,8 @@ void TSystemViewer::AddNode(TFeatureManager* pFeatureMng, const std::string& nam
     }
 
     auto guid = TGuidGenerator::Generate();
-    AddNode(name, guid, parentId);
+    auto pNode = AddNode(name, guid, parentId);
+    mFeatureStatisticsMap.insert({ pFeatureMng , {pNode, name} });
 
     auto slotCount = pFeatureMng->GetSlotCount();
     for (int i = 0; i < slotCount; i++) {
@@ -249,6 +275,8 @@ void TSystemViewer::AddLogicWrapper(TLogicWrapperModule* pLogicWrapperModule, co
     moduleNode.name = name;
     moduleNode.color = color;
 
+    moduleNode.pLogicWrapperModule = pLogicWrapperModule;
+
     mModules.push_back(moduleNode);
 }
 //----------------------------------------------------------------------------------------------------------------
@@ -262,6 +290,8 @@ void TSystemViewer::AddLogicModule(ILogicModule* pLogicModule, const std::string
 
     moduleNode.name = name;
     moduleNode.color = color;
+
+    moduleNode.pLogicWrapperModule = dynamic_cast<TLogicWrapperModule*>(pLogicModule);
 
     mModules.push_back(moduleNode);
 }

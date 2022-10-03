@@ -47,6 +47,10 @@ void TEntityViewer::Init()
         TComponentType componentType;
 
         componentType.componentName = fullComponentName;
+        componentType.lowCaseComponentName = fullComponentName;
+        std::transform(componentType.lowCaseComponentName.begin(), componentType.lowCaseComponentName.end(),
+            componentType.lowCaseComponentName.begin(), [](unsigned char c) { return std::tolower(c); });
+
         Project()->mScenePartAggregator->mComponents->mTypeInfo->ConvertNameToType(fullComponentName, componentType.rtti);
 
         mComponentTypes.insert({ fullComponentName, componentType });
@@ -78,19 +82,25 @@ void TEntityViewer::UpdateComponents()
 
     mNsComponentsMap.clear();
 
+    std::string lowCastInputFilterValue = mInputFilterValue;
+    std::transform(lowCastInputFilterValue.begin(), lowCastInputFilterValue.end(), lowCastInputFilterValue.begin(),
+        [](unsigned char c) { return std::tolower(c); });
+
     for (auto& component : mComponentTypesMinusFilter) {
 
-        if (component.first.find(mInputFilterValue) == std::string::npos) {
+        const auto& componentType = component.second;
+
+        if (componentType.lowCaseComponentName.find(lowCastInputFilterValue) == std::string::npos) {
             continue;
         }
 
-        auto fit = mNsComponentsMap.find(component.second.GetNs());
+        auto fit = mNsComponentsMap.find(componentType.GetNs());
         if (fit == mNsComponentsMap.end()) {
-            mNsComponentsMap.insert({ component.second.GetNs(), {} });
-            fit = mNsComponentsMap.find(component.second.GetNs());
+            mNsComponentsMap.insert({ componentType.GetNs(), {} });
+            fit = mNsComponentsMap.find(componentType.GetNs());
         }
 
-        fit->second.push_back(component.second);
+        fit->second.push_back(componentType);
     }
 }
 //----------------------------------------------------------------------------------------------------------------
