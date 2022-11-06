@@ -31,8 +31,8 @@ class TNetTransport_Boost : public nsMMOEngine::INetTransport
     std::shared_ptr<TNetControlAcceptor> mAcceptor;
     std::shared_ptr<TNetControlTCP>      mTCP_Up;
 
-    typedef std::map<TIP_Port, TNetControlTCP*> TMapIP_Ptr;
-    typedef TMapIP_Ptr::iterator TMapIP_PtrIt;
+    using TMapIP_Ptr = std::map<TIP_Port, TNetControlTCP*>;
+    using TMapIP_PtrIt = TMapIP_Ptr::iterator;
 
     TMapIP_Ptr mMapIP_TCP;
 
@@ -44,33 +44,24 @@ public:
     TNetTransport_Boost();
     virtual ~TNetTransport_Boost();
 
-    virtual bool Open(unsigned short port, unsigned char numNetWork = 0);
-    virtual unsigned short GetLocalPort();
-    virtual unsigned char GetNumNetWork();
+    bool Open(unsigned short port, unsigned char numNetWork = 0) override;
+    unsigned short GetLocalPort() override;
+    unsigned char GetNumNetWork() override;
 
-    virtual void Send(unsigned int ip, unsigned short port, TBreakPacket& packet, bool check = true);
+    void Send(unsigned int ip, unsigned short port, TBreakPacket& packet, bool check = true) override;
 
-    virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv()
-    {
-        return &mCallBackRecv;
-    }
-    virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackConnectFrom()
-    {
-        return &mCallBackConnectFrom;
-    }
-    virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect()
-    {
-        return &mCallBackDisconnect;
-    }
+    TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv() override;
+    TCallBackRegistrator1<TIP_Port* >* GetCallbackConnectFrom() override;
+    TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect() override;
 
-    virtual void Start();
-    virtual void Stop();
-    virtual bool IsActive();
+    void Start() override;
+    void Stop() override;
+    bool IsActive() override;
 
     // синхронная функция
-    virtual bool Connect(unsigned int ip, unsigned short port); // вызов только для клиента
+    bool Connect(unsigned int ip, unsigned short port) override; // вызов только для клиента
 
-    virtual void Close(unsigned int ip, unsigned short port);
+    void Close(unsigned int ip, unsigned short port) override;
 public:
 
     void AddInMapTCP(TIP_Port& ip_port, TNetControlTCP* pNetControl);

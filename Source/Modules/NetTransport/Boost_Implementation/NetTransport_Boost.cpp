@@ -41,6 +41,21 @@ void TNetTransport_Boost::Done()
 
 }
 //----------------------------------------------------------------------------------
+TCallBackRegistrator1<nsMMOEngine::INetTransport::TDescRecv*>* TNetTransport_Boost::GetCallbackRecv()
+{
+    return &mCallBackRecv;
+}
+//----------------------------------------------------------------------------------
+TCallBackRegistrator1<TIP_Port* >* TNetTransport_Boost::GetCallbackConnectFrom()
+{
+    return &mCallBackConnectFrom;
+}
+//----------------------------------------------------------------------------------
+TCallBackRegistrator1<TIP_Port*>* TNetTransport_Boost::GetCallbackDisconnect()
+{
+    return &mCallBackDisconnect;
+}
+//----------------------------------------------------------------------------------
 bool TNetTransport_Boost::Open(unsigned short port, unsigned char numNetWork)
 {
     mLocalPort = port;
@@ -48,12 +63,14 @@ bool TNetTransport_Boost::Open(unsigned short port, unsigned char numNetWork)
 
     bool res = true;
     res &= mUDP->Open(port, numNetWork);
-    if (res)
+    if (res) {
         mUDP->Init();
+    }
     res &= mTCP_Up->Open(mLocalPort, mNumNetWork);
     res &= mAcceptor->Open(port, numNetWork);
-    if (res)
+    if (res) {
         mAcceptor->Init();
+    }
 
     return res;
 }
@@ -80,8 +97,9 @@ void TNetTransport_Boost::Send(unsigned int ip, unsigned short port, TBreakPacke
             pControl->Send(ip, port, packet);
         //---------------------
         mMutexMapIP_TCP.unlock();
-    } else
+    } else {
         mUDP->Send(ip, port, packet);
+    }
     mMutexSend.unlock();
 }
 //----------------------------------------------------------------------------------
@@ -110,15 +128,18 @@ bool TNetTransport_Boost::Connect(unsigned int ip, unsigned short port)
         // порядок открытия портов (сначала TCP_Up, потом Acceptor) под Ubuntu - строгий
         mAcceptor->Close();
         // ждать пока Получатель соединений избавится от сокета, который готов к приему.
-        while (mAcceptor->IsReadyAccept())
+        while (mAcceptor->IsReadyAccept()) {
             ht_msleep(0);
+        }
         mAcceptor.reset(new TNetControlAcceptor(this, mNetWorkThread.GetIO_Context()));
 
         mTCP_Up.reset(new TNetControlTCP(this, mNetWorkThread.GetIO_Context()));
         bool resOpen = mTCP_Up->Open(mLocalPort, mNumNetWork);
 
         resOpen &= mAcceptor->Open(mLocalPort, mNumNetWork);
-        if (resOpen) mAcceptor->Init();
+        if (resOpen) {
+            mAcceptor->Init();
+        }
     }
     bool res = mTCP_Up->Connect(ip, port);
     if (res) {
@@ -137,8 +158,9 @@ void TNetTransport_Boost::Close(unsigned int ip, unsigned short port)
     //---------------------
     TIP_Port ip_port(ip, port);
     TNetControlTCP* pControl = GetTCP_ByIP(ip_port);
-    if (pControl)
+    if (pControl) {
         pControl->Close();
+    }
     // delete pControl НЕ вызывать, т.к. при вызове pControl->Close()
     // boost создаст событие RecvEvent(0), на что отреагируем удалением
     //---------------------
@@ -148,8 +170,9 @@ void TNetTransport_Boost::Close(unsigned int ip, unsigned short port)
 TNetControlTCP* TNetTransport_Boost::GetTCP_ByIP(TIP_Port& ip_port)
 {
     TMapIP_PtrIt fit = mMapIP_TCP.find(ip_port);
-    if (fit == mMapIP_TCP.end())
+    if (fit == mMapIP_TCP.end()) {
         return nullptr;
+    }
     return fit->second;
 }
 //----------------------------------------------------------------------------------
@@ -179,16 +202,18 @@ void TNetTransport_Boost::CloseAll()
 
     mMutexMapIP_TCP.lock();
     //---------------------
-    for (auto& bit : mMapIP_TCP)
+    for (auto& bit : mMapIP_TCP) {
         bit.second->Close();
+    }
     //---------------------
     mMutexMapIP_TCP.unlock();
 }
 //----------------------------------------------------------------------------------
 void TNetTransport_Boost::DeleteMapControlTCP()
 {
-    for (auto& bit : mMapIP_TCP)
+    for (auto& bit : mMapIP_TCP) {
         DeleteControlTCP(bit.second);
+    }
 
     mMapIP_TCP.clear();
 }

@@ -17,7 +17,9 @@ namespace nsECSFramework
     public:
         void TearDown() override final
         {
-            mEntMng->UnregisterOnUpdateCollectorComponent<Component>(mReactiveId);
+            if (mReactiveId != -1) {
+                mEntMng->UnregisterOnUpdateCollectorComponent<Component>(mReactiveId);
+            }
         }
 
         void SetEntMng(TEntityManager* entMng) override final

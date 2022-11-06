@@ -128,7 +128,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Properties;./Components/Gui/Widgets;./Components/Logic;./Generated files;./Features/Graphic;./Features/Graphic/Begin;./Features/Graphic/Begin/Builder;./Features/Graphic/Begin/Builder/Frames;./Features/Graphic/Begin/Builder/Graphic;./Features/Graphic/Begin/Builder/Helpers;./Features/Graphic/Begin/Builder/Units;./Features/Graphic/Begin/GraphicContext;./Features/Graphic/Begin/Maker;./Features/Graphic/Begin/Maker/Frames;./Features/Graphic/Begin/Maker/Graphic;./Features/Graphic/Begin/Maker/Handlers;./Features/Graphic/Begin/Maker/Units;./Features/Graphic/Begin/Terminator;./Features/Graphic/Begin/Terminator/Frames;./Features/Graphic/Begin/Terminator/Graphic;./Features/Graphic/Begin/Terminator/Handlers;./Features/Graphic/Begin/Terminator/Units;./Features/Graphic/Begin/UpdateToModule;./Features/Graphic/End;./Features/Graphic/End/GraphicContext;./Features/Graphic/End/UpdateFromModule;./Features/Logic;./Features/Logic/Begin;./Features/Logic/End;./Features/Logic/End/Builder;./Features/Logic/End/Maker;./Features/Logic/End/Object;./Features/Logic/End/Scene;./Features/Logic/End/Terminator;./Handlers;./Handlers/Common;./Handlers/Graphic;./Handlers/Gui;./Handlers/Logic;./Modules;./Modules/Common;./Modules/Contexts;./Modules/Gizmos;./Modules/Helpers;./Modules/Implementations;./Modules/Interfaces;./Modules/Resources;./Modules/Resources/Common;./Modules/Resources/Prefab;./Modules/Resources/Scene;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Properties;./Components/Gui/Widgets;./Components/Logic;./Generated files;./Features/Graphic;./Features/Graphic/Begin;./Features/Graphic/Begin/Builder;./Features/Graphic/Begin/Builder/Frames;./Features/Graphic/Begin/Builder/Graphic;./Features/Graphic/Begin/Builder/Helpers;./Features/Graphic/Begin/Builder/Properties;./Features/Graphic/Begin/Builder/Units;./Features/Graphic/Begin/GraphicContext;./Features/Graphic/Begin/Maker;./Features/Graphic/Begin/Maker/Frames;./Features/Graphic/Begin/Maker/Graphic;./Features/Graphic/Begin/Maker/Handlers;./Features/Graphic/Begin/Maker/Units;./Features/Graphic/Begin/Terminator;./Features/Graphic/Begin/Terminator/Frames;./Features/Graphic/Begin/Terminator/Graphic;./Features/Graphic/Begin/Terminator/Handlers;./Features/Graphic/Begin/Terminator/Units;./Features/Graphic/Begin/UpdateToModule;./Features/Graphic/End;./Features/Graphic/End/GraphicContext;./Features/Graphic/End/UpdateFromModule;./Features/Logic;./Features/Logic/Begin;./Features/Logic/End;./Features/Logic/End/Builder;./Features/Logic/End/Maker;./Features/Logic/End/Object;./Features/Logic/End/Scene;./Features/Logic/End/Terminator;./Handlers;./Handlers/Common;./Handlers/Graphic;./Handlers/Gui;./Handlers/Logic;./Modules;./Modules/Common;./Modules/Contexts;./Modules/Gizmos;./Modules/Helpers;./Modules/Implementations;./Modules/Interfaces;./Modules/Resources;./Modules/Resources/Common;./Modules/Resources/Prefab;./Modules/Resources/Scene;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -188,7 +188,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\Torna
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Properties;./Components/Gui/Widgets;./Components/Logic;./Generated files;./Features/Graphic;./Features/Graphic/Begin;./Features/Graphic/Begin/Builder;./Features/Graphic/Begin/Builder/Frames;./Features/Graphic/Begin/Builder/Graphic;./Features/Graphic/Begin/Builder/Helpers;./Features/Graphic/Begin/Builder/Units;./Features/Graphic/Begin/GraphicContext;./Features/Graphic/Begin/Maker;./Features/Graphic/Begin/Maker/Frames;./Features/Graphic/Begin/Maker/Graphic;./Features/Graphic/Begin/Maker/Handlers;./Features/Graphic/Begin/Maker/Units;./Features/Graphic/Begin/Terminator;./Features/Graphic/Begin/Terminator/Frames;./Features/Graphic/Begin/Terminator/Graphic;./Features/Graphic/Begin/Terminator/Handlers;./Features/Graphic/Begin/Terminator/Units;./Features/Graphic/Begin/UpdateToModule;./Features/Graphic/End;./Features/Graphic/End/GraphicContext;./Features/Graphic/End/UpdateFromModule;./Features/Logic;./Features/Logic/Begin;./Features/Logic/End;./Features/Logic/End/Builder;./Features/Logic/End/Maker;./Features/Logic/End/Object;./Features/Logic/End/Scene;./Features/Logic/End/Terminator;./Handlers;./Handlers/Common;./Handlers/Graphic;./Handlers/Gui;./Handlers/Logic;./Modules;./Modules/Common;./Modules/Contexts;./Modules/Gizmos;./Modules/Helpers;./Modules/Implementations;./Modules/Interfaces;./Modules/Resources;./Modules/Resources/Common;./Modules/Resources/Prefab;./Modules/Resources/Scene;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Properties;./Components/Gui/Widgets;./Components/Logic;./Generated files;./Features/Graphic;./Features/Graphic/Begin;./Features/Graphic/Begin/Builder;./Features/Graphic/Begin/Builder/Frames;./Features/Graphic/Begin/Builder/Graphic;./Features/Graphic/Begin/Builder/Helpers;./Features/Graphic/Begin/Builder/Properties;./Features/Graphic/Begin/Builder/Units;./Features/Graphic/Begin/GraphicContext;./Features/Graphic/Begin/Maker;./Features/Graphic/Begin/Maker/Frames;./Features/Graphic/Begin/Maker/Graphic;./Features/Graphic/Begin/Maker/Handlers;./Features/Graphic/Begin/Maker/Units;./Features/Graphic/Begin/Terminator;./Features/Graphic/Begin/Terminator/Frames;./Features/Graphic/Begin/Terminator/Graphic;./Features/Graphic/Begin/Terminator/Handlers;./Features/Graphic/Begin/Terminator/Units;./Features/Graphic/Begin/UpdateToModule;./Features/Graphic/End;./Features/Graphic/End/GraphicContext;./Features/Graphic/End/UpdateFromModule;./Features/Logic;./Features/Logic/Begin;./Features/Logic/End;./Features/Logic/End/Builder;./Features/Logic/End/Maker;./Features/Logic/End/Object;./Features/Logic/End/Scene;./Features/Logic/End/Terminator;./Handlers;./Handlers/Common;./Handlers/Graphic;./Handlers/Gui;./Handlers/Logic;./Modules;./Modules/Common;./Modules/Contexts;./Modules/Gizmos;./Modules/Helpers;./Modules/Implementations;./Modules/Interfaces;./Modules/Resources;./Modules/Resources/Common;./Modules/Resources/Prefab;./Modules/Resources/Scene;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -219,6 +219,18 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
   <ItemGroup>
     <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h" />
     <ClCompile Include="Features\Graphic\Begin\BeginGraphicFeature.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\AddPropertiesFeature.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\AnchorsAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\FocusAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\HorizontalAlignAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\MaxSizeAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\MinDistanceToParentAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\MinSizeAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\PositionAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\SizeAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\TitleAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\VerticalAlignAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\VisibilityAddSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Units\ButtonBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Maker\Handlers\ButtonClickHandlerMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Terminator\Handlers\ButtonClickHandlerTerminatorSystem.cpp" />
@@ -228,12 +240,24 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Graphic\Begin\Builder\Graphic\GuiCameraBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Maker\Graphic\CameraMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Terminator\Graphic\CameraTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\AnchorsUpdateSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\CameraUpdaterToModuleSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Frames\DialogBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Maker\Handlers\DialogCloseEventHandlerMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Terminator\Handlers\DialogCloseEventHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Maker\Frames\DialogMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Terminator\Frames\DialogTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\FocusUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\HorizontalAlignUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\MaxSizeUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\MinDistanceToParentUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\MinSizeUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\PositionUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\SizeUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\TitleUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\UpdatePropertiesFeature.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\VerticalAlignUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\VisibilityUpdateSystem.cpp" />
     <ClCompile Include="Features\Graphic\End\EndGraphicFeature.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Maker\Handlers\FrameKeyHandlerMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Terminator\Handlers\FrameKeyHandlerTerminatorSystem.cpp" />
@@ -269,7 +293,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Graphic\Begin\GraphicContext\OnAddUniverseContextSystem.cpp" />
     <ClCompile Include="Features\Graphic\End\GraphicContext\OnRemoveUniverseContextSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\PositionUpdaterSystem.cpp" />
-    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\SizeUpdaterSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Maker\Graphic\TextureMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Terminator\Graphic\TextureTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\TitleUpdaterSystem.cpp" />
@@ -335,6 +358,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\Gizmos\SystemViewer.cpp" />
     <ClCompile Include="Modules\Resources\Scene\UniverseManager.cpp" />
     <ClCompile Include="Share\GameObject.cpp" />
+    <ClCompile Include="Share\ImGuiSerializeTask.cpp" />
     <ClCompile Include="Share\MathStructs.cpp" />
     <ClCompile Include="Share\MathTools.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigContainer.cpp" />
@@ -416,6 +440,18 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Components\Logic\SceneObjectReferenceComponent.h" />
     <ClInclude Include="Components\Logic\SceneReferenceComponent.h" />
     <ClInclude Include="Features\Graphic\Begin\BeginGraphicFeature.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\AddPropertiesFeature.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\AnchorsAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\FocusAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\HorizontalAlignAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\MaxSizeAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\MinDistanceToParentAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\MinSizeAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\PositionAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\SizeAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\TitleAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\VerticalAlignAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\VisibilityAddSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Builder\Units\ButtonBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Maker\Handlers\ButtonClickHandlerMakerSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Terminator\Handlers\ButtonClickHandlerTerminatorSystem.h" />
@@ -425,12 +461,24 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Features\Graphic\Begin\Builder\Graphic\GuiCameraBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Maker\Graphic\CameraMakerSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Terminator\Graphic\CameraTerminatorSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\AnchorsUpdateSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\UpdateToModule\CameraUpdaterToModuleSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Builder\Frames\DialogBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Maker\Handlers\DialogCloseEventHandlerMakerSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Terminator\Handlers\DialogCloseEventHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Maker\Frames\DialogMakerSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Terminator\Frames\DialogTerminatorSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\FocusUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\HorizontalAlignUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\MaxSizeUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\MinDistanceToParentUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\MinSizeUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\PositionUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\SizeUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\TitleUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\UpdatePropertiesFeature.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\VerticalAlignUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\VisibilityUpdateSystem.h" />
     <ClInclude Include="Features\Graphic\End\EndGraphicFeature.h" />
     <ClInclude Include="Features\Graphic\Begin\Maker\Handlers\FrameKeyHandlerMakerSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Terminator\Handlers\FrameKeyHandlerTerminatorSystem.h" />
@@ -467,7 +515,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Features\Graphic\Begin\GraphicContext\OnAddUniverseContextSystem.h" />
     <ClInclude Include="Features\Graphic\End\GraphicContext\OnRemoveUniverseContextSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\UpdateToModule\PositionUpdaterSystem.h" />
-    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\SizeUpdaterSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Maker\Graphic\TextureMakerSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Terminator\Graphic\TextureTerminatorSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\UpdateToModule\TitleUpdaterSystem.h" />
@@ -572,6 +619,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Share\FrameworkResources.h" />
     <ClInclude Include="Share\GameObject.h" />
     <ClInclude Include="Share\HandlerPool.h" />
+    <ClInclude Include="Share\ImGuiSerializeTask.h" />
     <ClInclude Include="Share\MathStructs.h" />
     <ClInclude Include="Share\MathTools.h" />
     <ClInclude Include="Share\PropertyOf.h" />

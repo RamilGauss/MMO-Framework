@@ -32,16 +32,20 @@ void TButtonMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrap
 
     auto entMng = GetEntMng();
 
-    entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->pOwner = pButton;
-    entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->pOwner = pButton;
-    entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid)->pOwner = pButton;
-    entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid)->pOwner = pButton;
+    auto pWidget = dynamic_cast<nsImGuiWidgets::TWidget*>(pButton);
 
-    entMng->ViewComponent<nsGuiWrapper::TAnchorsComponent>(eid)->pOwner = pButton;
-    entMng->ViewComponent<nsGuiWrapper::TMinSizeComponent>(eid)->pOwner = pButton;
-    entMng->ViewComponent<nsGuiWrapper::TMaxSizeComponent>(eid)->pOwner = pButton;
-    entMng->ViewComponent<nsGuiWrapper::TVerticalAlignComponent>(eid)->pOwner = pButton;
-    entMng->ViewComponent<nsGuiWrapper::THorizontalAlignComponent>(eid)->pOwner = pButton;
-    entMng->ViewComponent<nsGuiWrapper::TMinDistanceToParentComponent>(eid)->pOwner = pButton;
-    entMng->ViewComponent<nsGuiWrapper::TFocusComponent>(eid)->pOwner = pButton;
+    entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->pOwner = pWidget;
+    entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->pOwner = pWidget;
+    entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid)->pOwner = pWidget;
+    entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid)->pOwner = pWidget;
+
+    auto pUnit = dynamic_cast<nsImGuiWidgets::TUnit*>(pButton);
+
+    entMng->ViewComponent<nsGuiWrapper::TAnchorsComponent>(eid)->pOwner = pUnit;
+    entMng->ViewComponent<nsGuiWrapper::TMinSizeComponent>(eid)->pOwner = pUnit;
+    entMng->ViewComponent<nsGuiWrapper::TMaxSizeComponent>(eid)->pOwner = pUnit;
+    entMng->ViewComponent<nsGuiWrapper::TVerticalAlignComponent>(eid)->pOwner = pUnit;
+    entMng->ViewComponent<nsGuiWrapper::THorizontalAlignComponent>(eid)->pOwner = pUnit;
+    entMng->ViewComponent<nsGuiWrapper::TMinDistanceToParentComponent>(eid)->pOwner = pUnit;
+    entMng->ViewComponent<nsGuiWrapper::TFocusComponent>(eid)->pOwner = pUnit;
 }

@@ -18,6 +18,8 @@ void TGuiBuilderFeature::InitConveyor()
     Add(&mWindowBuilderSystem);
     Add(&mDialogBuilderSystem);
 
+    Add(&mAddPropertiesFeature);
+
     Add(&mTreeNodeBuilderSystem);
     Add(&mTreeViewBuilderSystem);
 

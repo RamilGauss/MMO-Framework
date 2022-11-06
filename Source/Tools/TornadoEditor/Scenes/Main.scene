@@ -72,6 +72,14 @@
                 {
                     "typeName": "nsGuiWrapper::TMainWindowComponent",
                     "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TVisibilityComponent",
+                    "jsonBody": "{\"value\":true}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TFocusComponent",
+                    "jsonBody": "{\"value\":true}"
                 }
             ]
         },

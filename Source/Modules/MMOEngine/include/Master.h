@@ -42,41 +42,41 @@ namespace nsMMOEngine
         virtual bool FindSlaveSessionByGroup(unsigned int groupID, unsigned int& sessionID);
 
         // BaseServer
-        virtual void SendByClientKey(std::list<unsigned int>& clientKeyList, char* p, int size);
+        void SendByClientKey(std::list<unsigned int>& clientKeyList, char* p, int size) override;
 
-        virtual void GetDescDown(std::list<unsigned int>& sessionIDList);
+        void GetDescDown(std::list<unsigned int>& sessionIDList) override;
 
-        virtual void SendDown(unsigned int sessionID, char* p, int size, bool check = true);
+        void SendDown(unsigned int sessionID, char* p, int size, bool check = true) override;
         // ActiveServer      
-        virtual void ConnectUp(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet = 0);
+        void ConnectUp(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet = 0) override;
     protected:
         // Base
-        virtual void DisconnectInherit(unsigned int sessionID);
-        virtual void WorkInherit() {}
+        void DisconnectInherit(unsigned int sessionID) override;
+        void WorkInherit()  override {}
     protected:// like slots
               // DisconnectClient
-        virtual void NeedContextDisconnectClient(unsigned int clientKey);
+        void NeedContextDisconnectClient(unsigned int clientKey) override;
         // LoginClient
-        virtual void NeedContextLoginClientBySessionLeaveQueue(unsigned int sessionID);
-        virtual void NeedContextLoginClientBySession(unsigned int sessionID);
-        virtual void NeedContextLoginClientBySessionAfterAuthorised(unsigned int sessionID);
-        virtual void NeedContextLoginClientByClientKey(unsigned int clientKey);
-        virtual void NeedNumInQueueLoginClient(unsigned int sessionID);
+        void NeedContextLoginClientBySessionLeaveQueue(unsigned int sessionID) override;
+        void NeedContextLoginClientBySession(unsigned int sessionID) override;
+        void NeedContextLoginClientBySessionAfterAuthorised(unsigned int sessionID) override;
+        void NeedContextLoginClientByClientKey(unsigned int clientKey) override;
+        void NeedNumInQueueLoginClient(unsigned int sessionID) override;
         // RCM
-        virtual void NeedContextByClientKeyRcm(unsigned int clientKey);
-        virtual void NeedSlaveSessionDonorRcm(IScenario* pSc);
-        virtual void EventActivateRcm(IScenario* pSc);
+        void NeedContextByClientKeyRcm(unsigned int clientKey) override;
+        void NeedSlaveSessionDonorRcm(IScenario* pSc) override;
+        void EventActivateRcm(IScenario* pSc) override;
         // others
-        virtual void NeedContextLoginSlave(unsigned int sessionID);// login slave
-        virtual void NeedContextSynchroSlave(unsigned int sessionID);// synchro slave
-        virtual void NeedContextSendToClient(unsigned int clientKey);// send to client
+        void NeedContextLoginSlave(unsigned int sessionID) override;// login slave
+        void NeedContextSynchroSlave(unsigned int sessionID) override;// synchro slave
+        void NeedContextSendToClient(unsigned int clientKey) override;// send to client
     protected:
-        virtual void EndDisconnectClient(IScenario*);
-        virtual void EndLoginMaster(IScenario* pSc);
-        virtual void EndLoginSlave(IScenario* pSc);
-        virtual void EndLoginClient(IScenario* pSc);
-        virtual void EndRcm(IScenario* pSc);
-        virtual void EndSynchroSlave(IScenario* pSc);
+        void EndDisconnectClient(IScenario*) override;
+        void EndLoginMaster(IScenario* pSc) override;
+        void EndLoginSlave(IScenario* pSc) override;
+        void EndLoginClient(IScenario* pSc) override;
+        void EndRcm(IScenario* pSc) override;
+        void EndSynchroSlave(IScenario* pSc) override;
     private:
         bool DisconnectSuperServer(unsigned int sessionID);
         bool DisconnectClientWait(unsigned int sessionID);

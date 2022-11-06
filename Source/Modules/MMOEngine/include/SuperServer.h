@@ -25,23 +25,24 @@ namespace nsMMOEngine
         TSuperServer();
         virtual ~TSuperServer();
 
-        // BaseServer
-        virtual void SendByClientKey(std::list<unsigned int>& lKey, char* p, int size);
-
-        virtual void GetDescDown(std::list<unsigned int>& sessionID_List);
         virtual int GetClientCountBySessionID(unsigned int sessionID);
 
-        virtual void SendDown(unsigned int sessionID, char* p, int size, bool check = true);
+        // BaseServer
+        void SendByClientKey(std::list<unsigned int>& lKey, char* p, int size) override;
+
+        void GetDescDown(std::list<unsigned int>& sessionID_List) override;
+
+        void SendDown(unsigned int sessionID, char* p, int size, bool check = true) override;
 
     protected:
         // Base
-        virtual void DisconnectInherit(unsigned int sessionID);
+        void DisconnectInherit(unsigned int sessionID) override;
     protected:
-        virtual void NeedContextDisconnectClient(unsigned int clientKey);
-        virtual void NeedContextLoginMaster(unsigned int sessionID);
-        virtual void NeedContextByMasterSessionByClientKey(unsigned int sessionID, unsigned int clientKey);//SS
-        virtual void NeedContextSendToClient(unsigned int clientKey);
+        void NeedContextDisconnectClient(unsigned int clientKey) override;
+        void NeedContextLoginMaster(unsigned int sessionID) override;
+        void NeedContextByMasterSessionByClientKey(unsigned int sessionID, unsigned int clientKey) override;//SS
+        void NeedContextSendToClient(unsigned int clientKey) override;
     protected:
-        virtual void EndDisconnectClient(IScenario*);
+        void EndDisconnectClient(IScenario*);
     };
 }

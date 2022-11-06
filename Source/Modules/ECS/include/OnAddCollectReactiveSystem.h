@@ -17,7 +17,9 @@ namespace nsECSFramework
     public:
         void TearDown() override final
         {
-            mEntMng->UnregisterOnAddCollectorComponent<Component>(mReactiveId);
+            if (mReactiveId != -1) {
+                mEntMng->UnregisterOnAddCollectorComponent<Component>(mReactiveId);
+            }
         }
 
         void SetEntMng(TEntityManager* entMng) override final
@@ -30,7 +32,6 @@ namespace nsECSFramework
         void Execute() override final
         {
             auto& events = *(mEntMng->GetAddEvents<Component>(mReactiveId));
-            
             if (events.size() == 0) {
                 return;
             }

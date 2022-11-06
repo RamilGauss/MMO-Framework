@@ -23,21 +23,24 @@ See for more information LICENSE.md.
 
 #include "CameraBuilderFeature.h"
 
+#include "AddPropertiesFeature.h"
+
 namespace nsGraphicWrapper
 {
     class DllExport TGuiBuilderFeature : public nsECSFramework::TFeature
     {
-        TButtonBuilderSystem mButtonBuilderSystem;
-        TLabelBuilderSystem mLabelBuilderSystem;
-        TMenuNodeBuilderSystem mMenuNodeBuilderSystem;
-        TInputTextBuilderSystem mInputTextBuilderSystem;
-        TWindowBuilderSystem mWindowBuilderSystem;
         TDialogBuilderSystem mDialogBuilderSystem;
-
-        TTreeNodeBuilderSystem mTreeNodeBuilderSystem;
+        TMainWindowBuilderSystem mMainWindowBuilderSystem;
+        TWindowBuilderSystem mWindowBuilderSystem;
         TTreeViewBuilderSystem mTreeViewBuilderSystem;
 
-        TMainWindowBuilderSystem mMainWindowBuilderSystem;
+        TAddPropertiesFeature mAddPropertiesFeature;
+
+        TButtonBuilderSystem mButtonBuilderSystem;
+        TInputTextBuilderSystem mInputTextBuilderSystem;
+        TLabelBuilderSystem mLabelBuilderSystem;
+        TMenuNodeBuilderSystem mMenuNodeBuilderSystem;
+        TTreeNodeBuilderSystem mTreeNodeBuilderSystem;
 
         TCameraBuilderFeature mCameraBuilderFeature;
     public:

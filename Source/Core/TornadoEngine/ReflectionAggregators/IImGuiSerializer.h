@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <string>
-
 #include "TypeDef.h"
+
+#include "ImGuiSerializeTask.h"
 
 namespace nsTornadoEngine
 {
@@ -18,5 +18,25 @@ namespace nsTornadoEngine
     public:
         virtual ~IImGuiSerializer() {}
 
+        virtual void Serialize(void* p, TImGuiSerializeTask*& pTask, int rtti) = 0;
+        virtual void Deserialize(void* p, TImGuiSerializeTask* pTask, int rtti) = 0;
     };
+
+    /*
+    Example for generated code
+
+    class DllExport TImGuiSerializer
+    {
+    public:
+        template <typename Type>
+        static void Serialize(const Type* p, TImGuiSerializeTask*& pTask);
+
+        template <typename Type>
+        static bool Deserialize(Type*& p, const TImGuiSerializeTask* pTask);
+
+    private:
+        static void Serialize(const TSomeType* p, TImGuiSerializeTask*& pTask, bool isRoot);
+        static bool Deserialize(TSomeType*& p, const TImGuiSerializeTask* pTask, bool isRoot);
+    };
+    */
 }

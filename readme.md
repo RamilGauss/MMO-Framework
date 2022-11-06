@@ -50,7 +50,6 @@ Component viewer
 
 <img src="./Doc/ECS_tree_conveyor_uml.png">
 
-ECS_tree_conveyor_uml
 
 [Video](http://www.youtube.com/watch?v=g8IlYRepclE)
 
@@ -66,7 +65,7 @@ This is achieved by using the cluster organization within the Server.
 To view the architectural decisions need Enterprise Architect 7.0+.
 [Article on habrahabr](http://habrahabr.ru/post/233915/).
 
-Dependencies got via [conan](http://conan.io).
+Dependencies got via the [conan](http://conan.io).
 
 ---
 

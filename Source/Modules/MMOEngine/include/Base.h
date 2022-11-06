@@ -100,103 +100,43 @@ namespace nsMMOEngine
         void TryConnectDown(TTryConnectDown* pTryConnectDown);
 
         virtual void DisconnectInherit(unsigned int id) = 0;
-        virtual void WorkInherit()
-        {
-        }
+        virtual void WorkInherit() {}
         // события сценариев
-        virtual void NeedContextDisconnectClient(unsigned int clientKey)
-        {
-        }
+        virtual void NeedContextDisconnectClient(unsigned int clientKey) {}
         //----------------------------------------------------
         // LoginClient
-        virtual void NeedContextByMasterSessionByClientKey(unsigned int sessionID, unsigned int clientKey)
-        {
-        }//SS
-        virtual void NeedContextLoginClientBySessionLeaveQueue(unsigned int sessionID)
-        {
-        }// S,M
-        virtual void NeedContextLoginClientBySession(unsigned int sessionID)
-        {
-        }// S,M
-        virtual void NeedContextLoginClientBySessionAfterAuthorised(unsigned int sessionID)
-        {
-        }// M
-        virtual void NeedContextLoginClientByClientKey(unsigned int clientKey)
-        {
-        }//S,M,SS
-        virtual void NeedContextLoginClientByClientKey_SecondCallSlave(unsigned int clientKey)
-        {
-        }//S
-        virtual void NeedNumInQueueLoginClient(unsigned int sessionID)
-        {
-        }// M
-        virtual void EventSetClientKeyLoginClient(unsigned int clientKey)
-        {
-        };//C
-        virtual void NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_session_client, unsigned int clientKey)
-        {
-        }//S
-          //----------------------------------------------------
-          // RCM
-        virtual void NeedContextByRequestForRecipient(TDescRequestConnectForRecipient* p)
-        {
-        }// Slave
-        virtual void NeedContextByClientSessionForSlaveRcm(unsigned sessionID, bool donor)
-        {
-        }
-        virtual void NeedContextByClientForSlaveKeyRcm(unsigned int key, bool donor)
-        {
-        }
-        virtual void NeedContextByClientKeyRcm(unsigned int key)
-        {
-        }
-        virtual void NeedSlaveSessionDonorRcm(IScenario* pSc)
-        {
-        }//M
-        virtual void EventActivateRcm(IScenario* pSc)
-        {
-        }//M
-        virtual void EventDisconnectClientRcm(unsigned int key)
-        {
-        }// Slave
-        virtual void EventTimeClientElapsedRcm(unsigned int key)
-        {
-        }// Slave
-          //----------------------------------------------------
-        virtual void NeedContextLoginSlave(unsigned int sessionID)
-        {
-        }
-        virtual void NeedContextLoginMaster(unsigned int sessionID)
-        {
-        }
-        virtual void NeedContextSendToClient(unsigned int clientKey)
-        {
-        }
-        virtual void NeedContextSynchroSlave(unsigned int sessionID)
-        {
-        }
+        virtual void NeedContextByMasterSessionByClientKey(unsigned int sessionID, unsigned int clientKey) {}//SS
+        virtual void NeedContextLoginClientBySessionLeaveQueue(unsigned int sessionID) {}// S,M
+        virtual void NeedContextLoginClientBySession(unsigned int sessionID) {}// S,M
+        virtual void NeedContextLoginClientBySessionAfterAuthorised(unsigned int sessionID) {}// M
+        virtual void NeedContextLoginClientByClientKey(unsigned int clientKey) {}//S,M,SS
+        virtual void NeedContextLoginClientByClientKey_SecondCallSlave(unsigned int clientKey) {}//S
+        virtual void NeedNumInQueueLoginClient(unsigned int sessionID) {}// M
+        virtual void EventSetClientKeyLoginClient(unsigned int clientKey) {};//C
+        virtual void NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_session_client, unsigned int clientKey) {}//S
+        //----------------------------------------------------
+        // RCM
+        virtual void NeedContextByRequestForRecipient(TDescRequestConnectForRecipient* p) {}// Slave
+        virtual void NeedContextByClientSessionForSlaveRcm(unsigned sessionID, bool donor) {}
+        virtual void NeedContextByClientForSlaveKeyRcm(unsigned int key, bool donor) {}
+        virtual void NeedContextByClientKeyRcm(unsigned int key) {}
+        virtual void NeedSlaveSessionDonorRcm(IScenario* pSc) {}//M
+        virtual void EventActivateRcm(IScenario* pSc) {}//M
+        virtual void EventDisconnectClientRcm(unsigned int key) {}// Slave
+        virtual void EventTimeClientElapsedRcm(unsigned int key) {}// Slave
+        //----------------------------------------------------
+        virtual void NeedContextLoginSlave(unsigned int sessionID) {}
+        virtual void NeedContextLoginMaster(unsigned int sessionID) {}
+        virtual void NeedContextSendToClient(unsigned int clientKey) {}
+        virtual void NeedContextSynchroSlave(unsigned int sessionID) {}
 
-        virtual void EndDisconnectClient(IScenario* p)
-        {
-        }
-        virtual void EndDisconnectSlave(IScenario* p)
-        {
-        }
-        virtual void EndLoginClient(IScenario* p)
-        {
-        }
-        virtual void EndLoginSlave(IScenario* p)
-        {
-        }
-        virtual void EndLoginMaster(IScenario* p)
-        {
-        }
-        virtual void EndRcm(IScenario* p)
-        {
-        }
-        virtual void EndSynchroSlave(IScenario* p)
-        {
-        }
+        virtual void EndDisconnectClient(IScenario* p) {}
+        virtual void EndDisconnectSlave(IScenario* p) {}
+        virtual void EndLoginClient(IScenario* p) {}
+        virtual void EndLoginSlave(IScenario* p) {}
+        virtual void EndLoginMaster(IScenario* p) {}
+        virtual void EndRcm(IScenario* p) {}
+        virtual void EndSynchroSlave(IScenario* p) {}
     private:
         TScContextManager* AddManagerContextSc();
         void RemoveManagerContextSc(TScContextManager* pMCSc);

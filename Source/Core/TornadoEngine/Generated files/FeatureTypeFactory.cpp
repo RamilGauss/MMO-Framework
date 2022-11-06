@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_10_03 15:53:54.037
+// File has been generated at 2022_10_29 17:33:25.643
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -23,6 +23,13 @@ void TFeatureTypeFactory::Init()
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
     std::map<int, Data> m;
+    
+    Data nsGraphicWrapper_TAddPropertiesFeature_Data;
+    nsGraphicWrapper_TAddPropertiesFeature_Data.newFunc = [](){ return new nsGraphicWrapper::TAddPropertiesFeature(); };
+    nsGraphicWrapper_TAddPropertiesFeature_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TAddPropertiesFeature*)p; };
+    auto rtti_nsGraphicWrapper_TAddPropertiesFeature_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TAddPropertiesFeature>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TAddPropertiesFeature_Data, nsGraphicWrapper_TAddPropertiesFeature_Data });
     
     Data nsGraphicWrapper_TBeginGraphicFeature_Data;
     nsGraphicWrapper_TBeginGraphicFeature_Data.newFunc = [](){ return new nsGraphicWrapper::TBeginGraphicFeature(); };
@@ -114,6 +121,13 @@ void TFeatureTypeFactory::Init()
     auto rtti_nsGraphicWrapper_TTitleUpdaterSystem_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdaterSystem>();
     
     m.insert({ rtti_nsGraphicWrapper_TTitleUpdaterSystem_Data, nsGraphicWrapper_TTitleUpdaterSystem_Data });
+    
+    Data nsGraphicWrapper_TUpdatePropertiesFeature_Data;
+    nsGraphicWrapper_TUpdatePropertiesFeature_Data.newFunc = [](){ return new nsGraphicWrapper::TUpdatePropertiesFeature(); };
+    nsGraphicWrapper_TUpdatePropertiesFeature_Data.deleteFunc = [](void* p){ delete (nsGraphicWrapper::TUpdatePropertiesFeature*)p; };
+    auto rtti_nsGraphicWrapper_TUpdatePropertiesFeature_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TUpdatePropertiesFeature>();
+    
+    m.insert({ rtti_nsGraphicWrapper_TUpdatePropertiesFeature_Data, nsGraphicWrapper_TUpdatePropertiesFeature_Data });
     
     Data nsLogicWrapper_TBeginLogicFeature_Data;
     nsLogicWrapper_TBeginLogicFeature_Data.newFunc = [](){ return new nsLogicWrapper::TBeginLogicFeature(); };

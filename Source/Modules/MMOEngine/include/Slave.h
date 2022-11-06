@@ -32,34 +32,34 @@ namespace nsMMOEngine
         virtual bool FindSessionByClientKey(unsigned int id, unsigned int& sessionID);
 
         // BaseServer
-        virtual void SendByClientKey(std::list<unsigned int>& lKey, char* p, int size);
+        void SendByClientKey(std::list<unsigned int>& lKey, char* p, int size) override;
 
-        virtual void GetDescDown(std::list<unsigned int>& sessionID_List);
+        void GetDescDown(std::list<unsigned int>& sessionID_List) override;
 
-        virtual void SendDown(unsigned int sessionID, char* p, int size, bool check = true);
+        void SendDown(unsigned int sessionID, char* p, int size, bool check = true) override;
         // ActiveServer      
-        virtual void ConnectUp(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet = 0);
+        void ConnectUp(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet = 0) override;
     protected:
         // Base
-        virtual void WorkInherit();
-        virtual void DisconnectInherit(unsigned int sessionID);
+        void WorkInherit() override;
+        void DisconnectInherit(unsigned int sessionID) override;
 
     protected:
-        virtual void NeedContextLoginClientByClientKey(unsigned int clientKey);
-        virtual void NeedContextLoginClientByClientKey_SecondCallSlave(unsigned int clientKey);
-        virtual void NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_session_client, unsigned int clientKey);
+        void NeedContextLoginClientByClientKey(unsigned int clientKey) override;
+        void NeedContextLoginClientByClientKey_SecondCallSlave(unsigned int clientKey) override;
+        void NeedContextLoginClientByClientSessionByKeyClient(unsigned int id_session_client, unsigned int clientKey) override;
         //-----------------------------------------------------------------
-        virtual void NeedContextByRequestForRecipient(TDescRequestConnectForRecipient*);
-        virtual void NeedContextByClientSessionForSlaveRcm(unsigned sessionID, bool donor);
-        virtual void NeedContextByClientForSlaveKeyRcm(unsigned int key, bool donor);
-        virtual void EventDisconnectClientRcm(unsigned int key);
-        virtual void EventTimeClientElapsedRcm(unsigned int key);
+        void NeedContextByRequestForRecipient(TDescRequestConnectForRecipient*) override;
+        void NeedContextByClientSessionForSlaveRcm(unsigned sessionID, bool donor) override;
+        void NeedContextByClientForSlaveKeyRcm(unsigned int key, bool donor) override;
+        void EventDisconnectClientRcm(unsigned int key) override;
+        void EventTimeClientElapsedRcm(unsigned int key) override;
         //-----------------------------------------------------------------
-        virtual void NeedContextSendToClient(unsigned int sessionID);
+        void NeedContextSendToClient(unsigned int sessionID) override;
 
-        virtual void EndLoginClient(IScenario*);
-        virtual void EndLoginSlave(IScenario*);
-        virtual void EndRcm(IScenario*);
+        void EndLoginClient(IScenario*) override;
+        void EndLoginSlave(IScenario*) override;
+        void EndRcm(IScenario*) override;
 
     private:
         void DisconnectAllClient();

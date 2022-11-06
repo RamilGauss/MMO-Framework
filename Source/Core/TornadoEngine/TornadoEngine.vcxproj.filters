@@ -543,12 +543,34 @@
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\PositionUpdaterSystem.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\SizeUpdaterSystem.cpp">
-      <Filter>Features\Graphic\UpdaterToModule</Filter>
-    </ClCompile>
     <ClCompile Include="Share\GameObject.cpp">
       <Filter>Share</Filter>
     </ClCompile>
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\AnchorsAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\FocusAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\HorizontalAlignAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\MaxSizeAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\MinDistanceToParentAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\MinSizeAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\PositionAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\SizeAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\TitleAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\VerticalAlignAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\VisibilityAddSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\AnchorsUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\FocusUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\HorizontalAlignUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\MaxSizeUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\MinDistanceToParentUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\MinSizeUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\SizeUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\PositionUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\VisibilityUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\VerticalAlignUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\TitleUpdateSystem.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\Builder\Properties\AddPropertiesFeature.cpp" />
+    <ClCompile Include="Features\Graphic\Begin\UpdateToModule\UpdatePropertiesFeature.cpp" />
+    <ClCompile Include="Share\ImGuiSerializeTask.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -1223,9 +1245,6 @@
     <ClInclude Include="Features\Graphic\Begin\UpdateToModule\PositionUpdaterSystem.h">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\SizeUpdaterSystem.h">
-      <Filter>Features\Graphic\UpdaterToModule</Filter>
-    </ClInclude>
     <ClInclude Include="Share\GameObject.h">
       <Filter>Share</Filter>
     </ClInclude>
@@ -1253,6 +1272,31 @@
     <ClInclude Include="Components\Gui\Properties\PaddingComponent.h" />
     <ClInclude Include="Components\Gui\Properties\SpacingComponent.h" />
     <ClInclude Include="Components\Gui\Properties\AnchorsComponent.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\AnchorsAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\FocusAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\HorizontalAlignAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\MaxSizeAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\MinDistanceToParentAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\MinSizeAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\PositionAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\SizeAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\TitleAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\VerticalAlignAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\VisibilityAddSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\AnchorsUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\FocusUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\HorizontalAlignUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\MaxSizeUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\MinDistanceToParentUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\MinSizeUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\SizeUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\PositionUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\VisibilityUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\VerticalAlignUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\TitleUpdateSystem.h" />
+    <ClInclude Include="Features\Graphic\Begin\Builder\Properties\AddPropertiesFeature.h" />
+    <ClInclude Include="Features\Graphic\Begin\UpdateToModule\UpdatePropertiesFeature.h" />
+    <ClInclude Include="Share\ImGuiSerializeTask.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />

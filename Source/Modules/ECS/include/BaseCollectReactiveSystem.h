@@ -15,6 +15,6 @@ namespace nsECSFramework
     class DllExport TBaseCollectReactiveSystem : public TExecuteSystem, public TTearDownSystem
     {
     protected:
-        int mReactiveId = 0;
+        int mReactiveId = -1;
     };
 }
