@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_10_29 17:33:25.647
+// File has been generated at 2022_11_08 14:16:12.113
 	
 #include "EcsSystemExtension.h"
 #include "SingletonManager.h"
@@ -25,7 +25,8 @@ void TEcsSystemExtension::Init()
     std::map<int, Data> m;
     
     Data nsGraphicWrapper_TAddPropertiesFeature_Data;
-    nsGraphicWrapper_TAddPropertiesFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<nsGraphicWrapper::TAddPropertiesFeature*>(p)); };
+    nsGraphicWrapper_TAddPropertiesFeature_Data.castFunc = 
+        [](void* p){ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<nsGraphicWrapper::TAddPropertiesFeature*>(p)); };
     auto rtti_nsGraphicWrapper_TAddPropertiesFeature_Data = globalTypeIdentifier->Type<nsGraphicWrapper::TAddPropertiesFeature>();
     
     m.insert({ rtti_nsGraphicWrapper_TAddPropertiesFeature_Data, nsGraphicWrapper_TAddPropertiesFeature_Data });

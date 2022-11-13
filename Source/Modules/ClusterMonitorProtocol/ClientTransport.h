@@ -14,15 +14,15 @@ See for more information LICENSE.md.
 
 namespace nsClusterMonitorProtocol
 {
-  class DllExport TClientTransport : public TBaseTransport
-  {
-    nsMMOEngine::TSlave mSlave;
-  public:
-    TClientTransport();
-    virtual ~TClientTransport();
+    class DllExport TClientTransport : public TBaseTransport
+    {
+        nsMMOEngine::TSlave mSlave;
+    public:
+        TClientTransport();
+        virtual ~TClientTransport();
 
-    void Connect( TIP_Port& ip_port, std::string& login, std::string& password );
-    void Send( nsPackets::THeader* packet, int packetSize );
-  };
+        void Connect(TIP_Port& ip_port, std::string& login, std::string& password);
+        void Send(nsPackets::THeader* packet, int packetSize);
+    };
 }
 

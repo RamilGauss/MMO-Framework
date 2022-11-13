@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ObjectInstanceEndHandlerTerminatorSystem.h"
+#include "ObjectInstantiationCompletionHandlerTerminatorSystem.h"
 #include "ProjectConfigContainer.h"
 #include "Logger.h"
 #include "TimeSliceEngine.h"
@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 
 using namespace nsLogicWrapper;
 
-void TObjectInstanceEndHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TObjectInstanceEndHandlerComponent* pC)
+void TObjectInstantiationCompletionHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* pC)
 {
     auto copy = *pC;
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;

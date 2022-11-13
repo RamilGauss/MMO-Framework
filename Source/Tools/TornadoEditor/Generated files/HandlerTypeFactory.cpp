@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_10_03 16:46:33.078
+// File has been generated at 2022_11_08 14:17:55.278
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -23,13 +23,6 @@ void THandlerTypeFactory::Init()
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
     std::map<int, Data> m;
-    
-    Data nsTornadoEditor_TCurrentPathToInputTextHandler_Data;
-    nsTornadoEditor_TCurrentPathToInputTextHandler_Data.newFunc = [](){ return new nsTornadoEditor::TCurrentPathToInputTextHandler(); };
-    nsTornadoEditor_TCurrentPathToInputTextHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TCurrentPathToInputTextHandler*)p; };
-    auto rtti_nsTornadoEditor_TCurrentPathToInputTextHandler_Data = globalTypeIdentifier->Type<nsTornadoEditor::TCurrentPathToInputTextHandler>();
-    
-    m.insert({ rtti_nsTornadoEditor_TCurrentPathToInputTextHandler_Data, nsTornadoEditor_TCurrentPathToInputTextHandler_Data });
     
     Data nsTornadoEditor_TDialogButtonClickHandler_Data;
     nsTornadoEditor_TDialogButtonClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TDialogButtonClickHandler(); };

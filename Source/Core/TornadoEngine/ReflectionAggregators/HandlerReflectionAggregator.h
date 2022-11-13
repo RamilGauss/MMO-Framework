@@ -17,7 +17,6 @@ namespace nsTornadoEngine
         virtual ~THandlerReflectionAggregator() {}
 
         ITypeInformation* mTypeInfo = nullptr;
-
         ITypeFactory* mTypeFactory = nullptr;
     };
 }

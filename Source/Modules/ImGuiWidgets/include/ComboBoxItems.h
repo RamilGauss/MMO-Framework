@@ -7,18 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <string>
-
+#include <vector>
 #include "TypeDef.h"
-#include "ECS/include/System.h"
 
-namespace nsTornadoEngine
+namespace nsImGuiWidgets
 {
-    class DllExport IEcsSystemExtension
+    class DllExport TComboBoxItems
     {
+        std::vector<std::string> mItems;
     public:
-        virtual ~IEcsSystemExtension() {}
-
-        virtual nsECSFramework::TSystem* DynamicCast(void* p, int rtti) = 0;
+        void SetItems(const std::vector<std::string>& items);
+        void SetItems(const std::vector<std::string>& items);
     };
 }

@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Frame.h>
+#include <ImGuiWidgets/include/Focus.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TFocusComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TUnit>, nsECSFramework::IComponent
+    struct DllExport TFocusComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TFocus>, nsECSFramework::IComponent
     {
         bool value = false;
     };

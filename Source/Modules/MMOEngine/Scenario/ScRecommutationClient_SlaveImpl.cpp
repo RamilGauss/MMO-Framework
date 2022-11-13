@@ -76,8 +76,9 @@ void TScRecommutationClient_SlaveImpl::RecvFromMaster(TDescRecvSession* pDesc)
 void TScRecommutationClient_SlaveImpl::RecvFromClient(TDescRecvSession* pDesc)
 {
     // защита от хака
-    if (pDesc->dataSize < sizeof(THeader))
+    if (pDesc->dataSize < sizeof(THeader)) {
         return;
+    }
     //=======================================
     THeader* pHeader = (THeader*)pDesc->data;
     switch (pHeader->subType) {
@@ -274,8 +275,9 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
 void TScRecommutationClient_SlaveImpl::SaveContext(void* data, int size)
 {
     mBP.Reset();
-    if (data && size)
+    if (data && size) {
         mBP.PushFront((char*)data, size);
+    }
 
     THeaderCheckBeginDonor h;
     h.clientKey = Context()->GetClientKey();

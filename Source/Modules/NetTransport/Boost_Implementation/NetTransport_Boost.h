@@ -32,7 +32,6 @@ class TNetTransport_Boost : public nsMMOEngine::INetTransport
     std::shared_ptr<TNetControlTCP>      mTCP_Up;
 
     using TMapIP_Ptr = std::map<TIP_Port, TNetControlTCP*>;
-    using TMapIP_PtrIt = TMapIP_Ptr::iterator;
 
     TMapIP_Ptr mMapIP_TCP;
 

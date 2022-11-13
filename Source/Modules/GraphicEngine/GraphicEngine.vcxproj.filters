@@ -28,6 +28,12 @@
     <Filter Include="Factory">
       <UniqueIdentifier>{07150132-a138-412f-93da-005eaa21f10e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dear ImGui\misc">
+      <UniqueIdentifier>{1a5b174f-8b58-4dcf-ad98-4cb59ba58c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dear ImGui\misc\cpp">
+      <UniqueIdentifier>{6a5cf460-56ba-4574-8dd0-5cb617cfc77f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicEngine.h">
@@ -117,6 +123,9 @@
     <ClInclude Include="imgui\backends\imgui_impl_sdlrenderer.h">
       <Filter>Dear ImGui\backend</Filter>
     </ClInclude>
+    <ClInclude Include="imgui\misc\cpp\imgui_stdlib.h">
+      <Filter>Dear ImGui\misc\cpp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GraphicEngine.cpp">
@@ -187,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="imgui\backends\imgui_impl_sdlrenderer.cpp">
       <Filter>Dear ImGui\backend</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\misc\cpp\imgui_stdlib.cpp">
+      <Filter>Dear ImGui\misc\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

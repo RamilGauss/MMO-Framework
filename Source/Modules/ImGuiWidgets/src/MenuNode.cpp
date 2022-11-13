@@ -48,13 +48,13 @@ void TMenuNode::Render()
         }
     } else {
 
-        const auto textureSize = ImVec2(mWidth, mHeight);
+        const auto textureSize = ImVec2(GetTextureWidth(), GetTextureHeight());
 
         bool open = false;
         if (mIsCheckable) {
-            open = TImGuiCustom::MenuItem(GetTitle().c_str(), nullptr, &mIsChecked, true, mTextureId, textureSize);
+            open = TImGuiCustom::MenuItem(GetTitle().c_str(), nullptr, &mIsChecked, true, GetTextureId(), textureSize);
         } else {
-            open = TImGuiCustom::MenuItem(GetTitle().c_str(), nullptr, false, true, mTextureId, textureSize);
+            open = TImGuiCustom::MenuItem(GetTitle().c_str(), nullptr, false, true, GetTextureId(), textureSize);
         }
         if (open) {
             mOnLeftClickCB.Notify(this);

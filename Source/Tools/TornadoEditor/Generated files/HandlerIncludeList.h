@@ -2,11 +2,10 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_10_03 16:46:33.082
+// File has been generated at 2022_11_08 14:17:55.281
 	
 #pragma once
 
-#include "CurrentPathToInputTextHandler.h"
 #include "DialogButtonClickHandler.h"
 #include "OnCloseDialogHandler.h"
 #include "OnCloseWindowHandler.h"

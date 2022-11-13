@@ -26,7 +26,7 @@
     <Filter Include="Generators\EcsComponentExtension">
       <UniqueIdentifier>{4179af10-fa01-4759-b151-e8d542bb8b62}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generators\EcsSystemExtension">
+    <Filter Include="Generators\DynamicCaster">
       <UniqueIdentifier>{d6ed6f06-38ce-4860-aa71-acd22c11ca84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -97,18 +97,44 @@
     <ClCompile Include="Sources\TypeInformationSourceFIleGenerator.cpp">
       <Filter>Generators\TypeInformation</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\EcsSystemExtensionFileGenerator.cpp">
-      <Filter>Generators\EcsSystemExtension</Filter>
+    <ClCompile Include="Sources\DynamicCasterFileGenerator.cpp">
+      <Filter>Generators\DynamicCaster</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\EcsSystemExtensionGenerator.cpp">
-      <Filter>Generators\EcsSystemExtension</Filter>
+    <ClCompile Include="Sources\DynamicCasterGenerator.cpp">
+      <Filter>Generators\DynamicCaster</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\EcsSystemExtensionHeaderFileGenerator.cpp">
-      <Filter>Generators\EcsSystemExtension</Filter>
+    <ClCompile Include="Sources\DynamicCasterHeaderFileGenerator.cpp">
+      <Filter>Generators\DynamicCaster</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\EcsSystemExtensionSourceFIleGenerator.cpp">
-      <Filter>Generators\EcsSystemExtension</Filter>
+    <ClCompile Include="Sources\DynamicCasterSourceFIleGenerator.cpp">
+      <Filter>Generators\DynamicCaster</Filter>
     </ClCompile>
+    <ClCompile Include="Binary\BinaryMarshallerFileGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerHeaderFileGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerSourceFileGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterFileGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterHeaderFileGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterSourceFIleGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionFileGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.cpp" />
+    <ClCompile Include="IncludeList\IncludeListFileGenerator.cpp" />
+    <ClCompile Include="IncludeList\IncludeListGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerFileGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerHeaderFileGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerSourceFileGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactoryFileGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactoryGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactoryHeaderFileGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactorySourceFIleGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationFileGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationHeaderFileGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationSourceFIleGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h">
@@ -177,17 +203,95 @@
     <ClInclude Include="Sources\TypeInformationSourceFIleGenerator.h">
       <Filter>Generators\TypeInformation</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\EcsSystemExtensionFileGenerator.h">
-      <Filter>Generators\EcsSystemExtension</Filter>
+    <ClInclude Include="Sources\DynamicCasterFileGenerator.h">
+      <Filter>Generators\DynamicCaster</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\EcsSystemExtensionGenerator.h">
-      <Filter>Generators\EcsSystemExtension</Filter>
+    <ClInclude Include="Sources\DynamicCasterGenerator.h">
+      <Filter>Generators\DynamicCaster</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\EcsSystemExtensionHeaderFileGenerator.h">
-      <Filter>Generators\EcsSystemExtension</Filter>
+    <ClInclude Include="Sources\DynamicCasterHeaderFileGenerator.h">
+      <Filter>Generators\DynamicCaster</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\EcsSystemExtensionSourceFIleGenerator.h">
-      <Filter>Generators\EcsSystemExtension</Filter>
+    <ClInclude Include="Sources\DynamicCasterSourceFIleGenerator.h">
+      <Filter>Generators\DynamicCaster</Filter>
+    </ClInclude>
+    <ClInclude Include="Binary\BinaryMarshallerFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="Binary\BinaryMarshallerGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="Binary\BinaryMarshallerHeaderFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="Binary\BinaryMarshallerSourceFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicCaster\DynamicCasterFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicCaster\DynamicCasterGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicCaster\DynamicCasterHeaderFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicCaster\DynamicCasterSourceFIleGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeList\IncludeListFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeList\IncludeListGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="Json\JsonSerializerFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="Json\JsonSerializerGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="Json\JsonSerializerHeaderFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="Json\JsonSerializerSourceFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeFactory\TypeFactoryFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeFactory\TypeFactoryGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeFactory\TypeFactoryHeaderFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeFactory\TypeFactorySourceFIleGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeInformation\TypeInformationFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeInformation\TypeInformationGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeInformation\TypeInformationHeaderFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeInformation\TypeInformationSourceFIleGenerator.h">
+      <Filter>Generators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

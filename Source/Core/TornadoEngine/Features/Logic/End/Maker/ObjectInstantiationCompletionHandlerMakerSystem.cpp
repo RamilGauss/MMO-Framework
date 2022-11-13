@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ObjectInstanceEndHandlerMakerSystem.h"
+#include "ObjectInstantiationCompletionHandlerMakerSystem.h"
 
 #include "SceneInstanceGuidComponent.h"
 
@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 
 using namespace nsLogicWrapper;
 
-void TObjectInstanceEndHandlerMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TObjectInstanceEndHandlerComponent* pC)
+void TObjectInstantiationCompletionHandlerMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* pC)
 {
     auto hasSceneInstance = GetEntMng()->HasComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid);
     if (!hasSceneInstance) {
@@ -31,5 +31,5 @@ void TObjectInstanceEndHandlerMakerSystem::Reactive(nsECSFramework::TEntityID ei
         logger->WriteF_time("Not converted typename \"%s\"", pC->handlerTypeName);
         return;
     }
-    pC->handler = (nsLogicWrapper::IObjectInstanceEndHandler*) (handlerReflection->mTypeFactory->New(rtti));
+    pC->handler = (nsLogicWrapper::IObjectInstantiationCompletionHandler*) (handlerReflection->mTypeFactory->New(rtti));
 }

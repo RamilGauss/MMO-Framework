@@ -13,19 +13,17 @@ See for more information LICENSE.md.
 
 namespace nsClusterMonitorProtocol
 {
-  class DllExport TServerTransport : public TBaseTransport
-  {
-    nsMMOEngine::TMaster mMaster;
-  public:
-    TServerTransport();
-    virtual ~TServerTransport();
+    class DllExport TServerTransport : public TBaseTransport
+    {
+        nsMMOEngine::TMaster mMaster;
+    public:
+        TServerTransport();
+        virtual ~TServerTransport();
 
-    void Accept( unsigned int id, std::string& password );
-    void Reject( unsigned int id );
+        void Accept(unsigned int id, const std::string& password);
+        void Reject(unsigned int id);
 
-    void Send( unsigned int id, nsPackets::THeader* packet, int packetSize );
-
-  private:
-  };
+        void Send(unsigned int id, nsPackets::THeader* packet, int packetSize);
+    };
 }
 

@@ -102,7 +102,7 @@ namespace nsMMOEngine
         // настройка
         void SetTimeLiveSession(unsigned int time_ms);
 
-        void Accept(unsigned int sessionID, std::string& password);
+        void Accept(unsigned int sessionID, const std::string& password);
         void Reject(unsigned int sessionID);
 
     protected:

@@ -7,22 +7,36 @@ See for more information LICENSE.md.
 
 #include "InputMultiText.h"
 
+#include <imgui_stdlib.h>
+
 using namespace nsImGuiWidgets;
 
-std::string TInputMultiText::GetText()
+int nsImGuiWidgets::nsInputMultiText::EditCallback(ImGuiInputTextCallbackData* data)
 {
-    return mValue;
-}
-//------------------------------------------------------------------------------------
-void TInputMultiText::SetText(const std::string& str)
-{
-    strcpy_s(mValue, str.c_str());
+    auto inputText = (TInputMultiText*)data->UserData;
+    inputText->SetTextEdited();
+    return 0;
 }
 //------------------------------------------------------------------------------------
 void TInputMultiText::RenderInheritance()
 {
-    if (ImGui::InputTextMultiline(mTitle.c_str(), mValue, SIZE, GetSize())) {
+    auto str = GetText();
+
+    auto flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackEdit | ImGuiInputTextFlags_AutoSelectAll;
+    if (ImGui::InputTextMultiline(mTitle.c_str(), &str, GetSize(), flags, nsInputMultiText::EditCallback, this)) {
         mOnTextEditCB.Notify(this);
     }
+
+    if (mIsTextEdited) {
+        SetText(str);
+
+        mOnTextEditCB.Notify(this);
+        mIsTextEdited = false;
+    }
+}
+//------------------------------------------------------------------------------------
+void TInputMultiText::SetTextEdited()
+{
+    mIsTextEdited = true;
 }
 //------------------------------------------------------------------------------------

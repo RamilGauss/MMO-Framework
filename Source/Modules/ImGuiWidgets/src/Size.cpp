@@ -5,20 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Geometry.h"
+#include "Size.h"
 #include "Helper.h"
 
 using namespace nsImGuiWidgets;
 
-void TGeometry::SetPos(const ImVec2& newPos)
-{
-    if (mPos != newPos) {
-        mPos = newPos;
-        mOnPositionCB.Notify();
-    }
-}
-//--------------------------------------------------------------------------------
-void TGeometry::SetSize(const ImVec2& newSize)
+void TSize::SetSize(const ImVec2& newSize)
 {
     if (mSize != newSize) {
         mSize = newSize;
@@ -26,12 +18,7 @@ void TGeometry::SetSize(const ImVec2& newSize)
     }
 }
 //--------------------------------------------------------------------------------
-const ImVec2& TGeometry::GetPos() const
-{
-    return mPos;
-}
-//--------------------------------------------------------------------------------
-const ImVec2& TGeometry::GetSize() const
+const ImVec2& TSize::GetSize() const
 {
     return mSize;
 }

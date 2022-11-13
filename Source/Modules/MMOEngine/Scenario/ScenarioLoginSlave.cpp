@@ -65,8 +65,9 @@ void TScenarioLoginSlave::ConnectToMasterAfterConnect(int sessionID)
 void TScenarioLoginSlave::Work()
 {
     // если нет связи с верхним соединением, ждем соединения, если не дождемся нам об этом сообщит SessionManager
-    if (Context()->GetSessionID() == INVALID_HANDLE_SESSION)
+    if (Context()->GetSessionID() == INVALID_HANDLE_SESSION) {
         return;
+    }
 
     unsigned int now = ht_GetMSCount();
     if (Context()->GetTimeWait() < now) {

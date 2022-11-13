@@ -87,10 +87,10 @@ void TTreeNode::Render()
         }
     } else {
 
-        const auto textureSize = ImVec2(mWidth, mHeight);
+        const auto textureSize = ImVec2(GetTextureWidth(), GetTextureHeight());
 
         ImGui::PushStyleColor((int)ImGuiCol_Header, GetColor());
-        mIsOpen = TImGuiCustom::TreeNodeExV(mStrId.c_str(), mode, GetTitle().c_str(), mTextureId, textureSize);
+        mIsOpen = TImGuiCustom::TreeNodeExV(mStrId.c_str(), mode, GetTitle().c_str(), GetTextureId(), textureSize);
         ImGui::PopStyleColor();
         
         SearchEvents();

@@ -9,9 +9,24 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/TreeNode.h>
 
+#include "NodeIconComponent.h"
+
+#include "VisibilityComponent.h"
+#include "TitleComponent.h"
+
+
 using namespace nsGraphicWrapper;
 
 void TTreeNodeMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TTreeNodeComponent* pTreeNodeComponent)
 {
-    pTreeNodeComponent->value = new nsImGuiWidgets::TTreeNode();
+    auto pTreeNode = new nsImGuiWidgets::TTreeNode();
+    pTreeNodeComponent->value = pTreeNode;
+
+    auto entMng = GetEntMng();
+
+    auto pWidget = dynamic_cast<nsImGuiWidgets::TWidget*>(pTreeNode);
+
+    entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->pOwner = pWidget;
+    entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->pOwner = pWidget;
+    entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid)->pOwner = pWidget;
 }

@@ -21,9 +21,9 @@ namespace nsImGuiWidgets
     {
         TFrame::RenderInheritance();
 
-        auto textureId = GetTexture();
-        if (textureId != -1) {
-            ImGui::Image((void*)(intptr_t)textureId, GetSize(), GetMinUV(), GetMaxUV());
+        auto textureId = GetTextureId();
+        if (textureId != nullptr) {
+            ImGui::Image(textureId, GetSize(), GetMinUV(), GetMaxUV());
         }
     }
     //----------------------------------------------------------------------------------------------------

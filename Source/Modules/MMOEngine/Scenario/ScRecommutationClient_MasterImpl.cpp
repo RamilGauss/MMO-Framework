@@ -155,8 +155,9 @@ void TScRecommutationClient_MasterImpl::ClientConnect(TDescRecvSession* pDesc)
 {
     THeaderClientConnect* pHeader = (THeaderClientConnect*)pDesc->data;
     NeedContextByClientKey(pHeader->clientKey);
-    if (Context() == nullptr)
+    if (Context() == nullptr) {
         return;
+    }
 
     End();
 }

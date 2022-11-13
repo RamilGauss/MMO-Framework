@@ -100,8 +100,9 @@ void TSession::Send(TBreakPacket& bp, bool check)
     SendData(eData, bp, check);
     // гарантия того что пакет дойдет
     // иначе сессия на той стороне не освежит время
-    if (check)
+    if (check) {
         RefreshLastTime();
+    }
 }
 //---------------------------------------------------------------------
 void TSession::SetTransport(INetTransport* pTransport)
@@ -132,8 +133,9 @@ bool TSession::RecvData(void* data, int dataSize, TContainerPtr& result)
 
     unsigned char crc8;
     mCalcCRC8.Calc(p, sizeWithoutCRC8, crc8);
-    if (crc8 != recvCRC8)
+    if (crc8 != recvCRC8) {
         return false;
+    }
 
     result.SetData(mRecvDataContainer.GetPtr(), sizeWithoutCRC8);
 
@@ -150,8 +152,9 @@ bool TSession::RecvKeyAES(void* pKey, int keySize)// Client
     mCalcCRC8.Calc(mDecrypt.GetPtr(), decryptDataSize, crc8);
 
     unsigned char recvCRC8 = ((unsigned char*)mDecrypt.GetPtr())[decryptDataSize];
-    if (crc8 != recvCRC8)
+    if (crc8 != recvCRC8) {
         return false;
+    }
 
     // запомнить пароль для работы
     SetKeyAES(mDecrypt.GetPtr(), decryptDataSize);
@@ -170,8 +173,9 @@ void TSession::SetID(unsigned int id)
 //---------------------------------------------------------------------
 bool TSession::RecvIDconfirmation(void* pConfirm, int confirmSize)// Server
 {
-    if (mRecvAES.Decrypt(pConfirm, confirmSize, mDecrypt) == false)
+    if (mRecvAES.Decrypt(pConfirm, confirmSize, mDecrypt) == false) {
         return false;
+    }
 
     auto dataSize = mDecrypt.GetSize() - sizeof(unsigned char);
 
@@ -179,8 +183,9 @@ bool TSession::RecvIDconfirmation(void* pConfirm, int confirmSize)// Server
     mCalcCRC8.Calc(mDecrypt.GetPtr(), dataSize, crc8);
 
     unsigned char recvCRC8 = ((unsigned char*)mDecrypt.GetPtr())[dataSize];
-    if (crc8 != recvCRC8)
+    if (crc8 != recvCRC8) {
         return false;
+    }
 
     return true;
 }
@@ -299,7 +304,7 @@ std::string TSession::GetLoginHashStr()
     return hash;
 }
 //---------------------------------------------------------------------
-void TSession::SetPassword(std::string& password)
+void TSession::SetPassword(const std::string& password)
 {
     mPassword = password;
     mSHA256.FastCalc((char*)mPassword.data(), mPassword.size(), mPasswordHash);

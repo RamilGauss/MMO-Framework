@@ -397,7 +397,7 @@ void TSessionManager::Send(TSession* pSession, TBreakPacket& bp, bool check)
     pSession->Send(bp, check);
 }
 //-------------------------------------------------------------------------
-void TSessionManager::Accept(unsigned int sessionID, std::string& password)
+void TSessionManager::Accept(unsigned int sessionID, const std::string& password)
 {
     if (mNavigateSession == nullptr) {
         BL_FIX_BUG();

@@ -20,7 +20,7 @@ class DllExport TResolverSelf_IP_v4
         unsigned int ip = 0;
     };
 
-    typedef std::vector<TDescHost> TVectorDesc;
+    using TVectorDesc = std::vector<TDescHost>;
 
     static TVectorDesc* mVecDesc;
 public:

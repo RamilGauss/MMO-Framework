@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 
 using namespace nsClusterMonitorProtocol;
 
-TServerTransport::TServerTransport() : TBaseTransport( &mMaster )
+TServerTransport::TServerTransport() : TBaseTransport(&mMaster)
 {
 
 }
@@ -20,18 +20,18 @@ TServerTransport::~TServerTransport()
 
 }
 //--------------------------------------------------------------------------------
-void TServerTransport::Accept( unsigned int id, std::string& password )
+void TServerTransport::Accept(unsigned int id, const std::string& password)
 {
-  mMaster.Accept( id, password );
+    mMaster.Accept(id, password);
 }
 //--------------------------------------------------------------------------------
-void TServerTransport::Reject( unsigned int id )
+void TServerTransport::Reject(unsigned int id)
 {
-  mMaster.Reject( id );
+    mMaster.Reject(id);
 }
 //--------------------------------------------------------------------------------
-void TServerTransport::Send( unsigned int id, nsPackets::THeader* packet, int packetSize )
+void TServerTransport::Send(unsigned int id, nsPackets::THeader* packet, int packetSize)
 {
-  mMaster.SendDown( id, (char*) packet, packetSize );
+    mMaster.SendDown(id, (char*)packet, packetSize);
 }
 //--------------------------------------------------------------------------------

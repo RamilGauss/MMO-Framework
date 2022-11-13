@@ -18,8 +18,8 @@ class DllExport TExecuteInstructionEngine : public TThreadBoost
     std::mutex mMutex;
     std::condition_variable mCondVar;
 public:
-    typedef std::function <void()> InstructionResult;
-    typedef std::function <InstructionResult* ()> Instruction;
+    using InstructionResult = std::function<void()>;
+    using Instruction = std::function<InstructionResult*()>;
 protected:
     TDataExchange2Thread<Instruction> mConcurrentInstruction;
     TDataExchange2Thread<InstructionResult> mConcurrentInstructionResult;

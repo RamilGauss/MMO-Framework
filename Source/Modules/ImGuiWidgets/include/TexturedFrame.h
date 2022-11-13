@@ -9,10 +9,12 @@ See for more information LICENSE.md.
 
 #include "Frame.h"
 #include "TextureReference.h"
+#include "TextureSize.h"
+#include "TextureUv.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TTexturedFrame : public TFrame, public TTextureReference
+    class DllExport TTexturedFrame : public TFrame, public TTextureReference, public TTextureSize, public TTextureUv
     {
     public:
         TTexturedFrame();

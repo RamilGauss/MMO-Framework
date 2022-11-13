@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_10_29 17:33:16.966
+// File has been generated at 2022_11_08 14:16:07.263
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -821,17 +821,17 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsGuiWrapper_TWindowComponentTypeFunc, _nsGuiWrapper_TWindowComponentTypeFunc });
     
-    TypeFunc _nsLogicWrapper_TObjectInstanceEndHandlerComponentTypeFunc;
-    _nsLogicWrapper_TObjectInstanceEndHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsLogicWrapper::TObjectInstanceEndHandlerComponent>((nsLogicWrapper::TObjectInstanceEndHandlerComponent*) p, str);
+    TypeFunc _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc;
+    _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>((nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*) p, str);
     };
-    _nsLogicWrapper_TObjectInstanceEndHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsLogicWrapper::TObjectInstanceEndHandlerComponent>((nsLogicWrapper::TObjectInstanceEndHandlerComponent*) p, str, err);
+    _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>((nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TObjectInstanceEndHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstanceEndHandlerComponent>();
+    auto rtti__nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>();
     
-    m.insert({ rtti__nsLogicWrapper_TObjectInstanceEndHandlerComponentTypeFunc, _nsLogicWrapper_TObjectInstanceEndHandlerComponentTypeFunc });
+    m.insert({ rtti__nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc, _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc });
     
     TypeFunc _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc;
     _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -1663,12 +1663,12 @@ void TComponentJsonSerializer::_DeserializeEnum(std::string& str, nsGuiWrapper::
     *p = m[str];
 }
 //---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Serialize(nsLogicWrapper::TObjectInstanceEndHandlerComponent* p, Jobj& obj)
+void TComponentJsonSerializer::_Serialize(nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
-void TComponentJsonSerializer::_Deserialize(nsLogicWrapper::TObjectInstanceEndHandlerComponent* p, const Jobj& obj)
+void TComponentJsonSerializer::_Deserialize(nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
 }

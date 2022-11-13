@@ -19,7 +19,7 @@ namespace nsImGuiWidgets
         using TCallback = std::function<void(TMenuNode*)>;
 
         void SetCallback(TCallback callback);
-        void SetSelected(bool value);
+        //void SetSelected(bool value);
         
         void SetCheckable(bool value);
         bool IsCheckable();

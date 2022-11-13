@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ObjectInstanceEndHandlerBuilderSystem.h"
+#include "ObjectInstantiationCompletionHandlerBuilderSystem.h"
 
 #include "Modules.h"
 #include "LogicModule.h"
@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 using namespace nsLogicWrapper;
 
-void TObjectInstanceEndHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TObjectInstanceEndHandlerComponent* pC)
+void TObjectInstantiationCompletionHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* pC)
 {
     auto handler = pC->handler;
     if (handler == nullptr) {

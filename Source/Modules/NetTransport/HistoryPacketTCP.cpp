@@ -18,7 +18,7 @@ THistoryPacketTCP::THistoryPacketTCP()
 //------------------------------------------------------------------------
 void THistoryPacketTCP::Clear()
 {
-    mState = eSearchSize;
+    mState = eStatePacket::eSearchSize;
     mSizePacket = 0;
     flgNewPacket = true;
 }
@@ -35,10 +35,10 @@ void THistoryPacketTCP::PackForSend(TBreakPacket& bp)
 void THistoryPacketTCP::Analiz(int& beginPos, TResult& res, int readSize, char* buffer)
 {
     switch (mState) {
-    case eSearchSize:
+    case eStatePacket::eSearchSize:
         beginPos += SearchSize(readSize, buffer, res, beginPos);
         break;
-    case eSearchData:
+    case eStatePacket::eSearchData:
         beginPos += SearchData(readSize, buffer, res, beginPos);
         break;
     }
@@ -57,7 +57,7 @@ int THistoryPacketTCP::BeginSearchSize(int readSize, char* buffer, TResult& res,
     if (size >= sizeof(THeaderTCP)) {
         size = sizeof(THeaderTCP);
         THeaderTCP* pHeader = (THeaderTCP*)&buffer[beginPos];
-        mState = THistoryPacketTCP::eSearchData;
+        mState = THistoryPacketTCP::eStatePacket::eSearchData;
 
         mSizePacket = 0;
         memcpy(&mSizePacket, pHeader->size, sizeof(THeaderTCP));
@@ -83,7 +83,7 @@ int THistoryPacketTCP::ContinueSearchSize(int readSize, char* buffer, TResult& r
     mCollectorPacket.Append(needCopy, &buffer[beginPos]);
 
     THeaderTCP* pHeader = (THeaderTCP*)mCollectorPacket.GetPtr();
-    mState = THistoryPacketTCP::eSearchData;
+    mState = THistoryPacketTCP::eStatePacket::eSearchData;
 
     mSizePacket = 0;
     memcpy(&mSizePacket, pHeader->size, sizeof(THeaderTCP));

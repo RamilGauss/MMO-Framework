@@ -9,6 +9,11 @@ See for more information LICENSE.md.
 
 using namespace nsECSFramework;
 
+TEntityManagerMaster::TEntityManagerMaster()
+{
+
+}
+//--------------------------------------------------------------------------------------
 void TEntityManagerMaster::AddEntityManager(TEntityManager* pEntMng)
 {
     mEntMngs.push_back(pEntMng);

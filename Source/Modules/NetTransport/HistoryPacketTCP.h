@@ -31,11 +31,11 @@ public:
         bool parse_error = false;// обнаружена ошибка, при парсинге пакета
     };
 protected:
-    typedef enum
+    enum class eStatePacket
     {
         eSearchSize,
         eSearchData,
-    }eStatePacket;
+    };
 
     int mSizePacket;// предполагаемый размер пакета
     TContainerRise mCollectorPacket;

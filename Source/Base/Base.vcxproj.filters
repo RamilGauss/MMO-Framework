@@ -161,9 +161,6 @@
     <ClInclude Include="include\SrcEvent_ex.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\StateMachine.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\StatisticsValue.h">
       <Filter>include</Filter>
     </ClInclude>

@@ -20,6 +20,6 @@ namespace nsImGuiWidgets
         void SetMaxSize(const ImVec2& value);
         ImVec2 GetMaxSize() const;
     protected:
-        ImVec2 mValue = { INT_MAX, INT_MAX };
+        ImVec2 mValue = { (float)std::numeric_limits<int>::max(), (float)std::numeric_limits<int>::max() };
     };
 }

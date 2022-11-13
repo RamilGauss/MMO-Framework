@@ -169,7 +169,7 @@ void TNetTransport_Boost::Close(unsigned int ip, unsigned short port)
 //----------------------------------------------------------------------------------
 TNetControlTCP* TNetTransport_Boost::GetTCP_ByIP(TIP_Port& ip_port)
 {
-    TMapIP_PtrIt fit = mMapIP_TCP.find(ip_port);
+    auto fit = mMapIP_TCP.find(ip_port);
     if (fit == mMapIP_TCP.end()) {
         return nullptr;
     }
@@ -180,7 +180,7 @@ void TNetTransport_Boost::AddInMapTCP(TIP_Port& ip_port, TNetControlTCP* pNetCon
 {
     mMutexMapIP_TCP.lock();
     //---------------------
-    mMapIP_TCP.insert(TMapIP_Ptr::value_type(ip_port, pNetControl));
+    mMapIP_TCP.insert({ ip_port, pNetControl });
     //---------------------
     mMutexMapIP_TCP.unlock();
 }

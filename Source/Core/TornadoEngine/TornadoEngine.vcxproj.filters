@@ -498,13 +498,13 @@
     <ClCompile Include="Features\Graphic\End\UpdateFromModule\GuiUpdaterFromModuleFeature.cpp">
       <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\End\Builder\ObjectInstanceEndHandlerBuilderSystem.cpp">
+    <ClCompile Include="Features\Logic\End\Builder\ObjectInstantiationCompletionHandlerBuilderSystem.cpp">
       <Filter>Features\Logic\Builder</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\End\Maker\ObjectInstanceEndHandlerMakerSystem.cpp">
+    <ClCompile Include="Features\Logic\End\Maker\ObjectInstantiationCompletionHandlerMakerSystem.cpp">
       <Filter>Features\Logic\Maker</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\End\Terminator\ObjectInstanceEndHandlerTerminatorSystem.cpp">
+    <ClCompile Include="Features\Logic\End\Terminator\ObjectInstantiationCompletionHandlerTerminatorSystem.cpp">
       <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
     <ClCompile Include="Features\Graphic\Begin\Maker\Graphic\TextureMakerSystem.cpp">
@@ -888,7 +888,7 @@
     <ClInclude Include="Handlers\Gui\IMenuNodeClickHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\Logic\IObjectInstanceEndHandler.h">
+    <ClInclude Include="Handlers\Logic\IObjectInstantiationCompletionHandler.h">
       <Filter>Handlers\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Share\HandlerPool.h">
@@ -1065,7 +1065,7 @@
     <ClInclude Include="Components\Gui\Widgets\WindowComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Logic\ObjectInstanceEndHandlerComponent.h">
+    <ClInclude Include="Components\Logic\ObjectInstantiationCompletionHandlerComponent.h">
       <Filter>Components\Logic\Handlers</Filter>
     </ClInclude>
     <ClInclude Include="Components\Logic\SystemComponent.h">
@@ -1179,13 +1179,13 @@
     <ClInclude Include="Features\Graphic\End\UpdateFromModule\GuiUpdaterFromModuleFeature.h">
       <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\End\Builder\ObjectInstanceEndHandlerBuilderSystem.h">
+    <ClInclude Include="Features\Logic\End\Builder\ObjectInstantiationCompletionHandlerBuilderSystem.h">
       <Filter>Features\Logic\Builder</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\End\Maker\ObjectInstanceEndHandlerMakerSystem.h">
+    <ClInclude Include="Features\Logic\End\Maker\ObjectInstantiationCompletionHandlerMakerSystem.h">
       <Filter>Features\Logic\Maker</Filter>
     </ClInclude>
-    <ClInclude Include="Features\Logic\End\Terminator\ObjectInstanceEndHandlerTerminatorSystem.h">
+    <ClInclude Include="Features\Logic\End\Terminator\ObjectInstantiationCompletionHandlerTerminatorSystem.h">
       <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\TextureFromFileComponent.h">
@@ -1220,9 +1220,6 @@
     </ClInclude>
     <ClInclude Include="Features\Graphic\Begin\Builder\Graphic\CameraBuilderFeature.h">
       <Filter>Features\Graphic\Builder\Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="ReflectionAggregators\IEcsSystemExtension.h">
-      <Filter>ReflectionAggregators</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\EcsSystemExtension.h">
       <Filter>Generated files</Filter>
@@ -1297,6 +1294,9 @@
     <ClInclude Include="Features\Graphic\Begin\Builder\Properties\AddPropertiesFeature.h" />
     <ClInclude Include="Features\Graphic\Begin\UpdateToModule\UpdatePropertiesFeature.h" />
     <ClInclude Include="Share\ImGuiSerializeTask.h" />
+    <ClInclude Include="Handlers\Logic\IPrefabInstantiationCompletionHandler.h" />
+    <ClInclude Include="Handlers\Logic\ISceneInstantiationCompletionHandler.h" />
+    <ClInclude Include="ReflectionAggregators\IDynamicCaster.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />

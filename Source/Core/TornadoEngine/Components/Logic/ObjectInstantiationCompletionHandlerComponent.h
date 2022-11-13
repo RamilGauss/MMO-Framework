@@ -12,15 +12,15 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
-#include "IObjectInstanceEndHandler.h"
+#include "IObjectInstantiationCompletionHandler.h"
 
 namespace nsLogicWrapper
 {
-    struct DllExport TObjectInstanceEndHandlerComponent : nsECSFramework::IComponent
+    struct DllExport TObjectInstantiationCompletionHandlerComponent : nsECSFramework::IComponent
     {
         std::string handlerTypeName;
 
 #pragma IGNORE_ATTRIBUTE
-        mutable IObjectInstanceEndHandler* handler = nullptr;
+        mutable IObjectInstantiationCompletionHandler* handler = nullptr;
     };
 }

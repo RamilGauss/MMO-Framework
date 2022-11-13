@@ -13,5 +13,5 @@ using namespace nsLogicWrapper;
 void TLogicTerminatorFeature::InitConveyor()
 {
     Add(&mSystemTerminatorSystem);
-    Add(&mObjectInstanceEndHandlerTerminatorSystem);
+    Add(&mObjectInstantiationCompletionHandlerTerminatorSystem);
 }

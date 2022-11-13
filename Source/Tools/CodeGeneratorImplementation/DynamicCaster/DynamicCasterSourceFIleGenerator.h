@@ -9,11 +9,11 @@ See for more information LICENSE.md.
 
 #include <functional>
 
-#include "EcsSystemExtensionFileGenerator.h"
+#include "DynamicCasterFileGenerator.h"
 
 namespace nsCodeGeneratorImplementation
 {
-    class TEcsSystemExtensionSourceFileGenerator : public TEcsSystemExtensionFileGenerator
+    class TDynamicCasterSourceFileGenerator : public TDynamicCasterFileGenerator
     {
     public:
         virtual void Work() override;

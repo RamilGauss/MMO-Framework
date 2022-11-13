@@ -13,8 +13,8 @@ template<typename Type>
 class TLinkToList
 {
 public:
-    typedef std::list<Type> List;
-    typedef typename List::iterator Iterator;
+    using List = std::list<Type>;
+    using Iterator = typename List::iterator;
 private:
     List* mList;
     Iterator mIt;

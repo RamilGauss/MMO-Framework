@@ -87,8 +87,9 @@ namespace nsMMOEngine
     template <class T>
     void TScenarioSendToClient::SendAll(std::list<unsigned int>& lKey, TBreakPacket& bp)
     {
-        if (bp.GetSize() == 0)
+        if (bp.GetSize() == 0) {
             return;// нельзя передавать нулевые пакеты
+        }
         for (unsigned int clientKey : lKey) {
             NeedContextByClientKey(clientKey);
             if (Context()) {

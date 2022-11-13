@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 using namespace nsClusterMonitorProtocol;
 
-TClientTransport::TClientTransport() : TBaseTransport( &mSlave )
+TClientTransport::TClientTransport() : TBaseTransport(&mSlave)
 {
 
 }
@@ -19,13 +19,13 @@ TClientTransport::~TClientTransport()
 
 }
 //---------------------------------------------------------------------------------
-void TClientTransport::Connect( TIP_Port& ip_port, std::string& login, std::string& password )
+void TClientTransport::Connect(TIP_Port& ip_port, std::string& login, std::string& password)
 {
-  mSlave.ConnectUp( ip_port, login, password, mSubNet );
+    mSlave.ConnectUp(ip_port, login, password, mSubNet);
 }
 //---------------------------------------------------------------------------------
-void TClientTransport::Send( nsPackets::THeader* packet, int packetSize )
+void TClientTransport::Send(nsPackets::THeader* packet, int packetSize)
 {
-  mSlave.SendUp( (char*) packet, packetSize );
+    mSlave.SendUp((char*)packet, packetSize);
 }
 //---------------------------------------------------------------------------------

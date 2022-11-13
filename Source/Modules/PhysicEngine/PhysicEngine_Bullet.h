@@ -14,79 +14,39 @@ See for more information LICENSE.md.
 
 #define STR_NAME_PHYSIC_ENGINE "PE"
 
+struct TWorld;
+
 class DllExport TPhysicEngine_Bullet
 {
 public:
-    typedef enum
+    enum class eStateWorld
     {
-        eStatePause,
-        eStateRealTime,
-        eStateControlTime,
-    } eStateWorld;
-private:
-    struct TWorld
-    {
-        btDiscreteDynamicsWorld* pWorld;
-        btBroadphaseInterface* pBroadphase;
-        btCollisionDispatcher* pDispatcher;
-        btSequentialImpulseConstraintSolver* pSolver;
-        btDefaultCollisionConfiguration* pCollisionConfiguration;
-
-        eStateWorld state;
-        eStateWorld prevState;
-
-        float ratioRealTimeToControl;//  ratio > 1 - ускорение времени, ratio < 1 - замедление
-
-        unsigned int prevTimeWork;
-
-        TWorld()
-        {
-            pWorld = NULL;
-            pBroadphase = NULL;
-            pDispatcher = NULL;
-            pSolver = NULL;
-            pCollisionConfiguration = NULL;
-            state = eStatePause;
-            prevState = eStatePause;
-            prevTimeWork = 0;
-            ratioRealTimeToControl = 1.0f;
-        }
-        ~TWorld()
-        {
-            delete pWorld;
-            delete pBroadphase;
-            delete pDispatcher;
-            delete pSolver;
-            delete pCollisionConfiguration;
-        }
+        PAUSE,
+        REAL_TIME,
+        CONTROL_TIME,
     };
-
-    typedef std::map<int, TWorld*> TMapIntPtrWorld;
-    typedef TMapIntPtrWorld::iterator   TMapIntPtrWorldIt;
-    typedef TMapIntPtrWorld::value_type TMapIntPtrWorldVT;
-
-    TMapIntPtrWorld mMapIDWorld;
-
-    int mLastID;
-
 public:
     TPhysicEngine_Bullet();
     virtual ~TPhysicEngine_Bullet();
 
     void Work();
-    void Setup(int id_world, eStateWorld state = eStateRealTime,
+    void Setup(int worldId, eStateWorld state = eStateWorld::REAL_TIME,
         float ratioRealTimeToControl = 1.0f);
 
     int AddWorld();
-    void DeleteWorld(int id_world);
+    void DeleteWorld(int worldId);
 
-    btDiscreteDynamicsWorld* GetWorld(int id_world);
-    btBroadphaseInterface* GetBroadphase(int id_world);
-    btCollisionDispatcher* GetDispatcher(int id_world);
-    btSequentialImpulseConstraintSolver* GetSolver(int id_world);
-    btDefaultCollisionConfiguration* GetCollisionConfiguration(int id_world);
+    btDiscreteDynamicsWorld* GetWorld(int worldId);
+    btBroadphaseInterface* GetBroadphase(int worldId);
+    btCollisionDispatcher* GetDispatcher(int worldId);
+    btSequentialImpulseConstraintSolver* GetSolver(int worldId);
+    btDefaultCollisionConfiguration* GetCollisionConfiguration(int worldId);
 
 private:
+    using TMapIntPtrWorld = std::map<int, TWorld*>;
+    TMapIntPtrWorld mMapIDWorld;
 
-    TPhysicEngine_Bullet::TWorld* GetByID(int id_world);
+    int mLastID;
+
+    TWorld* GetByID(int worldId);
 };

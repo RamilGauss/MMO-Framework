@@ -36,26 +36,22 @@ void TDialogMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrap
 
     auto entMng = GetEntMng();
 
-    auto pWidget = dynamic_cast<nsImGuiWidgets::TWidget*>(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid)->SetOwner(pDialog);
 
-    entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->pOwner = pWidget;
-    entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->pOwner = pWidget;
-    entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid)->pOwner = pWidget;
-    entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid)->pOwner = pWidget;
+    entMng->ViewComponent<nsGuiWrapper::TAnchorsComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TMinSizeComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TMaxSizeComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TVerticalAlignComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::THorizontalAlignComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TMinDistanceToParentComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TFocusComponent>(eid)->SetOwner(pDialog);
 
-    auto pUnit = dynamic_cast<nsImGuiWidgets::TUnit*>(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TPaddingComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TGridComponent>(eid)->SetOwner(pDialog);
+    entMng->ViewComponent<nsGuiWrapper::TSpacingComponent>(eid)->SetOwner(pDialog);
 
-    entMng->ViewComponent<nsGuiWrapper::TAnchorsComponent>(eid)->pOwner = pUnit;
-    entMng->ViewComponent<nsGuiWrapper::TMinSizeComponent>(eid)->pOwner = pUnit;
-    entMng->ViewComponent<nsGuiWrapper::TMaxSizeComponent>(eid)->pOwner = pUnit;
-    entMng->ViewComponent<nsGuiWrapper::TVerticalAlignComponent>(eid)->pOwner = pUnit;
-    entMng->ViewComponent<nsGuiWrapper::THorizontalAlignComponent>(eid)->pOwner = pUnit;
-    entMng->ViewComponent<nsGuiWrapper::TMinDistanceToParentComponent>(eid)->pOwner = pUnit;
-    entMng->ViewComponent<nsGuiWrapper::TFocusComponent>(eid)->pOwner = pUnit;
-
-    auto pFrame = dynamic_cast<nsImGuiWidgets::TFrame*>(pDialog);
-
-    entMng->ViewComponent<nsGuiWrapper::TPaddingComponent>(eid)->pOwner = pFrame;
-    entMng->ViewComponent<nsGuiWrapper::TGridComponent>(eid)->pOwner = pFrame;
-    entMng->ViewComponent<nsGuiWrapper::TSpacingComponent>(eid)->pOwner = pFrame;
+    entMng->ViewComponent<nsGuiWrapper::TGridComponent>(eid)->SetOwner(pDialog);
 }

@@ -26,19 +26,13 @@ namespace nsTornadoEngine
         TColanderVector<TReference> mReferenceCounters;
 
     public:
-        void LoadByGuid(const std::string& sceneGuid);
-        void LoadByAbsPath(const std::string& absPath);
-
-        void Save(const std::string& sceneGuid);
-
-        void Unload(const std::string& sceneGuid);
-
         void InstantiateByGuid(const std::string& sceneGuid, const std::string& universeGuid = TGuidConstants::DEFAULT_UNIVERSE);
         void InstantiateByAbsPath(const std::string& absPath, const std::string& universeGuid = TGuidConstants::DEFAULT_UNIVERSE);
 
         void Destroy(const std::string& sceneInstanceGuid);
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
 
+        void Save(const std::string& sceneGuid);
     private:
 
         void IncrementCounter(TUniverseManager::IndexType index);

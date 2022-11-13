@@ -8,7 +8,33 @@ See for more information LICENSE.md.
 #include "PhysicEngine_Bullet.h"
 #include "HiTimer.h"
 
+struct TWorld
+{
+    btDiscreteDynamicsWorld* pWorld = nullptr;
+    btBroadphaseInterface* pBroadphase = nullptr;
+    btCollisionDispatcher* pDispatcher = nullptr;
+    btSequentialImpulseConstraintSolver* pSolver = nullptr;
+    btDefaultCollisionConfiguration* pCollisionConfiguration = nullptr;
 
+    TPhysicEngine_Bullet::eStateWorld state = TPhysicEngine_Bullet::eStateWorld::PAUSE;
+    TPhysicEngine_Bullet::eStateWorld prevState = TPhysicEngine_Bullet::eStateWorld::PAUSE;
+
+    float ratioRealTimeToControl = 1.0f;//  ratio > 1 - ускорение времени, ratio < 1 - замедление
+
+    unsigned int prevTimeWork = 0;
+
+    ~TWorld();
+};
+//----------------------------------------------------------------------------------------------
+TWorld::~TWorld()
+{
+    delete pWorld;
+    delete pBroadphase;
+    delete pDispatcher;
+    delete pSolver;
+    delete pCollisionConfiguration;
+}
+//----------------------------------------------------------------------------------------------
 TPhysicEngine_Bullet::TPhysicEngine_Bullet()
 {
     mLastID = 0;
@@ -16,15 +42,16 @@ TPhysicEngine_Bullet::TPhysicEngine_Bullet()
 //----------------------------------------------------------------------------------------------
 TPhysicEngine_Bullet::~TPhysicEngine_Bullet()
 {
-    for (auto& ID_World : mMapIDWorld)
+    for (auto& ID_World : mMapIDWorld) {
         delete ID_World.second;
+    }
     mMapIDWorld.clear();
 }
 //----------------------------------------------------------------------------------------------
 int TPhysicEngine_Bullet::AddWorld()
 {
     mLastID++;
-    TWorld* pWorld = new TWorld;
+    auto pWorld = new TWorld();
 
     pWorld->pBroadphase = new btDbvtBroadphase;
     pWorld->pCollisionConfiguration = new btDefaultCollisionConfiguration;
@@ -33,67 +60,73 @@ int TPhysicEngine_Bullet::AddWorld()
     pWorld->pWorld = new btDiscreteDynamicsWorld(pWorld->pDispatcher, pWorld->pBroadphase,
         pWorld->pSolver, pWorld->pCollisionConfiguration);
 
-    mMapIDWorld.insert(TMapIntPtrWorldVT(mLastID, pWorld));
+    mMapIDWorld.insert({ mLastID, pWorld });
     return mLastID;
 }
 //----------------------------------------------------------------------------------------------
-void TPhysicEngine_Bullet::DeleteWorld(int id_world)
+void TPhysicEngine_Bullet::DeleteWorld(int worldId)
 {
-    TWorld* pWorld = GetByID(id_world);
+    auto pWorld = GetByID(worldId);
     delete pWorld;
-    mMapIDWorld.erase(id_world);
+    mMapIDWorld.erase(worldId);
 }
 //----------------------------------------------------------------------------------------------
-btDiscreteDynamicsWorld* TPhysicEngine_Bullet::GetWorld(int id_world)
+btDiscreteDynamicsWorld* TPhysicEngine_Bullet::GetWorld(int worldId)
 {
-    TWorld* pWorld = GetByID(id_world);
-    if (pWorld)
+    auto pWorld = GetByID(worldId);
+    if (pWorld) {
         return pWorld->pWorld;
+    }
 
-    return NULL;
+    return nullptr;
 }
 //----------------------------------------------------------------------------------------------
-btBroadphaseInterface* TPhysicEngine_Bullet::GetBroadphase(int id_world)
+btBroadphaseInterface* TPhysicEngine_Bullet::GetBroadphase(int worldId)
 {
-    TWorld* pWorld = GetByID(id_world);
-    if (pWorld)
+    auto pWorld = GetByID(worldId);
+    if (pWorld) {
         return pWorld->pBroadphase;
+    }
 
-    return NULL;
+    return nullptr;
 }
 //----------------------------------------------------------------------------------------------
 btCollisionDispatcher* TPhysicEngine_Bullet::GetDispatcher(int id_world)
 {
-    TWorld* pWorld = GetByID(id_world);
-    if (pWorld)
+    auto pWorld = GetByID(id_world);
+    if (pWorld) {
         return pWorld->pDispatcher;
+    }
 
-    return NULL;
+    return nullptr;
 }
 //----------------------------------------------------------------------------------------------
-btSequentialImpulseConstraintSolver* TPhysicEngine_Bullet::GetSolver(int id_world)
+btSequentialImpulseConstraintSolver* TPhysicEngine_Bullet::GetSolver(int worldId)
 {
-    TWorld* pWorld = GetByID(id_world);
-    if (pWorld)
+    auto pWorld = GetByID(worldId);
+    if (pWorld) {
         return pWorld->pSolver;
+    }
 
-    return NULL;
+    return nullptr;
 }
 //----------------------------------------------------------------------------------------------
-btDefaultCollisionConfiguration* TPhysicEngine_Bullet::GetCollisionConfiguration(int id_world)
+btDefaultCollisionConfiguration* TPhysicEngine_Bullet::GetCollisionConfiguration(int worldId)
 {
-    TWorld* pWorld = GetByID(id_world);
-    if (pWorld)
+    auto pWorld = GetByID(worldId);
+    if (pWorld) {
         return pWorld->pCollisionConfiguration;
+    }
 
-    return NULL;
+    return nullptr;
 }
 //----------------------------------------------------------------------------------------------
-TPhysicEngine_Bullet::TWorld* TPhysicEngine_Bullet::GetByID(int id_world)
+TWorld* TPhysicEngine_Bullet::GetByID(int worldId)
 {
-    TMapIntPtrWorldIt fit = mMapIDWorld.find(id_world);
-    if (fit == mMapIDWorld.end())
-        return NULL;
+    auto fit = mMapIDWorld.find(worldId);
+    if (fit == mMapIDWorld.end()) {
+        return nullptr;
+    }
 
     return fit->second;
 }
@@ -102,38 +135,42 @@ void TPhysicEngine_Bullet::Work()
 {
     // делать замеры времени самостоятельно
     for (auto& ID_World : mMapIDWorld) {
-        TWorld* pWorld = ID_World.second;
-        if (pWorld->state == eStateRealTime || pWorld->state == eStateControlTime) {
-            unsigned int now_ms = ht_GetMSCount();
-            unsigned int dt = now_ms - pWorld->prevTimeWork;
+        auto pWorld = ID_World.second;
+        if (pWorld->state == eStateWorld::REAL_TIME || pWorld->state == eStateWorld::CONTROL_TIME) {
+            unsigned int nowMs = ht_GetMSCount();
+            unsigned int dt = nowMs - pWorld->prevTimeWork;
 
-            float dt_sec = dt / 1000.0f;
+            float dtSec = dt / 1000.0f;
 
-            if (pWorld->state == eStateControlTime)
-                dt_sec /= pWorld->ratioRealTimeToControl;
+            if (pWorld->state == eStateWorld::CONTROL_TIME) {
+                dtSec /= pWorld->ratioRealTimeToControl;
+            }
 
             int maxSubSteps = 1000;
             float fixedTimeStep = 1 / 400.0f;//dt_sec/1;
-            pWorld->pWorld->stepSimulation(dt_sec, maxSubSteps, fixedTimeStep);
+            pWorld->pWorld->stepSimulation(dtSec, maxSubSteps, fixedTimeStep);
 
-            pWorld->prevTimeWork = now_ms;
+            pWorld->prevTimeWork = nowMs;
         }
     }
 }
 //----------------------------------------------------------------------------------------------
-void TPhysicEngine_Bullet::Setup(int id_world, eStateWorld state,
+void TPhysicEngine_Bullet::Setup(int worldId, eStateWorld state,
     float ratioRealTimeToControl)
 {
-    TWorld* pWorld = GetByID(id_world);
-    if (pWorld == NULL)
+    auto pWorld = GetByID(worldId);
+    if (pWorld == nullptr) {
         return;
+    }
 
     pWorld->prevState = pWorld->state;
     pWorld->state = state;
     pWorld->ratioRealTimeToControl = ratioRealTimeToControl;
 
-    if (pWorld->prevState == eStatePause)
-        if (pWorld->state == eStateRealTime || pWorld->state == eStateControlTime)
+    if (pWorld->prevState == eStateWorld::PAUSE) {
+        if (pWorld->state == eStateWorld::REAL_TIME || pWorld->state == eStateWorld::CONTROL_TIME) {
             pWorld->prevTimeWork = ht_GetMSCount();
+        }
+    }
 }
 //----------------------------------------------------------------------------------------------

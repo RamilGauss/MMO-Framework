@@ -13,18 +13,18 @@ See for more information LICENSE.md.
 
 namespace nsClusterMonitorProtocol
 {
-  class DllExport TBaseTransport : public TDstEvent, public TSrcEvent
-  {
-    TMakerNetTransport mMakerNetTransport;
-    nsMMOEngine::TBase* mBase = nullptr;
-  protected:
-    unsigned char mSubNet;
-  public:
-    TBaseTransport( nsMMOEngine::TBase* pBase );
-    virtual ~TBaseTransport();
+    class DllExport TBaseTransport : public TDstEvent, public TSrcEvent
+    {
+        TMakerNetTransport mMakerNetTransport;
+        nsMMOEngine::TBase* mBase = nullptr;
+    protected:
+        unsigned char mSubNet;
+    public:
+        TBaseTransport(nsMMOEngine::TBase* pBase);
+        virtual ~TBaseTransport();
 
-    void Open( unsigned short port, unsigned char subNet );
+        void Open(unsigned short port, unsigned char subNet);
 
-    void Work();
-  };
+        void Work();
+    };
 }

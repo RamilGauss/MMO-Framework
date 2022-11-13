@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "EcsSystemExtensionSourceFileGenerator.h"
+#include "DynamicCasterSourceFileGenerator.h"
 #include "fmt/core.h"
 #include "BL_Debug.h"
 
 using namespace nsCodeGeneratorImplementation;
 
-void TEcsSystemExtensionSourceFileGenerator::Work()
+void TDynamicCasterSourceFileGenerator::Work()
 {
     AddHeader(mConfig->targetForCodeGeneration.header);
     AddTimeHeader();
@@ -37,14 +37,14 @@ void TEcsSystemExtensionSourceFileGenerator::Work()
     AddImplementations();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TEcsSystemExtensionSourceFileGenerator::AddImplementations()
+void TDynamicCasterSourceFileGenerator::AddImplementations()
 {
     AddInit();
 
     AddMethodDeinitions();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TEcsSystemExtensionSourceFileGenerator::AddInit()
+void TDynamicCasterSourceFileGenerator::AddInit()
 {
     std::list<std::string> paramList;
     AddMethodImplementationBegin(s_Void, mSerializer->className, s_Init, paramList);
@@ -81,7 +81,7 @@ void TEcsSystemExtensionSourceFileGenerator::AddInit()
         auto str = fmt::format("{} {};", s_Data, var);
         Add(str);
 
-        str = fmt::format("{}.{} = [](void* p){{ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<{}*>(p)); }};",
+        str = fmt::format("{}.{} = [](void* p){{ return dynamic_cast<{}*>(static_cast<{}*>(p)); }};",
             var, s_castFunc, t);
         Add(str);
 
@@ -122,22 +122,23 @@ void TEcsSystemExtensionSourceFileGenerator::AddInit()
     AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TEcsSystemExtensionSourceFileGenerator::AddMethodDeinitions()
+void TDynamicCasterSourceFileGenerator::AddMethodDeinitions()
 {
     std::list<std::string> paramList =
     {
+        fmt::format("int {}", s_SrcRtti),
         "void* p", 
-        fmt::format("int {}", s_rtti),
+        fmt::format("int {}", s_DstRtti),
     };
 
-    std::string ret = "nsECSFramework::TSystem*";
-    AddMethodImplementationBegin(ret, mSerializer->className, s_DynamicCast, paramList);
+    std::string ret = "void*";
+    AddMethodImplementationBegin(ret, mSerializer->className, s_Cast, paramList);
     AddLeftBrace();
     IncrementTabs();
 
     auto str = fmt::format("{}();", s_Init);
     Add(str);
-    str = fmt::format("return {}[{}].{}(p);", s_mDataVector, s_rtti, s_castFunc);
+    str = fmt::format("return {}[{}][{}].{}(p);", s_mDataVector, s_SrcRtti, s_DstRtti, s_castFunc);
     Add(str);
 
     DecrementTabs();

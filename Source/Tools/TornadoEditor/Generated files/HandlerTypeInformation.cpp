@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_10_03 16:46:33.080
+// File has been generated at 2022_11_08 14:17:55.280
 	
 #include "HandlerTypeInformation.h"
 
@@ -26,12 +26,6 @@ void THandlerTypeInformation::Init()
     isNeedInit = false;
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
-    
-    int nsTornadoEditor_TCurrentPathToInputTextHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TCurrentPathToInputTextHandler>();
-    std::string nsTornadoEditor_TCurrentPathToInputTextHandler_n = "nsTornadoEditor::TCurrentPathToInputTextHandler";
-    mTypeNameList.push_back(nsTornadoEditor_TCurrentPathToInputTextHandler_n);
-    mRttiList.push_back(nsTornadoEditor_TCurrentPathToInputTextHandler_i);
-    mNameRttiMap.insert({ nsTornadoEditor_TCurrentPathToInputTextHandler_n, nsTornadoEditor_TCurrentPathToInputTextHandler_i });
     
     int nsTornadoEditor_TDialogButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TDialogButtonClickHandler>();
     std::string nsTornadoEditor_TDialogButtonClickHandler_n = "nsTornadoEditor::TDialogButtonClickHandler";

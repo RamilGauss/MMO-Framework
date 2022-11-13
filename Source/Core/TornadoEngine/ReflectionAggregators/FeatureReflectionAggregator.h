@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ITypeFactory.h"
 #include "ITypeInformation.h"
-#include "IEcsSystemExtension.h"
+#include "IDynamicCaster.h"
 
 namespace nsTornadoEngine
 {
@@ -18,9 +18,7 @@ namespace nsTornadoEngine
         virtual ~TFeatureReflectionAggregator() {}
 
         ITypeInformation* mTypeInfo = nullptr;
-
         ITypeFactory* mTypeFactory = nullptr;
-
-        IEcsSystemExtension* mEcsSystemExtension = nullptr;
+        IDynamicCaster* mDynamicCaster = nullptr;
     };
 }

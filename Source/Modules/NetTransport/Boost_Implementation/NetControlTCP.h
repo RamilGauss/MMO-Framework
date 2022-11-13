@@ -27,7 +27,7 @@ class TNetControlTCP : public INetControl
         eTimeRepeatSend = 0,//20,// мс
     };
 
-    char mBuffer[eSizeBuffer];
+    char mBuffer[eSizeBuffer] = { 0 };
     int mReadSize;
 
     volatile bool flgWaitConnect;

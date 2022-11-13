@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 
 namespace nsGuiWrapper
 {
-    struct DllExport TGridComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TFrame>, nsECSFramework::IComponent
+    struct DllExport TGridComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TGrid>, nsECSFramework::IComponent
     {
         bool value = false;
     };

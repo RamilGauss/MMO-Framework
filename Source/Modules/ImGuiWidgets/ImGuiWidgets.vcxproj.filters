@@ -101,9 +101,6 @@
     <ClInclude Include="include\Focus.h">
       <Filter>Properties</Filter>
     </ClInclude>
-    <ClInclude Include="include\Geometry.h">
-      <Filter>Properties</Filter>
-    </ClInclude>
     <ClInclude Include="include\Identity.h">
       <Filter>Properties</Filter>
     </ClInclude>
@@ -185,6 +182,36 @@
     <ClInclude Include="include\Color.h">
       <Filter>Properties</Filter>
     </ClInclude>
+    <ClInclude Include="include\TextureSize.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TextureUv.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Size.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Position.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputDouble.h">
+      <Filter>Units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputTextValue.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputIntValue.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputDoubleValue.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ComboBoxItems.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ComboBoxCurrentIndex.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Helper.cpp">
@@ -254,9 +281,6 @@
       <Filter>Units</Filter>
     </ClCompile>
     <ClCompile Include="src\Focus.cpp">
-      <Filter>Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Geometry.cpp">
       <Filter>Properties</Filter>
     </ClCompile>
     <ClCompile Include="src\Identity.cpp">
@@ -338,6 +362,36 @@
       <Filter>Properties</Filter>
     </ClCompile>
     <ClCompile Include="src\Color.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextureSize.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextureUv.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Size.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Position.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputDouble.cpp">
+      <Filter>Units</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputTextValue.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputDoubleValue.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputIntValue.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ComboBoxItems.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ComboBoxCurrentIndex.cpp">
       <Filter>Properties</Filter>
     </ClCompile>
   </ItemGroup>

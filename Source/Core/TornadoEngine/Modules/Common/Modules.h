@@ -19,6 +19,8 @@ namespace nsGraphicEngine
     struct TKeyMouseEventContainer;
 }
 
+class TSingletonManager;
+
 namespace nsTornadoEngine
 {
     class IGraphicEngineModule;
@@ -90,6 +92,9 @@ namespace nsTornadoEngine
         TPrefabObjectConstructor* prefabObjectConstructor = nullptr;
 
         TGizmo* gizmo = nullptr;
+
+        friend class TSingletonManager;
+        TModules();
     };
 
     extern DllExport TModules* Modules();

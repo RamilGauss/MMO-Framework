@@ -272,7 +272,6 @@
     <ClInclude Include="include\SortedVecWithKeyMap.h" />
     <ClInclude Include="include\SrcEvent.h" />
     <ClInclude Include="include\SrcEvent_ex.h" />
-    <ClInclude Include="include\StateMachine.h" />
     <ClInclude Include="include\StatisticsValue.h" />
     <ClInclude Include="include\StopWatch.h" />
     <ClInclude Include="include\StringExtensions.h" />

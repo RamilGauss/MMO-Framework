@@ -20,7 +20,7 @@ TBaseServer::~TBaseServer()
 
 }
 //-------------------------------------------------------------------------
-void TBaseServer::Accept(int sessionID, std::string& password)
+void TBaseServer::Accept(int sessionID, const std::string& password)
 {
     mSessionManager->Accept(sessionID, password);
 }

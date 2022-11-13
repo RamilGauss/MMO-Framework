@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "EcsSystemExtensionGenerator.h"
-#include "EcsSystemExtensionHeaderFileGenerator.h"
-#include "EcsSystemExtensionSourceFileGenerator.h"
+#include "DynamicCasterGenerator.h"
+#include "DynamicCasterHeaderFileGenerator.h"
+#include "DynamicCasterSourceFileGenerator.h"
 
 using namespace nsCodeGeneratorImplementation;
 
 //----------------------------------------------------------------------------------
-void TEcsSystemExtensionGenerator::Work()
+void TDynamicCasterGenerator::Work()
 {
     if (!HasSerializer()) {
         return;
@@ -22,9 +22,9 @@ void TEcsSystemExtensionGenerator::Work()
     GenerateSource();
 }
 //----------------------------------------------------------------------------------
-void TEcsSystemExtensionGenerator::GenerateHeader()
+void TDynamicCasterGenerator::GenerateHeader()
 {
-    TEcsSystemExtensionHeaderFileGenerator fileGenerator;
+    TDynamicCasterHeaderFileGenerator fileGenerator;
 
     mPairList->push_back(TStrListPair());
 
@@ -37,9 +37,9 @@ void TEcsSystemExtensionGenerator::GenerateHeader()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-void TEcsSystemExtensionGenerator::GenerateSource()
+void TDynamicCasterGenerator::GenerateSource()
 {
-    TEcsSystemExtensionSourceFileGenerator fileGenerator;
+    TDynamicCasterSourceFileGenerator fileGenerator;
 
     mPairList->push_back(TStrListPair());
 
@@ -52,8 +52,21 @@ void TEcsSystemExtensionGenerator::GenerateSource()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-void TEcsSystemExtensionGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames)
+void TDynamicCasterGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames)
 {
-    // empty
+    for (auto& parent : typeName->mInheritanceVec) {
+
+        auto parentType = mTypeManager->Get(parent.mOriginalName);
+        if (parentType == nullptr) {
+            parentType = mTypeManager->Get(parent.mLongTypeName);
+            dependencyNames.insert(parent.mLongTypeName);
+        } else {
+            dependencyNames.insert(parent.mOriginalName);
+        }
+
+        if (parentType) {
+            GetDependencies(parentType, dependencyNames);
+        }
+    }
 }
 //----------------------------------------------------------------------------------

@@ -8,7 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Identity.h"
-#include "Geometry.h"
+#include "Size.h"
+#include "Position.h"
 
 #include <vector>
 #include <string>
@@ -17,7 +18,7 @@ namespace nsImGuiWidgets
 {
     class TWindow;
 
-    struct DllExport TDockNode : public TIdentity, public TGeometry
+    struct DllExport TDockNode : public TIdentity, public TSize, public TPosition
     {
         enum class Type
         {

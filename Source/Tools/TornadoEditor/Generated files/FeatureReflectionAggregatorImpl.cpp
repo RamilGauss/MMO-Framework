@@ -17,13 +17,13 @@ TFeatureReflectionAggregatorImpl::TFeatureReflectionAggregatorImpl()
 {
     mTypeFactory = new TFeatureTypeFactoryImpl();
     mTypeInfo = new TFeatureTypeInformationImpl();
-    mEcsSystemExtension = new TFeatureEcsSystemExtensionImpl();
+    mDynamicCaster = new TFeatureDynamicCasterImpl();
 }
 //-----------------------------------------------------------------------------
 TFeatureReflectionAggregatorImpl::~TFeatureReflectionAggregatorImpl()
 {
     delete mTypeFactory;
     delete mTypeInfo;
-    delete mEcsSystemExtension;
+    delete mDynamicCaster;
 }
 //-----------------------------------------------------------------------------

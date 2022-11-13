@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_10_29 17:33:17.023
+// File has been generated at 2022_11_08 14:16:07.296
 	
 #include "ComponentTypeInformation.h"
 
@@ -417,11 +417,11 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TWindowComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TWindowComponent_n, nsGuiWrapper_TWindowComponent_i });
     
-    int nsLogicWrapper_TObjectInstanceEndHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstanceEndHandlerComponent>();
-    std::string nsLogicWrapper_TObjectInstanceEndHandlerComponent_n = "nsLogicWrapper::TObjectInstanceEndHandlerComponent";
-    mTypeNameList.push_back(nsLogicWrapper_TObjectInstanceEndHandlerComponent_n);
-    mRttiList.push_back(nsLogicWrapper_TObjectInstanceEndHandlerComponent_i);
-    mNameRttiMap.insert({ nsLogicWrapper_TObjectInstanceEndHandlerComponent_n, nsLogicWrapper_TObjectInstanceEndHandlerComponent_i });
+    int nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>();
+    std::string nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_n = "nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent";
+    mTypeNameList.push_back(nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_n);
+    mRttiList.push_back(nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_i);
+    mNameRttiMap.insert({ nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_n, nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_i });
     
     int nsLogicWrapper_TPrefabObjectReferenceComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabObjectReferenceComponent>();
     std::string nsLogicWrapper_TPrefabObjectReferenceComponent_n = "nsLogicWrapper::TPrefabObjectReferenceComponent";

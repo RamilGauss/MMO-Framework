@@ -11,13 +11,14 @@ See for more information LICENSE.md.
 
 namespace nsCodeGeneratorImplementation
 {
-    class TEcsSystemExtensionFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
+    class TDynamicCasterFileGenerator : public nsReflectionCodeGenerator::IFileGenerator
     {
     protected:
         const std::string s_Init = "Init";
-        const std::string s_DynamicCast = "DynamicCast";
+        const std::string s_Cast = "Cast";
 
-        const std::string s_rtti = "rtti";
+        const std::string s_SrcRtti = "srcRtti";
+        const std::string s_DstRtti = "dstRtti";
 
         const std::string s_Data = "Data";
         const std::string s_castFunc = "castFunc";

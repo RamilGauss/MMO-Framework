@@ -31,38 +31,6 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TSceneManager::LoadByAbsPath(const std::string& absPath)
-{
-    using namespace nsCommonWrapper;
-
-    // 1. Deserialize to object
-    TResourceContent sceneContent;
-    auto deserializeResult = Deserialize(sceneContent, absPath);
-    if (!deserializeResult) {
-        return;
-    }
-
-    auto componentReflection = Project()->mScenePartAggregator->mComponents;
-    componentReflection->mEntMng->SetEntityManager(Modules()->EntMng());
-
-    std::list<nsECSFramework::TEntityID> newEntities;
-
-    // 2. Convert typeName to rtti
-    DeserializeObjects(newEntities, sceneContent);
-}
-//--------------------------------------------------------------------------------
-void TSceneManager::LoadByGuid(const std::string& sceneGuid)
-{
-    // Convert to abs path
-    auto fit = mResourceContentMap.guidPathMap.find(sceneGuid);
-    if (fit == mResourceContentMap.guidPathMap.end()) {
-        GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", sceneGuid.c_str());
-        return;
-    }
-
-    LoadByAbsPath(fit->second);
-}
-//--------------------------------------------------------------------------------
 void TSceneManager::InstantiateByAbsPath(const std::string& absPath, const std::string& universeGuid)
 {
     using namespace nsCommonWrapper;
@@ -115,19 +83,6 @@ void TSceneManager::InstantiateByGuid(const std::string& sceneGuid, const std::s
     }
 
     InstantiateByAbsPath(fit->second, universeGuid);
-}
-//--------------------------------------------------------------------------------
-void TSceneManager::Unload(const std::string& sceneGuid)
-{
-    nsCommonWrapper::TSceneGuidComponent sceneGuidComponent;
-    sceneGuidComponent.value = sceneGuid;
-    auto eids = mEntityManager->GetByValueCopy(sceneGuidComponent);
-
-    // Add tag component for all entities
-    nsCommonWrapper::TNeedDestroyObjectTagComponent needDestroySceneComponent;
-    for (auto& eid : eids) {
-        mEntityManager->SetComponent(eid, needDestroySceneComponent);
-    }
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::Save(const std::string& sceneGuid)

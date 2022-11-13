@@ -23,7 +23,7 @@ namespace nsECSFramework
         TCollectionVec mHasCollectionVec;
         TCollectionVec mValueCollectionVec;
 
-        typedef TColanderVector<TComponentContainer*> TComponentVec;// from memory pool
+        using TComponentVec = TColanderVector<TComponentContainer*>;// from memory pool
         TComponentVec mComponents;
 
         std::list<TypeIndexType> mComponentIndexInUse;

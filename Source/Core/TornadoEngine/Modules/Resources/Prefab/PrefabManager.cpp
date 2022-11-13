@@ -37,46 +37,6 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TPrefabManager::LoadByGuid(const std::string& prefabGuid)
-{
-    // Convert to abs path
-    auto fit = mResourceContentMap.guidPathMap.find(prefabGuid);
-    if (fit == mResourceContentMap.guidPathMap.end()) {
-        GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", prefabGuid.c_str());
-        return;
-    }
-    LoadByAbsPath(fit->second);
-}
-//--------------------------------------------------------------------------------
-void TPrefabManager::LoadByAbsPath(const std::string& absPath)
-{
-    // Same as InstantiateByAbsPath, but without replasing guid
-    TResourceContent prefabContent;
-    auto deserializeResult = Deserialize(prefabContent, absPath);
-    if (!deserializeResult) {
-        return;
-    }
-
-    // Convert typeName to rtti
-    std::list<nsECSFramework::TEntityID> newEntities;
-    DeserializeObjects(newEntities, prefabContent);
-}
-//--------------------------------------------------------------------------------
-void TPrefabManager::LoadByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor, nsECSFramework::TEntityID eid)
-{
-    auto parentEid = prefabObjConstructor->GetParent(eid);
-    if (parentEid != nsECSFramework::NONE) {
-        return;
-    }
-
-    auto componentReflection = Project()->mScenePartAggregator->mComponents;
-    componentReflection->mEntMng->SetEntityManager(mEntityManager);
-
-    std::list<nsECSFramework::TEntityID> newEntities;
-
-    CreateEntity(prefabObjConstructor, eid, newEntities);
-}
-//--------------------------------------------------------------------------------
 void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std::string& sceneInstanceGuid,
     const std::string& parentGuid)
 {
@@ -104,19 +64,6 @@ void TPrefabManager::InstantiateByGuid(const std::string& prefabGuid, const std:
     }
 
     InstantiateByAbsPath(fit->second, sceneInstanceGuid, parentGuid);
-}
-//--------------------------------------------------------------------------------
-void TPrefabManager::Unload(const std::string& prefabGuid)
-{
-    nsCommonWrapper::TPrefabGuidComponent prefabGuidComponent;
-    prefabGuidComponent.value = prefabGuid;
-    auto eids = mEntityManager->GetByValueCopy(prefabGuidComponent);
-
-    // Add tag component for all entities
-    nsCommonWrapper::TNeedDestroyObjectTagComponent needDestroySceneComponent;
-    for (auto& eid : eids) {
-        mEntityManager->SetComponent(eid, needDestroySceneComponent);
-    }
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::Save(const std::string& sceneGuid)

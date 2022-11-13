@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <filesystem>
 
-#include "IObjectInstanceEndHandler.h"
+#include "IObjectInstantiationCompletionHandler.h"
 
 #include "Modules.h"
 #include "StopAccessor.h"
@@ -20,7 +20,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEditor
 {
-    class DllExport TCurrentPathToInputTextHandler : public nsLogicWrapper::IObjectInstanceEndHandler
+    class DllExport TCurrentPathToInputTextHandler : public nsLogicWrapper::IObjectInstantiationCompletionHandler
     {
     public:
         void Handle(nsECSFramework::TEntityID eid) override

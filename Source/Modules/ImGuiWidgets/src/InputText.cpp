@@ -8,22 +8,13 @@ See for more information LICENSE.md.
 #include "InputText.h"
 
 #include <imgui_internal.h>
+#include <imgui_stdlib.h>
 
 using namespace nsImGuiWidgets;
 
-std::string TInputText::GetText()
+int nsImGuiWidgets::nsInputText::EditCallback(ImGuiInputTextCallbackData* data)
 {
-    return mValue;
-}
-//------------------------------------------------------------------------------------
-void TInputText::SetText(const std::string& str)
-{
-    strcpy_s(mValue, str.c_str());
-}
-//------------------------------------------------------------------------------------
-static int EditCallback(ImGuiInputTextCallbackData* data)
-{
-    auto inputText = (TInputText*) data->UserData;
+    auto inputText = (TInputText*)data->UserData;
     inputText->SetTextEdited();
     return 0;
 }
@@ -32,11 +23,15 @@ void TInputText::RenderInheritance()
 {
     ImGui::PushItemWidth(GetSize().x);
 
+    auto str = GetText();
+
     auto flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackEdit | ImGuiInputTextFlags_AutoSelectAll;
-    if (ImGui::InputText(mTitle.c_str(), mValue, SIZE, flags, EditCallback, this)) {
+    if (ImGui::InputText(mTitle.c_str(), &str, flags, nsInputText::EditCallback, this)) {
         mOnTextEditEndsCB.Notify(this);
     }
     if (mIsTextEdited) {
+        SetText(str);
+
         mOnTextEditCB.Notify(this);
         mIsTextEdited = false;
     }

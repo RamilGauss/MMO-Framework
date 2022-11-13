@@ -7,15 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IHandler.h"
+#include "TypeDef.h"
 
-#include <ECS/include/Config.h>
-
-namespace nsLogicWrapper
+namespace nsImGuiWidgets
 {
-    class DllExport IObjectInstanceEndHandler : public nsTornadoEngine::IHandler
+    class DllExport TComboBoxCurrentIndex
     {
     public:
-        virtual void Handle(nsECSFramework::TEntityID eid) = 0;
+        virtual int GetCurrentIndex() const;
+        virtual void SetCurrentIndex(int value);
+    private:
+        int mCurrentIndex = -1;
     };
 }

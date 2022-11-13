@@ -11,38 +11,11 @@ using namespace nsImGuiWidgets;
 
 void TInputInt::RenderInheritance()
 {
-    if (ImGui::InputInt(mTitle.c_str(), &mValue, mStep, mStepFast)) {
+    auto value = GetValue();
+
+    if (ImGui::InputInt(mTitle.c_str(), &value, GetStep(), GetStepFast())) {
+        SetValue(value);
         mOnChangeCB.Notify(this);
     }
-}
-//------------------------------------------------------------------------------------
-void TInputInt::SetValue(int value)
-{
-    mValue = value;
-}
-//------------------------------------------------------------------------------------
-void TInputInt::SetStep(int value)
-{
-    mStep = value;
-}
-//------------------------------------------------------------------------------------
-void TInputInt::SetStepFast(int value)
-{
-    mStepFast = value;
-}
-//------------------------------------------------------------------------------------
-int TInputInt::GetValue() const
-{
-    return mValue;
-}
-//------------------------------------------------------------------------------------
-int TInputInt::GetStep() const
-{
-    return mStep;
-}
-//------------------------------------------------------------------------------------
-int TInputInt::GetStepFast() const
-{
-    return mStepFast;
 }
 //------------------------------------------------------------------------------------

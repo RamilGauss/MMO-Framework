@@ -20,10 +20,3 @@ TWidget::SubType TNode::GetSubType() const
     return SubType::NODE;
 }
 //-------------------------------------------------------------------------
-void TNode::SetTexture(void* textureId, int width, int height)
-{
-    mTextureId = textureId;
-    mWidth = width;
-    mHeight = height;
-}
-//-------------------------------------------------------------------------

@@ -19,60 +19,60 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\BinaryMarshallerFileGenerator.cpp" />
-    <ClCompile Include="Sources\BinaryMarshallerGenerator.cpp" />
-    <ClCompile Include="Sources\BinaryMarshallerHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\BinaryMarshallerSourceFileGenerator.cpp" />
-    <ClCompile Include="Sources\EcsSystemExtensionFileGenerator.cpp" />
-    <ClCompile Include="Sources\EcsSystemExtensionGenerator.cpp" />
-    <ClCompile Include="Sources\EcsSystemExtensionHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\EcsSystemExtensionSourceFIleGenerator.cpp" />
-    <ClCompile Include="Sources\EcsComponentExtensionFileGenerator.cpp" />
-    <ClCompile Include="Sources\EcsComponentExtensionGenerator.cpp" />
-    <ClCompile Include="Sources\EcsComponentExtensionHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\EcsComponentExtensionSourceFIleGenerator.cpp" />
-    <ClCompile Include="Sources\IncludeListFileGenerator.cpp" />
-    <ClCompile Include="Sources\IncludeListGenerator.cpp" />
-    <ClCompile Include="Sources\JsonSerializerFileGenerator.cpp" />
-    <ClCompile Include="Sources\JsonSerializerGenerator.cpp" />
-    <ClCompile Include="Sources\JsonSerializerHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\JsonSerializerSourceFileGenerator.cpp" />
-    <ClCompile Include="Sources\TypeFactoryFileGenerator.cpp" />
-    <ClCompile Include="Sources\TypeFactoryGenerator.cpp" />
-    <ClCompile Include="Sources\TypeFactoryHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\TypeFactorySourceFIleGenerator.cpp" />
-    <ClCompile Include="Sources\TypeInformationFileGenerator.cpp" />
-    <ClCompile Include="Sources\TypeInformationGenerator.cpp" />
-    <ClCompile Include="Sources\TypeInformationHeaderFileGenerator.cpp" />
-    <ClCompile Include="Sources\TypeInformationSourceFIleGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerFileGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerHeaderFileGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerSourceFileGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterFileGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterHeaderFileGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterSourceFIleGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionFileGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.cpp" />
+    <ClCompile Include="IncludeList\IncludeListFileGenerator.cpp" />
+    <ClCompile Include="IncludeList\IncludeListGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerFileGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerHeaderFileGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerSourceFileGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactoryFileGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactoryGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactoryHeaderFileGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactorySourceFIleGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationFileGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationHeaderFileGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationSourceFIleGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\BinaryMarshallerFileGenerator.h" />
-    <ClInclude Include="Sources\BinaryMarshallerGenerator.h" />
-    <ClInclude Include="Sources\BinaryMarshallerHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\BinaryMarshallerSourceFileGenerator.h" />
-    <ClInclude Include="Sources\EcsSystemExtensionFileGenerator.h" />
-    <ClInclude Include="Sources\EcsSystemExtensionGenerator.h" />
-    <ClInclude Include="Sources\EcsSystemExtensionHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\EcsSystemExtensionSourceFIleGenerator.h" />
-    <ClInclude Include="Sources\EcsComponentExtensionFileGenerator.h" />
-    <ClInclude Include="Sources\EcsComponentExtensionGenerator.h" />
-    <ClInclude Include="Sources\EcsComponentExtensionHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\EcsComponentExtensionSourceFIleGenerator.h" />
-    <ClInclude Include="Sources\IncludeListFileGenerator.h" />
-    <ClInclude Include="Sources\IncludeListGenerator.h" />
-    <ClInclude Include="Sources\JsonSerializerFileGenerator.h" />
-    <ClInclude Include="Sources\JsonSerializerGenerator.h" />
-    <ClInclude Include="Sources\JsonSerializerHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\JsonSerializerSourceFileGenerator.h" />
-    <ClInclude Include="Sources\TypeFactoryFileGenerator.h" />
-    <ClInclude Include="Sources\TypeFactoryGenerator.h" />
-    <ClInclude Include="Sources\TypeFactoryHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\TypeFactorySourceFIleGenerator.h" />
-    <ClInclude Include="Sources\TypeInformationFileGenerator.h" />
-    <ClInclude Include="Sources\TypeInformationGenerator.h" />
-    <ClInclude Include="Sources\TypeInformationHeaderFileGenerator.h" />
-    <ClInclude Include="Sources\TypeInformationSourceFIleGenerator.h" />
+    <ClInclude Include="Binary\BinaryMarshallerFileGenerator.h" />
+    <ClInclude Include="Binary\BinaryMarshallerGenerator.h" />
+    <ClInclude Include="Binary\BinaryMarshallerHeaderFileGenerator.h" />
+    <ClInclude Include="Binary\BinaryMarshallerSourceFileGenerator.h" />
+    <ClInclude Include="DynamicCaster\DynamicCasterFileGenerator.h" />
+    <ClInclude Include="DynamicCaster\DynamicCasterGenerator.h" />
+    <ClInclude Include="DynamicCaster\DynamicCasterHeaderFileGenerator.h" />
+    <ClInclude Include="DynamicCaster\DynamicCasterSourceFIleGenerator.h" />
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionFileGenerator.h" />
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionGenerator.h" />
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.h" />
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.h" />
+    <ClInclude Include="IncludeList\IncludeListFileGenerator.h" />
+    <ClInclude Include="IncludeList\IncludeListGenerator.h" />
+    <ClInclude Include="Json\JsonSerializerFileGenerator.h" />
+    <ClInclude Include="Json\JsonSerializerGenerator.h" />
+    <ClInclude Include="Json\JsonSerializerHeaderFileGenerator.h" />
+    <ClInclude Include="Json\JsonSerializerSourceFileGenerator.h" />
+    <ClInclude Include="TypeFactory\TypeFactoryFileGenerator.h" />
+    <ClInclude Include="TypeFactory\TypeFactoryGenerator.h" />
+    <ClInclude Include="TypeFactory\TypeFactoryHeaderFileGenerator.h" />
+    <ClInclude Include="TypeFactory\TypeFactorySourceFIleGenerator.h" />
+    <ClInclude Include="TypeInformation\TypeInformationFileGenerator.h" />
+    <ClInclude Include="TypeInformation\TypeInformationGenerator.h" />
+    <ClInclude Include="TypeInformation\TypeInformationHeaderFileGenerator.h" />
+    <ClInclude Include="TypeInformation\TypeInformationSourceFIleGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -192,7 +192,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
     </ClCompile>
@@ -217,7 +217,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
     </ClCompile>

@@ -21,7 +21,6 @@ namespace nsTornadoEngine
         virtual ~TComponentReflectionAggregator() {}
 
         ITypeInformation* mTypeInfo = nullptr;
-
         IJsonSerializer* mJson = nullptr;
         IBinaryMarshaller* mBin = nullptr;
         IImGuiSerializer* mImGui = nullptr;

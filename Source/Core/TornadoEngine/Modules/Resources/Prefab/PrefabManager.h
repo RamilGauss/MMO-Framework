@@ -17,15 +17,6 @@ namespace nsTornadoEngine
     class DllExport TPrefabManager : public TObjectManager
     {
     public:
-
-        void LoadByGuid(const std::string& prefabGuid);
-        void LoadByAbsPath(const std::string& absPath);
-        void LoadByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor, nsECSFramework::TEntityID eid);
-
-        void Save(const std::string& prefabGuid);
-
-        void Unload(const std::string& prefabGuid);
-
         // Если SceneInstance не задан, то искать нужно по родителю
         // И наоборот, если не задан родитель, то нужен SceneInstance, что бы найти root.
 
@@ -36,11 +27,10 @@ namespace nsTornadoEngine
         void InstantiateByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor, nsECSFramework::TEntityID eid, 
             const std::string& sceneInstanceGuid, const std::string& parentGuid = TGuidConstants::NONE);
 
-
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
-
         void Destroy(const std::string& prefabInstanceGuid);
 
+        void Save(const std::string& prefabGuid);
     private:
         void CreateEntity(TPrefabObjectConstructor* prefabObjConstructor, 
             nsECSFramework::TEntityID eid, std::list<nsECSFramework::TEntityID>& newEntities);

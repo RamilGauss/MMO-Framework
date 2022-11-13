@@ -127,7 +127,7 @@ namespace nsMMOEngine
         void SetLoginHash(char* loginHash, int loginHashSize);
         std::string GetLoginHashStr();
 
-        void SetPassword(std::string& password);
+        void SetPassword(const std::string& password);
 
     private:
         void PrintError();

@@ -7,24 +7,24 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "EcsSystemExtensionFileGenerator.h"
+#include "DynamicCasterFileGenerator.h"
 #include "fmt/core.h"
 
 namespace nsCodeGeneratorImplementation
 {
-    class TEcsSystemExtensionHeaderFileGenerator : public TEcsSystemExtensionFileGenerator
+    class TDynamicCasterHeaderFileGenerator : public TDynamicCasterFileGenerator
     {
         const std::list<std::string> s_Decl =
         {
             "public:",
-fmt::format("    static nsECSFramework::TSystem* {}(void* p, int {});", s_DynamicCast, s_rtti),
+fmt::format("    static void* {}(int {}, void* p, int {});", s_Cast, s_SrcRtti, s_DstRtti),
             "private:",
 fmt::format("    struct {}", s_Data),
             "    {",
-fmt::format("        std::function<nsECSFramework::TSystem* (void*)> {};", s_castFunc),
+fmt::format("        std::function<void*(void*)> {};", s_castFunc),
             "    };",
             "",
-fmt::format("    static std::vector<{}> {};", s_Data, s_mDataVector),
+fmt::format("    static std::vector<std::vector<{}>> {};", s_Data, s_mDataVector),
             "",
 fmt::format("    static void {}();", s_Init),
         };

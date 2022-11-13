@@ -17,7 +17,7 @@ namespace nsMMOEngine
         TBaseServer();
         virtual ~TBaseServer();
 
-        void Accept(int sessionID, std::string& password);
+        void Accept(int sessionID, const std::string& password);
         void Reject(int sessionID);
 
         // this method will be realize in future

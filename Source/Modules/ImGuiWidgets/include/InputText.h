@@ -8,29 +8,32 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Unit.h"
+#include "InputTextValue.h"
 
 #include "CallbackPool.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TInputText : public TUnit
+    namespace nsInputText
+    {
+        static int EditCallback(ImGuiInputTextCallbackData* data);
+    }
+
+    class DllExport TInputText : public TUnit, public TInputTextValue
     {
         bool mIsTextEdited = false;
 
     public:
-        std::string GetText();
-        void SetText(const std::string& str);
-
         using TCallback = TCallbackPool<TInputText*>;
 
         TCallback mOnTextEditCB;
         TCallback mOnTextEditEndsCB;
 
-        void SetTextEdited();
     protected:
-        static const size_t SIZE = 1024 * 4;// TODO: use std::vector
-        char mValue[SIZE] = {0};
-
         void RenderInheritance() override final;
+
+    private:
+        friend int nsInputText::EditCallback(ImGuiInputTextCallbackData* data);
+        void SetTextEdited();
     };
 }

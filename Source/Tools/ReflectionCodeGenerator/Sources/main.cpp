@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 #include "ReflectionCodeGeneratorLib/Sources/ReflectionCodeGenerator.h"
 
-#include "CodeGeneratorImplementation/Sources/IncludeListGenerator.h"
+#include "CodeGeneratorImplementation/IncludeList/IncludeListGenerator.h"
 
-#include "CodeGeneratorImplementation/Sources/JsonSerializerGenerator.h"
-#include "CodeGeneratorImplementation/Sources/BinaryMarshallerGenerator.h"
-#include "CodeGeneratorImplementation/Sources/TypeFactoryGenerator.h"
-#include "CodeGeneratorImplementation/Sources/EcsComponentExtensionGenerator.h"
-#include "CodeGeneratorImplementation/Sources/EcsSystemExtensionGenerator.h"
-#include "CodeGeneratorImplementation/Sources/TypeInformationGenerator.h"
+#include "CodeGeneratorImplementation/Json/JsonSerializerGenerator.h"
+#include "CodeGeneratorImplementation/Binary/BinaryMarshallerGenerator.h"
+#include "CodeGeneratorImplementation/DynamicCaster/DynamicCasterGenerator.h"
+#include "CodeGeneratorImplementation/EcsComponentExtension/EcsComponentExtensionGenerator.h"
+#include "CodeGeneratorImplementation/TypeFactory/TypeFactoryGenerator.h"
+#include "CodeGeneratorImplementation/TypeInformation/TypeInformationGenerator.h"
 
 using namespace nsReflectionCodeGenerator;
 using namespace nsCodeGeneratorImplementation;
@@ -29,7 +29,7 @@ TJsonSerializerGenerator g_JsonGenerator;
 TBinaryMarshallerGenerator g_BinaryGenerator;
 TTypeFactoryGenerator g_ReflectionGenerator;
 TEcsComponentExtensionGenerator g_EcsComponentExtensionGenerator;
-TEcsSystemExtensionGenerator g_EcsSystemExtensionGenerator;
+TDynamicCasterGenerator g_DynamicCasterGenerator;
 TTypeInformationGenerator g_TypeInfoGenerator;
 
 //---------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
     g_Rcg.AddGenerator(&g_BinaryGenerator);
     g_Rcg.AddGenerator(&g_ReflectionGenerator);
     g_Rcg.AddGenerator(&g_EcsComponentExtensionGenerator);
-    g_Rcg.AddGenerator(&g_EcsSystemExtensionGenerator);
+    g_Rcg.AddGenerator(&g_DynamicCasterGenerator);
     g_Rcg.AddGenerator(&g_TypeInfoGenerator);
 
     g_Rcg.SetIncludeListGenerator(&g_IncludeListGenerator);

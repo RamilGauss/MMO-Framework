@@ -19,11 +19,13 @@
             [ "nsGuiWrapper::IDialogCloseEventHandler" ],
             [ "nsGuiWrapper::IWindowCloseEventHandler" ],
             [ "nsGuiWrapper::IMenuNodeClickHandler" ],
-            [ "nsLogicWrapper::IObjectInstanceEndHandler" ],
             [ "nsGuiWrapper::IFrameKeyHandler" ],
             [ "nsGuiWrapper::IFrameMouseClickHandler" ],
             [ "nsGuiWrapper::IFrameMouseMoveHandler" ],
-            [ "nsGuiWrapper::IFrameMouseWheelHandler" ]
+            [ "nsGuiWrapper::IFrameMouseWheelHandler" ],
+            [ "nsLogicWrapper::IObjectInstantiationCompletionHandler" ],
+            [ "nsLogicWrapper::IPrefabInstantiationCompletionHandler" ],
+            [ "nsLogicWrapper::ISceneInstantiationCompletionHandler" ]
         ],
         "memberIgnore" : "IGNORE_ATTRIBUTE"
     },

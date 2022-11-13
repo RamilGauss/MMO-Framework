@@ -30,6 +30,6 @@ public:
 
     int Size()
     {
-        return mVec.size();
+        return (int)mVec.size();
     }
 };

@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #include <set>
 
-#include "EcsSystemExtensionHeaderFileGenerator.h"
+#include "DynamicCasterHeaderFileGenerator.h"
 
 using namespace nsCodeGeneratorImplementation;
 
-void TEcsSystemExtensionHeaderFileGenerator::Work()
+void TDynamicCasterHeaderFileGenerator::Work()
 {
     AddHeader(mConfig->targetForCodeGeneration.header);
     AddTimeHeader();

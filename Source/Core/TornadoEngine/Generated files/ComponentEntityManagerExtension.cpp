@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_10_29 17:33:17.008
+// File has been generated at 2022_11_08 14:16:07.287
 	
 #include "ComponentEntityManagerExtension.h"
 
@@ -933,19 +933,19 @@ void TComponentEntityManagerExtension::Init()
     
     m.insert({ rtti_nsGuiWrapper_TWindowComponent_Data, nsGuiWrapper_TWindowComponent_Data });
     
-    Data nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data;
-        nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
-        auto lambda = [&](nsLogicWrapper::TObjectInstanceEndHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsLogicWrapper::TObjectInstanceEndHandlerComponent>(eid, lambda, isNotify);
+    Data nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data;
+        nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        auto lambda = [&](nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>(eid, lambda, isNotify);
     };
-    nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TObjectInstanceEndHandlerComponent*)p), isNotify); };
-    nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TObjectInstanceEndHandlerComponent>(eid); };
-    nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TObjectInstanceEndHandlerComponent>(eid); };
-    nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TObjectInstanceEndHandlerComponent>(eid); };
-    nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TObjectInstanceEndHandlerComponent>(); };
-    auto rtti_nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstanceEndHandlerComponent>();
+    nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*)p), isNotify); };
+    nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>(eid); };
+    nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>(eid); };
+    nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>(eid); };
+    nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>(); };
+    auto rtti_nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>();
     
-    m.insert({ rtti_nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data, nsLogicWrapper_TObjectInstanceEndHandlerComponent_Data });
+    m.insert({ rtti_nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data, nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data });
     
     Data nsLogicWrapper_TPrefabObjectReferenceComponent_Data;
         nsLogicWrapper_TPrefabObjectReferenceComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {

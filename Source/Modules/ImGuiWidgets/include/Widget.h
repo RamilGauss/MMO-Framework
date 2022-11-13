@@ -16,7 +16,8 @@ See for more information LICENSE.md.
 #include "GraphicEngine/KeyMouseEventContainer.h"
 
 #include "Title.h"
-#include "Geometry.h"
+#include "Size.h"
+#include "Position.h"
 #include "Visibility.h"
 #include "Identity.h"
 #include "Color.h"
@@ -24,7 +25,7 @@ See for more information LICENSE.md.
 namespace nsImGuiWidgets
 {
     class DllExport TWidget : public nsGraphicEngine::IRenderable, 
-        public TTitle, public TColor, public TGeometry, public TVisibility, public TIdentity
+        public TTitle, public TColor, public TSize, public TPosition, public TVisibility, public TIdentity
     {
         static nsGraphicEngine::TKeyMouseEventContainer* mKeyMouseInputContainer;
     protected:

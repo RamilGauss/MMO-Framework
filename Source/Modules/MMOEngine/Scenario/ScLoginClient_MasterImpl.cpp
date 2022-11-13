@@ -31,8 +31,9 @@ TScLoginClient_MasterImpl::TScLoginClient_MasterImpl(IScenario* pSc) :
 void TScLoginClient_MasterImpl::RecvInherit(TDescRecvSession* pDesc)
 {
     // защита от хака
-    if (pDesc->dataSize < sizeof(THeader))
+    if (pDesc->dataSize < sizeof(THeader)) {
         return;
+    }
     //=======================================
     THeader* pHeader = (THeader*)pDesc->data;
     switch (pHeader->from) {
@@ -69,8 +70,9 @@ void TScLoginClient_MasterImpl::Work(unsigned int now_ms)
         return;
     }
     // 
-    if (Context()->IsStateTimeExpired(now_ms) == false)
+    if (Context()->IsStateTimeExpired(now_ms) == false) {
         return;
+    }
 
     auto errorType = Context()->GetCurrentStateErrorCode();
     // ошибка на той стороне
@@ -231,8 +233,9 @@ void TScLoginClient_MasterImpl::CheckRequestSS2M(TDescRecvSession* pDesc)
 void TScLoginClient_MasterImpl::TryLoginC2M(TDescRecvSession* pDesc)
 {
     // защита от хака
-    if (pDesc->dataSize < sizeof(THeaderTryLoginC2M))
+    if (pDesc->dataSize < sizeof(THeaderTryLoginC2M)) {
         return;
+    }
     //=====================================
     NeedContextBySession(pDesc->sessionID);
     if (Context() == nullptr) {
@@ -274,8 +277,9 @@ void TScLoginClient_MasterImpl::LeaveQueueC2M(TDescRecvSession* pDesc)
         return;
     }
     //-------------------------------------------------------------
-    if (Context()->GetNumInQueue() == 0)
+    if (Context()->GetNumInQueue() == 0) {
         return;
+    }
     Context()->Reject();
     Context()->GetMS()->CloseSession(GetID_SessionClientMaster());
     End();

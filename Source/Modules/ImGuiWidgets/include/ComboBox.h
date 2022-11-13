@@ -8,21 +8,21 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <vector>
+
 #include "Unit.h"
+#include "ComboBoxCurrentIndex.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TComboBox : public TUnit
+    //TComboBoxItems{std::vector<std::string>};
+    //TComboBoxItemCurrentIndex{int};
+
+    class DllExport TComboBox : public TUnit, public TComboBoxCurrentIndex
     {
     protected:
-        int mCurrentItemIndex = 0;
         std::vector<std::string> mItems;
         std::string* mCurrentItem = nullptr;
     public:
-
-        int GetCurrent();
-        void SetCurrent(int value);
-
         void SetItems(const std::vector<std::string>& items);
     protected:
         void RenderInheritance() override final;

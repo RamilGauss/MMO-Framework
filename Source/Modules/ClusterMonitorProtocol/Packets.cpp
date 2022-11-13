@@ -11,21 +11,21 @@ using namespace nsClusterMonitorProtocol::nsPackets;
 
 TRq_SlaveCount::TRq_SlaveCount()
 {
-  type = Rq_SlaveCount;
+    type = Rq_SlaveCount;
 }
 //---------------------------------------------------------------------------------------------
 TAn_SlaveCount::TAn_SlaveCount()
 {
-  type = An_SlaveCount;
+    type = An_SlaveCount;
 }
 //---------------------------------------------------------------------------------------------
 TCmd_CreateGroupAllClients::TCmd_CreateGroupAllClients()
 {
-  type = Cmd_CreateGroupAllClients;
+    type = Cmd_CreateGroupAllClients;
 }
 //---------------------------------------------------------------------------------------------
 TCmd_DestroyAllGroups::TCmd_DestroyAllGroups()
 {
-  type = Cmd_DestroyAllGroups;
+    type = Cmd_DestroyAllGroups;
 }
 //---------------------------------------------------------------------------------------------
