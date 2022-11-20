@@ -7,15 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IEcsSystemExtension.h"
+#include "IDynamicCaster.h"
 
 namespace nsTornadoEditor
 {
-    struct DllExport TFeatureEcsSystemExtensionImpl : public nsTornadoEngine::IEcsSystemExtension
+    struct DllExport TFeatureEcsSystemExtensionImpl : public nsTornadoEngine::IDynamicCaster
     {
         TFeatureEcsSystemExtensionImpl();
         virtual ~TFeatureEcsSystemExtensionImpl();
 
-        nsECSFramework::TSystem* DynamicCast(void* p, int rtti) override;
+        void* Cast(int srcRtti, void* srcPtr, int dstRtti) override;
     };
 }

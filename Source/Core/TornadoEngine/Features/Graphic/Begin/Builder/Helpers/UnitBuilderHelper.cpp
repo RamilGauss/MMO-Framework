@@ -25,8 +25,20 @@ See for more information LICENSE.md.
 
 using namespace nsGraphicWrapper;
 
-void TUnitBuilderHelper::SetupGeometry(nsECSFramework::TEntityManager* entMng,
-    nsECSFramework::TEntityID eid, nsImGuiWidgets::TGeometry* pGeometry)
+void TUnitBuilderHelper::SetupSize(nsECSFramework::TEntityManager* entMng,
+    nsECSFramework::TEntityID eid, nsImGuiWidgets::TSize* pGeometry)
+{
+    pGeometry->mOnSizeCB.Register(nullptr, [entMng, eid, pGeometry]()
+    {
+        nsGuiWrapper::TSizeComponent sizeComponent;
+        sizeComponent.x = pGeometry->GetSize().x;
+        sizeComponent.y = pGeometry->GetSize().y;
+        entMng->SetComponent(eid, sizeComponent);
+    });
+}
+//-----------------------------------------------------------------------------------------------------------------------
+void TUnitBuilderHelper::SetupPosition(nsECSFramework::TEntityManager* entMng,
+    nsECSFramework::TEntityID eid, nsImGuiWidgets::TPosition* pGeometry)
 {
     pGeometry->mOnPositionCB.Register(nullptr, [entMng, eid, pGeometry]()
     {
@@ -34,14 +46,6 @@ void TUnitBuilderHelper::SetupGeometry(nsECSFramework::TEntityManager* entMng,
         positionComponent.x = pGeometry->GetPos().x;
         positionComponent.y = pGeometry->GetPos().y;
         entMng->SetComponent(eid, positionComponent);
-    });
-
-    pGeometry->mOnSizeCB.Register(nullptr, [entMng, eid, pGeometry]()
-    {
-        nsGuiWrapper::TSizeComponent sizeComponent;
-        sizeComponent.x = pGeometry->GetSize().x;
-        sizeComponent.y = pGeometry->GetSize().y;
-        entMng->SetComponent(eid, sizeComponent);
     });
 }
 //-----------------------------------------------------------------------------------------------------------------------

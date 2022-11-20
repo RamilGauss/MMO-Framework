@@ -43,5 +43,6 @@ void TSystemMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWr
     }
 
     auto newSystem = systemReflection->mTypeFactory->New(rtti);
-    pC->value = systemReflection->mEcsSystemExtension->DynamicCast(newSystem, rtti);//!!!
+    auto systemRtti = GlobalTypeIdentifier()->Type<nsECSFramework::TSystem>();
+    pC->value = (nsECSFramework::TSystem*) systemReflection->mDynamicCaster->Cast(systemRtti, newSystem, rtti);//!!!
 }

@@ -342,7 +342,7 @@
   ],
   [
    "gtest:debug_postfix",
-   "deprecated"
+   "d"
   ],
   [
    "gtest:hide_symbols",

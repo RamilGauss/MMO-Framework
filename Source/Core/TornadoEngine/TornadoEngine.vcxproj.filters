@@ -528,9 +528,6 @@
     <ClCompile Include="Features\Graphic\Begin\Builder\Graphic\CameraBuilderFeature.cpp">
       <Filter>Features\Graphic\Builder\Graphic</Filter>
     </ClCompile>
-    <ClCompile Include="Generated files\EcsSystemExtension.cpp">
-      <Filter>Generated files</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\Gizmos\Gizmo.cpp">
       <Filter>Modules\Gizmos</Filter>
     </ClCompile>
@@ -571,6 +568,7 @@
     <ClCompile Include="Features\Graphic\Begin\Builder\Properties\AddPropertiesFeature.cpp" />
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\UpdatePropertiesFeature.cpp" />
     <ClCompile Include="Share\ImGuiSerializeTask.cpp" />
+    <ClCompile Include="Generated files\DynamicCaster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -1221,9 +1219,6 @@
     <ClInclude Include="Features\Graphic\Begin\Builder\Graphic\CameraBuilderFeature.h">
       <Filter>Features\Graphic\Builder\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\EcsSystemExtension.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Graphic\UniverseCameraComponent.h">
       <Filter>Components\Graphic</Filter>
     </ClInclude>
@@ -1297,12 +1292,16 @@
     <ClInclude Include="Handlers\Logic\IPrefabInstantiationCompletionHandler.h" />
     <ClInclude Include="Handlers\Logic\ISceneInstantiationCompletionHandler.h" />
     <ClInclude Include="ReflectionAggregators\IDynamicCaster.h" />
+    <ClInclude Include="Generated files\DynamicCaster.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />
     <None Include="reflectionConfig.json" />
     <None Include="handlerConfig.json" />
     <None Include="featureConfig.json" />
+    <None Include="dynamicCasterOutFile.json" />
+    <None Include="featureTypeInformationOutFile.json" />
+    <None Include="typeFactoryOutFile.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

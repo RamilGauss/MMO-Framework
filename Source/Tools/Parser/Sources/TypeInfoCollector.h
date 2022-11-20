@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 #include "TypeInfo.h"
 #include "ILexema.h"
-
+#include "TypeDeclarationLexema.h"
 
 namespace nsCppParser
 {
@@ -33,8 +33,6 @@ namespace nsCppParser
     class TFriendLexema;
     class TPragmaLexema;
     class TIdentifierLexema;
-
-    class TTypeDeclarationLexema;
 
     class TTypeInfoCollector
     {
@@ -75,6 +73,7 @@ namespace nsCppParser
         TTypeList mTypeResult;
 
         mutable std::string mFileName;
+        mutable std::string mAbsFileName;
 
         void CollectLexemasToInfoByBlock(TBlockLexemaEntity* blockLexemaEntity);
         void CollectLexemasToInfoByLine(TLineLexemaEntity* lineLexemaEntity);
@@ -108,5 +107,6 @@ namespace nsCppParser
         void FillPragmaListUpper(std::set<std::string>& pragmaList);
 
         void AddMethod(TFunctionLexema* pLexema);
+        void ParseInheritanceInfo(const TTypeDeclarationLexema::TInheritance& inheritance, TInheritanceInfo& inheritanceInfo);
     };
 }

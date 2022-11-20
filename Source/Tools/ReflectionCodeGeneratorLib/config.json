@@ -15,14 +15,15 @@
             ".hxx",
             ".h++"
         ],
-        "inheritances": [
-            [ "nsGuiWrapper::IButtonClickHandler" ]
-        ],
+        "inheritances": [],
         "memberIgnore": "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {
         "directory": "./Sources",
-        "includeListFileName": "IncludeList",
+        "includeListParams": {
+            "includeListFileName": "IncludeList",
+            "dirToInclude": []
+        },
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {
             "vector_static_t": "VECTOR"

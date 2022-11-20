@@ -29,7 +29,10 @@
     },
     "targetForCodeGeneration": {
         "directory": "./Generated files",
-        "includeListFileName": "FeatureIncludeList",
+        "includeListParams": {
+            "includeListFileName": "FeatureIncludeList",
+            "dirToInclude": []
+        },
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,

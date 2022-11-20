@@ -38,6 +38,7 @@
     <ClCompile Include="Sources\TypeInfo.cpp" />
     <ClCompile Include="Sources\TypeInfoCollector.cpp" />
     <ClCompile Include="Sources\TypeManager.cpp" />
+    <ClCompile Include="Sources\TypeReference.cpp" />
     <ClCompile Include="Sources\VariableDeclarationLexema.cpp" />
   </ItemGroup>
   <ItemGroup>

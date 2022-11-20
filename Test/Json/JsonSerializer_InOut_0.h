@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, ImGui, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_07_29 08:28:14.294
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2022_11_20 21:40:58.561
 	
 #pragma once
 
@@ -36,6 +36,7 @@ namespace nsJson_InOut_0
     
         static void Serialize(void* p, std::string& str, int rtti);
         static bool Deserialize(void* p, const std::string& str, int rtti, std::string& err);
+        static bool Has(int rtti);
     
     public:
         static void _Serialize(nsInOut::A* p, Jobj& obj);

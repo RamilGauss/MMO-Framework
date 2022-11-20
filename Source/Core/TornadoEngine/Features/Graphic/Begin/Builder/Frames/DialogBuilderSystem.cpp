@@ -37,7 +37,8 @@ void TDialogBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     auto entMng = GetEntMng();
 
     TUnitBuilderHelper::SetupWidget(entMng, eid, pDialogComponent->value);
-    TUnitBuilderHelper::SetupGeometry(entMng, eid, pDialogComponent->value);
+    TUnitBuilderHelper::SetupSize(entMng, eid, pDialogComponent->value);
+    TUnitBuilderHelper::SetupPosition(entMng, eid, pDialogComponent->value);
 
     auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
     pDialogComponent->value->mOnShowCB.Register(pDialogComponent->value, 

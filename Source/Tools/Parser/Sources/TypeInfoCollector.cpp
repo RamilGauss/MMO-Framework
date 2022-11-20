@@ -169,6 +169,7 @@ void TTypeInfoCollector::HandleEnum(TEnumLexema* pLexema)
     }
 
     typeInfo->mFileName = mFileName;
+    typeInfo->mAbsFileName = mAbsFileName;
 
     FillPragmaListUpper(typeInfo->mPragmaTextSet);
 
@@ -257,34 +258,15 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
         }
     }
 
-    auto currentSpace = GetCurrentSpace();
-
     for (auto& inheritance : baseLexema->mInheritanceList) {
 
         TInheritanceInfo inheritanceInfo;
-        inheritanceInfo.mOriginalName = inheritance.typeName;
-
-        const std::string COLON_COLON = "::";
-
-        auto ccIndex = inheritance.typeName.rfind(COLON_COLON);
-        if (ccIndex != std::string::npos) {
-            inheritanceInfo.mShortTypeName = inheritance.typeName.substr(ccIndex + COLON_COLON.length());
-            inheritanceInfo.mOriginalNameSpace = inheritance.typeName.substr(0, ccIndex);
-        } else {
-            inheritanceInfo.mShortTypeName = inheritance.typeName;
-        }
-
-        if (currentSpace.length() > 0) {
-            inheritanceInfo.mLongTypeName = currentSpace + "::" + inheritance.typeName;// ns::A::B
-        } else {
-            inheritanceInfo.mLongTypeName = inheritance.typeName;// ns::A::B
-        }
-        inheritanceInfo.mNameSpace = currentSpace;
-        inheritanceInfo.mInheritanceAccessLevel = inheritance.accessLevel;
+        ParseInheritanceInfo(inheritance, inheritanceInfo);
         typeInfo->mInheritanceVec.push_back(inheritanceInfo);
     }
 
     typeInfo->mFileName = mFileName;
+    typeInfo->mAbsFileName = mAbsFileName;
 
     FillPragmaListUpper(typeInfo->mPragmaTextSet);
 
@@ -296,6 +278,43 @@ void TTypeInfoCollector::AddNewType(TTypeDeclarationLexema* baseLexema)
     mCurrentBlock.typeInfo = typeInfo;
 
     mTypeResult.push_back(typeInfo);
+}
+//----------------------------------------------------------------------------------------------------
+void TTypeInfoCollector::ParseInheritanceInfo(const TTypeDeclarationLexema::TInheritance& inheritance, 
+    TInheritanceInfo& inheritanceInfo)
+{
+    const std::string COLON_COLON = "::";
+    const std::string LESS = "<";
+
+    // namespace bb {
+    // class Foo : public aa::AA<xx::X, yy::Y>
+    // }
+    auto currentSpace = GetCurrentSpace();// bb
+
+    inheritanceInfo.mOriginalName = inheritance.typeName;// aa::AA<xx::X, yy::Y>
+    auto lessIndex = inheritance.typeName.find(LESS);
+    if (lessIndex != std::string::npos) {
+        inheritanceInfo.SetupTemplates();
+        inheritanceInfo.mOriginalTypeName = inheritance.typeName.substr(0, lessIndex);
+    } else {
+        inheritanceInfo.mOriginalTypeName = inheritance.typeName;
+    }
+
+    auto ccIndex = inheritanceInfo.mOriginalTypeName.rfind(COLON_COLON);
+    if (ccIndex != std::string::npos) {
+        inheritanceInfo.mShortTypeName = inheritanceInfo.mOriginalTypeName.substr(ccIndex + COLON_COLON.length());
+        inheritanceInfo.mOriginalNameSpace = inheritanceInfo.mOriginalTypeName.substr(0, ccIndex);
+    } else {
+        inheritanceInfo.mShortTypeName = inheritanceInfo.mOriginalTypeName;
+    }
+
+    if (currentSpace.length() > 0) {
+        inheritanceInfo.mLongTypeName = currentSpace + "::" + inheritanceInfo.mOriginalTypeName;// ns::A::B
+    } else {
+        inheritanceInfo.mLongTypeName = inheritanceInfo.mOriginalTypeName;// ns::A::B
+    }
+    inheritanceInfo.mNameSpace = currentSpace;
+    inheritanceInfo.mInheritanceAccessLevel = inheritance.accessLevel;
 }
 //----------------------------------------------------------------------------------------------------
 void TTypeInfoCollector::HandleBlockEnd()

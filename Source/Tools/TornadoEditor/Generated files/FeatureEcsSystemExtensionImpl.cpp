@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "EcsSystemExtension.h"
 #include "FeatureTypeFactory.h"
 #include "TornadoEngine/Generated files/FeatureTypeFactory.h"
-#include "TornadoEngine/Generated files/EcsSystemExtension.h"
+#include "TornadoEngine/Generated files/DynamicCaster.h"
 
 using namespace nsTornadoEditor;
 
@@ -24,15 +24,15 @@ TFeatureEcsSystemExtensionImpl::~TFeatureEcsSystemExtensionImpl()
 
 }
 //--------------------------------------------------------------------------------------
-nsECSFramework::TSystem* TFeatureEcsSystemExtensionImpl::DynamicCast(void* p, int rtti)
+void* TFeatureEcsSystemExtensionImpl::Cast(int srcRtti, void* srcPtr, int dstRtti)
 {
-    auto has = TFeatureTypeFactory::Has(rtti);
+    auto has = TFeatureTypeFactory::Has(srcRtti);
     if (has) {
-        return TEcsSystemExtension::DynamicCast(p, rtti);
+        return TDynamicCaster::Cast(srcRtti, srcPtr, dstRtti);
     }
-    has = nsTornadoEngine::TFeatureTypeFactory::Has(rtti);
+    has = nsTornadoEngine::TFeatureTypeFactory::Has(srcRtti);
     if (has) {
-        return nsTornadoEngine::TEcsSystemExtension::DynamicCast(p, rtti);
+        return nsTornadoEngine::TDynamicCaster::Cast(srcRtti, srcPtr, dstRtti);
     }
     return nullptr;
 }

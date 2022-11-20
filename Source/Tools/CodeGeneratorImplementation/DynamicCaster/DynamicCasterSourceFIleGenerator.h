@@ -8,6 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <functional>
+#include <list>
+#include <set>
 
 #include "DynamicCasterFileGenerator.h"
 
@@ -25,5 +27,24 @@ namespace nsCodeGeneratorImplementation
 
         void AddMethodDeinitions();
     private:
+        struct TPair
+        {
+            nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo srcType;
+            std::list<nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo> dstTypes;
+        };
+
+        std::list<TPair> mTasks;
+
+        std::map<std::string, std::list<nsCppParser::TTypeInfo*>> mChildsMap;
+
+        void AddCasters();
+
+        void PreparePairs();
+        void GenerateByPairs();
+
+        void CreateInheritanceGraph();
+
+        void GetParents(const nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo& type, std::set<nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo>& parents);
+        void GetChilds(const nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo& type, std::set<nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo>& childs);
     };
 }

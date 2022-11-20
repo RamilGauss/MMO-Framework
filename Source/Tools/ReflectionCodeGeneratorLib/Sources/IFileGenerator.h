@@ -108,21 +108,13 @@ namespace nsReflectionCodeGenerator
 
         std::string AddTabsToStr(const std::string& str, int tabCounter);
 
-    protected:
         std::string EnumerateParamToStr(std::list<std::string>& strList);
 
         std::string GetNullExpression(nsCppParser::TMemberExtendedTypeInfo& ext);
 
-    protected:
         void AddCallingMethodForParent(nsCppParser::TTypeInfo* p, std::function<void(nsCppParser::TInheritanceInfo*)> func);
         void AddCallingMethod(nsCppParser::TTypeInfo* p, std::function<void(nsCppParser::TMemberInfo*)> func);
-    private:
 
-        void General_AddCallFunctionOrObjMethod(const std::string& objectName, 
-            const std::string& namespaceFunc, const std::string& funcName, 
-            std::list<std::string>& templateList, std::list<std::string>& argList);
-
-    protected:
         void AddIncludeForExternalSources();
 
         std::string GetSerializeMethod(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
@@ -130,15 +122,21 @@ namespace nsReflectionCodeGenerator
         std::string GetDeserializeMethod(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
             const std::list<std::string>& withinClassTypeNameList);
 
-    private:
-        std::string GetMethod(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
-            const std::list<std::string>& withinClassTypeNameList,
-            const std::string& methodStructOrClassName, const std::string& methodEnumName);
-
-    protected:
         const TTypeNameDataBase::TReferenceInfo* Find(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
             const std::list<std::string>& withinClassTypeNameList,
             nsCppParser::TTypeInfo*& type);
+
+        const TTypeNameDataBase::TReferenceInfo* Find(const TTypeNameDataBase::TTypeInfo& typeInfo,
+            const std::list<std::string>& withinClassTypeNameList, nsCppParser::TTypeInfo*& type);
+    private:
+
+        void General_AddCallFunctionOrObjMethod(const std::string& objectName, 
+            const std::string& namespaceFunc, const std::string& funcName, 
+            std::list<std::string>& templateList, std::list<std::string>& argList);
+
+        std::string GetMethod(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
+            const std::list<std::string>& withinClassTypeNameList,
+            const std::string& methodStructOrClassName, const std::string& methodEnumName);
 
     };
 }

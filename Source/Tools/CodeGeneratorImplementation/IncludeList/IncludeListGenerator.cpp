@@ -21,7 +21,7 @@ void TIncludeListGenerator::Work()
 
     auto& pair = mPairList->back();
 
-    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.includeListFileName + ".h");
+    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
 
     fileGenerator.SetIncludes(&mHeaderSet);
     fileGenerator.Init(nullptr, pair, nullptr);

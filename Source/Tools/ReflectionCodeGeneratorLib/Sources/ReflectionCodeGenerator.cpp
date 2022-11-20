@@ -162,7 +162,7 @@ bool TReflectionCodeGenerator::GetTypeList(TStringList& fileList, TTypeInfoPtrLi
         std::string content;
         content.append(data.GetPtr(), data.GetSize());
 
-        parser.Parse(content, filename);
+        parser.Parse(content, filename, fileAbsPath);
 
         auto lastError = parser.GetLastError();
         if (!lastError.empty()) {
@@ -201,7 +201,7 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
         for (auto& typeInheritance : type->mInheritanceVec) {
             for (auto& parent : type->mInheritanceVec) {
                 typeInheritances.insert(parent.mLongTypeName);
-                typeInheritances.insert(parent.mOriginalName);
+                typeInheritances.insert(parent.mOriginalTypeName);
             }
         }
 
@@ -212,7 +212,7 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
                 if (inheritance.empty()) {
                     continue;
                 }
-                auto isInType = typeInheritances.find(inheritance) != typeInheritances.end();
+                auto isInType = (typeInheritances.find(inheritance) != typeInheritances.end());
                 if (!isInType) {
                     passedByInheritance = false;
                     break;
@@ -383,7 +383,7 @@ void TReflectionCodeGenerator::FillIncludeList()
             if (type == nullptr) {
                 continue;
             }
-            mIncludeList->AddInclude(type->mFileName);
+            mIncludeList->AddInclude(type->mAbsFileName);
         }
     }
 }

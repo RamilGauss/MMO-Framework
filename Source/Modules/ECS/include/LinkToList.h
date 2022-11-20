@@ -9,38 +9,40 @@ See for more information LICENSE.md.
 
 #include <list>
 
-template<typename Type>
-class TLinkToList
+namespace nsECSFramework
 {
-public:
-    using List = std::list<Type>;
-    using Iterator = typename List::iterator;
-private:
-    List* mList;
-    Iterator mIt;
-public:
-    TLinkToList()
+    template<typename Type>
+    class TLinkToList
     {
-    }
-    TLinkToList(List& tl, Iterator it)
-    {
-        Set(tl, it);
-    }
-    inline void Set(List& tl, Iterator it)
-    {
-        mList = &tl;
-        mIt = it;
-    }
-    void Update(Type& v)
-    {
-        *mIt = v;
-    }
-    void Erase()
-    {
-        mList->erase(mIt);
-    }
-    List* GetList()
-    {
-        return mList;
-    }
-};
+    public:
+        using List = std::list<Type>;
+        using Iterator = typename List::iterator;
+    private:
+        List* mList;
+        Iterator mIt;
+    public:
+        TLinkToList()
+        {}
+        TLinkToList(List& tl, Iterator it)
+        {
+            Set(tl, it);
+        }
+        inline void Set(List& tl, Iterator it)
+        {
+            mList = &tl;
+            mIt = it;
+        }
+        void Update(Type& v)
+        {
+            *mIt = v;
+        }
+        void Erase()
+        {
+            mList->erase(mIt);
+        }
+        List* GetList()
+        {
+            return mList;
+        }
+    };
+}

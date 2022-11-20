@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_28 14:32:37.609
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2022_11_15 11:29:36.653
 	
 #pragma once
 
@@ -47,6 +47,7 @@ namespace nsBinary
             e_nsReflectionCodeGenerator_TExternalSource,
             e_nsReflectionCodeGenerator_TExternalSources,
             e_nsReflectionCodeGenerator_TFilter,
+            e_nsReflectionCodeGenerator_TIncludeListParams,
             e_nsReflectionCodeGenerator_TSerializer,
             e_nsReflectionCodeGenerator_TTargetForCodeGeneration,
             e_nsReflectionCodeGenerator_TTargetForParsing,
@@ -110,6 +111,11 @@ namespace nsBinary
         void _Deserialize( nsReflectionCodeGenerator::TFilter* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TFilter* p );
         static void _Deallocate(nsReflectionCodeGenerator::TFilter* p);
+        
+        void _Serialize( nsReflectionCodeGenerator::TIncludeListParams* p );
+        void _Deserialize( nsReflectionCodeGenerator::TIncludeListParams* p );
+        TypeID _GetTypeID( nsReflectionCodeGenerator::TIncludeListParams* p );
+        static void _Deallocate(nsReflectionCodeGenerator::TIncludeListParams* p);
         
         void _Serialize( nsReflectionCodeGenerator::TSerializer* p );
         void _Deserialize( nsReflectionCodeGenerator::TSerializer* p );

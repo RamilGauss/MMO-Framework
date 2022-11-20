@@ -22,6 +22,7 @@ namespace nsCppParser
     struct DllExport TTypeInfo
     {
         std::string mFileName;
+        std::string mAbsFileName;
 
         std::set<std::string> mPragmaTextSet;// #pragma TEXT
 

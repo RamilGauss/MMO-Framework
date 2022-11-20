@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-class A : public ns::B<X, Y>
+class A : 
+    public ns::B<xx::X, yy::Y>
 {
 };

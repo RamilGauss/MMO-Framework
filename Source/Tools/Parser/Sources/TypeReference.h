@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
+#include <list>
 
 #include "TypeDef.h"
 
@@ -15,12 +16,21 @@ namespace nsCppParser
 {
     struct TTypeReference
     {
-        std::string mOriginalName;// In origianl source:  A::B
-        std::string mOriginalNameSpace;// In origianl source:  A
+        // namespace bb{
+        // class Foo : public aa::AA<xx::X, yy::Y>
+        // }
+        std::string mOriginalName;// In origianl source:  aa::AA<xx::X, yy::Y>
+
+        std::string mOriginalTypeName;// In origianl source:  aa::AA
+        std::string mOriginalNameSpace;// In origianl source:  aa
 
         //For searching in TypeManager
-        std::string mShortTypeName;// B
-        std::string mNameSpace;// ns::A
-        std::string mLongTypeName;// ns::A::B
+        std::string mShortTypeName;// AA
+        std::string mNameSpace;// bb::aa
+        std::string mLongTypeName;// bb::aa::AA
+
+        std::list<std::string> originalTemplates;//[xx::X, yy::Y]
+
+        void SetupTemplates();
     };
 }

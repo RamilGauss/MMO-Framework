@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_28 14:32:37.598
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2022_11_15 11:29:36.646
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -88,6 +88,18 @@ void TJsonSerializer::Init()
     auto rtti__nsReflectionCodeGenerator_TFilterTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TFilter>();
     
     m.insert({ rtti__nsReflectionCodeGenerator_TFilterTypeFunc, _nsReflectionCodeGenerator_TFilterTypeFunc });
+    
+    TypeFunc _nsReflectionCodeGenerator_TIncludeListParamsTypeFunc;
+    _nsReflectionCodeGenerator_TIncludeListParamsTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsReflectionCodeGenerator::TIncludeListParams>((nsReflectionCodeGenerator::TIncludeListParams*) p, str);
+    };
+    _nsReflectionCodeGenerator_TIncludeListParamsTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsReflectionCodeGenerator::TIncludeListParams>((nsReflectionCodeGenerator::TIncludeListParams*) p, str, err);
+    };
+    
+    auto rtti__nsReflectionCodeGenerator_TIncludeListParamsTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TIncludeListParams>();
+    
+    m.insert({ rtti__nsReflectionCodeGenerator_TIncludeListParamsTypeFunc, _nsReflectionCodeGenerator_TIncludeListParamsTypeFunc });
     
     TypeFunc _nsReflectionCodeGenerator_TSerializerTypeFunc;
     _nsReflectionCodeGenerator_TSerializerTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -347,6 +359,31 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TFilter* p, const 
     POM::PopStr(obj, "memberIgnore", p->memberIgnore);
 }
 //---------------------------------------------------------------------------------------
+void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TIncludeListParams* p, Jobj& obj)
+{
+    PUM::Push(obj, "includeListFileName", p->includeListFileName);
+    PUM::Value dirToInclude_a0(rapidjson::kArrayType);
+    for(auto& dirToInclude_e0 : p->dirToInclude) {
+        PUM::PushBack(dirToInclude_a0, dirToInclude_e0);
+    }
+    PUM::Push(obj, "dirToInclude", dirToInclude_a0);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TIncludeListParams* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "includeListFileName", p->includeListFileName);
+    if (POM::IsArray(obj, "dirToInclude")) {
+        auto dirToInclude_a0 = POM::FindArray(obj, "dirToInclude");
+        for(auto& dirToInclude_e0 : dirToInclude_a0) {
+            p->dirToInclude.push_back(dirToInclude_e0.GetString());
+        }
+    } else {
+        std::string dirToInclude_t0;
+        POM::PopStr(obj, "dirToInclude", dirToInclude_t0);
+        p->dirToInclude.push_back(dirToInclude_t0);
+    }
+}
+//---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TSerializer* p, Jobj& obj)
 {
     _Serialize((nsReflectionCodeGenerator::TClassDesc*)p, obj);// Inheritances
@@ -381,7 +418,6 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TSerializer* p, co
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, Jobj& obj)
 {
     PUM::Push(obj, "directory", p->directory);
-    PUM::Push(obj, "includeListFileName", p->includeListFileName);
     PUM::Push(obj, "header", p->header);
     auto typeCustomizerMap_c0 = PUM::AddObject(obj, "typeCustomizerMap");
     for(auto& typeCustomizerMap_e0 : p->typeCustomizerMap) {
@@ -394,12 +430,13 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForCodeGenera
         auto implementations_a0 = PUM::AddObject(implementations_c0, PUM::ConvertToString(implementations_e0.first).data());
         _Serialize(&(implementations_e0.second), implementations_a0);
     }
+    auto includeListParams_o = PUM::AddObject(obj, "includeListParams");
+    _Serialize(&(p->includeListParams), includeListParams_o);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj)
 {
     POM::PopStr(obj, "directory", p->directory);
-    POM::PopStr(obj, "includeListFileName", p->includeListFileName);
     POM::PopStr(obj, "header", p->header);
     auto typeCustomizerMap_a0 = POM::FindObject(obj, "typeCustomizerMap");
     for(auto& typeCustomizerMap_e0 : typeCustomizerMap_a0) {
@@ -416,6 +453,8 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGene
         _Deserialize(&implementations_c1, implementations_o1);
         p->implementations.insert({ implementations_e0.name.GetString(), implementations_c1 });
     }
+    auto includeListParams_o0 = POM::FindObject(obj, "includeListParams");
+    _Deserialize(&(p->includeListParams), includeListParams_o0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj)

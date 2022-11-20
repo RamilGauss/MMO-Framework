@@ -23,7 +23,7 @@ void TJsonSerializerHeaderFileGenerator::Work()
     AddStandartInclude("string");
     AddStandartInclude("functional");
     AddInclude("JsonMaster.h");
-    AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");
+    AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

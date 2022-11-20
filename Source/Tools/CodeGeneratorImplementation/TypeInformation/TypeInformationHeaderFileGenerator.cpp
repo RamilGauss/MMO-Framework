@@ -25,7 +25,7 @@ void TTypeInformationHeaderFileGenerator::Work()
     AddEmptyLine();
     AddInclude("TypeDef.h");
 
-    AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");
+    AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

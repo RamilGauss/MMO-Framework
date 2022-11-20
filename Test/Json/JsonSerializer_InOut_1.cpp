@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, ImGui, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_07_29 08:28:14.471
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2022_11_20 21:40:58.897
 	
 #include "JsonSerializer_InOut_1.h"
 #include "JsonPopMaster.h"
@@ -38,7 +38,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsInOut::B>((nsInOut::B*) p, str, err);
     };
     
-    auto rtti__nsInOut_BTypeFunc = globalTypeIdentifier->type<nsInOut::B>();
+    auto rtti__nsInOut_BTypeFunc = globalTypeIdentifier->Type<nsInOut::B>();
     
     m.insert({ rtti__nsInOut_BTypeFunc, _nsInOut_BTypeFunc });
     
@@ -63,6 +63,15 @@ bool TJsonSerializer::Deserialize(void* p, const std::string& str, int rtti, std
 {
     Init();
     return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
+}
+//---------------------------------------------------------------------------------------
+bool TJsonSerializer::Has(int rtti)
+{
+    Init();
+    if (rtti < 0 || rtti >= mTypeFuncVector.size()) {
+        return false;
+    }
+    return mTypeFuncVector[rtti].serializeFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsInOut::B* p, Jobj& obj)

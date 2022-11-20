@@ -46,7 +46,8 @@ void TMenuNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
         auto pTexture = entMng->ViewComponent<TTextureFromFileComponent>(eid)->value;
 
         auto handle = (void*)(pTexture->mId);
-        pMenuNodeComponent->value->SetTexture(handle, pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);
+        pMenuNodeComponent->value->SetTextureId(handle);
+        pMenuNodeComponent->value->SetTextureSize(pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);
     }
 
 

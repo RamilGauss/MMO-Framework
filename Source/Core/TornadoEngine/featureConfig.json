@@ -30,7 +30,10 @@
     },
     "targetForCodeGeneration": {
         "directory": "./Generated files",
-        "includeListFileName": "FeatureIncludeList",
+        "includeListParams": {
+            "includeListFileName": "FeatureIncludeList",
+            "dirToInclude": [ "../../Modules/ECS" ]
+        },
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,
@@ -40,21 +43,33 @@
                 "nameSpaceName": "nsTornadoEngine",
                 "fileName": "FeatureTypeInformation",
                 "className": "TFeatureTypeInformation",
-                "keyValueMap": {}
+                "keyValueMap": {},
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "./featureTypeInformationOutFile.json"
+                }
             },
             "TypeFactoryGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
                 "fileName": "FeatureTypeFactory",
                 "className": "TFeatureTypeFactory",
-                "keyValueMap": {}
+                "keyValueMap": {},
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "./typeFactoryOutFile.json"
+                }
             },
             "DynamicCaster": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
                 "fileName": "DynamicCaster",
                 "className": "TDynamicCaster",
-                "keyValueMap": {}
+                "keyValueMap": {},
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "./dynamicCasterOutFile.json"
+                }
             }
         }
     }

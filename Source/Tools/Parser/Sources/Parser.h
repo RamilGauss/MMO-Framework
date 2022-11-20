@@ -52,7 +52,7 @@ namespace nsCppParser
         void SetupTypes(std::map<std::string, TypeCategory>& nameTypeMap, bool append = false);
 
         // Get results from TypeManager
-        void Parse(const std::string& content, const std::string& fileName);
+        void Parse(const std::string& content, const std::string& fileName, const std::string& absFileName = "");
 
         const TParserResultContainer* GetResult() const;
         static std::string GetInfo();

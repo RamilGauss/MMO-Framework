@@ -105,7 +105,7 @@ void TJsonSerializerGenerator::GetDependencies(const nsCppParser::TTypeInfo* typ
         }
 
         dependencies.insert(inheritance.mLongTypeName);
-        dependencies.insert(inheritance.mOriginalName);
+        dependencies.insert(inheritance.mOriginalTypeName);
     }
 }
 //----------------------------------------------------------------------------------

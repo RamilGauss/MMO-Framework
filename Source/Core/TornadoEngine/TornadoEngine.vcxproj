@@ -325,7 +325,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
-    <ClCompile Include="Generated files\EcsSystemExtension.cpp" />
+    <ClCompile Include="Generated files\DynamicCaster.cpp" />
     <ClCompile Include="Generated files\FeatureTypeFactory.cpp" />
     <ClCompile Include="Generated files\FeatureTypeInformation.cpp" />
     <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
@@ -548,7 +548,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Generated files\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
     <ClInclude Include="Generated files\ComponentTypeInformation.h" />
-    <ClInclude Include="Generated files\EcsSystemExtension.h" />
+    <ClInclude Include="Generated files\DynamicCaster.h" />
     <ClInclude Include="Generated files\FeatureIncludeList.h" />
     <ClInclude Include="Generated files\FeatureTypeFactory.h" />
     <ClInclude Include="Generated files\FeatureTypeInformation.h" />
@@ -639,9 +639,12 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
   </ItemGroup>
   <ItemGroup>
     <None Include="componentConfig.json" />
+    <None Include="dynamicCasterOutFile.json" />
     <None Include="featureConfig.json" />
+    <None Include="featureTypeInformationOutFile.json" />
     <None Include="handlerConfig.json" />
     <None Include="reflectionConfig.json" />
+    <None Include="typeFactoryOutFile.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

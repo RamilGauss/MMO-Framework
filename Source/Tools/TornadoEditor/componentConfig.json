@@ -23,38 +23,41 @@
     },
     "targetForCodeGeneration": {
         "directory": "./Generated files",
-        "includeListFileName": "ComponentIncludeList",
+        "includeListParams": {
+            "includeListFileName": "ComponentIncludeList",
+            "dirToInclude": []
+        },
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {
             "nsTornadoEngine::TPrefabGuid": "STRING",
             "nsTornadoEngine::TSceneGuid": "STRING",
             "nsTornadoEngine::TResourceGuid": "STRING"
         },
-            "appendTypeCustomizerMap": true,
-            "implementations": {
-                "JsonSerializerGenerator": {
-                    "exportDeclaration": "DllExport",
-                    "nameSpaceName": "nsTornadoEditor",
-                    "fileName": "ComponentJsonSerializer",
-                    "className": "TComponentJsonSerializer",
-                    "keyValueMap": {}
-                },
-                "TypeInformationGenerator": {
-                    "exportDeclaration": "DllExport",
-                    "nameSpaceName": "nsTornadoEditor",
-                    "fileName": "ComponentTypeInformation",
-                    "className": "TComponentTypeInformation",
-                    "keyValueMap": {}
-                },
-                "EcsComponentExtension": {
-                    "exportDeclaration": "DllExport",
-                    "nameSpaceName": "nsTornadoEditor",
-                    "fileName": "ComponentEntityManagerExtension",
-                    "className": "TComponentEntityManagerExtension",
-                    "keyValueMap": {
-                        "entityManagerHeaderPath": "ECS/include/EntityManager.h"
-                    }
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "JsonSerializerGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "fileName": "ComponentJsonSerializer",
+                "className": "TComponentJsonSerializer",
+                "keyValueMap": {}
+            },
+            "TypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "fileName": "ComponentTypeInformation",
+                "className": "TComponentTypeInformation",
+                "keyValueMap": {}
+            },
+            "EcsComponentExtension": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "fileName": "ComponentEntityManagerExtension",
+                "className": "TComponentEntityManagerExtension",
+                "keyValueMap": {
+                    "entityManagerHeaderPath": "ECS/include/EntityManager.h"
                 }
             }
         }
+    }
 }

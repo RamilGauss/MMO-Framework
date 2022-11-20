@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_11_08 14:16:07.263
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2022_11_15 15:41:13.464
 	
 #include "ComponentJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -905,6 +905,18 @@ void TComponentJsonSerializer::Init()
     
     m.insert({ rtti__nsMathTools_TMatrix16TypeFunc, _nsMathTools_TMatrix16TypeFunc });
     
+    TypeFunc _nsTornadoEngine_TPropertyOfTypeFunc;
+    _nsTornadoEngine_TPropertyOfTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEngine::TPropertyOf>((nsTornadoEngine::TPropertyOf*) p, str);
+    };
+    _nsTornadoEngine_TPropertyOfTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEngine::TPropertyOf>((nsTornadoEngine::TPropertyOf*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEngine_TPropertyOfTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TPropertyOf>();
+    
+    m.insert({ rtti__nsTornadoEngine_TPropertyOfTypeFunc, _nsTornadoEngine_TPropertyOfTypeFunc });
+    
     int max = 0;
     for (auto& vt : m) {
         max = std::max(vt.first, max);
@@ -1213,6 +1225,7 @@ void TComponentJsonSerializer::_Deserialize(nsGraphicWrapper::TUniverseCameraCom
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TAnchorsComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "leftIsUsed", p->leftIsUsed);
     PUM::Push(obj, "leftOffset", p->leftOffset);
     PUM::Push(obj, "rightIsUsed", p->rightIsUsed);
@@ -1225,6 +1238,7 @@ void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TAnchorsComponent* p, Jo
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TAnchorsComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopBool(obj, "leftIsUsed", p->leftIsUsed);
     POM::PopNum(obj, "leftOffset", p->leftOffset);
     POM::PopBool(obj, "rightIsUsed", p->rightIsUsed);
@@ -1273,11 +1287,13 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TDialogComponent* p, c
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TFocusComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TFocusComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopBool(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
@@ -1331,22 +1347,26 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TFrameMouseWheelHandle
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TGridComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TGridComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopBool(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::THorizontalAlignComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     auto value_c0 = _SerializeEnum(&(p->value));
     PUM::Push(obj, "value", value_c0);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::THorizontalAlignComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     std::string value_c0;
     POM::PopStr(obj, "value", value_c0);
     _DeserializeEnum(value_c0, &(p->value));
@@ -1362,11 +1382,13 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TInputTextComponent* p
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TInputTextValueComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TInputTextValueComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
@@ -1380,11 +1402,13 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TLabelComponent* p, co
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TLabelValueComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TLabelValueComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
@@ -1398,12 +1422,14 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMainWindowComponent* 
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TMaxSizeComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "x", p->x);
     PUM::Push(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMaxSizeComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
 }
@@ -1428,6 +1454,7 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMenuNodeComponent* p,
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TMinDistanceToParentComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "left", p->left);
     PUM::Push(obj, "right", p->right);
     PUM::Push(obj, "top", p->top);
@@ -1436,6 +1463,7 @@ void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TMinDistanceToParentComp
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMinDistanceToParentComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "left", p->left);
     POM::PopNum(obj, "right", p->right);
     POM::PopNum(obj, "top", p->top);
@@ -1444,30 +1472,35 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMinDistanceToParentCo
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TMinSizeComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "x", p->x);
     PUM::Push(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TMinSizeComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TNodeIconComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "width", p->width);
     PUM::Push(obj, "height", p->height);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TNodeIconComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "width", p->width);
     POM::PopNum(obj, "height", p->height);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TPaddingComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "left", p->left);
     PUM::Push(obj, "right", p->right);
     PUM::Push(obj, "top", p->top);
@@ -1476,6 +1509,7 @@ void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TPaddingComponent* p, Jo
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TPaddingComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "left", p->left);
     POM::PopNum(obj, "right", p->right);
     POM::PopNum(obj, "top", p->top);
@@ -1484,79 +1518,93 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TPaddingComponent* p, 
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TPositionComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "x", p->x);
     PUM::Push(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TPositionComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TPositionInGridComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "x", p->x);
     PUM::Push(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TPositionInGridComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TSelectedTreeNodeGuidComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TSelectedTreeNodeGuidComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TSizeComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "x", p->x);
     PUM::Push(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TSizeComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TSizeInGridComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "x", p->x);
     PUM::Push(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TSizeInGridComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TSpacingComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TSpacingComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopNum(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TTitleComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TTitleComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
@@ -1578,12 +1626,14 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TTreeViewComponent* p,
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TVerticalAlignComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     auto value_c0 = _SerializeEnum(&(p->value));
     PUM::Push(obj, "value", value_c0);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TVerticalAlignComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     std::string value_c0;
     POM::PopStr(obj, "value", value_c0);
     _DeserializeEnum(value_c0, &(p->value));
@@ -1591,11 +1641,13 @@ void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TVerticalAlignComponen
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Serialize(nsGuiWrapper::TVisibilityComponent* p, Jobj& obj)
 {
+    _Serialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     PUM::Push(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJsonSerializer::_Deserialize(nsGuiWrapper::TVisibilityComponent* p, const Jobj& obj)
 {
+    _Deserialize((nsTornadoEngine::TPropertyOf*)p, obj);// Inheritances
     POM::PopBool(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
@@ -1763,5 +1815,13 @@ void TComponentJsonSerializer::_Deserialize(nsMathTools::TMatrix16* p, const Job
     POM::PopNum(obj, "_42", p->_42);
     POM::PopNum(obj, "_43", p->_43);
     POM::PopNum(obj, "_44", p->_44);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Serialize(nsTornadoEngine::TPropertyOf* p, Jobj& obj)
+{
+}
+//---------------------------------------------------------------------------------------
+void TComponentJsonSerializer::_Deserialize(nsTornadoEngine::TPropertyOf* p, const Jobj& obj)
+{
 }
 //---------------------------------------------------------------------------------------

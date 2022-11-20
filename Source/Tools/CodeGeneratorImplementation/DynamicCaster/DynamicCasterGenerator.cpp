@@ -52,21 +52,31 @@ void TDynamicCasterGenerator::GenerateSource()
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
-void TDynamicCasterGenerator::GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames)
+void TDynamicCasterGenerator::GetDependencies(const nsCppParser::TTypeInfo* pTypeName, std::set<std::string>& dependencyNames)
 {
-    for (auto& parent : typeName->mInheritanceVec) {
+    for (auto& parent : pTypeName->mInheritanceVec) {
 
-        auto parentType = mTypeManager->Get(parent.mOriginalName);
+        //nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo typeInfo;
+        //typeInfo.nameSpace = parent.mNameSpace;
+        //typeInfo.typeName = parent.mShortTypeName;
+
+        //std::list<std::string> withinClassTypeNameList = {"", pTypeName->GetNameSpace() };
+        //nsCppParser::TTypeInfo* type = nullptr;
+
+        //const nsCppParser::TTypeNameDataBase::TReferenceInfo* pRefInfo = IFileGenerator::Find(typeInfo, withinClassTypeNameList, type);
+
+        auto parentType = mTypeManager->Get(parent.mOriginalTypeName);
         if (parentType == nullptr) {
             parentType = mTypeManager->Get(parent.mLongTypeName);
-            dependencyNames.insert(parent.mLongTypeName);
-        } else {
-            dependencyNames.insert(parent.mOriginalName);
+        }
+        if (parentType == nullptr) {
+            continue;
+        }
+        if (parentType->mTemplateArgs.size() == 0) {
+            dependencyNames.insert(parentType->GetTypeNameWithNameSpace());
         }
 
-        if (parentType) {
-            GetDependencies(parentType, dependencyNames);
-        }
+        GetDependencies(parentType, dependencyNames);
     }
 }
 //----------------------------------------------------------------------------------

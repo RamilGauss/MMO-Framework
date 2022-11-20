@@ -7,7 +7,7 @@ C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd
 C:/.conan/f81f73/1/include
 C:/.conan/15b0e0/1/include
 C:/.conan/15b0e0/1/include/bullet
-C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/a9e8622b06f9ccb3daaebe181d1e547263545968/include
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/include
 C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include
 C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include/SDL2
 C:/Users/Gauss/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
@@ -23,7 +23,7 @@ C:/Users/Gauss/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce
 C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib
 C:/.conan/f81f73/1/lib
 C:/.conan/15b0e0/1/lib
-C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/a9e8622b06f9ccb3daaebe181d1e547263545968/lib
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/lib
 C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/lib
 C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/lib
 C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
@@ -32,7 +32,7 @@ C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb76
 [bindirs]
 C:/Users/Gauss/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/bin
 C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/bin
-C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/a9e8622b06f9ccb3daaebe181d1e547263545968/bin
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/bin
 C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/bin
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/bin
 
@@ -109,10 +109,10 @@ BulletCollision_Debug
 BulletInverseDynamics_Debug
 LinearMath_Debug
 Bullet3Common_Debug
-gtest_maindeprecated
-gmock_maindeprecated
-gmockdeprecated
-gtestdeprecated
+gtest_maind
+gmock_maind
+gmockd
+gtestd
 SDL2maind
 SDL2d
 glad
@@ -686,13 +686,13 @@ pkg_config=bullet
 
 
 [includedirs_gtest]
-C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/a9e8622b06f9ccb3daaebe181d1e547263545968/include
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/include
 
 [libdirs_gtest]
-C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/a9e8622b06f9ccb3daaebe181d1e547263545968/lib
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/lib
 
 [bindirs_gtest]
-C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/a9e8622b06f9ccb3daaebe181d1e547263545968/bin
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/bin
 
 [resdirs_gtest]
 
@@ -701,10 +701,10 @@ C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/a9e8622b06f9ccb3daaebe181d1e
 
 
 [libs_gtest]
-gtest_maindeprecated
-gmock_maindeprecated
-gmockdeprecated
-gtestdeprecated
+gtest_maind
+gmock_maind
+gmockd
+gtestd
 
 [system_libs_gtest]
 
@@ -737,7 +737,7 @@ GTEST_LINKED_AS_SHARED_LIBRARY=1
 
 
 [rootpath_gtest]
-C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/a9e8622b06f9ccb3daaebe181d1e547263545968
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d
 
 [name_gtest]
 gtest

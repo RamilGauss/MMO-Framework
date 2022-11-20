@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.2, build 53 [Json, Binary, ImGui, EntityManager, Reflection, TypeInformation]
-// File has been generated at 2021_11_28 14:32:37.597
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2022_11_15 11:29:36.645
 	
 #pragma once
 
@@ -56,6 +56,9 @@ namespace nsJson
         
         static void _Serialize(nsReflectionCodeGenerator::TFilter* p, Jobj& obj);
         static void _Deserialize(nsReflectionCodeGenerator::TFilter* p, const Jobj& obj);
+        
+        static void _Serialize(nsReflectionCodeGenerator::TIncludeListParams* p, Jobj& obj);
+        static void _Deserialize(nsReflectionCodeGenerator::TIncludeListParams* p, const Jobj& obj);
         
         static void _Serialize(nsReflectionCodeGenerator::TSerializer* p, Jobj& obj);
         static void _Deserialize(nsReflectionCodeGenerator::TSerializer* p, const Jobj& obj);

@@ -1,15 +1,15 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_11_08 14:16:10.517
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2022_11_15 15:41:16.751
 	
 #pragma once
 
-#include "ConveyorConfig.h"
-#include "FrameworkResources.h"
-#include "MathStructs.h"
-#include "ModuleType.h"
-#include "ProjectConfig.h"
 #include "ResourceContent.h"
 #include "ResourceContentMap.h"
+#include "FrameworkResources.h"
+#include "MathStructs.h"
+#include "ConveyorConfig.h"
+#include "ModuleType.h"
+#include "ProjectConfig.h"

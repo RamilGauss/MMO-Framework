@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.2.1, build 52, info Json, Binary, ImGui, EntityManager, Reflection, TypeInformation
-// File has been generated at 2021_07_29 08:28:14.060
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2022_11_20 21:40:58.291
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -37,7 +37,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsComplex::Y>((nsComplex::Y*) p, str, err);
     };
     
-    auto rtti__nsComplex_YTypeFunc = globalTypeIdentifier->type<nsComplex::Y>();
+    auto rtti__nsComplex_YTypeFunc = globalTypeIdentifier->Type<nsComplex::Y>();
     
     m.insert({ rtti__nsComplex_YTypeFunc, _nsComplex_YTypeFunc });
     
@@ -49,7 +49,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsFarType::X>((nsFarType::X*) p, str, err);
     };
     
-    auto rtti__nsFarType_XTypeFunc = globalTypeIdentifier->type<nsFarType::X>();
+    auto rtti__nsFarType_XTypeFunc = globalTypeIdentifier->Type<nsFarType::X>();
     
     m.insert({ rtti__nsFarType_XTypeFunc, _nsFarType_XTypeFunc });
     
@@ -61,7 +61,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsInOut::A>((nsInOut::A*) p, str, err);
     };
     
-    auto rtti__nsInOut_ATypeFunc = globalTypeIdentifier->type<nsInOut::A>();
+    auto rtti__nsInOut_ATypeFunc = globalTypeIdentifier->Type<nsInOut::A>();
     
     m.insert({ rtti__nsInOut_ATypeFunc, _nsInOut_ATypeFunc });
     
@@ -73,7 +73,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsInOut::B>((nsInOut::B*) p, str, err);
     };
     
-    auto rtti__nsInOut_BTypeFunc = globalTypeIdentifier->type<nsInOut::B>();
+    auto rtti__nsInOut_BTypeFunc = globalTypeIdentifier->Type<nsInOut::B>();
     
     m.insert({ rtti__nsInOut_BTypeFunc, _nsInOut_BTypeFunc });
     
@@ -85,7 +85,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsSimple::X>((nsSimple::X*) p, str, err);
     };
     
-    auto rtti__nsSimple_XTypeFunc = globalTypeIdentifier->type<nsSimple::X>();
+    auto rtti__nsSimple_XTypeFunc = globalTypeIdentifier->Type<nsSimple::X>();
     
     m.insert({ rtti__nsSimple_XTypeFunc, _nsSimple_XTypeFunc });
     
@@ -97,7 +97,7 @@ void TJsonSerializer::Init()
         return Deserialize<nsSimpleEnum::X>((nsSimpleEnum::X*) p, str, err);
     };
     
-    auto rtti__nsSimpleEnum_XTypeFunc = globalTypeIdentifier->type<nsSimpleEnum::X>();
+    auto rtti__nsSimpleEnum_XTypeFunc = globalTypeIdentifier->Type<nsSimpleEnum::X>();
     
     m.insert({ rtti__nsSimpleEnum_XTypeFunc, _nsSimpleEnum_XTypeFunc });
     
@@ -122,6 +122,15 @@ bool TJsonSerializer::Deserialize(void* p, const std::string& str, int rtti, std
 {
     Init();
     return mTypeFuncVector[rtti].deserializeFunc(p, str, err);
+}
+//---------------------------------------------------------------------------------------
+bool TJsonSerializer::Has(int rtti)
+{
+    Init();
+    if (rtti < 0 || rtti >= mTypeFuncVector.size()) {
+        return false;
+    }
+    return mTypeFuncVector[rtti].serializeFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsComplex::Y* p, Jobj& obj)

@@ -76,10 +76,10 @@ void TSetupConfig::DefaultConfig()
     mConfig->filter.extensions.push_back(".hpp");
 
     mConfig->targetForCodeGeneration.directory = "./Sources";
-    mConfig->targetForCodeGeneration.includeListFileName = "IncludeList";
     mConfig->targetForCodeGeneration.header = "\tReflectionCodeGenerator";
 
     mConfig->targetForCodeGeneration.appendTypeCustomizerMap = true;
+    mConfig->targetForCodeGeneration.includeListParams.includeListFileName = "IncludeList";
 
     TSerializer jsonSerializer;
     jsonSerializer.exportDeclaration = "DllExport";
@@ -128,6 +128,10 @@ void TSetupConfig::ResolvePathes()
         dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
     }
 
+    for (auto& dirToInclude : pConfig->targetForCodeGeneration.includeListParams.dirToInclude) {
+        dirToInclude = TPathOperations::CalculatePathBy(mAbsPathDirJson, dirToInclude);
+    }
+
     // output
     auto& dir = pConfig->targetForCodeGeneration.directory;
     dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
@@ -148,6 +152,6 @@ void TSetupConfig::ResolveJsonPath()
     mAbsPathDirJson = TPathOperations::CalculatePathBy(currentPath, pathToJsonFile);
     mAbsPathDirJson += "\\";
 
-    mAbsPathJsonFile = TPathOperations::CalculatePathBy(mAbsPathDirJson, configName);
+    mAbsPathJsonFile = TPathOperations::CalculatePathBy(mAbsPathDirJson, configFileName.string());
 }
 //---------------------------------------------------------------------------------------

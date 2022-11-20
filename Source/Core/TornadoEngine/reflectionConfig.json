@@ -19,7 +19,10 @@
     },
     "targetForCodeGeneration": {
         "directory": "./Generated files",
-        "includeListFileName": "ReflectionIncludeList",
+        "includeListParams": {
+            "includeListFileName": "ReflectionIncludeList",
+            "dirToInclude": []
+        },
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,

@@ -21,5 +21,9 @@ namespace nsCodeGeneratorImplementation
 
     private:
         void AddIncludes();
+
+        using TStrSet = std::set<std::string>;
+
+        void CollectAbsPaths(const std::string& dir, TStrSet& fileList);
     };
 }

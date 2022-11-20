@@ -9,6 +9,7 @@
         "nsReflectionCodeGenerator::TExternalSource",
         "nsReflectionCodeGenerator::TExternalSources",
         "nsReflectionCodeGenerator::TFilter",
+        "nsReflectionCodeGenerator::TIncludeListParams",
         "nsReflectionCodeGenerator::TSerializer",
         "nsReflectionCodeGenerator::TTargetForCodeGeneration",
         "nsReflectionCodeGenerator::TTargetForParsing"

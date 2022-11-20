@@ -34,7 +34,6 @@ namespace nsReflectionCodeGenerator
         std::string attribute;// #pragma ATTRIBUTE
         // or
         std::list<std::list<std::string>> inheritances;// ["ns::TypeA" and "ns::TypeC"] or ["ns::TypeB"]
-        //std::string inheritance;// "ns::TypeA"
 
         std::string memberIgnore;// #pragma IGNORE_ATTRIBUTE
     };
@@ -73,15 +72,30 @@ namespace nsReflectionCodeGenerator
     };
 
 #pragma REFLECTION_ATTRIBUTE
+    struct DllExport TIncludeListParams
+    {
+        std::string includeListFileName;
+
+        // "../../Modules/ECS/yyy"
+        // C:/Sources/Modules/ECS/yyy/file.h => #include "yyy/file.h"
+        // "../../Modules/ECS"
+        // C:/Sources/Modules/ECS/yyy/file.h => #include "ECS/yyy/file.h"
+        // "../../Modules"
+        // C:/Sources/Modules/ECS/yyy/file.h => #include "Modules/ECS/yyy/file.h"
+        std::list<std::string> dirToInclude;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
     struct DllExport TTargetForCodeGeneration
     {
         std::string directory;
-        std::string includeListFileName;
         std::string header;
         std::map<std::string, nsCppParser::TypeCategory> typeCustomizerMap;
         bool appendTypeCustomizerMap = true;
 
         std::map<std::string, TSerializer> implementations;
+
+        TIncludeListParams includeListParams;
     };
 
 #pragma REFLECTION_ATTRIBUTE

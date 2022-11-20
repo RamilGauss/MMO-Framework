@@ -26,7 +26,7 @@ void TTreeNodeMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
 
     auto pWidget = dynamic_cast<nsImGuiWidgets::TWidget*>(pTreeNode);
 
-    entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->pOwner = pWidget;
-    entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->pOwner = pWidget;
-    entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid)->pOwner = pWidget;
+    entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->SetOwner(pTreeNode);
+    entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->SetOwner(pTreeNode);
+    entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid)->SetOwner(pTreeNode);
 }

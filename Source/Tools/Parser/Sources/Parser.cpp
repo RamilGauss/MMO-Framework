@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 
 using namespace nsCppParser;
 
-void TParser::Parse(const std::string& content, const std::string& fileName)
+void TParser::Parse(const std::string& content, const std::string& fileName, const std::string& absFileName)
 {
     mLastError = "";
 
@@ -35,6 +35,7 @@ void TParser::Parse(const std::string& content, const std::string& fileName)
     ConvertTokenTreeToLexemaTree(mTokenRoot.get(), mLexemaRoot.get());
 
     mTypeInfoCollector.mFileName = fileName;
+    mTypeInfoCollector.mAbsFileName = absFileName;
     mTypeInfoCollector.CollectLexemasToInfoByBlock(mLexemaRoot.get());
 
     mContainer.mTypeList = mTypeInfoCollector.mTypeResult;

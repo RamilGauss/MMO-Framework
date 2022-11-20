@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_11_08 14:16:07.258
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2022_11_15 15:41:13.459
 	
 #pragma once
 
@@ -263,6 +263,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TPropertyOf* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TPropertyOf* p, const Jobj& obj);
         
     };
     //------------------------------------------------------------------------------------------------------------

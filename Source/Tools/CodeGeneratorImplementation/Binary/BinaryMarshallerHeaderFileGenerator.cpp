@@ -29,7 +29,7 @@ void TBinaryMarshallerHeaderFileGenerator::Work()
     AddInclude("lz4.h");
 
     AddEmptyLine();
-    AddInclude(mConfig->targetForCodeGeneration.includeListFileName + ".h");
+    AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

@@ -370,7 +370,8 @@ std::string IFileGenerator::GetMethod(TMemberExtendedTypeInfo* pMemberExtendedIn
 {
     std::string method;
     TTypeInfo* type = nullptr;
-    auto refType = Find(pMemberExtendedInfo, withinClassTypeNameList, type);
+    TTypeNameDataBase::TTypeInfo typeInfo{ pMemberExtendedInfo->mNameSpace , pMemberExtendedInfo->mShortType };
+    auto refType = Find(typeInfo, withinClassTypeNameList, type);
     if (type == nullptr) {
         return method;
     }
@@ -392,12 +393,18 @@ const TTypeNameDataBase::TReferenceInfo* IFileGenerator::Find(TMemberExtendedTyp
     const std::list<std::string>& withinClassTypeNameList,
     TTypeInfo*& type)
 {
+    TTypeNameDataBase::TTypeInfo typeInfo{ pMemberExtendedInfo->mNameSpace , pMemberExtendedInfo->mShortType };
+    return Find(typeInfo, withinClassTypeNameList, type);
+}
+//-----------------------------------------------------------------------------------------------------------
+const TTypeNameDataBase::TReferenceInfo* IFileGenerator::Find(const TTypeNameDataBase::TTypeInfo& typeInfo,
+    const std::list<std::string>& withinClassTypeNameList, TTypeInfo*& type)
+{
     type = nullptr;
     for (auto& withinClassTypeName : withinClassTypeNameList) {
         TTypeNameDataBase::TRequestParams requestParams;
 
-        requestParams.typeInfo.nameSpace = pMemberExtendedInfo->mNameSpace;
-        requestParams.typeInfo.typeName = pMemberExtendedInfo->mShortType;
+        requestParams.typeInfo = typeInfo;
         requestParams.preferredNameSpace = withinClassTypeName;
 
         auto refType = mTypeNameDbPtr->GetReferenceFullTypeName(requestParams);

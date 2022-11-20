@@ -35,7 +35,8 @@ void TWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
 
     TUnitBuilderHelper::SetupWidget(entMng, eid, pWindowComponent->value);
 
-    TUnitBuilderHelper::SetupGeometry(entMng, eid, pWindowComponent->value);
+    TUnitBuilderHelper::SetupSize(entMng, eid, pWindowComponent->value);
+    TUnitBuilderHelper::SetupPosition(entMng, eid, pWindowComponent->value);
 
     auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
     pWindowComponent->value->mOnShowCB.Register(pWindowComponent->value,
