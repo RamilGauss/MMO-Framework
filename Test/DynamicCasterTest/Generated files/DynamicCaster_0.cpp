@@ -2,7 +2,7 @@
 	DynamicCasterTest
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_11_20 21:27:14.674
+// File has been generated at 2022_11_21 12:20:32.589
 	
 #include "DynamicCaster_0.h"
 #include "SingletonManager.h"
@@ -11,11 +11,12 @@
 using namespace nsDynamicCasterTest;
 
 std::vector<std::vector<TDynamicCaster_0::Data>> TDynamicCaster_0::mDataVector;
+std::map<int, std::set<int>> TDynamicCaster_0::mRttiCombinations;
+
 void TDynamicCaster_0::Init()
 {
     static bool isNeedInit = true;
-    if ( !isNeedInit )
-    {
+    if ( !isNeedInit ) {
         return;
     }
     isNeedInit = false;
@@ -58,14 +59,17 @@ void TDynamicCaster_0::Init()
         std::vector<Data> vecData;
         int dstMax = 0;
         for (auto& vtDst : vt.second) {
-            
             dstMax = std::max(vtDst.first, dstMax);
         }
         
         vecData.resize(dstMax + 1);
+        std::set<int> rttis;
         for (auto& vtDst : vt.second) {
             vecData[vtDst.first] = vtDst.second;
+            rttis.insert(vtDst.first);
         }
+        
+        mRttiCombinations.insert({ vt.first, rttis });
         
         mDataVector[vt.first] = vecData;
     }
@@ -75,5 +79,11 @@ void* TDynamicCaster_0::Cast(int srcRtti, void* p, int dstRtti)
 {
     Init();
     return mDataVector[srcRtti][dstRtti].castFunc(p);
+}
+//---------------------------------------------------------------------------------------
+const std::map<int, std::set<int>>& TDynamicCaster_0::GetRttiCombinations()
+{
+    Init();
+    return mRttiCombinations;
 }
 //---------------------------------------------------------------------------------------

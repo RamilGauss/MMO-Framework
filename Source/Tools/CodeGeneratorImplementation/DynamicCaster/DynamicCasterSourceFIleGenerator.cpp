@@ -34,6 +34,11 @@ void TDynamicCasterSourceFileGenerator::Work()
     auto defVector = fmt::format("std::vector<std::vector<{}::{}>> {}::{};",
         mSerializer->className, s_Data, mSerializer->className, s_mDataVector);
     Add(defVector);
+    auto defCombinations = fmt::format("std::map<int, std::set<int>> {}::{};",
+        mSerializer->className, s_mRttiCombinations);
+    Add(defCombinations);
+
+    AddEmptyLine();
 
     AddImplementations();
 }
@@ -53,8 +58,7 @@ void TDynamicCasterSourceFileGenerator::AddInit()
     IncrementTabs();
 
     Add("static bool isNeedInit = true;");
-    Add("if ( !isNeedInit )");
-    AddLeftBrace();
+    Add("if ( !isNeedInit ) {");
     IncrementTabs();
     Add("return;");
     DecrementTabs();
@@ -70,7 +74,6 @@ void TDynamicCasterSourceFileGenerator::AddInit()
     Add(str);
     AddEmptyLine();
 
-    CreateInheritanceGraph();
     AddCasters();
 
     Add("int srcMax = 0;");
@@ -94,8 +97,6 @@ void TDynamicCasterSourceFileGenerator::AddInit()
 
     Add("for (auto& vtDst : vt.second) {");
     IncrementTabs();
-    AddEmptyLine();
-
     Add("dstMax = std::max(vtDst.first, dstMax);");
 
     DecrementTabs();
@@ -103,13 +104,20 @@ void TDynamicCasterSourceFileGenerator::AddInit()
 
     AddEmptyLine();
     Add("vecData.resize(dstMax + 1);");
+    Add("std::set<int> rttis;");
 
     Add("for (auto& vtDst : vt.second) {");
     IncrementTabs();
     Add("vecData[vtDst.first] = vtDst.second;");
 
+    Add("rttis.insert(vtDst.first);");
+
     DecrementTabs();
     AddRightBrace();
+
+    AddEmptyLine();
+    str = fmt::format("{}.insert({{ vt.first, rttis }});", s_mRttiCombinations);
+    Add(str);
 
     AddEmptyLine();
     str = fmt::format("{}[vt.first] = vecData;", s_mDataVector);
@@ -124,7 +132,7 @@ void TDynamicCasterSourceFileGenerator::AddInit()
     AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TDynamicCasterSourceFileGenerator::PreparePairs()
+void TDynamicCasterSourceFileGenerator::PrepareTasks()
 {
     mTasks.clear();
 
@@ -132,10 +140,12 @@ void TDynamicCasterSourceFileGenerator::PreparePairs()
     for (auto& type : forGen) {
         std::set<nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo> dstTypes;
         GetParents(type, dstTypes);
-        GetChilds(type, dstTypes);
 
-        TPair pair;
-        pair.srcType = type;
+        auto typeFit = mTasks.find(type);
+        if (typeFit == mTasks.end()) {
+            mTasks.insert({ type , {} });
+            typeFit = mTasks.find(type);
+        }
 
         for (auto& dstType : dstTypes) {
             auto pDstTypeInfo = mTypeManager->Get(dstType.GetFullType());
@@ -143,25 +153,37 @@ void TDynamicCasterSourceFileGenerator::PreparePairs()
                 continue;
             }
 
-            pair.dstTypes.push_back(dstType);
-        }
+            typeFit->second.push_back(dstType);
 
-        if (pair.dstTypes.size() > 0) {
-            mTasks.push_back(pair);
+            auto dstFit = mTasks.find(dstType);
+            if (dstFit == mTasks.end()) {
+                mTasks.insert({ dstType , {} });
+                dstFit = mTasks.find(dstType);
+            }
+
+            dstFit->second.push_back(type);
+        }
+    }
+
+    auto taskCopy = mTasks;
+
+    for (auto& task : taskCopy) {
+        if (task.second.size() == 0) {
+            mTasks.erase(task.first);
         }
     }
 }
 //-----------------------------------------------------------------------------------------------------------
 void TDynamicCasterSourceFileGenerator::AddCasters()
 {
-    PreparePairs();
+    PrepareTasks();
     GenerateByPairs();
 }
 //-----------------------------------------------------------------------------------------------------------
 void TDynamicCasterSourceFileGenerator::GenerateByPairs()
 {
     for (auto& task : mTasks) {
-        auto pTypeInfo = mTypeManager->Get(task.srcType.GetFullType());
+        auto pTypeInfo = mTypeManager->Get(task.first.GetFullType());
 
         auto srcTypeStr = pTypeInfo->GetTypeNameWithNameSpace();
 
@@ -172,7 +194,7 @@ void TDynamicCasterSourceFileGenerator::GenerateByPairs()
         Add(str);
         AddEmptyLine();
 
-        for (auto& dstType : task.dstTypes) {
+        for (auto& dstType : task.second) {
 
             auto pDstTypeInfo = mTypeManager->Get(dstType.GetFullType());
 
@@ -230,35 +252,23 @@ void TDynamicCasterSourceFileGenerator::AddMethodDeinitions()
     DecrementTabs();
     AddRightBrace();
     AddCommentedLongLine();
-}
-//-----------------------------------------------------------------------------------------------------------
-void TDynamicCasterSourceFileGenerator::CreateInheritanceGraph()
-{
-    auto& forGen = mTypeNameDbPtr->GetForGenerate();
-    for (auto& typeInfo : forGen) {
-        auto pTypeInfo = mTypeManager->Get(typeInfo.GetFullType());
-        if (pTypeInfo == nullptr) {
-            break;
-        }
 
-        for (auto& parent : pTypeInfo->mInheritanceVec) {
-            auto pParent = mTypeManager->Get(parent.mLongTypeName);
-            if (pParent == nullptr) {
-                pParent = mTypeManager->Get(parent.mOriginalTypeName);
-            }
-            if (pParent == nullptr) {
-                continue;
-            }
+    //---------------------------------------------------------------------------
+    paramList = {};
 
-            auto fit = mChildsMap.find(pParent->GetTypeNameWithNameSpace());
-            if (fit == mChildsMap.end()) {
-                mChildsMap.insert({ pParent->GetTypeNameWithNameSpace(), {} });
-                fit = mChildsMap.find(pParent->GetTypeNameWithNameSpace());
-            }
+    ret = "const std::map<int, std::set<int>>&";
+    AddMethodImplementationBegin(ret, mSerializer->className, s_GetRttiCombinations, paramList);
+    AddLeftBrace();
+    IncrementTabs();
 
-            fit->second.push_back(pTypeInfo);
-        }
-    }
+    str = fmt::format("{}();", s_Init);
+    Add(str);
+    str = fmt::format("return {};", s_mRttiCombinations);
+    Add(str);
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------
 void TDynamicCasterSourceFileGenerator::GetParents(const TTypeNameDataBase::TTypeInfo& type,
@@ -286,24 +296,6 @@ void TDynamicCasterSourceFileGenerator::GetParents(const TTypeNameDataBase::TTyp
         parents.insert(parentTypeInfo);
 
         GetParents(parentTypeInfo, parents);
-    }
-}
-//-----------------------------------------------------------------------------------------------------------
-void TDynamicCasterSourceFileGenerator::GetChilds(const TTypeNameDataBase::TTypeInfo& type,
-    std::set<TTypeNameDataBase::TTypeInfo>& childs)
-{
-    auto fit = mChildsMap.find(type.GetFullType());
-    if (fit == mChildsMap.end()) {
-        return;
-    }
-
-    for (auto& pChildTypeInfo : fit->second) {
-        TTypeNameDataBase::TTypeInfo childTypeInfo;
-        childTypeInfo.typeName = pChildTypeInfo->mName;
-        childTypeInfo.nameSpace = pChildTypeInfo->GetNameSpace();
-        childs.insert(childTypeInfo);
-
-        GetChilds(childTypeInfo, childs);
     }
 }
 //-----------------------------------------------------------------------------------------------------------

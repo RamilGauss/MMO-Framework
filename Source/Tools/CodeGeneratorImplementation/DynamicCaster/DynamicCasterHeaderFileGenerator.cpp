@@ -20,7 +20,10 @@ void TDynamicCasterHeaderFileGenerator::Work()
     AddEmptyLine();
     AddStandartInclude("string");
     AddStandartInclude("vector");
+    AddStandartInclude("map");
+    AddStandartInclude("set");
     AddStandartInclude("functional");
+    AddEmptyLine();
 
     AddInclude("TypeDef.h");
 

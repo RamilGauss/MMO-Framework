@@ -16,6 +16,7 @@ namespace nsCodeGeneratorImplementation
     protected:
         const std::string s_Init = "Init";
         const std::string s_Cast = "Cast";
+        const std::string s_GetRttiCombinations = "GetRttiCombinations";
 
         const std::string s_SrcRtti = "srcRtti";
         const std::string s_DstRtti = "dstRtti";
@@ -23,6 +24,7 @@ namespace nsCodeGeneratorImplementation
         const std::string s_Data = "Data";
         const std::string s_castFunc = "castFunc";
         const std::string s_mDataVector = "mDataVector";
+        const std::string s_mRttiCombinations = "mRttiCombinations";
     };
 }
 
