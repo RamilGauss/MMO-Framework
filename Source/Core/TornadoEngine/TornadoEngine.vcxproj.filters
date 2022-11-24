@@ -569,6 +569,8 @@
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\UpdatePropertiesFeature.cpp" />
     <ClCompile Include="Share\ImGuiSerializeTask.cpp" />
     <ClCompile Include="Generated files\DynamicCaster.cpp" />
+    <ClCompile Include="Generated files\EcsDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\EcsFeatureTypeInformation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -1293,15 +1295,21 @@
     <ClInclude Include="Handlers\Logic\ISceneInstantiationCompletionHandler.h" />
     <ClInclude Include="ReflectionAggregators\IDynamicCaster.h" />
     <ClInclude Include="Generated files\DynamicCaster.h" />
+    <ClInclude Include="Generated files\EcsDynamicCaster.h" />
+    <ClInclude Include="Generated files\EcsFeatureTypeInformation.h" />
+    <ClInclude Include="Generated files\EcsIncludeList.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="componentConfig.json" />
-    <None Include="reflectionConfig.json" />
-    <None Include="handlerConfig.json" />
-    <None Include="featureConfig.json" />
-    <None Include="dynamicCasterOutFile.json" />
-    <None Include="featureTypeInformationOutFile.json" />
-    <None Include="typeFactoryOutFile.json" />
+    <None Include="Configs\componentConfig.json" />
+    <None Include="Configs\reflectionConfig.json" />
+    <None Include="Configs\handlerConfig.json" />
+    <None Include="Configs\featureConfig.json" />
+    <None Include="Configs\dynamicCasterOutFile.json" />
+    <None Include="Configs\featureTypeInformationOutFile.json" />
+    <None Include="Configs\typeFactoryOutFile.json" />
+    <None Include="Configs\ecsConfig.json" />
+    <None Include="Configs\ecsDynamicCasterOutFile.json" />
+    <None Include="Configs\ecsTypeInformationOutFile.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

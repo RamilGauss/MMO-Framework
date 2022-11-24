@@ -1,7 +1,7 @@
 {
     "targetForParsing": {
         "directories": [
-            "."
+            ".."
         ],
         "recursive": true
     },
@@ -20,7 +20,7 @@
         "memberIgnore" : "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {
-        "directory": "./Generated files",
+        "directory": "../Generated files",
         "includeListParams": {
             "includeListFileName": "ComponentIncludeList",
             "dirToInclude": []

@@ -33,7 +33,7 @@ namespace nsCodeGeneratorImplementation
         void AddCasters();
 
         void PrepareTasks();
-        void GenerateByPairs();
+        void GenerateByTasks();
 
         void GetParents(const nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo& type, 
             std::set<nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo>& parents);

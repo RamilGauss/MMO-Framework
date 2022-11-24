@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_11_16 11:21:05.196
+// File has been generated at 2022_11_23 10:25:56.348
 	
 #include "FeatureTypeFactory.h"
 #include "SingletonManager.h"
@@ -38,12 +38,40 @@ void TFeatureTypeFactory::Init()
     
     m.insert({ rtti_nsECSFramework_TBaseReactiveSystem_Data, nsECSFramework_TBaseReactiveSystem_Data });
     
+    Data nsECSFramework_TExecuteSystem_Data;
+    nsECSFramework_TExecuteSystem_Data.newFunc = [](){ return new nsECSFramework::TExecuteSystem(); };
+    nsECSFramework_TExecuteSystem_Data.deleteFunc = [](void* p){ delete (nsECSFramework::TExecuteSystem*)p; };
+    auto rtti_nsECSFramework_TExecuteSystem_Data = globalTypeIdentifier->Type<nsECSFramework::TExecuteSystem>();
+    
+    m.insert({ rtti_nsECSFramework_TExecuteSystem_Data, nsECSFramework_TExecuteSystem_Data });
+    
     Data nsECSFramework_TFeature_Data;
     nsECSFramework_TFeature_Data.newFunc = [](){ return new nsECSFramework::TFeature(); };
     nsECSFramework_TFeature_Data.deleteFunc = [](void* p){ delete (nsECSFramework::TFeature*)p; };
     auto rtti_nsECSFramework_TFeature_Data = globalTypeIdentifier->Type<nsECSFramework::TFeature>();
     
     m.insert({ rtti_nsECSFramework_TFeature_Data, nsECSFramework_TFeature_Data });
+    
+    Data nsECSFramework_TInitSystem_Data;
+    nsECSFramework_TInitSystem_Data.newFunc = [](){ return new nsECSFramework::TInitSystem(); };
+    nsECSFramework_TInitSystem_Data.deleteFunc = [](void* p){ delete (nsECSFramework::TInitSystem*)p; };
+    auto rtti_nsECSFramework_TInitSystem_Data = globalTypeIdentifier->Type<nsECSFramework::TInitSystem>();
+    
+    m.insert({ rtti_nsECSFramework_TInitSystem_Data, nsECSFramework_TInitSystem_Data });
+    
+    Data nsECSFramework_TSystem_Data;
+    nsECSFramework_TSystem_Data.newFunc = [](){ return new nsECSFramework::TSystem(); };
+    nsECSFramework_TSystem_Data.deleteFunc = [](void* p){ delete (nsECSFramework::TSystem*)p; };
+    auto rtti_nsECSFramework_TSystem_Data = globalTypeIdentifier->Type<nsECSFramework::TSystem>();
+    
+    m.insert({ rtti_nsECSFramework_TSystem_Data, nsECSFramework_TSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_Data;
+    nsECSFramework_TTearDownSystem_Data.newFunc = [](){ return new nsECSFramework::TTearDownSystem(); };
+    nsECSFramework_TTearDownSystem_Data.deleteFunc = [](void* p){ delete (nsECSFramework::TTearDownSystem*)p; };
+    auto rtti_nsECSFramework_TTearDownSystem_Data = globalTypeIdentifier->Type<nsECSFramework::TTearDownSystem>();
+    
+    m.insert({ rtti_nsECSFramework_TTearDownSystem_Data, nsECSFramework_TTearDownSystem_Data });
     
     Data nsGraphicWrapper_TAddPropertiesFeature_Data;
     nsGraphicWrapper_TAddPropertiesFeature_Data.newFunc = [](){ return new nsGraphicWrapper::TAddPropertiesFeature(); };

@@ -73,6 +73,7 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
 
         // Solve Dependencies. D = ...
         SolveDependencies();
+        UnionDependencies();
         FilterDependenciesByTypeManager();
 
         // DFT = (D U F) П T;
@@ -302,14 +303,19 @@ void TReflectionCodeGenerator::SolveDependencies()
     }
 }
 //---------------------------------------------------------------------------------------
-void TReflectionCodeGenerator::FilterDependenciesByTypeManager()
+void TReflectionCodeGenerator::UnionDependencies()
 {
     for (auto& genInfo : mGenerators) {
-        for (auto& dep : genInfo.dependenciesTypeNameSet) {
-            auto type = mTypeManager->Get(dep);
-            if (type != nullptr) {
-                genInfo.dependenciesTypeSet.insert(type);
-            }
+        mUnionedDependenciesTypeNameSet.insert(genInfo.dependenciesTypeNameSet.begin(), genInfo.dependenciesTypeNameSet.end());
+    }
+}
+//---------------------------------------------------------------------------------------
+void TReflectionCodeGenerator::FilterDependenciesByTypeManager()
+{
+    for (auto& dep : mUnionedDependenciesTypeNameSet) {
+        auto type = mTypeManager->Get(dep);
+        if (type != nullptr) {
+            mUnionedDependenciesTypeSet.insert(type);
         }
     }
 }
@@ -318,7 +324,7 @@ void TReflectionCodeGenerator::MergeDependeciesWithFiltered()
 {
     for (auto& genInfo : mGenerators) {
         genInfo.depAndFilterSet.insert(mFilteredTypeList.begin(), mFilteredTypeList.end());
-        genInfo.depAndFilterSet.insert(genInfo.dependenciesTypeSet.begin(), genInfo.dependenciesTypeSet.end());
+        genInfo.depAndFilterSet.insert(mUnionedDependenciesTypeSet.begin(), mUnionedDependenciesTypeSet.end());
     }
 }
 //---------------------------------------------------------------------------------------

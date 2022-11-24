@@ -1,0 +1,64 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "../../../Modules/ECS"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ],
+        "inheritances": [
+            [ "nsECSFramework::TFeature" ],
+            [ "nsECSFramework::TInitSystem" ],
+            [ "nsECSFramework::TExecuteSystem" ],
+            [ "nsECSFramework::TTearDownSystem" ],
+            [ "nsECSFramework::TOnAddCollectReactiveSystem" ],
+            [ "nsECSFramework::TOnUpdateCollectReactiveSystem" ],
+            [ "nsECSFramework::TOnAddInstantReactiveSystem" ],
+            [ "nsECSFramework::TOnUpdateInstantReactiveSystem" ],
+            [ "nsECSFramework::TOnRemoveInstantReactiveSystem" ]
+        ],
+        "memberIgnore" : "IGNORE_ATTRIBUTE"
+    },
+    "targetForCodeGeneration": {
+        "directory": "../Generated files",
+        "includeListParams": {
+            "includeListFileName": "EcsIncludeList",
+            "dirToInclude": [ "../../../Modules/ECS" ]
+        },
+        "header": "\tReflectionCodeGenerator",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "TypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "fileName": "EcsFeatureTypeInformation",
+                "className": "TEcsFeatureTypeInformation",
+                "keyValueMap": {},
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "./ecsTypeInformationOutFile.json"
+                }
+            },
+            "DynamicCaster": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "fileName": "EcsDynamicCaster",
+                "className": "TEcsDynamicCaster",
+                "keyValueMap": {},
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "./ecsDynamicCasterOutFile.json"
+                }
+            }
+        }
+    }
+}

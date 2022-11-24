@@ -177,10 +177,10 @@ void TDynamicCasterSourceFileGenerator::PrepareTasks()
 void TDynamicCasterSourceFileGenerator::AddCasters()
 {
     PrepareTasks();
-    GenerateByPairs();
+    GenerateByTasks();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TDynamicCasterSourceFileGenerator::GenerateByPairs()
+void TDynamicCasterSourceFileGenerator::GenerateByTasks()
 {
     for (auto& task : mTasks) {
         auto pTypeInfo = mTypeManager->Get(task.first.GetFullType());

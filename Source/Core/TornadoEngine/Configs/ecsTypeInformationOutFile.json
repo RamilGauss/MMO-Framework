@@ -1,0 +1,13 @@
+{
+    "fileName": "EcsFeatureTypeInformation",
+    "nameSpaceName": "nsTornadoEngine",
+    "typeName": "TEcsFeatureTypeInformation",
+    "customizedTypes": [
+        "nsECSFramework::TBaseCollectReactiveSystem",
+        "nsECSFramework::TBaseReactiveSystem",
+        "nsECSFramework::TExecuteSystem",
+        "nsECSFramework::TFeature",
+        "nsECSFramework::TSystem",
+        "nsECSFramework::TTearDownSystem"
+    ]
+}

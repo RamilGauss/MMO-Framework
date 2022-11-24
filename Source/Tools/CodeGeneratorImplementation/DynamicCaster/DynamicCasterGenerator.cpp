@@ -56,15 +56,6 @@ void TDynamicCasterGenerator::GetDependencies(const nsCppParser::TTypeInfo* pTyp
 {
     for (auto& parent : pTypeName->mInheritanceVec) {
 
-        //nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo typeInfo;
-        //typeInfo.nameSpace = parent.mNameSpace;
-        //typeInfo.typeName = parent.mShortTypeName;
-
-        //std::list<std::string> withinClassTypeNameList = {"", pTypeName->GetNameSpace() };
-        //nsCppParser::TTypeInfo* type = nullptr;
-
-        //const nsCppParser::TTypeNameDataBase::TReferenceInfo* pRefInfo = IFileGenerator::Find(typeInfo, withinClassTypeNameList, type);
-
         auto parentType = mTypeManager->Get(parent.mOriginalTypeName);
         if (parentType == nullptr) {
             parentType = mTypeManager->Get(parent.mLongTypeName);

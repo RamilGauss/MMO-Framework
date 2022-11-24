@@ -80,7 +80,7 @@
     <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)_d</TargetName>
-    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\Exe\</OutDir>
@@ -150,10 +150,8 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\componentConfig.json"
-$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\handlerConfig.json"
-$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\reflectionConfig.json"
-$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Source\Core\TornadoEngine\featureConfig.json"</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe $(SolutionDir)Source/Core/TornadoEngine/Configs/componentConfig.json
+</Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -326,6 +324,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
     <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
     <ClCompile Include="Generated files\DynamicCaster.cpp" />
+    <ClCompile Include="Generated files\EcsDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\EcsFeatureTypeInformation.cpp" />
     <ClCompile Include="Generated files\FeatureTypeFactory.cpp" />
     <ClCompile Include="Generated files\FeatureTypeInformation.cpp" />
     <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
@@ -549,6 +549,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
     <ClInclude Include="Generated files\ComponentTypeInformation.h" />
     <ClInclude Include="Generated files\DynamicCaster.h" />
+    <ClInclude Include="Generated files\EcsDynamicCaster.h" />
+    <ClInclude Include="Generated files\EcsFeatureTypeInformation.h" />
+    <ClInclude Include="Generated files\EcsIncludeList.h" />
     <ClInclude Include="Generated files\FeatureIncludeList.h" />
     <ClInclude Include="Generated files\FeatureTypeFactory.h" />
     <ClInclude Include="Generated files\FeatureTypeInformation.h" />
@@ -638,13 +641,16 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="TimeSliceEngine\TimeSliceEngine.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="componentConfig.json" />
-    <None Include="dynamicCasterOutFile.json" />
-    <None Include="featureConfig.json" />
-    <None Include="featureTypeInformationOutFile.json" />
-    <None Include="handlerConfig.json" />
-    <None Include="reflectionConfig.json" />
-    <None Include="typeFactoryOutFile.json" />
+    <None Include="Configs\componentConfig.json" />
+    <None Include="Configs\dynamicCasterOutFile.json" />
+    <None Include="Configs\ecsConfig.json" />
+    <None Include="Configs\ecsDynamicCasterOutFile.json" />
+    <None Include="Configs\ecsTypeInformationOutFile.json" />
+    <None Include="Configs\featureConfig.json" />
+    <None Include="Configs\featureTypeInformationOutFile.json" />
+    <None Include="Configs\handlerConfig.json" />
+    <None Include="Configs\reflectionConfig.json" />
+    <None Include="Configs\typeFactoryOutFile.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

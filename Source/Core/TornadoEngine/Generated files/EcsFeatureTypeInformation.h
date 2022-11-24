@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_11_23 10:25:56.413
+// File has been generated at 2022_11_23 16:57:56.036
 	
 #pragma once
 
@@ -12,11 +12,11 @@
 #include <vector>
 
 #include "TypeDef.h"
-#include "FeatureIncludeList.h"
+#include "EcsIncludeList.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TFeatureTypeInformation
+    class DllExport TEcsFeatureTypeInformation
     {
         static std::list<std::string> mTypeNameList;
         static std::list<int> mRttiList;

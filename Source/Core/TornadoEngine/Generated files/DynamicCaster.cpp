@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_11_16 11:21:05.204
+// File has been generated at 2022_11_23 10:25:56.355
 	
 #include "DynamicCaster.h"
 #include "SingletonManager.h"
@@ -11,11 +11,12 @@
 using namespace nsTornadoEngine;
 
 std::vector<std::vector<TDynamicCaster::Data>> TDynamicCaster::mDataVector;
+std::map<int, std::set<int>> TDynamicCaster::mRttiCombinations;
+
 void TDynamicCaster::Init()
 {
     static bool isNeedInit = true;
-    if ( !isNeedInit )
-    {
+    if ( !isNeedInit ) {
         return;
     }
     isNeedInit = false;
@@ -44,6 +45,348 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsECSFramework_TTearDownSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsECSFramework_TTearDownSystem_Data });
     
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TAnchorsAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TAnchorsAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TAnchorsUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TAnchorsUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonClickHandlerMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonClickHandlerMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TButtonMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TCameraMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TCameraMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TCameraMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TCameraMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TCameraMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogCloseEventHandlerMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogCloseEventHandlerMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TDialogMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFocusAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFocusAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFocusUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFocusUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFocusUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameKeyHandlerMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameKeyHandlerMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseClickHandlerMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseClickHandlerMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseMoveHandlerMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseMoveHandlerMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseWheelHandlerMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseWheelHandlerMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiCameraBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::THorizontalAlignAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::THorizontalAlignAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::THorizontalAlignUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::THorizontalAlignUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TInputTextMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TLabelMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMaxSizeAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMaxSizeAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMaxSizeUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMaxSizeUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeClickHandlerMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeClickHandlerMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinDistanceToParentAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinDistanceToParentAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinDistanceToParentUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinDistanceToParentUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinSizeAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinSizeAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinSizeUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinSizeUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TOnAddUniverseContextSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TOnAddUniverseContextSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TPositionUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TSizeAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TSizeAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TSizeUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TSizeUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTextureMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTextureMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTextureMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTextureMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTextureMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTextureMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTitleUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVerticalAlignAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVerticalAlignAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVerticalAlignUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVerticalAlignUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityAddSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVisibilityAddSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVisibilityAddSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityAddSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityAddSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVisibilityUpdateSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVisibilityUpdateSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityUpdateSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowCloseEventHandlerMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowCloseEventHandlerMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsGraphicWrapper_TWindowMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TNeedDestroyObjectSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TNeedDestroyObjectSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TNeedDestroyObjectSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TNeedDestroyObjectSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemBuilderSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemBuilderSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemBuilderSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemBuilderSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemBuilderSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemBuilderSystem_Data });
+    
+    Data nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemMakerSystem_Data;
+    nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemMakerSystem*>(static_cast<nsECSFramework::TBaseCollectReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemMakerSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemMakerSystem>();
+    
+    nsECSFramework_TBaseCollectReactiveSystem_Map.insert({ nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemMakerSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_nsLogicWrapper_TSystemMakerSystem_Data });
+    
     auto nsECSFramework_TBaseCollectReactiveSystem_rtti = globalTypeIdentifier->Type<nsECSFramework::TBaseCollectReactiveSystem>();
     
     m.insert({ nsECSFramework_TBaseCollectReactiveSystem_rtti, nsECSFramework_TBaseCollectReactiveSystem_Map });
@@ -62,6 +405,156 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsECSFramework_TTearDownSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsECSFramework_TTearDownSystem_Data });
     
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonClickHandlerTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonClickHandlerTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TButtonTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TCameraTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TCameraTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TCameraTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TCameraTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TCameraTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogCloseEventHandlerTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogCloseEventHandlerTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TDialogTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameKeyHandlerTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameKeyHandlerTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseClickHandlerTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseClickHandlerTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseMoveHandlerTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseMoveHandlerTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseWheelHandlerTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseWheelHandlerTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextValueUpdaterSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextValueUpdaterSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TLabelTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TLabelTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TLabelTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TLabelTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TLabelTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeClickHandlerTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeClickHandlerTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TOnRemoveUniverseContextSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TOnRemoveUniverseContextSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TPositionUpdaterSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TPositionUpdaterSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionUpdaterSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TPositionUpdaterSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionUpdaterSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TPositionUpdaterSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TPositionUpdaterSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTextureTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTextureTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTextureTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTextureTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTextureTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTextureTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTitleUpdaterSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTitleUpdaterSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleUpdaterSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTitleUpdaterSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdaterSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTitleUpdaterSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTitleUpdaterSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowCloseEventHandlerTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowCloseEventHandlerTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsGraphicWrapper_TWindowTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TSystemTerminatorSystem_Data;
+    nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TSystemTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemTerminatorSystem*>(static_cast<nsECSFramework::TBaseReactiveSystem*>(p)); };
+    auto nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TSystemTerminatorSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemTerminatorSystem>();
+    
+    nsECSFramework_TBaseReactiveSystem_Map.insert({ nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TSystemTerminatorSystem_rtti, nsECSFramework_TBaseReactiveSystem_nsLogicWrapper_TSystemTerminatorSystem_Data });
+    
     auto nsECSFramework_TBaseReactiveSystem_rtti = globalTypeIdentifier->Type<nsECSFramework::TBaseReactiveSystem>();
     
     m.insert({ nsECSFramework_TBaseReactiveSystem_rtti, nsECSFramework_TBaseReactiveSystem_Map });
@@ -74,17 +567,17 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsECSFramework_TBaseCollectReactiveSystem_rtti, nsECSFramework_TExecuteSystem_nsECSFramework_TBaseCollectReactiveSystem_Data });
     
-    Data nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_Data;
-    nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
-    auto nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_rtti = globalTypeIdentifier->Type<nsECSFramework::TFeature>();
-    
-    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_rtti, nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_Data });
-    
     Data nsECSFramework_TExecuteSystem_nsECSFramework_TSystem_Data;
     nsECSFramework_TExecuteSystem_nsECSFramework_TSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
     auto nsECSFramework_TExecuteSystem_nsECSFramework_TSystem_rtti = globalTypeIdentifier->Type<nsECSFramework::TSystem>();
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsECSFramework_TSystem_rtti, nsECSFramework_TExecuteSystem_nsECSFramework_TSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_Data;
+    nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_rtti = globalTypeIdentifier->Type<nsECSFramework::TFeature>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_rtti, nsECSFramework_TExecuteSystem_nsECSFramework_TFeature_Data });
     
     Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAddPropertiesFeature_Data;
     nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAddPropertiesFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TAddPropertiesFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
@@ -92,17 +585,53 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAddPropertiesFeature_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAddPropertiesFeature_Data });
     
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TAnchorsAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TAnchorsAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TAnchorsUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TAnchorsUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data });
+    
     Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TBeginGraphicFeature_Data;
     nsECSFramework_TExecuteSystem_nsGraphicWrapper_TBeginGraphicFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TBeginGraphicFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
     auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TBeginGraphicFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TBeginGraphicFeature>();
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TBeginGraphicFeature_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TBeginGraphicFeature_Data });
     
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonClickHandlerMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonClickHandlerMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TButtonMakerSystem_Data });
+    
     Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraBuilderFeature_Data;
     nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraBuilderFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraBuilderFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
     auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraBuilderFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraBuilderFeature>();
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraBuilderFeature_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraBuilderFeature_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraMakerSystem_Data });
     
     Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data;
     nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraUpdaterToModuleSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
@@ -116,17 +645,77 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCleanUpUniverseContextSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TCleanUpUniverseContextSystem_Data });
     
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogCloseEventHandlerMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogCloseEventHandlerMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TDialogMakerSystem_Data });
+    
     Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TEndGraphicFeature_Data;
     nsECSFramework_TExecuteSystem_nsGraphicWrapper_TEndGraphicFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TEndGraphicFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
     auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TEndGraphicFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TEndGraphicFeature>();
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TEndGraphicFeature_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TEndGraphicFeature_Data });
     
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFocusAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFocusAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFocusUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFocusUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFocusUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameKeyHandlerMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameKeyHandlerMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseClickHandlerMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseClickHandlerMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseMoveHandlerMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseMoveHandlerMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseWheelHandlerMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseWheelHandlerMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data });
+    
     Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiBuilderFeature_Data;
     nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiBuilderFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiBuilderFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
     auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiBuilderFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiBuilderFeature>();
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiBuilderFeature_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiBuilderFeature_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiCameraBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data });
     
     Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiMakerFeature_Data;
     nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiMakerFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiMakerFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
@@ -152,11 +741,227 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiUpdaterToModuleFeature_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TGuiUpdaterToModuleFeature_Data });
     
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::THorizontalAlignAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::THorizontalAlignAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::THorizontalAlignUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::THorizontalAlignUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TInputTextMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TLabelMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMaxSizeAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMaxSizeAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMaxSizeUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMaxSizeUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeClickHandlerMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeClickHandlerMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinDistanceToParentAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinDistanceToParentAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinDistanceToParentUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinDistanceToParentUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinSizeAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinSizeAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinSizeUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinSizeUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TOnAddUniverseContextSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TOnAddUniverseContextSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TPositionUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TSizeAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TSizeAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TSizeUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TSizeUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTextureMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTextureMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTextureMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTextureMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTextureMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTextureMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTitleUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data });
+    
     Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TUpdatePropertiesFeature_Data;
     nsECSFramework_TExecuteSystem_nsGraphicWrapper_TUpdatePropertiesFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TUpdatePropertiesFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
     auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TUpdatePropertiesFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TUpdatePropertiesFeature>();
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TUpdatePropertiesFeature_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TUpdatePropertiesFeature_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVerticalAlignAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVerticalAlignAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVerticalAlignUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVerticalAlignUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityAddSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVisibilityAddSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVisibilityAddSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityAddSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityAddSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVisibilityUpdateSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVisibilityUpdateSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityUpdateSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowCloseEventHandlerMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowCloseEventHandlerMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsGraphicWrapper_TWindowMakerSystem_Data });
     
     Data nsECSFramework_TExecuteSystem_nsLogicWrapper_TBeginLogicFeature_Data;
     nsECSFramework_TExecuteSystem_nsLogicWrapper_TBeginLogicFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TBeginLogicFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
@@ -194,17 +999,47 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsLogicWrapper_TLogicTerminatorFeature_rtti, nsECSFramework_TExecuteSystem_nsLogicWrapper_TLogicTerminatorFeature_Data });
     
+    Data nsECSFramework_TExecuteSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data;
+    nsECSFramework_TExecuteSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TNeedDestroyObjectSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsLogicWrapper_TNeedDestroyObjectSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TNeedDestroyObjectSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsLogicWrapper_TNeedDestroyObjectSystem_rtti, nsECSFramework_TExecuteSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data });
+    
     Data nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectFeature_Data;
     nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
     auto nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectFeature_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectFeature>();
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectFeature_rtti, nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectFeature_Data });
     
+    Data nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data });
+    
     Data nsECSFramework_TExecuteSystem_nsLogicWrapper_TSceneFeature_Data;
     nsECSFramework_TExecuteSystem_nsLogicWrapper_TSceneFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSceneFeature*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
     auto nsECSFramework_TExecuteSystem_nsLogicWrapper_TSceneFeature_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSceneFeature>();
     
     nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsLogicWrapper_TSceneFeature_rtti, nsECSFramework_TExecuteSystem_nsLogicWrapper_TSceneFeature_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemBuilderSystem_Data;
+    nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemBuilderSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemBuilderSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemBuilderSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemBuilderSystem_rtti, nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemBuilderSystem_Data });
+    
+    Data nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemMakerSystem_Data;
+    nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemMakerSystem*>(static_cast<nsECSFramework::TExecuteSystem*>(p)); };
+    auto nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemMakerSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemMakerSystem>();
+    
+    nsECSFramework_TExecuteSystem_Map.insert({ nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemMakerSystem_rtti, nsECSFramework_TExecuteSystem_nsLogicWrapper_TSystemMakerSystem_Data });
     
     auto nsECSFramework_TExecuteSystem_rtti = globalTypeIdentifier->Type<nsECSFramework::TExecuteSystem>();
     
@@ -416,17 +1251,71 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TAddPropertiesFeature_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TAddPropertiesFeature_Data });
     
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TAnchorsAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TAnchorsAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TAnchorsUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TAnchorsUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data });
+    
     Data nsECSFramework_TSystem_nsGraphicWrapper_TBeginGraphicFeature_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TBeginGraphicFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TBeginGraphicFeature*>(static_cast<nsECSFramework::TSystem*>(p)); };
     auto nsECSFramework_TSystem_nsGraphicWrapper_TBeginGraphicFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TBeginGraphicFeature>();
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TBeginGraphicFeature_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TBeginGraphicFeature_Data });
     
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TButtonBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TButtonBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TButtonBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TButtonBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TButtonBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonClickHandlerMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonClickHandlerMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonClickHandlerTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonClickHandlerTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TButtonMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TButtonMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TButtonMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TButtonMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TButtonMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TButtonTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TButtonTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TButtonTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TButtonTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TButtonTerminatorSystem_Data });
+    
     Data nsECSFramework_TSystem_nsGraphicWrapper_TCameraBuilderFeature_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TCameraBuilderFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraBuilderFeature*>(static_cast<nsECSFramework::TSystem*>(p)); };
     auto nsECSFramework_TSystem_nsGraphicWrapper_TCameraBuilderFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraBuilderFeature>();
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TCameraBuilderFeature_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TCameraBuilderFeature_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TCameraMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TCameraMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TCameraMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TCameraMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TCameraMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TCameraTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TCameraTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TCameraTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TCameraTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TCameraTerminatorSystem_Data });
     
     Data nsECSFramework_TSystem_nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TCameraUpdaterToModuleSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraUpdaterToModuleSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
@@ -440,17 +1329,113 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TCleanUpUniverseContextSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TCleanUpUniverseContextSystem_Data });
     
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TDialogBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TDialogBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TDialogBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TDialogBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TDialogBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogCloseEventHandlerMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogCloseEventHandlerMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogCloseEventHandlerTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogCloseEventHandlerTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TDialogMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TDialogMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TDialogMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TDialogMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TDialogMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TDialogTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TDialogTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TDialogTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TDialogTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TDialogTerminatorSystem_Data });
+    
     Data nsECSFramework_TSystem_nsGraphicWrapper_TEndGraphicFeature_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TEndGraphicFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TEndGraphicFeature*>(static_cast<nsECSFramework::TSystem*>(p)); };
     auto nsECSFramework_TSystem_nsGraphicWrapper_TEndGraphicFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TEndGraphicFeature>();
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TEndGraphicFeature_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TEndGraphicFeature_Data });
     
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFocusAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFocusAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFocusAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFocusAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFocusAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFocusAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFocusAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFocusUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFocusUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFocusUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFocusUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFocusUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFocusUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFocusUpdateSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameKeyHandlerMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameKeyHandlerMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameKeyHandlerTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameKeyHandlerTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseClickHandlerMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseClickHandlerMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseClickHandlerTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseClickHandlerTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseMoveHandlerMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseMoveHandlerMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseMoveHandlerTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseMoveHandlerTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseWheelHandlerMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseWheelHandlerMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseWheelHandlerTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseWheelHandlerTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_Data });
+    
     Data nsECSFramework_TSystem_nsGraphicWrapper_TGuiBuilderFeature_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TGuiBuilderFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiBuilderFeature*>(static_cast<nsECSFramework::TSystem*>(p)); };
     auto nsECSFramework_TSystem_nsGraphicWrapper_TGuiBuilderFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiBuilderFeature>();
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TGuiBuilderFeature_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TGuiBuilderFeature_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiCameraBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data });
     
     Data nsECSFramework_TSystem_nsGraphicWrapper_TGuiMakerFeature_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TGuiMakerFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiMakerFeature*>(static_cast<nsECSFramework::TSystem*>(p)); };
@@ -476,11 +1461,167 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TGuiUpdaterToModuleFeature_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TGuiUpdaterToModuleFeature_Data });
     
+    Data nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::THorizontalAlignAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::THorizontalAlignAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::THorizontalAlignUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::THorizontalAlignUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TInputTextBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TInputTextBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TInputTextMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TInputTextMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TInputTextMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TInputTextMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TInputTextMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TInputTextTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TInputTextTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TInputTextTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TInputTextTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TInputTextTerminatorSystem_Data });
+    
     Data nsECSFramework_TSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextValueUpdaterSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
     auto nsECSFramework_TSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextValueUpdaterSystem>();
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TLabelBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TLabelBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TLabelBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TLabelBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TLabelBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TLabelMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TLabelMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TLabelMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TLabelMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TLabelMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TLabelTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TLabelTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TLabelTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TLabelTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TLabelTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMaxSizeAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMaxSizeAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMaxSizeUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMaxSizeUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeClickHandlerMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeClickHandlerMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeClickHandlerTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeClickHandlerTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinDistanceToParentAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinDistanceToParentAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinDistanceToParentUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinDistanceToParentUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinSizeAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinSizeAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinSizeUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinSizeUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TOnAddUniverseContextSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TOnAddUniverseContextSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TOnRemoveUniverseContextSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TOnRemoveUniverseContextSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TPositionAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TPositionAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TPositionAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TPositionAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TPositionAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TPositionUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TPositionUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TPositionUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TPositionUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TPositionUpdateSystem_Data });
     
     Data nsECSFramework_TSystem_nsGraphicWrapper_TPositionUpdaterSystem_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TPositionUpdaterSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionUpdaterSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
@@ -488,17 +1629,143 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TPositionUpdaterSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TPositionUpdaterSystem_Data });
     
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TSizeAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TSizeAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TSizeAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TSizeAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TSizeAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TSizeUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TSizeUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TSizeUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TSizeUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTextureMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTextureMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTextureMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTextureMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTextureMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTextureMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTextureTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTextureTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTextureTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTextureTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTextureTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTextureTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTitleAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTitleAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTitleAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTitleAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTitleAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdateSystem_Data });
+    
     Data nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdaterSystem_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdaterSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleUpdaterSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
     auto nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdaterSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdaterSystem>();
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdaterSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTitleUpdaterSystem_Data });
     
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_Data });
+    
     Data nsECSFramework_TSystem_nsGraphicWrapper_TUpdatePropertiesFeature_Data;
     nsECSFramework_TSystem_nsGraphicWrapper_TUpdatePropertiesFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TUpdatePropertiesFeature*>(static_cast<nsECSFramework::TSystem*>(p)); };
     auto nsECSFramework_TSystem_nsGraphicWrapper_TUpdatePropertiesFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TUpdatePropertiesFeature>();
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TUpdatePropertiesFeature_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TUpdatePropertiesFeature_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVerticalAlignAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVerticalAlignAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVerticalAlignUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVerticalAlignUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityAddSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVisibilityAddSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVisibilityAddSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityAddSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityAddSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVisibilityUpdateSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVisibilityUpdateSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityUpdateSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TWindowBuilderSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TWindowBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TWindowBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TWindowBuilderSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TWindowBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowCloseEventHandlerMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowCloseEventHandlerMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowCloseEventHandlerTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowCloseEventHandlerTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TWindowMakerSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TWindowMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TWindowMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TWindowMakerSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TWindowMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsGraphicWrapper_TWindowTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsGraphicWrapper_TWindowTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsGraphicWrapper_TWindowTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsGraphicWrapper_TWindowTerminatorSystem_rtti, nsECSFramework_TSystem_nsGraphicWrapper_TWindowTerminatorSystem_Data });
     
     Data nsECSFramework_TSystem_nsLogicWrapper_TBeginLogicFeature_Data;
     nsECSFramework_TSystem_nsLogicWrapper_TBeginLogicFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TBeginLogicFeature*>(static_cast<nsECSFramework::TSystem*>(p)); };
@@ -536,11 +1803,35 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TLogicTerminatorFeature_rtti, nsECSFramework_TSystem_nsLogicWrapper_TLogicTerminatorFeature_Data });
     
+    Data nsECSFramework_TSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data;
+    nsECSFramework_TSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TNeedDestroyObjectSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsLogicWrapper_TNeedDestroyObjectSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TNeedDestroyObjectSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TNeedDestroyObjectSystem_rtti, nsECSFramework_TSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data });
+    
     Data nsECSFramework_TSystem_nsLogicWrapper_TObjectFeature_Data;
     nsECSFramework_TSystem_nsLogicWrapper_TObjectFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectFeature*>(static_cast<nsECSFramework::TSystem*>(p)); };
     auto nsECSFramework_TSystem_nsLogicWrapper_TObjectFeature_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectFeature>();
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TObjectFeature_rtti, nsECSFramework_TSystem_nsLogicWrapper_TObjectFeature_Data });
+    
+    Data nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data;
+    nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_rtti, nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data;
+    nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_rtti, nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_rtti, nsECSFramework_TSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_Data });
     
     Data nsECSFramework_TSystem_nsLogicWrapper_TSceneFeature_Data;
     nsECSFramework_TSystem_nsLogicWrapper_TSceneFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSceneFeature*>(static_cast<nsECSFramework::TSystem*>(p)); };
@@ -553,6 +1844,24 @@ void TDynamicCaster::Init()
     auto nsECSFramework_TSystem_nsLogicWrapper_TStartedScenesInitSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TStartedScenesInitSystem>();
     
     nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TStartedScenesInitSystem_rtti, nsECSFramework_TSystem_nsLogicWrapper_TStartedScenesInitSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsLogicWrapper_TSystemBuilderSystem_Data;
+    nsECSFramework_TSystem_nsLogicWrapper_TSystemBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemBuilderSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsLogicWrapper_TSystemBuilderSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemBuilderSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TSystemBuilderSystem_rtti, nsECSFramework_TSystem_nsLogicWrapper_TSystemBuilderSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsLogicWrapper_TSystemMakerSystem_Data;
+    nsECSFramework_TSystem_nsLogicWrapper_TSystemMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemMakerSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsLogicWrapper_TSystemMakerSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemMakerSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TSystemMakerSystem_rtti, nsECSFramework_TSystem_nsLogicWrapper_TSystemMakerSystem_Data });
+    
+    Data nsECSFramework_TSystem_nsLogicWrapper_TSystemTerminatorSystem_Data;
+    nsECSFramework_TSystem_nsLogicWrapper_TSystemTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemTerminatorSystem*>(static_cast<nsECSFramework::TSystem*>(p)); };
+    auto nsECSFramework_TSystem_nsLogicWrapper_TSystemTerminatorSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemTerminatorSystem>();
+    
+    nsECSFramework_TSystem_Map.insert({ nsECSFramework_TSystem_nsLogicWrapper_TSystemTerminatorSystem_rtti, nsECSFramework_TSystem_nsLogicWrapper_TSystemTerminatorSystem_Data });
     
     auto nsECSFramework_TSystem_rtti = globalTypeIdentifier->Type<nsECSFramework::TSystem>();
     
@@ -590,11 +1899,53 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAddPropertiesFeature_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAddPropertiesFeature_Data });
     
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TAnchorsAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TAnchorsAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TAnchorsUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TAnchorsUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TAnchorsUpdateSystem_Data });
+    
     Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TBeginGraphicFeature_Data;
     nsECSFramework_TTearDownSystem_nsGraphicWrapper_TBeginGraphicFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TBeginGraphicFeature*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
     auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TBeginGraphicFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TBeginGraphicFeature>();
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TBeginGraphicFeature_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TBeginGraphicFeature_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonClickHandlerMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonClickHandlerMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonClickHandlerTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonClickHandlerTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonClickHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TButtonTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TButtonTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TButtonTerminatorSystem_Data });
     
     Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraBuilderFeature_Data;
     nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraBuilderFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraBuilderFeature*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
@@ -602,17 +1953,125 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraBuilderFeature_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraBuilderFeature_Data });
     
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TCameraTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TCameraTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogCloseEventHandlerMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogCloseEventHandlerMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogCloseEventHandlerTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogCloseEventHandlerTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogCloseEventHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TDialogTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TDialogTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TDialogTerminatorSystem_Data });
+    
     Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TEndGraphicFeature_Data;
     nsECSFramework_TTearDownSystem_nsGraphicWrapper_TEndGraphicFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TEndGraphicFeature*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
     auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TEndGraphicFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TEndGraphicFeature>();
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TEndGraphicFeature_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TEndGraphicFeature_Data });
     
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFocusAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFocusAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFocusUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFocusUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFocusUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameKeyHandlerMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameKeyHandlerMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameKeyHandlerTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameKeyHandlerTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameKeyHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseClickHandlerMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseClickHandlerMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseClickHandlerTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseClickHandlerTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseClickHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseMoveHandlerMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseMoveHandlerMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseMoveHandlerTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseMoveHandlerTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseMoveHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseWheelHandlerMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseWheelHandlerMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TFrameMouseWheelHandlerTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TFrameMouseWheelHandlerTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TFrameMouseWheelHandlerTerminatorSystem_Data });
+    
     Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiBuilderFeature_Data;
     nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiBuilderFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiBuilderFeature*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
     auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiBuilderFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiBuilderFeature>();
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiBuilderFeature_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiBuilderFeature_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiCameraBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiCameraBuilderSystem_Data });
     
     Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiMakerFeature_Data;
     nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiMakerFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TGuiMakerFeature*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
@@ -638,11 +2097,311 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiUpdaterToModuleFeature_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TGuiUpdaterToModuleFeature_Data });
     
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::THorizontalAlignAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::THorizontalAlignAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::THorizontalAlignUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::THorizontalAlignUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_THorizontalAlignUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TInputTextValueUpdaterSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TInputTextValueUpdaterSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TInputTextValueUpdaterSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TLabelTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLabelTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TLabelTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMainWindowTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMainWindowTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMainWindowTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMaxSizeAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMaxSizeAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMaxSizeUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMaxSizeUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMaxSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeClickHandlerMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeClickHandlerMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeClickHandlerTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeClickHandlerTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeClickHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMenuNodeTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMenuNodeTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMenuNodeTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinDistanceToParentAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinDistanceToParentAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinDistanceToParentUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinDistanceToParentUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinDistanceToParentUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinSizeAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinSizeAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TMinSizeUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TMinSizeUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TMinSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TOnAddUniverseContextSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TOnAddUniverseContextSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnAddUniverseContextSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TOnRemoveUniverseContextSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TOnRemoveUniverseContextSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TOnRemoveUniverseContextSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdaterSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdaterSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TPositionUpdaterSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdaterSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TPositionUpdaterSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdaterSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TPositionUpdaterSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TSizeAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TSizeAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TSizeUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TSizeUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TSizeUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTextureMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTextureTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTextureTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdaterSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdaterSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTitleUpdaterSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdaterSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTitleUpdaterSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdaterSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTitleUpdaterSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeNodeTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeNodeTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeNodeTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TTreeViewTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTreeViewTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TTreeViewTerminatorSystem_Data });
+    
     Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TUpdatePropertiesFeature_Data;
     nsECSFramework_TTearDownSystem_nsGraphicWrapper_TUpdatePropertiesFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TUpdatePropertiesFeature*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
     auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TUpdatePropertiesFeature_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TUpdatePropertiesFeature>();
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TUpdatePropertiesFeature_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TUpdatePropertiesFeature_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVerticalAlignAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVerticalAlignAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVerticalAlignUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVerticalAlignUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVerticalAlignUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityAddSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityAddSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVisibilityAddSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityAddSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVisibilityAddSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityAddSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityAddSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TVisibilityUpdateSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityUpdateSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TVisibilityUpdateSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityUpdateSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TVisibilityUpdateSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowBuilderSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowCloseEventHandlerMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowCloseEventHandlerMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowCloseEventHandlerTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowCloseEventHandlerTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowCloseEventHandlerTerminatorSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowMakerSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsGraphicWrapper::TWindowTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowTerminatorSystem_rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TWindowTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsGraphicWrapper_TWindowTerminatorSystem_Data });
     
     Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TBeginLogicFeature_Data;
     nsECSFramework_TTearDownSystem_nsLogicWrapper_TBeginLogicFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TBeginLogicFeature*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
@@ -674,17 +2433,59 @@ void TDynamicCaster::Init()
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TLogicTerminatorFeature_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TLogicTerminatorFeature_Data });
     
+    Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data;
+    nsECSFramework_TTearDownSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TNeedDestroyObjectSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsLogicWrapper_TNeedDestroyObjectSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TNeedDestroyObjectSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TNeedDestroyObjectSystem_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TNeedDestroyObjectSystem_Data });
+    
     Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectFeature_Data;
     nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectFeature*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
     auto nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectFeature_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectFeature>();
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectFeature_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectFeature_Data });
     
+    Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TObjectInstantiationCompletionHandlerTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TObjectInstantiationCompletionHandlerTerminatorSystem_Data });
+    
     Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TSceneFeature_Data;
     nsECSFramework_TTearDownSystem_nsLogicWrapper_TSceneFeature_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSceneFeature*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
     auto nsECSFramework_TTearDownSystem_nsLogicWrapper_TSceneFeature_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSceneFeature>();
     
     nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TSceneFeature_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TSceneFeature_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemBuilderSystem_Data;
+    nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemBuilderSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemBuilderSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemBuilderSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemBuilderSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemBuilderSystem_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemBuilderSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemMakerSystem_Data;
+    nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemMakerSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemMakerSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemMakerSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemMakerSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemMakerSystem_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemMakerSystem_Data });
+    
+    Data nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemTerminatorSystem_Data;
+    nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemTerminatorSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsLogicWrapper::TSystemTerminatorSystem*>(static_cast<nsECSFramework::TTearDownSystem*>(p)); };
+    auto nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemTerminatorSystem_rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemTerminatorSystem>();
+    
+    nsECSFramework_TTearDownSystem_Map.insert({ nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemTerminatorSystem_rtti, nsECSFramework_TTearDownSystem_nsLogicWrapper_TSystemTerminatorSystem_Data });
     
     auto nsECSFramework_TTearDownSystem_rtti = globalTypeIdentifier->Type<nsECSFramework::TTearDownSystem>();
     
@@ -3610,14 +5411,17 @@ void TDynamicCaster::Init()
         std::vector<Data> vecData;
         int dstMax = 0;
         for (auto& vtDst : vt.second) {
-            
             dstMax = std::max(vtDst.first, dstMax);
         }
         
         vecData.resize(dstMax + 1);
+        std::set<int> rttis;
         for (auto& vtDst : vt.second) {
             vecData[vtDst.first] = vtDst.second;
+            rttis.insert(vtDst.first);
         }
+        
+        mRttiCombinations.insert({ vt.first, rttis });
         
         mDataVector[vt.first] = vecData;
     }
@@ -3627,5 +5431,11 @@ void* TDynamicCaster::Cast(int srcRtti, void* p, int dstRtti)
 {
     Init();
     return mDataVector[srcRtti][dstRtti].castFunc(p);
+}
+//---------------------------------------------------------------------------------------
+const std::map<int, std::set<int>>& TDynamicCaster::GetRttiCombinations()
+{
+    Init();
+    return mRttiCombinations;
 }
 //---------------------------------------------------------------------------------------

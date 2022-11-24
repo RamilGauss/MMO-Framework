@@ -21,6 +21,18 @@ std::string TTypeInfo::GetNameSpace()// all namespaces: A::B::...::Z
     return summa;
 }
 //-----------------------------------------------------------------------------------------
+std::string TTypeInfo::GetNameSpaceAsVar()// all namespaces: A_B_..._Z
+{
+    std::string summa;
+    auto size = mNamespaceVec.size();
+    for (auto i = 0; i < size; i++) {
+        summa += mNamespaceVec[i];
+        if (i != size - 1)
+            summa += "_";
+    }
+    return summa;
+}
+//-----------------------------------------------------------------------------------------
 std::string TTypeInfo::GetTypeNameWithNameSpace()
 {
     auto sNamespace = GetNameSpace();
@@ -32,7 +44,7 @@ std::string TTypeInfo::GetTypeNameWithNameSpace()
 //-----------------------------------------------------------------------------------------
 std::string TTypeInfo::GetTypeNameWithNameSpaceAsVar()
 {
-    auto sNamespace = GetNameSpace();
+    auto sNamespace = GetNameSpaceAsVar();
     if (sNamespace.length() > 0) {
         return sNamespace + "_" + mName;
     }

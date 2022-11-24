@@ -49,6 +49,8 @@ namespace nsCppParser
         TAccessLevelMemberInfoPtrVecArray mMembers;
 
         std::string GetNameSpace();// all namespaces: A::B::...::Z
+        std::string GetNameSpaceAsVar();// all namespaces: A_B_..._Z
+
         std::string GetTypeNameWithNameSpace();// namespace::typename
         std::string GetTypeNameWithNameSpaceAsVar();// namespace_typename
 

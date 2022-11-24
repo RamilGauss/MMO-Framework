@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_11_15 15:41:16.743
+// File has been generated at 2022_11_23 10:25:54.334
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"

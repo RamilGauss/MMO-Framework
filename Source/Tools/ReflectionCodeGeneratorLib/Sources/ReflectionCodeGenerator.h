@@ -86,12 +86,13 @@ namespace nsReflectionCodeGenerator
             std::map<std::string, TExternalSource*> typeNameExtSrcMap;
 
             std::set<std::string> dependenciesTypeNameSet;
-            std::set<nsCppParser::TTypeInfo*> dependenciesTypeSet;// Filtered by availability in type manager
-
             std::set<nsCppParser::TTypeInfo*> depAndFilterSet;
         };
 
         std::list<TGeneratorInfo> mGenerators;
+
+        std::set<std::string> mUnionedDependenciesTypeNameSet;
+        std::set<nsCppParser::TTypeInfo*> mUnionedDependenciesTypeSet;// Filtered by availability in type manager
 
         IIncludeListGenerator* mIncludeList = nullptr;
 
@@ -112,6 +113,7 @@ namespace nsReflectionCodeGenerator
         void LoadExternalSources();
         void SolveTypeNameExternalSources();
         void SolveDependencies();
+        void UnionDependencies();
         void FilterDependenciesByTypeManager();
         void MergeDependeciesWithFiltered();
 

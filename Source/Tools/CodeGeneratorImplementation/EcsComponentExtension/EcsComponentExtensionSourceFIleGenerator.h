@@ -23,6 +23,8 @@ namespace nsCodeGeneratorImplementation
         void AddInit();
 
         void AddMethodDeinitions();
+
+        void AddType(const nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo& typeInfo);
     private:
     };
 }

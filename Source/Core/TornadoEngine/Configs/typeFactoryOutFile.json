@@ -1,11 +1,15 @@
 {
-    "fileName": "FeatureTypeInformation",
+    "fileName": "FeatureTypeFactory",
     "nameSpaceName": "nsTornadoEngine",
-    "typeName": "TFeatureTypeInformation",
+    "typeName": "TFeatureTypeFactory",
     "customizedTypes": [
         "nsECSFramework::TBaseCollectReactiveSystem",
         "nsECSFramework::TBaseReactiveSystem",
+        "nsECSFramework::TExecuteSystem",
         "nsECSFramework::TFeature",
+        "nsECSFramework::TInitSystem",
+        "nsECSFramework::TSystem",
+        "nsECSFramework::TTearDownSystem",
         "nsGraphicWrapper::TAddPropertiesFeature",
         "nsGraphicWrapper::TAnchorsAddSystem",
         "nsGraphicWrapper::TAnchorsUpdateSystem",

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_11_15 15:41:13.497
+// File has been generated at 2022_11_23 17:12:41.368
 	
 #include "ComponentTypeInformation.h"
 
@@ -32,6 +32,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsCommonWrapper_TGuidComponent_n);
     mRttiList.push_back(nsCommonWrapper_TGuidComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TGuidComponent_n, nsCommonWrapper_TGuidComponent_i });
+    
+    int nsCommonWrapper_THandlerTarget_i = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
+    std::string nsCommonWrapper_THandlerTarget_n = "nsCommonWrapper::THandlerTarget";
+    mTypeNameList.push_back(nsCommonWrapper_THandlerTarget_n);
+    mRttiList.push_back(nsCommonWrapper_THandlerTarget_i);
+    mNameRttiMap.insert({ nsCommonWrapper_THandlerTarget_n, nsCommonWrapper_THandlerTarget_i });
     
     int nsCommonWrapper_TNameComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TNameComponent>();
     std::string nsCommonWrapper_TNameComponent_n = "nsCommonWrapper::TNameComponent";
@@ -417,6 +423,18 @@ void TComponentTypeInformation::Init()
     mRttiList.push_back(nsGuiWrapper_TWindowComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TWindowComponent_n, nsGuiWrapper_TWindowComponent_i });
     
+    int nsGuiWrapper_THorizontalAlignComponent_Type_i = globalTypeIdentifier->Type<nsGuiWrapper::THorizontalAlignComponent::Type>();
+    std::string nsGuiWrapper_THorizontalAlignComponent_Type_n = "nsGuiWrapper::THorizontalAlignComponent::Type";
+    mTypeNameList.push_back(nsGuiWrapper_THorizontalAlignComponent_Type_n);
+    mRttiList.push_back(nsGuiWrapper_THorizontalAlignComponent_Type_i);
+    mNameRttiMap.insert({ nsGuiWrapper_THorizontalAlignComponent_Type_n, nsGuiWrapper_THorizontalAlignComponent_Type_i });
+    
+    int nsGuiWrapper_TVerticalAlignComponent_Type_i = globalTypeIdentifier->Type<nsGuiWrapper::TVerticalAlignComponent::Type>();
+    std::string nsGuiWrapper_TVerticalAlignComponent_Type_n = "nsGuiWrapper::TVerticalAlignComponent::Type";
+    mTypeNameList.push_back(nsGuiWrapper_TVerticalAlignComponent_Type_n);
+    mRttiList.push_back(nsGuiWrapper_TVerticalAlignComponent_Type_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TVerticalAlignComponent_Type_n, nsGuiWrapper_TVerticalAlignComponent_Type_i });
+    
     int nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>();
     std::string nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_n = "nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent";
     mTypeNameList.push_back(nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_n);
@@ -452,6 +470,12 @@ void TComponentTypeInformation::Init()
     mTypeNameList.push_back(nsLogicWrapper_TSystemComponent_n);
     mRttiList.push_back(nsLogicWrapper_TSystemComponent_i);
     mNameRttiMap.insert({ nsLogicWrapper_TSystemComponent_n, nsLogicWrapper_TSystemComponent_i });
+    
+    int nsMathTools_TMatrix16_i = globalTypeIdentifier->Type<nsMathTools::TMatrix16>();
+    std::string nsMathTools_TMatrix16_n = "nsMathTools::TMatrix16";
+    mTypeNameList.push_back(nsMathTools_TMatrix16_n);
+    mRttiList.push_back(nsMathTools_TMatrix16_i);
+    mNameRttiMap.insert({ nsMathTools_TMatrix16_n, nsMathTools_TMatrix16_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

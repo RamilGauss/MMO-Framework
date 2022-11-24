@@ -73,63 +73,7 @@ void TEcsComponentExtensionSourceFileGenerator::AddInit()
     auto& forGen = mTypeNameDbPtr->GetForGenerate();
 
     for (auto& typeInfo : forGen) {
-
-        auto type = mTypeManager->Get(typeInfo.GetFullType());
-
-        auto typeNameWithNameSpace = type->GetTypeNameWithNameSpace();
-
-        auto var = fmt::format("{}_{}", type->GetTypeNameWithNameSpaceAsVar(), s_Data);
-
-        auto str = fmt::format("{} {};", s_Data, var);
-        Add(str);
-
-        // Too long
-        str = fmt::format("{}.{} = []({}* {}, {} {}, std::function<void(void*)> onAfterCreation, bool isNotify) {{",
-            var, s_createFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid);
-        IncrementTabs();
-        Add(str);
-        str = fmt::format("auto lambda = [&]({}* pC){{ onAfterCreation((void*)pC); }};",
-            typeNameWithNameSpace);
-        Add(str);
-        str = fmt::format("{}->{}<{}>({}, lambda, isNotify);",
-            s_pEntMng, s_CreateComponent, typeNameWithNameSpace, s_eid);
-        Add(str);
-        DecrementTabs();
-        Add("};");
-
-        str = fmt::format("{}.{} = []({}* {}, {} {}, void* p, bool isNotify){{ {}->{}({}, *(({}*)p), isNotify); }};",
-            var, s_setFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
-            s_pEntMng, s_SetComponent, s_eid, typeNameWithNameSpace);
-        Add(str);
-
-        str = fmt::format("{}.{} = []({}* {}, {} {}){{ return ({}*) {}->{}<{}>({}); }};",
-            var, s_viewFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
-            s_Void, s_pEntMng, s_ViewComponent, typeNameWithNameSpace, s_eid);
-        Add(str);
-        
-        str = fmt::format("{}.{} = []({}* {}, {} {}){{ return {}->{}<{}>({}); }};",
-            var, s_hasFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
-            s_pEntMng, s_HasComponent, typeNameWithNameSpace, s_eid);
-        Add(str);
-        
-        str = fmt::format("{}.{} = []({}* {}, {} {}){{ return {}->{}<{}>({}); }};",
-            var, s_removeFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
-            s_pEntMng, s_RemoveComponent, typeNameWithNameSpace, s_eid);
-        Add(str);
-
-
-        str = fmt::format("{}.{} = []({}* {}){{ return {}->{}Copy<{}>(); }};",
-            var, s_getByHasFunc, s_TEntityManager, s_pEntMng, s_pEntMng, s_GetByHas, typeNameWithNameSpace);
-        Add(str);
-
-        str = fmt::format("auto rtti_{} = globalTypeIdentifier->Type<{}>();", var, typeNameWithNameSpace);
-        Add(str);
-        AddEmptyLine();
-
-        str = fmt::format("m.{}({{ rtti_{}, {} }});", s_Insert, var, var);
-        Add(str);
-
-        AddEmptyLine();
+        AddType(typeInfo);
     }
 
     Add("int max = 0;");
@@ -302,5 +246,72 @@ void TEcsComponentExtensionSourceFileGenerator::AddMethodDeinitions()
     DecrementTabs();
     AddRightBrace();
     AddCommentedLongLine();
+}
+//-----------------------------------------------------------------------------------------------------------
+void TEcsComponentExtensionSourceFileGenerator::AddType(const nsReflectionCodeGenerator::TTypeNameDataBase::TTypeInfo& typeInfo)
+{
+    auto type = mTypeManager->Get(typeInfo.GetFullType());
+    
+    auto componentItem = std::find_if(type->mInheritanceVec.begin(), type->mInheritanceVec.end(), 
+        [this](const nsCppParser::TInheritanceInfo& inheritance) { return inheritance.mOriginalName == s_IComponent; });
+    auto isComponent = (type->mInheritanceVec.end() != componentItem);
+    if (!isComponent) {
+        return;
+    }
+
+    auto typeNameWithNameSpace = type->GetTypeNameWithNameSpace();
+
+    auto var = fmt::format("{}_{}", type->GetTypeNameWithNameSpaceAsVar(), s_Data);
+
+    auto str = fmt::format("{} {};", s_Data, var);
+    Add(str);
+
+    // Too long
+    str = fmt::format("{}.{} = []({}* {}, {} {}, std::function<void(void*)> onAfterCreation, bool isNotify) {{",
+        var, s_createFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid);
+    IncrementTabs();
+    Add(str);
+    str = fmt::format("auto lambda = [&]({}* pC){{ onAfterCreation((void*)pC); }};",
+        typeNameWithNameSpace);
+    Add(str);
+    str = fmt::format("{}->{}<{}>({}, lambda, isNotify);",
+        s_pEntMng, s_CreateComponent, typeNameWithNameSpace, s_eid);
+    Add(str);
+    DecrementTabs();
+    Add("};");
+
+    str = fmt::format("{}.{} = []({}* {}, {} {}, void* p, bool isNotify){{ {}->{}({}, *(({}*)p), isNotify); }};",
+        var, s_setFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
+        s_pEntMng, s_SetComponent, s_eid, typeNameWithNameSpace);
+    Add(str);
+
+    str = fmt::format("{}.{} = []({}* {}, {} {}){{ return ({}*) {}->{}<{}>({}); }};",
+        var, s_viewFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
+        s_Void, s_pEntMng, s_ViewComponent, typeNameWithNameSpace, s_eid);
+    Add(str);
+
+    str = fmt::format("{}.{} = []({}* {}, {} {}){{ return {}->{}<{}>({}); }};",
+        var, s_hasFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
+        s_pEntMng, s_HasComponent, typeNameWithNameSpace, s_eid);
+    Add(str);
+
+    str = fmt::format("{}.{} = []({}* {}, {} {}){{ return {}->{}<{}>({}); }};",
+        var, s_removeFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
+        s_pEntMng, s_RemoveComponent, typeNameWithNameSpace, s_eid);
+    Add(str);
+
+
+    str = fmt::format("{}.{} = []({}* {}){{ return {}->{}Copy<{}>(); }};",
+        var, s_getByHasFunc, s_TEntityManager, s_pEntMng, s_pEntMng, s_GetByHas, typeNameWithNameSpace);
+    Add(str);
+
+    str = fmt::format("auto rtti_{} = globalTypeIdentifier->Type<{}>();", var, typeNameWithNameSpace);
+    Add(str);
+    AddEmptyLine();
+
+    str = fmt::format("m.{}({{ rtti_{}, {} }});", s_Insert, var, var);
+    Add(str);
+
+    AddEmptyLine();
 }
 //-----------------------------------------------------------------------------------------------------------

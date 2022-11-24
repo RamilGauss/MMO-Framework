@@ -48,6 +48,8 @@ namespace nsCodeGeneratorImplementation
 
         const std::string s_EntityManagerHeaderPath = "entityManagerHeaderPath";
 
+        const std::string s_IComponent = "nsECSFramework::IComponent";
+
     protected:
         TEcsComponentExtensionFileGenerator();
     };
