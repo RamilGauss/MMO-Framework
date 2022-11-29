@@ -39,6 +39,7 @@ int main(int argc, char* argv[])
     sLocale = setlocale(LC_CTYPE, sLocale);
     if (sLocale == nullptr) {
         BL_FIX_BUG();
+        return 1;
     }
 
     g_Rcg.Init(argc, argv);

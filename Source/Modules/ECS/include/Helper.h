@@ -22,12 +22,12 @@ namespace nsECSFramework
     }
 
     template <typename Component>
-    Component* SingleComponent(TEntityManager* entMng)// когда точно есть одна сущность с данным компонентом
+    const Component* SingleComponent(TEntityManager* entMng)// когда точно есть одна сущность с данным компонентом
     {
         auto eid = SingleEntity<Component>(entMng);
         if ( eid == NONE ) {
             return nullptr;
         }
-        return entMng->GetComponent<Component>(eid);
+        return entMng->ViewComponent<Component>(eid);
     }
 }

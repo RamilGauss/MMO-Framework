@@ -1,0 +1,13 @@
+{
+    "fileName": "JsonSerializer",
+    "nameSpaceName": "nsContainerCodeGenerator",
+    "typeName": "TJsonSerializer",
+    "customizedTypes": [
+        "nsContainerCodeGenerator::TCategoryConfig",
+        "nsContainerCodeGenerator::TConfig",
+        "nsContainerCodeGenerator::TGeneratedClass",
+        "nsContainerCodeGenerator::TInheritances",
+        "nsContainerCodeGenerator::TPartConfig",
+        "nsContainerCodeGenerator::TTargetForParsing"
+    ]
+}

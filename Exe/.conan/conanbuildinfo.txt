@@ -1,61 +1,58 @@
 [includedirs]
-C:/Users/gudakovrs/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
-C:/Users/gudakovrs/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
-C:/Users/gudakovrs/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
-C:/Users/gudakovrs/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/include
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/include
-C:/.conan/f598f0/1/include
-C:/.conan/6c3b6e/1/include
-C:/.conan/6c3b6e/1/include/bullet
-C:/Users/gudakovrs/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/include
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include/SDL2
-C:/Users/gudakovrs/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
-C:/Users/gudakovrs/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/include
-C:/Users/gudakovrs/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
-C:/Users/gudakovrs/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
-C:/Users/gudakovrs/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/include
+C:/Users/Gauss/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+C:/Users/Gauss/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/include
+C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/include
+C:/.conan/f81f73/1/include
+C:/.conan/15b0e0/1/include
+C:/.conan/15b0e0/1/include/bullet
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/include
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include/SDL2
+C:/Users/Gauss/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/include
+C:/Users/Gauss/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/include
 
 [libdirs]
-C:/Users/gudakovrs/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
-C:/Users/gudakovrs/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/lib
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib
-C:/.conan/f598f0/1/lib
-C:/.conan/6c3b6e/1/lib
-C:/Users/gudakovrs/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/lib
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/lib
-C:/Users/gudakovrs/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/lib
-C:/Users/gudakovrs/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib
+C:/Users/Gauss/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
+C:/Users/Gauss/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/lib
+C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib
+C:/.conan/f81f73/1/lib
+C:/.conan/15b0e0/1/lib
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/lib
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/lib
+C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/lib
+C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
+C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib
 
 [bindirs]
-C:/Users/gudakovrs/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/bin
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/bin
-C:/Users/gudakovrs/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/bin
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/bin
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/bin
+C:/Users/Gauss/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/bin
+C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/bin
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/bin
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/bin
+C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/bin
 
 [resdirs]
 
 
 [builddirs]
-C:/Users/gudakovrs/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
-C:/Users/gudakovrs/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
-C:/Users/gudakovrs/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib/cmake
-C:/.conan/f598f0/1/
-C:/.conan/6c3b6e/1/
-C:/Users/gudakovrs/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/
-C:/Users/gudakovrs/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
-C:/Users/gudakovrs/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/
-C:/Users/gudakovrs/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
-C:/Users/gudakovrs/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
-C:/Users/gudakovrs/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib/cmake
+C:/Users/Gauss/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
+C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/
+C:/.conan/f81f73/1/
+C:/.conan/15b0e0/1/
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/
+C:/Users/Gauss/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/
+C:/Users/Gauss/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
+C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/
 
 [libs]
 lz4
@@ -174,7 +171,7 @@ FMT_SHARED
 
 
 [includedirs_rapidjson]
-C:/Users/gudakovrs/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 
 [libdirs_rapidjson]
 
@@ -186,7 +183,7 @@ C:/Users/gudakovrs/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0
 
 
 [builddirs_rapidjson]
-C:/Users/gudakovrs/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 
 [libs_rapidjson]
 
@@ -222,7 +219,7 @@ C:/Users/gudakovrs/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0
 
 
 [rootpath_rapidjson]
-C:/Users/gudakovrs/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+C:/Users/Gauss/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
 
 [name_rapidjson]
 rapidjson
@@ -239,7 +236,7 @@ cmake_find_package_multi=RapidJSON
 
 
 [includedirs_magic_enum]
-C:/Users/gudakovrs/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 
 [libdirs_magic_enum]
 
@@ -251,7 +248,7 @@ C:/Users/gudakovrs/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae
 
 
 [builddirs_magic_enum]
-C:/Users/gudakovrs/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 
 [libs_magic_enum]
 
@@ -287,7 +284,7 @@ C:/Users/gudakovrs/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae
 
 
 [rootpath_magic_enum]
-C:/Users/gudakovrs/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+C:/Users/Gauss/.conan/data/magic_enum/0.8.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
 
 [name_magic_enum]
 magic_enum
@@ -303,10 +300,10 @@ magic_enum
 
 
 [includedirs_lz4]
-C:/Users/gudakovrs/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+C:/Users/Gauss/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 
 [libdirs_lz4]
-C:/Users/gudakovrs/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
+C:/Users/Gauss/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 
 [bindirs_lz4]
 
@@ -315,7 +312,7 @@ C:/Users/gudakovrs/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e
 
 
 [builddirs_lz4]
-C:/Users/gudakovrs/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
+C:/Users/Gauss/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
 
 [libs_lz4]
 lz4
@@ -351,7 +348,7 @@ lz4
 
 
 [rootpath_lz4]
-C:/Users/gudakovrs/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714
+C:/Users/Gauss/.conan/data/lz4/1.9.4/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714
 
 [name_lz4]
 lz4
@@ -367,13 +364,13 @@ pkg_config=liblz4
 
 
 [includedirs_fmt]
-C:/Users/gudakovrs/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/include
+C:/Users/Gauss/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/include
 
 [libdirs_fmt]
-C:/Users/gudakovrs/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/lib
+C:/Users/Gauss/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/lib
 
 [bindirs_fmt]
-C:/Users/gudakovrs/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/bin
+C:/Users/Gauss/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7/bin
 
 [resdirs_fmt]
 
@@ -415,7 +412,7 @@ FMT_SHARED
 
 
 [rootpath_fmt]
-C:/Users/gudakovrs/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7
+C:/Users/Gauss/.conan/data/fmt/9.1.0/_/_/package/c78baded34c8958386c75d3c49a34ce6e77a9de7
 
 [name_fmt]
 fmt
@@ -433,20 +430,19 @@ pkg_config=fmt
 
 
 [includedirs_openssl]
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/include
+C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/include
 
 [libdirs_openssl]
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib
+C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib
 
 [bindirs_openssl]
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/bin
+C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/bin
 
 [resdirs_openssl]
 
 
 [builddirs_openssl]
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/lib/cmake
+C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d/
 
 [libs_openssl]
 libssld
@@ -457,6 +453,7 @@ crypt32
 ws2_32
 advapi32
 user32
+bcrypt
 
 [defines_openssl]
 
@@ -486,7 +483,7 @@ user32
 
 
 [rootpath_openssl]
-C:/Users/gudakovrs/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d
+C:/Users/Gauss/.conan/data/openssl/1.1.1k/_/_/package/4f1710918aa542fccb5a54d7bd712e4b0750b50d
 
 [name_openssl]
 openssl
@@ -503,10 +500,10 @@ cmake_find_package_multi=OpenSSL
 
 
 [includedirs_boost]
-C:/.conan/f598f0/1/include
+C:/.conan/f81f73/1/include
 
 [libdirs_boost]
-C:/.conan/f598f0/1/lib
+C:/.conan/f81f73/1/lib
 
 [bindirs_boost]
 
@@ -515,7 +512,7 @@ C:/.conan/f598f0/1/lib
 
 
 [builddirs_boost]
-C:/.conan/f598f0/1/
+C:/.conan/f81f73/1/
 
 [libs_boost]
 libboost_contract
@@ -594,7 +591,7 @@ BOOST_ALL_NO_LIB
 
 
 [rootpath_boost]
-C:/.conan/f598f0/1
+C:/.conan/f81f73/1
 
 [name_boost]
 boost
@@ -612,11 +609,11 @@ cmake_find_package_multi=Boost
 
 
 [includedirs_bullet3]
-C:/.conan/6c3b6e/1/include
-C:/.conan/6c3b6e/1/include/bullet
+C:/.conan/15b0e0/1/include
+C:/.conan/15b0e0/1/include/bullet
 
 [libdirs_bullet3]
-C:/.conan/6c3b6e/1/lib
+C:/.conan/15b0e0/1/lib
 
 [bindirs_bullet3]
 
@@ -625,7 +622,7 @@ C:/.conan/6c3b6e/1/lib
 
 
 [builddirs_bullet3]
-C:/.conan/6c3b6e/1/
+C:/.conan/15b0e0/1/
 
 [libs_bullet3]
 Bullet3OpenCL_clew_Debug
@@ -671,7 +668,7 @@ Bullet3Common_Debug
 
 
 [rootpath_bullet3]
-C:/.conan/6c3b6e/1
+C:/.conan/15b0e0/1
 
 [name_bullet3]
 bullet3
@@ -689,19 +686,19 @@ pkg_config=bullet
 
 
 [includedirs_gtest]
-C:/Users/gudakovrs/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/include
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/include
 
 [libdirs_gtest]
-C:/Users/gudakovrs/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/lib
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/lib
 
 [bindirs_gtest]
-C:/Users/gudakovrs/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/bin
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/bin
 
 [resdirs_gtest]
 
 
 [builddirs_gtest]
-C:/Users/gudakovrs/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d/
+
 
 [libs_gtest]
 gtest_maind
@@ -740,7 +737,7 @@ GTEST_LINKED_AS_SHARED_LIBRARY=1
 
 
 [rootpath_gtest]
-C:/Users/gudakovrs/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d
+C:/Users/Gauss/.conan/data/gtest/1.10.0/_/_/package/dc359ea859b0535df467a5278a5ddf943a44739d
 
 [name_gtest]
 gtest
@@ -757,20 +754,20 @@ cmake_find_package_multi=GTest
 
 
 [includedirs_sdl]
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include/SDL2
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/include/SDL2
 
 [libdirs_sdl]
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/lib
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/lib
 
 [bindirs_sdl]
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/bin
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/bin
 
 [resdirs_sdl]
 
 
 [builddirs_sdl]
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3/
 
 [libs_sdl]
 SDL2maind
@@ -817,7 +814,7 @@ shell32
 
 
 [rootpath_sdl]
-C:/Users/gudakovrs/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3
+C:/Users/Gauss/.conan/data/sdl/2.24.0/_/_/package/996a52c438de9a8d0cca785b1d69310cc8e3dce3
 
 [name_sdl]
 sdl
@@ -834,7 +831,7 @@ cmake_find_package_multi=SDL2
 
 
 [includedirs_stb]
-C:/Users/gudakovrs/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 
 [libdirs_stb]
 
@@ -846,7 +843,7 @@ C:/Users/gudakovrs/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab8
 
 
 [builddirs_stb]
-C:/Users/gudakovrs/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 
 [libs_stb]
 
@@ -882,7 +879,7 @@ STB_TEXTEDIT_KEYTYPE=unsigned
 
 
 [rootpath_stb]
-C:/Users/gudakovrs/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+C:/Users/Gauss/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
 
 [name_stb]
 stb
@@ -898,10 +895,10 @@ stb
 
 
 [includedirs_glad]
-C:/Users/gudakovrs/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/include
+C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/include
 
 [libdirs_glad]
-C:/Users/gudakovrs/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/lib
+C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/lib
 
 [bindirs_glad]
 
@@ -910,7 +907,7 @@ C:/Users/gudakovrs/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba
 
 
 [builddirs_glad]
-C:/Users/gudakovrs/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/
+C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/
 
 [libs_glad]
 glad
@@ -946,7 +943,7 @@ glad
 
 
 [rootpath_glad]
-C:/Users/gudakovrs/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7
+C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7
 
 [name_glad]
 glad
@@ -962,7 +959,7 @@ glad
 
 
 [includedirs_glm]
-C:/Users/gudakovrs/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 
 [libdirs_glm]
 
@@ -974,7 +971,7 @@ C:/Users/gudakovrs/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88
 
 
 [builddirs_glm]
-C:/Users/gudakovrs/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 
 [libs_glm]
 
@@ -1010,7 +1007,7 @@ C:/Users/gudakovrs/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88
 
 
 [rootpath_glm]
-C:/Users/gudakovrs/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+C:/Users/Gauss/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
 
 [name_glm]
 glm
@@ -1026,7 +1023,7 @@ glm
 
 
 [includedirs_termcolor]
-C:/Users/gudakovrs/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 
 [libdirs_termcolor]
 
@@ -1038,7 +1035,7 @@ C:/Users/gudakovrs/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0
 
 
 [builddirs_termcolor]
-C:/Users/gudakovrs/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 
 [libs_termcolor]
 
@@ -1074,7 +1071,7 @@ C:/Users/gudakovrs/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0
 
 
 [rootpath_termcolor]
-C:/Users/gudakovrs/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+C:/Users/Gauss/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
 
 [name_termcolor]
 termcolor
@@ -1090,10 +1087,10 @@ termcolor
 
 
 [includedirs_zlib]
-C:/Users/gudakovrs/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 
 [libdirs_zlib]
-C:/Users/gudakovrs/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
+C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 
 [bindirs_zlib]
 
@@ -1102,7 +1099,7 @@ C:/Users/gudakovrs/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb
 
 
 [builddirs_zlib]
-C:/Users/gudakovrs/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
+C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
 
 [libs_zlib]
 zlib
@@ -1138,7 +1135,7 @@ zlib
 
 
 [rootpath_zlib]
-C:/Users/gudakovrs/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714
+C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714
 
 [name_zlib]
 zlib
@@ -1155,20 +1152,19 @@ cmake_find_package_multi=ZLIB
 
 
 [includedirs_bzip2]
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/include
+C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/include
 
 [libdirs_bzip2]
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib
+C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib
 
 [bindirs_bzip2]
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/bin
+C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/bin
 
 [resdirs_bzip2]
 
 
 [builddirs_bzip2]
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib/cmake
+C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/
 
 [libs_bzip2]
 bz2
@@ -1204,7 +1200,7 @@ bz2
 
 
 [rootpath_bzip2]
-C:/Users/gudakovrs/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a
+C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a
 
 [name_bzip2]
 bzip2
@@ -1242,7 +1238,7 @@ stacktrace_addr2line_available=False
 [ENV_fmt]
 [ENV_openssl]
 [ENV_boost]
-BOOST_ROOT=C:\.conan\f598f0\1
+BOOST_ROOT=C:\.conan\f81f73\1
 [ENV_bullet3]
 [ENV_gtest]
 [ENV_sdl]
@@ -1252,4 +1248,4 @@ BOOST_ROOT=C:\.conan\f598f0\1
 [ENV_termcolor]
 [ENV_zlib]
 [ENV_bzip2]
-PATH=["C:\Users\gudakovrs\.conan\data\bzip2\1.0.8\_\_\package\589a23dff5fdb23a7fb851223eb766480ead0a9a\bin"]
+PATH=["C:\Users\Gauss\.conan\data\bzip2\1.0.8\_\_\package\589a23dff5fdb23a7fb851223eb766480ead0a9a\bin"]
