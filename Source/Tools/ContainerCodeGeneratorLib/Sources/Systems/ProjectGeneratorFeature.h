@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsContainerCodeGenerator
 {
-    class DllExport TProjectGeneratorFeature : nsECSFramework::TFeature
+    class DllExport TProjectGeneratorFeature : public nsECSFramework::TFeature
     {
     public:
 

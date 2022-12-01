@@ -13,6 +13,6 @@ namespace nsContainerCodeGenerator
 {
     struct DllExport TResultComponent : nsECSFramework::IComponent
     {
-        int result = 0;
+        mutable std::string value;
     };
 }

@@ -2,7 +2,7 @@
 	DynamicCasterTest
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_11_21 12:20:32.729
+// File has been generated at 2022_12_01 22:10:53.798
 	
 #include "DynamicCaster_1.h"
 #include "SingletonManager.h"

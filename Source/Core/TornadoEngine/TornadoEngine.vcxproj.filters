@@ -1300,16 +1300,17 @@
     <ClInclude Include="Generated files\EcsIncludeList.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Configs\componentConfig.json" />
-    <None Include="Configs\reflectionConfig.json" />
-    <None Include="Configs\handlerConfig.json" />
-    <None Include="Configs\featureConfig.json" />
-    <None Include="Configs\dynamicCasterOutFile.json" />
-    <None Include="Configs\featureTypeInformationOutFile.json" />
-    <None Include="Configs\typeFactoryOutFile.json" />
-    <None Include="Configs\ecsConfig.json" />
-    <None Include="Configs\ecsDynamicCasterOutFile.json" />
-    <None Include="Configs\ecsTypeInformationOutFile.json" />
+    <None Include="Configs\Components\componentConfig.json" />
+    <None Include="Configs\Systems\reflectionConfig.json" />
+    <None Include="Configs\Systems\handlerConfig.json" />
+    <None Include="Configs\Systems\featureConfig.json" />
+    <None Include="Configs\Systems\dynamicCasterOutFile.json" />
+    <None Include="Configs\Systems\featureTypeInformationOutFile.json" />
+    <None Include="Configs\Systems\typeFactoryOutFile.json" />
+    <None Include="Configs\Systems\ecsConfig.json" />
+    <None Include="Configs\Systems\ecsDynamicCasterOutFile.json" />
+    <None Include="Configs\Systems\ecsTypeInformationOutFile.json" />
+    <None Include="Configs\containerConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

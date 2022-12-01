@@ -25,7 +25,9 @@ TEntityManager* TSystem::GetEntMng()
 //-------------------------------------------------------------------------
 TSystem::~TSystem()
 {
-    mEntMng->RemoveSystem(this);
+    if (mEntMng) {
+        mEntMng->RemoveSystem(this);
+    }
 }
 //-------------------------------------------------------------------------
 const std::string TSystem::GetTypeName() const

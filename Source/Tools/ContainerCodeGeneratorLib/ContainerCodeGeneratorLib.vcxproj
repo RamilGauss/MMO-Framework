@@ -19,26 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\ConfigContainer.h" />
+    <ClInclude Include="Sources\Components\ArgumentComponent.h" />
+    <ClInclude Include="Sources\Systems\SetupConfigSystem.h" />
     <ClInclude Include="Sources\Generated files\IncludeList.h" />
     <ClInclude Include="Sources\Generated files\JsonSerializer.h" />
     <ClInclude Include="Sources\SetupConfig.h" />
     <ClInclude Include="Sources\Systems\AggregatorDumperFeature.h" />
     <ClInclude Include="Sources\Systems\ProjectGeneratorFeature.h" />
     <ClInclude Include="Sources\Systems\CoreGeneratorFeature.h" />
-    <ClInclude Include="Sources\Systems\ConfigLoaderSystem.h" />
     <ClInclude Include="Sources\Components\ConfigComponent.h" />
     <ClInclude Include="Sources\Components\ResultComponent.h" />
     <ClInclude Include="Sources\Config.h" />
     <ClInclude Include="Sources\ContainerCodeGenerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Systems\SetupConfigSystem.cpp" />
     <ClCompile Include="Sources\Generated files\JsonSerializer.cpp" />
     <ClCompile Include="Sources\SetupConfig.cpp" />
     <ClCompile Include="Sources\Systems\AggregatorDumperFeature.cpp" />
     <ClCompile Include="Sources\Systems\ProjectGeneratorFeature.cpp" />
     <ClCompile Include="Sources\Systems\CoreGeneratorFeature.cpp" />
-    <ClCompile Include="Sources\Systems\ConfigLoaderSystem.cpp" />
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>

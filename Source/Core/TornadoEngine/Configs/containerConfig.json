@@ -1,0 +1,216 @@
+{
+    "reflectionCodeGeneratorFileName": "../../../../Exe/ReflectionCodeGenerator_d.exe",
+    "coreConfig": {
+        "isNeedGenerate": true,
+
+        "ecsSystemConfig": {
+            "ecsDirectory": "../../../Modules/ECS",
+            "typeInfo": {
+                "fileName": "EcsTypeInfo",
+                "typeName": "TEcsTypeInfo"
+            },
+            "dynamicCaster": {
+                "fileName": "EcsDynamicCaster",
+                "typeName": "TEcsDynamicCaster"
+            }
+        },
+
+        "targetDirectory": "../Generated files",
+        "exportDeclaration": "DllExport",
+        "nameSpace": "nsTornadoEngine",
+        "parseDirectory": "",
+
+        "componentConfig": {
+            "inheritanceFilter": "nsECSFramework::IComponent",
+            "typeInfo": {
+                "fileName": "ComponentTypeInfo",
+                "typeName": "TComponentTypeInfo"
+            },
+            "json": {
+                "fileName": "ComponentJson",
+                "typeName": "TComponentJson"
+            },
+            "binary": {
+                "fileName": "ComponentBinary",
+                "typeName": "TComponentBinary"
+            },
+            "imGui": {
+                "fileName": "ComponentImGui",
+                "typeName": "TComponentImGui"
+            },
+            "entMng": {
+                "fileName": "ComponentEntMng",
+                "typeName": "TComponentEntMng"
+            }
+        },
+
+        "handlerConfig": {
+            "baseHandlerTypeName": "nsTornadoEngine::IHandler",
+            "typeInfo": {
+                "fileName": "HandlerTypeInfo",
+                "typeName": "THandlerTypeInfo"
+            },
+            "typeFactory": {
+                "fileName": "HandlerTypeFactory",
+                "typeName": "THandlerTypeFactory"
+            }
+        },
+
+        "systemConfig": {
+            "inheritances": [
+                "nsECSFramework::TFeature",
+                "nsECSFramework::TInitSystem",
+                "nsECSFramework::TExecuteSystem",
+                "nsECSFramework::TTearDownSystem",
+                "nsECSFramework::TOnAddCollectReactiveSystem",
+                "nsECSFramework::TOnUpdateCollectReactiveSystem",
+                "nsECSFramework::TOnAddInstantReactiveSystem",
+                "nsECSFramework::TOnUpdateInstantReactiveSystem",
+                "nsECSFramework::TOnRemoveInstantReactiveSystem"
+            ],
+
+            "typeInfo": {
+                "fileName": "SystemTypeInfo",
+                "typeName": "TSystemTypeInfo"
+            },
+            "typeFactory": {
+                "fileName": "SystemTypeFactory",
+                "typeName": "TSystemTypeFactory"
+            },
+            "dynamicCaster": {
+                "fileName": "SystemDynamicCaster",
+                "typeName": "TSystemDynamicCaster"
+            }
+        }
+    },
+    "projectConfig": {
+        "targetDirectory": "../../../Tools/TornadoEditor/Generated files",
+        "exportDeclaration": "DllExport",
+        "nameSpace": "nsTornadoEditor",
+        "parseDirectory": "../../../Tools/TornadoEditor",
+
+        "componentConfig": {
+            "inheritanceFilter": "nsECSFramework::IComponent",
+            "typeInfo": {
+                "fileName": "ComponentTypeInfo",
+                "typeName": "TComponentTypeInfo"
+            },
+            "json": {
+                "fileName": "ComponentJson",
+                "typeName": "TComponentJson"
+            },
+            "binary": {
+                "fileName": "ComponentBinary",
+                "typeName": "TComponentBinary"
+            },
+            "imGui": {
+                "fileName": "ComponentImGui",
+                "typeName": "TComponentImGui"
+            },
+            "entMng": {
+                "fileName": "ComponentEntMng",
+                "typeName": "TComponentEntMng"
+            }
+        },
+
+        "handlerConfig": {
+            "baseHandlerTypeName": "IHandler",
+            "typeInfo": {
+                "fileName": "HandlerTypeInfo",
+                "typeName": "THandlerTypeInfo"
+            },
+            "typeFactory": {
+                "fileName": "HandlerTypeFactory",
+                "typeName": "THandlerTypeFactory"
+            }
+        },
+
+        "systemConfig": {
+            "inheritances": [
+                "nsECSFramework::TFeature",
+                "nsECSFramework::TInitSystem",
+                "nsECSFramework::TExecuteSystem",
+                "nsECSFramework::TTearDownSystem",
+                "nsECSFramework::TOnAddCollectReactiveSystem",
+                "nsECSFramework::TOnUpdateCollectReactiveSystem",
+                "nsECSFramework::TOnAddInstantReactiveSystem",
+                "nsECSFramework::TOnUpdateInstantReactiveSystem",
+                "nsECSFramework::TOnRemoveInstantReactiveSystem"
+            ],
+
+            "typeInfo": {
+                "fileName": "SystemTypeInfo",
+                "typeName": "TSystemTypeInfo"
+            },
+            "typeFactory": {
+                "fileName": "SystemTypeFactory",
+                "typeName": "TSystemTypeFactory"
+            },
+            "dynamicCaster": {
+                "fileName": "SystemDynamicCaster",
+                "typeName": "TSystemDynamicCaster"
+            }
+        },
+
+        "aggregator": {
+            "fileName": "Aggregator",
+            "typeName": "TAggregator",
+
+            "componentImpl": {
+                "fileName": "ComponentImpl",
+                "typeName": "TComponentImpl",
+
+                "typeInfoImpl": {
+                    "fileName": "ComponentTypeInfoImpl",
+                    "typeName": "TComponentTypeInfoImpl"
+                },
+                "jsonImpl": {
+                    "fileName": "ComponentJsonImpl",
+                    "typeName": "TComponentJsonImpl"
+                },
+                "binaryImpl": {
+                    "fileName": "ComponentBinaryImpl",
+                    "typeName": "TComponentBinaryImpl"
+                },
+                "imGuiImpl": {
+                    "fileName": "ComponentImGuiImpl",
+                    "typeName": "TComponentImGuiImpl"
+                },
+                "entMngImpl": {
+                    "fileName": "ComponentEntMngImpl",
+                    "typeName": "TComponentEntMngImpl"
+                }
+            },
+            "handlerImpl": {
+                "fileName": "HandlerImpl",
+                "typeName": "THandlerImpl",
+
+                "typeInfoImpl": {
+                    "fileName": "HandlerTypeInfoImpl",
+                    "typeName": "THandlerTypeInfoImpl"
+                },
+                "typeFactoryImpl": {
+                    "fileName": "HandlerTypeFactoryImpl",
+                    "typeName": "THandlerTypeFactoryImpl"
+                }
+            },
+            "systemImpl": {
+                "fileName": "SystemImpl",
+                "typeName": "TSystemImpl",
+
+                "typeInfoImpl": {
+                    "fileName": "SystemTypeInfoImpl",
+                    "typeName": "TSystemTypeInfoImpl"
+                },
+                "typeFactoryImpl": {
+                    "fileName": "SystemTypeFactoryImpl",
+                    "typeName": "TSystemTypeFactoryImpl"
+                },
+                "dynamicCasterImpl": {
+                    "fileName": "SystemDynamicCasterImpl",
+                    "typeName": "TSystemDynamicCasterImpl"
+                }
+            }
+        }
+    }
+}

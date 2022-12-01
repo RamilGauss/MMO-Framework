@@ -10,47 +10,115 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TGeneratedClass
     {
-        std::string directoryPath;
-
-        std::string exportDeclaration;
         std::string fileName;
         std::string typeName;
-        std::string nameSpace;
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TTargetForParsing
+    struct DllExport TComponentConfig
     {
-        std::list<std::string> directories;
+        std::string inheritanceFilter;
+
+        TGeneratedClass typeInfo;
+        TGeneratedClass json;
+        TGeneratedClass binary;
+        TGeneratedClass imGui;
+        TGeneratedClass entMng;
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TInheritances
+    struct DllExport THandlerConfig
+    {
+        std::string baseHandlerTypeName;
+
+        TGeneratedClass typeInfo;
+        TGeneratedClass typeFactory;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TEcsSystemConfig
+    {
+        std::string ecsDirectory;
+
+        TGeneratedClass typeInfo;
+        TGeneratedClass dynamicCaster;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TSystemConfig
     {
         std::list<std::string> inheritances;
+
+        TGeneratedClass typeInfo;
+        TGeneratedClass typeFactory;
+        TGeneratedClass dynamicCaster;
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TCategoryConfig : TInheritances, TGeneratedClass, TTargetForParsing
+    struct DllExport TCommonConfig
     {
+        std::string exportDeclaration;
+        std::string targetDirectory;
+        std::string nameSpace;
+        std::string parseDirectory;
+
+        TComponentConfig componentConfig;
+        THandlerConfig handlerConfig;
+        TSystemConfig systemConfig;
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TPartConfig
+    struct DllExport TComponentAggregator : TGeneratedClass
     {
-        TCategoryConfig componentConfig;
-        TCategoryConfig handlerConfig;
-        TCategoryConfig systemConfig;
+        TGeneratedClass typeInfoImpl;
+        TGeneratedClass jsonImpl;
+        TGeneratedClass binaryImpl;
+        TGeneratedClass imGuiImpl;
+        TGeneratedClass entMngImpl;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport THandlerAggregator : TGeneratedClass
+    {
+        TGeneratedClass typeInfoImpl;
+        TGeneratedClass typeFactoryImpl;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TSystemAggregator : TGeneratedClass
+    {
+        TGeneratedClass typeInfoImpl;
+        TGeneratedClass typeFactoryImpl;
+        TGeneratedClass dynamicCasterImpl;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TAggregator : TGeneratedClass
+    {
+        TComponentAggregator componentImpl;
+        THandlerAggregator handlerImpl;
+        TSystemAggregator systemImpl;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TCoreConfig : TCommonConfig
+    {
+        bool isNeedGenerate;
+        TEcsSystemConfig ecsSystemConfig;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TProjectConfig : TCommonConfig
+    {
+        TAggregator aggregator;
     };
 
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TConfig
     {
-        bool isNeedCoreGenerate;
-        TPartConfig coreConfig;
+        std::string reflectionCodeGeneratorFileName;
 
-        TPartConfig projectConfig;
-
-        TGeneratedClass targetClass;
+        TCoreConfig coreConfig;
+        TProjectConfig projectConfig;
     };
 }

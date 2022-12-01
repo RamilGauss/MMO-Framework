@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ConfigContainer.h"
+#include "Config.h"
 
 namespace nsContainerCodeGenerator
 {
@@ -15,12 +15,14 @@ namespace nsContainerCodeGenerator
     {
         int mArgc = 0;
         char** mArgv = nullptr;
+
+        TConfig mConfig;
     public:
         void Init(int argc, char** argv);
         bool Work();
 
     public:
-        TConfigContainer* mConfigContainer;
+        TConfig GetConfig() const;
 
         std::string mAbsPathDirJson;
         std::string mAbsPathJsonFile;

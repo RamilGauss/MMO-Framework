@@ -13,6 +13,6 @@ namespace nsContainerCodeGenerator
 {
     struct DllExport TConfigComponent : nsECSFramework::IComponent
     {
-        TConfig value;
+        mutable TConfig value;
     };
 }

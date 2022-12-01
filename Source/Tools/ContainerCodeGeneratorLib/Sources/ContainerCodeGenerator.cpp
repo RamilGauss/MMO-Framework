@@ -7,8 +7,11 @@ See for more information LICENSE.md.
 
 #include "ContainerCodeGenerator.h"
 
+#include <fmt/core.h>
+
 #include "LoadFromFile.h"
 
+#include "Components/ArgumentComponent.h"
 #include "Components/ConfigComponent.h"
 #include "Components/ResultComponent.h"
 #include "Generated files/JsonSerializer.h"
@@ -21,41 +24,46 @@ namespace nsContainerCodeGenerator
         mEntMng.Setup();
     }
     //-------------------------------------------------------------------------------------------
-    bool TContainerCodeGenerator::Init(int argc, char** argv)
+    void TContainerCodeGenerator::Init(int argc, char** argv)
     {
-        mSetupConfig.Init(argc, argv);
-        auto setupResult =  mSetupConfig.Work();
-        if (!setupResult) {
-            return false;
-        }
+        auto singleEid = mEntMng.CreateEntity();
 
         // Input
-        auto eid = mEntMng.CreateEntity();
+        TArgumentComponent argumentComponent;
+        argumentComponent.argc = argc;
+        argumentComponent.argv = argv;
+        mEntMng.SetComponent(singleEid, argumentComponent);
 
         TConfigComponent configComponent;
-        configComponent.value = SingletonManager()->Get<TConfigContainer>()->mConfig;
-        mEntMng.SetComponent(eid, configComponent);
+        mEntMng.SetComponent(singleEid, configComponent);
 
-
-        return true;
+        //Output
+        TResultComponent resultComponent;
+        mEntMng.SetComponent(singleEid, resultComponent);
     }
     //-------------------------------------------------------------------------------------------
-    TContainerCodeGenerator::Result TContainerCodeGenerator::Generate()
+    TContainerCodeGenerator::Result TContainerCodeGenerator::Generate(int argc, char** argv)
     {
+        Init(argc, argv);
+
         mMainFeature.SetEntMng(&mEntMng);
 
         // Form the logic conveyor.
-        mMainFeature.Add(&mConfigLoaderSystem);
+        mMainFeature.Add(&mSetupConfigSystem);
         mMainFeature.Add(&mCoreGeneratorFeature);
         mMainFeature.Add(&mProjectGeneratorFeature);
         mMainFeature.Add(&mAggregatorDumperFeature);
 
-        // Execute
-        mMainFeature.Execute();
+        try {
+            // Execute
+            mMainFeature.Execute();
+        } catch (...) {
+            // Output result
+            auto result = nsECSFramework::SingleComponent<TResultComponent>(&mEntMng);
+            fmt::print("Error execution \"{}\".\n", result->value);
 
-
-        // Output result
-        auto result = nsECSFramework::SingleComponent<TResultComponent>(&mEntMng);
+            return Result::INNER_ERROR;
+        }
 
         return Result::OK;
     }

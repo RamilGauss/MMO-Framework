@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 #include "Config.h"
 #include "SetupConfig.h"
 
-#include "Systems/ConfigLoaderSystem.h"
+#include "Systems/SetupConfigSystem.h"
 #include "Systems/CoreGeneratorFeature.h"
 #include "Systems/ProjectGeneratorFeature.h"
 #include "Systems/AggregatorDumperFeature.h"
@@ -33,7 +33,7 @@ namespace nsContainerCodeGenerator
         nsECSFramework::TEntityManager mEntMng;
         nsECSFramework::TFeature mMainFeature;
 
-        TConfigLoaderSystem mConfigLoaderSystem;
+        TSetupConfigSystem mSetupConfigSystem;
         TCoreGeneratorFeature mCoreGeneratorFeature;
         TProjectGeneratorFeature mProjectGeneratorFeature;
         TAggregatorDumperFeature mAggregatorDumperFeature;
@@ -41,20 +41,18 @@ namespace nsContainerCodeGenerator
         TSetupConfig mSetupConfig;
 
     public:
-        enum class Result
+        enum Result : int
         {
-            OK,
-            NOT_FOUND_CONFIG,
+            OK = 0,
             INNER_ERROR,
-            PARSER_ERROR,
         };
 
         TContainerCodeGenerator();
 
         [[nodiscard]]
-        bool Init(int argc, char** argv);
+        Result Generate(int argc, char** argv);
 
-        [[nodiscard]]
-        Result Generate();
+    private:
+        void Init(int argc, char** argv);
     };
 }

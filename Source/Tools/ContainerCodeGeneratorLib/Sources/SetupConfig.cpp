@@ -27,7 +27,6 @@ namespace nsContainerCodeGenerator
     {
         mArgc = argc;
         mArgv = argv;
-        mConfigContainer = SingletonManager()->Get<TConfigContainer>();
     }
     //---------------------------------------------------------------------------------------------
     bool TSetupConfig::Work()
@@ -50,7 +49,6 @@ namespace nsContainerCodeGenerator
     //---------------------------------------------------------------------------------------------
     bool TSetupConfig::TryLoadConfig()
     {
-        auto mConfig = mConfigContainer->Config();
         std::string str;
         TTextFile::Load(mAbsPathJsonFile, str);
         if (str.length() == 0) {
@@ -58,42 +56,24 @@ namespace nsContainerCodeGenerator
         }
 
         std::string err;
-        auto fillRes = TJsonSerializer::Deserialize(mConfig, str, err);
+        auto fillRes = TJsonSerializer::Deserialize(&mConfig, str, err);
+        if (!fillRes) {
+            fmt::print("Deserilaize error in \"{}\", {}.\n", mAbsPathJsonFile, err);
+        }
+
         return fillRes;
     }
     //---------------------------------------------------------------------------------------
     void TSetupConfig::ResolvePathes()
     {
-        auto pConfig = mConfigContainer->Config();
+        ResolvePath(mConfig.reflectionCodeGeneratorFileName);
 
-        // input
-        for (auto& dir : pConfig->coreConfig.componentConfig.directories) {
-            dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
-        }
-        for (auto& dir : pConfig->coreConfig.handlerConfig.directories) {
-            dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
-        }
-        for (auto& dir : pConfig->coreConfig.systemConfig.directories) {
-            dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
-        }
+        ResolvePath(mConfig.coreConfig.parseDirectory);
+        ResolvePath(mConfig.coreConfig.targetDirectory);
+        ResolvePath(mConfig.coreConfig.ecsSystemConfig.ecsDirectory);
 
-        for (auto& dir : pConfig->projectConfig.componentConfig.directories) {
-            dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
-        }
-        for (auto& dir : pConfig->projectConfig.handlerConfig.directories) {
-            dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
-        }
-        for (auto& dir : pConfig->projectConfig.systemConfig.directories) {
-            dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
-        }
-
-        // output
-        ResolvePath(pConfig->coreConfig.componentConfig.directoryPath);
-        ResolvePath(pConfig->coreConfig.handlerConfig.directoryPath);
-        ResolvePath(pConfig->coreConfig.systemConfig.directoryPath);
-        ResolvePath(pConfig->projectConfig.componentConfig.directoryPath);
-        ResolvePath(pConfig->projectConfig.handlerConfig.directoryPath);
-        ResolvePath(pConfig->projectConfig.systemConfig.directoryPath);
+        ResolvePath(mConfig.projectConfig.parseDirectory);
+        ResolvePath(mConfig.projectConfig.targetDirectory);
     }
     //---------------------------------------------------------------------------------------
     void TSetupConfig::ResolvePath(std::string& path)
@@ -117,6 +97,11 @@ namespace nsContainerCodeGenerator
         mAbsPathDirJson += "\\";
 
         mAbsPathJsonFile = TPathOperations::CalculatePathBy(mAbsPathDirJson, configFileName.string());
+    }
+    //---------------------------------------------------------------------------------------
+    TConfig TSetupConfig::GetConfig() const
+    {
+        return mConfig;
     }
     //---------------------------------------------------------------------------------------
 }

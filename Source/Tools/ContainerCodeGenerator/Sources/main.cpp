@@ -16,13 +16,10 @@ int main(int argc, char* argv[])
     sLocale = setlocale(LC_CTYPE, sLocale);
     if (sLocale == nullptr) {
         BL_FIX_BUG();
-        return 1;
+        return -1;
     }
 
     nsContainerCodeGenerator::TContainerCodeGenerator ccg;
-    if (ccg.Init(argc, argv)) {
-        ccg.Generate();
-    }
 
-    return 0;
+    return static_cast<int>(ccg.Generate(argc, argv));
 }

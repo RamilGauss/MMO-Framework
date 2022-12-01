@@ -5,12 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Systems/ConfigLoaderSystem.h"
+#pragma once
+
+#include <ECS/include/IComponent.h>
 
 namespace nsContainerCodeGenerator
 {
-    void TConfigLoaderSystem::Execute()
+    struct DllExport TArgumentComponent : nsECSFramework::IComponent
     {
-            
-    }
+        int argc = 0;
+        char** argv = nullptr;
+    };
 }

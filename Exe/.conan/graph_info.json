@@ -33,6 +33,10 @@
    "False"
   ],
   [
+   "boost:filesystem_use_std_fs",
+   "False"
+  ],
+  [
    "boost:filesystem_version",
    "None"
   ],

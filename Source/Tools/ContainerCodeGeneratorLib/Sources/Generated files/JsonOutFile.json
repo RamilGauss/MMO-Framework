@@ -3,11 +3,18 @@
     "nameSpaceName": "nsContainerCodeGenerator",
     "typeName": "TJsonSerializer",
     "customizedTypes": [
-        "nsContainerCodeGenerator::TCategoryConfig",
+        "nsContainerCodeGenerator::TAggregator",
+        "nsContainerCodeGenerator::TCommonConfig",
+        "nsContainerCodeGenerator::TComponentAggregator",
+        "nsContainerCodeGenerator::TComponentConfig",
         "nsContainerCodeGenerator::TConfig",
+        "nsContainerCodeGenerator::TCoreConfig",
+        "nsContainerCodeGenerator::TEcsSystemConfig",
         "nsContainerCodeGenerator::TGeneratedClass",
-        "nsContainerCodeGenerator::TInheritances",
-        "nsContainerCodeGenerator::TPartConfig",
-        "nsContainerCodeGenerator::TTargetForParsing"
+        "nsContainerCodeGenerator::THandlerAggregator",
+        "nsContainerCodeGenerator::THandlerConfig",
+        "nsContainerCodeGenerator::TProjectConfig",
+        "nsContainerCodeGenerator::TSystemAggregator",
+        "nsContainerCodeGenerator::TSystemConfig"
     ]
 }
