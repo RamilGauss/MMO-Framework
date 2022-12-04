@@ -21,19 +21,19 @@
     <ClInclude Include="Sources\ContainerCodeGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\ConfigComponent.h">
+    <ClInclude Include="Sources\Components\InputOutput\ConfigComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\ResultComponent.h">
+    <ClInclude Include="Sources\Components\InputOutput\ResultComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\CoreGeneratorFeature.h">
+    <ClInclude Include="Sources\Systems\Core\CoreGeneratorFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\ProjectGeneratorFeature.h">
+    <ClInclude Include="Sources\Systems\Project\ProjectGeneratorFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\AggregatorDumperFeature.h">
+    <ClInclude Include="Sources\Systems\AggregatorDumper\AggregatorDumperFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Generated files\IncludeList.h">
@@ -42,13 +42,37 @@
     <ClInclude Include="Sources\Generated files\JsonSerializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\SetupConfig.h">
+    <ClInclude Include="Sources\Components\InputOutput\ArgumentComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\SetupConfigSystem.h">
+    <ClInclude Include="Sources\Systems\SetupConfig\SetupConfigFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\ArgumentComponent.h">
+    <ClInclude Include="Sources\Components\InputOutput\PathsComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\SetupConfig\ResolvePathesSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreComponentGeneratorFeature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreSystemGeneratorFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,22 +80,43 @@
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\CoreGeneratorFeature.cpp">
+    <ClCompile Include="Sources\Systems\Core\CoreGeneratorFeature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\ProjectGeneratorFeature.cpp">
+    <ClCompile Include="Sources\Systems\Project\ProjectGeneratorFeature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\AggregatorDumperFeature.cpp">
+    <ClCompile Include="Sources\Systems\AggregatorDumper\AggregatorDumperFeature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Generated files\JsonSerializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\SetupConfig.cpp">
+    <ClCompile Include="Sources\Systems\SetupConfig\SetupConfigFeature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\SetupConfigSystem.cpp">
+    <ClCompile Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\SetupConfig\ResolvePathesSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CoreComponentGeneratorFeature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CoreSystemGeneratorFeature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

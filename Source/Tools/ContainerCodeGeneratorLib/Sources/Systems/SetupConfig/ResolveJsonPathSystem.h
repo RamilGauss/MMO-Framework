@@ -11,20 +11,9 @@ See for more information LICENSE.md.
 
 namespace nsContainerCodeGenerator
 {
-    class DllExport TSetupConfigSystem : public nsECSFramework::TExecuteSystem
+    class DllExport TResolveJsonPathSystem : public nsECSFramework::TExecuteSystem
     {
     public:
         void Execute() override;
-
-    public:
-        std::string mAbsPathDirJson;
-        std::string mAbsPathJsonFile;
-    private:
-        void TryLoadConfig();
-
-        void ResolvePath(std::string& path);
-        void ResolvePathes();
-
-        void ResolveJsonPath();
     };
 }

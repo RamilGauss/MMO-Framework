@@ -18,7 +18,7 @@
         "targetDirectory": "../Generated files",
         "exportDeclaration": "DllExport",
         "nameSpace": "nsTornadoEngine",
-        "parseDirectory": "",
+        "parseDirectory": "..",
 
         "componentConfig": {
             "inheritanceFilter": "nsECSFramework::IComponent",

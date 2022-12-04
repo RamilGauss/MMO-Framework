@@ -14,12 +14,11 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 
 #include "Config.h"
-#include "SetupConfig.h"
 
-#include "Systems/SetupConfigSystem.h"
-#include "Systems/CoreGeneratorFeature.h"
-#include "Systems/ProjectGeneratorFeature.h"
-#include "Systems/AggregatorDumperFeature.h"
+#include "Systems/SetupConfig/SetupConfigFeature.h"
+#include "Systems/Core/CoreGeneratorFeature.h"
+#include "Systems/Project/ProjectGeneratorFeature.h"
+#include "Systems/AggregatorDumper/AggregatorDumperFeature.h"
 
 // Автоматизация
 // Управляющий над кодогенератором для нужд ядра и проекта в редакторе.
@@ -33,12 +32,10 @@ namespace nsContainerCodeGenerator
         nsECSFramework::TEntityManager mEntMng;
         nsECSFramework::TFeature mMainFeature;
 
-        TSetupConfigSystem mSetupConfigSystem;
+        TSetupConfigFeature mSetupConfigFeature;
         TCoreGeneratorFeature mCoreGeneratorFeature;
         TProjectGeneratorFeature mProjectGeneratorFeature;
         TAggregatorDumperFeature mAggregatorDumperFeature;
-
-        TSetupConfig mSetupConfig;
 
     public:
         enum Result : int

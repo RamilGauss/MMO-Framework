@@ -8,12 +8,15 @@ See for more information LICENSE.md.
 #include "ContainerCodeGenerator.h"
 
 #include <fmt/core.h>
+#include <magic_enum.hpp>
 
 #include "LoadFromFile.h"
 
-#include "Components/ArgumentComponent.h"
-#include "Components/ConfigComponent.h"
-#include "Components/ResultComponent.h"
+#include "Components/InputOutput/ArgumentComponent.h"
+#include "Components/InputOutput/ConfigComponent.h"
+#include "Components/InputOutput/PathsComponent.h"
+#include "Components/InputOutput/ResultComponent.h"
+
 #include "Generated files/JsonSerializer.h"
 
 namespace nsContainerCodeGenerator
@@ -37,6 +40,9 @@ namespace nsContainerCodeGenerator
         TConfigComponent configComponent;
         mEntMng.SetComponent(singleEid, configComponent);
 
+        TPathsComponent pathsComponent;
+        mEntMng.SetComponent(singleEid, pathsComponent);
+
         //Output
         TResultComponent resultComponent;
         mEntMng.SetComponent(singleEid, resultComponent);
@@ -49,23 +55,26 @@ namespace nsContainerCodeGenerator
         mMainFeature.SetEntMng(&mEntMng);
 
         // Form the logic conveyor.
-        mMainFeature.Add(&mSetupConfigSystem);
+        mMainFeature.Add(&mSetupConfigFeature);
         mMainFeature.Add(&mCoreGeneratorFeature);
         mMainFeature.Add(&mProjectGeneratorFeature);
         mMainFeature.Add(&mAggregatorDumperFeature);
+
+        TContainerCodeGenerator::Result result = Result::OK;
 
         try {
             // Execute
             mMainFeature.Execute();
         } catch (...) {
-            // Output result
-            auto result = nsECSFramework::SingleComponent<TResultComponent>(&mEntMng);
-            fmt::print("Error execution \"{}\".\n", result->value);
-
-            return Result::INNER_ERROR;
+            result = Result::INNER_ERROR;
         }
 
-        return Result::OK;
+        // Output result
+        auto resultComponent = nsECSFramework::SingleComponent<TResultComponent>(&mEntMng);
+        fmt::print("ContainerCodeGenerator returns {}, \"{}\".\n", 
+            magic_enum::enum_name(result), resultComponent->value);
+
+        return result;
     }
     //-------------------------------------------------------------------------------------------
 }

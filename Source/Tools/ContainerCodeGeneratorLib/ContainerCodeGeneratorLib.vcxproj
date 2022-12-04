@@ -19,27 +19,42 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Components\ArgumentComponent.h" />
-    <ClInclude Include="Sources\Systems\SetupConfigSystem.h" />
+    <ClInclude Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.h" />
+    <ClInclude Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.h" />
+    <ClInclude Include="Sources\Systems\Core\CoreSystemGeneratorFeature.h" />
+    <ClInclude Include="Sources\Systems\Core\CoreComponentGeneratorFeature.h" />
+    <ClInclude Include="Sources\Components\InputOutput\PathsComponent.h" />
+    <ClInclude Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.h" />
+    <ClInclude Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.h" />
+    <ClInclude Include="Sources\Systems\SetupConfig\ResolvePathesSystem.h" />
+    <ClInclude Include="Sources\Systems\SetupConfig\SetupConfigFeature.h" />
+    <ClInclude Include="Sources\Components\InputOutput\ArgumentComponent.h" />
     <ClInclude Include="Sources\Generated files\IncludeList.h" />
     <ClInclude Include="Sources\Generated files\JsonSerializer.h" />
-    <ClInclude Include="Sources\SetupConfig.h" />
-    <ClInclude Include="Sources\Systems\AggregatorDumperFeature.h" />
-    <ClInclude Include="Sources\Systems\ProjectGeneratorFeature.h" />
-    <ClInclude Include="Sources\Systems\CoreGeneratorFeature.h" />
-    <ClInclude Include="Sources\Components\ConfigComponent.h" />
-    <ClInclude Include="Sources\Components\ResultComponent.h" />
+    <ClInclude Include="Sources\Systems\AggregatorDumper\AggregatorDumperFeature.h" />
+    <ClInclude Include="Sources\Systems\Project\ProjectGeneratorFeature.h" />
+    <ClInclude Include="Sources\Systems\Core\CoreGeneratorFeature.h" />
+    <ClInclude Include="Sources\Components\InputOutput\ConfigComponent.h" />
+    <ClInclude Include="Sources\Components\InputOutput\ResultComponent.h" />
     <ClInclude Include="Sources\Config.h" />
     <ClInclude Include="Sources\ContainerCodeGenerator.h" />
+    <ClInclude Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Systems\SetupConfigSystem.cpp" />
+    <ClCompile Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.cpp" />
+    <ClCompile Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.cpp" />
+    <ClCompile Include="Sources\Systems\Core\CoreSystemGeneratorFeature.cpp" />
+    <ClCompile Include="Sources\Systems\Core\CoreComponentGeneratorFeature.cpp" />
+    <ClCompile Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.cpp" />
+    <ClCompile Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.cpp" />
+    <ClCompile Include="Sources\Systems\SetupConfig\ResolvePathesSystem.cpp" />
+    <ClCompile Include="Sources\Systems\SetupConfig\SetupConfigFeature.cpp" />
     <ClCompile Include="Sources\Generated files\JsonSerializer.cpp" />
-    <ClCompile Include="Sources\SetupConfig.cpp" />
-    <ClCompile Include="Sources\Systems\AggregatorDumperFeature.cpp" />
-    <ClCompile Include="Sources\Systems\ProjectGeneratorFeature.cpp" />
-    <ClCompile Include="Sources\Systems\CoreGeneratorFeature.cpp" />
+    <ClCompile Include="Sources\Systems\AggregatorDumper\AggregatorDumperFeature.cpp" />
+    <ClCompile Include="Sources\Systems\Project\ProjectGeneratorFeature.cpp" />
+    <ClCompile Include="Sources\Systems\Core\CoreGeneratorFeature.cpp" />
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp" />
+    <ClCompile Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />
@@ -112,6 +127,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -177,10 +194,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;CONTAINERCODEGENERATORLIB_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Tools\Parser\Sources;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -188,6 +207,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Base.lib;ECS.lib;Parser.lib;ReflectionCodeGeneratorLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

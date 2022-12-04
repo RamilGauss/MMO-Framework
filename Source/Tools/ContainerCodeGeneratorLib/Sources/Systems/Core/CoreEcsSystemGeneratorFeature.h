@@ -7,12 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/IComponent.h>
+#include <ECS/include/Feature.h>
 
 namespace nsContainerCodeGenerator
 {
-    struct DllExport TConfigComponent : nsECSFramework::IComponent
+    class DllExport TCoreEcsSystemGeneratorFeature : public nsECSFramework::TFeature
     {
-        mutable TConfig value;
+    public:
+        void InitConveyor() override;
     };
 }
