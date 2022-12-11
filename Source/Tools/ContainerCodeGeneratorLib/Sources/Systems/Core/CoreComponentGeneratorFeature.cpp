@@ -12,6 +12,8 @@ namespace nsContainerCodeGenerator
 {
     void TCoreComponentGeneratorFeature::InitConveyor()
     {
-
+        Add(&mCorePreparingConfigurationForGenerationForComponentsSystem);
+        Add(&mGenerationForComponentsSystem);
+        Add(&mDestroyConfigurationForGenerationForComponentsSystem);
     }
 }

@@ -19,8 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Systems\Common\DestroyConfigurationForGenerationForComponentsSystem.h" />
+    <ClInclude Include="Sources\Systems\Common\GenerationForComponentsSystem.h" />
+    <ClInclude Include="Sources\Systems\Common\ParsingHandlerTypesSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForComponentsSystem.h" />
     <ClInclude Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.h" />
     <ClInclude Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.h" />
+    <ClInclude Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForHandlersSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Sources\Systems\Core\CoreSystemGeneratorFeature.h" />
     <ClInclude Include="Sources\Systems\Core\CoreComponentGeneratorFeature.h" />
     <ClInclude Include="Sources\Components\InputOutput\PathsComponent.h" />
@@ -41,8 +52,19 @@
     <ClInclude Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Systems\Common\DestroyConfigurationForGenerationForComponentsSystem.cpp" />
+    <ClCompile Include="Sources\Systems\Common\GenerationForComponentsSystem.cpp" />
+    <ClCompile Include="Sources\Systems\Common\ParsingHandlerTypesSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForComponentsSystem.cpp" />
     <ClCompile Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.cpp" />
     <ClCompile Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.cpp" />
+    <ClCompile Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForHandlersSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Sources\Systems\Core\CoreSystemGeneratorFeature.cpp" />
     <ClCompile Include="Sources\Systems\Core\CoreComponentGeneratorFeature.cpp" />
     <ClCompile Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.cpp" />

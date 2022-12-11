@@ -5,13 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CoreHandlerGeneratorFeature.h"
+#include "CorePreparingConfigurationForGenerationForComponentsSystem.h"
 
 namespace nsContainerCodeGenerator
 {
-    void TCoreHandlerGeneratorFeature::InitConveyor()
+    void TCorePreparingConfigurationForGenerationForComponentsSystem::Execute()
     {
-        Add(&mCorePreparingConfigurationForGenerationForHandlersSystem);
-        Add(&mParsingHandlerTypesSystem);
+
     }
 }

@@ -9,10 +9,18 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
+#include "Systems/Core/CorePreparingConfigurationForGenerationForComponentsSystem.h"
+#include "Systems/Common/GenerationForComponentsSystem.h"
+#include "Systems/Common/DestroyConfigurationForGenerationForComponentsSystem.h"
+
 namespace nsContainerCodeGenerator
 {
     class DllExport TCoreComponentGeneratorFeature : public nsECSFramework::TFeature
     {
+        TCorePreparingConfigurationForGenerationForComponentsSystem mCorePreparingConfigurationForGenerationForComponentsSystem;
+        TGenerationForComponentsSystem mGenerationForComponentsSystem;
+        TDestroyConfigurationForGenerationForComponentsSystem mDestroyConfigurationForGenerationForComponentsSystem;
+
     public:
         void InitConveyor() override;
     };

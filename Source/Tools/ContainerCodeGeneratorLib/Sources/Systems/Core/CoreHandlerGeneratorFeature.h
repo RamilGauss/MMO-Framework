@@ -9,10 +9,17 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
+#include "Systems/Core/CorePreparingConfigurationForGenerationForHandlersSystem.h"
+#include "Systems/Common/ParsingHandlerTypesSystem.h"
+
 namespace nsContainerCodeGenerator
 {
     class DllExport TCoreHandlerGeneratorFeature : public nsECSFramework::TFeature
     {
+        TCorePreparingConfigurationForGenerationForHandlersSystem mCorePreparingConfigurationForGenerationForHandlersSystem;
+
+        TParsingHandlerTypesSystem mParsingHandlerTypesSystem;
+
     public:
         void InitConveyor() override;
     };
