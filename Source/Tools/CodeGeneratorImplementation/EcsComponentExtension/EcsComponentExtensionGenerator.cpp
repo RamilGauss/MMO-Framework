@@ -9,8 +9,14 @@ See for more information LICENSE.md.
 #include "EcsComponentExtensionHeaderFileGenerator.h"
 #include "EcsComponentExtensionSourceFileGenerator.h"
 
+#include "GeneratorList.h"
+
 using namespace nsCodeGeneratorImplementation;
 
+TEcsComponentExtensionGenerator::TEcsComponentExtensionGenerator() : 
+    ITargetCodeGenerator(TGeneratorList::ECS_COMPONENT_EXTENSION)
+{
+}
 //----------------------------------------------------------------------------------
 void TEcsComponentExtensionGenerator::Work()
 {

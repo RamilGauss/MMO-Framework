@@ -14,8 +14,7 @@ namespace nsCodeGeneratorImplementation
     class DllExport TBinaryMarshallerGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TBinaryMarshallerGenerator() : 
-            nsReflectionCodeGenerator::ITargetCodeGenerator("BinaryMarshallerGenerator") {}
+        TBinaryMarshallerGenerator();
 
         void Work() override;
 

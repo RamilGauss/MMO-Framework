@@ -5,15 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#pragma once
-
-#include <ECS/include/ExecuteSystem.h>
+#include "CorePrepareEcsSystemConfigSystem.h"
 
 namespace nsContainerCodeGenerator
 {
-    class DllExport TDestroyConfigurationForGenerationForComponentsSystem : public nsECSFramework::TExecuteSystem
+    void TCorePrepareEcsSystemConfigSystem::Execute()
     {
-    public:
-        void Execute() override;
-    };
+
+    }
 }

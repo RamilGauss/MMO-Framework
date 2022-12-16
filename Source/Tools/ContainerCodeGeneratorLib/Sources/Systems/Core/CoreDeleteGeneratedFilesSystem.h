@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/Feature.h>
+#include <ECS/include/ExecuteSystem.h>
 
 namespace nsContainerCodeGenerator
 {
-    class DllExport TCoreEcsSystemGeneratorFeature : public nsECSFramework::TFeature
+    class DllExport TCoreDeleteGeneratedFilesSystem : public nsECSFramework::TExecuteSystem
     {
     public:
-        void InitConveyor() override;
+        void Execute() override;
     };
 }

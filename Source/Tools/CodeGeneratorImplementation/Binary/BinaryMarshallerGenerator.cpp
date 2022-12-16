@@ -9,8 +9,16 @@ See for more information LICENSE.md.
 #include "BinaryMarshallerHeaderFileGenerator.h"
 #include "BinaryMarshallerSourceFileGenerator.h"
 
+#include "GeneratorList.h"
+
 using namespace nsCodeGeneratorImplementation;
 
+TBinaryMarshallerGenerator::TBinaryMarshallerGenerator() :
+    nsReflectionCodeGenerator::ITargetCodeGenerator(TGeneratorList::BINARY)
+{
+
+}
+//----------------------------------------------------------------------------------
 void TBinaryMarshallerGenerator::Work()
 {
     if (!HasSerializer()) {

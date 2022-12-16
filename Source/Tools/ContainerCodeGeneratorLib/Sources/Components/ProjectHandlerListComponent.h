@@ -5,12 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ProjectGeneratorFeature.h"
+#pragma once
+
+#include <set>
+#include <string>
+
+#include <ECS/include/IComponent.h>
 
 namespace nsContainerCodeGenerator
 {
-    void TProjectGeneratorFeature::InitConveyor()
+    struct DllExport TProjectHandlerListComponent : nsECSFramework::IComponent
     {
-
-    }
+        mutable std::set<std::string> value;
+    };
 }

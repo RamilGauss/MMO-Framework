@@ -12,10 +12,10 @@ See for more information LICENSE.md.
 
 #include "PathOperations.h"
 
-#include "Components/InputOutput/ArgumentComponent.h"
-#include "Components/InputOutput/ConfigComponent.h"
-#include "Components/InputOutput/ResultComponent.h"
-#include "Components/InputOutput/PathsComponent.h"
+#include "Components/ArgumentComponent.h"
+#include "Components/ConfigComponent.h"
+#include "Components/ResultComponent.h"
+#include "Components/PathsComponent.h"
 
 namespace nsContainerCodeGenerator
 {

@@ -34,10 +34,10 @@ namespace nsReflectionCodeGenerator
     public:
         enum class Result
         {
-            OK,
-            NOT_FOUND_CONFIG,
-            INNER_ERROR,
-            PARSER_ERROR,
+            OK = 0,
+            NOT_FOUND_CONFIG = 4,
+            INNER_ERROR = 5,
+            PARSER_ERROR = 6,
         };
 
         TReflectionCodeGenerator();

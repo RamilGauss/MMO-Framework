@@ -11,9 +11,42 @@ namespace nsContainerCodeGenerator
 {
     void TCoreGeneratorFeature::InitConveyor()
     {
-        Add(&mCoreComponentGeneratorFeature);
-        Add(&mCoreHandlerGeneratorFeature);
-        Add(&mCoreEcsSystemGeneratorFeature);
-        Add(&mCoreSystemGeneratorFeature);
+        Add(&mCoreDeleteGeneratedFilesSystem);
+
+        // Components
+        Add(&mCorePrepareComponentConfigSystem);
+
+        Add(&mSaveComponentConfigSystem);
+        Add(&mGenerateComponentFilesSystem);
+        Add(&mDestroyComponentConfigSystem);
+
+        // Handlers
+        Add(&mCoreMakeFileListSystem);
+        Add(&mParseFileListSystem);
+        Add(&mHandleTypeListToHandlerListSystem);
+
+        Add(&mCorePrepareHandlerConfSystem);
+
+        Add(&mSaveHandlerConfigSystem);
+        Add(&mGenerateHandlerFilesSystem);
+
+        Add(&mDestroyFileListSystem);
+        Add(&mDestroyHandlerListSystem);
+        Add(&mDestroyFileTypeListsSystem);
+
+        // EcsSystems
+        Add(&mCorePrepareEcsSystemConfigSystem);
+
+        Add(&mSaveEcsSystemConfigSystem);
+        Add(&mGenerateEcsSystemFilesSystem);
+        Add(&mDestroyEcsSystemConfigSystem);
+
+        // Systems
+        Add(&mCorePrepareSystemConfigSystem);
+
+        Add(&mSaveSystemConfigSystem);
+        Add(&mGenerateSystemFilesSystem);
+        Add(&mDestroySystemConfigSystem);
+
     }
 }

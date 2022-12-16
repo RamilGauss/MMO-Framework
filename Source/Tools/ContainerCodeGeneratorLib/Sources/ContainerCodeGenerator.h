@@ -15,10 +15,10 @@ See for more information LICENSE.md.
 
 #include "Config.h"
 
-#include "Systems/SetupConfig/SetupConfigFeature.h"
+#include "Systems/AggregatorDumper/AggregatorDumperFeature.h"
 #include "Systems/Core/CoreGeneratorFeature.h"
 #include "Systems/Project/ProjectGeneratorFeature.h"
-#include "Systems/AggregatorDumper/AggregatorDumperFeature.h"
+#include "Systems/SetupConfig/SetupConfigFeature.h"
 
 // Автоматизация
 // Управляющий над кодогенератором для нужд ядра и проекта в редакторе.
@@ -32,8 +32,8 @@ namespace nsContainerCodeGenerator
         nsECSFramework::TEntityManager mEntMng;
         nsECSFramework::TFeature mMainFeature;
 
-        TSetupConfigFeature mSetupConfigFeature;
-        TCoreGeneratorFeature mCoreGeneratorFeature;
+        TSetupConfigFeature      mSetupConfigFeature;
+        TCoreGeneratorFeature    mCoreGeneratorFeature;
         TProjectGeneratorFeature mProjectGeneratorFeature;
         TAggregatorDumperFeature mAggregatorDumperFeature;
 

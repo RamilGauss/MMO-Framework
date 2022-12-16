@@ -11,13 +11,12 @@ See for more information LICENSE.md.
 
 #include <TextFile.h>
 
-#include <ECS/include/ExecuteSystem.h>
 #include <ECS/include/Helper.h>
 
-#include "Components/InputOutput/ArgumentComponent.h"
-#include "Components/InputOutput/ResultComponent.h"
-#include "Components/InputOutput/ConfigComponent.h"
-#include "Components/InputOutput/PathsComponent.h"
+#include "Components/ArgumentComponent.h"
+#include "Components/ResultComponent.h"
+#include "Components/ConfigComponent.h"
+#include "Components/PathsComponent.h"
 
 #include "Generated files/JsonSerializer.h"
 

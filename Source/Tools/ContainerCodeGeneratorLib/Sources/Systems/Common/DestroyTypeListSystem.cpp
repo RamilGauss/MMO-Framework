@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CoreSystemGeneratorFeature.h"
+#include "DestroyTypeListSystem.h"
 
 namespace nsContainerCodeGenerator
 {
-    void TCoreSystemGeneratorFeature::InitConveyor()
+    void TDestroyTypeListSystem::Execute()
     {
 
     }

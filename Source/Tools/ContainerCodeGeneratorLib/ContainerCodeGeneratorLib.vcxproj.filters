@@ -21,10 +21,10 @@
     <ClInclude Include="Sources\ContainerCodeGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\InputOutput\ConfigComponent.h">
+    <ClInclude Include="Sources\Components\ConfigComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\InputOutput\ResultComponent.h">
+    <ClInclude Include="Sources\Components\ResultComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Core\CoreGeneratorFeature.h">
@@ -42,13 +42,13 @@
     <ClInclude Include="Sources\Generated files\JsonSerializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\InputOutput\ArgumentComponent.h">
+    <ClInclude Include="Sources\Components\ArgumentComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\SetupConfig\SetupConfigFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\InputOutput\PathsComponent.h">
+    <ClInclude Include="Sources\Components\PathsComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.h">
@@ -63,31 +63,64 @@
     <ClInclude Include="Sources\Systems\SetupConfig\ResolvePathesSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreComponentGeneratorFeature.h">
+    <ClInclude Include="Sources\Systems\Core\CorePrepareComponentConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.h">
+    <ClInclude Include="Sources\Systems\Core\CorePrepareHandlerConfSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.h">
+    <ClInclude Include="Sources\Components\ReflectionConfigComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreSystemGeneratorFeature.h">
+    <ClInclude Include="Sources\Systems\Core\CoreDeleteGeneratedFilesSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForComponentsSystem.h">
+    <ClInclude Include="Sources\Systems\Common\SaveConfigFileSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\GenerationForComponentsSystem.h">
+    <ClInclude Include="Sources\Systems\Common\GenerateFilesByReflectionSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\DestroyConfigurationForGenerationForComponentsSystem.h">
+    <ClInclude Include="Sources\Systems\Common\DestroyReflectionConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForHandlersSystem.h">
+    <ClInclude Include="Sources\Components\CoreHandlerListComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\ParsingHandlerTypesSystem.h">
+    <ClInclude Include="Sources\Systems\Core\CoreHandlerParserSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\FileListComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreMakeFileListSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\ParseFileListSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreHandleTypeListToHandlerListSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CorePrepareEcsSystemConfigSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\TypeListComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\ProjectHandlerListComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\DestroyFileListSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\DestroyTypeListSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CorePrepareSystemConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -122,31 +155,49 @@
     <ClCompile Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreComponentGeneratorFeature.cpp">
+    <ClCompile Include="Sources\Systems\Core\CorePrepareComponentConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.cpp">
+    <ClCompile Include="Sources\Systems\Core\CorePrepareHandlerConfSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.cpp">
+    <ClCompile Include="Sources\Systems\Core\CoreDeleteGeneratedFilesSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreSystemGeneratorFeature.cpp">
+    <ClCompile Include="Sources\Systems\Common\SaveConfigFileSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForComponentsSystem.cpp">
+    <ClCompile Include="Sources\Systems\Common\GenerateFilesByReflectionSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\GenerationForComponentsSystem.cpp">
+    <ClCompile Include="Sources\Systems\Common\DestroyReflectionConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\DestroyConfigurationForGenerationForComponentsSystem.cpp">
+    <ClCompile Include="Sources\Systems\Core\CoreHandlerParserSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForHandlersSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\ParsingHandlerTypesSystem.cpp">
+    <ClCompile Include="Sources\Systems\Core\CoreMakeFileListSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Common\ParseFileListSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CoreHandleTypeListToHandlerListSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CorePrepareEcsSystemConfigSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Common\DestroyFileListSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Common\DestroyTypeListSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CorePrepareSystemConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

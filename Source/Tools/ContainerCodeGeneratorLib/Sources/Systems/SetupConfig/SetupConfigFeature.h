@@ -22,7 +22,6 @@ namespace nsContainerCodeGenerator
         TResolveJsonPathSystem mResolveJsonPathSystem;
         TTryLoadConfigSystem   mTryLoadConfigSystem;
         TResolvePathesSystem   mResolvePathesSystem;
-
     public:
 
         void InitConveyor() override;

@@ -7,13 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/ExecuteSystem.h>
+#include <list>
+
+#include <ECS/include/IComponent.h>
+
+#include <Parser/Sources/TypeInfo.h>
 
 namespace nsContainerCodeGenerator
 {
-    class DllExport TCorePreparingConfigurationForGenerationForComponentsSystem : public nsECSFramework::TExecuteSystem
+    struct DllExport TTypeListComponent : nsECSFramework::IComponent
     {
-    public:
-        void Execute() override;
+        mutable std::list<nsCppParser::TTypeInfo> value;
     };
 }

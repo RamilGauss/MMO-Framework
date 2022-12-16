@@ -16,7 +16,7 @@ namespace nsCodeGeneratorImplementation
         std::set<std::string> mHeaderSet;
 
     public:
-        TIncludeListGenerator() : nsReflectionCodeGenerator::IIncludeListGenerator("IncludeListGenerator") {}
+        TIncludeListGenerator();
 
         void Work() override;
 

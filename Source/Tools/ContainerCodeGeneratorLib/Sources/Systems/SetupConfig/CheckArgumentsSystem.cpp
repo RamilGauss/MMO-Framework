@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Helper.h>
 
-#include "Components/InputOutput/ArgumentComponent.h"
-#include "Components/InputOutput/ResultComponent.h"
+#include "Components/ArgumentComponent.h"
+#include "Components/ResultComponent.h"
 
 namespace nsContainerCodeGenerator
 {

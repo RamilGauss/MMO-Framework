@@ -14,8 +14,7 @@ namespace nsCodeGeneratorImplementation
     class DllExport TJsonSerializerGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TJsonSerializerGenerator() : 
-            nsReflectionCodeGenerator::ITargetCodeGenerator("JsonSerializerGenerator") {}
+        TJsonSerializerGenerator();
 
         void Work() override;
 

@@ -14,8 +14,7 @@ namespace nsCodeGeneratorImplementation
     class DllExport TDynamicCasterGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TDynamicCasterGenerator() :
-            nsReflectionCodeGenerator::ITargetCodeGenerator("DynamicCaster"){}
+        TDynamicCasterGenerator();
 
         void Work() override;
         void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames) override;

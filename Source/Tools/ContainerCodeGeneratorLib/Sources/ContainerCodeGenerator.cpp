@@ -12,10 +12,10 @@ See for more information LICENSE.md.
 
 #include "LoadFromFile.h"
 
-#include "Components/InputOutput/ArgumentComponent.h"
-#include "Components/InputOutput/ConfigComponent.h"
-#include "Components/InputOutput/PathsComponent.h"
-#include "Components/InputOutput/ResultComponent.h"
+#include "Components/ArgumentComponent.h"
+#include "Components/ConfigComponent.h"
+#include "Components/PathsComponent.h"
+#include "Components/ResultComponent.h"
 
 #include "Generated files/JsonSerializer.h"
 
@@ -56,6 +56,7 @@ namespace nsContainerCodeGenerator
 
         // Form the logic conveyor.
         mMainFeature.Add(&mSetupConfigFeature);
+
         mMainFeature.Add(&mCoreGeneratorFeature);
         mMainFeature.Add(&mProjectGeneratorFeature);
         mMainFeature.Add(&mAggregatorDumperFeature);

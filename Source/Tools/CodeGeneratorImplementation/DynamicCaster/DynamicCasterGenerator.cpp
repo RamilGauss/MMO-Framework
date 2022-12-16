@@ -9,8 +9,14 @@ See for more information LICENSE.md.
 #include "DynamicCasterHeaderFileGenerator.h"
 #include "DynamicCasterSourceFileGenerator.h"
 
+#include "GeneratorList.h"
+
 using namespace nsCodeGeneratorImplementation;
 
+TDynamicCasterGenerator::TDynamicCasterGenerator() :
+    nsReflectionCodeGenerator::ITargetCodeGenerator(TGeneratorList::DYNAMIC_CASTER) 
+{
+}
 //----------------------------------------------------------------------------------
 void TDynamicCasterGenerator::Work()
 {

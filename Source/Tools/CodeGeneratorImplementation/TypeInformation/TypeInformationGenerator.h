@@ -14,8 +14,7 @@ namespace nsCodeGeneratorImplementation
     class DllExport TTypeInformationGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TTypeInformationGenerator() : 
-            nsReflectionCodeGenerator::ITargetCodeGenerator("TypeInformationGenerator") {}
+        TTypeInformationGenerator();
 
         void Work() override;
 

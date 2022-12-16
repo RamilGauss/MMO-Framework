@@ -9,8 +9,14 @@ See for more information LICENSE.md.
 #include "TypeInformationHeaderFileGenerator.h"
 #include "TypeInformationSourceFileGenerator.h"
 
+#include "GeneratorList.h"
+
 using namespace nsCodeGeneratorImplementation;
 
+TTypeInformationGenerator::TTypeInformationGenerator() :
+    nsReflectionCodeGenerator::ITargetCodeGenerator(TGeneratorList::TYPE_INFORMATION) 
+{
+}
 //----------------------------------------------------------------------------------
 void TTypeInformationGenerator::Work()
 {

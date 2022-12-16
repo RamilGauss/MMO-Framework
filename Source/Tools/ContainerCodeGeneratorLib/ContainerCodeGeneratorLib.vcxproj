@@ -19,54 +19,158 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Systems\Common\DestroyConfigurationForGenerationForComponentsSystem.h" />
-    <ClInclude Include="Sources\Systems\Common\GenerationForComponentsSystem.h" />
-    <ClInclude Include="Sources\Systems\Common\ParsingHandlerTypesSystem.h">
+    <ClInclude Include="Sources\Components\FileListComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForComponentsSystem.h" />
-    <ClInclude Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.h" />
-    <ClInclude Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.h" />
-    <ClInclude Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForHandlersSystem.h">
+    <ClInclude Include="Sources\Components\CoreHandlerListComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreSystemGeneratorFeature.h" />
-    <ClInclude Include="Sources\Systems\Core\CoreComponentGeneratorFeature.h" />
-    <ClInclude Include="Sources\Components\InputOutput\PathsComponent.h" />
+    <ClInclude Include="Sources\Components\ProjectHandlerListComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\ReflectionConfigComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\TypeListComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\DestroyFileListSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\DestroyReflectionConfigSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\DestroyTypeListSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\GenerateFilesByReflectionSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreHandleTypeListToHandlerListSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\ParseFileListSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\SaveConfigFileSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreDeleteGeneratedFilesSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreHandlerParserSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CoreMakeFileListSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CorePrepareComponentConfigSystem.h" />
+    <ClInclude Include="Sources\Systems\Core\CorePrepareEcsSystemConfigSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\CorePrepareHandlerConfSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\PathsComponent.h" />
+    <ClInclude Include="Sources\Systems\Core\CorePrepareSystemConfigSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.h" />
     <ClInclude Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.h" />
     <ClInclude Include="Sources\Systems\SetupConfig\ResolvePathesSystem.h" />
     <ClInclude Include="Sources\Systems\SetupConfig\SetupConfigFeature.h" />
-    <ClInclude Include="Sources\Components\InputOutput\ArgumentComponent.h" />
+    <ClInclude Include="Sources\Components\ArgumentComponent.h" />
     <ClInclude Include="Sources\Generated files\IncludeList.h" />
     <ClInclude Include="Sources\Generated files\JsonSerializer.h" />
     <ClInclude Include="Sources\Systems\AggregatorDumper\AggregatorDumperFeature.h" />
     <ClInclude Include="Sources\Systems\Project\ProjectGeneratorFeature.h" />
     <ClInclude Include="Sources\Systems\Core\CoreGeneratorFeature.h" />
-    <ClInclude Include="Sources\Components\InputOutput\ConfigComponent.h" />
-    <ClInclude Include="Sources\Components\InputOutput\ResultComponent.h" />
+    <ClInclude Include="Sources\Components\ConfigComponent.h" />
+    <ClInclude Include="Sources\Components\ResultComponent.h" />
     <ClInclude Include="Sources\Config.h" />
     <ClInclude Include="Sources\ContainerCodeGenerator.h" />
     <ClInclude Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Systems\Common\DestroyConfigurationForGenerationForComponentsSystem.cpp" />
-    <ClCompile Include="Sources\Systems\Common\GenerationForComponentsSystem.cpp" />
-    <ClCompile Include="Sources\Systems\Common\ParsingHandlerTypesSystem.cpp">
+    <ClCompile Include="Sources\Systems\Common\DestroyFileListSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForComponentsSystem.cpp" />
-    <ClCompile Include="Sources\Systems\Core\CoreEcsSystemGeneratorFeature.cpp" />
-    <ClCompile Include="Sources\Systems\Core\CoreHandlerGeneratorFeature.cpp" />
-    <ClCompile Include="Sources\Systems\Core\CorePreparingConfigurationForGenerationForHandlersSystem.cpp">
+    <ClCompile Include="Sources\Systems\Common\DestroyReflectionConfigSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreSystemGeneratorFeature.cpp" />
-    <ClCompile Include="Sources\Systems\Core\CoreComponentGeneratorFeature.cpp" />
+    <ClCompile Include="Sources\Systems\Common\DestroyTypeListSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Common\GenerateFilesByReflectionSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CoreHandleTypeListToHandlerListSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Common\ParseFileListSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Common\SaveConfigFileSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CoreDeleteGeneratedFilesSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CoreHandlerParserSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CoreMakeFileListSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CorePrepareComponentConfigSystem.cpp" />
+    <ClCompile Include="Sources\Systems\Core\CorePrepareEcsSystemConfigSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CorePrepareHandlerConfSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\CorePrepareSystemConfigSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.cpp" />
     <ClCompile Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.cpp" />
     <ClCompile Include="Sources\Systems\SetupConfig\ResolvePathesSystem.cpp" />
@@ -203,7 +307,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base_d.lib;ECS_d.lib;Parser_d.lib;ReflectionCodeGeneratorLib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base_d.lib;ECS_d.lib;Parser_d.lib;ReflectionCodeGeneratorLib_d.lib;CodeGeneratorImplementation_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
@@ -230,7 +334,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base.lib;ECS.lib;Parser.lib;ReflectionCodeGeneratorLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Base.lib;ECS.lib;Parser.lib;ReflectionCodeGeneratorLib.lib;CodeGeneratorImplementation.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>

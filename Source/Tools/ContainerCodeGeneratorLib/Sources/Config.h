@@ -118,6 +118,8 @@ namespace nsContainerCodeGenerator
     {
         std::string reflectionCodeGeneratorFileName;
 
+        std::string entityManagerHeaderPath;
+
         TCoreConfig coreConfig;
         TProjectConfig projectConfig;
     };

@@ -14,7 +14,7 @@ namespace nsCodeGeneratorImplementation
     class DllExport TEcsComponentExtensionGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TEcsComponentExtensionGenerator() : ITargetCodeGenerator("EcsComponentExtension") {}
+        TEcsComponentExtensionGenerator();
 
         void Work() override;
 

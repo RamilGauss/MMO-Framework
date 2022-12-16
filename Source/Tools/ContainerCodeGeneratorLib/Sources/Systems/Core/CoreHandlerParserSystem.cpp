@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ProjectGeneratorFeature.h"
+#include "CoreHandlerParserSystem.h"
 
 namespace nsContainerCodeGenerator
 {
-    void TProjectGeneratorFeature::InitConveyor()
+    void TCoreHandlerParserSystem::Execute()
     {
 
     }

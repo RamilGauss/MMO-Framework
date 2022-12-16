@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsContainerCodeGenerator
 {
-    class DllExport TGenerationForComponentsSystem : public nsECSFramework::TExecuteSystem
+    class DllExport TCorePrepareHandlerConfSystem : public nsECSFramework::TExecuteSystem
     {
     public:
         void Execute() override;

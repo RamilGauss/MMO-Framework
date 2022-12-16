@@ -5,12 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CorePreparingConfigurationForGenerationForHandlersSystem.h"
+#pragma once
+
+#include <ECS/include/ExecuteSystem.h>
 
 namespace nsContainerCodeGenerator
 {
-    void TCorePreparingConfigurationForGenerationForHandlersSystem::Execute()
+    class DllExport TCoreHandleTypeListToHandlerListSystem : public nsECSFramework::TExecuteSystem
     {
-
-    }
+    public:
+        void Execute() override;
+    };
 }

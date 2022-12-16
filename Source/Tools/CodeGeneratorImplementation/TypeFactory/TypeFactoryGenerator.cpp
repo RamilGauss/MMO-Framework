@@ -9,8 +9,14 @@ See for more information LICENSE.md.
 #include "TypeFactoryHeaderFileGenerator.h"
 #include "TypeFactorySourceFileGenerator.h"
 
+#include "GeneratorList.h"
+
 using namespace nsCodeGeneratorImplementation;
 
+TTypeFactoryGenerator::TTypeFactoryGenerator() :
+    nsReflectionCodeGenerator::ITargetCodeGenerator(TGeneratorList::TYPE_FACTORY) 
+{
+}
 //----------------------------------------------------------------------------------
 void TTypeFactoryGenerator::Work()
 {

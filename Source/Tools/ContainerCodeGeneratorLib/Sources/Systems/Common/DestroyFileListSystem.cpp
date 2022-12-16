@@ -5,15 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#pragma once
-
-#include <ECS/include/Feature.h>
+#include "DestroyFileListSystem.h"
 
 namespace nsContainerCodeGenerator
 {
-    class DllExport TCoreSystemGeneratorFeature : public nsECSFramework::TFeature
+    void TDestroyFileListSystem::Execute()
     {
-    public:
-        void InitConveyor() override;
-    };
+
+    }
 }

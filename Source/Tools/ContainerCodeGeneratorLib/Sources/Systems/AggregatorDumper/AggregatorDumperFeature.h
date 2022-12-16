@@ -13,8 +13,8 @@ namespace nsContainerCodeGenerator
 {
     class DllExport TAggregatorDumperFeature : public nsECSFramework::TFeature
     {
-    public:
 
+    public:
         void InitConveyor() override;
     };
 }

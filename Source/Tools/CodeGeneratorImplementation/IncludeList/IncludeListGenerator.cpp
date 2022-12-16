@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+
+#include "GeneratorList.h"
 #include "IncludeListGenerator.h"
 #include "IncludeListFileGenerator.h"
 #include <filesystem>
@@ -12,6 +14,11 @@ See for more information LICENSE.md.
 namespace fs = std::filesystem;
 using namespace nsCodeGeneratorImplementation;
 
+TIncludeListGenerator::TIncludeListGenerator() : 
+    nsReflectionCodeGenerator::IIncludeListGenerator(TGeneratorList::INCLUDE_LIST) 
+{
+
+}
 //-----------------------------------------------------------------------------------
 void TIncludeListGenerator::Work()
 {

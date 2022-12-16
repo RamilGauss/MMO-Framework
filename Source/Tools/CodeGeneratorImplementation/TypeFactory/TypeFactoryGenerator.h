@@ -14,8 +14,7 @@ namespace nsCodeGeneratorImplementation
     class DllExport TTypeFactoryGenerator : public nsReflectionCodeGenerator::ITargetCodeGenerator
     {
     public:
-        TTypeFactoryGenerator() : 
-            nsReflectionCodeGenerator::ITargetCodeGenerator("TypeFactoryGenerator"){}
+        TTypeFactoryGenerator();
 
         void Work() override;
         void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencyNames) override;

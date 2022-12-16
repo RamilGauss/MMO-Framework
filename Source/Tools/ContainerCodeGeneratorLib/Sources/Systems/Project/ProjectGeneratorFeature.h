@@ -9,12 +9,16 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
+#include "Systems/Project/ProjectDeleteGeneratedFilesSystem.h"
+
 namespace nsContainerCodeGenerator
 {
     class DllExport TProjectGeneratorFeature : public nsECSFramework::TFeature
     {
-    public:
 
+        TProjectDeleteGeneratedFilesSystem mProjectDeleteGeneratedFilesSystem;
+
+    public:
         void InitConveyor() override;
     };
 }

@@ -59,6 +59,7 @@
     <ClInclude Include="EcsComponentExtension\EcsComponentExtensionGenerator.h" />
     <ClInclude Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.h" />
     <ClInclude Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.h" />
+    <ClInclude Include="GeneratorList.h" />
     <ClInclude Include="IncludeList\IncludeListFileGenerator.h" />
     <ClInclude Include="IncludeList\IncludeListGenerator.h" />
     <ClInclude Include="Json\JsonSerializerFileGenerator.h" />
@@ -192,7 +193,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
     </ClCompile>
@@ -217,7 +218,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
     </ClCompile>

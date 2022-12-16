@@ -9,9 +9,16 @@ See for more information LICENSE.md.
 #include "JsonSerializerHeaderFileGenerator.h"
 #include "JsonSerializerSourceFileGenerator.h"
 
+#include "GeneratorList.h"
+
 using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;
 
+TJsonSerializerGenerator::TJsonSerializerGenerator() :
+    nsReflectionCodeGenerator::ITargetCodeGenerator(TGeneratorList::JSON) 
+{
+}
+//----------------------------------------------------------------------------------
 void TJsonSerializerGenerator::Work()
 {
     if (!HasSerializer()) {
