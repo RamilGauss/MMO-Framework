@@ -57,6 +57,8 @@
     <ClCompile Include="TypeInformation\TypeInformationGenerator.cpp" />
     <ClCompile Include="TypeInformation\TypeInformationHeaderFileGenerator.cpp" />
     <ClCompile Include="TypeInformation\TypeInformationSourceFIleGenerator.cpp" />
+    <ClCompile Include="Constants.cpp" />
+    <ClCompile Include="GeneratorList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Binary\BinaryMarshallerFileGenerator.h">
@@ -138,6 +140,9 @@
       <Filter>Generators</Filter>
     </ClInclude>
     <ClInclude Include="GeneratorList.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
       <Filter>Generators</Filter>
     </ClInclude>
   </ItemGroup>

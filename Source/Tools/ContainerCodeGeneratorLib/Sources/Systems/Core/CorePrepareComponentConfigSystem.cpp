@@ -13,10 +13,13 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Helper.h>
 
+#include "Constants.h"
+
 #include "Components/ConfigComponent.h"
 #include "Components/ReflectionConfigComponent.h"
 
 #include "CodeGeneratorImplementation/GeneratorList.h"
+#include "CodeGeneratorImplementation/Constants.h"
 
 namespace nsContainerCodeGenerator
 {
@@ -31,18 +34,19 @@ namespace nsContainerCodeGenerator
 
         auto& conf = reflectionConfigComponent.value;
 
-        reflectionConfigComponent.absFileName = configComponent->value.coreConfig.targetDirectory + "coreComponentConfig.json";
+        reflectionConfigComponent.absFileName = configComponent->value.coreConfig.targetDirectory + nsContainerCodeGenerator::TConstants::CORE_COMPONENT_CONFIG;
 
         conf.filter.inheritances.push_back({ componentConfig.inheritanceFilter });
 
         conf.targetForParsing.recursive = true;
         conf.targetForParsing.directories = { configComponent->value.coreConfig.parseDirectory };
 
-        conf.filter.extensions = { ".h", ".hpp", ".hh", ".hxx", ".h++" };
+        conf.filter.extensions = std::vector<std::string>(TConstants::HEADER_EXTENSIONS.begin(), TConstants::HEADER_EXTENSIONS.end());
 
         conf.targetForCodeGeneration.directory = configComponent->value.coreConfig.targetDirectory;
         conf.targetForCodeGeneration.header = "Core Component";
 
+        // Json
         nsReflectionCodeGenerator::TSerializer json;
         json.className = configComponent->value.coreConfig.componentConfig.json.typeName;
         json.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
@@ -51,6 +55,7 @@ namespace nsContainerCodeGenerator
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::JSON, json });
 
+        // TypeInformation
         nsReflectionCodeGenerator::TSerializer typeInfo;
         typeInfo.className = configComponent->value.coreConfig.componentConfig.typeInfo.typeName;
         typeInfo.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
@@ -59,21 +64,21 @@ namespace nsContainerCodeGenerator
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, typeInfo });
 
+        // EcsExtensions
         nsReflectionCodeGenerator::TSerializer entMng;
         entMng.className = configComponent->value.coreConfig.componentConfig.entMng.typeName;
         entMng.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
         entMng.fileName = configComponent->value.coreConfig.componentConfig.entMng.fileName;
         entMng.nameSpaceName = configComponent->value.coreConfig.nameSpace;
-        entMng.keyValueMap.insert({ "entityManagerHeaderPath", configComponent->value.entityManagerHeaderPath });
-
-        // TODO: move to entityManagerHeaderPath to const in lib
-        /* "ECS/include/EntityManager.h"*/
+        entMng.keyValueMap.insert({ nsCodeGeneratorImplementation::TConstants::s_EntityManagerHeaderPath, configComponent->value.entityManagerHeaderPath });
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::ECS_COMPONENT_EXTENSION, entMng });
 
         // TODO: Add
         // ImGui
+
         // Binary
+
 
         mEntMng->SetComponent(eid, reflectionConfigComponent);
     }

@@ -39,6 +39,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Sources\Constants.h" />
     <ClInclude Include="Sources\Systems\Common\DestroyFileListSystem.h">
       <SubType>
       </SubType>
@@ -114,6 +115,7 @@
     <ClInclude Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Constants.cpp" />
     <ClCompile Include="Sources\Systems\Common\DestroyFileListSystem.cpp">
       <SubType>
       </SubType>

@@ -23,6 +23,7 @@
     <ClCompile Include="Binary\BinaryMarshallerGenerator.cpp" />
     <ClCompile Include="Binary\BinaryMarshallerHeaderFileGenerator.cpp" />
     <ClCompile Include="Binary\BinaryMarshallerSourceFileGenerator.cpp" />
+    <ClCompile Include="Constants.cpp" />
     <ClCompile Include="DynamicCaster\DynamicCasterFileGenerator.cpp" />
     <ClCompile Include="DynamicCaster\DynamicCasterGenerator.cpp" />
     <ClCompile Include="DynamicCaster\DynamicCasterHeaderFileGenerator.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="EcsComponentExtension\EcsComponentExtensionGenerator.cpp" />
     <ClCompile Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.cpp" />
     <ClCompile Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.cpp" />
+    <ClCompile Include="GeneratorList.cpp" />
     <ClCompile Include="IncludeList\IncludeListFileGenerator.cpp" />
     <ClCompile Include="IncludeList\IncludeListGenerator.cpp" />
     <ClCompile Include="Json\JsonSerializerFileGenerator.cpp" />
@@ -51,6 +53,7 @@
     <ClInclude Include="Binary\BinaryMarshallerGenerator.h" />
     <ClInclude Include="Binary\BinaryMarshallerHeaderFileGenerator.h" />
     <ClInclude Include="Binary\BinaryMarshallerSourceFileGenerator.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="DynamicCaster\DynamicCasterFileGenerator.h" />
     <ClInclude Include="DynamicCaster\DynamicCasterGenerator.h" />
     <ClInclude Include="DynamicCaster\DynamicCasterHeaderFileGenerator.h" />

@@ -6,7 +6,10 @@ See for more information LICENSE.md.
 */
 
 #include "EcsComponentExtensionHeaderFileGenerator.h"
+
 #include <set>
+
+#include "Constants.h"
 
 using namespace nsCodeGeneratorImplementation;
 
@@ -22,10 +25,10 @@ void TEcsComponentExtensionHeaderFileGenerator::Work()
     AddStandartInclude("functional");
     AddInclude("TypeDef.h");
 
-    auto fit = mSerializer->keyValueMap.find(s_EntityManagerHeaderPath);
+    auto fit = mSerializer->keyValueMap.find(TConstants::s_EntityManagerHeaderPath);
     std::string entityManagerHeaderPath = "EntityManager.h";
     if (fit != mSerializer->keyValueMap.end()) {
-        entityManagerHeaderPath = mSerializer->keyValueMap[s_EntityManagerHeaderPath];
+        entityManagerHeaderPath = mSerializer->keyValueMap[TConstants::s_EntityManagerHeaderPath];
         AddStandartInclude(entityManagerHeaderPath);
     } else {
         AddInclude(entityManagerHeaderPath);
