@@ -9,7 +9,24 @@ See for more information LICENSE.md.
 
 namespace nsContainerCodeGenerator
 {
-    const std::string TConstants::CORE_COMPONENT_CONFIG = "coreComponentConfig.json";
+    const std::set<std::string> TConstants::GetHeaderExtensions()
+    {
+        return { ".h", ".hpp", ".hh", ".hxx", ".h++" };
+    }
 
-    const std::array<std::string, 5> TConstants::HEADER_EXTENSIONS = { ".h", ".hpp", ".hh", ".hxx", ".h++" };
+    const std::set<std::string> TConstants::GetSystemInheritances()
+    {
+        return
+        {
+            "nsECSFramework::TFeature",
+            "nsECSFramework::TInitSystem",
+            "nsECSFramework::TExecuteSystem",
+            "nsECSFramework::TTearDownSystem",
+            "nsECSFramework::TOnAddCollectReactiveSystem",
+            "nsECSFramework::TOnUpdateCollectReactiveSystem",
+            "nsECSFramework::TOnAddInstantReactiveSystem",
+            "nsECSFramework::TOnUpdateInstantReactiveSystem",
+            "nsECSFramework::TOnRemoveInstantReactiveSystem"
+        };
+    }
 }

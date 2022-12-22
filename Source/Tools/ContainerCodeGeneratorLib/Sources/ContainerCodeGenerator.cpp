@@ -12,10 +12,11 @@ See for more information LICENSE.md.
 
 #include "LoadFromFile.h"
 
+#include "MessageException.h"
+
 #include "Components/ArgumentComponent.h"
 #include "Components/ConfigComponent.h"
 #include "Components/PathsComponent.h"
-#include "Components/ResultComponent.h"
 
 #include "Generated files/JsonSerializer.h"
 
@@ -42,10 +43,6 @@ namespace nsContainerCodeGenerator
 
         TPathsComponent pathsComponent;
         mEntMng.SetComponent(singleEid, pathsComponent);
-
-        //Output
-        TResultComponent resultComponent;
-        mEntMng.SetComponent(singleEid, resultComponent);
     }
     //-------------------------------------------------------------------------------------------
     TContainerCodeGenerator::Result TContainerCodeGenerator::Generate(int argc, char** argv)
@@ -62,18 +59,22 @@ namespace nsContainerCodeGenerator
         mMainFeature.Add(&mAggregatorDumperFeature);
 
         TContainerCodeGenerator::Result result = Result::OK;
+        std::string resultStr;
 
         try {
             // Execute
             mMainFeature.Execute();
+        } catch (const TMessageException& exception) {
+            resultStr = exception.what();
+
+            result = Result::DEVELOPER_ERROR;
         } catch (...) {
             result = Result::INNER_ERROR;
         }
 
         // Output result
-        auto resultComponent = nsECSFramework::SingleComponent<TResultComponent>(&mEntMng);
-        fmt::print("ContainerCodeGenerator returns {}, \"{}\".\n", 
-            magic_enum::enum_name(result), resultComponent->value);
+        fmt::print("ContainerCodeGenerator:[{}] {}\n", 
+            magic_enum::enum_name(result), resultStr);
 
         return result;
     }

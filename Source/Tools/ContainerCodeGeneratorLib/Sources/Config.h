@@ -36,8 +36,6 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport THandlerConfig
     {
-        std::string baseHandlerTypeName;
-
         TGeneratedClass typeInfo;
         TGeneratedClass typeFactory;
     };
@@ -126,6 +124,8 @@ namespace nsContainerCodeGenerator
         std::string reflectionCodeGeneratorFileName;
 
         std::string entityManagerHeaderPath;
+
+        std::string baseHandlerTypeName;
 
         TCoreConfig coreConfig;
         TProjectConfig projectConfig;

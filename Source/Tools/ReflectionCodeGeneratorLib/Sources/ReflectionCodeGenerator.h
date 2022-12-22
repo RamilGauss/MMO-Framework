@@ -98,8 +98,6 @@ namespace nsReflectionCodeGenerator
 
         void ShowTitle();
 
-        template <typename DirectoryIterator>
-        void CollectAbsPaths(TStringList& fileList);
         void GetFileAbsPathList(TStringList& fileList);
         bool GetTypeList(TStringList& fileList, TTypeInfoPtrList& typeList);
         void FilterTypeList(TTypeInfoPtrList& typeList, TTypeInfoPtrSet& filteredTypeList);
@@ -131,25 +129,4 @@ namespace nsReflectionCodeGenerator
             const std::list<std::string>& withinClassTypeNameList);
 
     };
-    //---------------------------------------------------------------------------------------
-    template <typename DirectoryIterator>
-    void TReflectionCodeGenerator::CollectAbsPaths(TStringList& fileList)
-    {
-        TStrSet extSet(mConfig->filter.extensions.begin(), mConfig->filter.extensions.end());
-
-        for (auto& dir : mConfig->targetForParsing.directories) {
-            DirectoryIterator dirIt((char*) dir.data());
-
-            for (auto& p : dirIt) {
-                auto path = p.path();
-                std::string ext = path.extension().string();
-                if (extSet.find(ext) == extSet.end()) {
-                    continue;
-                }
-                auto str = std::filesystem::canonical(path).string();
-                fileList.push_back(str);
-            }
-        }
-    }
-    //---------------------------------------------------------------------------------------
-}
+ }

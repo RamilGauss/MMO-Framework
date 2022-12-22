@@ -10,6 +10,8 @@ See for more information LICENSE.md.
 
 using namespace nsBase;
 
+namespace fs = std::filesystem;
+
 std::string TPathOperations::CalculatePathBy(const std::string& abs, const std::string& absOrRel)
 {
     auto absOrRelPath = std::filesystem::path(absOrRel);
@@ -47,3 +49,44 @@ std::string TPathOperations::GetCurrentDir()
     return std::filesystem::current_path().string();
 }
 //-----------------------------------------------------------------------
+template <typename DirectoryIterator>
+void TPathOperations::AddAbsPathsByDirectory(const std::string& directory, const std::set<std::string>& extensions, std::list<std::string>& fileList)
+{
+    DirectoryIterator dirIt((char*)directory.c_str());
+
+    for (auto& p : dirIt) {
+        auto path = p.path();
+        std::string ext = path.extension().string();
+        if ((extensions.size() > 0) && 
+            (extensions.find(ext) == extensions.end())) {
+            continue;
+        }
+        auto str = std::filesystem::canonical(path).string();
+        fileList.push_back(str);
+    }
+}
+//---------------------------------------------------------------------------------------
+void TPathOperations::AddAbsPathsByDirectory(const std::string& directory, const std::set<std::string>& extensions,
+    std::list<std::string>& fileList, bool recursive)
+{
+    if (recursive) {
+        AddAbsPathsByDirectory<fs::recursive_directory_iterator>(directory, extensions, fileList);
+    } else {
+        AddAbsPathsByDirectory<fs::directory_iterator>(directory, extensions, fileList);
+    }
+}
+//---------------------------------------------------------------------------------------
+std::string TPathOperations::GetRelativePath(const std::string& absBase, const std::string& abs)
+{
+
+    fs::path p = fs::current_path();
+
+    //p.set_roo root_path
+
+    //std::cout << "The current path " << p << " decomposes into:\n"
+    //    << "root-path " << p.root_path() << '\n'
+    //    << "relative path " << p.relative_path() << '\n';
+
+    return "";
+}
+//---------------------------------------------------------------------------------------

@@ -15,5 +15,6 @@ namespace nsContainerCodeGenerator
         Add(&mResolveJsonPathSystem);
         Add(&mTryLoadConfigSystem);
         Add(&mResolvePathesSystem);
+        Add(&mValidateConfigSystem);
     }
 }

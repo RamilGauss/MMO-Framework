@@ -41,7 +41,8 @@ namespace nsContainerCodeGenerator
         enum Result : int
         {
             OK = 0,
-            INNER_ERROR,
+            DEVELOPER_ERROR = 3,
+            INNER_ERROR = 4,
         };
 
         TContainerCodeGenerator();

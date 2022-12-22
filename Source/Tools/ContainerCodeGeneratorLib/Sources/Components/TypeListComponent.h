@@ -17,6 +17,6 @@ namespace nsContainerCodeGenerator
 {
     struct DllExport TTypeListComponent : nsECSFramework::IComponent
     {
-        mutable std::list<nsCppParser::TTypeInfo> value;
+        std::list<nsCppParser::TTypeInfo> value;
     };
 }

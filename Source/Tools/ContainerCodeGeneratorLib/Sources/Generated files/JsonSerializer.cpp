@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_01 23:14:23.023
+// File has been generated at 2022_12_19 14:26:36.242
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -330,6 +330,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TComponentConfig* p
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TConfig* p, Jobj& obj)
 {
     PUM::Push(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
+    PUM::Push(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
+    PUM::Push(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
     auto coreConfig_o = PUM::AddObject(obj, "coreConfig");
     _Serialize(&(p->coreConfig), coreConfig_o);
     auto projectConfig_o = PUM::AddObject(obj, "projectConfig");
@@ -339,6 +341,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TConfig* p, Jobj& obj
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TConfig* p, const Jobj& obj)
 {
     POM::PopStr(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
+    POM::PopStr(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
+    POM::PopStr(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
     auto coreConfig_o0 = POM::FindObject(obj, "coreConfig");
     _Deserialize(&(p->coreConfig), coreConfig_o0);
     auto projectConfig_o0 = POM::FindObject(obj, "projectConfig");
@@ -411,7 +415,6 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::THandlerAggregator*
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::THandlerConfig* p, Jobj& obj)
 {
-    PUM::Push(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
     auto typeInfo_o = PUM::AddObject(obj, "typeInfo");
     _Serialize(&(p->typeInfo), typeInfo_o);
     auto typeFactory_o = PUM::AddObject(obj, "typeFactory");
@@ -420,7 +423,6 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::THandlerConfig* p, Jo
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::THandlerConfig* p, const Jobj& obj)
 {
-    POM::PopStr(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
     auto typeInfo_o0 = POM::FindObject(obj, "typeInfo");
     _Deserialize(&(p->typeInfo), typeInfo_o0);
     auto typeFactory_o0 = POM::FindObject(obj, "typeFactory");

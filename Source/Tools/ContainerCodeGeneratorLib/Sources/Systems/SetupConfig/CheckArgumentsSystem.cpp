@@ -9,19 +9,18 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Helper.h>
 
+#include "MessageException.h"
 #include "Components/ArgumentComponent.h"
-#include "Components/ResultComponent.h"
 
 namespace nsContainerCodeGenerator
 {
     void TCheckArgumentsSystem::Execute()
     {
         auto argumentComponent = nsECSFramework::SingleComponent<TArgumentComponent>(mEntMng);
-        auto resultComponent = nsECSFramework::SingleComponent<TResultComponent>(mEntMng);
 
         if (argumentComponent->argc == 1) {
-            resultComponent->value = "Not found argument";
-            throw std::exception();
+            std::string msg = "Not found argument";
+            throw TMessageException(msg);
         }
     }
 }

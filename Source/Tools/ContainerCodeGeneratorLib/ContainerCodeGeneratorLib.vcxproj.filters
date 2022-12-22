@@ -24,9 +24,6 @@
     <ClInclude Include="Sources\Components\ConfigComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\ResultComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Systems\Core\CoreGeneratorFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -126,6 +123,12 @@
     <ClInclude Include="Sources\Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Systems\SetupConfig\ValidateConfigSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MessageException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp">
@@ -204,6 +207,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Constants.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\SetupConfig\ValidateConfigSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\MessageException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

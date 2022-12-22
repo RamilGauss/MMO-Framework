@@ -40,6 +40,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Sources\Constants.h" />
+    <ClInclude Include="Sources\MessageException.h" />
     <ClInclude Include="Sources\Systems\Common\DestroyFileListSystem.h">
       <SubType>
       </SubType>
@@ -109,13 +110,17 @@
     <ClInclude Include="Sources\Systems\Project\ProjectGeneratorFeature.h" />
     <ClInclude Include="Sources\Systems\Core\CoreGeneratorFeature.h" />
     <ClInclude Include="Sources\Components\ConfigComponent.h" />
-    <ClInclude Include="Sources\Components\ResultComponent.h" />
     <ClInclude Include="Sources\Config.h" />
     <ClInclude Include="Sources\ContainerCodeGenerator.h" />
     <ClInclude Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.h" />
+    <ClInclude Include="Sources\Systems\SetupConfig\ValidateConfigSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Constants.cpp" />
+    <ClCompile Include="Sources\MessageException.cpp" />
     <ClCompile Include="Sources\Systems\Common\DestroyFileListSystem.cpp">
       <SubType>
       </SubType>
@@ -183,6 +188,10 @@
     <ClCompile Include="Sources\Systems\Core\CoreGeneratorFeature.cpp" />
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp" />
     <ClCompile Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.cpp" />
+    <ClCompile Include="Sources\Systems\SetupConfig\ValidateConfigSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />

@@ -15,7 +15,7 @@ namespace nsContainerCodeGenerator
 {
     struct DllExport TReflectionConfigComponent : nsECSFramework::IComponent
     {
-        mutable std::string absFileName;
+        std::string absFileName;
 
         mutable nsReflectionCodeGenerator::TConfig value;
     };

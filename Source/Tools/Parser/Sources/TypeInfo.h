@@ -48,11 +48,11 @@ namespace nsCppParser
 
         TAccessLevelMemberInfoPtrVecArray mMembers;
 
-        std::string GetNameSpace();// all namespaces: A::B::...::Z
-        std::string GetNameSpaceAsVar();// all namespaces: A_B_..._Z
+        std::string GetNameSpace() const;// all namespaces: A::B::...::Z
+        std::string GetNameSpaceAsVar() const;// all namespaces: A_B_..._Z
 
-        std::string GetTypeNameWithNameSpace();// namespace::typename
-        std::string GetTypeNameWithNameSpaceAsVar();// namespace_typename
+        std::string GetTypeNameWithNameSpace() const;// namespace::typename
+        std::string GetTypeNameWithNameSpaceAsVar() const;// namespace_typename
 
         void AddMember(TMemberInfo& memberInfo);
         void AddMethod(TMethodInfo& methodInfo);

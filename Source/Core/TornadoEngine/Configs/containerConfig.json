@@ -1,5 +1,7 @@
 {
     "reflectionCodeGeneratorFileName": "../../../../Exe/ReflectionCodeGenerator_d.exe",
+    "entityManagerHeaderPath": "ECS/include/EntityManager.h",
+    "baseHandlerTypeName": "nsTornadoEngine::IHandler",
     "coreConfig": {
         "isNeedGenerate": true,
 
@@ -15,7 +17,7 @@
             }
         },
 
-        "targetDirectory": "../Generated files",
+        "targetDirectory": "../Generated files/Container",
         "exportDeclaration": "DllExport",
         "nameSpace": "nsTornadoEngine",
         "parseDirectory": "..",
@@ -45,7 +47,6 @@
         },
 
         "handlerConfig": {
-            "baseHandlerTypeName": "nsTornadoEngine::IHandler",
             "typeInfo": {
                 "fileName": "HandlerTypeInfo",
                 "typeName": "THandlerTypeInfo"
@@ -84,7 +85,7 @@
         }
     },
     "projectConfig": {
-        "targetDirectory": "../../../Tools/TornadoEditor/Generated files",
+        "targetDirectory": "../../../Tools/TornadoEditor/Generated files/Container",
         "exportDeclaration": "DllExport",
         "nameSpace": "nsTornadoEditor",
         "parseDirectory": "../../../Tools/TornadoEditor",
@@ -114,7 +115,6 @@
         },
 
         "handlerConfig": {
-            "baseHandlerTypeName": "IHandler",
             "typeInfo": {
                 "fileName": "HandlerTypeInfo",
                 "typeName": "THandlerTypeInfo"

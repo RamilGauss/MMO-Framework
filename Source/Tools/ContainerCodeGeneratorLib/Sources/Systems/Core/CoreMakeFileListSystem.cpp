@@ -11,7 +11,11 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
+#include <PathOperations.h>
+
 #include <ECS/include/Helper.h>
+
+#include "Constants.h"
 
 #include "Components/ConfigComponent.h"
 #include "Components/FileListComponent.h"
@@ -24,15 +28,11 @@ namespace nsContainerCodeGenerator
 
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
 
-        auto targetDir = std::filesystem::path(configComponent->value.coreConfig.parseDirectory);
+        auto targetDir = configComponent->value.coreConfig.parseDirectory;
 
         TFileListComponent fileListComponent;
 
-        for (const auto& entry : std::filesystem::directory_iterator(targetDir)) {
-            
-            //fileListComponent.value.push_back();
-
-        }
+        nsBase::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
 
         mEntMng->SetComponent(eid, fileListComponent);
     }

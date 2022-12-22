@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include "Systems/SetupConfig/ResolveJsonPathSystem.h"
 #include "Systems/SetupConfig/TryLoadConfigSystem.h"
 #include "Systems/SetupConfig/ResolvePathesSystem.h"
+#include "Systems/SetupConfig/ValidateConfigSystem.h"
 
 namespace nsContainerCodeGenerator
 {
@@ -22,6 +23,8 @@ namespace nsContainerCodeGenerator
         TResolveJsonPathSystem mResolveJsonPathSystem;
         TTryLoadConfigSystem   mTryLoadConfigSystem;
         TResolvePathesSystem   mResolvePathesSystem;
+
+        TValidateConfigSystem mValidateConfigSystem;
     public:
 
         void InitConveyor() override;

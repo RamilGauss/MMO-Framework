@@ -14,8 +14,8 @@ See for more information LICENSE.md.
 
 namespace nsContainerCodeGenerator
 {
-    struct DllExport TCoreHandlerListCompoent : nsECSFramework::IComponent
+    struct DllExport TCoreHandlerListComponent : nsECSFramework::IComponent
     {
-        mutable std::set<std::string> value;
+        std::set<std::string> value;
     };
 }

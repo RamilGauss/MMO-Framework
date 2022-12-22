@@ -132,10 +132,11 @@ void TReflectionCodeGenerator::ShowTitle()
 void TReflectionCodeGenerator::GetFileAbsPathList(TStringList& fileList)
 {
     fileList.clear();
-    if (mConfig->targetForParsing.recursive) {
-        CollectAbsPaths<fs::recursive_directory_iterator>(fileList);
-    } else {
-        CollectAbsPaths<fs::directory_iterator>(fileList);
+
+    TStrSet extSet(mConfig->filter.extensions.begin(), mConfig->filter.extensions.end());
+
+    for (auto& dir : mConfig->targetForParsing.directories) {
+        nsBase::TPathOperations::AddAbsPathsByDirectory(dir, extSet, fileList, mConfig->targetForParsing.recursive);
     }
 }
 //---------------------------------------------------------------------------------------

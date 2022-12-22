@@ -11,9 +11,10 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Helper.h>
 
+#include "MessageException.h"
+
 #include "Components/ConfigComponent.h"
 #include "Components/ReflectionConfigComponent.h"
-#include "Components/ResultComponent.h"
 
 namespace nsContainerCodeGenerator
 {
@@ -21,7 +22,6 @@ namespace nsContainerCodeGenerator
     {
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto reflectionConfigComponent = nsECSFramework::SingleComponent<TReflectionConfigComponent>(mEntMng);
-        auto resultComponent = nsECSFramework::SingleComponent<TResultComponent>(mEntMng);
 
         auto cmd = fmt::format("{} {}", 
             configComponent->value.reflectionCodeGeneratorFileName, 
@@ -33,7 +33,7 @@ namespace nsContainerCodeGenerator
             return;
         }
 
-        resultComponent->value = fmt::format("ReflectionCodeGenerator returns {}", cmdResult);
-        throw std::exception();
+        auto msg = fmt::format("ReflectionCodeGenerator returns {}", cmdResult);
+        throw TMessageException(msg);
     }
 }

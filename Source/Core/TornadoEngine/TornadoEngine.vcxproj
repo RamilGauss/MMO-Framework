@@ -641,17 +641,12 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="TimeSliceEngine\TimeSliceEngine.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Configs\Components\componentConfig.json" />
+    <None Include="Generated files\componentConfig.json" />
     <None Include="Configs\containerConfig.json" />
-    <None Include="Configs\Systems\dynamicCasterOutFile.json" />
-    <None Include="Configs\Systems\ecsConfig.json" />
-    <None Include="Configs\Systems\ecsDynamicCasterOutFile.json" />
-    <None Include="Configs\Systems\ecsTypeInformationOutFile.json" />
-    <None Include="Configs\Systems\featureConfig.json" />
-    <None Include="Configs\Systems\featureTypeInformationOutFile.json" />
-    <None Include="Configs\Systems\handlerConfig.json" />
-    <None Include="Configs\Systems\reflectionConfig.json" />
-    <None Include="Configs\Systems\typeFactoryOutFile.json" />
+    <None Include="Generated files\ecsConfig.json" />
+    <None Include="Generated files\featureConfig.json" />
+    <None Include="Generated files\handlerConfig.json" />
+    <None Include="Configs\reflectionConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

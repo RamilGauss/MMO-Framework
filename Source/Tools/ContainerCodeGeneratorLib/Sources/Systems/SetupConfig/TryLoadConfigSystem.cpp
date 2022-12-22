@@ -13,8 +13,8 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Helper.h>
 
+#include "MessageException.h"
 #include "Components/ArgumentComponent.h"
-#include "Components/ResultComponent.h"
 #include "Components/ConfigComponent.h"
 #include "Components/PathsComponent.h"
 
@@ -25,21 +25,20 @@ namespace nsContainerCodeGenerator
     void TTryLoadConfigSystem::Execute()
     {
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
-        auto resultComponent = nsECSFramework::SingleComponent<TResultComponent>(mEntMng);
         auto pathsComponent = nsECSFramework::SingleComponent<TPathsComponent>(mEntMng);
 
         std::string str;
         TTextFile::Load(pathsComponent->absPathJsonFile, str);
         if (str.length() == 0) {
-            resultComponent->value = fmt::format("Not loaded file \"{}\"\n", pathsComponent->absPathJsonFile);
-            throw std::exception();
+            auto msg = fmt::format("Not loaded file \"{}\"\n", pathsComponent->absPathJsonFile);
+            throw TMessageException(msg);
         }
 
         std::string err;
         auto fillRes = TJsonSerializer::Deserialize(&configComponent->value, str, err);
         if (!fillRes) {
-            resultComponent->value = fmt::format("Deserilaize error in \"{}\", {}\n", pathsComponent->absPathJsonFile, err);
-            throw std::exception();
+            auto msg = fmt::format("Deserilaize error in \"{}\", {}\n", pathsComponent->absPathJsonFile, err);
+            throw TMessageException(msg);
         }
     }
 }

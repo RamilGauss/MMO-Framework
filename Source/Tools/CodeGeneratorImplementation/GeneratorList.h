@@ -15,12 +15,12 @@ namespace nsCodeGeneratorImplementation
 {
     struct DllExport TGeneratorList
     {
-        static const char BINARY [];
-        static const char DYNAMIC_CASTER [];
-        static const char ECS_COMPONENT_EXTENSION [];
-        static const char INCLUDE_LIST [];
-        static const char JSON [];
-        static const char TYPE_FACTORY [];
-        static const char TYPE_INFORMATION [];
+        static constexpr char BINARY[]                  = "BinaryMarshallerGenerator";
+        static constexpr char DYNAMIC_CASTER[]          = "DynamicCaster";
+        static constexpr char ECS_COMPONENT_EXTENSION[] = "EcsComponentExtension";
+        static constexpr char INCLUDE_LIST[]            = "IncludeListGenerator";
+        static constexpr char JSON[]                    = "JsonSerializerGenerator";
+        static constexpr char TYPE_FACTORY[]            = "TypeFactoryGenerator";
+        static constexpr char TYPE_INFORMATION[]        = "TypeInformationGenerator";
     };
 }

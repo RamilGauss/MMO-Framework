@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 using namespace nsCppParser;
 
-std::string TTypeInfo::GetNameSpace()// all namespaces: A::B::...::Z
+std::string TTypeInfo::GetNameSpace() const// all namespaces: A::B::...::Z
 {
     std::string summa;
     auto size = mNamespaceVec.size();
@@ -21,7 +21,7 @@ std::string TTypeInfo::GetNameSpace()// all namespaces: A::B::...::Z
     return summa;
 }
 //-----------------------------------------------------------------------------------------
-std::string TTypeInfo::GetNameSpaceAsVar()// all namespaces: A_B_..._Z
+std::string TTypeInfo::GetNameSpaceAsVar() const// all namespaces: A_B_..._Z
 {
     std::string summa;
     auto size = mNamespaceVec.size();
@@ -33,7 +33,7 @@ std::string TTypeInfo::GetNameSpaceAsVar()// all namespaces: A_B_..._Z
     return summa;
 }
 //-----------------------------------------------------------------------------------------
-std::string TTypeInfo::GetTypeNameWithNameSpace()
+std::string TTypeInfo::GetTypeNameWithNameSpace() const
 {
     auto sNamespace = GetNameSpace();
     if (sNamespace.length() > 0) {
@@ -42,7 +42,7 @@ std::string TTypeInfo::GetTypeNameWithNameSpace()
     return mName;
 }
 //-----------------------------------------------------------------------------------------
-std::string TTypeInfo::GetTypeNameWithNameSpaceAsVar()
+std::string TTypeInfo::GetTypeNameWithNameSpaceAsVar() const
 {
     auto sNamespace = GetNameSpaceAsVar();
     if (sNamespace.length() > 0) {

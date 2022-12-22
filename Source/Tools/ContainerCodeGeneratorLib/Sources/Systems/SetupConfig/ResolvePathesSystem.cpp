@@ -14,7 +14,6 @@ See for more information LICENSE.md.
 
 #include "Components/ArgumentComponent.h"
 #include "Components/ConfigComponent.h"
-#include "Components/ResultComponent.h"
 #include "Components/PathsComponent.h"
 
 namespace nsContainerCodeGenerator

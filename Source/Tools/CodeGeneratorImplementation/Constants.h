@@ -15,6 +15,6 @@ namespace nsCodeGeneratorImplementation
 {
     struct DllExport TConstants
     {
-        static const char s_EntityManagerHeaderPath [];
+        static constexpr char s_EntityManagerHeaderPath [] = "entityManagerHeaderPath";
     };
 }

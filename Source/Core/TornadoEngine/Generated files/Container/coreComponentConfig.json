@@ -1,0 +1,71 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "C:\\Data\\GitHub\\MMOFramework\\Source\\Core\\TornadoEngine"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "extensions": [
+            ".h",
+            ".h++",
+            ".hh",
+            ".hpp",
+            ".hxx"
+        ],
+        "attribute": "",
+        "inheritances": [
+            [
+                "nsECSFramework::IComponent"
+            ]
+        ],
+        "memberIgnore": ""
+    },
+    "targetForCodeGeneration": {
+        "directory": ".",
+        "header": "Core Component",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "EcsComponentExtension": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "className": "TComponentEntMng",
+                "fileName": "ComponentEntMng",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "coreComponentEcsOut.json"
+                },
+                "keyValueMap": {
+                    "entityManagerHeaderPath": "ECS/include/EntityManager.h"
+                }
+            },
+            "JsonSerializerGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "className": "TComponentJson",
+                "fileName": "ComponentJson",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "coreComponentJsonOut.json"
+                },
+                "keyValueMap": {}
+            },
+            "TypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "className": "TComponentTypeInfo",
+                "fileName": "ComponentTypeInfo",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "coreComponentTypeInfoOut.json"
+                },
+                "keyValueMap": {}
+            }
+        },
+        "includeListParams": {
+            "includeListFileName": "",
+            "dirToInclude": []
+        }
+    }
+}

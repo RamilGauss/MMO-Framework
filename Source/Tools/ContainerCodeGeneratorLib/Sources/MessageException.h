@@ -7,15 +7,20 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <set>
 #include <string>
+#include <exception>
 
-#include <ECS/include/IComponent.h>
+#include <TypeDef.h>
 
 namespace nsContainerCodeGenerator
 {
-    struct DllExport TProjectHandlerListComponent : nsECSFramework::IComponent
+    class DllExport TMessageException : public std::exception
     {
-        std::set<std::string> value;
+        std::string mWhat;
+
+    public:
+        TMessageException(const std::string& what);
+
+        const char* what() const noexcept;
     };
 }

@@ -16,6 +16,6 @@ namespace nsContainerCodeGenerator
 {
     struct DllExport TFileListComponent : nsECSFramework::IComponent
     {
-        mutable std::list<std::string> value;
+        std::list<std::string> value;
     };
 }

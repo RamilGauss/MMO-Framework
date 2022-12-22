@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
+#include <PathOperations.h>
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"
@@ -34,16 +35,19 @@ namespace nsContainerCodeGenerator
 
         auto& conf = reflectionConfigComponent.value;
 
-        reflectionConfigComponent.absFileName = configComponent->value.coreConfig.targetDirectory + nsContainerCodeGenerator::TConstants::CORE_COMPONENT_CONFIG;
+        std::string fileName = std::string("./") + TConstants::CORE_COMPONENT_CONFIG;
+        reflectionConfigComponent.absFileName = 
+            nsBase::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
 
         conf.filter.inheritances.push_back({ componentConfig.inheritanceFilter });
 
         conf.targetForParsing.recursive = true;
         conf.targetForParsing.directories = { configComponent->value.coreConfig.parseDirectory };
 
-        conf.filter.extensions = std::vector<std::string>(TConstants::HEADER_EXTENSIONS.begin(), TConstants::HEADER_EXTENSIONS.end());
+        auto ext = TConstants::GetHeaderExtensions();
+        conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
 
-        conf.targetForCodeGeneration.directory = configComponent->value.coreConfig.targetDirectory;
+        conf.targetForCodeGeneration.directory = ".";
         conf.targetForCodeGeneration.header = "Core Component";
 
         // Json
@@ -52,6 +56,9 @@ namespace nsContainerCodeGenerator
         json.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
         json.fileName = configComponent->value.coreConfig.componentConfig.json.fileName;
         json.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+
+        json.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        json.externalSources->outFile = TConstants::CORE_COMPONENT_JSON_OUT;
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::JSON, json });
 
@@ -62,6 +69,9 @@ namespace nsContainerCodeGenerator
         typeInfo.fileName = configComponent->value.coreConfig.componentConfig.typeInfo.fileName;
         typeInfo.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
+        typeInfo.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        typeInfo.externalSources->outFile = TConstants::CORE_COMPONENT_TYPE_INFO_OUT;
+
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, typeInfo });
 
         // EcsExtensions
@@ -71,6 +81,9 @@ namespace nsContainerCodeGenerator
         entMng.fileName = configComponent->value.coreConfig.componentConfig.entMng.fileName;
         entMng.nameSpaceName = configComponent->value.coreConfig.nameSpace;
         entMng.keyValueMap.insert({ nsCodeGeneratorImplementation::TConstants::s_EntityManagerHeaderPath, configComponent->value.entityManagerHeaderPath });
+
+        entMng.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        entMng.externalSources->outFile = TConstants::CORE_COMPONENT_ECS_OUT;
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::ECS_COMPONENT_EXTENSION, entMng });
 

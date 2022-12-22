@@ -9,5 +9,5 @@ See for more information LICENSE.md.
 
 namespace nsCodeGeneratorImplementation
 {
-    const char TConstants::s_EntityManagerHeaderPath [] = "entityManagerHeaderPath";
+    //const char TConstants::s_EntityManagerHeaderPath [] = "entityManagerHeaderPath";
 }
