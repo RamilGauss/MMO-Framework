@@ -15,13 +15,10 @@ See for more information LICENSE.md.
 #include "Systems/Common/ParseFileListSystem.h"
 #include "Systems/Common/DestroyFileListSystem.h"
 #include "Systems/Common/DestroyTypeListSystem.h"
+#include "Systems/Common/HandleTypeListToHandlerListSystem.h"
 
 #include "Systems/Core/CoreDeleteGeneratedFilesSystem.h"
 #include "Systems/Core/CorePrepareComponentConfigSystem.h"
-#include "Systems/Core/CorePrepareHandlerConfSystem.h"
-#include "Systems/Core/CoreHandlerParserSystem.h"
-#include "Systems/Core/CoreMakeFileListSystem.h"
-#include "Systems/Core/CoreHandleTypeListToHandlerListSystem.h"
 #include "Systems/Core/CorePrepareEcsSystemConfigSystem.h"
 #include "Systems/Core/CorePrepareSystemConfigSystem.h"
 
@@ -38,20 +35,6 @@ namespace nsContainerCodeGenerator
         TSaveConfigFileSystem mSaveComponentConfigSystem;
         TGenerateFilesByReflectionSystem mGenerateComponentFilesSystem;
         TDestroyReflectionConfigSystem mDestroyComponentConfigSystem;
-
-        // Handlers
-        TCoreMakeFileListSystem mCoreMakeFileListSystem;
-        TParseFileListSystem mParseFileListSystem;
-        TCoreHandleTypeListToHandlerListSystem mHandleTypeListToHandlerListSystem;
-        
-        TCorePrepareHandlerConfSystem mCorePrepareHandlerConfSystem;
-
-        TSaveConfigFileSystem mSaveHandlerConfigSystem;
-        TGenerateFilesByReflectionSystem mGenerateHandlerFilesSystem;
-
-        TDestroyFileListSystem mDestroyFileListSystem;
-        TDestroyTypeListSystem mDestroyHandlerListSystem;
-        TDestroyReflectionConfigSystem mDestroyFileTypeListsSystem;
 
         // EcsSystems
         TCorePrepareEcsSystemConfigSystem mCorePrepareEcsSystemConfigSystem;

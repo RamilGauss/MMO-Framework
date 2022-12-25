@@ -7,13 +7,15 @@ See for more information LICENSE.md.
 
 #include "CorePrepareSystemConfigSystem.h"
 
+#include <fmt/core.h>
+
 #include <PathOperations.h>
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"
+#include "MessageException.h"
 
 #include "Components/ConfigComponent.h"
-#include "Components/CoreHandlerListComponent.h"
 #include "Components/ReflectionConfigComponent.h"
 
 #include "CodeGeneratorImplementation/GeneratorList.h"
@@ -26,8 +28,6 @@ namespace nsContainerCodeGenerator
         auto eid = nsECSFramework::SingleEntity<TConfigComponent>(mEntMng);
 
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
-
-        const auto& ecsSystemConfig = configComponent->value.coreConfig.ecsSystemConfig;
 
         TReflectionConfigComponent reflectionConfigComponent;
 
@@ -43,10 +43,23 @@ namespace nsContainerCodeGenerator
         }
 
         conf.targetForParsing.recursive = true;
-        conf.targetForParsing.directories = { configComponent->value.coreConfig.parseDirectory };
+
+        auto absBase = configComponent->value.coreConfig.targetDirectory;
+        auto abs = configComponent->value.coreConfig.parseDirectory;
+
+        std::string rel;
+        auto relPathResult = nsBase::TPathOperations::GetRelativePath(absBase, abs, rel);
+
+        if (!relPathResult) {
+            auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
+            throw TMessageException(msg);
+        }
+
+        conf.targetForParsing.directories.push_back(rel);
 
         auto ext = TConstants::GetHeaderExtensions();
         conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
+        conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
 
         conf.targetForCodeGeneration.directory = ".";
         conf.targetForCodeGeneration.header = "Core System";
@@ -55,7 +68,7 @@ namespace nsContainerCodeGenerator
         nsReflectionCodeGenerator::TSerializer typeInfo;
         typeInfo.className = configComponent->value.coreConfig.systemConfig.typeInfo.typeName;
         typeInfo.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        typeInfo.fileName = configComponent->value.coreConfig.handlerConfig.typeInfo.fileName;
+        typeInfo.fileName = configComponent->value.coreConfig.systemConfig.typeInfo.fileName;
         typeInfo.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
         typeInfo.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
@@ -88,6 +101,8 @@ namespace nsContainerCodeGenerator
         typeFactory.externalSources->outFile = TConstants::CORE_SYSTEM_TYPE_FACTORY_OUT;
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });
+
+        conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.coreConfig.systemConfig.includeListFileName;
 
         mEntMng->SetComponent(eid, reflectionConfigComponent);
     }

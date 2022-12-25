@@ -63,7 +63,7 @@
     <ClInclude Include="Sources\Systems\Core\CorePrepareComponentConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CorePrepareHandlerConfSystem.h">
+    <ClInclude Include="Sources\Systems\Project\ProjectPrepareHandlerConfSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Components\ReflectionConfigComponent.h">
@@ -81,10 +81,7 @@
     <ClInclude Include="Sources\Systems\Common\DestroyReflectionConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\CoreHandlerListComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreHandlerParserSystem.h">
+    <ClInclude Include="Sources\Components\HandlerListComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Components\FileListComponent.h">
@@ -93,22 +90,19 @@
     <ClInclude Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreMakeFileListSystem.h">
+    <ClInclude Include="Sources\Systems\Project\ProjectMakeFileListSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Common\ParseFileListSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreHandleTypeListToHandlerListSystem.h">
+    <ClInclude Include="Sources\Systems\Common\HandleTypeListToHandlerListSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Core\CorePrepareEcsSystemConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Components\TypeListComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\ProjectHandlerListComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Common\DestroyFileListSystem.h">
@@ -127,6 +121,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\MessageException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Project\ProjectPrepareComponentConfigSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Project\ProjectHandleTypeListToHandlerListSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Project\ProjectPrepareSystemConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -164,7 +167,7 @@
     <ClCompile Include="Sources\Systems\Core\CorePrepareComponentConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CorePrepareHandlerConfSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\ProjectPrepareHandlerConfSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Core\CoreDeleteGeneratedFilesSystem.cpp">
@@ -179,19 +182,16 @@
     <ClCompile Include="Sources\Systems\Common\DestroyReflectionConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreHandlerParserSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreMakeFileListSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\ProjectMakeFileListSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Common\ParseFileListSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreHandleTypeListToHandlerListSystem.cpp">
+    <ClCompile Include="Sources\Systems\Common\HandleTypeListToHandlerListSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Core\CorePrepareEcsSystemConfigSystem.cpp">
@@ -213,6 +213,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\MessageException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Project\ProjectPrepareComponentConfigSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Project\ProjectHandleTypeListToHandlerListSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Project\ProjectPrepareSystemConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

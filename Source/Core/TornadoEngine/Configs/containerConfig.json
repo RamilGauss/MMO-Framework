@@ -2,10 +2,12 @@
     "reflectionCodeGeneratorFileName": "../../../../Exe/ReflectionCodeGenerator_d.exe",
     "entityManagerHeaderPath": "ECS/include/EntityManager.h",
     "baseHandlerTypeName": "nsTornadoEngine::IHandler",
+
     "coreConfig": {
         "isNeedGenerate": true,
 
         "ecsSystemConfig": {
+            "includeListFileName": "EcsSystemIncludeList",
             "ecsDirectory": "../../../Modules/ECS",
             "typeInfo": {
                 "fileName": "EcsTypeInfo",
@@ -23,6 +25,7 @@
         "parseDirectory": "..",
 
         "componentConfig": {
+            "includeListFileName": "ComponentIncludeList",
             "inheritanceFilter": "nsECSFramework::IComponent",
             "typeInfo": {
                 "fileName": "ComponentTypeInfo",
@@ -46,18 +49,8 @@
             }
         },
 
-        "handlerConfig": {
-            "typeInfo": {
-                "fileName": "HandlerTypeInfo",
-                "typeName": "THandlerTypeInfo"
-            },
-            "typeFactory": {
-                "fileName": "HandlerTypeFactory",
-                "typeName": "THandlerTypeFactory"
-            }
-        },
-
         "systemConfig": {
+            "includeListFileName": "SystemIncludeList",
             "inheritances": [
                 "nsECSFramework::TFeature",
                 "nsECSFramework::TInitSystem",
@@ -91,6 +84,7 @@
         "parseDirectory": "../../../Tools/TornadoEditor",
 
         "componentConfig": {
+            "includeListFileName": "ComponentIncludeList",
             "inheritanceFilter": "nsECSFramework::IComponent",
             "typeInfo": {
                 "fileName": "ComponentTypeInfo",
@@ -115,6 +109,7 @@
         },
 
         "handlerConfig": {
+            "includeListFileName": "HandlerIncludeList",
             "typeInfo": {
                 "fileName": "HandlerTypeInfo",
                 "typeName": "THandlerTypeInfo"
@@ -126,6 +121,7 @@
         },
 
         "systemConfig": {
+            "includeListFileName": "SystemIncludeList",
             "inheritances": [
                 "nsECSFramework::TFeature",
                 "nsECSFramework::TInitSystem",
@@ -150,65 +146,158 @@
                 "fileName": "SystemDynamicCaster",
                 "typeName": "TSystemDynamicCaster"
             }
+        }
+    },
+    "aggregator": {
+        "impl": {
+            "fileName": "ScenePartReflectionAggregatorImpl",
+            "typeName": "TScenePartReflectionAggregatorImpl"
+        },
+        "parent": {
+            "fileName": "ScenePartReflectionAggregator",
+            "typeName": "nsTornadoEngine::TScenePartReflectionAggregator"
         },
 
-        "aggregator": {
-            "fileName": "Aggregator",
-            "typeName": "TAggregator",
+        "targetDirectory": "../../../Tools/TornadoEditor/Generated files/Aggregator",
 
-            "componentImpl": {
-                "fileName": "ComponentImpl",
-                "typeName": "TComponentImpl",
+        "exportDeclaration": "DllExport",
+        "cExportDeclaration": "DllExport_C",
 
-                "typeInfoImpl": {
+        "dllHeaderFileName": "DeveloperTool_DLL",
+        "dllCppFileName": "DefMainFunc_DeveloperDLL",
+        "getFuncName": "GetScenePartReflectionAggregator",
+        "freeFuncName": "FreeScenePartReflectionAggregator",
+
+        "componentImpl": {
+            "impl": {
+                "fileName": "ComponentReflectionAggregatorImpl",
+                "typeName": "TComponentReflectionAggregatorImpl"
+            },
+            "parent": {
+                "fileName": "TComponentReflectionAggregator",
+                "typeName": "nsTornadoEngine::TComponentReflectionAggregator"
+            },
+
+            "typeInfoImpl": {
+                "impl": {
                     "fileName": "ComponentTypeInfoImpl",
                     "typeName": "TComponentTypeInfoImpl"
                 },
-                "jsonImpl": {
-                    "fileName": "ComponentJsonImpl",
-                    "typeName": "TComponentJsonImpl"
+                "parent": {
+                    "fileName": "ITypeInformation",
+                    "typeName": "nsTornadoEngine::ITypeInformation"
+                }
+            },
+            "jsonImpl": {
+                "impl": {
+                    "fileName": "ComponentJsonSerializerImpl",
+                    "typeName": "TComponentJsonSerializerImpl"
                 },
-                "binaryImpl": {
-                    "fileName": "ComponentBinaryImpl",
-                    "typeName": "TComponentBinaryImpl"
+                "parent": {
+                    "fileName": "IJsonSerializer",
+                    "typeName": "nsTornadoEngine::IJsonSerializer"
+                }
+            },
+            "binaryImpl": {
+                "impl": {
+                    "fileName": "ComponentBinaryMarshallerImpl",
+                    "typeName": "TComponentBinaryMarshallerImpl"
                 },
-                "imGuiImpl": {
+                "parent": {
+                    "fileName": "IBinaryMarshaller",
+                    "typeName": "nsTornadoEngine::IBinaryMarshaller"
+                }
+            },
+            "imGuiImpl": {
+                "impl": {
                     "fileName": "ComponentImGuiImpl",
                     "typeName": "TComponentImGuiImpl"
                 },
-                "entMngImpl": {
-                    "fileName": "ComponentEntMngImpl",
-                    "typeName": "TComponentEntMngImpl"
+                "parent": {
+                    "fileName": "IImGuiSerializer",
+                    "typeName": "nsTornadoEngine::IImGuiSerializer"
                 }
             },
-            "handlerImpl": {
-                "fileName": "HandlerImpl",
-                "typeName": "THandlerImpl",
-
-                "typeInfoImpl": {
-                    "fileName": "HandlerTypeInfoImpl",
-                    "typeName": "THandlerTypeInfoImpl"
+            "entMngImpl": {
+                "impl": {
+                    "fileName": "ComponentEntityManagerExtensionImpl",
+                    "typeName": "TComponentEntityManagerExtensionImpl"
                 },
-                "typeFactoryImpl": {
+                "parent": {
+                    "fileName": "IEcsComponentExtension",
+                    "typeName": "nsTornadoEngine::IEcsComponentExtension"
+                }
+            }
+        },
+        "handlerImpl": {
+            "impl": {
+                "fileName": "HandlerReflectionAggregatorImpl",
+                "typeName": "THandlerReflectionAggregatorImpl"
+            },
+            "parent": {
+                "fileName": "HandlerReflectionAggregator",
+                "typeName": "nsTornadoEngine::THandlerReflectionAggregator"
+            },
+
+            "typeInfoImpl": {
+                "impl": {
+                    "fileName": "HandlerTypeInformationImpl",
+                    "typeName": "THandlerTypeInformationImpl"
+                },
+                "parent": {
+                    "fileName": "ITypeInformation",
+                    "typeName": "nsTornadoEngine::ITypeInformation"
+                }
+            },
+            "typeFactoryImpl": {
+                "impl": {
                     "fileName": "HandlerTypeFactoryImpl",
                     "typeName": "THandlerTypeFactoryImpl"
-                }
-            },
-            "systemImpl": {
-                "fileName": "SystemImpl",
-                "typeName": "TSystemImpl",
-
-                "typeInfoImpl": {
-                    "fileName": "SystemTypeInfoImpl",
-                    "typeName": "TSystemTypeInfoImpl"
                 },
-                "typeFactoryImpl": {
+                "parent": {
+                    "fileName": "ITypeFactory",
+                    "typeName": "nsTornadoEngine::ITypeFactory"
+                }
+            }
+        },
+        "systemImpl": {
+            "impl": {
+                "fileName": "SystemReflectionAggregatorImpl",
+                "typeName": "TSystemReflectionAggregatorImpl"
+            },
+            "parent": {
+                "fileName": "SystemReflectionAggregator",
+                "typeName": "nsTornadoEngine::TSystemReflectionAggregator"
+            },
+
+            "typeInfoImpl": {
+                "impl": {
                     "fileName": "SystemTypeFactoryImpl",
                     "typeName": "TSystemTypeFactoryImpl"
                 },
-                "dynamicCasterImpl": {
+                "parent": {
+                    "fileName": "ITypeFactory",
+                    "typeName": "nsTornadoEngine::ITypeFactory"
+                }
+            },
+            "typeFactoryImpl": {
+                "impl": {
+                    "fileName": "SystemTypeFactoryImpl",
+                    "typeName": "TSystemTypeFactoryImpl"
+                },
+                "parent": {
+                    "fileName": "ITypeFactory",
+                    "typeName": "nsTornadoEngine::ITypeFactory"
+                }
+            },
+            "dynamicCasterImpl": {
+                "impl": {
                     "fileName": "SystemDynamicCasterImpl",
                     "typeName": "TSystemDynamicCasterImpl"
+                },
+                "parent": {
+                    "fileName": "IDynamicCaster",
+                    "typeName": "nsTornadoEngine::IDynamicCaster"
                 }
             }
         }

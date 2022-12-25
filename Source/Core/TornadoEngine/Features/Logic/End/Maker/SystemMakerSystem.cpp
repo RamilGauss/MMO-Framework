@@ -31,7 +31,7 @@ void TSystemMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWr
         return;
     }
 
-    auto systemReflection = nsTornadoEngine::Project()->mScenePartAggregator->mFeatures;
+    auto systemReflection = nsTornadoEngine::Project()->mScenePartAggregator->mSystems;
 
     auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
 

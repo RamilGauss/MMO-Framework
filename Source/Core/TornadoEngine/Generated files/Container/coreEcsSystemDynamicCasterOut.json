@@ -1,0 +1,13 @@
+{
+    "fileName": "EcsDynamicCaster",
+    "nameSpaceName": "nsTornadoEngine",
+    "typeName": "TEcsDynamicCaster",
+    "customizedTypes": [
+        "nsECSFramework::TBaseCollectReactiveSystem",
+        "nsECSFramework::TBaseReactiveSystem",
+        "nsECSFramework::TExecuteSystem",
+        "nsECSFramework::TFeature",
+        "nsECSFramework::TSystem",
+        "nsECSFramework::TTearDownSystem"
+    ]
+}

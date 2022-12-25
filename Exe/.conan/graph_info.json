@@ -377,6 +377,10 @@
    "False"
   ],
   [
+   "openssl:enable_weak_ssl_ciphers",
+   "False"
+  ],
+  [
    "openssl:no_aria",
    "False"
   ],
@@ -554,6 +558,14 @@
   ],
   [
    "openssl:no_ssl3",
+   "False"
+  ],
+  [
+   "openssl:no_stdio",
+   "False"
+  ],
+  [
+   "openssl:no_tests",
    "False"
   ],
   [

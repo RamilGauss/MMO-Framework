@@ -11,6 +11,34 @@ namespace nsContainerCodeGenerator
 {
     void TProjectGeneratorFeature::InitConveyor()
     {
+        Add(&mProjectDeleteGeneratedFilesSystem);
 
+        // Components
+        Add(&mProjectPrepareComponentConfigSystem);
+
+        Add(&mSaveComponentConfigSystem);
+        Add(&mGenerateComponentFilesSystem);
+        Add(&mDestroyComponentConfigSystem);
+
+        // Handlers
+        Add(&mProjectMakeFileListSystem);
+        Add(&mParseFileListSystem);
+        Add(&mProjectHandleTypeListToHandlerListSystem);
+
+        Add(&mProjectPrepareHandlerConfSystem);
+
+        Add(&mSaveHandlerConfigSystem);
+        Add(&mGenerateHandlerFilesSystem);
+
+        Add(&mDestroyFileListSystem);
+        Add(&mDestroyHandlerListSystem);
+        Add(&mDestroyFileTypeListsSystem);
+
+        // Systems
+        Add(&mProjectPrepareSystemConfigSystem);
+
+        Add(&mSaveSystemConfigSystem);
+        Add(&mGenerateSystemFilesSystem);
+        Add(&mDestroySystemConfigSystem);
     }
 }

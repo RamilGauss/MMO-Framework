@@ -24,7 +24,12 @@ namespace nsBase
         static void AddAbsPathsByDirectory(const std::string& directory, const std::set<std::string>& extensions,
             std::list<std::string>& fileList, bool recursive = true);
 
-        static std::string GetRelativePath(const std::string& absBase, const std::string& abs);
+
+        // Example:
+        // absBase = "C:\X\D"
+        // abs = C:\Y\S
+        // rel => ..\..\Y\S
+        static bool GetRelativePath(const std::string& absBase, const std::string& abs, std::string& rel);
 
     private:
         template <typename DirectoryIterator>

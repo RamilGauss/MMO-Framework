@@ -23,7 +23,7 @@ namespace nsContainerCodeGenerator
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto reflectionConfigComponent = nsECSFramework::SingleComponent<TReflectionConfigComponent>(mEntMng);
 
-        auto cmd = fmt::format("{} {}", 
+        auto cmd = fmt::format("{} \"{}\"", 
             configComponent->value.reflectionCodeGeneratorFileName, 
             reflectionConfigComponent->absFileName);
 

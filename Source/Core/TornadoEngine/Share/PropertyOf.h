@@ -4,10 +4,10 @@
 
 namespace nsTornadoEngine
 {
+#pragma IGNORE_TYPE
     template <typename T>
     struct DllExport TPropertyOf
     {
-#pragma IGNORE_ATTRIBUTE
         mutable T* pOwner = nullptr;
 
         // Helper for assign pOwener via dynamic_cast

@@ -19,7 +19,7 @@ void TSystemTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLo
     auto copy = *pC;
     auto featureEids = mEntMng->GetByValueCopy(copy);
 
-    auto featureReflection = nsTornadoEngine::Project()->mScenePartAggregator->mFeatures;
+    auto featureReflection = nsTornadoEngine::Project()->mScenePartAggregator->mSystems;
 
     auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
 

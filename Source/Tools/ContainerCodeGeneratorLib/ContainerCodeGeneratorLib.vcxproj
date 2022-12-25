@@ -23,11 +23,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Components\CoreHandlerListComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\ProjectHandlerListComponent.h">
+    <ClInclude Include="Sources\Components\HandlerListComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -57,7 +53,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreHandleTypeListToHandlerListSystem.h">
+    <ClInclude Include="Sources\Systems\Common\HandleTypeListToHandlerListSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -73,11 +69,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreHandlerParserSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreMakeFileListSystem.h">
+    <ClInclude Include="Sources\Systems\Project\ProjectMakeFileListSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -86,7 +78,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CorePrepareHandlerConfSystem.h">
+    <ClInclude Include="Sources\Systems\Project\ProjectPrepareHandlerConfSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -96,6 +88,18 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Project\ProjectHandleTypeListToHandlerListSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Project\ProjectPrepareComponentConfigSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Project\ProjectPrepareSystemConfigSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -137,7 +141,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreHandleTypeListToHandlerListSystem.cpp">
+    <ClCompile Include="Sources\Systems\Common\HandleTypeListToHandlerListSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -153,11 +157,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreHandlerParserSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreMakeFileListSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\ProjectMakeFileListSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -166,7 +166,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CorePrepareHandlerConfSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\ProjectPrepareHandlerConfSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -175,6 +175,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Project\ProjectHandleTypeListToHandlerListSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Project\ProjectPrepareComponentConfigSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Project\ProjectPrepareSystemConfigSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -322,7 +334,7 @@
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe $(SolutionDir)Source/Tools/ContainerCodeGeneratorLib/config.json</Command>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe $(SolutionDir)Source\Tools\ContainerCodeGeneratorLib\config.json</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

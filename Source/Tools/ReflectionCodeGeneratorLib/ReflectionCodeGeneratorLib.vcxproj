@@ -129,6 +129,7 @@
     <OutDir>$(SolutionDir)\Exe\</OutDir>
     <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -191,6 +192,9 @@
       <AdditionalDependencies>Base_d.lib;Parser_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe $(SolutionDir)Source\Tools\ReflectionCodeGeneratorLib\config.json</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

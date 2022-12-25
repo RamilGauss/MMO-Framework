@@ -6,6 +6,8 @@ See for more information LICENSE.md.
 */
 
 #include <filesystem>
+#include <boost/filesystem.hpp>
+
 #include "PathOperations.h"
 
 using namespace nsBase;
@@ -76,17 +78,20 @@ void TPathOperations::AddAbsPathsByDirectory(const std::string& directory, const
     }
 }
 //---------------------------------------------------------------------------------------
-std::string TPathOperations::GetRelativePath(const std::string& absBase, const std::string& abs)
+bool TPathOperations::GetRelativePath(const std::string& absBase, const std::string& abs, std::string& rel)
 {
+    boost::filesystem::path parentPath(absBase);
+    boost::filesystem::path childPath(abs);
 
-    fs::path p = fs::current_path();
+    boost::system::error_code ec;
+    boost::filesystem::path relativePath = boost::filesystem::relative(childPath, parentPath, ec);
 
-    //p.set_roo root_path
+    if (ec) {
+        return false;
+    }
 
-    //std::cout << "The current path " << p << " decomposes into:\n"
-    //    << "root-path " << p.root_path() << '\n'
-    //    << "relative path " << p.relative_path() << '\n';
-
-    return "";
+    rel = relativePath.string();
+    
+    return true;
 }
 //---------------------------------------------------------------------------------------

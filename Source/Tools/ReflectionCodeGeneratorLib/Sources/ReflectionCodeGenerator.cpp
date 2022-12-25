@@ -56,6 +56,7 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
         if (!parserResult) {
             return Result::PARSER_ERROR;
         }
+
         // Add to TypeManager
         for (auto& type : mTypeList) {
             mTypeManager->Add(type);

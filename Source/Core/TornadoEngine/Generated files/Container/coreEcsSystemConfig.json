@@ -1,0 +1,84 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "..\\..\\..\\..\\Modules\\ECS"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "extensions": [
+            ".h",
+            ".h++",
+            ".hh",
+            ".hpp",
+            ".hxx"
+        ],
+        "attribute": "",
+        "inheritances": [
+            [
+                "nsECSFramework::TExecuteSystem"
+            ],
+            [
+                "nsECSFramework::TFeature"
+            ],
+            [
+                "nsECSFramework::TInitSystem"
+            ],
+            [
+                "nsECSFramework::TOnAddCollectReactiveSystem"
+            ],
+            [
+                "nsECSFramework::TOnAddInstantReactiveSystem"
+            ],
+            [
+                "nsECSFramework::TOnRemoveInstantReactiveSystem"
+            ],
+            [
+                "nsECSFramework::TOnUpdateCollectReactiveSystem"
+            ],
+            [
+                "nsECSFramework::TOnUpdateInstantReactiveSystem"
+            ],
+            [
+                "nsECSFramework::TTearDownSystem"
+            ]
+        ],
+        "memberIgnore": "IGNORE_ATTRIBUTE"
+    },
+    "targetForCodeGeneration": {
+        "directory": ".",
+        "header": "Core Ecs System",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "DynamicCaster": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "className": "TEcsDynamicCaster",
+                "fileName": "EcsDynamicCaster",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "coreEcsSystemDynamicCasterOut.json"
+                },
+                "keyValueMap": {}
+            },
+            "TypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "className": "TEcsTypeInfo",
+                "fileName": "EcsTypeInfo",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "coreEcsSystemTypeInfoOut.json"
+                },
+                "keyValueMap": {}
+            }
+        },
+        "includeListParams": {
+            "includeListFileName": "EcsSystemIncludeList",
+            "dirToInclude": [
+                "..\\..\\..\\..\\Modules\\ECS"
+            ]
+        }
+    }
+}

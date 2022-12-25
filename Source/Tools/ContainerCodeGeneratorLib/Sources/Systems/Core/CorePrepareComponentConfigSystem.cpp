@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"
+#include "MessageException.h"
 
 #include "Components/ConfigComponent.h"
 #include "Components/ReflectionConfigComponent.h"
@@ -42,10 +43,23 @@ namespace nsContainerCodeGenerator
         conf.filter.inheritances.push_back({ componentConfig.inheritanceFilter });
 
         conf.targetForParsing.recursive = true;
-        conf.targetForParsing.directories = { configComponent->value.coreConfig.parseDirectory };
+
+        auto absBase = configComponent->value.coreConfig.targetDirectory;
+        auto abs = configComponent->value.coreConfig.parseDirectory;
+
+        std::string rel;
+        auto relPathResult = nsBase::TPathOperations::GetRelativePath(absBase, abs, rel);
+
+        if (!relPathResult) {
+            auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
+            throw TMessageException(msg);
+        }
+
+        conf.targetForParsing.directories.push_back(rel);
 
         auto ext = TConstants::GetHeaderExtensions();
         conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
+        conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
 
         conf.targetForCodeGeneration.directory = ".";
         conf.targetForCodeGeneration.header = "Core Component";
@@ -92,6 +106,8 @@ namespace nsContainerCodeGenerator
 
         // Binary
 
+
+        conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.coreConfig.componentConfig.includeListFileName;
 
         mEntMng->SetComponent(eid, reflectionConfigComponent);
     }

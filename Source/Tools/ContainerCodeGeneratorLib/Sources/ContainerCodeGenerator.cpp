@@ -53,7 +53,6 @@ namespace nsContainerCodeGenerator
 
         // Form the logic conveyor.
         mMainFeature.Add(&mSetupConfigFeature);
-
         mMainFeature.Add(&mCoreGeneratorFeature);
         mMainFeature.Add(&mProjectGeneratorFeature);
         mMainFeature.Add(&mAggregatorDumperFeature);
@@ -62,8 +61,18 @@ namespace nsContainerCodeGenerator
         std::string resultStr;
 
         try {
+
+            mSetupConfigFeature.Execute();
             // Execute
-            mMainFeature.Execute();
+            auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(&mEntMng);
+
+            // Ugly, but what do i do?
+            if (configComponent->value.coreConfig.isNeedGenerate) {
+                mCoreGeneratorFeature.Execute();
+            }
+
+            mProjectGeneratorFeature.Execute();
+            mAggregatorDumperFeature.Execute();
         } catch (const TMessageException& exception) {
             resultStr = exception.what();
 

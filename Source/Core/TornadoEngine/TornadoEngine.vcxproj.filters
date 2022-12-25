@@ -195,15 +195,6 @@
     <ClCompile Include="TimeSliceEngine\ProjectConfigUnloader.cpp">
       <Filter>TimeSliceEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Generated files\ComponentJsonSerializer.cpp">
-      <Filter>Generated files</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\ComponentTypeInformation.cpp">
-      <Filter>Generated files</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp">
-      <Filter>Generated files</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\Common\Modules.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
@@ -264,23 +255,11 @@
     <ClCompile Include="Features\Graphic\Begin\Builder\GuiBuilderFeature.cpp">
       <Filter>Features\Graphic\Builder</Filter>
     </ClCompile>
-    <ClCompile Include="Generated files\HandlerTypeFactory.cpp">
-      <Filter>Generated files</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\HandlerTypeInformation.cpp">
-      <Filter>Generated files</Filter>
-    </ClCompile>
     <ClCompile Include="Features\Graphic\Begin\Terminator\GuiTerminatorFeature.cpp">
       <Filter>Features\Graphic\Terminator</Filter>
     </ClCompile>
     <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h">
       <Filter>Components\Common\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\FeatureTypeFactory.cpp">
-      <Filter>Generated files</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\FeatureTypeInformation.cpp">
-      <Filter>Generated files</Filter>
     </ClCompile>
     <ClCompile Include="Features\Logic\End\Scene\StartedScenesInitSystem.cpp">
       <Filter>Features\Logic\Scene</Filter>
@@ -568,9 +547,13 @@
     <ClCompile Include="Features\Graphic\Begin\Builder\Properties\AddPropertiesFeature.cpp" />
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\UpdatePropertiesFeature.cpp" />
     <ClCompile Include="Share\ImGuiSerializeTask.cpp" />
-    <ClCompile Include="Generated files\DynamicCaster.cpp" />
-    <ClCompile Include="Generated files\EcsDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\EcsFeatureTypeInformation.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\EcsDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\EcsTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\SystemDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\SystemTypeInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -621,9 +604,6 @@
     <ClInclude Include="Components\Common\GuidComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\ComponentIncludeList.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
     <ClInclude Include="Generated files\ReflectionIncludeList.h">
       <Filter>Generated files</Filter>
     </ClInclude>
@@ -636,19 +616,10 @@
     <ClInclude Include="Components\Graphic\LightComponent.h">
       <Filter>Components\Graphic</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\ComponentJsonSerializer.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentTypeInformation.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentEntityManagerExtension.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
     <ClInclude Include="ReflectionAggregators\ComponentReflectionAggregator.h">
       <Filter>ReflectionAggregators</Filter>
     </ClInclude>
-    <ClInclude Include="ReflectionAggregators\FeatureReflectionAggregator.h">
+    <ClInclude Include="ReflectionAggregators\SystemReflectionAggregator.h">
       <Filter>ReflectionAggregators</Filter>
     </ClInclude>
     <ClInclude Include="ReflectionAggregators\HandlerReflectionAggregator.h">
@@ -786,29 +757,11 @@
     <ClInclude Include="Components\Common\PrefabGuidComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\HandlerIncludeList.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\HandlerTypeFactory.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\HandlerTypeInformation.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
     <ClInclude Include="Features\Graphic\Begin\Terminator\GuiTerminatorFeature.h">
       <Filter>Features\Graphic\Terminator</Filter>
     </ClInclude>
     <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h">
       <Filter>Components\Common\Prefab</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\FeatureTypeFactory.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\FeatureTypeInformation.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\FeatureIncludeList.h">
-      <Filter>Generated files</Filter>
     </ClInclude>
     <ClInclude Include="Features\Logic\End\Scene\StartedScenesInitSystem.h">
       <Filter>Features\Logic\Scene</Filter>
@@ -1294,10 +1247,16 @@
     <ClInclude Include="Handlers\Logic\IPrefabInstantiationCompletionHandler.h" />
     <ClInclude Include="Handlers\Logic\ISceneInstantiationCompletionHandler.h" />
     <ClInclude Include="ReflectionAggregators\IDynamicCaster.h" />
-    <ClInclude Include="Generated files\DynamicCaster.h" />
-    <ClInclude Include="Generated files\EcsDynamicCaster.h" />
-    <ClInclude Include="Generated files\EcsFeatureTypeInformation.h" />
-    <ClInclude Include="Generated files\EcsIncludeList.h" />
+    <ClInclude Include="Generated files\Container\ComponentEntMng.h" />
+    <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
+    <ClInclude Include="Generated files\Container\ComponentJson.h" />
+    <ClInclude Include="Generated files\Container\ComponentTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\EcsDynamicCaster.h" />
+    <ClInclude Include="Generated files\Container\EcsSystemIncludeList.h" />
+    <ClInclude Include="Generated files\Container\EcsTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\SystemDynamicCaster.h" />
+    <ClInclude Include="Generated files\Container\SystemIncludeList.h" />
+    <ClInclude Include="Generated files\Container\SystemTypeInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

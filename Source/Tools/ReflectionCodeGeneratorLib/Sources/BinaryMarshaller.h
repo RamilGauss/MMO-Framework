@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_11_15 11:29:36.653
+// File has been generated at 2022_12_23 17:27:34.490
 	
 #pragma once
 
@@ -42,7 +42,8 @@ namespace nsBinary
     public:
         enum SerializableUniqueID : TypeID
         {
-            e_nsReflectionCodeGenerator_TClassDesc = 666,
+            e_nsCppParser_TypeCategory = 666,
+            e_nsReflectionCodeGenerator_TClassDesc,
             e_nsReflectionCodeGenerator_TConfig,
             e_nsReflectionCodeGenerator_TExternalSource,
             e_nsReflectionCodeGenerator_TExternalSources,
@@ -87,6 +88,11 @@ namespace nsBinary
         void _Deserialize(Type*& p, char* serData, int size, bool checkPtr);
       TypeID PrepareForUnpackPopMaster(char* packedData, int size);
     private:
+        void _Serialize( nsCppParser::TypeCategory* p );
+        void _Deserialize( nsCppParser::TypeCategory* p );
+        TypeID _GetTypeID( nsCppParser::TypeCategory* p );
+        static void _Deallocate(nsCppParser::TypeCategory* p);
+        
         void _Serialize( nsReflectionCodeGenerator::TClassDesc* p );
         void _Deserialize( nsReflectionCodeGenerator::TClassDesc* p );
         TypeID _GetTypeID( nsReflectionCodeGenerator::TClassDesc* p );

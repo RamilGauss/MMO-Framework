@@ -1,7 +1,7 @@
 {
     "targetForParsing": {
         "directories": [
-            "."
+            ".."
         ],
         "recursive": true
     },
@@ -15,10 +15,11 @@
             ".h++"
         ],
         "inheritances": [],
-        "memberIgnore": "IGNORE_ATTRIBUTE"
+        "memberIgnore": "IGNORE_ATTRIBUTE",
+        "typeIgnore": "IGNORE_TYPE"
     },
     "targetForCodeGeneration": {
-        "directory": "./Generated files",
+        "directory": "../Generated files",
         "includeListParams": {
             "includeListFileName": "ReflectionIncludeList",
             "dirToInclude": []

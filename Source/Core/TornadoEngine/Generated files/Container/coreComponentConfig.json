@@ -1,7 +1,7 @@
 {
     "targetForParsing": {
         "directories": [
-            "C:\\Data\\GitHub\\MMOFramework\\Source\\Core\\TornadoEngine"
+            "..\\.."
         ],
         "recursive": true
     },
@@ -19,7 +19,7 @@
                 "nsECSFramework::IComponent"
             ]
         ],
-        "memberIgnore": ""
+        "memberIgnore": "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {
         "directory": ".",
@@ -64,7 +64,7 @@
             }
         },
         "includeListParams": {
-            "includeListFileName": "",
+            "includeListFileName": "ComponentIncludeList",
             "dirToInclude": []
         }
     }

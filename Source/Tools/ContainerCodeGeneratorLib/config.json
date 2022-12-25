@@ -15,7 +15,8 @@
             ".h++"
         ],
         "inheritances": [],
-        "memberIgnore": ""
+        "memberIgnore": "",
+        "typeIgnore": ""
     },
     "targetForCodeGeneration": {
         "directory": "./Sources/Generated files",

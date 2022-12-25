@@ -1,0 +1,19 @@
+{
+    "fileName": "HandlerTypeInfo",
+    "nameSpaceName": "nsTornadoEditor",
+    "typeName": "THandlerTypeInfo",
+    "customizedTypes": [
+        "nsTornadoEditor::TCurrentPathToInputTextHandler",
+        "nsTornadoEditor::TDialogButtonClickHandler",
+        "nsTornadoEditor::TOnCloseDialogHandler",
+        "nsTornadoEditor::TOnCloseWindowHandler",
+        "nsTornadoEditor::TOnExitClickHandler",
+        "nsTornadoEditor::TOnFileHierarchyClickHandler",
+        "nsTornadoEditor::TOnMouseClickFileNodeHandler",
+        "nsTornadoEditor::TOnOpenComponentViewerClickHandler",
+        "nsTornadoEditor::TOnOpenProjectClickHandler",
+        "nsTornadoEditor::TOnOpenSystemViewerClickHandler",
+        "nsTornadoEditor::TOpenProjectCancelButtonClickHandler",
+        "nsTornadoEditor::TOpenProjectOkButtonClickHandler"
+    ]
+}

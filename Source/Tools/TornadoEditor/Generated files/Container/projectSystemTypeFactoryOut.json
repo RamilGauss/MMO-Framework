@@ -1,0 +1,15 @@
+{
+    "fileName": "SystemTypeInfo",
+    "nameSpaceName": "nsTornadoEditor",
+    "typeName": "TSystemTypeInfo",
+    "customizedTypes": [
+        "nsTornadoEditor::TBootstrapperFeature",
+        "nsTornadoEditor::TBootstrapperSystem",
+        "nsTornadoEditor::TFileHierarchyWindowInitSystem",
+        "nsTornadoEditor::TFileHierarchyWindowRefreshSystem",
+        "nsTornadoEditor::TInitWindowsFeature",
+        "nsTornadoEditor::TMainFeature",
+        "nsTornadoEditor::TObjectHierarchyWindowInitSystem",
+        "nsTornadoEditor::TObjectHierarchyWindowRefreshSystem"
+    ]
+}

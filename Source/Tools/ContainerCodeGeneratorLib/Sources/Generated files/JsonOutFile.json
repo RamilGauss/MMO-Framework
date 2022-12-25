@@ -4,7 +4,7 @@
     "typeName": "TJsonSerializer",
     "customizedTypes": [
         "nsContainerCodeGenerator::TAggregator",
-        "nsContainerCodeGenerator::TCommonConfig",
+        "nsContainerCodeGenerator::TAggregatorClass",
         "nsContainerCodeGenerator::TComponentAggregator",
         "nsContainerCodeGenerator::TComponentConfig",
         "nsContainerCodeGenerator::TConfig",
@@ -13,6 +13,8 @@
         "nsContainerCodeGenerator::TGeneratedClass",
         "nsContainerCodeGenerator::THandlerAggregator",
         "nsContainerCodeGenerator::THandlerConfig",
+        "nsContainerCodeGenerator::TIncludeListFileName",
+        "nsContainerCodeGenerator::TParentClass",
         "nsContainerCodeGenerator::TProjectConfig",
         "nsContainerCodeGenerator::TSystemAggregator",
         "nsContainerCodeGenerator::TSystemConfig"

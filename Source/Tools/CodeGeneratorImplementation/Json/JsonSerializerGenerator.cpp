@@ -106,8 +106,8 @@ void TJsonSerializerGenerator::GetDependencies(const nsCppParser::TTypeInfo* typ
     }
 
     for (auto inheritance : typeName->mInheritanceVec) {
-        auto lessIndex = inheritance.mShortTypeName.find("<");
-        if (lessIndex != std::string::npos) {
+
+        if (inheritance.originalTemplates.size() > 0) {
             continue;
         }
 

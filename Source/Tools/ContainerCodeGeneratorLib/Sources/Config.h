@@ -22,7 +22,20 @@ namespace nsContainerCodeGenerator
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TComponentConfig
+    struct DllExport TParentClass
+    {
+        std::string fileName;
+        std::string typeName;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TIncludeListFileName
+    {
+        std::string includeListFileName;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TComponentConfig : TIncludeListFileName
     {
         std::string inheritanceFilter;
 
@@ -34,14 +47,14 @@ namespace nsContainerCodeGenerator
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport THandlerConfig
+    struct DllExport THandlerConfig : TIncludeListFileName
     {
         TGeneratedClass typeInfo;
         TGeneratedClass typeFactory;
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TEcsSystemConfig
+    struct DllExport TEcsSystemConfig : TIncludeListFileName
     {
         std::string ecsDirectory;
 
@@ -50,7 +63,7 @@ namespace nsContainerCodeGenerator
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TSystemConfig
+    struct DllExport TSystemConfig : TIncludeListFileName
     {
         std::list<std::string> inheritances;
 
@@ -60,7 +73,54 @@ namespace nsContainerCodeGenerator
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TCommonConfig
+    struct DllExport TAggregatorClass
+    {
+        TGeneratedClass impl;
+        TParentClass parent;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TComponentAggregator : TAggregatorClass
+    {
+        TAggregatorClass typeInfoImpl;
+        TAggregatorClass jsonImpl;
+        TAggregatorClass binaryImpl;
+        TAggregatorClass imGuiImpl;
+        TAggregatorClass entMngImpl;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport THandlerAggregator : TAggregatorClass
+    {
+        TAggregatorClass typeInfoImpl;
+        TAggregatorClass typeFactoryImpl;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TSystemAggregator : TAggregatorClass
+    {
+        TAggregatorClass typeInfoImpl;
+        TAggregatorClass typeFactoryImpl;
+        TAggregatorClass dynamicCasterImpl;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TCoreConfig
+    {
+        bool isNeedGenerate;
+
+        std::string exportDeclaration;
+        std::string targetDirectory;
+        std::string nameSpace;
+        std::string parseDirectory;
+
+        TComponentConfig componentConfig;
+        TEcsSystemConfig ecsSystemConfig;
+        TSystemConfig systemConfig;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TProjectConfig
     {
         std::string exportDeclaration;
         std::string targetDirectory;
@@ -73,49 +133,21 @@ namespace nsContainerCodeGenerator
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TComponentAggregator : TGeneratedClass
+    struct DllExport TAggregator : TAggregatorClass
     {
-        TGeneratedClass typeInfoImpl;
-        TGeneratedClass jsonImpl;
-        TGeneratedClass binaryImpl;
-        TGeneratedClass imGuiImpl;
-        TGeneratedClass entMngImpl;
-    };
+        std::string targetDirectory;
 
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport THandlerAggregator : TGeneratedClass
-    {
-        TGeneratedClass typeInfoImpl;
-        TGeneratedClass typeFactoryImpl;
-    };
+        std::string exportDeclaration;
+        std::string cExportDeclaration;
 
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TSystemAggregator : TGeneratedClass
-    {
-        TGeneratedClass typeInfoImpl;
-        TGeneratedClass typeFactoryImpl;
-        TGeneratedClass dynamicCasterImpl;
-    };
+        std::string dllHeaderFileName;
+        std::string dllCppFileName;
+        std::string getFuncName;
+        std::string freeFuncName;
 
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TAggregator : TGeneratedClass
-    {
         TComponentAggregator componentImpl;
         THandlerAggregator handlerImpl;
         TSystemAggregator systemImpl;
-    };
-
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TCoreConfig : TCommonConfig
-    {
-        bool isNeedGenerate;
-        TEcsSystemConfig ecsSystemConfig;
-    };
-
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TProjectConfig : TCommonConfig
-    {
-        TAggregator aggregator;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -129,5 +161,6 @@ namespace nsContainerCodeGenerator
 
         TCoreConfig coreConfig;
         TProjectConfig projectConfig;
+        TAggregator aggregator;
     };
 }

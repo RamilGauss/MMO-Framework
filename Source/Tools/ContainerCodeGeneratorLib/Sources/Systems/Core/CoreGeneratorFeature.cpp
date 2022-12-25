@@ -20,20 +20,6 @@ namespace nsContainerCodeGenerator
         Add(&mGenerateComponentFilesSystem);
         Add(&mDestroyComponentConfigSystem);
 
-        // Handlers
-        Add(&mCoreMakeFileListSystem);
-        Add(&mParseFileListSystem);
-        Add(&mHandleTypeListToHandlerListSystem);
-
-        Add(&mCorePrepareHandlerConfSystem);
-
-        Add(&mSaveHandlerConfigSystem);
-        Add(&mGenerateHandlerFilesSystem);
-
-        Add(&mDestroyFileListSystem);
-        Add(&mDestroyHandlerListSystem);
-        Add(&mDestroyFileTypeListsSystem);
-
         // EcsSystems
         Add(&mCorePrepareEcsSystemConfigSystem);
 
@@ -47,6 +33,5 @@ namespace nsContainerCodeGenerator
         Add(&mSaveSystemConfigSystem);
         Add(&mGenerateSystemFilesSystem);
         Add(&mDestroySystemConfigSystem);
-
     }
 }

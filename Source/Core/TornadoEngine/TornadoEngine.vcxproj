@@ -80,7 +80,7 @@
     <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)_d</TargetName>
-    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\Exe\</OutDir>
@@ -150,7 +150,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe $(SolutionDir)Source/Core/TornadoEngine/Configs/componentConfig.json
+      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe $(SolutionDir)Source/Core/TornadoEngine/Configs/reflectionConfig.json
 </Command>
       <Message>ReflectionCodeGenerator</Message>
     </PreBuildEvent>
@@ -320,16 +320,13 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Logic\End\Object\ObjectFeature.cpp" />
     <ClCompile Include="Features\Logic\End\Scene\SceneFeature.cpp" />
     <ClCompile Include="Features\Logic\End\Scene\StartedScenesInitSystem.cpp" />
-    <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp" />
-    <ClCompile Include="Generated files\ComponentJsonSerializer.cpp" />
-    <ClCompile Include="Generated files\ComponentTypeInformation.cpp" />
-    <ClCompile Include="Generated files\DynamicCaster.cpp" />
-    <ClCompile Include="Generated files\EcsDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\EcsFeatureTypeInformation.cpp" />
-    <ClCompile Include="Generated files\FeatureTypeFactory.cpp" />
-    <ClCompile Include="Generated files\FeatureTypeInformation.cpp" />
-    <ClCompile Include="Generated files\HandlerTypeFactory.cpp" />
-    <ClCompile Include="Generated files\HandlerTypeInformation.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\EcsDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\EcsTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\SystemDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\SystemTypeInfo.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
     <ClCompile Include="Modules\Gizmos\EntityViewer.cpp" />
     <ClCompile Include="Modules\Gizmos\Gizmo.cpp" />
@@ -544,20 +541,16 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Features\Logic\End\Object\ObjectFeature.h" />
     <ClInclude Include="Features\Logic\End\Scene\SceneFeature.h" />
     <ClInclude Include="Features\Logic\End\Scene\StartedScenesInitSystem.h" />
-    <ClInclude Include="Generated files\ComponentEntityManagerExtension.h" />
-    <ClInclude Include="Generated files\ComponentIncludeList.h" />
-    <ClInclude Include="Generated files\ComponentJsonSerializer.h" />
-    <ClInclude Include="Generated files\ComponentTypeInformation.h" />
-    <ClInclude Include="Generated files\DynamicCaster.h" />
-    <ClInclude Include="Generated files\EcsDynamicCaster.h" />
-    <ClInclude Include="Generated files\EcsFeatureTypeInformation.h" />
-    <ClInclude Include="Generated files\EcsIncludeList.h" />
-    <ClInclude Include="Generated files\FeatureIncludeList.h" />
-    <ClInclude Include="Generated files\FeatureTypeFactory.h" />
-    <ClInclude Include="Generated files\FeatureTypeInformation.h" />
-    <ClInclude Include="Generated files\HandlerIncludeList.h" />
-    <ClInclude Include="Generated files\HandlerTypeFactory.h" />
-    <ClInclude Include="Generated files\HandlerTypeInformation.h" />
+    <ClInclude Include="Generated files\Container\ComponentEntMng.h" />
+    <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
+    <ClInclude Include="Generated files\Container\ComponentJson.h" />
+    <ClInclude Include="Generated files\Container\ComponentTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\EcsDynamicCaster.h" />
+    <ClInclude Include="Generated files\Container\EcsSystemIncludeList.h" />
+    <ClInclude Include="Generated files\Container\EcsTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\SystemDynamicCaster.h" />
+    <ClInclude Include="Generated files\Container\SystemIncludeList.h" />
+    <ClInclude Include="Generated files\Container\SystemTypeInfo.h" />
     <ClInclude Include="Generated files\ReflectionIncludeList.h" />
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h" />
     <ClInclude Include="Handlers\Gui\IDialogCloseEventHandler.h" />
@@ -610,7 +603,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Gizmos\SystemViewer.h" />
     <ClInclude Include="Modules\Resources\Scene\UniverseManager.h" />
     <ClInclude Include="ReflectionAggregators\ComponentReflectionAggregator.h" />
-    <ClInclude Include="ReflectionAggregators\FeatureReflectionAggregator.h" />
+    <ClInclude Include="ReflectionAggregators\SystemReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\HandlerReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\IBinaryMarshaller.h" />
     <ClInclude Include="ReflectionAggregators\IDynamicCaster.h" />

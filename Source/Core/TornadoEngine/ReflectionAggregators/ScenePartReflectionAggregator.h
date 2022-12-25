@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ComponentReflectionAggregator.h"
 #include "HandlerReflectionAggregator.h"
-#include "FeatureReflectionAggregator.h"
+#include "SystemReflectionAggregator.h"
 #include "MenuItemReflectionAggregator.h"
 
 namespace nsTornadoEngine
@@ -20,7 +20,7 @@ namespace nsTornadoEngine
 
         TComponentReflectionAggregator* mComponents = nullptr;
         THandlerReflectionAggregator* mHandlers = nullptr;
-        TFeatureReflectionAggregator* mFeatures = nullptr;
+        TSystemReflectionAggregator* mSystems = nullptr;
         TMenuItemReflectionAggregator* mMenuItems = nullptr;
     };
 }

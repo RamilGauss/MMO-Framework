@@ -26,32 +26,11 @@
     <ClCompile Include="Generated files\ComponentTypeInformationImpl.cpp">
       <Filter>Generated files\Components\Impl</Filter>
     </ClCompile>
-    <ClCompile Include="Generated files\ComponentEntityManagerExtension.cpp">
-      <Filter>Generated files\Components\GeneratedByReflection</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\ComponentJsonSerializer.cpp">
-      <Filter>Generated files\Components\GeneratedByReflection</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\ComponentTypeInformation.cpp">
-      <Filter>Generated files\Components\GeneratedByReflection</Filter>
-    </ClCompile>
     <ClCompile Include="Generated files\HandlerTypeInformationImpl.cpp">
       <Filter>Generated files\Handlers\Impl</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\HandlerTypeFactoryImpl.cpp">
       <Filter>Generated files\Handlers\Impl</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\HandlerTypeFactory.cpp">
-      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\HandlerTypeInformation.cpp">
-      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\FeatureTypeFactory.cpp">
-      <Filter>Generated files\Features\GeneratedByReflection</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\FeatureTypeInformation.cpp">
-      <Filter>Generated files\Features\GeneratedByReflection</Filter>
     </ClCompile>
     <ClCompile Include="Generated files\FeatureTypeFactoryImpl.cpp">
       <Filter>Generated files\Features\Impl</Filter>
@@ -80,9 +59,6 @@
     <ClCompile Include="Generated files\FeatureEcsSystemExtensionImpl.cpp">
       <Filter>Generated files\Features\Impl</Filter>
     </ClCompile>
-    <ClCompile Include="Generated files\EcsSystemExtension.cpp">
-      <Filter>Generated files\Features\GeneratedByReflection</Filter>
-    </ClCompile>
     <ClCompile Include="Handlers\OnOpenComponentViewerClickHandler.cpp">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClCompile>
@@ -107,6 +83,13 @@
     <ClCompile Include="Features\ObjectHierarchyWindowInitSystem.cpp">
       <Filter>Features\Main\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\HandlerTypeFactory.cpp" />
+    <ClCompile Include="Generated files\Container\HandlerTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\SystemDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\SystemTypeInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -261,44 +244,14 @@
     <ClInclude Include="Generated files\ComponentTypeInformationImpl.h">
       <Filter>Generated files\Components\Impl</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\ComponentEntityManagerExtension.h">
-      <Filter>Generated files\Components\GeneratedByReflection</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentIncludeList.h">
-      <Filter>Generated files\Components\GeneratedByReflection</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentJsonSerializer.h">
-      <Filter>Generated files\Components\GeneratedByReflection</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentTypeInformation.h">
-      <Filter>Generated files\Components\GeneratedByReflection</Filter>
-    </ClInclude>
     <ClInclude Include="Generated files\HandlerTypeInformationImpl.h">
       <Filter>Generated files\Handlers\Impl</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\HandlerTypeFactoryImpl.h">
       <Filter>Generated files\Handlers\Impl</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\HandlerIncludeList.h">
-      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\HandlerTypeFactory.h">
-      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\HandlerTypeInformation.h">
-      <Filter>Generated files\Handlers\GeneratedByReflection</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h">
       <Filter>Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\FeatureIncludeList.h">
-      <Filter>Generated files\Features\GeneratedByReflection</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\FeatureTypeFactory.h">
-      <Filter>Generated files\Features\GeneratedByReflection</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\FeatureTypeInformation.h">
-      <Filter>Generated files\Features\GeneratedByReflection</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\FeatureTypeFactoryImpl.h">
       <Filter>Generated files\Features\Impl</Filter>
@@ -369,9 +322,6 @@
     <ClInclude Include="Generated files\FeatureEcsSystemExtensionImpl.h">
       <Filter>Generated files\Features\Impl</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\EcsSystemExtension.h">
-      <Filter>Generated files\Features\GeneratedByReflection</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\OnOpenComponentViewerClickHandler.h">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClInclude>
@@ -402,5 +352,15 @@
     <ClInclude Include="Components\MainWindowPrefabGuidComponent.h">
       <Filter>Components\WindowTags</Filter>
     </ClInclude>
+    <ClInclude Include="Generated files\Container\ComponentEntMng.h" />
+    <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
+    <ClInclude Include="Generated files\Container\ComponentJson.h" />
+    <ClInclude Include="Generated files\Container\ComponentTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\HandlerIncludeList.h" />
+    <ClInclude Include="Generated files\Container\HandlerTypeFactory.h" />
+    <ClInclude Include="Generated files\Container\HandlerTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\SystemDynamicCaster.h" />
+    <ClInclude Include="Generated files\Container\SystemIncludeList.h" />
+    <ClInclude Include="Generated files\Container\SystemTypeInfo.h" />
   </ItemGroup>
 </Project>
