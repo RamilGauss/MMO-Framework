@@ -5,38 +5,38 @@ Contacts : [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-// File has been generated at 2022_12_29 17:47:00.843
+// File has been generated at 2022_12_29 17:47:00.851
 	
-#include "HandlerTypeFactoryImpl.h"
+#include "SystemTypeFactoryImpl.h"
 
-#include "Generated files\Container\HandlerTypeFactory.h"
+#include "Generated files\Container\SystemTypeFactory.h"
 
 using namespace nsTornadoEditor;
 
-THandlerTypeFactoryImpl::THandlerTypeFactoryImpl()
+TSystemTypeFactoryImpl::TSystemTypeFactoryImpl()
 {
     
 }
 //--------------------------------------------------------------------------------------------------
-THandlerTypeFactoryImpl::~THandlerTypeFactoryImpl()
+TSystemTypeFactoryImpl::~TSystemTypeFactoryImpl()
 {
     
 }
 //--------------------------------------------------------------------------------------------------
-void* THandlerTypeFactoryImpl::New(int rtti)
+void* TSystemTypeFactoryImpl::New(int rtti)
 {
-    auto has = THandlerTypeFactory::Has(rtti);
+    auto has = TSystemTypeFactory::Has(rtti);
     if (has) {
-        return THandlerTypeFactory::New(rtti);
+        return TSystemTypeFactory::New(rtti);
     }
     return nullptr;
 }
 //--------------------------------------------------------------------------------------------------
-void THandlerTypeFactoryImpl::Delete(void* p, int rtti)
+void TSystemTypeFactoryImpl::Delete(void* p, int rtti)
 {
-    auto has = THandlerTypeFactory::Has(rtti);
+    auto has = TSystemTypeFactory::Has(rtti);
     if (has) {
-        THandlerTypeFactory::Delete(p, rtti);
+        TSystemTypeFactory::Delete(p, rtti);
     }
 }
 //--------------------------------------------------------------------------------------------------

@@ -13,6 +13,8 @@ namespace nsContainerCodeGenerator::nsCommon
 {
     class DllExport TSaveGeneratedFileSystem : public nsECSFramework::TExecuteSystem
     {
+        const std::string s_TimeHeader = "// File has been generated at {}";
+
     public:
         void Execute() override;
     };

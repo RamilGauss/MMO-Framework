@@ -36,8 +36,6 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 
         nsBase::TTextGenerator txtGen(generatedFile.content);
 
-        txtGen.AddLine(TConstants::GetHeader());
-        txtGen.AddEmpty();
         txtGen.AddInclude(impl.impl.fileName + ".h");
         txtGen.AddEmpty();
 

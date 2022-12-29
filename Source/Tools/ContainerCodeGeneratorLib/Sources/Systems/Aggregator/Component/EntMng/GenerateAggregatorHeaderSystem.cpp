@@ -35,8 +35,6 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 
         nsBase::TTextGenerator txtGen(generatedFile.content);
 
-        txtGen.AddLine(TConstants::GetHeader());
-        txtGen.AddEmpty();
         txtGen.AddPragmaOnce();
         txtGen.AddEmpty();
         txtGen.AddInclude(impl.parent.fileName + ".h");
@@ -75,6 +73,9 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 
         args = { "nsECSFramework::TEntityID eid", "int rtti" };
         txtGen.AddMethodDecl("ViewComponent", "const void*", args, " override");
+
+        args = { "nsECSFramework::TEntityID eid", "int rtti" };
+        txtGen.AddMethodDecl("HasComponent", "bool", args, " override");
 
         args = { "nsECSFramework::TEntityID eid", "int rtti" };
         txtGen.AddMethodDecl("RemoveComponent", "void", args, " override");

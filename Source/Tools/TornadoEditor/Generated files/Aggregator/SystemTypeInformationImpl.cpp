@@ -5,41 +5,41 @@ Contacts : [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-// File has been generated at 2022_12_29 17:47:00.841
+// File has been generated at 2022_12_29 17:47:00.849
 	
-#include "HandlerTypeInformationImpl.h"
+#include "SystemTypeInformationImpl.h"
 
-#include "Generated files\Container\HandlerTypeInfo.h"
+#include "Generated files\Container\EcsTypeInfo.h"
 
 using namespace nsTornadoEditor;
 
-THandlerTypeInformationImpl::THandlerTypeInformationImpl()
+TSystemTypeInformationImpl::TSystemTypeInformationImpl()
 {
-    auto typeNameList = THandlerTypeInfo::GetTypeNameList();
+    auto typeNameList = TEcsTypeInfo::GetTypeNameList();
     mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());
     
-    auto rttiList = THandlerTypeInfo::GetRttiList();
+    auto rttiList = TEcsTypeInfo::GetRttiList();
     mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());
 }
 //--------------------------------------------------------------------------------------------------
-THandlerTypeInformationImpl::~THandlerTypeInformationImpl()
+TSystemTypeInformationImpl::~TSystemTypeInformationImpl()
 {
     
 }
 //--------------------------------------------------------------------------------------------------
-const std::list<std::string>* THandlerTypeInformationImpl::GetTypeNameList()
+const std::list<std::string>* TSystemTypeInformationImpl::GetTypeNameList()
 {
     return &mTypeNameList;
 }
 //--------------------------------------------------------------------------------------------------
-const std::list<int>* THandlerTypeInformationImpl::GetRunTimeTypeIndexList()
+const std::list<int>* TSystemTypeInformationImpl::GetRunTimeTypeIndexList()
 {
     return &mRttiList;
 }
 //--------------------------------------------------------------------------------------------------
-bool THandlerTypeInformationImpl::ConvertTypeToName(int rtti, std::string& typeName)
+bool TSystemTypeInformationImpl::ConvertTypeToName(int rtti, std::string& typeName)
 {
-    auto pTypeName = THandlerTypeInfo::ConvertRttiToName(rtti);
+    auto pTypeName = TEcsTypeInfo::ConvertRttiToName(rtti);
     if (pTypeName != nullptr) {
         typeName = *pTypeName;
         return true;
@@ -47,8 +47,8 @@ bool THandlerTypeInformationImpl::ConvertTypeToName(int rtti, std::string& typeN
     return false;
 }
 //--------------------------------------------------------------------------------------------------
-bool THandlerTypeInformationImpl::ConvertNameToType(const std::string& typeName, int& rtti)
+bool TSystemTypeInformationImpl::ConvertNameToType(const std::string& typeName, int& rtti)
 {
-    return THandlerTypeInfo::ConvertNameToRtti(typeName, rtti);;
+    return TEcsTypeInfo::ConvertNameToRtti(typeName, rtti);;
 }
 //--------------------------------------------------------------------------------------------------

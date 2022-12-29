@@ -329,7 +329,7 @@
     <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateyAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorHeaderSystem.cpp">

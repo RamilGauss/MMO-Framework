@@ -297,7 +297,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateyAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>

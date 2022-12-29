@@ -1,42 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp">
-      <Filter>Generated files</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\ComponentReflectionAggregatorImpl.cpp">
-      <Filter>Generated files\Aggregators</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\FeatureReflectionAggregatorImpl.cpp">
-      <Filter>Generated files\Aggregators</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\HandlerReflectionAggregatorImpl.cpp">
-      <Filter>Generated files\Aggregators</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\MenuItemReflectionAggregatorImpl.cpp">
-      <Filter>Generated files\Aggregators</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\ComponentEntityManagerExtensionImpl.cpp">
-      <Filter>Generated files\Components\Impl</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\ComponentJsonSerializerImpl.cpp">
-      <Filter>Generated files\Components\Impl</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\ComponentTypeInformationImpl.cpp">
-      <Filter>Generated files\Components\Impl</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\HandlerTypeInformationImpl.cpp">
-      <Filter>Generated files\Handlers\Impl</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\HandlerTypeFactoryImpl.cpp">
-      <Filter>Generated files\Handlers\Impl</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\FeatureTypeFactoryImpl.cpp">
-      <Filter>Generated files\Features\Impl</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\FeatureTypeInformationImpl.cpp">
-      <Filter>Generated files\Features\Impl</Filter>
-    </ClCompile>
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
@@ -54,9 +18,6 @@
     </ClCompile>
     <ClCompile Include="Features\ObjectHierarchyWindowRefreshSystem.cpp">
       <Filter>Features\Main\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Generated files\FeatureEcsSystemExtensionImpl.cpp">
-      <Filter>Generated files\Features\Impl</Filter>
     </ClCompile>
     <ClCompile Include="Handlers\OnOpenComponentViewerClickHandler.cpp">
       <Filter>Handlers\Menu\Tools</Filter>
@@ -99,6 +60,10 @@
     <ClCompile Include="Generated files\Aggregator\HandlerReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\HandlerTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\HandlerTypeFactoryImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\SystemReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\SystemTypeInformationImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\SystemDynamicCasterImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\SystemTypeFactoryImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -233,44 +198,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Generated files\ScenePartReflectionAggregatorImpl.h">
-      <Filter>Generated files</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\MenuItemReflectionAggregatorImpl.h">
-      <Filter>Generated files\Aggregators</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentReflectionAggregatorImpl.h">
-      <Filter>Generated files\Aggregators</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\FeatureReflectionAggregatorImpl.h">
-      <Filter>Generated files\Aggregators</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\HandlerReflectionAggregatorImpl.h">
-      <Filter>Generated files\Aggregators</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentEntityManagerExtensionImpl.h">
-      <Filter>Generated files\Components\Impl</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentJsonSerializerImpl.h">
-      <Filter>Generated files\Components\Impl</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\ComponentTypeInformationImpl.h">
-      <Filter>Generated files\Components\Impl</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\HandlerTypeInformationImpl.h">
-      <Filter>Generated files\Handlers\Impl</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\HandlerTypeFactoryImpl.h">
-      <Filter>Generated files\Handlers\Impl</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h">
       <Filter>Handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\FeatureTypeFactoryImpl.h">
-      <Filter>Generated files\Features\Impl</Filter>
-    </ClInclude>
-    <ClInclude Include="Generated files\FeatureTypeInformationImpl.h">
-      <Filter>Generated files\Features\Impl</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\OnCloseDialogHandler.h">
       <Filter>Handlers</Filter>
@@ -332,9 +261,6 @@
     <ClInclude Include="Components\AssetAbsoluteFilePathComponent.h">
       <Filter>Components\ProjectEntity</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\FeatureEcsSystemExtensionImpl.h">
-      <Filter>Generated files\Features\Impl</Filter>
-    </ClInclude>
     <ClInclude Include="Handlers\OnOpenComponentViewerClickHandler.h">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClInclude>
@@ -386,5 +312,8 @@
     <ClInclude Include="Generated files\Aggregator\HandlerTypeInformationImpl.h" />
     <ClInclude Include="Generated files\Aggregator\HandlerTypeFactoryImpl.h" />
     <ClInclude Include="Generated files\Aggregator\SystemReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\SystemTypeInformationImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\SystemDynamicCasterImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\SystemTypeFactoryImpl.h" />
   </ItemGroup>
 </Project>

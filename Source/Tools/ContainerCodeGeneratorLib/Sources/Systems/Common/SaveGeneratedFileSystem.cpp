@@ -7,9 +7,14 @@ See for more information LICENSE.md.
 
 #include "SaveGeneratedFileSystem.h"
 
+#include <fmt/core.h>
+
+#include <HiTimer.h>
 #include <TextFile.h>
 
 #include <ECS/include/Helper.h>
+
+#include "Constants.h"
 
 #include "Components/GeneratedFilesComponent.h"
 
@@ -24,7 +29,16 @@ namespace nsContainerCodeGenerator::nsCommon
         }
 
         for (auto& gen : generatedFilesComponent->value) {
-            TTextFile::Save(gen.absPath, gen.content);
+
+            std::string content;
+
+            content += TConstants::GetHeader();
+            content += "\n";
+            content += fmt::format(s_TimeHeader, ht_GetTimeStr());
+            content += "\n";
+            content += gen.content;
+
+            TTextFile::Save(gen.absPath, content);
         }
     }
 }

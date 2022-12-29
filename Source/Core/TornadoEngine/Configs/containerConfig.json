@@ -253,12 +253,12 @@
 
             "typeInfoImpl": {
                 "impl": {
-                    "fileName": "SystemTypeFactoryImpl",
-                    "typeName": "TSystemTypeFactoryImpl"
+                    "fileName": "SystemTypeInformationImpl",
+                    "typeName": "TSystemTypeInformationImpl"
                 },
                 "parent": {
-                    "fileName": "ITypeFactory",
-                    "typeName": "ITypeFactory"
+                    "fileName": "ITypeInformation",
+                    "typeName": "ITypeInformation"
                 }
             },
             "typeFactoryImpl": {
