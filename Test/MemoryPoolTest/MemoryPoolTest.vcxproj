@@ -97,6 +97,7 @@
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -154,6 +155,7 @@
       <PrecompiledHeader />
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

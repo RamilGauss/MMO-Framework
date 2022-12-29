@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_23 16:39:46.768
+// File has been generated at 2022_12_27 17:26:31.968
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -390,10 +390,6 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TCoreConfig* p, Jobj&
     PUM::Push(obj, "parseDirectory", p->parseDirectory);
     auto componentConfig_o = PUM::AddObject(obj, "componentConfig");
     _Serialize(&(p->componentConfig), componentConfig_o);
-    auto ecsSystemConfig_o = PUM::AddObject(obj, "ecsSystemConfig");
-    _Serialize(&(p->ecsSystemConfig), ecsSystemConfig_o);
-    auto systemConfig_o = PUM::AddObject(obj, "systemConfig");
-    _Serialize(&(p->systemConfig), systemConfig_o);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TCoreConfig* p, const Jobj& obj)
@@ -405,16 +401,17 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TCoreConfig* p, con
     POM::PopStr(obj, "parseDirectory", p->parseDirectory);
     auto componentConfig_o0 = POM::FindObject(obj, "componentConfig");
     _Deserialize(&(p->componentConfig), componentConfig_o0);
-    auto ecsSystemConfig_o0 = POM::FindObject(obj, "ecsSystemConfig");
-    _Deserialize(&(p->ecsSystemConfig), ecsSystemConfig_o0);
-    auto systemConfig_o0 = POM::FindObject(obj, "systemConfig");
-    _Deserialize(&(p->systemConfig), systemConfig_o0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TEcsSystemConfig* p, Jobj& obj)
 {
     _Serialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
     PUM::Push(obj, "ecsDirectory", p->ecsDirectory);
+    PUM::Value inheritances_a0(rapidjson::kArrayType);
+    for(auto& inheritances_e0 : p->inheritances) {
+        PUM::PushBack(inheritances_a0, inheritances_e0);
+    }
+    PUM::Push(obj, "inheritances", inheritances_a0);
     auto typeInfo_o = PUM::AddObject(obj, "typeInfo");
     _Serialize(&(p->typeInfo), typeInfo_o);
     auto dynamicCaster_o = PUM::AddObject(obj, "dynamicCaster");
@@ -425,6 +422,16 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TEcsSystemConfig* p
 {
     _Deserialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
     POM::PopStr(obj, "ecsDirectory", p->ecsDirectory);
+    if (POM::IsArray(obj, "inheritances")) {
+        auto inheritances_a0 = POM::FindArray(obj, "inheritances");
+        for(auto& inheritances_e0 : inheritances_a0) {
+            p->inheritances.push_back(inheritances_e0.GetString());
+        }
+    } else {
+        std::string inheritances_t0;
+        POM::PopStr(obj, "inheritances", inheritances_t0);
+        p->inheritances.push_back(inheritances_t0);
+    }
     auto typeInfo_o0 = POM::FindObject(obj, "typeInfo");
     _Deserialize(&(p->typeInfo), typeInfo_o0);
     auto dynamicCaster_o0 = POM::FindObject(obj, "dynamicCaster");
@@ -503,6 +510,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TParentClass* p, co
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectConfig* p, Jobj& obj)
 {
+    PUM::Push(obj, "pathToCore", p->pathToCore);
+    PUM::Push(obj, "absPathToProject", p->absPathToProject);
     PUM::Push(obj, "exportDeclaration", p->exportDeclaration);
     PUM::Push(obj, "targetDirectory", p->targetDirectory);
     PUM::Push(obj, "nameSpace", p->nameSpace);
@@ -513,10 +522,14 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectConfig* p, Jo
     _Serialize(&(p->handlerConfig), handlerConfig_o);
     auto systemConfig_o = PUM::AddObject(obj, "systemConfig");
     _Serialize(&(p->systemConfig), systemConfig_o);
+    auto ecsSystemConfig_o = PUM::AddObject(obj, "ecsSystemConfig");
+    _Serialize(&(p->ecsSystemConfig), ecsSystemConfig_o);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectConfig* p, const Jobj& obj)
 {
+    POM::PopStr(obj, "pathToCore", p->pathToCore);
+    POM::PopStr(obj, "absPathToProject", p->absPathToProject);
     POM::PopStr(obj, "exportDeclaration", p->exportDeclaration);
     POM::PopStr(obj, "targetDirectory", p->targetDirectory);
     POM::PopStr(obj, "nameSpace", p->nameSpace);
@@ -527,6 +540,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectConfig* p, 
     _Deserialize(&(p->handlerConfig), handlerConfig_o0);
     auto systemConfig_o0 = POM::FindObject(obj, "systemConfig");
     _Deserialize(&(p->systemConfig), systemConfig_o0);
+    auto ecsSystemConfig_o0 = POM::FindObject(obj, "ecsSystemConfig");
+    _Deserialize(&(p->ecsSystemConfig), ecsSystemConfig_o0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TSystemAggregator* p, Jobj& obj)
@@ -559,12 +574,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TSystemConfig* p, Job
         PUM::PushBack(inheritances_a0, inheritances_e0);
     }
     PUM::Push(obj, "inheritances", inheritances_a0);
-    auto typeInfo_o = PUM::AddObject(obj, "typeInfo");
-    _Serialize(&(p->typeInfo), typeInfo_o);
     auto typeFactory_o = PUM::AddObject(obj, "typeFactory");
     _Serialize(&(p->typeFactory), typeFactory_o);
-    auto dynamicCaster_o = PUM::AddObject(obj, "dynamicCaster");
-    _Serialize(&(p->dynamicCaster), dynamicCaster_o);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TSystemConfig* p, const Jobj& obj)
@@ -580,11 +591,7 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TSystemConfig* p, c
         POM::PopStr(obj, "inheritances", inheritances_t0);
         p->inheritances.push_back(inheritances_t0);
     }
-    auto typeInfo_o0 = POM::FindObject(obj, "typeInfo");
-    _Deserialize(&(p->typeInfo), typeInfo_o0);
     auto typeFactory_o0 = POM::FindObject(obj, "typeFactory");
     _Deserialize(&(p->typeFactory), typeFactory_o0);
-    auto dynamicCaster_o0 = POM::FindObject(obj, "dynamicCaster");
-    _Deserialize(&(p->dynamicCaster), dynamicCaster_o0);
 }
 //---------------------------------------------------------------------------------------

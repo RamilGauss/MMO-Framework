@@ -16,21 +16,24 @@ See for more information LICENSE.md.
 #include "Components/ConfigComponent.h"
 #include "Components/PathsComponent.h"
 
-namespace nsContainerCodeGenerator
+namespace nsContainerCodeGenerator::nsSetupConfig
 {
     void TResolvePathesSystem::Execute()
     {
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
-        auto& config = configComponent->value;
 
-        ResolvePath(config.reflectionCodeGeneratorFileName);
+        ResolvePath(configComponent->value.reflectionCodeGeneratorFileName);
 
-        ResolvePath(config.coreConfig.parseDirectory);
-        ResolvePath(config.coreConfig.targetDirectory);
-        ResolvePath(config.coreConfig.ecsSystemConfig.ecsDirectory);
+        ResolvePath(configComponent->value.coreConfig.parseDirectory);
+        ResolvePath(configComponent->value.coreConfig.targetDirectory);
 
-        ResolvePath(config.projectConfig.parseDirectory);
-        ResolvePath(config.projectConfig.targetDirectory);
+        ResolvePath(configComponent->value.projectConfig.pathToCore);
+        // TODO: delete
+        ResolvePath(configComponent->value.projectConfig.parseDirectory);
+        ResolvePath(configComponent->value.projectConfig.targetDirectory);
+        ResolvePath(configComponent->value.projectConfig.ecsSystemConfig.ecsDirectory);
+
+        ResolvePath(configComponent->value.aggregator.targetDirectory);
     }
     //------------------------------------------------------------------------------------------------------
     void TResolvePathesSystem::ResolvePath(std::string& path)

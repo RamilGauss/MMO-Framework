@@ -20,7 +20,7 @@ See for more information LICENSE.md.
 #include "Components/FileListComponent.h"
 #include "Components/TypeListComponent.h"
 
-namespace nsContainerCodeGenerator
+namespace nsContainerCodeGenerator::nsCommon
 {
     void TParseFileListSystem::Execute()
     {

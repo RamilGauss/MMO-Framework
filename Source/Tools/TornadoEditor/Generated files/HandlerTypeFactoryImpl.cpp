@@ -28,10 +28,6 @@ void* THandlerTypeFactoryImpl::New(int rtti)
     if (has) {
         return THandlerTypeFactory::New(rtti);
     }
-    has = nsTornadoEngine::THandlerTypeFactory::Has(rtti);
-    if (has) {
-        return nsTornadoEngine::THandlerTypeFactory::New(rtti);
-    }
     return nullptr;
 }
 //------------------------------------------------------------------------------------
@@ -40,11 +36,6 @@ void THandlerTypeFactoryImpl::Delete(void* p, int rtti)
     auto has = THandlerTypeFactory::Has(rtti);
     if (has) {
         THandlerTypeFactory::Delete(p, rtti);
-        return;
-    }
-    has = nsTornadoEngine::THandlerTypeFactory::Has(rtti);
-    if (has) {
-        nsTornadoEngine::THandlerTypeFactory::Delete(p, rtti);
     }
 }
 //------------------------------------------------------------------------------------

@@ -25,7 +25,7 @@ See for more information LICENSE.md.
 #include "Components/ConfigComponent.h"
 #include "Components/PathsComponent.h"
 
-namespace nsContainerCodeGenerator
+namespace nsContainerCodeGenerator::nsSetupConfig
 {
     void TResolveJsonPathSystem::Execute()
     {

@@ -107,6 +107,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -174,6 +175,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\Json\data1.j
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

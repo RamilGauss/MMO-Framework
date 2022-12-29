@@ -115,6 +115,7 @@
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +161,7 @@
       <PrecompiledHeaderOutputFile />
       <AdditionalIncludeDirectories>./;$(SolutionDir)\Source\Base\include;$(SolutionDir)\Source\3rdParty\MessagePack;$(SolutionDir)\Source\3rdParty\MessagePack\include;$(SolutionDir)\Source\3rdParty\MessagePack\src</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

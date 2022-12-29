@@ -109,6 +109,7 @@
       <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -184,6 +185,7 @@
       <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp20</LanguageStandard>
       <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

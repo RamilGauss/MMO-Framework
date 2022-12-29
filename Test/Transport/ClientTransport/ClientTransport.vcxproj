@@ -91,6 +91,7 @@
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +139,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(BOOST_PATH);../Share;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

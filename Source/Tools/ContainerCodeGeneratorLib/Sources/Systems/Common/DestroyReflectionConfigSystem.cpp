@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "Components/ReflectionConfigComponent.h"
 
-namespace nsContainerCodeGenerator
+namespace nsContainerCodeGenerator::nsCommon
 {
     void TDestroyReflectionConfigSystem::Execute()
     {

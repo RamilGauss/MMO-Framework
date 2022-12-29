@@ -210,6 +210,7 @@
       <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -236,6 +237,7 @@
       <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

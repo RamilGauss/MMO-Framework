@@ -24,13 +24,13 @@
     <ClInclude Include="Sources\Components\ConfigComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreGeneratorFeature.h">
+    <ClInclude Include="Sources\Systems\Core\GeneratorFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\ProjectGeneratorFeature.h">
+    <ClInclude Include="Sources\Systems\Project\GeneratorFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\AggregatorDumper\AggregatorDumperFeature.h">
+    <ClInclude Include="Sources\Systems\Aggregator\GeneratorFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Generated files\IncludeList.h">
@@ -42,7 +42,7 @@
     <ClInclude Include="Sources\Components\ArgumentComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\SetupConfig\SetupConfigFeature.h">
+    <ClInclude Include="Sources\Systems\SetupConfig\ConfigFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Components\PathsComponent.h">
@@ -60,16 +60,16 @@
     <ClInclude Include="Sources\Systems\SetupConfig\ResolvePathesSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CorePrepareComponentConfigSystem.h">
+    <ClInclude Include="Sources\Systems\Core\PrepareComponentConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\ProjectPrepareHandlerConfSystem.h">
+    <ClInclude Include="Sources\Systems\Project\Handler\PrepareConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Components\ReflectionConfigComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CoreDeleteGeneratedFilesSystem.h">
+    <ClInclude Include="Sources\Systems\Core\DeleteGeneratedFilesSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Common\SaveConfigFileSystem.h">
@@ -87,19 +87,16 @@
     <ClInclude Include="Sources\Components\FileListComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.h">
+    <ClInclude Include="Sources\Systems\Project\DeleteGeneratedFilesSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\ProjectMakeFileListSystem.h">
+    <ClInclude Include="Sources\Systems\Project\Handler\MakeFileListSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Common\ParseFileListSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\HandleTypeListToHandlerListSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CorePrepareEcsSystemConfigSystem.h">
+    <ClInclude Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Components\TypeListComponent.h">
@@ -111,9 +108,6 @@
     <ClInclude Include="Sources\Systems\Common\DestroyTypeListSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\CorePrepareSystemConfigSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -123,13 +117,103 @@
     <ClInclude Include="Sources\MessageException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\ProjectPrepareComponentConfigSystem.h">
+    <ClInclude Include="Sources\Systems\Project\Component\PrepareConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\ProjectHandleTypeListToHandlerListSystem.h">
+    <ClInclude Include="Sources\Systems\Project\Handler\TypeListToHandlerListSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\ProjectPrepareSystemConfigSystem.h">
+    <ClInclude Include="Sources\Systems\Project\System\PrepareConfigSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\GeneratedFilesComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\AddGeneratedFilesComponentSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\GenerateDllCppFileSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\System\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\SaveGeneratedFileSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Common\DestroyGeneratedFileSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\System\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\GenerateAggregatorCppSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -137,19 +221,19 @@
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreGeneratorFeature.cpp">
+    <ClCompile Include="Sources\Systems\Core\GeneratorFeature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\ProjectGeneratorFeature.cpp">
+    <ClCompile Include="Sources\Systems\Project\GeneratorFeature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\AggregatorDumper\AggregatorDumperFeature.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\GeneratorFeature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Generated files\JsonSerializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\SetupConfig\SetupConfigFeature.cpp">
+    <ClCompile Include="Sources\Systems\SetupConfig\ConfigFeature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.cpp">
@@ -164,13 +248,13 @@
     <ClCompile Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CorePrepareComponentConfigSystem.cpp">
+    <ClCompile Include="Sources\Systems\Core\PrepareComponentConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\ProjectPrepareHandlerConfSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\Handler\PrepareConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CoreDeleteGeneratedFilesSystem.cpp">
+    <ClCompile Include="Sources\Systems\Core\DeleteGeneratedFilesSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Common\SaveConfigFileSystem.cpp">
@@ -182,28 +266,22 @@
     <ClCompile Include="Sources\Systems\Common\DestroyReflectionConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\ProjectDeleteGeneratedFilesSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\DeleteGeneratedFilesSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\ProjectMakeFileListSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\Handler\MakeFileListSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Common\ParseFileListSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\HandleTypeListToHandlerListSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CorePrepareEcsSystemConfigSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Common\DestroyFileListSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Common\DestroyTypeListSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\CorePrepareSystemConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Constants.cpp">
@@ -215,13 +293,100 @@
     <ClCompile Include="Sources\MessageException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\ProjectPrepareComponentConfigSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\Component\PrepareConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\ProjectHandleTypeListToHandlerListSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\Handler\TypeListToHandlerListSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\ProjectPrepareSystemConfigSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\System\PrepareConfigSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Common\AddGeneratedFilesComponentSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\GenerateDllCppFileSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateyAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Common\SaveGeneratedFileSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Common\DestroyGeneratedFileSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\GenerateAggregatorCppSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

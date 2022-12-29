@@ -103,6 +103,7 @@
       <AdditionalIncludeDirectories>.\;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -142,6 +143,7 @@
       <AdditionalIncludeDirectories>.\;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

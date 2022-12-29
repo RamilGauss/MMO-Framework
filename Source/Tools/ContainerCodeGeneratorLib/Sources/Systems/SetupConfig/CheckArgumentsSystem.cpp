@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "MessageException.h"
 #include "Components/ArgumentComponent.h"
 
-namespace nsContainerCodeGenerator
+namespace nsContainerCodeGenerator::nsSetupConfig
 {
     void TCheckArgumentsSystem::Execute()
     {

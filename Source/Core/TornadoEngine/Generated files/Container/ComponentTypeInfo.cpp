@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_24 21:59:41.267
+// File has been generated at 2022_12_27 17:42:51.403
 	
 #include "ComponentTypeInfo.h"
 

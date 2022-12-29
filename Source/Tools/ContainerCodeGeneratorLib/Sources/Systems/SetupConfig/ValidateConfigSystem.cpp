@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 
 #include "Components/ConfigComponent.h"
 
-namespace nsContainerCodeGenerator
+namespace nsContainerCodeGenerator::nsSetupConfig
 {
     void TValidateConfigSystem::Execute()
     {

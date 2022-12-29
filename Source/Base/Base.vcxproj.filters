@@ -242,6 +242,9 @@
     <ClInclude Include="include\StringExtensions.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\TextGenerator.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -386,6 +389,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\StatisticsValue.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextGenerator.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

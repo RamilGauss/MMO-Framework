@@ -199,6 +199,7 @@
       <AdditionalIncludeDirectories>.\;.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -224,6 +225,7 @@
       <AdditionalIncludeDirectories>.\;.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

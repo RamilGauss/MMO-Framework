@@ -128,6 +128,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4251; 4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base_d.lib;fmt_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -180,6 +181,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base.lib;fmt.lib;NetTransport.lib;MMOEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>

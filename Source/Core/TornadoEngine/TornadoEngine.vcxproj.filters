@@ -550,10 +550,6 @@
     <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\EcsDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Container\EcsTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\SystemDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Container\SystemTypeInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -1251,12 +1247,6 @@
     <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\Container\ComponentJson.h" />
     <ClInclude Include="Generated files\Container\ComponentTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\EcsDynamicCaster.h" />
-    <ClInclude Include="Generated files\Container\EcsSystemIncludeList.h" />
-    <ClInclude Include="Generated files\Container\EcsTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\SystemDynamicCaster.h" />
-    <ClInclude Include="Generated files\Container\SystemIncludeList.h" />
-    <ClInclude Include="Generated files\Container\SystemTypeInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />
@@ -1265,6 +1255,10 @@
     <None Include="Generated files\featureConfig.json" />
     <None Include="Generated files\ecsConfig.json" />
     <None Include="Configs\containerConfig.json" />
+    <None Include="Generated files\Container\coreComponentConfig.json" />
+    <None Include="Generated files\Container\coreComponentEcsOut.json" />
+    <None Include="Generated files\Container\coreComponentJsonOut.json" />
+    <None Include="Generated files\Container\coreComponentTypeInfoOut.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

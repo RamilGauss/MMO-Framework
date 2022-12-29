@@ -132,6 +132,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -186,6 +187,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;ECS.lib;%(AdditionalDependencies)</AdditionalDependencies>

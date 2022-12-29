@@ -20,7 +20,7 @@ See for more information LICENSE.md.
 
 #include "Generated files/JsonSerializer.h"
 
-namespace nsContainerCodeGenerator
+namespace nsContainerCodeGenerator::nsSetupConfig
 {
     void TTryLoadConfigSystem::Execute()
     {

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="DefMainFunc_DeveloperDLL.cpp" />
     <ClCompile Include="Generated files\ScenePartReflectionAggregatorImpl.cpp">
       <Filter>Generated files</Filter>
     </ClCompile>
@@ -83,13 +82,23 @@
     <ClCompile Include="Features\ObjectHierarchyWindowInitSystem.cpp">
       <Filter>Features\Main\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Generated files\Container\EcsDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\EcsTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\SystemTypeFactory.cpp" />
     <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
     <ClCompile Include="Generated files\Container\HandlerTypeFactory.cpp" />
     <ClCompile Include="Generated files\Container\HandlerTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\SystemDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Container\SystemTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ComponentEntityManagerExtensionImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ComponentJsonSerializerImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ComponentReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ComponentTypeInfoImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\DefMainFunc_DeveloperDLL.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ScenePartReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\HandlerReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\HandlerTypeInformationImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\HandlerTypeFactoryImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -129,6 +138,10 @@
     <None Include="Prefabs\ObjectHierarchyWindow.prefab">
       <Filter>Prefabs</Filter>
     </None>
+    <None Include="Generated files\Container\projectEcsSystemConfig.json" />
+    <None Include="Generated files\Container\projectComponentConfig.json" />
+    <None Include="Generated files\Container\projectHandlerConfig.json" />
+    <None Include="Generated files\Container\projectSystemConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -352,6 +365,10 @@
     <ClInclude Include="Components\MainWindowPrefabGuidComponent.h">
       <Filter>Components\WindowTags</Filter>
     </ClInclude>
+    <ClInclude Include="Generated files\Container\EcsDynamicCaster.h" />
+    <ClInclude Include="Generated files\Container\EcsSystemIncludeList.h" />
+    <ClInclude Include="Generated files\Container\EcsTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\SystemTypeFactory.h" />
     <ClInclude Include="Generated files\Container\ComponentEntMng.h" />
     <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\Container\ComponentJson.h" />
@@ -359,8 +376,15 @@
     <ClInclude Include="Generated files\Container\HandlerIncludeList.h" />
     <ClInclude Include="Generated files\Container\HandlerTypeFactory.h" />
     <ClInclude Include="Generated files\Container\HandlerTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\SystemDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\SystemIncludeList.h" />
-    <ClInclude Include="Generated files\Container\SystemTypeInfo.h" />
+    <ClInclude Include="Generated files\Aggregator\ComponentEntityManagerExtensionImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ComponentJsonSerializerImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ComponentReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ComponentTypeInfoImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ScenePartReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\HandlerReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\HandlerTypeInformationImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\HandlerTypeFactoryImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\SystemReflectionAggregatorImpl.h" />
   </ItemGroup>
 </Project>

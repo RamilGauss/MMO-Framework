@@ -262,6 +262,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui\misc\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -285,6 +286,7 @@
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui\misc\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

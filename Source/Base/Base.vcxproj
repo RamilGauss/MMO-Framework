@@ -135,6 +135,7 @@
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -190,6 +191,7 @@
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -276,6 +278,7 @@
     <ClInclude Include="include\StopWatch.h" />
     <ClInclude Include="include\StringExtensions.h" />
     <ClInclude Include="include\TextFile.h" />
+    <ClInclude Include="include\TextGenerator.h" />
     <ClInclude Include="include\ThreadBoost.h" />
     <ClInclude Include="include\TimeManager.h" />
     <ClInclude Include="include\TypeDef.h" />
@@ -331,6 +334,7 @@
     <ClCompile Include="src\StopWatch.cpp" />
     <ClCompile Include="src\StringExtensions.cpp" />
     <ClCompile Include="src\TextFile.cpp" />
+    <ClCompile Include="src\TextGenerator.cpp" />
     <ClCompile Include="src\ThreadBoost.cpp" />
     <ClCompile Include="src\TimeManager.cpp" />
     <ClCompile Include="src\RunTimeTypeIndex.cpp" />

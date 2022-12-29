@@ -14,11 +14,15 @@ See for more information LICENSE.md.
 #include "Components/ReflectionConfigComponent.h"
 #include "ReflectionCodeGeneratorLib/Sources/JsonSerializer.h"
 
-namespace nsContainerCodeGenerator
+namespace nsContainerCodeGenerator::nsCommon
 {
     void TSaveConfigFileSystem::Execute()
     {
         auto reflectionConfigComponent = nsECSFramework::SingleComponent<TReflectionConfigComponent>(mEntMng);
+
+        if (reflectionConfigComponent == nullptr) {
+            return;
+        }
 
         std::string content;
         nsJson::TJsonSerializer::Serialize(&reflectionConfigComponent->value, content);

@@ -62,10 +62,7 @@
                 "nameSpaceName": "nsTornadoEditor",
                 "className": "THandlerTypeFactory",
                 "fileName": "HandlerTypeFactory",
-                "externalSources": {
-                    "inFileList": [],
-                    "outFile": "projectHandlerTypeFactoryOut.json"
-                },
+                "externalSources": null,
                 "keyValueMap": {}
             },
             "TypeInformationGenerator": {
@@ -73,10 +70,7 @@
                 "nameSpaceName": "nsTornadoEditor",
                 "className": "THandlerTypeInfo",
                 "fileName": "HandlerTypeInfo",
-                "externalSources": {
-                    "inFileList": [],
-                    "outFile": "projectHandlerTypeInfoOut.json"
-                },
+                "externalSources": null,
                 "keyValueMap": {}
             }
         },

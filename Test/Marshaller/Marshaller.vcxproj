@@ -157,6 +157,7 @@
       <LanguageStandard>stdcpp14</LanguageStandard>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base_d.lib;ECS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -188,6 +189,7 @@
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base.lib;%(AdditionalDependencies)</AdditionalDependencies>

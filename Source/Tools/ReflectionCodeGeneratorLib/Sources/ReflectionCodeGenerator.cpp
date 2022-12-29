@@ -419,6 +419,11 @@ void TReflectionCodeGenerator::SaveOut()
             continue;
         }
 
+        auto absFilePath = TPathOperations::CalculatePathBy(mSetupConfig.mAbsPathDirJson, externalSources->outFile);
+        if (externalSources->outFile.size() == 0) {
+            continue;
+        }
+
         TExternalSource extSrc;
         extSrc.fileName = ser->fileName;
         extSrc.nameSpaceName = ser->nameSpaceName;
@@ -429,7 +434,6 @@ void TReflectionCodeGenerator::SaveOut()
             extSrc.customizedTypes.insert(gen.GetFullType());
         }
 
-        auto absFilePath = TPathOperations::CalculatePathBy(mSetupConfig.mAbsPathDirJson, externalSources->outFile);
         mOutDumper->Save(extSrc, absFilePath);
     }
 }

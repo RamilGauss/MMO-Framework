@@ -58,6 +58,8 @@ namespace nsContainerCodeGenerator
     {
         std::string ecsDirectory;
 
+        std::list<std::string> inheritances;
+
         TGeneratedClass typeInfo;
         TGeneratedClass dynamicCaster;
     };
@@ -67,10 +69,17 @@ namespace nsContainerCodeGenerator
     {
         std::list<std::string> inheritances;
 
-        TGeneratedClass typeInfo;
         TGeneratedClass typeFactory;
-        TGeneratedClass dynamicCaster;
     };
+
+//#pragma REFLECTION_ATTRIBUTE
+//    struct DllExport TMenuItemConfig : TIncludeListFileName
+//    {
+//        std::string inheritanceFilter;
+//
+//        TGeneratedClass typeInfo;
+//        TGeneratedClass typeFactory;
+//    };
 
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TAggregatorClass
@@ -104,6 +113,13 @@ namespace nsContainerCodeGenerator
         TAggregatorClass dynamicCasterImpl;
     };
 
+//#pragma REFLECTION_ATTRIBUTE
+//    struct DllExport TMenuItemAggregator : TAggregatorClass
+//    {
+//        TAggregatorClass typeInfoImpl;
+//        TAggregatorClass typeFactoryImpl;
+//    };
+
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TCoreConfig
     {
@@ -115,13 +131,14 @@ namespace nsContainerCodeGenerator
         std::string parseDirectory;
 
         TComponentConfig componentConfig;
-        TEcsSystemConfig ecsSystemConfig;
-        TSystemConfig systemConfig;
     };
 
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TProjectConfig
     {
+        std::string pathToCore;
+        std::string absPathToProject;
+
         std::string exportDeclaration;
         std::string targetDirectory;
         std::string nameSpace;
@@ -130,6 +147,8 @@ namespace nsContainerCodeGenerator
         TComponentConfig componentConfig;
         THandlerConfig handlerConfig;
         TSystemConfig systemConfig;
+        TEcsSystemConfig ecsSystemConfig;
+        //TMenuItemConfig menuItemConfig;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -148,6 +167,7 @@ namespace nsContainerCodeGenerator
         TComponentAggregator componentImpl;
         THandlerAggregator handlerImpl;
         TSystemAggregator systemImpl;
+        //TMenuItemAggregator menuItemImpl;
     };
 
 #pragma REFLECTION_ATTRIBUTE

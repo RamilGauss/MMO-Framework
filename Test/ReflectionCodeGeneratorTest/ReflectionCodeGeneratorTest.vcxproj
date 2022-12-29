@@ -124,6 +124,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>.;$(SolutionDir)/Source/Tools;$(SolutionDir)/Source/Base/include;./DataSources;$(SolutionDir)Source\Modules\ECS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +150,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\ReflectionCo
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.;$(SolutionDir)/Source/Tools;$(SolutionDir)/Source/Base/include;./DataSources;$(SolutionDir)Source\Modules\ECS\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

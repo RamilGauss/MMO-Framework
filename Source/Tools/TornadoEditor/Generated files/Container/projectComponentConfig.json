@@ -34,9 +34,9 @@
                 "fileName": "ComponentEntMng",
                 "externalSources": {
                     "inFileList": [
-                        "c:\\Sources\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentEcsOut.json"
+                        "C:\\Data\\GitHub\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentEcsOut.json"
                     ],
-                    "outFile": "projectComponentEcsOut.json"
+                    "outFile": ""
                 },
                 "keyValueMap": {
                     "entityManagerHeaderPath": "ECS/include/EntityManager.h"
@@ -49,9 +49,9 @@
                 "fileName": "ComponentJson",
                 "externalSources": {
                     "inFileList": [
-                        "c:\\Sources\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentJsonOut.json"
+                        "C:\\Data\\GitHub\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentJsonOut.json"
                     ],
-                    "outFile": "projectComponentJsonOut.json"
+                    "outFile": ""
                 },
                 "keyValueMap": {}
             },
@@ -62,9 +62,9 @@
                 "fileName": "ComponentTypeInfo",
                 "externalSources": {
                     "inFileList": [
-                        "c:\\Sources\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json"
+                        "C:\\Data\\GitHub\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json"
                     ],
-                    "outFile": "projectComponentTypeInfoOut.json"
+                    "outFile": ""
                 },
                 "keyValueMap": {}
             }

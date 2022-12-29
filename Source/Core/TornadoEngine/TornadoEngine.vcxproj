@@ -139,6 +139,7 @@
       <DisableSpecificWarnings>4068;4251;4275;4005;4244;4250;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;ImGuiWidgets_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -195,6 +196,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base.lib;ECS.lib;ImGuiWidgets.lib;GraphicEngine.lib;PhysicEngine.lib;NetTransport.lib;MMOEngine.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -323,10 +325,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\EcsDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Container\EcsTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\SystemDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Container\SystemTypeInfo.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
     <ClCompile Include="Modules\Gizmos\EntityViewer.cpp" />
     <ClCompile Include="Modules\Gizmos\Gizmo.cpp" />
@@ -545,12 +543,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\Container\ComponentJson.h" />
     <ClInclude Include="Generated files\Container\ComponentTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\EcsDynamicCaster.h" />
-    <ClInclude Include="Generated files\Container\EcsSystemIncludeList.h" />
-    <ClInclude Include="Generated files\Container\EcsTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\SystemDynamicCaster.h" />
-    <ClInclude Include="Generated files\Container\SystemIncludeList.h" />
-    <ClInclude Include="Generated files\Container\SystemTypeInfo.h" />
     <ClInclude Include="Generated files\ReflectionIncludeList.h" />
     <ClInclude Include="Generated files\TornadoEngineJsonSerializer.h" />
     <ClInclude Include="Handlers\Gui\IDialogCloseEventHandler.h" />
@@ -636,6 +628,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />
     <None Include="Configs\containerConfig.json" />
+    <None Include="Generated files\Container\coreComponentConfig.json" />
+    <None Include="Generated files\Container\coreComponentEcsOut.json" />
+    <None Include="Generated files\Container\coreComponentJsonOut.json" />
+    <None Include="Generated files\Container\coreComponentTypeInfoOut.json" />
     <None Include="Generated files\ecsConfig.json" />
     <None Include="Generated files\featureConfig.json" />
     <None Include="Generated files\handlerConfig.json" />

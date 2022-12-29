@@ -29,4 +29,15 @@ namespace nsContainerCodeGenerator
             "nsECSFramework::TOnRemoveInstantReactiveSystem"
         };
     }
+
+    const std::string TConstants::GetHeader()
+    {
+        return 
+            "/*\n"
+            "Author: Gudakov Ramil Sergeevich a.k.a.Gauss\n"
+            "Гудаков Рамиль Сергеевич\n"
+            "Contacts : [ramil2085@mail.ru, ramil2085@gmail.com]\n"
+            "See for more information LICENSE.md.\n"
+            "*/";
+    }
 }

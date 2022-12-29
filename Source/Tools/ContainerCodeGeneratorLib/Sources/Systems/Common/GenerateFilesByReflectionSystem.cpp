@@ -16,12 +16,16 @@ See for more information LICENSE.md.
 #include "Components/ConfigComponent.h"
 #include "Components/ReflectionConfigComponent.h"
 
-namespace nsContainerCodeGenerator
+namespace nsContainerCodeGenerator::nsCommon
 {
     void TGenerateFilesByReflectionSystem::Execute()
     {
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto reflectionConfigComponent = nsECSFramework::SingleComponent<TReflectionConfigComponent>(mEntMng);
+
+        if (reflectionConfigComponent == nullptr) {
+            return;
+        }
 
         auto cmd = fmt::format("{} \"{}\"", 
             configComponent->value.reflectionCodeGeneratorFileName, 

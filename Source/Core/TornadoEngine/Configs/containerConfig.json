@@ -4,20 +4,7 @@
     "baseHandlerTypeName": "nsTornadoEngine::IHandler",
 
     "coreConfig": {
-        "isNeedGenerate": true,
-
-        "ecsSystemConfig": {
-            "includeListFileName": "EcsSystemIncludeList",
-            "ecsDirectory": "../../../Modules/ECS",
-            "typeInfo": {
-                "fileName": "EcsTypeInfo",
-                "typeName": "TEcsTypeInfo"
-            },
-            "dynamicCaster": {
-                "fileName": "EcsDynamicCaster",
-                "typeName": "TEcsDynamicCaster"
-            }
-        },
+        "isNeedGenerate": false,
 
         "targetDirectory": "../Generated files/Container",
         "exportDeclaration": "DllExport",
@@ -47,37 +34,12 @@
                 "fileName": "ComponentEntMng",
                 "typeName": "TComponentEntMng"
             }
-        },
-
-        "systemConfig": {
-            "includeListFileName": "SystemIncludeList",
-            "inheritances": [
-                "nsECSFramework::TFeature",
-                "nsECSFramework::TInitSystem",
-                "nsECSFramework::TExecuteSystem",
-                "nsECSFramework::TTearDownSystem",
-                "nsECSFramework::TOnAddCollectReactiveSystem",
-                "nsECSFramework::TOnUpdateCollectReactiveSystem",
-                "nsECSFramework::TOnAddInstantReactiveSystem",
-                "nsECSFramework::TOnUpdateInstantReactiveSystem",
-                "nsECSFramework::TOnRemoveInstantReactiveSystem"
-            ],
-
-            "typeInfo": {
-                "fileName": "SystemTypeInfo",
-                "typeName": "TSystemTypeInfo"
-            },
-            "typeFactory": {
-                "fileName": "SystemTypeFactory",
-                "typeName": "TSystemTypeFactory"
-            },
-            "dynamicCaster": {
-                "fileName": "SystemDynamicCaster",
-                "typeName": "TSystemDynamicCaster"
-            }
         }
     },
     "projectConfig": {
+        "pathToCore": "../..",
+        "absPathToProject": "C:\\Data\\GitHub\\MMOFramework\\Source\\Tools\\TornadoEditor\\",
+
         "targetDirectory": "../../../Tools/TornadoEditor/Generated files/Container",
         "exportDeclaration": "DllExport",
         "nameSpace": "nsTornadoEditor",
@@ -120,6 +82,33 @@
             }
         },
 
+        "ecsSystemConfig": {
+            "includeListFileName": "EcsSystemIncludeList",
+            "ecsDirectory": "../../../Modules/ECS",
+            "inheritances": [
+                "nsECSFramework::TSystem",
+                "nsECSFramework::TFeature",
+                "nsECSFramework::TInitSystem",
+                "nsECSFramework::TExecuteSystem",
+                "nsECSFramework::TTearDownSystem",
+                "nsECSFramework::TBaseCollectReactiveSystem",
+                "nsECSFramework::TBaseReactiveSystem",
+                "nsECSFramework::TOnAddCollectReactiveSystem",
+                "nsECSFramework::TOnUpdateCollectReactiveSystem",
+                "nsECSFramework::TOnAddInstantReactiveSystem",
+                "nsECSFramework::TOnUpdateInstantReactiveSystem",
+                "nsECSFramework::TOnRemoveInstantReactiveSystem"
+            ],
+            "typeInfo": {
+                "fileName": "EcsTypeInfo",
+                "typeName": "TEcsTypeInfo"
+            },
+            "dynamicCaster": {
+                "fileName": "EcsDynamicCaster",
+                "typeName": "TEcsDynamicCaster"
+            }
+        },
+
         "systemConfig": {
             "includeListFileName": "SystemIncludeList",
             "inheritances": [
@@ -134,17 +123,9 @@
                 "nsECSFramework::TOnRemoveInstantReactiveSystem"
             ],
 
-            "typeInfo": {
-                "fileName": "SystemTypeInfo",
-                "typeName": "TSystemTypeInfo"
-            },
             "typeFactory": {
                 "fileName": "SystemTypeFactory",
                 "typeName": "TSystemTypeFactory"
-            },
-            "dynamicCaster": {
-                "fileName": "SystemDynamicCaster",
-                "typeName": "TSystemDynamicCaster"
             }
         }
     },
@@ -155,7 +136,7 @@
         },
         "parent": {
             "fileName": "ScenePartReflectionAggregator",
-            "typeName": "nsTornadoEngine::TScenePartReflectionAggregator"
+            "typeName": "TScenePartReflectionAggregator"
         },
 
         "targetDirectory": "../../../Tools/TornadoEditor/Generated files/Aggregator",
@@ -163,8 +144,8 @@
         "exportDeclaration": "DllExport",
         "cExportDeclaration": "DllExport_C",
 
-        "dllHeaderFileName": "DeveloperTool_DLL",
-        "dllCppFileName": "DefMainFunc_DeveloperDLL",
+        "dllHeaderFileName": "DeveloperTool_DLL.h",
+        "dllCppFileName": "DefMainFunc_DeveloperDLL.cpp",
         "getFuncName": "GetScenePartReflectionAggregator",
         "freeFuncName": "FreeScenePartReflectionAggregator",
 
@@ -174,8 +155,8 @@
                 "typeName": "TComponentReflectionAggregatorImpl"
             },
             "parent": {
-                "fileName": "TComponentReflectionAggregator",
-                "typeName": "nsTornadoEngine::TComponentReflectionAggregator"
+                "fileName": "ComponentReflectionAggregator",
+                "typeName": "TComponentReflectionAggregator"
             },
 
             "typeInfoImpl": {
@@ -185,7 +166,7 @@
                 },
                 "parent": {
                     "fileName": "ITypeInformation",
-                    "typeName": "nsTornadoEngine::ITypeInformation"
+                    "typeName": "ITypeInformation"
                 }
             },
             "jsonImpl": {
@@ -195,7 +176,7 @@
                 },
                 "parent": {
                     "fileName": "IJsonSerializer",
-                    "typeName": "nsTornadoEngine::IJsonSerializer"
+                    "typeName": "IJsonSerializer"
                 }
             },
             "binaryImpl": {
@@ -205,7 +186,7 @@
                 },
                 "parent": {
                     "fileName": "IBinaryMarshaller",
-                    "typeName": "nsTornadoEngine::IBinaryMarshaller"
+                    "typeName": "IBinaryMarshaller"
                 }
             },
             "imGuiImpl": {
@@ -215,7 +196,7 @@
                 },
                 "parent": {
                     "fileName": "IImGuiSerializer",
-                    "typeName": "nsTornadoEngine::IImGuiSerializer"
+                    "typeName": "IImGuiSerializer"
                 }
             },
             "entMngImpl": {
@@ -225,7 +206,7 @@
                 },
                 "parent": {
                     "fileName": "IEcsComponentExtension",
-                    "typeName": "nsTornadoEngine::IEcsComponentExtension"
+                    "typeName": "IEcsComponentExtension"
                 }
             }
         },
@@ -236,7 +217,7 @@
             },
             "parent": {
                 "fileName": "HandlerReflectionAggregator",
-                "typeName": "nsTornadoEngine::THandlerReflectionAggregator"
+                "typeName": "THandlerReflectionAggregator"
             },
 
             "typeInfoImpl": {
@@ -246,7 +227,7 @@
                 },
                 "parent": {
                     "fileName": "ITypeInformation",
-                    "typeName": "nsTornadoEngine::ITypeInformation"
+                    "typeName": "ITypeInformation"
                 }
             },
             "typeFactoryImpl": {
@@ -256,7 +237,7 @@
                 },
                 "parent": {
                     "fileName": "ITypeFactory",
-                    "typeName": "nsTornadoEngine::ITypeFactory"
+                    "typeName": "ITypeFactory"
                 }
             }
         },
@@ -267,7 +248,7 @@
             },
             "parent": {
                 "fileName": "SystemReflectionAggregator",
-                "typeName": "nsTornadoEngine::TSystemReflectionAggregator"
+                "typeName": "TSystemReflectionAggregator"
             },
 
             "typeInfoImpl": {
@@ -277,7 +258,7 @@
                 },
                 "parent": {
                     "fileName": "ITypeFactory",
-                    "typeName": "nsTornadoEngine::ITypeFactory"
+                    "typeName": "ITypeFactory"
                 }
             },
             "typeFactoryImpl": {
@@ -287,7 +268,7 @@
                 },
                 "parent": {
                     "fileName": "ITypeFactory",
-                    "typeName": "nsTornadoEngine::ITypeFactory"
+                    "typeName": "ITypeFactory"
                 }
             },
             "dynamicCasterImpl": {
@@ -297,7 +278,7 @@
                 },
                 "parent": {
                     "fileName": "IDynamicCaster",
-                    "typeName": "nsTornadoEngine::IDynamicCaster"
+                    "typeName": "IDynamicCaster"
                 }
             }
         }
