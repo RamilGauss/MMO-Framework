@@ -199,7 +199,9 @@ namespace nsBase
     //--------------------------------------------------------------------------------------------------
     void TTextGenerator::AddRet(const std::string& retStr)
     {
-        AddFormatLine("return {};", retStr);
+        std::string returnedValue = (retStr.size() == 0) ? "" : " " + retStr;
+
+        AddFormatLine("return{};", returnedValue);
     }
     //--------------------------------------------------------------------------------------------------
     void TTextGenerator::AddLongLine()

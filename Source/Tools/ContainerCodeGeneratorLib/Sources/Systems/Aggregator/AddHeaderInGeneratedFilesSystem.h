@@ -9,12 +9,10 @@ See for more information LICENSE.md.
 
 #include <ECS/include/ExecuteSystem.h>
 
-namespace nsContainerCodeGenerator::nsCommon
+namespace nsContainerCodeGenerator::nsAggregator
 {
-    class DllExport TSaveGeneratedFileSystem : public nsECSFramework::TExecuteSystem
+    class DllExport TAddHeaderInGeneratedFilesSystem : public nsECSFramework::TExecuteSystem
     {
-        const std::string s_TimeHeader = "// File has been generated at {}";
-
     public:
         void Execute() override;
     };

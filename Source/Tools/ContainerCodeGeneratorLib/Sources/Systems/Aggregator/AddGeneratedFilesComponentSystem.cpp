@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Components/ConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
-namespace nsContainerCodeGenerator::nsCommon
+namespace nsContainerCodeGenerator::nsAggregator
 {
     void TAddGeneratedFilesComponentSystem::Execute()
     {

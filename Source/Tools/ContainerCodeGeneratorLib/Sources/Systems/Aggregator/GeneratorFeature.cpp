@@ -51,6 +51,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         Add(&mGenerateSystemDynamicCasterAggregatorHeaderSystem);
         Add(&mGenerateSystemDynamicCasterAggregatorCppSystem);
         
+        Add(&mAddHeaderInGeneratedFilesSystem);
         Add(&mSaveGeneratedFileSystem);
         Add(&mDestroyGeneratedFileSystem);
     }

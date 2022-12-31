@@ -41,5 +41,13 @@ namespace nsContainerCodeGenerator
         static const std::set<std::string> GetSystemInheritances();
 
         static const std::string GetHeader();
+
+        static const std::string GetProgramDescription();
+
+        static const int GetProgramMajorVersion();
+        static const int GetProgramMinorVersion();
+        static const int GetProgramJuniorVersion();
+
+        static const std::string GetProgramName();
     };
 }

@@ -5,7 +5,8 @@ Contacts : [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-// File has been generated at 2022_12_29 17:47:00.837
+// ContainerCodeGenerator
+// File has been generated at 2022_12_31 15:11:55.544
 	
 #include "ComponentJsonSerializerImpl.h"
 
@@ -28,7 +29,7 @@ void TComponentJsonSerializerImpl::Serialize(void* p, std::string& json, int rtt
 {
     if (TComponentJson::Has(rtti)) {
         TComponentJson::Serialize(p, json, rtti);
-        return ;
+        return;
     }
     if (nsTornadoEngine::TComponentJson::Has(rtti)) {
         nsTornadoEngine::TComponentJson::Serialize(p, json, rtti);

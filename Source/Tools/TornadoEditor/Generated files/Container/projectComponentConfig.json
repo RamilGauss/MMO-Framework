@@ -34,7 +34,7 @@
                 "fileName": "ComponentEntMng",
                 "externalSources": {
                     "inFileList": [
-                        "C:\\Data\\GitHub\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentEcsOut.json"
+                        "c:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentEcsOut.json"
                     ],
                     "outFile": ""
                 },
@@ -49,7 +49,7 @@
                 "fileName": "ComponentJson",
                 "externalSources": {
                     "inFileList": [
-                        "C:\\Data\\GitHub\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentJsonOut.json"
+                        "c:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentJsonOut.json"
                     ],
                     "outFile": ""
                 },
@@ -62,7 +62,7 @@
                 "fileName": "ComponentTypeInfo",
                 "externalSources": {
                     "inFileList": [
-                        "C:\\Data\\GitHub\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json"
+                        "c:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json"
                     ],
                     "outFile": ""
                 },

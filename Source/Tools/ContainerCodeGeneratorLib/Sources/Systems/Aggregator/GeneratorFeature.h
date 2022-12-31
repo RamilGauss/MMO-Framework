@@ -9,9 +9,10 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "Systems/Common/AddGeneratedFilesComponentSystem.h"
-#include "Systems/Common/SaveGeneratedFileSystem.h"
-#include "Systems/Common/DestroyGeneratedFileSystem.h"
+#include "Systems/Aggregator/AddHeaderInGeneratedFilesSystem.h"
+#include "Systems/Aggregator/AddGeneratedFilesComponentSystem.h"
+#include "Systems/Aggregator/SaveGeneratedFileSystem.h"
+#include "Systems/Aggregator/DestroyGeneratedFileSystem.h"
 
 #include "Systems/Aggregator/GenerateAggregatorHeaderSystem.h"
 #include "Systems/Aggregator/GenerateAggregatorCppSystem.h"
@@ -50,7 +51,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         // Think algorithmically!
         TDeleteGeneratedFilesSystem                                mDeleteGeneratedFilesSystem;
 
-        nsCommon::TAddGeneratedFilesComponentSystem                mAddGeneratedFilesComponentSystem;
+        TAddGeneratedFilesComponentSystem                          mAddGeneratedFilesComponentSystem;
 
         // Generation
         TGenerateDllCppFileSystem                                  mGenerateDllCppFileSystem;
@@ -95,8 +96,9 @@ namespace nsContainerCodeGenerator::nsAggregator
         nsSystem::nsDynamicCaster::TGenerateAggregatorCppSystem    mGenerateSystemDynamicCasterAggregatorCppSystem;
 
         // Finish
-        nsCommon::TSaveGeneratedFileSystem                         mSaveGeneratedFileSystem;
-        nsCommon::TDestroyGeneratedFileSystem                      mDestroyGeneratedFileSystem;
+        TAddHeaderInGeneratedFilesSystem                           mAddHeaderInGeneratedFilesSystem;
+        TSaveGeneratedFileSystem                                   mSaveGeneratedFileSystem;
+        TDestroyGeneratedFileSystem                                mDestroyGeneratedFileSystem;
 
     public:
         void InitConveyor() override;

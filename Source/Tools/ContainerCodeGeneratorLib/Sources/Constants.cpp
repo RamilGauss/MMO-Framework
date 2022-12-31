@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
+#include <fmt/core.h>
+
 namespace nsContainerCodeGenerator
 {
     const std::set<std::string> TConstants::GetHeaderExtensions()
@@ -40,4 +42,31 @@ namespace nsContainerCodeGenerator
             "See for more information LICENSE.md.\n"
             "*/\n";
     }
+
+    const std::string TConstants::GetProgramName()
+    {
+        return "ContainerCodeGenerator";
+    }
+
+    const std::string TConstants::GetProgramDescription()
+    {
+        return fmt::format("{} {}.{}.{}", GetProgramName(),
+            GetProgramMajorVersion(), GetProgramMinorVersion(), GetProgramJuniorVersion());
+    }
+
+    const int TConstants::GetProgramMajorVersion()
+    {
+        return 1;
+    }
+    
+    const int TConstants::GetProgramMinorVersion()
+    {
+        return 0;
+    }
+    
+    const int TConstants::GetProgramJuniorVersion()
+    {
+        return 0;
+    }
+
 }

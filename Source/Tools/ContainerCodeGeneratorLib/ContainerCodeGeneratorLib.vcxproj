@@ -41,6 +41,10 @@
     </ClInclude>
     <ClInclude Include="Sources\Constants.h" />
     <ClInclude Include="Sources\MessageException.h" />
+    <ClInclude Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.h">
       <SubType>
       </SubType>
@@ -145,7 +149,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\AddGeneratedFilesComponentSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\AddGeneratedFilesComponentSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -153,7 +157,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\DestroyGeneratedFileSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\DestroyGeneratedFileSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -177,7 +181,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\SaveGeneratedFileSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\SaveGeneratedFileSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -237,6 +241,10 @@
   <ItemGroup>
     <ClCompile Include="Sources\Constants.cpp" />
     <ClCompile Include="Sources\MessageException.cpp" />
+    <ClCompile Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.cpp">
       <SubType>
       </SubType>
@@ -341,7 +349,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\AddGeneratedFilesComponentSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\AddGeneratedFilesComponentSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -349,7 +357,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\DestroyGeneratedFileSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\DestroyGeneratedFileSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -373,7 +381,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\SaveGeneratedFileSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\SaveGeneratedFileSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>

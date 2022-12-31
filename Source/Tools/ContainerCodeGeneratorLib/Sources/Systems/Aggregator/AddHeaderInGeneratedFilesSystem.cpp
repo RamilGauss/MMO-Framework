@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SaveGeneratedFileSystem.h"
+#include "AddHeaderInGeneratedFilesSystem.h"
 
 #include <fmt/core.h>
 
@@ -18,9 +18,9 @@ See for more information LICENSE.md.
 
 #include "Components/GeneratedFilesComponent.h"
 
-namespace nsContainerCodeGenerator::nsCommon
+namespace nsContainerCodeGenerator::nsAggregator
 {
-    void TSaveGeneratedFileSystem::Execute()
+    void TAddHeaderInGeneratedFilesSystem::Execute()
     {
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -34,11 +34,11 @@ namespace nsContainerCodeGenerator::nsCommon
 
             content += TConstants::GetHeader();
             content += "\n";
-            content += fmt::format(s_TimeHeader, ht_GetTimeStr());
-            content += "\n";
+            content += fmt::format("// {}\n// File has been generated at {}\n", 
+                TConstants::GetProgramName(), ht_GetTimeStr());
             content += gen.content;
 
-            TTextFile::Save(gen.absPath, content);
+            gen.content = content;
         }
     }
 }

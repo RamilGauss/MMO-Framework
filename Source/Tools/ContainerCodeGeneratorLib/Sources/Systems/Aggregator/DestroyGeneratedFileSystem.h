@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/ExecuteSystem.h>
 
-namespace nsContainerCodeGenerator::nsCommon
+namespace nsContainerCodeGenerator::nsAggregator
 {
     class DllExport TDestroyGeneratedFileSystem : public nsECSFramework::TExecuteSystem
     {

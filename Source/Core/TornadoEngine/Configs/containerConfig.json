@@ -38,7 +38,7 @@
     },
     "projectConfig": {
         "pathToCore": "../..",
-        "absPathToProject": "C:\\Data\\GitHub\\MMOFramework\\Source\\Tools\\TornadoEditor\\",
+        "absPathToProject": "c:\\Data\\Github\\MMOFramework\\Source\\Tools\\TornadoEditor",
 
         "targetDirectory": "../../../Tools/TornadoEditor/Generated files/Container",
         "exportDeclaration": "DllExport",

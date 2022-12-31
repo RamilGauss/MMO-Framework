@@ -132,7 +132,7 @@
     <ClInclude Include="Sources\Components\GeneratedFilesComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\AddGeneratedFilesComponentSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\AddGeneratedFilesComponentSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\GenerateDllCppFileSystem.h">
@@ -171,10 +171,10 @@
     <ClInclude Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\SaveGeneratedFileSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\SaveGeneratedFileSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\DestroyGeneratedFileSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\DestroyGeneratedFileSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.h">
@@ -214,6 +214,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -305,7 +308,7 @@
     <ClCompile Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\AddGeneratedFilesComponentSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\AddGeneratedFilesComponentSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\GenerateDllCppFileSystem.cpp">
@@ -344,10 +347,10 @@
     <ClCompile Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\SaveGeneratedFileSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\SaveGeneratedFileSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\DestroyGeneratedFileSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\DestroyGeneratedFileSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.cpp">
@@ -387,6 +390,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

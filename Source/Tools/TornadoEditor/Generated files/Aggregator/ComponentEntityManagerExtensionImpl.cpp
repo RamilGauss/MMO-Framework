@@ -5,7 +5,8 @@ Contacts : [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-// File has been generated at 2022_12_29 17:47:00.839
+// ContainerCodeGenerator
+// File has been generated at 2022_12_31 15:11:55.544
 	
 #include "ComponentEntityManagerExtensionImpl.h"
 
@@ -28,11 +29,11 @@ void TComponentEntityManagerExtensionImpl::CreateComponent(nsECSFramework::TEnti
 {
     if (TComponentEntMng::Has(rtti)) {
         TComponentEntMng::CreateComponent(mEntMng, eid, rtti, onAfterCreation, isNotify);
-        return ;
+        return;
     }
     if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
         nsTornadoEngine::TComponentEntMng::CreateComponent(mEntMng, eid, rtti, onAfterCreation, isNotify);
-        return ;
+        return;
     }
 }
 //--------------------------------------------------------------------------------------------------
@@ -40,11 +41,11 @@ void TComponentEntityManagerExtensionImpl::SetComponent(nsECSFramework::TEntityI
 {
     if (TComponentEntMng::Has(rtti)) {
         TComponentEntMng::SetComponent(mEntMng, eid, rtti, p, isNotify);
-        return ;
+        return;
     }
     if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
         nsTornadoEngine::TComponentEntMng::SetComponent(mEntMng, eid, rtti, p, isNotify);
-        return ;
+        return;
     }
 }
 //--------------------------------------------------------------------------------------------------
@@ -74,11 +75,11 @@ void TComponentEntityManagerExtensionImpl::RemoveComponent(nsECSFramework::TEnti
 {
     if (TComponentEntMng::Has(rtti)) {
         TComponentEntMng::RemoveComponent(mEntMng, eid, rtti);
-        return ;
+        return;
     }
     if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
         nsTornadoEngine::TComponentEntMng::RemoveComponent(mEntMng, eid, rtti);
-        return ;
+        return;
     }
 }
 //--------------------------------------------------------------------------------------------------
