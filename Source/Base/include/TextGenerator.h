@@ -6,6 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include <list>
+#include <map>
 
 #include <fmt/core.h>
 
@@ -84,6 +85,8 @@ namespace nsBase
         void AddRet(const std::string& retStr);
 
         void AddLongLine();
+
+        void AddFormatted(const std::list<std::string>& lines, const std::map<std::string, std::string>& namedArgs);
 
     protected:
         void AddTemplateType(const std::string& type, const std::string& typeName, const std::list<std::string>& templateArgs,

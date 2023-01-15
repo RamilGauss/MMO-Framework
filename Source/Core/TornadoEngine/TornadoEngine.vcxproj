@@ -322,9 +322,12 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Logic\End\Object\ObjectFeature.cpp" />
     <ClCompile Include="Features\Logic\End\Scene\SceneFeature.cpp" />
     <ClCompile Include="Features\Logic\End\Scene\StartedScenesInitSystem.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentDynamicCaster.cpp" />
     <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\ImGuiWidgetsDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\ImGuiWidgetsTypeInfo.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
     <ClCompile Include="Modules\Gizmos\EntityViewer.cpp" />
     <ClCompile Include="Modules\Gizmos\Gizmo.cpp" />
@@ -364,7 +367,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Common\GuidComponent.h" />
-    <ClInclude Include="Components\Common\HandlerTarget.h" />
+    <ClInclude Include="Generated files\Container\ImGuiWidgetsDynamicCaster.h" />
+    <ClInclude Include="Generated files\Container\ImGuiWidgetsIncludeList.h" />
+    <ClInclude Include="Generated files\Container\ImGuiWidgetsTypeInfo.h" />
+    <ClInclude Include="ReflectionAggregators\ImGuiWidgetsReflectionAggregator.h" />
+    <ClInclude Include="Share\HandlerTarget.h" />
     <ClInclude Include="Components\Common\NameComponent.h" />
     <ClInclude Include="Components\Common\NeedDestroyObjectTagComponent.h" />
     <ClInclude Include="Components\Common\ObjectInMemoryComponent.h" />
@@ -539,6 +546,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Features\Logic\End\Object\ObjectFeature.h" />
     <ClInclude Include="Features\Logic\End\Scene\SceneFeature.h" />
     <ClInclude Include="Features\Logic\End\Scene\StartedScenesInitSystem.h" />
+    <ClInclude Include="Generated files\Container\ComponentDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\ComponentEntMng.h" />
     <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\Container\ComponentJson.h" />
@@ -610,6 +618,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Share\GameObject.h" />
     <ClInclude Include="Share\HandlerPool.h" />
     <ClInclude Include="Share\ImGuiSerializeTask.h" />
+    <ClInclude Include="Share\IPropertyOf.h" />
     <ClInclude Include="Share\MathStructs.h" />
     <ClInclude Include="Share\MathTools.h" />
     <ClInclude Include="Share\PropertyOf.h" />
@@ -629,9 +638,13 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <None Include="Generated files\componentConfig.json" />
     <None Include="Configs\containerConfig.json" />
     <None Include="Generated files\Container\coreComponentConfig.json" />
+    <None Include="Generated files\Container\coreComponentDynamicCasterOut.json" />
     <None Include="Generated files\Container\coreComponentEcsOut.json" />
     <None Include="Generated files\Container\coreComponentJsonOut.json" />
     <None Include="Generated files\Container\coreComponentTypeInfoOut.json" />
+    <None Include="Generated files\Container\coreImGuiWidgetsConfig.json" />
+    <None Include="Generated files\Container\coreImGuiWidgetsDynamicCasterOut.json" />
+    <None Include="Generated files\Container\coreImGuiWidgetsTypeInfoOut.json" />
     <None Include="Generated files\ecsConfig.json" />
     <None Include="Generated files\featureConfig.json" />
     <None Include="Generated files\handlerConfig.json" />

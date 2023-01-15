@@ -45,6 +45,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorCppSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorHeaderSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.h">
       <SubType>
       </SubType>
@@ -114,6 +122,30 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorCppSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorHeaderSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -189,11 +221,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\ImGuiWidgets\PrepareConfigSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Sources\Systems\Project\Handler\MakeFileListSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\PrepareComponentConfigSystem.h" />
+    <ClInclude Include="Sources\Systems\Core\Component\PrepareConfigSystem.h" />
     <ClInclude Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.h">
       <SubType>
       </SubType>
@@ -242,6 +278,14 @@
     <ClCompile Include="Sources\Constants.cpp" />
     <ClCompile Include="Sources\MessageException.cpp" />
     <ClCompile Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorCppSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -317,6 +361,30 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorCppSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorHeaderSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorCppSystem.cpp">
       <SubType>
       </SubType>
@@ -389,11 +457,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\ImGuiWidgets\PrepareConfigSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Sources\Systems\Project\Handler\MakeFileListSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\PrepareComponentConfigSystem.cpp" />
+    <ClCompile Include="Sources\Systems\Core\Component\PrepareConfigSystem.cpp" />
     <ClCompile Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.cpp">
       <SubType>
       </SubType>

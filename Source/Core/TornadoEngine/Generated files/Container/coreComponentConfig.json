@@ -27,6 +27,17 @@
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,
         "implementations": {
+            "DynamicCaster": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "className": "TComponentDynamicCaster",
+                "fileName": "ComponentDynamicCaster",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "coreComponentDynamicCasterOut.json"
+                },
+                "keyValueMap": {}
+            },
             "EcsComponentExtension": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",

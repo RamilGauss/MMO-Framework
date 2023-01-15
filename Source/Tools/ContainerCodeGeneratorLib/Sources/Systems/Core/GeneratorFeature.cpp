@@ -19,5 +19,12 @@ namespace nsContainerCodeGenerator::nsCore
         Add(&mSaveComponentConfigSystem);
         Add(&mGenerateComponentFilesSystem);
         Add(&mDestroyComponentConfigSystem);
+
+        // ImGuiWidgets
+        Add(&mPrepareImGuiWidgetsConfigSystem);
+
+        Add(&mSaveImGuiWidgetsConfigSystem);
+        Add(&mGenerateImGuiWidgetsFilesSystem);
+        Add(&mDestroyImGuiWidgetsConfigSystem);
     }
 }

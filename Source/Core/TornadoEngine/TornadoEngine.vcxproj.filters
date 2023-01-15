@@ -550,6 +550,9 @@
     <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\ImGuiWidgetsDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\ImGuiWidgetsTypeInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -828,7 +831,7 @@
     <ClInclude Include="Handlers\Gui\IWindowCloseEventHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\HandlerTarget.h">
+    <ClInclude Include="Share\HandlerTarget.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Modules\Resources\Common\ObjectManager.h">
@@ -1247,6 +1250,12 @@
     <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\Container\ComponentJson.h" />
     <ClInclude Include="Generated files\Container\ComponentTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\ComponentDynamicCaster.h" />
+    <ClInclude Include="Share\IPropertyOf.h" />
+    <ClInclude Include="ReflectionAggregators\ImGuiWidgetsReflectionAggregator.h" />
+    <ClInclude Include="Generated files\Container\ImGuiWidgetsDynamicCaster.h" />
+    <ClInclude Include="Generated files\Container\ImGuiWidgetsIncludeList.h" />
+    <ClInclude Include="Generated files\Container\ImGuiWidgetsTypeInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />
@@ -1259,6 +1268,10 @@
     <None Include="Generated files\Container\coreComponentEcsOut.json" />
     <None Include="Generated files\Container\coreComponentJsonOut.json" />
     <None Include="Generated files\Container\coreComponentTypeInfoOut.json" />
+    <None Include="Generated files\Container\coreComponentDynamicCasterOut.json" />
+    <None Include="Generated files\Container\coreImGuiWidgetsConfig.json" />
+    <None Include="Generated files\Container\coreImGuiWidgetsDynamicCasterOut.json" />
+    <None Include="Generated files\Container\coreImGuiWidgetsTypeInfoOut.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

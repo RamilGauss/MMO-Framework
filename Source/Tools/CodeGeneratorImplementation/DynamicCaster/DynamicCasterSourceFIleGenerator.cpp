@@ -40,6 +40,22 @@ void TDynamicCasterSourceFileGenerator::Work()
 
     AddEmptyLine();
 
+    std::list<std::string> s_SmartCast =
+    {
+        "template <typename FromType, typename ToType>",
+        "ToType* SmartCast(void* p)",
+        "{",
+        "    if constexpr (std::is_polymorphic<FromType>() && std::is_polymorphic<ToType>()) {",
+        "        return dynamic_cast<ToType*>(static_cast<FromType*>(p));",
+        "    }",
+        "    return reinterpret_cast<ToType*>(static_cast<FromType*>(p));",
+        "}"
+    };
+
+    AddList(s_SmartCast);
+
+    AddEmptyLine();
+
     AddImplementations();
 }
 //-----------------------------------------------------------------------------------------------------------
@@ -207,7 +223,7 @@ void TDynamicCasterSourceFileGenerator::GenerateByTasks()
             str = fmt::format("{} {};", s_Data, src_dst_Data);
             Add(str);
 
-            str = fmt::format("{}.{} = [](void* p){{ return dynamic_cast<{}*>(static_cast<{}*>(p)); }};",
+            str = fmt::format("{}.{} = [](void* p){{ return SmartCast<{}, {}>(p); }};",
                 src_dst_Data, s_castFunc, dstTypeStr, srcTypeStr);
             Add(str);
 

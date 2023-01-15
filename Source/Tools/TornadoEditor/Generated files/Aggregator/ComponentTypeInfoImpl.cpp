@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2022_12_31 15:11:55.544
+// File has been generated at 2023_01_15 11:03:02.044
 	
 #include "ComponentTypeInfoImpl.h"
 
@@ -66,6 +66,6 @@ bool TComponentTypeInfoImpl::ConvertNameToType(const std::string& typeName, int&
     if (result) {
         return true;
     }
-    return nsTornadoEngine::TComponentTypeInfo::ConvertNameToRtti(typeName, rtti);;
+    return nsTornadoEngine::TComponentTypeInfo::ConvertNameToRtti(typeName, rtti);
 }
 //--------------------------------------------------------------------------------------------------

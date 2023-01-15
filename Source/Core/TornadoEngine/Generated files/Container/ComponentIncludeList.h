@@ -2,12 +2,11 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_27 17:42:51.410
+// File has been generated at 2023_01_14 17:27:23.923
 	
 #pragma once
 
 #include "GuidComponent.h"
-#include "HandlerTarget.h"
 #include "NameComponent.h"
 #include "NeedDestroyObjectTagComponent.h"
 #include "ObjectInMemoryComponent.h"
@@ -78,4 +77,6 @@ Core Component
 #include "SceneObjectReferenceComponent.h"
 #include "SceneReferenceComponent.h"
 #include "SystemComponent.h"
+#include "HandlerTarget.h"
+#include "IPropertyOf.h"
 #include "MathStructs.h"

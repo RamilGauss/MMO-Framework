@@ -18,6 +18,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         Add(&mGenerateAggregatorHeaderSystem);
         Add(&mGenerateAggregatorCppSystem);
         
+        // Component
         Add(&mGenerateComponentAggregatorHeaderSystem);
         Add(&mGenerateComponentAggregatorCppSystem);
 
@@ -30,6 +31,10 @@ namespace nsContainerCodeGenerator::nsAggregator
         Add(&mGenerateComponentEntMngAggregatorHeaderSystem);
         Add(&mGenerateComponentEntMngAggregatorCppSystem);
 
+        Add(&mGenerateComponentDynamicCasterAggregatorHeaderSystem);
+        Add(&mGenerateComponentDynamicCasterAggregatorCppSystem);
+
+        // Handler
         Add(&mGenerateHandlerAggregatorHeaderSystem);
         Add(&mGenerateHandlerAggregatorCppSystem);
 
@@ -39,6 +44,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         Add(&mGenerateHandlerTypeFactoryAggregatorHeaderSystem);
         Add(&mGenerateHandlerTypeFactoryAggregatorCppSystem);
 
+        // System
         Add(&mGenerateSystemAggregatorHeaderSystem);
         Add(&mGenerateSystemAggregatorCppSystem);
 
@@ -50,6 +56,16 @@ namespace nsContainerCodeGenerator::nsAggregator
 
         Add(&mGenerateSystemDynamicCasterAggregatorHeaderSystem);
         Add(&mGenerateSystemDynamicCasterAggregatorCppSystem);
+
+        // ImGuiWidgets                                                  
+        Add(&mGenerateImGuiWidgetsAggregatorHeaderSystem);
+        Add(&mGenerateImGuiWidgetsAggregatorCppSystem);
+
+        Add(&mGenerateImGuiWidgetsTypeInfoAggregatorHeaderSystem);
+        Add(&mGenerateImGuiWidgetsTypeInfoAggregatorCppSystem);
+
+        Add(&mGenerateImGuiWidgetsDynamicCasterAggregatorHeaderSystem);
+        Add(&mGenerateImGuiWidgetsDynamicCasterAggregatorCppSystem);
         
         Add(&mAddHeaderInGeneratedFilesSystem);
         Add(&mSaveGeneratedFileSystem);

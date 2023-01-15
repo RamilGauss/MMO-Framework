@@ -43,14 +43,6 @@
     <ClCompile Include="Features\ObjectHierarchyWindowInitSystem.cpp">
       <Filter>Features\Main\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Generated files\Container\EcsDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Container\EcsTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\SystemTypeFactory.cpp" />
-    <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
-    <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
-    <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\HandlerTypeFactory.cpp" />
-    <ClCompile Include="Generated files\Container\HandlerTypeInfo.cpp" />
     <ClCompile Include="Generated files\Aggregator\ComponentEntityManagerExtensionImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\ComponentJsonSerializerImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\ComponentReflectionAggregatorImpl.cpp" />
@@ -64,6 +56,19 @@
     <ClCompile Include="Generated files\Aggregator\SystemTypeInformationImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\SystemDynamicCasterImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\SystemTypeFactoryImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ComponentDynamicCasterImpl.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\EcsDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Container\EcsTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\HandlerTypeFactory.cpp" />
+    <ClCompile Include="Generated files\Container\HandlerTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\SystemTypeFactory.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentDynamicCaster.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />
@@ -103,8 +108,8 @@
     <None Include="Prefabs\ObjectHierarchyWindow.prefab">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Generated files\Container\projectEcsSystemConfig.json" />
     <None Include="Generated files\Container\projectComponentConfig.json" />
+    <None Include="Generated files\Container\projectEcsSystemConfig.json" />
     <None Include="Generated files\Container\projectHandlerConfig.json" />
     <None Include="Generated files\Container\projectSystemConfig.json" />
   </ItemGroup>
@@ -291,18 +296,6 @@
     <ClInclude Include="Components\MainWindowPrefabGuidComponent.h">
       <Filter>Components\WindowTags</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\Container\EcsDynamicCaster.h" />
-    <ClInclude Include="Generated files\Container\EcsSystemIncludeList.h" />
-    <ClInclude Include="Generated files\Container\EcsTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\SystemTypeFactory.h" />
-    <ClInclude Include="Generated files\Container\ComponentEntMng.h" />
-    <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
-    <ClInclude Include="Generated files\Container\ComponentJson.h" />
-    <ClInclude Include="Generated files\Container\ComponentTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\HandlerIncludeList.h" />
-    <ClInclude Include="Generated files\Container\HandlerTypeFactory.h" />
-    <ClInclude Include="Generated files\Container\HandlerTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\SystemIncludeList.h" />
     <ClInclude Include="Generated files\Aggregator\ComponentEntityManagerExtensionImpl.h" />
     <ClInclude Include="Generated files\Aggregator\ComponentJsonSerializerImpl.h" />
     <ClInclude Include="Generated files\Aggregator\ComponentReflectionAggregatorImpl.h" />
@@ -315,5 +308,22 @@
     <ClInclude Include="Generated files\Aggregator\SystemTypeInformationImpl.h" />
     <ClInclude Include="Generated files\Aggregator\SystemDynamicCasterImpl.h" />
     <ClInclude Include="Generated files\Aggregator\SystemTypeFactoryImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ComponentDynamicCasterImpl.h" />
+    <ClInclude Include="Generated files\Container\ComponentEntMng.h" />
+    <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
+    <ClInclude Include="Generated files\Container\ComponentJson.h" />
+    <ClInclude Include="Generated files\Container\ComponentTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\EcsDynamicCaster.h" />
+    <ClInclude Include="Generated files\Container\EcsSystemIncludeList.h" />
+    <ClInclude Include="Generated files\Container\EcsTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\HandlerIncludeList.h" />
+    <ClInclude Include="Generated files\Container\HandlerTypeFactory.h" />
+    <ClInclude Include="Generated files\Container\HandlerTypeInfo.h" />
+    <ClInclude Include="Generated files\Container\SystemIncludeList.h" />
+    <ClInclude Include="Generated files\Container\SystemTypeFactory.h" />
+    <ClInclude Include="Generated files\Container\ComponentDynamicCaster.h" />
+    <ClInclude Include="Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.h" />
   </ItemGroup>
 </Project>

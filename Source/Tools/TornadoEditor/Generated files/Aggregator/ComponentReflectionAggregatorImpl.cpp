@@ -6,13 +6,14 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2022_12_31 15:11:55.544
+// File has been generated at 2023_01_15 11:03:02.044
 	
 #include "ComponentReflectionAggregatorImpl.h"
 
 #include "ComponentJsonSerializerImpl.h"
 #include "ComponentEntityManagerExtensionImpl.h"
 #include "ComponentTypeInfoImpl.h"
+#include "ComponentDynamicCasterImpl.h"
 
 using namespace nsTornadoEditor;
 
@@ -21,6 +22,7 @@ TComponentReflectionAggregatorImpl::TComponentReflectionAggregatorImpl()
     mJson = new TComponentJsonSerializerImpl();
     mEntMng = new TComponentEntityManagerExtensionImpl();
     mTypeInfo = new TComponentTypeInfoImpl();
+    mDynamicCaster = new TComponentDynamicCasterImpl();
 }
 //--------------------------------------------------------------------------------------------------
 TComponentReflectionAggregatorImpl::~TComponentReflectionAggregatorImpl()
@@ -28,5 +30,6 @@ TComponentReflectionAggregatorImpl::~TComponentReflectionAggregatorImpl()
     delete mJson;
     delete mEntMng;
     delete mTypeInfo;
+    delete mDynamicCaster;
 }
 //--------------------------------------------------------------------------------------------------

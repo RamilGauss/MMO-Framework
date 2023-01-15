@@ -38,6 +38,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         txtGen.AddInclude(configComponent->value.aggregator.componentImpl.jsonImpl.impl.fileName + ".h");
         txtGen.AddInclude(configComponent->value.aggregator.componentImpl.entMngImpl.impl.fileName + ".h");
         txtGen.AddInclude(configComponent->value.aggregator.componentImpl.typeInfoImpl.impl.fileName + ".h");
+        txtGen.AddInclude(configComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.fileName + ".h");
 
 
         txtGen.AddEmpty();
@@ -52,6 +53,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         txtGen.AddFormatLine("mJson = new {}();", configComponent->value.aggregator.componentImpl.jsonImpl.impl.typeName);
         txtGen.AddFormatLine("mEntMng = new {}();", configComponent->value.aggregator.componentImpl.entMngImpl.impl.typeName);
         txtGen.AddFormatLine("mTypeInfo = new {}();", configComponent->value.aggregator.componentImpl.typeInfoImpl.impl.typeName);
+        txtGen.AddFormatLine("mDynamicCaster = new {}();", configComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.typeName);
 
         txtGen.DecrementTabs();
         txtGen.AddRight();
@@ -66,6 +68,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         txtGen.AddLine("delete mJson;");
         txtGen.AddLine("delete mEntMng;");
         txtGen.AddLine("delete mTypeInfo;");
+        txtGen.AddLine("delete mDynamicCaster;");
 
         txtGen.DecrementTabs();
         txtGen.AddRight();

@@ -1,20 +1,25 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information LICENSE.md.
+*/
+
 #pragma once
 
-#include "TypeDef.h"
+#include "IPropertyOf.h"
 
 namespace nsTornadoEngine
 {
-#pragma IGNORE_TYPE
     template <typename T>
-    struct DllExport TPropertyOf
+    struct DllExport TPropertyOf : IPropertyOf
     {
         mutable T* pOwner = nullptr;
 
-        // Helper for assign pOwener via dynamic_cast
-        template <typename SetType>
-        void SetOwner(SetType* p) const
+        // Helper for assign pOwner via dynamic_cast
+        void SetOwner(void* p) const override
         {
-            pOwner = dynamic_cast<T*>(p);
+            pOwner = static_cast<T*>(p);
         }
     };
 }

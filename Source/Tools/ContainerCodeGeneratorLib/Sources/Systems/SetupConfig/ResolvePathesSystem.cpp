@@ -26,8 +26,10 @@ namespace nsContainerCodeGenerator::nsSetupConfig
 
         ResolvePath(configComponent->value.coreConfig.parseDirectory);
         ResolvePath(configComponent->value.coreConfig.targetDirectory);
+        ResolvePath(configComponent->value.coreConfig.imGuiWidgetsConfig.imGuiWidgetsDirectory);
 
         ResolvePath(configComponent->value.projectConfig.pathToCore);
+
         // TODO: delete
         ResolvePath(configComponent->value.projectConfig.parseDirectory);
         ResolvePath(configComponent->value.projectConfig.targetDirectory);

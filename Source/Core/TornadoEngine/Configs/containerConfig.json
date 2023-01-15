@@ -33,6 +33,22 @@
             "entMng": {
                 "fileName": "ComponentEntMng",
                 "typeName": "TComponentEntMng"
+            },
+            "dynamicCaster": {
+                "fileName": "ComponentDynamicCaster",
+                "typeName": "TComponentDynamicCaster"
+            }
+        },
+        "imGuiWidgetsConfig": {
+            "includeListFileName": "ImGuiWidgetsIncludeList",
+            "imGuiWidgetsDirectory": "../../../Modules/ImGuiWidgets",
+            "typeInfo": {
+                "fileName": "ImGuiWidgetsTypeInfo",
+                "typeName": "TImGuiWidgetsTypeInfo"
+            },
+            "dynamicCaster": {
+                "fileName": "ImGuiWidgetsDynamicCaster",
+                "typeName": "TImGuiWidgetsDynamicCaster"
             }
         }
     },
@@ -67,6 +83,10 @@
             "entMng": {
                 "fileName": "ComponentEntMng",
                 "typeName": "TComponentEntMng"
+            },
+            "dynamicCaster": {
+                "fileName": "ComponentDynamicCaster",
+                "typeName": "TComponentDynamicCaster"
             }
         },
 
@@ -208,6 +228,16 @@
                     "fileName": "IEcsComponentExtension",
                     "typeName": "IEcsComponentExtension"
                 }
+            },
+            "dynamicCasterImpl": {
+                "impl": {
+                    "fileName": "ComponentDynamicCasterImpl",
+                    "typeName": "TComponentDynamicCasterImpl"
+                },
+                "parent": {
+                    "fileName": "IDynamicCaster",
+                    "typeName": "IDynamicCaster"
+                }
             }
         },
         "handlerImpl": {
@@ -275,6 +305,37 @@
                 "impl": {
                     "fileName": "SystemDynamicCasterImpl",
                     "typeName": "TSystemDynamicCasterImpl"
+                },
+                "parent": {
+                    "fileName": "IDynamicCaster",
+                    "typeName": "IDynamicCaster"
+                }
+            }
+        },
+        "imGuiWidgetsImpl": {
+            "impl": {
+                "fileName": "ImGuiWidgetsReflectionAggregatorImpl",
+                "typeName": "TImGuiWidgetsReflectionAggregatorImpl"
+            },
+            "parent": {
+                "fileName": "ImGuiWidgetsReflectionAggregator",
+                "typeName": "TImGuiWidgetsReflectionAggregator"
+            },
+
+            "typeInfoImpl": {
+                "impl": {
+                    "fileName": "ImGuiWidgetsTypeInfoImpl",
+                    "typeName": "TImGuiWidgetsTypeInfoImpl"
+                },
+                "parent": {
+                    "fileName": "ITypeInformation",
+                    "typeName": "ITypeInformation"
+                }
+            },
+            "dynamicCasterImpl": {
+                "impl": {
+                    "fileName": "ImGuiWidgetsDynamicCasterImpl",
+                    "typeName": "TImGuiWidgetsDynamicCasterImpl"
                 },
                 "parent": {
                     "fileName": "IDynamicCaster",

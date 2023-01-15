@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 #include "HandlerReflectionAggregator.h"
 #include "SystemReflectionAggregator.h"
 #include "MenuItemReflectionAggregator.h"
+#include "ImGuiWidgetsReflectionAggregator.h"
 
 namespace nsTornadoEngine
 {
@@ -22,5 +23,6 @@ namespace nsTornadoEngine
         THandlerReflectionAggregator* mHandlers = nullptr;
         TSystemReflectionAggregator* mSystems = nullptr;
         TMenuItemReflectionAggregator* mMenuItems = nullptr;
+        TImGuiWidgetsReflectionAggregator* mImGuiWidgets = nullptr;
     };
 }

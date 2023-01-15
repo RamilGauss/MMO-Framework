@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_27 17:42:51.365
+// File has been generated at 2023_01_14 17:27:23.839
 	
 #pragma once
 
@@ -263,6 +263,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::IPropertyOf* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::IPropertyOf* p, const Jobj& obj);
         
     };
     //------------------------------------------------------------------------------------------------------------

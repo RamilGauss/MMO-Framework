@@ -221,6 +221,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClCompile Include="Features\ObjectHierarchyWindowInitSystem.cpp" />
     <ClCompile Include="Features\ObjectHierarchyWindowRefreshSystem.cpp" />
     <ClCompile Include="Features\BootstrapperFeature.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ComponentDynamicCasterImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\ComponentEntityManagerExtensionImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\ComponentJsonSerializerImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\ComponentReflectionAggregatorImpl.cpp" />
@@ -229,11 +230,15 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClCompile Include="Generated files\Aggregator\HandlerReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\HandlerTypeFactoryImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\HandlerTypeInformationImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\ScenePartReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\SystemDynamicCasterImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\SystemReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\SystemTypeFactoryImpl.cpp" />
     <ClCompile Include="Generated files\Aggregator\SystemTypeInformationImpl.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentDynamicCaster.cpp" />
     <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
@@ -323,6 +328,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClInclude Include="Features\MainFeature.h" />
     <ClInclude Include="Features\ObjectHierarchyWindowInitSystem.h" />
     <ClInclude Include="Features\ObjectHierarchyWindowRefreshSystem.h" />
+    <ClInclude Include="Generated files\Aggregator\ComponentDynamicCasterImpl.h" />
     <ClInclude Include="Generated files\Aggregator\ComponentEntityManagerExtensionImpl.h" />
     <ClInclude Include="Generated files\Aggregator\ComponentJsonSerializerImpl.h" />
     <ClInclude Include="Generated files\Aggregator\ComponentReflectionAggregatorImpl.h" />
@@ -330,11 +336,15 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClInclude Include="Generated files\Aggregator\HandlerReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\Aggregator\HandlerTypeFactoryImpl.h" />
     <ClInclude Include="Generated files\Aggregator\HandlerTypeInformationImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.h" />
+    <ClInclude Include="Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.h" />
     <ClInclude Include="Generated files\Aggregator\ScenePartReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\Aggregator\SystemDynamicCasterImpl.h" />
     <ClInclude Include="Generated files\Aggregator\SystemReflectionAggregatorImpl.h" />
     <ClInclude Include="Generated files\Aggregator\SystemTypeFactoryImpl.h" />
     <ClInclude Include="Generated files\Aggregator\SystemTypeInformationImpl.h" />
+    <ClInclude Include="Generated files\Container\ComponentDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\ComponentEntMng.h" />
     <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
     <ClInclude Include="Generated files\Container\ComponentJson.h" />

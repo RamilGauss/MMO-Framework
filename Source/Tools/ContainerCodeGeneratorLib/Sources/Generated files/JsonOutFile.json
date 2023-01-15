@@ -13,6 +13,8 @@
         "nsContainerCodeGenerator::TGeneratedClass",
         "nsContainerCodeGenerator::THandlerAggregator",
         "nsContainerCodeGenerator::THandlerConfig",
+        "nsContainerCodeGenerator::TImGuiWidgetsAggregator",
+        "nsContainerCodeGenerator::TImGuiWidgetsConfig",
         "nsContainerCodeGenerator::TIncludeListFileName",
         "nsContainerCodeGenerator::TParentClass",
         "nsContainerCodeGenerator::TProjectConfig",

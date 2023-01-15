@@ -44,6 +44,16 @@ namespace nsContainerCodeGenerator
         TGeneratedClass binary;
         TGeneratedClass imGui;
         TGeneratedClass entMng;
+        TGeneratedClass dynamicCaster;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TImGuiWidgetsConfig : TIncludeListFileName
+    {
+        std::string imGuiWidgetsDirectory;
+
+        TGeneratedClass typeInfo;
+        TGeneratedClass dynamicCaster;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -96,6 +106,14 @@ namespace nsContainerCodeGenerator
         TAggregatorClass binaryImpl;
         TAggregatorClass imGuiImpl;
         TAggregatorClass entMngImpl;
+        TAggregatorClass dynamicCasterImpl;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TImGuiWidgetsAggregator : TAggregatorClass
+    {
+        TAggregatorClass typeInfoImpl;
+        TAggregatorClass dynamicCasterImpl;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -131,6 +149,7 @@ namespace nsContainerCodeGenerator
         std::string parseDirectory;
 
         TComponentConfig componentConfig;
+        TImGuiWidgetsConfig imGuiWidgetsConfig;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -168,6 +187,7 @@ namespace nsContainerCodeGenerator
         THandlerAggregator handlerImpl;
         TSystemAggregator systemImpl;
         //TMenuItemAggregator menuItemImpl;
+        TImGuiWidgetsAggregator imGuiWidgetsImpl;
     };
 
 #pragma REFLECTION_ATTRIBUTE

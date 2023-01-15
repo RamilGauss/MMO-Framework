@@ -17,7 +17,8 @@ See for more information LICENSE.md.
 #include "Systems/Common/DestroyTypeListSystem.h"
 
 #include "Systems/Core/DeleteGeneratedFilesSystem.h"
-#include "Systems/Core/PrepareComponentConfigSystem.h"
+#include "Systems/Core/Component/PrepareConfigSystem.h"
+#include "Systems/Core/ImGuiWidgets/PrepareConfigSystem.h"
 
 namespace nsContainerCodeGenerator::nsCore
 {
@@ -27,11 +28,18 @@ namespace nsContainerCodeGenerator::nsCore
         TDeleteGeneratedFilesSystem                mDeleteGeneratedFilesSystem;
 
         // Components
-        TPrepareComponentConfigSystem              mPrepareComponentConfigSystem;
+        nsComponent::TPrepareConfigSystem          mPrepareComponentConfigSystem;
 
         nsCommon::TSaveConfigFileSystem            mSaveComponentConfigSystem;
         nsCommon::TGenerateFilesByReflectionSystem mGenerateComponentFilesSystem;
         nsCommon::TDestroyReflectionConfigSystem   mDestroyComponentConfigSystem;
+
+        // ImGuiWidgets
+        nsImGuiWidgets::TPrepareConfigSystem       mPrepareImGuiWidgetsConfigSystem;
+
+        nsCommon::TSaveConfigFileSystem            mSaveImGuiWidgetsConfigSystem;
+        nsCommon::TGenerateFilesByReflectionSystem mGenerateImGuiWidgetsFilesSystem;
+        nsCommon::TDestroyReflectionConfigSystem   mDestroyImGuiWidgetsConfigSystem;
     public:
         void InitConveyor() override;
     };

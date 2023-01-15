@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_27 17:42:51.403
+// File has been generated at 2023_01_14 17:27:23.911
 	
 #include "ComponentTypeInfo.h"
 
@@ -476,6 +476,12 @@ void TComponentTypeInfo::Init()
     mTypeNameList.push_back(nsMathTools_TMatrix16_n);
     mRttiList.push_back(nsMathTools_TMatrix16_i);
     mNameRttiMap.insert({ nsMathTools_TMatrix16_n, nsMathTools_TMatrix16_i });
+    
+    int nsTornadoEngine_IPropertyOf_i = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
+    std::string nsTornadoEngine_IPropertyOf_n = "nsTornadoEngine::IPropertyOf";
+    mTypeNameList.push_back(nsTornadoEngine_IPropertyOf_n);
+    mRttiList.push_back(nsTornadoEngine_IPropertyOf_i);
+    mNameRttiMap.insert({ nsTornadoEngine_IPropertyOf_n, nsTornadoEngine_IPropertyOf_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

@@ -22,5 +22,7 @@ namespace nsCommonWrapper
         // this scene or prefab
         std::string partOfGuid;
         std::string entityGuid;
+
+        virtual ~THandlerTarget() {};
     };
 }

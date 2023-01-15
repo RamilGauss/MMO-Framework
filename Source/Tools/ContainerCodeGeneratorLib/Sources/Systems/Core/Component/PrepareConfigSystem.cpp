@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "PrepareComponentConfigSystem.h"
+#include "PrepareConfigSystem.h"
 
 #include <filesystem>
 
@@ -23,9 +23,9 @@ See for more information LICENSE.md.
 #include "CodeGeneratorImplementation/GeneratorList.h"
 #include "CodeGeneratorImplementation/Constants.h"
 
-namespace nsContainerCodeGenerator::nsCore
+namespace nsContainerCodeGenerator::nsCore::nsComponent
 {
-    void TPrepareComponentConfigSystem::Execute()
+    void TPrepareConfigSystem::Execute()
     {
         auto eid = nsECSFramework::SingleEntity<TConfigComponent>(mEntMng);
 
@@ -105,6 +105,18 @@ namespace nsContainerCodeGenerator::nsCore
         entMng.externalSources->outFile = TConstants::CORE_COMPONENT_ECS_OUT;
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::ECS_COMPONENT_EXTENSION, entMng });
+
+        // DynamicCaster
+        nsReflectionCodeGenerator::TSerializer dynamicCaster;
+        dynamicCaster.className = configComponent->value.coreConfig.componentConfig.dynamicCaster.typeName;
+        dynamicCaster.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        dynamicCaster.fileName = configComponent->value.coreConfig.componentConfig.dynamicCaster.fileName;
+        dynamicCaster.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+
+        dynamicCaster.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        dynamicCaster.externalSources->outFile = TConstants::CORE_COMPONENT_DYNAMIC_CASTER_OUT;
+
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
 
         // TODO: Add
         // ImGui

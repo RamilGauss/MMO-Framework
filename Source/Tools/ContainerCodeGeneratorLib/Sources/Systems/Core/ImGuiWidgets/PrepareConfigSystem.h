@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include <ECS/include/ExecuteSystem.h>
 
-namespace nsContainerCodeGenerator::nsCore
+namespace nsContainerCodeGenerator::nsCore::nsImGuiWidgets
 {
-    class DllExport TPrepareComponentConfigSystem : public nsECSFramework::TExecuteSystem
+    class DllExport TPrepareConfigSystem : public nsECSFramework::TExecuteSystem
     {
     public:
         void Execute() override;

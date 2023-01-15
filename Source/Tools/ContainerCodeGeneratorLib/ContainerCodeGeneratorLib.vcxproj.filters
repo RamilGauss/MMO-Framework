@@ -60,7 +60,7 @@
     <ClInclude Include="Sources\Systems\SetupConfig\ResolvePathesSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\PrepareComponentConfigSystem.h">
+    <ClInclude Include="Sources\Systems\Core\Component\PrepareConfigSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Project\Handler\PrepareConfigSystem.h">
@@ -219,6 +219,33 @@
     <ClInclude Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Core\ImGuiWidgets\PrepareConfigSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp">
@@ -251,7 +278,7 @@
     <ClCompile Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\PrepareComponentConfigSystem.cpp">
+    <ClCompile Include="Sources\Systems\Core\Component\PrepareConfigSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Project\Handler\PrepareConfigSystem.cpp">
@@ -393,6 +420,33 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Core\ImGuiWidgets\PrepareConfigSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include "IEcsComponentExtension.h"
 #include "ITypeInformation.h"
 #include "ITypeFactory.h"
+#include "IDynamicCaster.h"
 
 namespace nsTornadoEngine
 {
@@ -25,5 +26,6 @@ namespace nsTornadoEngine
         IBinaryMarshaller* mBin = nullptr;
         IImGuiSerializer* mImGui = nullptr;
         IEcsComponentExtension* mEntMng = nullptr;
+        IDynamicCaster* mDynamicCaster = nullptr;
     };
 }

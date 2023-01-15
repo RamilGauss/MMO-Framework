@@ -38,6 +38,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         txtGen.AddInclude(configComponent->value.aggregator.componentImpl.impl.fileName + ".h");
         txtGen.AddInclude(configComponent->value.aggregator.handlerImpl.impl.fileName + ".h");
         txtGen.AddInclude(configComponent->value.aggregator.systemImpl.impl.fileName + ".h");
+        txtGen.AddInclude(configComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName + ".h");
 
         txtGen.AddEmpty();
         txtGen.AddUsingNamespace(configComponent->value.projectConfig.nameSpace);
@@ -51,6 +52,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         txtGen.AddFormatLine("mComponents = new {}();", configComponent->value.aggregator.componentImpl.impl.typeName);
         txtGen.AddFormatLine("mHandlers = new {}();", configComponent->value.aggregator.handlerImpl.impl.typeName);
         txtGen.AddFormatLine("mSystems = new {}();", configComponent->value.aggregator.systemImpl.impl.typeName);
+        txtGen.AddFormatLine("mImGuiWidgets = new {}();", configComponent->value.aggregator.imGuiWidgetsImpl.impl.typeName);
 
         txtGen.DecrementTabs();
         txtGen.AddRight();
@@ -65,6 +67,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         txtGen.AddLine("delete mComponents;");
         txtGen.AddLine("delete mHandlers;");
         txtGen.AddLine("delete mSystems;");
+        txtGen.AddLine("delete mImGuiWidgets;");
 
         txtGen.DecrementTabs();
         txtGen.AddRight();

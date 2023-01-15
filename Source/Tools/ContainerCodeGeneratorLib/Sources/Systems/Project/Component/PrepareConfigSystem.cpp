@@ -114,6 +114,22 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::ECS_COMPONENT_EXTENSION, entMng });
 
+        // Dynamic caster
+        nsReflectionCodeGenerator::TSerializer dynamicCaster;
+        dynamicCaster.className = configComponent->value.projectConfig.componentConfig.dynamicCaster.typeName;
+        dynamicCaster.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
+        dynamicCaster.fileName = configComponent->value.projectConfig.componentConfig.dynamicCaster.fileName;
+        dynamicCaster.nameSpaceName = configComponent->value.projectConfig.nameSpace;
+
+        dynamicCaster.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+
+        std::string dynamicCasterInFileName = std::string("./") + TConstants::CORE_COMPONENT_DYNAMIC_CASTER_OUT;
+        std::string absDynamicCasterInFileName =
+            nsBase::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, dynamicCasterInFileName);
+        dynamicCaster.externalSources->inFileList.push_back(absDynamicCasterInFileName);
+
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
+
         // TODO: Add
         // ImGui
 

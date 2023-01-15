@@ -6,13 +6,14 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2022_12_31 15:11:55.544
+// File has been generated at 2023_01_15 11:03:02.044
 	
 #include "ScenePartReflectionAggregatorImpl.h"
 
 #include "ComponentReflectionAggregatorImpl.h"
 #include "HandlerReflectionAggregatorImpl.h"
 #include "SystemReflectionAggregatorImpl.h"
+#include "ImGuiWidgetsReflectionAggregatorImpl.h"
 
 using namespace nsTornadoEditor;
 
@@ -21,6 +22,7 @@ TScenePartReflectionAggregatorImpl::TScenePartReflectionAggregatorImpl()
     mComponents = new TComponentReflectionAggregatorImpl();
     mHandlers = new THandlerReflectionAggregatorImpl();
     mSystems = new TSystemReflectionAggregatorImpl();
+    mImGuiWidgets = new TImGuiWidgetsReflectionAggregatorImpl();
 }
 //--------------------------------------------------------------------------------------------------
 TScenePartReflectionAggregatorImpl::~TScenePartReflectionAggregatorImpl()
@@ -28,5 +30,6 @@ TScenePartReflectionAggregatorImpl::~TScenePartReflectionAggregatorImpl()
     delete mComponents;
     delete mHandlers;
     delete mSystems;
+    delete mImGuiWidgets;
 }
 //--------------------------------------------------------------------------------------------------

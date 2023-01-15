@@ -247,4 +247,29 @@ namespace nsBase
         }
     }
     //--------------------------------------------------------------------------------------------------
+    void TTextGenerator::AddFormatted(const std::list<std::string>& lines, const std::map<std::string, std::string>& namedArgs)
+    {
+        for (auto& line : lines) {
+
+            if (line.find("%") != std::string::npos) {
+                std::string exchangedLine = line;
+                for (auto& namedArg : namedArgs) {
+                    auto forSearch = fmt::format("%{}%", namedArg.first);
+
+                    while (true) {
+                        auto searchIndex = exchangedLine.find(forSearch);
+                        if (searchIndex == std::string::npos) {
+                            break;
+                        }
+
+                        exchangedLine.replace(searchIndex, forSearch.size(), namedArg.second);
+                    }
+                }
+                AddLine(exchangedLine);
+            } else {
+                AddLine(line);
+            }
+        }
+    }
+    //--------------------------------------------------------------------------------------------------
 }

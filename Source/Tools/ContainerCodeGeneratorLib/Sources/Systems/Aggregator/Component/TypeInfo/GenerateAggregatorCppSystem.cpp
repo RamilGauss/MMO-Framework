@@ -179,7 +179,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsTypeInfo
         txtGen.DecrementTabs();
         txtGen.AddRight();
 
-        auto cnvrtNameRet = fmt::format("{}::{}::ConvertNameToRtti(typeName, rtti);",
+        auto cnvrtNameRet = fmt::format("{}::{}::ConvertNameToRtti(typeName, rtti)",
             configComponent->value.coreConfig.nameSpace,
             configComponent->value.coreConfig.componentConfig.typeInfo.typeName);
 

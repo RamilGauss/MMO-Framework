@@ -9,6 +9,8 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/Window.h>
 
+#include "TimeSliceEngine/ProjectConfigContainer.h"
+
 #include "SizeComponent.h"
 #include "PositionComponent.h"
 
@@ -35,6 +37,33 @@ void TWindowMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrap
     pWindowComponent->value = pWindow;
 
     auto entMng = GetEntMng();
+
+    auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
+    componentReflection->mEntMng->SetEntityManager(mEntMng);
+
+    auto imGuiWidgetsReflection = nsTornadoEngine::Project()->mScenePartAggregator->mImGuiWidgets;
+
+    {
+        int srcRtti;
+        componentReflection->mTypeInfo->ConvertNameToType("nsGuiWrapper::TTitleComponent", srcRtti);
+
+        int dstRtti;
+        componentReflection->mTypeInfo->ConvertNameToType("nsTornadoEngine::IPropertyOf", dstRtti);
+
+        void* pC = (void*)componentReflection->mEntMng->ViewComponent(eid, srcRtti);
+
+        auto propertyOf = (nsTornadoEngine::IPropertyOf*)componentReflection->mDynamicCaster->Cast(srcRtti, pC, dstRtti);
+
+        int windowRtti;
+        imGuiWidgetsReflection->mTypeInfo->ConvertNameToType("nsImGuiWidgets::TWindow", windowRtti);
+        int targetRtti;
+        imGuiWidgetsReflection->mTypeInfo->ConvertNameToType("nsImGuiWidgets::TTitle", targetRtti);
+        auto targetPtr = imGuiWidgetsReflection->mDynamicCaster->Cast(windowRtti, pWindow, targetRtti);
+
+        propertyOf->SetOwner(targetPtr);
+    }
+
+
 
     entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->SetOwner(pWindow);
     entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->SetOwner(pWindow);
