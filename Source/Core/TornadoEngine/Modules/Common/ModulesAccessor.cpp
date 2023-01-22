@@ -84,3 +84,8 @@ void TModulesAccessor::SetGizmo(TGizmo* value)
     Modules()->gizmo = value;
 }
 //--------------------------------------------------------------------------
+void TModulesAccessor::SetPropertyMng(TPropertyManager* value)
+{
+    Modules()->propertyMng = value;
+}
+//--------------------------------------------------------------------------

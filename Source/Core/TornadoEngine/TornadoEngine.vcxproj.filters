@@ -553,6 +553,8 @@
     <ClCompile Include="Generated files\Container\ComponentDynamicCaster.cpp" />
     <ClCompile Include="Generated files\Container\ImGuiWidgetsDynamicCaster.cpp" />
     <ClCompile Include="Generated files\Container\ImGuiWidgetsTypeInfo.cpp" />
+    <ClCompile Include="Modules\PropertyManager\PropertyManager.cpp" />
+    <ClCompile Include="Modules\PropertyManager\PropertyManagerConfigs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -1256,6 +1258,10 @@
     <ClInclude Include="Generated files\Container\ImGuiWidgetsDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsIncludeList.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsTypeInfo.h" />
+    <ClInclude Include="Modules\PropertyManager\PropertyManager.h" />
+    <ClInclude Include="Modules\PropertyManager\ArchetypeField.h" />
+    <ClInclude Include="Modules\PropertyManager\TypeDependency.h" />
+    <ClInclude Include="Modules\PropertyManager\PropertyManagerConfigs.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

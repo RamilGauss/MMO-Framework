@@ -41,6 +41,7 @@ namespace nsTornadoEngine
     class TPrefabObjectConstructor;
     class THierarchyHelper;
     class TGizmo;
+    class TPropertyManager;
 
     class DllExport TModules
     {
@@ -67,6 +68,8 @@ namespace nsTornadoEngine
         TPrefabObjectConstructor* PrefabObjConstructor() const;
 
         TGizmo* Gizmo() const;
+
+        TPropertyManager* PropertyMng() const;
     protected:
         friend class TModulesAccessor;
 
@@ -92,6 +95,7 @@ namespace nsTornadoEngine
         TPrefabObjectConstructor* prefabObjectConstructor = nullptr;
 
         TGizmo* gizmo = nullptr;
+        TPropertyManager* propertyMng = nullptr;
 
         friend class TSingletonManager;
         TModules();

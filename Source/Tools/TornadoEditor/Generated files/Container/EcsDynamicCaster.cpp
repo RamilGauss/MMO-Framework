@@ -2,7 +2,7 @@
 Project Ecs System
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_15 11:03:01.926
+// File has been generated at 2023_01_20 18:48:00.063
 	
 #include "EcsDynamicCaster.h"
 #include "SingletonManager.h"
@@ -597,7 +597,7 @@ void TEcsDynamicCaster::Init()
 void* TEcsDynamicCaster::Cast(int srcRtti, void* p, int dstRtti)
 {
     Init();
-    return mDataVector[srcRtti][dstRtti].castFunc(p);
+    return mDataVector[dstRtti][srcRtti].castFunc(p);
 }
 //---------------------------------------------------------------------------------------
 const std::map<int, std::set<int>>& TEcsDynamicCaster::GetRttiCombinations()

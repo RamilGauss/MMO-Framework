@@ -15,53 +15,53 @@ See for more information LICENSE.md.
 
 class THandlerMMO : public TDstEvent
 {
-  nsMMOEngine::TBase* mBase = nullptr;
+    nsMMOEngine::TBase* mBase = nullptr;
 
 public:
-  enum TypeMMO
-  {
-    eClient, eSlave, eMaster, eSuperServer
-  };
+    enum TypeMMO
+    {
+        eClient, eSlave, eMaster, eSuperServer
+    };
 
-  THandlerMMO( nsMMOEngine::TBase* pBase, TypeMMO type );
-  void Work();
+    THandlerMMO(nsMMOEngine::TBase* pBase, TypeMMO type);
+    void Work();
 
-  virtual void WorkInherit()
-  {};
+    virtual void WorkInherit()
+    {};
 
-  static int GetCountConnection( TypeMMO type );
+    static int GetCountConnection(TypeMMO type);
 
-  void AddConnection( unsigned int sessionID );
-  void RemoveConnection( unsigned int sessionID );
+    void AddConnection(unsigned int sessionID);
+    void RemoveConnection(unsigned int sessionID);
 
-  void AddConnectedClient( nsMMOEngine::TClient* pClient );
-  void RemoveConnectedClient( nsMMOEngine::TClient* pClient );
+    void AddConnectedClient(nsMMOEngine::TClient* pClient);
+    void RemoveConnectedClient(nsMMOEngine::TClient* pClient);
 
 
-  void AddClient( unsigned int clientKey );
-  void RemoveClient( unsigned int clientKey );
+    void AddClient(unsigned int clientKey);
+    void RemoveClient(unsigned int clientKey);
 
-  void AddTryConnectClientToMaster( unsigned int sessionID );
+    void AddTryConnectClientToMaster(unsigned int sessionID);
 
-  nsMMOEngine::TBase* GetBase();
+    nsMMOEngine::TBase* GetBase();
 protected:
-  virtual void HandleFromMMOEngine( nsEvent::TEvent* pEvent ) = 0;
+    virtual void HandleFromMMOEngine(nsEvent::TEvent* pEvent) = 0;
 
-  static std::string ToString( TypeMMO type );
+    static std::string ToString(TypeMMO type);
 
 public:
-  static void PrintCC( const char* loggerName );
+    static void PrintCC(const char* loggerName);
 
-  typedef std::unordered_set<nsMMOEngine::TClient*> TSetClient;
-  typedef std::unordered_set<unsigned int> TSetUInt;
-  typedef std::unordered_map<THandlerMMO::TypeMMO, TSetUInt> TMapTypeMMOSetUInt;
-  typedef std::unordered_map<unsigned int, TSetUInt> TMapUIntSetUInt;
-  typedef std::unordered_map<unsigned int, THandlerMMO*> TMapUIntPtr;
+    typedef std::unordered_set<nsMMOEngine::TClient*> TSetClient;
+    typedef std::unordered_set<unsigned int> TSetUInt;
+    typedef std::unordered_map<THandlerMMO::TypeMMO, TSetUInt> TMapTypeMMOSetUInt;
+    typedef std::unordered_map<unsigned int, TSetUInt> TMapUIntSetUInt;
+    typedef std::unordered_map<unsigned int, THandlerMMO*> TMapUIntPtr;
 
-  static TSetUInt* GetClientKeySet();
+    static TSetUInt* GetClientKeySet();
 private:
-  TypeMMO mType;
+    TypeMMO mType;
 
-  unsigned int mID;
+    unsigned int mID;
 };
 

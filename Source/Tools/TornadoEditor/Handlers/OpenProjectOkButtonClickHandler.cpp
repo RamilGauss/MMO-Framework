@@ -49,7 +49,6 @@ bool TOpenProjectOkButtonClickHandler::LoadProjectConfig(const std::string& absP
         return false;
     }
     return deserResult;
-
 }
 //---------------------------------------------------------------------------------------------------------------------
 void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pC)

@@ -87,9 +87,12 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
         txtGen.AddLongLine();
 
         // Serialize
-        std::list<std::string> args = { "void* p",
-                "std::string& json",
-                "int rtti" };
+        std::list<std::string> args =
+        {
+            "void* p",
+            "std::string& json",
+            "int rtti"
+        };
 
         txtGen.AddMethodDef(impl.impl.typeName, "Serialize", "void", args);
         txtGen.AddLeft();
@@ -122,10 +125,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
         txtGen.AddLongLine();
 
         // Deserialize
-        args = { "void* p",
+        args =
+        {
+            "void* p",
             "const std::string& json",
             "int rtti",
-            "std::string& err" };
+            "std::string& err"
+        };
 
         txtGen.AddMethodDef(impl.impl.typeName, "Deserialize", "bool", args);
         txtGen.AddLeft();

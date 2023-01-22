@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_23 10:37:27.614
+// File has been generated at 2023_01_19 17:35:55.725
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -136,6 +136,18 @@ void TTornadoEngineJsonSerializer::Init()
     auto rtti__nsMathTools_TVector4TypeFunc = globalTypeIdentifier->Type<nsMathTools::TVector4>();
     
     m.insert({ rtti__nsMathTools_TVector4TypeFunc, _nsMathTools_TVector4TypeFunc });
+    
+    TypeFunc _nsTornadoEngine_TArchetypeFieldTypeFunc;
+    _nsTornadoEngine_TArchetypeFieldTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEngine::TArchetypeField>((nsTornadoEngine::TArchetypeField*) p, str);
+    };
+    _nsTornadoEngine_TArchetypeFieldTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEngine::TArchetypeField>((nsTornadoEngine::TArchetypeField*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEngine_TArchetypeFieldTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TArchetypeField>();
+    
+    m.insert({ rtti__nsTornadoEngine_TArchetypeFieldTypeFunc, _nsTornadoEngine_TArchetypeFieldTypeFunc });
     
     TypeFunc _nsTornadoEngine_TComponentContentTypeFunc;
     _nsTornadoEngine_TComponentContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -455,6 +467,32 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsMathTools::TVector4* p, const 
     POM::PopNum(obj, "w", p->w);
 }
 //---------------------------------------------------------------------------------------
+std::string TTornadoEngineJsonSerializer::_SerializeEnum(nsTornadoEngine::FieldAccessType* p)
+{
+    switch (*p) {
+        case nsTornadoEngine::FieldAccessType::DELETE:
+            return "DELETE";
+        case nsTornadoEngine::FieldAccessType::READ:
+            return "READ";
+        case nsTornadoEngine::FieldAccessType::SHOW:
+            return "SHOW";
+        case nsTornadoEngine::FieldAccessType::WRITE:
+            return "WRITE";
+        default:;
+    }
+    return "";
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_DeserializeEnum(std::string& str, nsTornadoEngine::FieldAccessType* p)
+{
+    std::map<std::string, nsTornadoEngine::FieldAccessType> m;
+    m.insert({"DELETE", nsTornadoEngine::FieldAccessType::DELETE});
+    m.insert({"READ", nsTornadoEngine::FieldAccessType::READ});
+    m.insert({"SHOW", nsTornadoEngine::FieldAccessType::SHOW});
+    m.insert({"WRITE", nsTornadoEngine::FieldAccessType::WRITE});
+    *p = m[str];
+}
+//---------------------------------------------------------------------------------------
 std::string TTornadoEngineJsonSerializer::_SerializeEnum(nsTornadoEngine::ModuleType* p)
 {
     switch (*p) {
@@ -488,6 +526,29 @@ void TTornadoEngineJsonSerializer::_DeserializeEnum(std::string& str, nsTornadoE
     m.insert({"PhysicEngine", nsTornadoEngine::ModuleType::PhysicEngine});
     m.insert({"SoundEngine", nsTornadoEngine::ModuleType::SoundEngine});
     *p = m[str];
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TArchetypeField* p, Jobj& obj)
+{
+    PUM::Push(obj, "name", p->name);
+    PUM::Value access_a0(rapidjson::kArrayType);
+    for(auto& access_e0 : p->access) {
+        auto access_c1 = _SerializeEnum(&access_e0);
+        PUM::PushBack(access_a0, access_c1);
+    }
+    PUM::Push(obj, "access", access_a0);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TArchetypeField* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "name", p->name);
+    auto access_a0 = POM::FindArray(obj, "access");
+    for(auto& access_e0 : access_a0) {
+        std::string access_o1 = access_e0.GetString();
+        nsTornadoEngine::FieldAccessType access_c1;
+        _DeserializeEnum(access_o1, &access_c1);
+        p->access.push_back(access_c1);
+    }
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TComponentContent* p, Jobj& obj)

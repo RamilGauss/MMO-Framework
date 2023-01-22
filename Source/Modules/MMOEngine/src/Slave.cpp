@@ -111,7 +111,7 @@ void TSlave::GetDescDown(std::list<unsigned int>& sessionID_List)
     }
 }
 //-------------------------------------------------------------------------
-void TSlave::ConnectUp(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet)
+void TSlave::ConnectUp(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet)
 {
     // если сессия жива, то значит либо соединились, либо соединяемся
     if (mSessionUpID != INVALID_HANDLE_SESSION)

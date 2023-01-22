@@ -12,6 +12,5 @@ using namespace nsGuiWrapper;
 
 void TTitleAddSystem::Reactive(nsECSFramework::TEntityID eid, const TTitleComponent* pTitleComponent)
 {
-    auto pUnit = pTitleComponent->pOwner;
-    pUnit->SetTitle(pTitleComponent->value);
+    pTitleComponent->pOwner->SetTitle(pTitleComponent->value);
 }

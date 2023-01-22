@@ -24,7 +24,7 @@ TScenarioLoginMaster::~TScenarioLoginMaster()
 
 }
 //--------------------------------------------------------------
-void TScenarioLoginMaster::ConnectToSuperServer(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet)
+void TScenarioLoginMaster::ConnectToSuperServer(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet)
 {
     if (Begin() == false) {
         End();

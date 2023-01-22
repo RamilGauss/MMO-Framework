@@ -241,12 +241,12 @@ namespace nsECSFramework
     private:
         boost::dll::experimental::smart_library mLib;
 
-        typedef std::list<std::string> TStrList;
-        typedef std::set<std::string> TStrSet;
-        typedef std::list<TStrSet> TStrSetList;
-        typedef std::map<TStrSet, TStrList> TStrSetStrListMap;
-        typedef std::map<TStrSet, int> TStrSetIntMap;
-        typedef std::map<TStrSet, std::string> TStrSetStrMap;
+        using TStrList = std::list<std::string>;
+        using TStrSet = std::set<std::string>;
+        using TStrSetList = std::list<TStrSet>;
+        using TStrSetStrListMap = std::map<TStrSet, TStrList>;
+        using TStrSetIntMap = std::map<TStrSet, int>;
+        using TStrSetStrMap = std::map<TStrSet, std::string>;
 
         TStrSetStrMap mTypeIndexNameFuncMap;
         TStrSetIntMap mComponentsTypeIndexMap;

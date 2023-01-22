@@ -58,7 +58,7 @@ void TScLoginClient_ClientImpl::Work(unsigned int time_ms)
     End();
 }
 //-----------------------------------------------------------------------------
-void TScLoginClient_ClientImpl::TryLogin(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet)
+void TScLoginClient_ClientImpl::TryLogin(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet)
 {
     if (Begin() == false) {
         // генерация ошибки

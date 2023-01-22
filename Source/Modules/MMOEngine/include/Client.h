@@ -23,7 +23,7 @@ namespace nsMMOEngine
 
         virtual bool Open(TDescOpen* pDesc, int count = 1);
 
-        void Login(TIP_Port& ip_port, std::string& login, std::string& password);
+        void Login(TIP_Port& ip_port, const std::string& login, const std::string& password);
         void LeaveQueue();
     protected:
         // Base

@@ -236,7 +236,7 @@ unsigned char TContextScLoginClient::GetSubNet()
     return mSubNet;
 }
 //--------------------------------------------------------------
-void TContextScLoginClient::SetLogin(std::string& login)
+void TContextScLoginClient::SetLogin(const std::string& login)
 {
     mLogin = login;
 }
@@ -246,7 +246,7 @@ std::string TContextScLoginClient::GetLogin()
     return mLogin;
 }
 //--------------------------------------------------------------
-void TContextScLoginClient::SetPassword(std::string& password)
+void TContextScLoginClient::SetPassword(const std::string& password)
 {
     mPassword = password;
 }

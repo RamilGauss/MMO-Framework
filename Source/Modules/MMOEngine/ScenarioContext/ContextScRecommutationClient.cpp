@@ -150,7 +150,7 @@ unsigned int TContextScRecommutationClient::GetRandomNum()
     return mRandomNum;
 }
 //------------------------------------------------------------------
-void TContextScRecommutationClient::SetLogin(std::string& login)
+void TContextScRecommutationClient::SetLogin(const std::string& login)
 {
     mLogin = login;
 }
@@ -160,7 +160,7 @@ std::string TContextScRecommutationClient::GetLogin()
     return mLogin;
 }
 //--------------------------------------------------------------
-void TContextScRecommutationClient::SetPassword(std::string& password)
+void TContextScRecommutationClient::SetPassword(const std::string& password)
 {
     mPassword = password;
 }

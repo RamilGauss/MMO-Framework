@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Position.h>
+#include <ImGuiWidgets/include/Widget.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TPositionComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TPosition>, nsECSFramework::IComponent
+    struct DllExport TPositionComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TWidget>, nsECSFramework::IComponent
     {
         int x = 0;
         int y = 0;

@@ -77,7 +77,7 @@ namespace nsMMOEngine
 
         void DisconnectFromClient(unsigned char subNet);
 
-        void SetClientLoginPassword(std::string& login, std::string& password);
+        void SetClientLoginPassword(const std::string& login, const std::string& password);
 
     protected:
         virtual void Work();

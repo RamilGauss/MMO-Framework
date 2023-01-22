@@ -45,7 +45,7 @@ void TScenarioLoginClient::Work()
     }
 }
 //--------------------------------------------------------------
-void TScenarioLoginClient::TryLogin(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet)
+void TScenarioLoginClient::TryLogin(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet)
 {
     mClient.TryLogin(ip_port, login, password, subNet);
 }

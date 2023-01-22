@@ -143,22 +143,12 @@ bool TSession::RecvData(void* data, int dataSize, TContainerPtr& result)
     return true;
 }
 //---------------------------------------------------------------------
-bool TSession::RecvKeyAES(void* pKey, int keySize)// Client
+void TSession::RecvKeyAES(void* pKey, int keySize)// Client
 {
     mPasswordAES.Decrypt(pKey, keySize, mDecrypt);
 
-    unsigned char crc8;
-    auto decryptDataSize = mDecrypt.GetSize() - sizeof(unsigned char);
-    mCalcCRC8.Calc(mDecrypt.GetPtr(), decryptDataSize, crc8);
-
-    unsigned char recvCRC8 = ((unsigned char*)mDecrypt.GetPtr())[decryptDataSize];
-    if (crc8 != recvCRC8) {
-        return false;
-    }
-
     // запомнить пароль для работы
-    SetKeyAES(mDecrypt.GetPtr(), decryptDataSize);
-    return true;
+    SetKeyAES(mDecrypt.GetPtr(), mDecrypt.GetSize());
 }
 //---------------------------------------------------------------------
 unsigned int TSession::GetID() const
@@ -262,13 +252,6 @@ void TSession::SendKeyAES()// Server
     mSendAES.GetKey(mBuffer);
     mRecvAES.SetKey(mBuffer.GetPtr(), mBuffer.GetSize());
 
-    unsigned char crc8;// расчет контрольной суммы ключа
-    mCalcCRC8.Calc(mBuffer.GetPtr(), mBuffer.GetSize(), crc8);
-    mBP.Reset();// склейка CRC8 и ключа
-    mBP.PushBack((char*)mBuffer.GetPtr(), mBuffer.GetSize());
-    mBP.PushBack((char*)&crc8, sizeof(crc8));
-
-    mBP.CopyInBuffer(mBuffer);
     // шифрование
     mPasswordAES.Encrypt(mBuffer.GetPtr(), mBuffer.GetSize(), mEncrypt);// шифруем рабочий ключ паролем 
 
@@ -278,7 +261,7 @@ void TSession::SendKeyAES()// Server
     SendData(eKeyAES, mBP, true);
 }
 //---------------------------------------------------------------------
-void TSession::SetLogin(std::string& login)
+void TSession::SetLogin(const std::string& login)
 {
     mLogin = login;
     mSHA256.FastCalc((char*)mLogin.data(), mLogin.size(), mLoginHash);

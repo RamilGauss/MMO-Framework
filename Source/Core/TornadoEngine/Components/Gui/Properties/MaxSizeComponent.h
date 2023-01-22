@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/MaxSize.h>
+#include <ImGuiWidgets/include/Unit.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TMaxSizeComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TMaxSize>, nsECSFramework::IComponent
+    struct DllExport TMaxSizeComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TUnit>, nsECSFramework::IComponent
     {
         int x = 0;
         int y = 0;

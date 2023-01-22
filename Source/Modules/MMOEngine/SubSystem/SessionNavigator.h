@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -16,42 +16,42 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  class TSession;
-  class TSessionNavigator
-  {
-    typedef std::map<unsigned int,TSession*> TMapUintPtr;
-    typedef TMapUintPtr::iterator TMapUintPtrIt;
-    typedef TMapUintPtr::value_type TMapUintPtrVT;
-    
-    typedef std::map<TIP_Port,TSession*> TMapIP_Ptr;
-    typedef TMapIP_Ptr::iterator TMapIP_PtrIt;
-    typedef TMapIP_Ptr::value_type TMapIP_PtrItVT;
+    class TSession;
+    class TSessionNavigator
+    {
+        typedef std::map<unsigned int, TSession*> TMapUintPtr;
+        typedef TMapUintPtr::iterator TMapUintPtrIt;
+        typedef TMapUintPtr::value_type TMapUintPtrVT;
 
-    typedef std::set<TSession*> TSetPtr;
-    typedef TSetPtr::iterator TSetPtrIt;
+        typedef std::map<TIP_Port, TSession*> TMapIP_Ptr;
+        typedef TMapIP_Ptr::iterator TMapIP_PtrIt;
+        typedef TMapIP_Ptr::value_type TMapIP_PtrItVT;
 
-    TMapUintPtr mMapID_Session;
-    TMapIP_Ptr  mMapIP_Session;
-    TSetPtr     mSetSession;
+        typedef std::set<TSession*> TSetPtr;
+        typedef TSetPtr::iterator TSetPtrIt;
 
-  public:
-    TSessionNavigator();
-    ~TSessionNavigator();
-    
-    void Add(TSession* pSession);
-    void Delete(TSession* pSession);
-    TSession* FindSessionByIP(TIP_Port& ip_port);
-    TSession* FindSessionByID(unsigned int id);
+        TMapUintPtr mMapID_Session;
+        TMapIP_Ptr  mMapIP_Session;
+        TSetPtr     mSetSession;
 
-    bool IsExist(TSession* pSession);
+    public:
+        TSessionNavigator();
+        ~TSessionNavigator();
 
-    std::set<TSession*>::iterator Begin();
-    std::set<TSession*>::iterator End();
+        void Add(TSession* pSession);
+        void Delete(TSession* pSession);
+        TSession* FindSessionByIP(TIP_Port& ip_port);
+        TSession* FindSessionByID(unsigned int id);
 
-    using WorkReturnFalseCallback = std::function<void( TSession* pSession )>;
-    void Work( std::list<TSession*>& sessionListRetFalse );
+        bool IsExist(TSession* pSession);
 
-    void Clear();
-  protected:
-  };
+        std::set<TSession*>::iterator Begin();
+        std::set<TSession*>::iterator End();
+
+        using WorkReturnFalseCallback = std::function<void(TSession* pSession)>;
+        void Work(std::list<TSession*>& sessionListRetFalse);
+
+        void Clear();
+    protected:
+    };
 }

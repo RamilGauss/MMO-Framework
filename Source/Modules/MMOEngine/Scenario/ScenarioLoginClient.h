@@ -72,7 +72,7 @@ namespace nsMMOEngine
         virtual void Recv(TDescRecvSession* pDesc);
     public:
         // от клиента, попытка авторизации
-        void TryLogin(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet);
+        void TryLogin(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet);
 
         void LeaveQueue();
         // решение Мастера

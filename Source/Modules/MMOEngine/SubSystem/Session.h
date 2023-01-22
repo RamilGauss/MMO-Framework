@@ -92,7 +92,7 @@ namespace nsMMOEngine
 
     public:
         TSession(State state, unsigned int time_live_ms);
-        ~TSession();
+        virtual ~TSession();
 
         bool Work();
         void Send(TBreakPacket& bp, bool check = true);
@@ -101,7 +101,7 @@ namespace nsMMOEngine
         void SetInfo(TIP_Port& pDesc);
 
         bool RecvData(void* data, int dataSize, TContainerPtr& result);
-        bool RecvKeyAES(void* pKey, int keySize);
+        void RecvKeyAES(void* pKey, int keySize);
         bool RecvIDconfirmation(void* pConfirm, int confirmSize);
         unsigned int GetID() const;
         void SetID(unsigned int id);
@@ -123,7 +123,7 @@ namespace nsMMOEngine
         void SendEcho();
         void SendData(char type, TBreakPacket& bp, bool check = true);
 
-        void SetLogin(std::string& login);
+        void SetLogin(const std::string& login);
         void SetLoginHash(char* loginHash, int loginHashSize);
         std::string GetLoginHashStr();
 

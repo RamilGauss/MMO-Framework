@@ -2,7 +2,7 @@
 Project Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_15 11:02:56.793
+// File has been generated at 2023_01_20 18:47:55.273
 	
 #pragma once
 

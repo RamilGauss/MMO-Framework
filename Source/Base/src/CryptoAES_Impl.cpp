@@ -43,8 +43,9 @@ bool TCryptoAES_Impl::GenerateKey(eCountBits c)
     mKey.SetDataByCount(nullptr, sizeKey);
     int res = RAND_bytes((unsigned char*)mKey.GetPtr(), mKey.GetSize());
 
-    if (res == 0)
+    if (res == 0) {
         return false;
+    }
 
     // Выбираем алгоритм шифрования
     switch (c) {
@@ -66,16 +67,19 @@ bool TCryptoAES_Impl::GenerateKey(eCountBits c)
 bool TCryptoAES_Impl::InnerEncrypt(void* pIn, int sizeIn, void* pOut)
 {
     int res = EVP_EncryptInit_ex(CONTEXT, CIPHER, nullptr, (const unsigned char*)mKey.GetPtr(), iv);
-    if (res != 1)
+    if (res != 1) {
         return false;
+    }
     int sizeOut;
     // Шифруем данные
     res = EVP_EncryptUpdate(CONTEXT, (unsigned char*)pOut, &sizeOut, (const unsigned char*)pIn, sizeIn);
-    if (res != 1)
+    if (res != 1) {
         return false;
+    }
     res = EVP_EncryptFinal_ex(CONTEXT, (unsigned char*)pOut + sizeOut, &sizeOut);
-    if (res != 1)
+    if (res != 1) {
         return false;
+    }
     return true;
 }
 //--------------------------------------------------------------------------------
@@ -94,17 +98,20 @@ bool TCryptoAES_Impl::Encrypt(void* pIn, int sizeIn, TContainer& c_out)
 bool TCryptoAES_Impl::InnerDecrypt(void* pIn, int sizeIn, void* pOut)
 {
     auto res = EVP_DecryptInit_ex(CONTEXT, CIPHER, nullptr, (const unsigned char*)mKey.GetPtr(), iv);
-    if (res != 1)
+    if (res != 1) {
         return false;
+    }
     int sizeOut;
     // дешифруем данные
     res = EVP_DecryptUpdate(CONTEXT, (unsigned char*)pOut, &sizeOut, (const unsigned char*)pIn, sizeIn);
-    if (res != 1)
+    if (res != 1) {
         return false;
+    }
     // Завершаем процесс дешифрования
     res = EVP_DecryptFinal_ex(CONTEXT, (unsigned char*)pOut + sizeOut, &sizeOut);
-    if (res != 1)
+    if (res != 1) {
         return false;
+    }
     return true;
 }
 //--------------------------------------------------------------------------------
@@ -127,8 +134,9 @@ bool TCryptoAES_Impl::Decrypt(void* pIn, int sizeIn, TContainerPtr& c_out)
 //--------------------------------------------------------------------------------
 bool TCryptoAES_Impl::GetKey(TContainerRise& c_out)
 {
-    if (mKey.GetSize() == 0)
+    if (mKey.GetSize() == 0) {
         return false;
+    }
 
     c_out.Clear();
     c_out.Append(mKey.GetSize(), (char*)mKey.GetPtr());

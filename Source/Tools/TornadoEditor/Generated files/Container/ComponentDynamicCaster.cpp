@@ -2,7 +2,7 @@
 Project Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_15 11:02:56.891
+// File has been generated at 2023_01_20 18:47:55.310
 	
 #include "ComponentDynamicCaster.h"
 #include "SingletonManager.h"
@@ -63,7 +63,7 @@ void TComponentDynamicCaster::Init()
 void* TComponentDynamicCaster::Cast(int srcRtti, void* p, int dstRtti)
 {
     Init();
-    return mDataVector[srcRtti][dstRtti].castFunc(p);
+    return mDataVector[dstRtti][srcRtti].castFunc(p);
 }
 //---------------------------------------------------------------------------------------
 const std::map<int, std::set<int>>& TComponentDynamicCaster::GetRttiCombinations()

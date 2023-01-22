@@ -26,7 +26,7 @@ namespace nsMMOEngine
 
         void DisconnectClient(unsigned char subNet);
 
-        void SetLoginPassword(std::string& login, std::string& password);
+        void SetLoginPassword(const std::string& login, const std::string& password);
     protected:
         virtual void RecvInherit(TDescRecvSession* pDesc);
 

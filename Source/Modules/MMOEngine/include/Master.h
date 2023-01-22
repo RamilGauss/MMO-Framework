@@ -48,7 +48,7 @@ namespace nsMMOEngine
 
         void SendDown(unsigned int sessionID, char* p, int size, bool check = true) override;
         // ActiveServer      
-        void ConnectUp(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet = 0) override;
+        void ConnectUp(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet = 0) override;
     protected:
         // Base
         void DisconnectInherit(unsigned int sessionID) override;

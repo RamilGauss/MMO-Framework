@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_23 10:37:27.612
+// File has been generated at 2023_01_19 17:35:55.722
 	
 #pragma once
 
@@ -66,8 +66,14 @@ namespace nsTornadoEngine
         static void _Serialize(nsMathTools::TVector4* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TVector4* p, const Jobj& obj);
         
+        static std::string _SerializeEnum(nsTornadoEngine::FieldAccessType* p);
+        static void _DeserializeEnum(std::string& str, nsTornadoEngine::FieldAccessType* p);
+        
         static std::string _SerializeEnum(nsTornadoEngine::ModuleType* p);
         static void _DeserializeEnum(std::string& str, nsTornadoEngine::ModuleType* p);
+        
+        static void _Serialize(nsTornadoEngine::TArchetypeField* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TArchetypeField* p, const Jobj& obj);
         
         static void _Serialize(nsTornadoEngine::TComponentContent* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TComponentContent* p, const Jobj& obj);

@@ -12,39 +12,39 @@ See for more information LICENSE.md.
 
 namespace nsMMOEngine
 {
-  struct TBaseTransportEvent
-  {
-    enum Type
+    struct TBaseTransportEvent
     {
-      Recv, Disconnect, ConnectFrom
+        enum Type
+        {
+            Recv, Disconnect, ConnectFrom
+        };
+        Type type;
+        TIP_Port ip_port;
     };
-    Type type;
-    TIP_Port ip_port;
-  };
 
-  struct TRecvTransportEvent : public TBaseTransportEvent
-  {
-    TRecvTransportEvent()
+    struct TRecvTransportEvent : public TBaseTransportEvent
     {
-      type = TBaseTransportEvent::Recv;
-    }
+        TRecvTransportEvent()
+        {
+            type = TBaseTransportEvent::Recv;
+        }
 
-    INetTransport::eTypeRecv typeRecv;
-    TContainer data;
-  };
-  struct TDisconnectTransportEvent : public TBaseTransportEvent
-  {
-    TDisconnectTransportEvent()
+        INetTransport::eTypeRecv typeRecv;
+        TContainer data;
+    };
+    struct TDisconnectTransportEvent : public TBaseTransportEvent
     {
-      type = TBaseTransportEvent::Disconnect;
-    }
-  };
-  struct TConnectFromTransportEvent : public TBaseTransportEvent
-  {
-    INetTransport* pTransport = nullptr;
-    TConnectFromTransportEvent()
+        TDisconnectTransportEvent()
+        {
+            type = TBaseTransportEvent::Disconnect;
+        }
+    };
+    struct TConnectFromTransportEvent : public TBaseTransportEvent
     {
-      type = TBaseTransportEvent::ConnectFrom;
-    }
-  };
+        INetTransport* pTransport = nullptr;
+        TConnectFromTransportEvent()
+        {
+            type = TBaseTransportEvent::ConnectFrom;
+        }
+    };
 }

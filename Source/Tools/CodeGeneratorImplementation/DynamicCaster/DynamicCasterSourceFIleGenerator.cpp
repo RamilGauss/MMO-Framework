@@ -262,7 +262,7 @@ void TDynamicCasterSourceFileGenerator::AddMethodDeinitions()
 
     auto str = fmt::format("{}();", s_Init);
     Add(str);
-    str = fmt::format("return {}[{}][{}].{}(p);", s_mDataVector, s_SrcRtti, s_DstRtti, s_castFunc);
+    str = fmt::format("return {}[{}][{}].{}(p);", s_mDataVector, s_DstRtti, s_SrcRtti, s_castFunc);
     Add(str);
 
     DecrementTabs();

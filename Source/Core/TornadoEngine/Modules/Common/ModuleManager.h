@@ -19,6 +19,7 @@ See for more information LICENSE.md.
 #include "HandlerCallCollector.h"
 #include "PrefabObjectConstructor.h"
 #include "Gizmo.h"
+#include "PropertyManager.h"
 
 namespace nsTornadoEngine
 {
@@ -33,6 +34,7 @@ namespace nsTornadoEngine
         THandlerCallCollector mHandlerCallCollector;
         TPrefabObjectConstructor mPrefabObjConstructor;
         TGizmo mGizmo;
+        TPropertyManager mPropertyMng;
 
         std::list<IModule*> mModules;
 

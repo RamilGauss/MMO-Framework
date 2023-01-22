@@ -36,7 +36,6 @@ typedef vector<string> TVectorStr;
 void ViewHowUse();
 void IncorrectPathToProject(const std::string& absProjectPath);
 
-bool GetArgvArgcConsole(int argc, char** argv, TVectorStr& vec_argv);
 //-------------------------------------
 #ifdef WIN32
 INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR cmdLine, INT)
@@ -79,14 +78,6 @@ int main(int argc, char** argv)
 
     projectConfigurator->UnloadProject();
     return 0;
-}
-//-------------------------------------------------------------------------------
-bool GetArgvArgcConsole(int argc, char** argv, TVectorStr & argsVec)
-{
-    for (int i = 0; i < argc; i++) {
-        argsVec.push_back(string(argv[i]));
-    }
-    return bool(argc > 0);
 }
 //-------------------------------------------------------------------------------
 void IncorrectPathToProject(const std::string& absProjectPath)

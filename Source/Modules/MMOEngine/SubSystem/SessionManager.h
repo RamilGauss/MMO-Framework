@@ -16,7 +16,6 @@ See for more information LICENSE.md.
 #include "CallBackRegistrator.h"
 #include "DescRecvSession.h"
 #include "TransportManager.h"
-#include "CryptoContextManager.h"
 #include "Structs.h"
 #include "DataExchange2Thread.h"
 #include "TransportEvents.h"
@@ -92,7 +91,7 @@ namespace nsMMOEngine
         // для работы с сетью
         using ConnectResultCallback = std::function<void(int sessionID)>;
         // onResult вызовется в том же потоке что и Work
-        void ConnectAsync(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet, ConnectResultCallback onResult);
+        void ConnectAsync(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet, ConnectResultCallback onResult);
 
         void Send(unsigned int sessionID, TBreakPacket& bp, bool check = true);
         unsigned int GetSessionID(unsigned int ip, unsigned short port);

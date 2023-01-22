@@ -93,7 +93,7 @@ void TMaster::GetDescDown(std::list<unsigned int>& sessionIDList)
     mSlaveLogic->GetDescDown(sessionIDList);
 }
 //-------------------------------------------------------------------------
-void TMaster::ConnectUp(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet)
+void TMaster::ConnectUp(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet)
 {
     mControlSc->mLoginMaster->ConnectToSuperServer(ip_port, login, password, subNet);
 }

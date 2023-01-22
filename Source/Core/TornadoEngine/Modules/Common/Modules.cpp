@@ -93,6 +93,11 @@ TGizmo* TModules::Gizmo() const
     return gizmo;
 }
 //----------------------------------------------------------
+TPropertyManager* TModules::PropertyMng() const
+{
+    return propertyMng;
+}
+//----------------------------------------------------------
 TModules::TModules()
 {
 

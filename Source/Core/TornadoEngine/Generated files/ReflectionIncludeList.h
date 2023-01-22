@@ -2,10 +2,11 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_23 10:37:27.621
+// File has been generated at 2023_01_19 17:35:55.737
 	
 #pragma once
 
+#include "ArchetypeField.h"
 #include "ResourceContent.h"
 #include "ResourceContentMap.h"
 #include "FrameworkResources.h"

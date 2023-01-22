@@ -87,10 +87,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         txtGen.AddLongLine();
 
         // CreateComponent
-        std::list<std::string> args = { "nsECSFramework::TEntityID eid",
-                "int rtti",
-                "std::function<void(void*)> onAfterCreation",
-                "bool isNotify" };
+        std::list<std::string> args = 
+        { 
+            "nsECSFramework::TEntityID eid",
+            "int rtti",
+            "std::function<void(void*)> onAfterCreation",
+            "bool isNotify" 
+        };
 
         txtGen.AddMethodDef(impl.impl.typeName, "CreateComponent", "void", args);
         txtGen.AddLeft();
@@ -124,10 +127,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         txtGen.AddLongLine();
 
         // SetComponent
-        args = { "nsECSFramework::TEntityID eid",
-        "int rtti",
-        "void* p",
-        "bool isNotify" };
+        args = 
+        { 
+            "nsECSFramework::TEntityID eid",
+            "int rtti",
+            "void* p",
+            "bool isNotify" 
+        };
 
         txtGen.AddMethodDef(impl.impl.typeName, "SetComponent", "void", args);
         txtGen.AddLeft();

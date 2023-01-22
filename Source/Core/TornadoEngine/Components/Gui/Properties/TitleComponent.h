@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Title.h>
+#include <ImGuiWidgets/include/Widget.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TTitleComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TTitle>, nsECSFramework::IComponent
+    struct DllExport TTitleComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TWidget>, nsECSFramework::IComponent
     {
         std::string value;
 

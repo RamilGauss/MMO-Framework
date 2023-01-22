@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Padding.h>
+#include <ImGuiWidgets/include/Frame.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TPaddingComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TPadding>, nsECSFramework::IComponent
+    struct DllExport TPaddingComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TFrame>, nsECSFramework::IComponent
     {
         int left = 0;
         int right = 0;

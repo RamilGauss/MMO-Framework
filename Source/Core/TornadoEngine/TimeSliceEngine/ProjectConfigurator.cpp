@@ -43,6 +43,9 @@ void TProjectConfigurator::Setup()
 
     prefabMng->SetEntityManager(entMng);
     prefabMng->SetContentMap(Project()->mPrefabContentMap);
+
+    auto propertyMng = Modules()->PropertyMng();
+    propertyMng->Init();
 }
 //-----------------------------------------------------------------------------------
 void TProjectConfigurator::UnloadProject()

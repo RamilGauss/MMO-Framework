@@ -44,7 +44,7 @@ namespace nsMMOEngine
         virtual ~TScenarioLoginMaster();
         virtual void Recv(TDescRecvSession* pDesc);
 
-        void ConnectToSuperServer(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet);
+        void ConnectToSuperServer(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet);
     protected:
         virtual void Work();
 

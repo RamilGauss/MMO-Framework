@@ -43,4 +43,7 @@
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\conanfile.txt" />
+  </ItemGroup>
 </Project>

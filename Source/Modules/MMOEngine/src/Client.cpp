@@ -44,7 +44,7 @@ bool TClient::Open(TDescOpen* pDesc, int count)
     return mSessionManager->Start(pDesc, 1);
 }
 //-------------------------------------------------------------------------
-void TClient::Login(TIP_Port& ip_port, std::string& login, std::string& password)
+void TClient::Login(TIP_Port& ip_port, const std::string& login, const std::string& password)
 {
     if (IsConnectUp()) {
         TErrorEvent event;

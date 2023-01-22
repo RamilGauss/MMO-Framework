@@ -22,7 +22,7 @@ TScenarioLoginSlave::TScenarioLoginSlave()
 
 }
 //-------------------------------------------------------------------------------------
-void TScenarioLoginSlave::ConnectToMaster(TIP_Port& ip_port, std::string& login, std::string& password, unsigned char subNet)
+void TScenarioLoginSlave::ConnectToMaster(TIP_Port& ip_port, const std::string& login, const std::string& password, unsigned char subNet)
 {
     if (Begin() == false) {
         // верхнее соединение занято выполнением другого сценария - такого не должно быть

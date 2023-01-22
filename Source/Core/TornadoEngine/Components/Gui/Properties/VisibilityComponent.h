@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Visibility.h>
+#include <ImGuiWidgets/include/Widget.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TVisibilityComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TVisibility>, nsECSFramework::IComponent
+    struct DllExport TVisibilityComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TWidget>, nsECSFramework::IComponent
     {
         bool value = false;
 

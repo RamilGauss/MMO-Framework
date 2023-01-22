@@ -30,6 +30,8 @@ void TTreeViewMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     auto pTreeView = new nsImGuiWidgets::TTreeView();
     pTreeViewComponent->value = pTreeView;
 
+    //nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, "nsImGuiWidgets::TTreeView", pTreeView);
+
     auto entMng = GetEntMng();
 
     auto pWidget = dynamic_cast<nsImGuiWidgets::TWidget*>(pTreeView);

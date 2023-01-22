@@ -80,10 +80,10 @@ namespace nsMMOEngine
         void SetRandomNum(unsigned int random_num);
         unsigned int GetRandomNum();
 
-        void SetLogin(std::string& login);
+        void SetLogin(const std::string& login);
         std::string GetLogin();
 
-        void SetPassword(std::string& password);
+        void SetPassword(const std::string& password);
         std::string GetPassword();
     private:
     };

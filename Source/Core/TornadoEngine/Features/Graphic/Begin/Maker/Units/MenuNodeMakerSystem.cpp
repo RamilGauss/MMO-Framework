@@ -9,9 +9,15 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/MenuNode.h>
 
+#include <Modules/Common/Modules.h>
+#include <Modules/PropertyManager/PropertyManager.h>
+
 using namespace nsGraphicWrapper;
 
 void TMenuNodeMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TMenuNodeComponent* pMenuNodeComponent)
 {
-    pMenuNodeComponent->value = new nsImGuiWidgets::TMenuNode();
+    auto pMenuNode = new nsImGuiWidgets::TMenuNode();
+    pMenuNodeComponent->value = pMenuNode;
+
+    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, "nsImGuiWidgets::TMenuNode", pMenuNode);
 }

@@ -19,9 +19,6 @@
     <Filter Include="SubSystem\Scenario">
       <UniqueIdentifier>{46861c48-652c-43e5-9677-38acb07b199f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SubSystem\Crypto">
-      <UniqueIdentifier>{6802ba5d-0369-4451-8f5a-a6b30b0e30ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scenario">
       <UniqueIdentifier>{3e6ff5e3-a48e-4553-b540-bf42caea6021}</UniqueIdentifier>
     </Filter>
@@ -119,9 +116,6 @@
     <ClCompile Include="SubSystem\ManagerManagerContextSc.cpp">
       <Filter>SubSystem\Scenario</Filter>
     </ClCompile>
-    <ClCompile Include="SubSystem\ContextCrypto.cpp">
-      <Filter>SubSystem\Crypto</Filter>
-    </ClCompile>
     <ClCompile Include="Scenario\ScenarioDisconnectClient.cpp">
       <Filter>Scenario\Source Files</Filter>
     </ClCompile>
@@ -187,9 +181,6 @@
     </ClCompile>
     <ClCompile Include="SubSystem\SessionManager.cpp">
       <Filter>SubSystem\Session</Filter>
-    </ClCompile>
-    <ClCompile Include="SubSystem\CryptoContextManager.cpp">
-      <Filter>SubSystem\Crypto</Filter>
     </ClCompile>
     <ClCompile Include="SubSystem\SessionNavigator.cpp">
       <Filter>SubSystem\Session</Filter>
@@ -340,9 +331,6 @@
     <ClInclude Include="SubSystem\ScenarioBaseHeader.h">
       <Filter>SubSystem\Scenario</Filter>
     </ClInclude>
-    <ClInclude Include="SubSystem\ContextCrypto.h">
-      <Filter>SubSystem\Crypto</Filter>
-    </ClInclude>
     <ClInclude Include="Scenario\ScenarioDisconnectClient.h">
       <Filter>Scenario\Header Files</Filter>
     </ClInclude>
@@ -408,9 +396,6 @@
     </ClInclude>
     <ClInclude Include="SubSystem\SessionManager.h">
       <Filter>SubSystem\Session</Filter>
-    </ClInclude>
-    <ClInclude Include="SubSystem\CryptoContextManager.h">
-      <Filter>SubSystem\Crypto</Filter>
     </ClInclude>
     <ClInclude Include="SubSystem\SessionNavigator.h">
       <Filter>SubSystem\Session</Filter>

@@ -30,5 +30,6 @@ namespace nsTornadoEngine
         static void SetHandlerCall(THandlerCallCollector* value);
         static void SetPrefabObjConstructor(TPrefabObjectConstructor* value);
         static void SetGizmo(TGizmo* value);
+        static void SetPropertyMng(TPropertyManager* value);
     };
 }

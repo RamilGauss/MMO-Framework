@@ -92,5 +92,6 @@ void TModuleManager::ApplyToModulesSingleton()
     TModulesAccessor::SetHandlerCall(&mHandlerCallCollector);
     TModulesAccessor::SetPrefabObjConstructor(&mPrefabObjConstructor);
     TModulesAccessor::SetGizmo(&mGizmo);
+    TModulesAccessor::SetPropertyMng(&mPropertyMng);
 }
 //----------------------------------------------------------------------------

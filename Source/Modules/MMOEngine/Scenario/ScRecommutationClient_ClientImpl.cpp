@@ -145,7 +145,7 @@ void TScRecommutationClient_ClientImpl::DisconnectClientAfterConnect(int id_sess
     Context()->SetSessionID(id_session_recipient);
 }
 //--------------------------------------------------------------
-void TScRecommutationClient_ClientImpl::SetLoginPassword(std::string& login, std::string& password)
+void TScRecommutationClient_ClientImpl::SetLoginPassword(const std::string& login, const std::string& password)
 {
     Context()->SetLogin(login);
     Context()->SetPassword(password);

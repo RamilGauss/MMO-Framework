@@ -17,9 +17,12 @@ namespace nsTornadoEngine
         mutable T* pOwner = nullptr;
 
         // Helper for assign pOwner via dynamic_cast
-        void SetOwner(void* p) const override
-        {
-            pOwner = static_cast<T*>(p);
-        }
+        void SetOwner(void* p) const override;
     };
+
+    template <typename T>
+    void TPropertyOf<T>::SetOwner(void* p) const
+    {
+        pOwner = static_cast<T*>(p);
+    }
 }

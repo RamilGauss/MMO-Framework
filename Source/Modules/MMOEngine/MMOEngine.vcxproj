@@ -245,7 +245,6 @@
     <ClCompile Include="SubSystem\BaseMasterLogic.cpp" />
     <ClCompile Include="SubSystem\ClientOnMasterLogic.cpp" />
     <ClCompile Include="SubSystem\ContainerContextSc.cpp" />
-    <ClCompile Include="SubSystem\ContextCrypto.cpp" />
     <ClCompile Include="SubSystem\ControlScenario.cpp" />
     <ClCompile Include="SubSystem\DelegateManagerContextSc.cpp" />
     <ClCompile Include="SubSystem\GroupLogic.cpp" />
@@ -254,7 +253,6 @@
     <ClCompile Include="SubSystem\MakerScenario.cpp" />
     <ClCompile Include="SubSystem\ManagerContextClientLogining.cpp" />
     <ClCompile Include="SubSystem\ManagerContextClient_slave.cpp" />
-    <ClCompile Include="SubSystem\CryptoContextManager.cpp" />
     <ClCompile Include="SubSystem\ManagerContextDownConnection.cpp" />
     <ClCompile Include="SubSystem\ManagerContextDownConnection_Slave.cpp" />
     <ClCompile Include="SubSystem\ManagerContextMoreDownClientConnection.cpp" />
@@ -321,7 +319,6 @@
     <ClInclude Include="SubSystem\ClientOnMasterLogic.h" />
     <ClInclude Include="SubSystem\Components.h" />
     <ClInclude Include="SubSystem\ContainerContextSc.h" />
-    <ClInclude Include="SubSystem\ContextCrypto.h" />
     <ClInclude Include="SubSystem\ControlScenario.h" />
     <ClInclude Include="SubSystem\DelegateManagerContextSc.h" />
     <ClInclude Include="SubSystem\DescRecvSession.h" />
@@ -331,7 +328,6 @@
     <ClInclude Include="SubSystem\MakerScenario.h" />
     <ClInclude Include="SubSystem\ManagerContextClientLogining.h" />
     <ClInclude Include="SubSystem\ManagerContextClient_slave.h" />
-    <ClInclude Include="SubSystem\CryptoContextManager.h" />
     <ClInclude Include="SubSystem\ManagerContextDownConnection.h" />
     <ClInclude Include="SubSystem\ManagerContextDownConnection_Slave.h" />
     <ClInclude Include="SubSystem\ManagerContextMoreDownClientConnection.h" />

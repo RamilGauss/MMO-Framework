@@ -84,7 +84,7 @@ void TScenarioRecommutationClient::DisconnectFromClient(unsigned char subNet)
     mClient.DisconnectClient(subNet);
 }
 //---------------------------------------------------------------------
-void TScenarioRecommutationClient::SetClientLoginPassword(std::string& login, std::string& password)
+void TScenarioRecommutationClient::SetClientLoginPassword(const std::string& login, const std::string& password)
 {
     mClient.SetLoginPassword(login, password);
 }

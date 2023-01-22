@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_14 17:27:24.985
+// File has been generated at 2023_01_20 18:35:29.910
 	
 #include "ImGuiWidgetsDynamicCaster.h"
 #include "SingletonManager.h"
@@ -4731,7 +4731,7 @@ void TImGuiWidgetsDynamicCaster::Init()
 void* TImGuiWidgetsDynamicCaster::Cast(int srcRtti, void* p, int dstRtti)
 {
     Init();
-    return mDataVector[srcRtti][dstRtti].castFunc(p);
+    return mDataVector[dstRtti][srcRtti].castFunc(p);
 }
 //---------------------------------------------------------------------------------------
 const std::map<int, std::set<int>>& TImGuiWidgetsDynamicCaster::GetRttiCombinations()

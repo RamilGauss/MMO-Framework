@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/MinDistanceToParent.h>
+#include <ImGuiWidgets/include/Unit.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TMinDistanceToParentComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TMinDistanceToParent>, nsECSFramework::IComponent
+    struct DllExport TMinDistanceToParentComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TUnit>, nsECSFramework::IComponent
     {
         int left = 0;
         int right = 0;
