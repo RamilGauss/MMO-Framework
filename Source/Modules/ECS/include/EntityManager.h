@@ -35,7 +35,7 @@ namespace nsECSFramework
 {
     class DllExport TEntityManager : public TSystemConveyorContainer
     {
-        typedef TRunTimeTypeIndex<> TTypeID;
+        using TTypeID = TRunTimeTypeIndex<>;
         TTypeID* mTypeIndex;
 
         std::string mName;
@@ -57,40 +57,40 @@ namespace nsECSFramework
         void Clear();
 
         // components
-        template <typename Component>
+        template<typename Component>
         void CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation, bool isNotify = true);
 
-        template <typename Component>
+        template<typename Component>
         void SetComponent(TEntityID eid, const Component& c, bool isNotify = true);// => add or update event
 
-        template <typename Component>
+        template<typename Component>
         const Component* ViewComponent(TEntityID eid);// for view, fast,
 
-        template <typename Component>
+        template<typename Component>
         void GetComponent(TEntityID eid, std::function<void(const Component&)> onIfExist);// for copy
 
-        template <typename Component>
+        template<typename Component>
         bool HasComponent(TEntityID eid);
 
-        template <typename Component>
+        template<typename Component>
         void RemoveComponent(TEntityID eid);// => remove event
 
         // Access by rtti
         void GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList);
 
         // Filters
-        template <typename Component>
+        template<typename Component>
         DllExport TEntityID NoInline GetByUnique(Component& c);
 
         // Fast, but maybe unsafe!
-        template <typename ... Args>
+        template<typename ... Args>
         DllExport const TEntityList* NoInline GetByValue(Args& ... args);
-        template <typename ... Args>
+        template<typename ... Args>
         DllExport const TEntityList* NoInline GetByHas();
         // Slower than GetByHas, GetByValue, but safe.
-        template <typename ... Args>
+        template<typename ... Args>
         const TEntityList GetByValueCopy(Args& ... args);
-        template <typename ... Args>
+        template<typename ... Args>
         const TEntityList GetByHasCopy();
         // Filters ends
 
@@ -157,7 +157,7 @@ namespace nsECSFramework
         template<typename Component>
         void ClearCollectorEvents(TComponentEventsVector& componentEventsVector, int id);
 
-        template <typename Component>
+        template<typename Component>
         void PushEventToCollector(TComponentEventsVector& componentEventsVector, unsigned int index, TEntityID eid, Component* pComponent);
 
         template<typename Component>
@@ -173,7 +173,7 @@ namespace nsECSFramework
         using TVoidPtrVector = TColanderVector<void*>;
         using TListPtrVector = TColanderVector<TEntityList*>;
 
-        using TUniqueMap = std::map<IComponent*, TEntityID, component_ptr_less<IComponent*>>;
+        using TUniqueMap = std::map<IComponent*, TEntityID, ComponentPtrLess>;
         using TUniqueMapPtrVector = TColanderVector<TUniqueMap*>;
 
         TListPtrVector mHasCollectionVec;// fill in setup

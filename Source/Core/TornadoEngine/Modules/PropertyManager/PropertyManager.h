@@ -15,13 +15,16 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 #include <ECS/include/EntityManager.h>
 
-#include "TypeDependency.h"
+#include "Archetype.h"
+#include "RelativeProperties.h"
 
 namespace nsTornadoEngine
 {
     class DllExport TPropertyManager
     {
-        std::unordered_map<std::string, TTypeDependency> mTypeNameDeps;
+        std::unordered_map<std::string, TArchetype> mTypeNameDeps;
+
+        TRelativeProperties mRelativeProperties;
 
     public:
         void Init();
@@ -32,6 +35,6 @@ namespace nsTornadoEngine
     protected:
 
         void GetDownCasters(const std::string& typeName, std::list<std::string>& downCasters) const;
-        void GetProperties(const std::string& typeName, std::list<std::string>& properties) const;
+        void GetProperties(const std::string& typeName, TRelativeProperties& properties) const;
     };
 }

@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Unit.h>
+#include <ImGuiWidgets/include/Anchors.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TAnchorsComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TUnit>, nsECSFramework::IComponent
+    struct DllExport TAnchorsComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TAnchors>, nsECSFramework::IComponent
     {
         bool leftIsUsed = false;
         int leftOffset = 0;

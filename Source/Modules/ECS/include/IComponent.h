@@ -17,5 +17,6 @@ namespace nsECSFramework
 
         virtual bool IsLess(const IComponent* pOther) const;
         virtual bool IsEqual(const IComponent* pOther) const;
+        virtual size_t GetHash() const;
     };
 }

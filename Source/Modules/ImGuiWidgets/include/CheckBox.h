@@ -9,18 +9,15 @@ See for more information LICENSE.md.
 
 #include <vector>
 #include "Unit.h"
+#include "CheckBoxValue.h"
+
 #include "CallbackPool.h"
 
 namespace nsImGuiWidgets
 {
-    class DllExport TCheckBox : public TUnit
+    class DllExport TCheckBox : public TUnit, public TCheckBoxValue
     {
-    protected:
-        bool mValue = false;
     public:
-        bool GetValue();
-        void SetValue(bool value);
-
         using TCheckChange = TCallbackPool<bool>;
         TCheckChange mOnCheckChangeCB;
 

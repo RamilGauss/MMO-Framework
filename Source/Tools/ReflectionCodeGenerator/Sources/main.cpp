@@ -56,5 +56,5 @@ int main(int argc, char* argv[])
 
     g_Rcg.SetIncludeListGenerator(&g_IncludeListGenerator);
 
-    return (int) g_Rcg.Work();
+    return (int)g_Rcg.Work();
 }

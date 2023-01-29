@@ -13,11 +13,11 @@ See for more information LICENSE.md.
 
 #include "PropertyOf.h"
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Node.h>
+#include <ImGuiWidgets/include/TextureSize.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TNodeIconComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TNode>, nsECSFramework::IComponent
+    struct DllExport TNodeIconComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TTextureSize>, nsECSFramework::IComponent
     {
         int width = 0;
         int height = 0;

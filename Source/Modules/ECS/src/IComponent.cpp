@@ -27,3 +27,9 @@ bool IComponent::IsEqual(const IComponent* pOther) const
     return true;
 }
 //--------------------------------------------------------------
+size_t IComponent::GetHash() const
+{
+    BL_FIX_BUG();
+    return 0;
+}
+//--------------------------------------------------------------

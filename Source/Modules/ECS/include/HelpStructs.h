@@ -19,15 +19,30 @@ namespace nsECSFramework
             return *pLHS < *pRHS;
         }
     };
-    template<class T>
-    struct component_ptr_less
+
+    struct ComponentPtrLess
     {
-        bool operator()(const T& lhs, const T& rhs) const
+        bool operator()(const IComponent* lhs, const IComponent* rhs) const
         {
-            auto pL = (const IComponent*) lhs;
-            auto pR = (const IComponent*) rhs;
-            return pL->IsLess(pR);
+            return lhs->IsLess(rhs);
         }
     };
-    // usage: std::map<T*,second,ptr_less<T*>> mMap;
+    // usage: std::map<T*, second, ptr_less<T*>> mMap;
+
+    struct ComponentPtrHasher
+    {
+        size_t operator()(const IComponent* p) const
+        {
+            return p->GetHash();
+        }
+    };
+
+    struct ComponentPtrEqual
+    {
+        bool operator()(const IComponent* lhs, const IComponent* rhs) const
+        {
+            return lhs->IsEqual(rhs);
+        }
+    };
+    // usage: std::map<IComponent*, second, ComponentPtrHasher, ComponentPtrEqual> mMap;
 }

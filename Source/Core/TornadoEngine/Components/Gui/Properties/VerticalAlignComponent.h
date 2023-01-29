@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Unit.h>
+#include <ImGuiWidgets/include/VerticalAlign.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TVerticalAlignComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TUnit>, nsECSFramework::IComponent
+    struct DllExport TVerticalAlignComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TVerticalAlign>, nsECSFramework::IComponent
     {
         enum class Type
         {

@@ -83,7 +83,7 @@ void TNetControlAcceptor::Done()
 //------------------------------------------------------------------------------
 void TNetControlAcceptor::ReadyAccept()
 {
-    // TODO: get io_context via global
+    // Get io_context via global
     auto pContext = GetNetBoost()->GetNetWorkThread()->GetIO_Context();
 
     pNewControlTCP = new TNetControlTCP(GetNetBoost(), pContext);

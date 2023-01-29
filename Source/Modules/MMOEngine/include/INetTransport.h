@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "CallBackRegistrator.h"
+#include "CallbackPool.h"
 #include "ShareMisc.h"
 #include "BreakPacket.h"
 
@@ -18,11 +18,11 @@ namespace nsMMOEngine
     {
     public:
         //типы callback вызовов
-        typedef enum
+        enum class eTypeRecv
         {
             eTcp = 0,
             eUdp = 1,
-        }eTypeRecv;
+        };
         // callback вернет данную структуру
         struct TDescRecv
         {
@@ -45,9 +45,9 @@ namespace nsMMOEngine
 
         // чтение - зарегистрируйся
         // вызывается из потока транспорта, поэтому ЗАПРЕЩАЕТСЯ вызывать методы транспорта по данным событиям
-        virtual TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv() = 0;
-        virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackConnectFrom() = 0;
-        virtual TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect() = 0;
+        virtual TCallbackPool<TDescRecv*>* GetCallbackRecv() = 0;
+        virtual TCallbackPool<TIP_Port* >* GetCallbackConnectFrom() = 0;
+        virtual TCallbackPool<TIP_Port* >* GetCallbackDisconnect() = 0;
 
         // старт и стоп движка
         virtual void Start() = 0;

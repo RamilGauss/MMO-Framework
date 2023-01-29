@@ -64,7 +64,7 @@ void CreateContext(TGraphicEngine& ge)
 
     g_TreNodeTest.Create(pCtx);
 
-    //g_TexturedWindowTest.Create(pCtx, g_Camera);
+    g_TexturedWindowTest.Create(pCtx, g_Camera);
 
     pCtx->SetGuiCamera(g_Camera);
 }

@@ -13,11 +13,11 @@ namespace nsTest
 {
     void TTexturedWindowTest::Create(nsGraphicEngine::TGraphicEngineContext* pCtx, nsGraphicEngine::TCamera* pCamera)
     {
-        //auto texture = nsGraphicEngine::TTextureFactory::Load("c:\\Sources\\MMOFramework\\Exe\\hole.jpg");
+        auto texture = nsGraphicEngine::TTextureFactory::Load("c:\\Data\\Github\\MMOFramework\\Exe\\hole.jpg");
 
-        auto texture = pCamera->GetRenderedTexture();
+        //auto texture = pCamera->GetRenderedTexture();
 
-        mTFrame.SetTexture(texture->mId);
+        mTFrame.SetTextureId((void*)texture->mId);
         mTFrame.SetTextureSize(texture->mWidth, texture->mHeight);
 
         mTFrame.SetMinUV({ 1, 0 });

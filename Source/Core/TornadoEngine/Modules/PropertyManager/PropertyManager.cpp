@@ -16,11 +16,13 @@ namespace nsTornadoEngine
 {
     void TPropertyManager::Init()
     {
-        auto& configs = TPropertyManagerConfigs::GetConfig();
+        auto& configs = TPropertyManagerConfigs::GetArchetypes();
 
         for (auto& config : configs) {
             mTypeNameDeps.insert({ config.typeName, config });
         }
+
+        mRelativeProperties = TPropertyManagerConfigs::GetRelativeProperties();
     }
     //-------------------------------------------------------------------------------------------
     void TPropertyManager::SetupProperties(nsECSFramework::TEntityManager* pEntMng, nsECSFramework::TEntityID eid, 
@@ -42,19 +44,19 @@ namespace nsTornadoEngine
 
         for (auto& downCaster : downCasters) {// nsImGuiWidgets::TWidget, ...
 
-            std::list<std::string> properties;
+            TRelativeProperties properties;
             GetProperties(downCaster, properties);
-            for (auto& property : properties) {// nsGuiWrapper::TTitleComponent, ...
+            for (auto& property : properties.value) {// nsGuiWrapper::TTitleComponent, ...
 
                 int srcRtti;
-                componentReflection->mTypeInfo->ConvertNameToType(property/*"nsGuiWrapper::TTitleComponent"*/, srcRtti);
+                componentReflection->mTypeInfo->ConvertNameToType(property.first/*"nsGuiWrapper::TTitleComponent"*/, srcRtti);
 
                 void* pC = (void*)componentReflection->mEntMng->ViewComponent(eid, srcRtti);
 
                 auto propertyOf = (nsTornadoEngine::IPropertyOf*)componentReflection->mDynamicCaster->Cast(srcRtti, pC, dstRtti);
 
                 int targetRtti;
-                imGuiWidgetsReflection->mTypeInfo->ConvertNameToType(downCaster/*"nsImGuiWidgets::TWidget"*/, targetRtti);
+                imGuiWidgetsReflection->mTypeInfo->ConvertNameToType(property.second/*"nsImGuiWidgets::TWidget"*/, targetRtti);
                 auto targetPtr = imGuiWidgetsReflection->mDynamicCaster->Cast(windowRtti, pObject, targetRtti);
 
                 propertyOf->SetOwner(targetPtr);
@@ -72,12 +74,12 @@ namespace nsTornadoEngine
 
         downCasters.push_back(fit->second.typeName);
 
-        for (auto& parentName : fit->second.parentComponentNames) {
+        for (auto& parentName : fit->second.parentNames) {
             GetDownCasters(parentName, downCasters);
         }
     }
     //-------------------------------------------------------------------------------------------
-    void TPropertyManager::GetProperties(const std::string& typeName, std::list<std::string>& properties) const
+    void TPropertyManager::GetProperties(const std::string& typeName, TRelativeProperties& properties) const
     {
         auto fit = mTypeNameDeps.find(typeName);
 
@@ -85,7 +87,7 @@ namespace nsTornadoEngine
             return;
         }
 
-        properties = fit->second.properties;
+        //properties = fit->second.properties;
     }
     //-------------------------------------------------------------------------------------------
 }

@@ -60,7 +60,7 @@ void TControlScenario::Recv(TDescRecvSession* pDesc)
     if (fit != mMapTypeSc.end()) {
         auto scenario = fit->second;
         // защита от получения незащищенных UDP пакетов
-        if (pDesc->type == INetTransport::eUdp)
+        if (pDesc->type == INetTransport::eTypeRecv::eUdp)
             if (scenario != mFlow)// только Flow использует UDP, остальным нельзя
                 return;
         scenario->Recv(pDesc);

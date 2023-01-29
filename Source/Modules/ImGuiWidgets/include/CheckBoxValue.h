@@ -7,18 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <vector>
-#include <string>
-
-#include "TypeDef.h"
+#include <TypeDef.h>
 
 namespace nsImGuiWidgets
 {
-    class DllExport TComboBoxItems
+    class DllExport TCheckBoxValue
     {
-        std::vector<std::string> mItems;
+        bool mValue = false;
     public:
-        void SetItems(const std::vector<std::string>& items);
-        const std::vector<std::string>& GetItems() const;
+        bool GetCheckBoxValue();
+        void SetCheckBoxValue(bool value);
     };
 }

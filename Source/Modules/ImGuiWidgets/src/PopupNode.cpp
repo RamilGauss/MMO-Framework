@@ -8,7 +8,6 @@ See for more information LICENSE.md.
 #include "PopupNode.h"
 
 using namespace nsImGuiWidgets;
-using namespace std::placeholders;
 
 void TPopupNode::Render()
 {

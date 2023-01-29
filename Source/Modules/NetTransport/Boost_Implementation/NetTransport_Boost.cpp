@@ -33,25 +33,19 @@ TNetTransport_Boost::TNetTransport_Boost() :
 //----------------------------------------------------------------------------------
 TNetTransport_Boost::~TNetTransport_Boost()
 {
-    Done();
 }
 //----------------------------------------------------------------------------------
-void TNetTransport_Boost::Done()
-{
-
-}
-//----------------------------------------------------------------------------------
-TCallBackRegistrator1<nsMMOEngine::INetTransport::TDescRecv*>* TNetTransport_Boost::GetCallbackRecv()
+TCallbackPool<nsMMOEngine::INetTransport::TDescRecv*>* TNetTransport_Boost::GetCallbackRecv()
 {
     return &mCallBackRecv;
 }
 //----------------------------------------------------------------------------------
-TCallBackRegistrator1<TIP_Port* >* TNetTransport_Boost::GetCallbackConnectFrom()
+TCallbackPool<TIP_Port* >* TNetTransport_Boost::GetCallbackConnectFrom()
 {
     return &mCallBackConnectFrom;
 }
 //----------------------------------------------------------------------------------
-TCallBackRegistrator1<TIP_Port*>* TNetTransport_Boost::GetCallbackDisconnect()
+TCallbackPool<TIP_Port*>* TNetTransport_Boost::GetCallbackDisconnect()
 {
     return &mCallBackDisconnect;
 }
@@ -93,8 +87,9 @@ void TNetTransport_Boost::Send(unsigned int ip, unsigned short port, TBreakPacke
         //---------------------
         TIP_Port ip_port(ip, port);
         TNetControlTCP* pControl = GetTCP_ByIP(ip_port);
-        if (pControl)
+        if (pControl) {
             pControl->Send(ip, port, packet);
+        }
         //---------------------
         mMutexMapIP_TCP.unlock();
     } else {
@@ -222,9 +217,9 @@ void TNetTransport_Boost::DeleteControlTCP(TNetControlTCP* pControl)
 {
     if (mTCP_Up.get() == pControl) {
         mTCP_Up.reset();
-        return;
+    } else {
+        delete pControl;
     }
-    delete pControl;
 }
 //----------------------------------------------------------------------------------
 TNetWorkThread* TNetTransport_Boost::GetNetWorkThread()

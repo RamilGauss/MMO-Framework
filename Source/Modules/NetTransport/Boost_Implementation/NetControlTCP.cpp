@@ -92,7 +92,7 @@ void TNetControlTCP::RecvEvent(const boost::system::error_code& error, size_t by
         if (res.complete) {
             nsMMOEngine::INetTransport::TDescRecv descRecv;
             descRecv.ip_port = *(mDevice.GetIP_Port());
-            descRecv.type = nsMMOEngine::INetTransport::eTcp;
+            descRecv.type = nsMMOEngine::INetTransport::eTypeRecv::eTcp;
             descRecv.data = res.buffer;
             descRecv.dataSize = res.size;
             NotifyRecv(&descRecv);

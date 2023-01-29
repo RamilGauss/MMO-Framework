@@ -9,30 +9,25 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-void TComboBox::SetItems(const std::vector<std::string>& items)
-{
-    mItems = items;
-}
-//----------------------------------------------------------------------------------------
 void TComboBox::RenderInheritance()
 {
-    ImGuiStyle& style = ImGui::GetStyle();
-    float w = ImGui::CalcItemWidth();
-    float spacing = style.ItemInnerSpacing.x;
-    float buttonWidth = ImGui::GetFrameHeight();
-    ImGui::PushItemWidth(w - spacing * 2.0f - buttonWidth * 2.0f);
+    ImGui::PushItemWidth(GetSize().x);
 
     auto currentIndex = GetCurrentIndex();
 
-    auto cur = (mCurrentItem == nullptr) ? nullptr : mCurrentItem->c_str();
+    auto& items = GetItems();
+
+    auto cur = (currentIndex == -1) ? nullptr : items[currentIndex].c_str();
 
     if (ImGui::BeginCombo(mTitle.c_str(), cur)) {
-        for (int n = 0; n < mItems.size(); n++) {
-            bool is_selected = (mCurrentItem == &mItems[n]);
-            if (ImGui::Selectable(mItems[n].c_str(), is_selected)) {
-                mCurrentItem = &mItems[n];
+        for (int i = 0; i < items.size(); i++) {
+            bool isSelected = (currentIndex == i);
+            if (ImGui::Selectable(items[i].c_str(), isSelected)) {
+                currentIndex = i;
+
+                SetCurrentIndex(currentIndex);
             }
-            if (is_selected) {
+            if (isSelected) {
                 ImGui::SetItemDefaultFocus();
             }
         }

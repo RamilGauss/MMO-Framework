@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Frame.h>
+#include <ImGuiWidgets/include/Grid.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TGridComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TFrame>, nsECSFramework::IComponent
+    struct DllExport TGridComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TGrid>, nsECSFramework::IComponent
     {
         bool value = false;
     };

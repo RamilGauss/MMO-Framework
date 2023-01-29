@@ -374,8 +374,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Generated files\Container\ImGuiWidgetsTypeInfo.h" />
     <ClInclude Include="Modules\PropertyManager\ArchetypeField.h" />
     <ClInclude Include="Modules\PropertyManager\PropertyManagerConfigs.h" />
-    <ClInclude Include="Modules\PropertyManager\TypeDependency.h" />
+    <ClInclude Include="Modules\PropertyManager\Archetype.h" />
     <ClInclude Include="Modules\PropertyManager\PropertyManager.h" />
+    <ClInclude Include="Modules\PropertyManager\RelativeProperties.h" />
     <ClInclude Include="ReflectionAggregators\ImGuiWidgetsReflectionAggregator.h" />
     <ClInclude Include="Share\HandlerTarget.h" />
     <ClInclude Include="Components\Common\NameComponent.h" />

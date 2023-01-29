@@ -15,12 +15,10 @@ See for more information LICENSE.md.
 #include "WidgetContainer.h"
 #include "TextureReference.h"
 #include "TextureSize.h"
-#include "TextureUv.h"
-
 
 namespace nsImGuiWidgets
 {
-    class DllExport TNode : public TWidget, public TWidgetContainer, public TTextureReference, public TTextureSize, public TTextureUv
+    class DllExport TNode : public TWidget, public TWidgetContainer, public TTextureReference, public TTextureSize
     {
     public:
         std::string mStrId;

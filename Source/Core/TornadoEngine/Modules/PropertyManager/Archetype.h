@@ -7,18 +7,19 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <vector>
 #include <string>
+#include <list>
+#include <map>
 
 #include "TypeDef.h"
 
-namespace nsImGuiWidgets
+namespace nsTornadoEngine
 {
-    class DllExport TComboBoxItems
+    struct DllExport TArchetype
     {
-        std::vector<std::string> mItems;
-    public:
-        void SetItems(const std::vector<std::string>& items);
-        const std::vector<std::string>& GetItems() const;
+        std::string typeName;// Pivot of
+
+        std::list<std::string> parentNames;// other TArchetype
+        std::list<std::string> properties;
     };
 }

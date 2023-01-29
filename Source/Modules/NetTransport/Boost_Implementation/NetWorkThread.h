@@ -23,7 +23,7 @@ public:
         return &mIO_Context;
     }
 
-    virtual void Stop();
+    void Stop() override;
 protected:
-    virtual void Work();
+    void Work() override;
 };

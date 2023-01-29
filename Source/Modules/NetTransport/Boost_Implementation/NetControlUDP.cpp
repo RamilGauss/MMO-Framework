@@ -136,7 +136,7 @@ void TNetControlUDP::RecvFromEvent(const boost::system::error_code& error, size_
         if (IsStreamFresh(ip_port)) {
             nsMMOEngine::INetTransport::TDescRecv descRecv;
             descRecv.ip_port = ip_port;
-            descRecv.type = nsMMOEngine::INetTransport::eUdp;
+            descRecv.type = nsMMOEngine::INetTransport::eTypeRecv::eUdp;
             descRecv.data = mBuffer + sizeof(unsigned short);
             descRecv.dataSize = bytes_transferred - sizeof(unsigned short);
             NotifyRecv(&descRecv);

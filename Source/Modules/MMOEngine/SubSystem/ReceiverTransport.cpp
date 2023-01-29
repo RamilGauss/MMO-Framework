@@ -17,9 +17,9 @@ TReceiverTransport::TReceiverTransport(INetTransport* pTransport, TSessionManage
     mTransport = pTransport;
     mMngSession = pMS;
 
-    mTransport->GetCallbackRecv()->Register(&TReceiverTransport::Recv, this);
-    mTransport->GetCallbackDisconnect()->Register(&TReceiverTransport::Disconnect, this);
-    mTransport->GetCallbackConnectFrom()->Register(&TReceiverTransport::ConnectFrom, this);
+    mTransport->GetCallbackRecv()->Register(this, &TReceiverTransport::Recv);
+    mTransport->GetCallbackDisconnect()->Register(this, &TReceiverTransport::Disconnect);
+    mTransport->GetCallbackConnectFrom()->Register(this, &TReceiverTransport::ConnectFrom);
 }
 //----------------------------------------------------------------------
 TReceiverTransport::~TReceiverTransport()

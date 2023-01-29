@@ -332,7 +332,7 @@ void TSessionManager::RecvData(TDescRecvSession& descRecvSession, TSession* pSes
     descRecvSession.data += sizeof(TSession::THeader);
     descRecvSession.dataSize -= sizeof(TSession::THeader);
 
-    if (descRecvSession.type == INetTransport::eTcp) {
+    if (descRecvSession.type == INetTransport::eTypeRecv::eTcp) {
         if (descRecvSession.dataSize <= sizeof(unsigned char))// crc8, 1 байт
         {
             FixHack("Size less CRC8");

@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/Frame.h>
+#include <ImGuiWidgets/include/Spacing.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TSpacingComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TFrame>, nsECSFramework::IComponent
+    struct DllExport TSpacingComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TSpacing>, nsECSFramework::IComponent
     {
         int value = 0;
     };

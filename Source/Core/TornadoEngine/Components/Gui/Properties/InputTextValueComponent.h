@@ -13,11 +13,11 @@ See for more information LICENSE.md.
 #include "PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
-#include <ImGuiWidgets/include/InputText.h>
+#include <ImGuiWidgets/include/InputTextValue.h>
 
 namespace nsGuiWrapper
 {
-    struct DllExport TInputTextValueComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TInputText>, nsECSFramework::IComponent
+    struct DllExport TInputTextValueComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TInputTextValue>, nsECSFramework::IComponent
     {
         std::string value;
 

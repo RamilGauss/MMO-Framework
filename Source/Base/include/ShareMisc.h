@@ -25,23 +25,33 @@ struct TIP_Port
     TIP_Port() {}
     TIP_Port(unsigned int _ip, unsigned short _port)
     {
-        ip = _ip;
-        port = _port;
+        this->ip = _ip;
+        this->port = _port;
     }
     void Set(unsigned int _ip, unsigned short _port)
     {
-        ip = _ip;
-        port = _port;
+        this->ip = _ip;
+        this->port = _port;
     }
-    bool operator < (const TIP_Port& right) const
+    bool operator < (const TIP_Port& other) const
     {
-        if (ip < right.ip)
+        if (ip < other.ip) {
             return true;
-        else
-            if (ip == right.ip)
-                if (port < right.port)
-                    return true;
+        }
+
+        if (ip > other.ip) {
+            return false;
+        }
+        
+        if (port < other.port) {
+            return true;
+        }
         return false;
+    }
+
+    bool operator == (const TIP_Port& other) const
+    {
+        return ip == other.ip && port == other.port;
     }
 
     const char* ToString()
@@ -53,6 +63,15 @@ struct TIP_Port
         sprintf(s, "%u.%u.%u.%u:%u", p[3], p[2], p[1], p[0], port);
         _toString = s;
         return _toString.data();
+    }
+};
+
+template <>
+struct std::hash<TIP_Port>
+{
+    size_t operator () (TIP_Port const& ipPort) const
+    {
+        return std::hash<unsigned int>()(ipPort.ip) ^ std::hash<unsigned short>()(ipPort.port);
     }
 };
 

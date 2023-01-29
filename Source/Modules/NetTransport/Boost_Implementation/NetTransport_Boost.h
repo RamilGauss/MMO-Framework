@@ -31,13 +31,11 @@ class TNetTransport_Boost : public nsMMOEngine::INetTransport
     std::shared_ptr<TNetControlAcceptor> mAcceptor;
     std::shared_ptr<TNetControlTCP>      mTCP_Up;
 
-    using TMapIP_Ptr = std::map<TIP_Port, TNetControlTCP*>;
+    std::unordered_map<TIP_Port, TNetControlTCP*> mMapIP_TCP;
 
-    TMapIP_Ptr mMapIP_TCP;
-
-    TCallBackRegistrator1<nsMMOEngine::INetTransport::TDescRecv*> mCallBackRecv;
-    TCallBackRegistrator1<TIP_Port*>                              mCallBackConnectFrom;
-    TCallBackRegistrator1<TIP_Port*>                              mCallBackDisconnect;
+    TCallbackPool<nsMMOEngine::INetTransport::TDescRecv*> mCallBackRecv;
+    TCallbackPool<TIP_Port*>                              mCallBackConnectFrom;
+    TCallbackPool<TIP_Port*>                              mCallBackDisconnect;
 
 public:
     TNetTransport_Boost();
@@ -49,9 +47,9 @@ public:
 
     void Send(unsigned int ip, unsigned short port, TBreakPacket& packet, bool check = true) override;
 
-    TCallBackRegistrator1<TDescRecv*>* GetCallbackRecv() override;
-    TCallBackRegistrator1<TIP_Port* >* GetCallbackConnectFrom() override;
-    TCallBackRegistrator1<TIP_Port* >* GetCallbackDisconnect() override;
+    TCallbackPool<TDescRecv*>* GetCallbackRecv() override;
+    TCallbackPool<TIP_Port* >* GetCallbackConnectFrom() override;
+    TCallbackPool<TIP_Port* >* GetCallbackDisconnect() override;
 
     void Start() override;
     void Stop() override;
@@ -72,9 +70,7 @@ protected:
     void CloseAll();
     void DeleteMapControlTCP();
 
-    //void CreateControlTcpUp();
     void DeleteControlTCP(TNetControlTCP* pControl);
 
     TNetControlTCP* GetTCP_ByIP(TIP_Port& ip_port);
-    void Done();
 };

@@ -9,20 +9,13 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-bool TCheckBox::GetValue()
-{
-    return mValue;
-}
-//----------------------------------------------------------------------------------------
-void TCheckBox::SetValue(bool value)
-{
-    mValue = value;
-}
-//----------------------------------------------------------------------------------------
 void TCheckBox::RenderInheritance()
 {
-    if (ImGui::Checkbox(mTitle.c_str(), &mValue)) {
-        mOnCheckChangeCB.Notify(mValue);
+    bool value = GetCheckBoxValue();
+
+    if (ImGui::Checkbox(mTitle.c_str(), &value)) {
+        SetCheckBoxValue(value);
+        mOnCheckChangeCB.Notify(value);
     }
 }
 //----------------------------------------------------------------------------------------

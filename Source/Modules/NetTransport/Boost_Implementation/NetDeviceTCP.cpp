@@ -39,9 +39,6 @@ bool TNetDeviceTCP::Open(unsigned short port, unsigned char numNetWork)
         return false;
     }
     try {
-        //const ip::address_v4 ipv4_address_Local = ip::address_v4::from_string( sLocalHost );
-        //const ip::address addr_Local( ipv4_address_Local );
-        //const ip::tcp::endpoint endpoint_Local( addr_Local, port );
         mSocket.open(boost::asio::ip::tcp::v4());
 
         SetReUse();
@@ -49,7 +46,7 @@ bool TNetDeviceTCP::Open(unsigned short port, unsigned char numNetWork)
         Set_HardClose();
 
         mSocket.bind(boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port));
-        //SetNonBlockingMode( true );
+
         res = true;
     } catch (std::exception& e) {
         GetLogger(STR_NAME_NET_TRANSPORT)->

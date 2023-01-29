@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include "ImGuiWidgets/include/Window.h"
 #include "ImGuiWidgets/include/Button.h"
+#include "ImGuiWidgets/include/ComboBox.h"
 
 #include "GraphicEngine/GraphicEngineContext.h"
 
@@ -18,10 +19,12 @@ namespace nsTest
     {
         nsImGuiWidgets::TWindow mWindow;
 
-        nsImGuiWidgets::TButton mExitButton;
+        //nsImGuiWidgets::TButton mExitButton;
         nsImGuiWidgets::TButton mAButton;
         nsImGuiWidgets::TButton mBButton;
         nsImGuiWidgets::TButton mCButton;
+
+        nsImGuiWidgets::TComboBox mCB;
 
     public:
         void Create(nsGraphicEngine::TGraphicEngineContext* pCtx);

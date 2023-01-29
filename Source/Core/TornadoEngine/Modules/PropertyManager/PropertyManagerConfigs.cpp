@@ -9,52 +9,52 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    static std::list<TTypeDependency> g_Configs =
+    static const std::list<TArchetype> g_Archetypes =
     {
         {
             .typeName = "nsImGuiWidgets::TWidget",
-            .parentComponentNames = {},
-            .properties = 
+            .parentNames = {},
+            .properties =
             {
                 "nsGuiWrapper::TTitleComponent",
                 "nsGuiWrapper::TSizeComponent",
                 "nsGuiWrapper::TPositionComponent",
-                "nsGuiWrapper::TVisibilityComponent"
+                "nsGuiWrapper::TVisibilityComponent",
             },
         },
         {
             .typeName = "nsImGuiWidgets::TNode",
-            .parentComponentNames = {"nsImGuiWidgets::TWidget"},
+            .parentNames = {"nsImGuiWidgets::TWidget"},
             .properties =
             {
-                "nsGuiWrapper::TTextureReference",
-                "nsGuiWrapper::TTextureSize",
-                "nsGuiWrapper::TTextureUv"
+                "nsImGuiWidgets::TTextureReference",
+                "nsImGuiWidgets::TTextureSize",
+                "nsImGuiWidgets::TTextureUv"
             }
         },
         {
             .typeName = "nsImGuiWidgets::TMenuNode",
-            .parentComponentNames = {"nsImGuiWidgets::TNode"},
+            .parentNames = {"nsImGuiWidgets::TNode"},
             .properties = {}
         },
         {
             .typeName = "nsImGuiWidgets::TSeparator",
-            .parentComponentNames = {"nsImGuiWidgets::TWidget"},
+            .parentNames = {"nsImGuiWidgets::TWidget"},
             .properties = {}
         },
         {
             .typeName = "nsImGuiWidgets::TTreeNode",
-            .parentComponentNames = {"nsImGuiWidgets::TNode"},
+            .parentNames = {"nsImGuiWidgets::TNode"},
             .properties = {}
         },
         {
             .typeName = "nsImGuiWidgets::TPopupNode",
-            .parentComponentNames = {"nsImGuiWidgets::TNode"},
+            .parentNames = {"nsImGuiWidgets::TNode"},
             .properties = {}
         },
         {
             .typeName = "nsImGuiWidgets::TUnit",
-            .parentComponentNames = {"nsImGuiWidgets::TWidget"},
+            .parentNames = {"nsImGuiWidgets::TWidget"},
             .properties =
             {
                 "nsGuiWrapper::TAnchorComponent",
@@ -68,28 +68,54 @@ namespace nsTornadoEngine
         },
         {
             .typeName = "nsImGuiWidgets::TProtoFrame",
-            .parentComponentNames = {"nsImGuiWidgets::TUnit"},
+            .parentNames = {"nsImGuiWidgets::TUnit"},
             .properties = {}
         },
         {
             .typeName = "nsImGuiWidgets::TFrame",
-            .parentComponentNames = {"nsImGuiWidgets::TProtoFrame"},
-            .properties = 
+            .parentNames = {"nsImGuiWidgets::TProtoFrame"},
+            .properties =
             {
-                "nsGuiWrapper::TPadding",
-                "nsGuiWrapper::TGrid",
-                "nsGuiWrapper::TSpacing"
+                "nsGuiWrapper::TPaddingComponent",
+                "nsGuiWrapper::TGridComponent",
+                "nsGuiWrapper::TSpacingComponent"
             }
         },
         {
             .typeName = "nsImGuiWidgets::TWindow",
-            .parentComponentNames = {"nsImGuiWidgets::TFrame"},
+            .parentNames = {"nsImGuiWidgets::TFrame"},
             .properties = {}
         }
     };
 
-    const std::list<TTypeDependency>& TPropertyManagerConfigs::GetConfig()
+    static const TRelativeProperties g_RelativeProperties =
     {
-        return g_Configs;
+        .value = 
+        {
+            { "nsGuiWrapper::TTitleComponent",               "nsImGuiWidgets::TTitle" },
+            { "nsGuiWrapper::TSizeComponent",                "nsImGuiWidgets::TSize" },
+            { "nsGuiWrapper::TPositionComponent",            "nsImGuiWidgets::TPosition"},
+            { "nsGuiWrapper::TVisibilityComponent",          "nsImGuiWidgets::TVisibility" },
+            { "nsGuiWrapper::TAnchorComponent",              "nsImGuiWidgets::TAnchor" },
+            { "nsGuiWrapper::THorizontalAlignComponent",     "nsImGuiWidgets::THorizontalAlign" },
+            { "nsGuiWrapper::TFocusComponent",               "nsImGuiWidgets::TFocus" },
+            { "nsGuiWrapper::TMaxSizeComponent",             "nsImGuiWidgets::TMaxSize" },
+            { "nsGuiWrapper::TMinSizeComponent",             "nsImGuiWidgets::TMinSize" },
+            { "nsGuiWrapper::TMinDistanceToParentComponent", "nsImGuiWidgets::TMinDistanceToParent" },
+            { "nsGuiWrapper::TVerticalAlignComponent",       "nsImGuiWidgets::TVerticalAlign" },
+            { "nsGuiWrapper::TTextureReferenceComponent",    "nsImGuiWidgets::TTextureReference" },
+            { "nsGuiWrapper::TTextureSizeComponent",         "nsImGuiWidgets::TTextureSize" },
+            { "nsGuiWrapper::TTextureUvComponent",           "nsImGuiWidgets::TTextureUv" },
+        }
+    };
+
+    const std::list<TArchetype>& TPropertyManagerConfigs::GetArchetypes()
+    {
+        return g_Archetypes;
+    }
+
+    const TRelativeProperties& TPropertyManagerConfigs::GetRelativeProperties()
+    {
+        return g_RelativeProperties;
     }
 }

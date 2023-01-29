@@ -7,12 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDependency.h"
+#include "Archetype.h"
+#include "RelativeProperties.h"
 
 namespace nsTornadoEngine
 {
     struct DllExport TPropertyManagerConfigs
     {
-        static const std::list<TTypeDependency>& GetConfig();
+        static const std::list<TArchetype>& GetArchetypes();
+
+        static const TRelativeProperties& GetRelativeProperties();
     };
 }

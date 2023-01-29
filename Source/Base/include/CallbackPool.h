@@ -56,7 +56,7 @@ class TCallbackPool
     };
 
     using TDescFuncList = std::list<TDescFunc<Args ...>>;
-    using TPtrDescListMap = std::map<void*, TDescFuncList>;
+    using TPtrDescListMap = std::unordered_map<void*, TDescFuncList>;
 
     TPtrDescListMap mObjFuncMap;
 public:

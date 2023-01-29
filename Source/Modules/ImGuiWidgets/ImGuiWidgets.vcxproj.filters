@@ -212,6 +212,9 @@
     <ClInclude Include="include\ComboBoxCurrentIndex.h">
       <Filter>Properties</Filter>
     </ClInclude>
+    <ClInclude Include="include\CheckBoxValue.h">
+      <Filter>Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Helper.cpp">
@@ -392,6 +395,9 @@
       <Filter>Properties</Filter>
     </ClCompile>
     <ClCompile Include="src\ComboBoxCurrentIndex.cpp">
+      <Filter>Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CheckBoxValue.cpp">
       <Filter>Properties</Filter>
     </ClCompile>
   </ItemGroup>

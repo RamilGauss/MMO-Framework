@@ -8,16 +8,14 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
-#include <list>
+#include <unordered_map>
 
 #include "TypeDef.h"
 
 namespace nsTornadoEngine
 {
-    struct DllExport TTypeDependency
+    struct DllExport TRelativeProperties
     {
-        std::string typeName;
-        std::list<std::string> parentComponentNames;
-        std::list<std::string> properties;
+        std::unordered_map<std::string, std::string> value;// component -> type
     };
 }

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <map>
+#include <unordered_map>
 
 #include "TypeDef.h"
 
@@ -51,7 +51,7 @@ namespace nsImGuiWidgets
         int mWidth = 0;
         int mHeight = 0;
 
-        std::map<int, TCell> mCells;
+        std::unordered_map<int, TCell> mCells;
     private:
 
         void InitCells();
