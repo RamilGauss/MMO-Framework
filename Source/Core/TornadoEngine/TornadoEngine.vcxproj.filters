@@ -555,6 +555,7 @@
     <ClCompile Include="Generated files\Container\ImGuiWidgetsTypeInfo.cpp" />
     <ClCompile Include="Modules\PropertyManager\PropertyManager.cpp" />
     <ClCompile Include="Modules\PropertyManager\PropertyManagerConfigs.cpp" />
+    <ClCompile Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -1263,6 +1264,7 @@
     <ClInclude Include="Modules\PropertyManager\Archetype.h" />
     <ClInclude Include="Modules\PropertyManager\PropertyManagerConfigs.h" />
     <ClInclude Include="Modules\PropertyManager\RelativeProperties.h" />
+    <ClInclude Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

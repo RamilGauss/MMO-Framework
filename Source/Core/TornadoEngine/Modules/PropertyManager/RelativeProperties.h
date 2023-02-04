@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
-#include <unordered_map>
+#include <BiMap.h>
 
 #include "TypeDef.h"
 
@@ -16,6 +16,6 @@ namespace nsTornadoEngine
 {
     struct DllExport TRelativeProperties
     {
-        std::unordered_map<std::string, std::string> value;// component -> type
+        TBiMap<std::string, std::string> componentType;
     };
 }

@@ -77,7 +77,7 @@ namespace nsECSFramework
 
         // Access by rtti
         void GetComponentList(TEntityID eid, std::list<TypeIndexType>& typeIdentifierList);
-
+        
         // Filters
         template<typename Component>
         DllExport TEntityID NoInline GetByUnique(Component& c);
@@ -353,7 +353,7 @@ namespace nsECSFramework
 #ifdef _DEBUG
         if (pEntity == nullptr) {
             BL_FIX_BUG();
-            return false;
+            return;
         }
 #endif
         const auto index = TypeIndex<Component>();

@@ -19,5 +19,5 @@ void TMenuNodeMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     auto pMenuNode = new nsImGuiWidgets::TMenuNode();
     pMenuNodeComponent->value = pMenuNode;
 
-    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, "nsImGuiWidgets::TMenuNode", pMenuNode);
+    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pMenuNode);
 }

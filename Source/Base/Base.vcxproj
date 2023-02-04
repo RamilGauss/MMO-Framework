@@ -247,6 +247,7 @@
     <ClInclude Include="include\LoaderDLL_Win32.h" />
     <ClInclude Include="include\LoadFromFile.h" />
     <ClInclude Include="include\LockFreeDef.h" />
+    <ClInclude Include="include\LockFreeFifo.h" />
     <ClInclude Include="include\Logger.h" />
     <ClInclude Include="include\MacroMaker.h" />
     <ClInclude Include="include\MacroMaker_Prepare.h" />
@@ -286,6 +287,7 @@
     <ClInclude Include="include\VectorRise.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\LockFreeFifo.cpp" />
     <ClCompile Include="src\AllocatorPool.cpp" />
     <ClCompile Include="src\ArrContainer.cpp" />
     <ClCompile Include="src\BL_Debug.cpp" />

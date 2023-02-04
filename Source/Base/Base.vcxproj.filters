@@ -245,6 +245,9 @@
     <ClInclude Include="include\TextGenerator.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\LockFreeFifo.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -392,6 +395,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\TextGenerator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LockFreeFifo.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

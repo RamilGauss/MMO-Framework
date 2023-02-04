@@ -14,6 +14,7 @@ C:/Users/Gauss/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26
 C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/include
 C:/Users/Gauss/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 C:/Users/Gauss/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/Gauss/.conan/data/readerwriterqueue/1.0.6/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/include
 
@@ -49,6 +50,7 @@ C:/Users/Gauss/.conan/data/stb/20200203/_/_/package/5ab84d6acfe1f23c4fae0ab88f26
 C:/Users/Gauss/.conan/data/glad/0.1.36/_/_/package/07b3a6a6cf6872693cd25f3ba34045fb28115ad7/
 C:/Users/Gauss/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 C:/Users/Gauss/.conan/data/termcolor/2.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/Gauss/.conan/data/readerwriterqueue/1.0.6/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/
 C:/Users/Gauss/.conan/data/bzip2/1.0.8/_/_/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/
 
@@ -1084,6 +1086,70 @@ termcolor
 
 
 
+[includedirs_readerwriterqueue]
+C:/Users/Gauss/.conan/data/readerwriterqueue/1.0.6/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+
+[libdirs_readerwriterqueue]
+
+
+[bindirs_readerwriterqueue]
+
+
+[resdirs_readerwriterqueue]
+
+
+[builddirs_readerwriterqueue]
+C:/Users/Gauss/.conan/data/readerwriterqueue/1.0.6/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+
+[libs_readerwriterqueue]
+
+
+[system_libs_readerwriterqueue]
+
+
+[defines_readerwriterqueue]
+
+
+[cppflags_readerwriterqueue]
+
+
+[cxxflags_readerwriterqueue]
+
+
+[cflags_readerwriterqueue]
+
+
+[sharedlinkflags_readerwriterqueue]
+
+
+[exelinkflags_readerwriterqueue]
+
+
+[sysroot_readerwriterqueue]
+
+
+[frameworks_readerwriterqueue]
+
+
+[frameworkdirs_readerwriterqueue]
+
+
+[rootpath_readerwriterqueue]
+C:/Users/Gauss/.conan/data/readerwriterqueue/1.0.6/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+
+[name_readerwriterqueue]
+readerwriterqueue
+
+[version_readerwriterqueue]
+1.0.6
+
+[generatornames_readerwriterqueue]
+
+
+[generatorfilenames_readerwriterqueue]
+
+
+
 [includedirs_zlib]
 C:/Users/Gauss/.conan/data/zlib/1.2.13/_/_/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 
@@ -1226,6 +1292,7 @@ stacktrace_addr2line_available=False
 [USER_magic_enum]
 [USER_openssl]
 [USER_rapidjson]
+[USER_readerwriterqueue]
 [USER_sdl]
 [USER_stb]
 [USER_termcolor]
@@ -1244,6 +1311,7 @@ BOOST_ROOT=C:\.conan\f81f73\1
 [ENV_glad]
 [ENV_glm]
 [ENV_termcolor]
+[ENV_readerwriterqueue]
 [ENV_zlib]
 [ENV_bzip2]
 PATH=["C:\Users\Gauss\.conan\data\bzip2\1.0.8\_\_\package\589a23dff5fdb23a7fb851223eb766480ead0a9a\bin"]

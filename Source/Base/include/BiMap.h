@@ -9,17 +9,35 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include <map>
+#include <unordered_map>
 
 template <typename Key, typename Value>
 class DllExport TBiMap
 {
 public:
-    using TKeyValueMap = std::map<Key, Value>;
-    using TValueKeyMap = std::map<Value, Key>;
+    using TKeyValueMap = std::unordered_map<Key, Value>;
+    using TValueKeyMap = std::unordered_map<Value, Key>;
 
     TKeyValueMap left;
     TValueKeyMap right;
+
+    TBiMap()
+    {
+
+    }
+
+    TBiMap(const std::initializer_list<std::pair<const Key, const Value>>& il)
+    {
+        for (auto& el : il) {
+            insert(el.first, el.second);
+        }
+    }
+
+    void insert(const TBiMap<Key, Value>& other)
+    {
+        left.insert(other.left.begin(), other.left.end());
+        right.insert(other.right.begin(), other.right.end());
+    }
 
     void insert(const Key& key, const Value& value)
     {

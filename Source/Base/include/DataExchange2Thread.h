@@ -30,7 +30,8 @@ using namespace DataExchange2Thread;
   он помечается как подготовленный для удаления, но удалять нельзя.
   Поток Producer удалит его когда появится еще элемент.
 */
-template <typename TClass> class TDataExchange2Thread
+template <typename TClass> 
+class TDataExchange2Thread
 {
 #ifdef USE_COUNT_FOR_DEBUG
     DECLARATION_ATOMIC_INT(cnt);      // change by Producer
@@ -160,8 +161,9 @@ TClass** TDataExchange2Thread<TClass>::GetFirst()// Consumer
     BL_ASSERT(pFirstConsumer);
     if (DECLARATION_ATOMIC_POINTER_LOAD(pFirstConsumer->pNext) == nullptr) {
         if (DECLARATION_ATOMIC_CHAR_LOAD(pFirstConsumer->dummy) ||
-            DECLARATION_ATOMIC_CHAR_LOAD(pFirstConsumer->prepareRemove))
-            return NULL;
+            DECLARATION_ATOMIC_CHAR_LOAD(pFirstConsumer->prepareRemove)) {
+            return nullptr;
+        }
 
         return (TClass**)&(pFirstConsumer->data);
     }
@@ -180,8 +182,9 @@ TClass** TDataExchange2Thread<TClass>::Next(TClass** d)// Consumer
 {
     TElement* pEl = GetElement(d);
     TElement* pNext = DECLARATION_ATOMIC_POINTER_LOAD(pEl->pNext);
-    if (pNext == nullptr)
+    if (pNext == nullptr) {
         return nullptr;
+    }
     return &(pNext->data);
 }
 //--------------------------------------------------------------------------------------
@@ -196,14 +199,18 @@ void TDataExchange2Thread<TClass>::RemoveFirst()// Consumer
         TElement* temp = pFirstConsumer;
         pFirstConsumer = DECLARATION_ATOMIC_POINTER_LOAD(pFirstConsumer->pNext);
         DECLARATION_ATOMIC_CHAR_STORE(temp->needRemove, true);// помечаем для удаления
-    } else
+    } else {
         DECLARATION_ATOMIC_CHAR_STORE(pFirstConsumer->prepareRemove, true);// удалять нельзя, pNext всегда должен куда-то указывать
+    }
 }
 //--------------------------------------------------------------------------------------
 template<typename TClass>
 TClass** TDataExchange2Thread<TClass>::Add(TClass* d)// Producer
 {
-    if (d == nullptr) { BL_FIX_BUG(); return nullptr; }
+    if (d == nullptr) {
+        BL_FIX_BUG(); 
+        return nullptr; 
+    }
 
     TElement* pEl = mAllocatorElement.Allocate();// ALLOC_MEMORY(TElement);
     pEl->Init();
@@ -224,8 +231,9 @@ template<typename TClass>
 void TDataExchange2Thread<TClass>::LatencyRemove()// Producer
 {
     while (pFirstProducer) {
-        if (DECLARATION_ATOMIC_CHAR_LOAD(pFirstProducer->needRemove) == false)
+        if (DECLARATION_ATOMIC_CHAR_LOAD(pFirstProducer->needRemove) == false) {
             return;
+        }
 
         TElement* pEl = pFirstProducer;
         pFirstProducer = DECLARATION_ATOMIC_POINTER_LOAD(pFirstProducer->pNext);

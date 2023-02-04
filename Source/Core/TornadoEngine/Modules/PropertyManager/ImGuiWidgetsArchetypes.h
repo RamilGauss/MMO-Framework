@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    struct DllExport TPropertyManagerConfigs
+    struct DllExport TImGuiWidgetsArchetypes
     {
         static void GetArchetypes(std::list<TArchetype>& archetypes);
 

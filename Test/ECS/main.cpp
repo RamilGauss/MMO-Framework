@@ -53,6 +53,16 @@ void ShowEntities()
 
 }
 
+struct ISome
+{
+    virtual void Foo() {}
+};
+
+struct TMultiComponent : ISome, IComponent
+{
+    int x = 42;
+};
+
 int main()
 {
     const char* sLocale = setlocale(LC_CTYPE, "");
@@ -67,6 +77,20 @@ int main()
 
     entMng->Setup();
     printf("\n");
+
+    // Pointer balance test
+    auto eid = entMng->CreateEntity();
+    entMng->CreateComponent<TMultiComponent>(eid, [](TMultiComponent* pC) { pC->x = 0; });
+    entMng->GetComponent<TMultiComponent>(eid, [](const TMultiComponent& c) { auto x = c.x; });
+    auto pC = entMng->ViewComponent<TMultiComponent>(eid);
+    auto has = entMng->HasComponent<TMultiComponent>(eid);
+    entMng->RemoveComponent<TMultiComponent>(eid);
+
+    entMng->GetComponent<TMultiComponent>(eid, [](const TMultiComponent& c) { auto x = c.x; });
+    pC = entMng->ViewComponent<TMultiComponent>(eid);
+    has = entMng->HasComponent<TMultiComponent>(eid);
+
+    // Pointer balance test ENDS
 
     mainFeature->SetEntMng(entMng);
     // Construct tree

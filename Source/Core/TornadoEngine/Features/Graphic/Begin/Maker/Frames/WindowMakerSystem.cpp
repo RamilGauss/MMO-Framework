@@ -39,5 +39,5 @@ void TWindowMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrap
     auto pWindow = new nsImGuiWidgets::TWindow();
     pWindowComponent->value = pWindow;
 
-    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, "nsImGuiWidgets::TWindow", pWindow);
+    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pWindow);
 }

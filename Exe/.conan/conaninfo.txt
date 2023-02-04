@@ -17,6 +17,7 @@
     magic_enum/0.8.1
     openssl/1.Y.Z
     rapidjson/1.Y.Z
+    readerwriterqueue/1.Y.Z
     sdl/2.Y.Z
     stb/20200203.Y.Z
     termcolor/2.Y.Z
@@ -47,6 +48,7 @@
     magic_enum/0.8.1:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
     openssl/1.1.1k:4f1710918aa542fccb5a54d7bd712e4b0750b50d
     rapidjson/1.1.0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+    readerwriterqueue/1.0.6:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
     sdl/2.24.0:996a52c438de9a8d0cca785b1d69310cc8e3dce3
     stb/20200203:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
     termcolor/2.1.0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
