@@ -284,6 +284,7 @@
     <ClInclude Include="include\TimeManager.h" />
     <ClInclude Include="include\TypeDef.h" />
     <ClInclude Include="include\RunTimeTypeIndex.h" />
+    <ClInclude Include="include\TypeName.h" />
     <ClInclude Include="include\VectorRise.h" />
   </ItemGroup>
   <ItemGroup>

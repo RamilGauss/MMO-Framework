@@ -24,7 +24,7 @@ namespace nsTornadoEngine
     public:
         TGraphicEngineModule();
 
-        bool StartEvent() override;
+        bool ModuleStartEvent() override;
         void ModuleWork() override;
         void StopEvent() override;
 

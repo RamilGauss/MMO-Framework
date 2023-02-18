@@ -66,6 +66,16 @@ bool TSystem::IsFeature()  const
     return false;
 }
 //-------------------------------------------------------------------------
+bool TSystem::IsInstantReactive()  const
+{
+    return false;
+}
+//-------------------------------------------------------------------------
+bool TSystem::IsCollectReactive()  const
+{
+    return false;
+}
+//-------------------------------------------------------------------------
 double TSystem::GetLastExecutionTime() const
 {
     return 0;

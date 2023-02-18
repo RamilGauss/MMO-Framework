@@ -14,5 +14,12 @@ namespace nsECSFramework
 {
     class DllExport TBaseReactiveSystem : public TTearDownSystem
     {
+        bool mIsEnableReactive = true;
+    public:
+        void SetEnableReactive(bool value);
+        bool IsEnableReactive() const;
+
+        bool IsInstantReactive()  const override final;
+
     };
 }

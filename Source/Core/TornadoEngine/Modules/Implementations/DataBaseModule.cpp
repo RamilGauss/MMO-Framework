@@ -25,7 +25,7 @@ void TDataBaseModule::ModuleWork()
     //ht_msleep(20);//###
 }
 //----------------------------------------------------------------------
-bool TDataBaseModule::StartEvent()
+bool TDataBaseModule::ModuleStartEvent()
 {
     return true;
 }

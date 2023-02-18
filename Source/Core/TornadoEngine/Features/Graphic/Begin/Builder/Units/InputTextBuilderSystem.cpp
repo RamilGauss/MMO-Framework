@@ -40,6 +40,6 @@ void TInputTextBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGu
     {
         TInputTextValueComponent inputTextValueComponent;
         inputTextValueComponent.value = pInputText->GetText();
-        entMng->SetComponent(eid, inputTextValueComponent, false);
+        entMng->SetComponent(eid, inputTextValueComponent);
     });
 }

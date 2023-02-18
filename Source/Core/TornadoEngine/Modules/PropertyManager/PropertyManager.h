@@ -12,7 +12,9 @@ See for more information LICENSE.md.
 #include <map>
 #include <vector>
 
-#include "TypeDef.h"
+#include <TypeDef.h>
+#include <TypeName.h>
+
 #include <ECS/include/EntityManager.h>
 #include <IPropertyOf.h>
 #include <TimeSliceEngine/ProjectConfigContainer.h>
@@ -37,50 +39,52 @@ namespace nsTornadoEngine
     protected:
 
         void GetDownCasters(const std::string& typeName, std::list<std::string>& downCasters) const;
-        void GetProperties(const std::string& typeName, TRelativeProperties& properties) const;
+        void GetProperties(const std::string& typeName, std::list<std::string>& properties) const;
     };
     //-------------------------------------------------------------------------------------------
     template <typename Type>
     void TPropertyManager::SetupProperties(nsECSFramework::TEntityManager* pEntMng, nsECSFramework::TEntityID eid, Type* pObject)
     {
-        //auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
-        //componentReflection->mEntMng->SetEntityManager(pEntMng);
+        auto typeRtti = SingletonManager()->Get<TRunTimeTypeIndex<>>()->Type<Type>();
+        auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
 
-        //auto imGuiWidgetsReflection = nsTornadoEngine::Project()->mScenePartAggregator->mImGuiWidgets;
+        std::string typeName = nsBase::TTypeName::Get<Type>();
+        std::string componentTypeName;
+        mRelativeProperties.componentType.FindByValue(typeName, componentTypeName);
 
-        //auto typeRtti = SingletonManager()->Get<TRunTimeTypeIndex<>>()->Type<T>();
-        //std::string typeName;
-        //componentReflection->mTypeInfo->ConvertTypeToName(typeRtti, typeName);
+        componentReflection->mEntMng->SetEntityManager(pEntMng);
 
-        //int dstRtti;
-        //componentReflection->mTypeInfo->ConvertNameToType("nsTornadoEngine::IPropertyOf", dstRtti);
+        auto imGuiWidgetsReflection = nsTornadoEngine::Project()->mScenePartAggregator->mImGuiWidgets;
 
-        //int windowRtti;
-        //imGuiWidgetsReflection->mTypeInfo->ConvertNameToType(typeName, windowRtti);
+        int dstRtti;
+        componentReflection->mTypeInfo->ConvertNameToType("nsTornadoEngine::IPropertyOf", dstRtti);
 
-        //std::list<std::string> downCasters;
-        //GetDownCasters(typeName, downCasters);
+        std::list<std::string> downCasters;
+        GetDownCasters(componentTypeName, downCasters);
 
-        //for (auto& downCaster : downCasters) {// nsImGuiWidgets::TWidget, ...
+        for (auto& downCaster : downCasters) {// nsImGuiWidgets::TWidget, ...
 
-        //    TRelativeProperties properties;
-        //    GetProperties(downCaster, properties);
-        //    for (auto& property : properties.value) {// nsGuiWrapper::TTitleComponent, ...
+            std::list<std::string> properties;
+            GetProperties(downCaster, properties);
+            for (auto& componentProperty : properties) {// nsGuiWrapper::TTitleComponent, ...
 
-        //        int srcRtti;
-        //        componentReflection->mTypeInfo->ConvertNameToType(property.first/*"nsGuiWrapper::TTitleComponent"*/, srcRtti);
+                std::string typeProperty;
+                mRelativeProperties.componentType.FindByKey(componentProperty, typeProperty);
 
-        //        void* pC = (void*)componentReflection->mEntMng->ViewComponent(eid, srcRtti);
+                int srcRtti;
+                componentReflection->mTypeInfo->ConvertNameToType(componentProperty/*"nsGuiWrapper::TTitleComponent"*/, srcRtti);
 
-        //        auto propertyOf = (nsTornadoEngine::IPropertyOf*)componentReflection->mDynamicCaster->Cast(srcRtti, pC, dstRtti);
+                void* pC = (void*)componentReflection->mEntMng->ViewComponent(eid, srcRtti);
 
-        //        int targetRtti;
-        //        imGuiWidgetsReflection->mTypeInfo->ConvertNameToType(property.second/*"nsImGuiWidgets::TWidget"*/, targetRtti);
-        //        auto targetPtr = imGuiWidgetsReflection->mDynamicCaster->Cast(windowRtti, pObject, targetRtti);
+                auto propertyOf = (nsTornadoEngine::IPropertyOf*)componentReflection->mDynamicCaster->Cast(srcRtti, pC, dstRtti);
 
-        //        propertyOf->SetOwner(targetPtr);
-        //    }
-        //}
+                int targetRtti;
+                imGuiWidgetsReflection->mTypeInfo->ConvertNameToType(typeProperty/*"nsImGuiWidgets::TTitle"*/, targetRtti);
+                auto targetPtr = imGuiWidgetsReflection->mDynamicCaster->Cast(typeRtti, pObject, targetRtti);
+
+                propertyOf->SetOwner(targetPtr);
+            }
+        }
     }
     //-------------------------------------------------------------------------------------------
 }

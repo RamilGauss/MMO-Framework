@@ -17,7 +17,7 @@ namespace nsTornadoEngine
         TDataBaseModule();
         virtual ~TDataBaseModule();
 
-        bool StartEvent() override;
+        bool ModuleStartEvent() override;
         void ModuleWork() override;
         void StopEvent() override;
     };

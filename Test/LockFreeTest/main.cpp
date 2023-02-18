@@ -211,6 +211,8 @@ void Recv()
 
 //#define CORRECT_TEST
 
+#include <CallbackPool.h>
+
 int main(int argc, char** argv)
 {
     std::string methodName =

@@ -33,7 +33,7 @@ TGraphicEngine* TGraphicEngineModule::GetGE()
     return mGE.get();
 }
 //---------------------------------------------------------------------------------
-bool TGraphicEngineModule::StartEvent()
+bool TGraphicEngineModule::ModuleStartEvent()
 {
     auto entMng = Modules()->EntMng();
 

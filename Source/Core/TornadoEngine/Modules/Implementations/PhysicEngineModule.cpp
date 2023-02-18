@@ -19,7 +19,7 @@ void TPhysicEngineModule::ModuleWork()
     mPE->Work();
 }
 //---------------------------------------------------------------------------------
-bool TPhysicEngineModule::StartEvent()
+bool TPhysicEngineModule::ModuleStartEvent()
 {
     return true;
 }

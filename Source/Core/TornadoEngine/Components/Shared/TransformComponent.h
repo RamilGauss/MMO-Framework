@@ -12,11 +12,14 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
+#include <GraphicEngine/RenderableObject.h>
+
 #include "MathStructs.h"
+#include "PropertyOf.h"
 
 namespace nsCommonWrapper
 {
-    struct DllExport TTransformComponent : nsECSFramework::IComponent
+    struct DllExport TTransformComponent : nsTornadoEngine::TPropertyOf<nsGraphicEngine::TRenderableObject>, nsECSFramework::IComponent
     {
         nsMathTools::TMatrix16 value;
     };

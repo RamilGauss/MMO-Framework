@@ -25,14 +25,13 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
-using namespace std;
 using namespace nsTornadoEngine;
 using namespace nsBase;
 
 // Назначение: упростить отладку игры разработчику (нет необходимости создавать с десяток
 // исполняемых файлов, достаточно написать скрипт)
 //-------------------------------------
-typedef vector<string> TVectorStr;
+typedef std::vector<std::string> TVectorStr;
 void ViewHowUse();
 void IncorrectPathToProject(const std::string& absProjectPath);
 

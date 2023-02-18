@@ -12,11 +12,15 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include "ECS/include/IComponent.h"
+
 #include <GraphicEngine/Texture.h>
+#include <GraphicEngine/RenderableObject.h>
+
+#include "PropertyOf.h"
 
 namespace nsGraphicWrapper
 {
-    struct DllExport TTextureFromFileComponent : nsECSFramework::IComponent
+    struct DllExport TTextureFromFileComponent : nsTornadoEngine::TPropertyOf<nsGraphicEngine::TRenderableObject>, nsECSFramework::IComponent
     {
         std::string resourceGuid;
 

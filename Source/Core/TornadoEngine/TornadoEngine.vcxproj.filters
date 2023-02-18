@@ -258,7 +258,7 @@
     <ClCompile Include="Features\Graphic\Begin\Terminator\GuiTerminatorFeature.cpp">
       <Filter>Features\Graphic\Terminator</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h">
+    <ClCompile Include="Components\Meta\SceneInstanceGuidComponent.h">
       <Filter>Components\Common\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Features\Logic\End\Scene\StartedScenesInitSystem.cpp">
@@ -597,19 +597,19 @@
     <ClInclude Include="TimeSliceEngine\StopAccessor.h">
       <Filter>TimeSliceEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\NameComponent.h">
+    <ClInclude Include="Components\Meta\NameComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\ParentGuidComponent.h">
+    <ClInclude Include="Components\Meta\ParentGuidComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\GuidComponent.h">
+    <ClInclude Include="Components\Meta\GuidComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Generated files\ReflectionIncludeList.h">
       <Filter>Generated files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\TransformComponent.h">
+    <ClInclude Include="Components\Shared\TransformComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\CameraComponent.h">
@@ -741,28 +741,28 @@
     <ClInclude Include="Features\Graphic\Begin\Builder\GuiBuilderFeature.h">
       <Filter>Features\Graphic\Builder</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\SceneRootComponent.h">
+    <ClInclude Include="Components\Meta\SceneRootComponent.h">
       <Filter>Components\Common\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\SceneGuidComponent.h">
+    <ClInclude Include="Components\Meta\SceneGuidComponent.h">
       <Filter>Components\Common\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\SceneOriginalGuidComponent.h">
+    <ClInclude Include="Components\Meta\SceneOriginalGuidComponent.h">
       <Filter>Components\Common\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\PrefabOriginalGuidComponent.h">
+    <ClInclude Include="Components\Meta\PrefabOriginalGuidComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\PrefabRootComponent.h">
+    <ClInclude Include="Components\Meta\PrefabRootComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\PrefabGuidComponent.h">
+    <ClInclude Include="Components\Meta\PrefabGuidComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\Begin\Terminator\GuiTerminatorFeature.h">
       <Filter>Features\Graphic\Terminator</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h">
+    <ClInclude Include="Components\Meta\PrefabInstanceGuidComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
     <ClInclude Include="Features\Logic\End\Scene\StartedScenesInitSystem.h">
@@ -813,7 +813,7 @@
     <ClInclude Include="Modules\Resources\Prefab\ComponentInMemory.h">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\ObjectInMemoryComponent.h">
+    <ClInclude Include="Components\Meta\ObjectInMemoryComponent.h">
       <Filter>Components\Common\Prefab</Filter>
     </ClInclude>
     <ClInclude Include="Modules\Resources\Common\HandlerCallCollector.h">
@@ -1101,7 +1101,7 @@
     <ClInclude Include="Features\Graphic\Begin\Terminator\Handlers\FrameMouseWheelHandlerTerminatorSystem.h">
       <Filter>Features\Graphic\Terminator\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\NeedDestroyObjectTagComponent.h">
+    <ClInclude Include="Components\Meta\NeedDestroyObjectTagComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Components\Gui\Properties\SelectedTreeNodeGuidComponent.h">
@@ -1110,7 +1110,7 @@
     <ClInclude Include="Modules\Common\IContextManager.h">
       <Filter>Modules\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\UniverseGuidComponent.h">
+    <ClInclude Include="Components\Meta\UniverseGuidComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Modules\Contexts\GraphicEngineContext.h">
@@ -1128,7 +1128,7 @@
     <ClInclude Include="Modules\Resources\Scene\UniverseManager.h">
       <Filter>Modules\Resources\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\UniverseIndexComponent.h">
+    <ClInclude Include="Components\Meta\UniverseIndexComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\End\UpdateFromModule\GuiUpdaterFromModuleFeature.h">
@@ -1206,7 +1206,7 @@
     <ClInclude Include="Modules\Resources\Common\GuidReference.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Common\ProjectionToUniverseComponent.h">
+    <ClInclude Include="Components\Meta\ProjectionToUniverseComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Share\PropertyOf.h" />

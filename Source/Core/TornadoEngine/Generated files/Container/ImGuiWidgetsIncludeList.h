@@ -2,16 +2,18 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_20 18:35:29.996
+// File has been generated at 2023_02_18 17:12:03.898
 	
 #pragma once
 
 #include "ImGuiWidgets/include/Anchors.h"
 #include "ImGuiWidgets/include/Button.h"
 #include "ImGuiWidgets/include/CheckBox.h"
+#include "ImGuiWidgets/include/CheckBoxValue.h"
 #include "ImGuiWidgets/include/Color.h"
 #include "ImGuiWidgets/include/ComboBox.h"
 #include "ImGuiWidgets/include/ComboBoxCurrentIndex.h"
+#include "ImGuiWidgets/include/ComboBoxItems.h"
 #include "ImGuiWidgets/include/Dialog.h"
 #include "ImGuiWidgets/include/DialogStack.h"
 #include "ImGuiWidgets/include/DockNode.h"

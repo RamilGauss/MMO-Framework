@@ -57,17 +57,21 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         txtGen.AddVirtualDtorDecl(impl.impl.typeName);
         txtGen.AddEmpty();
 
-        std::list<std::string> args = { "nsECSFramework::TEntityID eid", 
+        std::list<std::string> args = 
+        {
+            "nsECSFramework::TEntityID eid", 
             "int rtti", 
             "std::function<void(void*)> onAfterCreation", 
-            "bool isNotify = true" };
+        };
 
         txtGen.AddMethodDecl("CreateComponent", "void", args, " override");
 
-        args = { "nsECSFramework::TEntityID eid",
-                "int rtti",
-                "void* p",
-                "bool isNotify = true" };
+        args = 
+        { 
+            "nsECSFramework::TEntityID eid",
+            "int rtti",
+            "void* p",
+        };
 
         txtGen.AddMethodDecl("SetComponent", "void", args, " override");
 

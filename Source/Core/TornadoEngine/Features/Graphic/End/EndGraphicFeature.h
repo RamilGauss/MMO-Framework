@@ -24,6 +24,7 @@ namespace nsGraphicWrapper
         TOnRemoveUniverseContextSystem mOnRemoveUniverseContextSystem;
 
         TCleanUpUniverseContextSystem mCleanUpUniverseContextSystem;
+
     public:
         void InitConveyor() override;
     };

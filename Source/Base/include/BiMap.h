@@ -70,4 +70,28 @@ public:
         right.clear();
         left.clear();
     }
+
+    bool FindByKey(const Key& key, Value& value) const
+    {
+        auto fit = left.find(key);
+        if (fit == left.end()) {
+            return false;
+        }
+
+        value = fit->second;
+
+        return true;
+    }
+
+    bool FindByValue(const Value& value, Key& key) const
+    {
+        auto fit = right.find(value);
+        if (fit == right.end()) {
+            return false;
+        }
+
+        key = fit->second;
+
+        return true;
+    }
 };

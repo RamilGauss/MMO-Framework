@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_01_20 18:48:00.178
+// File has been generated at 2023_02_18 17:12:09.236
 	
 #include "ComponentEntityManagerExtensionImpl.h"
 
@@ -25,26 +25,26 @@ TComponentEntityManagerExtensionImpl::~TComponentEntityManagerExtensionImpl()
     
 }
 //--------------------------------------------------------------------------------------------------
-void TComponentEntityManagerExtensionImpl::CreateComponent(nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation, bool isNotify)
+void TComponentEntityManagerExtensionImpl::CreateComponent(nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation)
 {
     if (TComponentEntMng::Has(rtti)) {
-        TComponentEntMng::CreateComponent(mEntMng, eid, rtti, onAfterCreation, isNotify);
+        TComponentEntMng::CreateComponent(mEntMng, eid, rtti, onAfterCreation);
         return;
     }
     if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
-        nsTornadoEngine::TComponentEntMng::CreateComponent(mEntMng, eid, rtti, onAfterCreation, isNotify);
+        nsTornadoEngine::TComponentEntMng::CreateComponent(mEntMng, eid, rtti, onAfterCreation);
         return;
     }
 }
 //--------------------------------------------------------------------------------------------------
-void TComponentEntityManagerExtensionImpl::SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p, bool isNotify)
+void TComponentEntityManagerExtensionImpl::SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p)
 {
     if (TComponentEntMng::Has(rtti)) {
-        TComponentEntMng::SetComponent(mEntMng, eid, rtti, p, isNotify);
+        TComponentEntMng::SetComponent(mEntMng, eid, rtti, p);
         return;
     }
     if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
-        nsTornadoEngine::TComponentEntMng::SetComponent(mEntMng, eid, rtti, p, isNotify);
+        nsTornadoEngine::TComponentEntMng::SetComponent(mEntMng, eid, rtti, p);
         return;
     }
 }

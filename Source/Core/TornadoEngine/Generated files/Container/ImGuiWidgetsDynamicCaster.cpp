@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_20 18:35:29.910
+// File has been generated at 2023_02_18 17:12:03.810
 	
 #include "ImGuiWidgetsDynamicCaster.h"
 #include "SingletonManager.h"
@@ -246,6 +246,12 @@ void TImGuiWidgetsDynamicCaster::Init()
     
     nsImGuiWidgets_TCheckBox_Map.insert({ nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TAnchors_rtti, nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TAnchors_Data });
     
+    Data nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TCheckBoxValue_Data;
+    nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TCheckBoxValue_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TCheckBoxValue, nsImGuiWidgets::TCheckBox>(p); };
+    auto nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TCheckBoxValue_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TCheckBoxValue>();
+    
+    nsImGuiWidgets_TCheckBox_Map.insert({ nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TCheckBoxValue_rtti, nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TCheckBoxValue_Data });
+    
     Data nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TColor_Data;
     nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TColor_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TColor, nsImGuiWidgets::TCheckBox>(p); };
     auto nsImGuiWidgets_TCheckBox_nsImGuiWidgets_TColor_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TColor>();
@@ -333,6 +339,18 @@ void TImGuiWidgetsDynamicCaster::Init()
     auto nsImGuiWidgets_TCheckBox_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TCheckBox>();
     
     m.insert({ nsImGuiWidgets_TCheckBox_rtti, nsImGuiWidgets_TCheckBox_Map });
+    
+    std::map<int, Data> nsImGuiWidgets_TCheckBoxValue_Map;
+    
+    Data nsImGuiWidgets_TCheckBoxValue_nsImGuiWidgets_TCheckBox_Data;
+    nsImGuiWidgets_TCheckBoxValue_nsImGuiWidgets_TCheckBox_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TCheckBox, nsImGuiWidgets::TCheckBoxValue>(p); };
+    auto nsImGuiWidgets_TCheckBoxValue_nsImGuiWidgets_TCheckBox_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TCheckBox>();
+    
+    nsImGuiWidgets_TCheckBoxValue_Map.insert({ nsImGuiWidgets_TCheckBoxValue_nsImGuiWidgets_TCheckBox_rtti, nsImGuiWidgets_TCheckBoxValue_nsImGuiWidgets_TCheckBox_Data });
+    
+    auto nsImGuiWidgets_TCheckBoxValue_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TCheckBoxValue>();
+    
+    m.insert({ nsImGuiWidgets_TCheckBoxValue_rtti, nsImGuiWidgets_TCheckBoxValue_Map });
     
     std::map<int, Data> nsImGuiWidgets_TColor_Map;
     
@@ -498,6 +516,12 @@ void TImGuiWidgetsDynamicCaster::Init()
     
     nsImGuiWidgets_TComboBox_Map.insert({ nsImGuiWidgets_TComboBox_nsImGuiWidgets_TComboBoxCurrentIndex_rtti, nsImGuiWidgets_TComboBox_nsImGuiWidgets_TComboBoxCurrentIndex_Data });
     
+    Data nsImGuiWidgets_TComboBox_nsImGuiWidgets_TComboBoxItems_Data;
+    nsImGuiWidgets_TComboBox_nsImGuiWidgets_TComboBoxItems_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TComboBoxItems, nsImGuiWidgets::TComboBox>(p); };
+    auto nsImGuiWidgets_TComboBox_nsImGuiWidgets_TComboBoxItems_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TComboBoxItems>();
+    
+    nsImGuiWidgets_TComboBox_Map.insert({ nsImGuiWidgets_TComboBox_nsImGuiWidgets_TComboBoxItems_rtti, nsImGuiWidgets_TComboBox_nsImGuiWidgets_TComboBoxItems_Data });
+    
     Data nsImGuiWidgets_TComboBox_nsImGuiWidgets_TFocus_Data;
     nsImGuiWidgets_TComboBox_nsImGuiWidgets_TFocus_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TFocus, nsImGuiWidgets::TComboBox>(p); };
     auto nsImGuiWidgets_TComboBox_nsImGuiWidgets_TFocus_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TFocus>();
@@ -591,6 +615,18 @@ void TImGuiWidgetsDynamicCaster::Init()
     auto nsImGuiWidgets_TComboBoxCurrentIndex_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TComboBoxCurrentIndex>();
     
     m.insert({ nsImGuiWidgets_TComboBoxCurrentIndex_rtti, nsImGuiWidgets_TComboBoxCurrentIndex_Map });
+    
+    std::map<int, Data> nsImGuiWidgets_TComboBoxItems_Map;
+    
+    Data nsImGuiWidgets_TComboBoxItems_nsImGuiWidgets_TComboBox_Data;
+    nsImGuiWidgets_TComboBoxItems_nsImGuiWidgets_TComboBox_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TComboBox, nsImGuiWidgets::TComboBoxItems>(p); };
+    auto nsImGuiWidgets_TComboBoxItems_nsImGuiWidgets_TComboBox_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TComboBox>();
+    
+    nsImGuiWidgets_TComboBoxItems_Map.insert({ nsImGuiWidgets_TComboBoxItems_nsImGuiWidgets_TComboBox_rtti, nsImGuiWidgets_TComboBoxItems_nsImGuiWidgets_TComboBox_Data });
+    
+    auto nsImGuiWidgets_TComboBoxItems_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TComboBoxItems>();
+    
+    m.insert({ nsImGuiWidgets_TComboBoxItems_rtti, nsImGuiWidgets_TComboBoxItems_Map });
     
     std::map<int, Data> nsImGuiWidgets_TDialog_Map;
     
@@ -2112,12 +2148,6 @@ void TImGuiWidgetsDynamicCaster::Init()
     
     nsImGuiWidgets_TMenuNode_Map.insert({ nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTextureSize_rtti, nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTextureSize_Data });
     
-    Data nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTextureUv_Data;
-    nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTextureUv_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTextureUv, nsImGuiWidgets::TMenuNode>(p); };
-    auto nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTextureUv_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTextureUv>();
-    
-    nsImGuiWidgets_TMenuNode_Map.insert({ nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTextureUv_rtti, nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTextureUv_Data });
-    
     Data nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTitle_Data;
     nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTitle_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTitle, nsImGuiWidgets::TMenuNode>(p); };
     auto nsImGuiWidgets_TMenuNode_nsImGuiWidgets_TTitle_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTitle>();
@@ -2406,12 +2436,6 @@ void TImGuiWidgetsDynamicCaster::Init()
     
     nsImGuiWidgets_TNode_Map.insert({ nsImGuiWidgets_TNode_nsImGuiWidgets_TTextureSize_rtti, nsImGuiWidgets_TNode_nsImGuiWidgets_TTextureSize_Data });
     
-    Data nsImGuiWidgets_TNode_nsImGuiWidgets_TTextureUv_Data;
-    nsImGuiWidgets_TNode_nsImGuiWidgets_TTextureUv_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTextureUv, nsImGuiWidgets::TNode>(p); };
-    auto nsImGuiWidgets_TNode_nsImGuiWidgets_TTextureUv_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTextureUv>();
-    
-    nsImGuiWidgets_TNode_Map.insert({ nsImGuiWidgets_TNode_nsImGuiWidgets_TTextureUv_rtti, nsImGuiWidgets_TNode_nsImGuiWidgets_TTextureUv_Data });
-    
     Data nsImGuiWidgets_TNode_nsImGuiWidgets_TTitle_Data;
     nsImGuiWidgets_TNode_nsImGuiWidgets_TTitle_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTitle, nsImGuiWidgets::TNode>(p); };
     auto nsImGuiWidgets_TNode_nsImGuiWidgets_TTitle_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTitle>();
@@ -2543,12 +2567,6 @@ void TImGuiWidgetsDynamicCaster::Init()
     auto nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTextureSize_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTextureSize>();
     
     nsImGuiWidgets_TPopupNode_Map.insert({ nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTextureSize_rtti, nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTextureSize_Data });
-    
-    Data nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTextureUv_Data;
-    nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTextureUv_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTextureUv, nsImGuiWidgets::TPopupNode>(p); };
-    auto nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTextureUv_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTextureUv>();
-    
-    nsImGuiWidgets_TPopupNode_Map.insert({ nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTextureUv_rtti, nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTextureUv_Data });
     
     Data nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTitle_Data;
     nsImGuiWidgets_TPopupNode_nsImGuiWidgets_TTitle_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTitle, nsImGuiWidgets::TPopupNode>(p); };
@@ -3324,35 +3342,11 @@ void TImGuiWidgetsDynamicCaster::Init()
     
     std::map<int, Data> nsImGuiWidgets_TTextureUv_Map;
     
-    Data nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TMenuNode_Data;
-    nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TMenuNode_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TMenuNode, nsImGuiWidgets::TTextureUv>(p); };
-    auto nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TMenuNode_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TMenuNode>();
-    
-    nsImGuiWidgets_TTextureUv_Map.insert({ nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TMenuNode_rtti, nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TMenuNode_Data });
-    
-    Data nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TNode_Data;
-    nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TNode_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TNode, nsImGuiWidgets::TTextureUv>(p); };
-    auto nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TNode_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TNode>();
-    
-    nsImGuiWidgets_TTextureUv_Map.insert({ nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TNode_rtti, nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TNode_Data });
-    
-    Data nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TPopupNode_Data;
-    nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TPopupNode_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TPopupNode, nsImGuiWidgets::TTextureUv>(p); };
-    auto nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TPopupNode_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TPopupNode>();
-    
-    nsImGuiWidgets_TTextureUv_Map.insert({ nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TPopupNode_rtti, nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TPopupNode_Data });
-    
     Data nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTexturedFrame_Data;
     nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTexturedFrame_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTexturedFrame, nsImGuiWidgets::TTextureUv>(p); };
     auto nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTexturedFrame_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTexturedFrame>();
     
     nsImGuiWidgets_TTextureUv_Map.insert({ nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTexturedFrame_rtti, nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTexturedFrame_Data });
-    
-    Data nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTreeNode_Data;
-    nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTreeNode_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTreeNode, nsImGuiWidgets::TTextureUv>(p); };
-    auto nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTreeNode_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTreeNode>();
-    
-    nsImGuiWidgets_TTextureUv_Map.insert({ nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTreeNode_rtti, nsImGuiWidgets_TTextureUv_nsImGuiWidgets_TTreeNode_Data });
     
     auto nsImGuiWidgets_TTextureUv_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTextureUv>();
     
@@ -3719,12 +3713,6 @@ void TImGuiWidgetsDynamicCaster::Init()
     auto nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTextureSize_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTextureSize>();
     
     nsImGuiWidgets_TTreeNode_Map.insert({ nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTextureSize_rtti, nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTextureSize_Data });
-    
-    Data nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTextureUv_Data;
-    nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTextureUv_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTextureUv, nsImGuiWidgets::TTreeNode>(p); };
-    auto nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTextureUv_rtti = globalTypeIdentifier->Type<nsImGuiWidgets::TTextureUv>();
-    
-    nsImGuiWidgets_TTreeNode_Map.insert({ nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTextureUv_rtti, nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTextureUv_Data });
     
     Data nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTitle_Data;
     nsImGuiWidgets_TTreeNode_nsImGuiWidgets_TTitle_Data.castFunc = [](void* p){ return SmartCast<nsImGuiWidgets::TTitle, nsImGuiWidgets::TTreeNode>(p); };

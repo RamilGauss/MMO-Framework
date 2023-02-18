@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 using namespace nsTornadoEngine;
 using namespace nsECSFramework;
 
-bool TLogicModule::StartEvent()
+bool TLogicModule::ModuleStartEvent()
 {
     auto entMng = Modules()->EntMng();
 

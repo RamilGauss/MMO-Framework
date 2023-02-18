@@ -7,26 +7,39 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IModule.h"
+#include <list>
+
 #include "FeatureManager.h"
-#include "DstEvent.h"
+#include "IModule.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TLogicWrapperModule : public IModule, public TDstEvent
+    class DllExport TLogicWrapperModule : public IModule
     {
+        std::list<nsECSFramework::TBaseReactiveSystem*> mInstantReactiveSystems;
+        std::list<nsECSFramework::TBaseCollectReactiveSystem*> mCollectReactiveSystems;
+
+    protected:
         TFeatureManager mBeginLogicSlotManager;
         TFeatureManager mEndLogicSlotManager;
 
         double mLastExecutionTime = 0;
-    public:
-        void Work() override final;
 
+    public:
         TFeatureManager* GetBeginLogicSlotManager();
         TFeatureManager* GetEndLogicSlotManager();
 
         double GetLastExecutionTime() const;
+
+        bool StartEvent() override final;
+        void Work() override final;
     protected:
         virtual void ModuleWork() = 0;
+        virtual bool ModuleStartEvent() = 0;
+
+    private:
+        void BlockBeginReactives();
+        void UnblockBeginReactives();
+        void ClearBeginReactives();
     };
 }

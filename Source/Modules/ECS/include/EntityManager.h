@@ -7,8 +7,6 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
-#include "Entity.h"
 #include <list>
 #include <vector>
 #include <type_traits>
@@ -18,9 +16,12 @@ See for more information LICENSE.md.
 #include <boost/dll/import_class.hpp>
 #include <boost/dll/shared_library.hpp>
 
+#include "TypeDef.h"
+
 #include "RunTimeTypeIndex.h"
 #include "SingletonManager.h"
 
+#include "Entity.h"
 #include "Config.h"
 #include "VectorRise.h"
 #include "MemoryObjectPool.h"
@@ -58,10 +59,10 @@ namespace nsECSFramework
 
         // components
         template<typename Component>
-        void CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation, bool isNotify = true);
+        void CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation);
 
         template<typename Component>
-        void SetComponent(TEntityID eid, const Component& c, bool isNotify = true);// => add or update event
+        void SetComponent(TEntityID eid, const Component& c);// => add or update event
 
         template<typename Component>
         const Component* ViewComponent(TEntityID eid);// for view, fast,
@@ -129,6 +130,7 @@ namespace nsECSFramework
         void ClearAddEvents(int id);
         template<typename Component>
         void ClearUpdateEvents(int id);
+
     private:
         using TCB_EntPtrCom = TCallbackPool<TEntityID, const IComponent*>;
         using TCBVector = TColanderVector<TCB_EntPtrCom*>;
@@ -142,7 +144,6 @@ namespace nsECSFramework
 
         TComponentEventsVector mAddCollector;
         TComponentEventsVector mUpdateCollector;
-
 
         // Common collector methods
         template<typename Component>
@@ -261,7 +262,7 @@ namespace nsECSFramework
     };
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation, bool isNotify)
+    void TEntityManager::CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -286,14 +287,12 @@ namespace nsECSFramework
         TryAddInUnique(eid, pC, index);
         TryAddInValue(eid, index, pEntity);
 
-        if (isNotify) {
-            NotifyOnAddComponent(index, eid, pC);
-            PushEventToCollector(mAddCollector, index, eid, pC);
-        }
+        NotifyOnAddComponent(index, eid, pC);
+        PushEventToCollector(mAddCollector, index, eid, pC);
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::SetComponent(TEntityID eid, const Component& c, bool isNotify)
+    void TEntityManager::SetComponent(TEntityID eid, const Component& c)
     {
         auto pEntity = GetEntity(eid);
 #ifdef _DEBUG
@@ -318,10 +317,6 @@ namespace nsECSFramework
         *pC = c;
         TryAddInUnique(eid, pC, index);
         TryAddInValue(eid, index, pEntity);
-
-        if (!isNotify) {
-            return;
-        }
 
         if (has) {
             NotifyOnUpdateComponent(index, eid, pC);
@@ -504,9 +499,7 @@ namespace nsECSFramework
             };
         }
 
-        auto eventList = new TEventList();
-
-        return collectorByType->Create(eventList);
+        return collectorByType->Create(new TEventList());
     }
     //---------------------------------------------------------------------------------------
     template<typename Component>
@@ -543,7 +536,8 @@ namespace nsECSFramework
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::PushEventToCollector(TComponentEventsVector& componentEventsVector, unsigned int index, TEntityID eid, Component* pComponent)
+    void TEntityManager::PushEventToCollector(TComponentEventsVector& componentEventsVector, 
+        unsigned int index, TEntityID eid, Component* pComponent)
     {
         auto& collectorByType = componentEventsVector[index];
         if (collectorByType == nullptr) {
@@ -555,6 +549,7 @@ namespace nsECSFramework
         TEvent event;
         event.eid = eid;
         event.pComponent = pComponent;
+
         for (auto& busyIndex : busyIndexes) {
             auto eventList = collectorByType->GetElement(busyIndex);
             eventList->push_back(event);

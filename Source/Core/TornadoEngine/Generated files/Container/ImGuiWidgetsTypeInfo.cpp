@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_20 18:35:29.986
+// File has been generated at 2023_02_18 17:12:03.889
 	
 #include "ImGuiWidgetsTypeInfo.h"
 
@@ -45,6 +45,12 @@ void TImGuiWidgetsTypeInfo::Init()
     mRttiList.push_back(nsImGuiWidgets_TCheckBox_i);
     mNameRttiMap.insert({ nsImGuiWidgets_TCheckBox_n, nsImGuiWidgets_TCheckBox_i });
     
+    int nsImGuiWidgets_TCheckBoxValue_i = globalTypeIdentifier->Type<nsImGuiWidgets::TCheckBoxValue>();
+    std::string nsImGuiWidgets_TCheckBoxValue_n = "nsImGuiWidgets::TCheckBoxValue";
+    mTypeNameList.push_back(nsImGuiWidgets_TCheckBoxValue_n);
+    mRttiList.push_back(nsImGuiWidgets_TCheckBoxValue_i);
+    mNameRttiMap.insert({ nsImGuiWidgets_TCheckBoxValue_n, nsImGuiWidgets_TCheckBoxValue_i });
+    
     int nsImGuiWidgets_TColor_i = globalTypeIdentifier->Type<nsImGuiWidgets::TColor>();
     std::string nsImGuiWidgets_TColor_n = "nsImGuiWidgets::TColor";
     mTypeNameList.push_back(nsImGuiWidgets_TColor_n);
@@ -62,6 +68,12 @@ void TImGuiWidgetsTypeInfo::Init()
     mTypeNameList.push_back(nsImGuiWidgets_TComboBoxCurrentIndex_n);
     mRttiList.push_back(nsImGuiWidgets_TComboBoxCurrentIndex_i);
     mNameRttiMap.insert({ nsImGuiWidgets_TComboBoxCurrentIndex_n, nsImGuiWidgets_TComboBoxCurrentIndex_i });
+    
+    int nsImGuiWidgets_TComboBoxItems_i = globalTypeIdentifier->Type<nsImGuiWidgets::TComboBoxItems>();
+    std::string nsImGuiWidgets_TComboBoxItems_n = "nsImGuiWidgets::TComboBoxItems";
+    mTypeNameList.push_back(nsImGuiWidgets_TComboBoxItems_n);
+    mRttiList.push_back(nsImGuiWidgets_TComboBoxItems_i);
+    mNameRttiMap.insert({ nsImGuiWidgets_TComboBoxItems_n, nsImGuiWidgets_TComboBoxItems_i });
     
     int nsImGuiWidgets_TDialog_i = globalTypeIdentifier->Type<nsImGuiWidgets::TDialog>();
     std::string nsImGuiWidgets_TDialog_n = "nsImGuiWidgets::TDialog";

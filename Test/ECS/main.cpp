@@ -78,6 +78,10 @@ int main()
     entMng->Setup();
     printf("\n");
 
+    //###
+    
+    //###
+
     // Pointer balance test
     auto eid = entMng->CreateEntity();
     entMng->CreateComponent<TMultiComponent>(eid, [](TMultiComponent* pC) { pC->x = 0; });

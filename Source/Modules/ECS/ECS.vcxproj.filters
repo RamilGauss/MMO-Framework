@@ -118,6 +118,12 @@
     <ClCompile Include="src\EntityManagerMaster.cpp">
       <Filter>include\DataControl</Filter>
     </ClCompile>
+    <ClCompile Include="src\BaseReactiveSystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BaseCollectReactiveSystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(SolutionDir)\conanfile.txt" />

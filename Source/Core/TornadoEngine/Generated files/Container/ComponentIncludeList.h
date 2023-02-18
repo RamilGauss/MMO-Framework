@@ -2,27 +2,10 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_20 18:35:28.777
+// File has been generated at 2023_02_18 17:12:03.134
 	
 #pragma once
 
-#include "GuidComponent.h"
-#include "NameComponent.h"
-#include "NeedDestroyObjectTagComponent.h"
-#include "ObjectInMemoryComponent.h"
-#include "ParentGuidComponent.h"
-#include "PrefabGuidComponent.h"
-#include "PrefabInstanceGuidComponent.h"
-#include "PrefabOriginalGuidComponent.h"
-#include "PrefabRootComponent.h"
-#include "ProjectionToUniverseComponent.h"
-#include "SceneGuidComponent.h"
-#include "SceneInstanceGuidComponent.h"
-#include "SceneOriginalGuidComponent.h"
-#include "SceneRootComponent.h"
-#include "TransformComponent.h"
-#include "UniverseGuidComponent.h"
-#include "UniverseIndexComponent.h"
 #include "CameraComponent.h"
 #include "CameraTextureTagComponent.h"
 #include "CameraWindowPositionComponent.h"
@@ -77,6 +60,23 @@ Core Component
 #include "SceneObjectReferenceComponent.h"
 #include "SceneReferenceComponent.h"
 #include "SystemComponent.h"
+#include "GuidComponent.h"
+#include "NameComponent.h"
+#include "NeedDestroyObjectTagComponent.h"
+#include "ObjectInMemoryComponent.h"
+#include "ParentGuidComponent.h"
+#include "PrefabGuidComponent.h"
+#include "PrefabInstanceGuidComponent.h"
+#include "PrefabOriginalGuidComponent.h"
+#include "PrefabRootComponent.h"
+#include "ProjectionToUniverseComponent.h"
+#include "SceneGuidComponent.h"
+#include "SceneInstanceGuidComponent.h"
+#include "SceneOriginalGuidComponent.h"
+#include "SceneRootComponent.h"
+#include "UniverseGuidComponent.h"
+#include "UniverseIndexComponent.h"
+#include "TransformComponent.h"
 #include "HandlerTarget.h"
 #include "IPropertyOf.h"
 #include "MathStructs.h"

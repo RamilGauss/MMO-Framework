@@ -18,7 +18,7 @@ namespace nsTornadoEngine
     class DllExport TMMOEngineModule : public IMMOEngineModule
     {
     public:
-        bool StartEvent() override;
+        bool ModuleStartEvent() override;
         void ModuleWork() override;
         void StopEvent() override;
     };

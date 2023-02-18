@@ -27,7 +27,9 @@ namespace nsECSFramework
             auto callbackPool = mEntMng->RegisterOnRemoveComponent<Component>();
             callbackPool->Register(this, [this](TEntityID eid, const IComponent* pC)
             {
-                ((SystemTypeImplementation*) (this))->Reactive(eid, (const Component*) pC);
+                if (IsEnableReactive()) {
+                    ((SystemTypeImplementation*)(this))->Reactive(eid, (const Component*)pC);
+                }
             });
         }
     };

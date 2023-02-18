@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-bool TNetTransportModule::StartEvent()
+bool TNetTransportModule::ModuleStartEvent()
 {
     return true;
 }

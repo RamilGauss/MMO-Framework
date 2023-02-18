@@ -92,7 +92,6 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
             "nsECSFramework::TEntityID eid",
             "int rtti",
             "std::function<void(void*)> onAfterCreation",
-            "bool isNotify" 
         };
 
         txtGen.AddMethodDef(impl.impl.typeName, "CreateComponent", "void", args);
@@ -102,7 +101,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         txtGen.AddFormatLine("if ({}::Has(rtti)) {{", configComponent->value.projectConfig.componentConfig.entMng.typeName);
         txtGen.IncrementTabs();
 
-        txtGen.AddFormatLine("{}::CreateComponent(mEntMng, eid, rtti, onAfterCreation, isNotify);", 
+        txtGen.AddFormatLine("{}::CreateComponent(mEntMng, eid, rtti, onAfterCreation);", 
             configComponent->value.projectConfig.componentConfig.entMng.typeName);
         txtGen.AddRet("");
 
@@ -114,7 +113,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
             configComponent->value.coreConfig.componentConfig.entMng.typeName);
         txtGen.IncrementTabs();
 
-        txtGen.AddFormatLine("{}::{}::CreateComponent(mEntMng, eid, rtti, onAfterCreation, isNotify);",
+        txtGen.AddFormatLine("{}::{}::CreateComponent(mEntMng, eid, rtti, onAfterCreation);",
             configComponent->value.coreConfig.nameSpace,
             configComponent->value.coreConfig.componentConfig.entMng.typeName);
         txtGen.AddRet("");
@@ -132,7 +131,6 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
             "nsECSFramework::TEntityID eid",
             "int rtti",
             "void* p",
-            "bool isNotify" 
         };
 
         txtGen.AddMethodDef(impl.impl.typeName, "SetComponent", "void", args);
@@ -142,7 +140,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         txtGen.AddFormatLine("if ({}::Has(rtti)) {{", configComponent->value.projectConfig.componentConfig.entMng.typeName);
         txtGen.IncrementTabs();
 
-        txtGen.AddFormatLine("{}::SetComponent(mEntMng, eid, rtti, p, isNotify);",
+        txtGen.AddFormatLine("{}::SetComponent(mEntMng, eid, rtti, p);",
             configComponent->value.projectConfig.componentConfig.entMng.typeName);
         txtGen.AddRet("");
 
@@ -154,7 +152,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
             configComponent->value.coreConfig.componentConfig.entMng.typeName);
         txtGen.IncrementTabs();
 
-        txtGen.AddFormatLine("{}::{}::SetComponent(mEntMng, eid, rtti, p, isNotify);",
+        txtGen.AddFormatLine("{}::{}::SetComponent(mEntMng, eid, rtti, p);",
             configComponent->value.coreConfig.nameSpace,
             configComponent->value.coreConfig.componentConfig.entMng.typeName);
         txtGen.AddRet("");

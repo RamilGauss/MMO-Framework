@@ -128,7 +128,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Properties;./Components/Gui/Widgets;./Components/Logic;./Generated files;./Features/Graphic;./Features/Graphic/Begin;./Features/Graphic/Begin/Builder;./Features/Graphic/Begin/Builder/Frames;./Features/Graphic/Begin/Builder/Graphic;./Features/Graphic/Begin/Builder/Helpers;./Features/Graphic/Begin/Builder/Properties;./Features/Graphic/Begin/Builder/Units;./Features/Graphic/Begin/GraphicContext;./Features/Graphic/Begin/Maker;./Features/Graphic/Begin/Maker/Frames;./Features/Graphic/Begin/Maker/Graphic;./Features/Graphic/Begin/Maker/Handlers;./Features/Graphic/Begin/Maker/Units;./Features/Graphic/Begin/Terminator;./Features/Graphic/Begin/Terminator/Frames;./Features/Graphic/Begin/Terminator/Graphic;./Features/Graphic/Begin/Terminator/Handlers;./Features/Graphic/Begin/Terminator/Units;./Features/Graphic/Begin/UpdateToModule;./Features/Graphic/End;./Features/Graphic/End/GraphicContext;./Features/Graphic/End/UpdateFromModule;./Features/Logic;./Features/Logic/Begin;./Features/Logic/End;./Features/Logic/End/Builder;./Features/Logic/End/Maker;./Features/Logic/End/Object;./Features/Logic/End/Scene;./Features/Logic/End/Terminator;./Handlers;./Handlers/Common;./Handlers/Graphic;./Handlers/Gui;./Handlers/Logic;./Modules;./Modules/Common;./Modules/Contexts;./Modules/Gizmos;./Modules/Helpers;./Modules/Implementations;./Modules/Interfaces;./Modules/PropertyManager;./Modules/Resources;./Modules/Resources/Common;./Modules/Resources/Prefab;./Modules/Resources/Scene;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Properties;./Components/Gui/Widgets;./Components/Logic;./Components/Meta;./Components/Shared;./Components/SharedData;./Generated files;./Features/Graphic;./Features/Graphic/Begin;./Features/Graphic/Begin/Builder;./Features/Graphic/Begin/Builder/Frames;./Features/Graphic/Begin/Builder/Graphic;./Features/Graphic/Begin/Builder/Helpers;./Features/Graphic/Begin/Builder/Properties;./Features/Graphic/Begin/Builder/Units;./Features/Graphic/Begin/GraphicContext;./Features/Graphic/Begin/Maker;./Features/Graphic/Begin/Maker/Frames;./Features/Graphic/Begin/Maker/Graphic;./Features/Graphic/Begin/Maker/Handlers;./Features/Graphic/Begin/Maker/Units;./Features/Graphic/Begin/Terminator;./Features/Graphic/Begin/Terminator/Frames;./Features/Graphic/Begin/Terminator/Graphic;./Features/Graphic/Begin/Terminator/Handlers;./Features/Graphic/Begin/Terminator/Units;./Features/Graphic/Begin/UpdateToModule;./Features/Graphic/End;./Features/Graphic/End/GraphicContext;./Features/Graphic/End/UpdateFromModule;./Features/Logic;./Features/Logic/Begin;./Features/Logic/End;./Features/Logic/End/Builder;./Features/Logic/End/Maker;./Features/Logic/End/Object;./Features/Logic/End/Scene;./Features/Logic/End/Terminator;./Handlers;./Handlers/Common;./Handlers/Graphic;./Handlers/Gui;./Handlers/Logic;./Modules;./Modules/Common;./Modules/Contexts;./Modules/Gizmos;./Modules/Helpers;./Modules/Implementations;./Modules/Interfaces;./Modules/PropertyManager;./Modules/Resources;./Modules/Resources/Common;./Modules/Resources/Prefab;./Modules/Resources/Scene;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -187,7 +187,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./Components/Common;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Properties;./Components/Gui/Widgets;./Components/Logic;./Generated files;./Features/Graphic;./Features/Graphic/Begin;./Features/Graphic/Begin/Builder;./Features/Graphic/Begin/Builder/Frames;./Features/Graphic/Begin/Builder/Graphic;./Features/Graphic/Begin/Builder/Helpers;./Features/Graphic/Begin/Builder/Properties;./Features/Graphic/Begin/Builder/Units;./Features/Graphic/Begin/GraphicContext;./Features/Graphic/Begin/Maker;./Features/Graphic/Begin/Maker/Frames;./Features/Graphic/Begin/Maker/Graphic;./Features/Graphic/Begin/Maker/Handlers;./Features/Graphic/Begin/Maker/Units;./Features/Graphic/Begin/Terminator;./Features/Graphic/Begin/Terminator/Frames;./Features/Graphic/Begin/Terminator/Graphic;./Features/Graphic/Begin/Terminator/Handlers;./Features/Graphic/Begin/Terminator/Units;./Features/Graphic/Begin/UpdateToModule;./Features/Graphic/End;./Features/Graphic/End/GraphicContext;./Features/Graphic/End/UpdateFromModule;./Features/Logic;./Features/Logic/Begin;./Features/Logic/End;./Features/Logic/End/Builder;./Features/Logic/End/Maker;./Features/Logic/End/Object;./Features/Logic/End/Scene;./Features/Logic/End/Terminator;./Handlers;./Handlers/Common;./Handlers/Graphic;./Handlers/Gui;./Handlers/Logic;./Modules;./Modules/Common;./Modules/Contexts;./Modules/Gizmos;./Modules/Helpers;./Modules/Implementations;./Modules/Interfaces;./Modules/PropertyManager;./Modules/Resources;./Modules/Resources/Common;./Modules/Resources/Prefab;./Modules/Resources/Scene;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Components/Graphic;./Components/Gui;./Components/Gui/Handlers;./Components/Gui/Properties;./Components/Gui/Widgets;./Components/Logic;./Components/Meta;./Components/Shared;./Components/SharedData;./Generated files;./Features/Graphic;./Features/Graphic/Begin;./Features/Graphic/Begin/Builder;./Features/Graphic/Begin/Builder/Frames;./Features/Graphic/Begin/Builder/Graphic;./Features/Graphic/Begin/Builder/Helpers;./Features/Graphic/Begin/Builder/Properties;./Features/Graphic/Begin/Builder/Units;./Features/Graphic/Begin/GraphicContext;./Features/Graphic/Begin/Maker;./Features/Graphic/Begin/Maker/Frames;./Features/Graphic/Begin/Maker/Graphic;./Features/Graphic/Begin/Maker/Handlers;./Features/Graphic/Begin/Maker/Units;./Features/Graphic/Begin/Terminator;./Features/Graphic/Begin/Terminator/Frames;./Features/Graphic/Begin/Terminator/Graphic;./Features/Graphic/Begin/Terminator/Handlers;./Features/Graphic/Begin/Terminator/Units;./Features/Graphic/Begin/UpdateToModule;./Features/Graphic/End;./Features/Graphic/End/GraphicContext;./Features/Graphic/End/UpdateFromModule;./Features/Logic;./Features/Logic/Begin;./Features/Logic/End;./Features/Logic/End/Builder;./Features/Logic/End/Maker;./Features/Logic/End/Object;./Features/Logic/End/Scene;./Features/Logic/End/Terminator;./Handlers;./Handlers/Common;./Handlers/Graphic;./Handlers/Gui;./Handlers/Logic;./Modules;./Modules/Common;./Modules/Contexts;./Modules/Gizmos;./Modules/Helpers;./Modules/Implementations;./Modules/Interfaces;./Modules/PropertyManager;./Modules/Resources;./Modules/Resources/Common;./Modules/Resources/Prefab;./Modules/Resources/Scene;./Share;./Testing;./TimeSliceEngine;./ReflectionAggregators;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -217,7 +217,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Components\Common\SceneInstanceGuidComponent.h" />
+    <ClCompile Include="Components\Meta\SceneInstanceGuidComponent.h" />
     <ClCompile Include="Features\Graphic\Begin\BeginGraphicFeature.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Properties\AddPropertiesFeature.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Properties\AnchorsAddSystem.cpp" />
@@ -369,7 +369,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="TimeSliceEngine\TimeSliceEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Components\Common\GuidComponent.h" />
+    <ClInclude Include="Components\Meta\GuidComponent.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsIncludeList.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsTypeInfo.h" />
@@ -381,21 +381,21 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\PropertyManager\RelativeProperties.h" />
     <ClInclude Include="ReflectionAggregators\ImGuiWidgetsReflectionAggregator.h" />
     <ClInclude Include="Share\HandlerTarget.h" />
-    <ClInclude Include="Components\Common\NameComponent.h" />
-    <ClInclude Include="Components\Common\NeedDestroyObjectTagComponent.h" />
-    <ClInclude Include="Components\Common\ObjectInMemoryComponent.h" />
-    <ClInclude Include="Components\Common\ParentGuidComponent.h" />
-    <ClInclude Include="Components\Common\PrefabGuidComponent.h" />
-    <ClInclude Include="Components\Common\PrefabInstanceGuidComponent.h" />
-    <ClInclude Include="Components\Common\PrefabOriginalGuidComponent.h" />
-    <ClInclude Include="Components\Common\PrefabRootComponent.h" />
-    <ClInclude Include="Components\Common\ProjectionToUniverseComponent.h" />
-    <ClInclude Include="Components\Common\SceneGuidComponent.h" />
-    <ClInclude Include="Components\Common\SceneOriginalGuidComponent.h" />
-    <ClInclude Include="Components\Common\SceneRootComponent.h" />
-    <ClInclude Include="Components\Common\TransformComponent.h" />
-    <ClInclude Include="Components\Common\UniverseGuidComponent.h" />
-    <ClInclude Include="Components\Common\UniverseIndexComponent.h" />
+    <ClInclude Include="Components\Meta\NameComponent.h" />
+    <ClInclude Include="Components\Meta\NeedDestroyObjectTagComponent.h" />
+    <ClInclude Include="Components\Meta\ObjectInMemoryComponent.h" />
+    <ClInclude Include="Components\Meta\ParentGuidComponent.h" />
+    <ClInclude Include="Components\Meta\PrefabGuidComponent.h" />
+    <ClInclude Include="Components\Meta\PrefabInstanceGuidComponent.h" />
+    <ClInclude Include="Components\Meta\PrefabOriginalGuidComponent.h" />
+    <ClInclude Include="Components\Meta\PrefabRootComponent.h" />
+    <ClInclude Include="Components\Meta\ProjectionToUniverseComponent.h" />
+    <ClInclude Include="Components\Meta\SceneGuidComponent.h" />
+    <ClInclude Include="Components\Meta\SceneOriginalGuidComponent.h" />
+    <ClInclude Include="Components\Meta\SceneRootComponent.h" />
+    <ClInclude Include="Components\Shared\TransformComponent.h" />
+    <ClInclude Include="Components\Meta\UniverseGuidComponent.h" />
+    <ClInclude Include="Components\Meta\UniverseIndexComponent.h" />
     <ClInclude Include="Components\Graphic\CameraComponent.h" />
     <ClInclude Include="Components\Graphic\CameraTextureTagComponent.h" />
     <ClInclude Include="Components\Graphic\CameraWindowPositionComponent.h" />

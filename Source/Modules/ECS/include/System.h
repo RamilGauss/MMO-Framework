@@ -26,6 +26,8 @@ namespace nsECSFramework
         virtual bool IsExecute()  const;
         virtual bool IsTearDown() const;
         virtual bool IsFeature()  const;
+        virtual bool IsInstantReactive()  const;
+        virtual bool IsCollectReactive()  const;
 
         const std::string GetTypeName() const;
 

@@ -14,6 +14,9 @@ See for more information LICENSE.md.
 #include "TearDownSystem.h"
 #include "ExecuteSystem.h"
 
+#include "BaseReactiveSystem.h"
+#include "BaseCollectReactiveSystem.h"
+
 namespace nsECSFramework
 {
     class DllExport TFeature : public TExecuteSystem, public TTearDownSystem
@@ -50,6 +53,8 @@ namespace nsECSFramework
 
         double GetLastExecutionTime() const override final;
 
+        void GetInstantReactives(std::list<TBaseReactiveSystem*>& systems) const;
+        void GetCollectReactives(std::list<TBaseCollectReactiveSystem*>& systems) const;
     private:
         bool AddSystem(TSystem* system);
         void RemoveSystem(TSystem* system);

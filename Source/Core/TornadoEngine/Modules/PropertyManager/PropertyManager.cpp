@@ -39,7 +39,7 @@ namespace nsTornadoEngine
         }
     }
     //-------------------------------------------------------------------------------------------
-    void TPropertyManager::GetProperties(const std::string& typeName, TRelativeProperties& properties) const
+    void TPropertyManager::GetProperties(const std::string& typeName, std::list<std::string>& properties) const
     {
         auto fit = mTypeNameDeps.find(typeName);
 
@@ -47,7 +47,7 @@ namespace nsTornadoEngine
             return;
         }
 
-        //properties = fit->second.properties;
+        properties = fit->second.properties;
     }
     //-------------------------------------------------------------------------------------------
 }

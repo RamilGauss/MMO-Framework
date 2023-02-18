@@ -114,3 +114,31 @@ double TFeature::GetLastExecutionTime() const
     return mLastExecutionTime;
 }
 //--------------------------------------------------------------------------------------
+void TFeature::GetInstantReactives(std::list<TBaseReactiveSystem*>& systems) const
+{
+    for (auto& s : mSystems) {
+        if (s->IsFeature()) {
+            dynamic_cast<TFeature*>(s)->GetInstantReactives(systems);
+            continue;
+        }
+
+        if (s->IsInstantReactive()) {
+            systems.push_back(dynamic_cast<TBaseReactiveSystem*>(s));
+        }
+    }
+}
+//--------------------------------------------------------------------------------------
+void TFeature::GetCollectReactives(std::list<TBaseCollectReactiveSystem*>& systems) const
+{
+    for (auto& s : mSystems) {
+        if (s->IsFeature()) {
+            dynamic_cast<TFeature*>(s)->GetCollectReactives(systems);
+            continue;
+        }
+
+        if (s->IsCollectReactive()) {
+            systems.push_back(dynamic_cast<TBaseCollectReactiveSystem*>(s));
+        }
+    }
+}
+//--------------------------------------------------------------------------------------

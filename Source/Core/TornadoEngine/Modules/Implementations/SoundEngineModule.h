@@ -14,7 +14,7 @@ namespace nsTornadoEngine
     class DllExport TSoundEngineModule : public ISoundEngineModule
     {
     public:
-        bool StartEvent() override;
+        bool ModuleStartEvent() override;
         void ModuleWork() override;
         void StopEvent() override;
     };

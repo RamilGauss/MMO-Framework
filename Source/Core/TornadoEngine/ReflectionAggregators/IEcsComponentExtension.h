@@ -25,9 +25,8 @@ namespace nsTornadoEngine
         nsECSFramework::TEntityManager* GetEntityManager() { return mEntMng; }
 
         virtual void CreateComponent(nsECSFramework::TEntityID eid, int rtti, 
-            std::function<void(void*)> onAfterCreation, bool isNotify = true) = 0;
-        virtual void SetComponent(nsECSFramework::TEntityID eid, int rtti, 
-            void* p, bool isNotify = true) = 0;
+            std::function<void(void*)> onAfterCreation) = 0;
+        virtual void SetComponent(nsECSFramework::TEntityID eid, int rtti,   void* p) = 0;
         virtual const void* ViewComponent(nsECSFramework::TEntityID eid, int rtti) = 0;
         virtual bool HasComponent(nsECSFramework::TEntityID eid, int rtti) = 0;
         virtual void RemoveComponent(nsECSFramework::TEntityID eid, int rtti) = 0;

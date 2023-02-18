@@ -29,6 +29,11 @@ namespace nsECSFramework
             mReactiveId = mEntMng->RegisterOnUpdateCollectorComponent<Component>();
         }
 
+        void ClearEvents() override final
+        {
+            mEntMng->ClearUpdateEvents<Component>(mReactiveId);
+        }
+
         void Execute() override final
         {
             auto& events = *(mEntMng->GetUpdateEvents<Component>(mReactiveId));

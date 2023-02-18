@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 //-------------------------------------------------------------
 
 #include <map>
+#include <unordered_set>
 #include <list>
 #include <functional>
 #include <memory.h>

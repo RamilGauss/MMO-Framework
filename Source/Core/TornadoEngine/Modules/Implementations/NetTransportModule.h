@@ -14,7 +14,7 @@ namespace nsTornadoEngine
     class DllExport TNetTransportModule : public INetTransportModule
     {
     public:
-        bool StartEvent() override;
+        bool ModuleStartEvent() override;
         void ModuleWork() override;
         void StopEvent() override;
     };

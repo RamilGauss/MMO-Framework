@@ -16,5 +16,9 @@ namespace nsECSFramework
     {
     protected:
         int mReactiveId = -1;
+    public:
+        bool IsCollectReactive() const override final;
+
+        virtual void ClearEvents() = 0;
     };
 }

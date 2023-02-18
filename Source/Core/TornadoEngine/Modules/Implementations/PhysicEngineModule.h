@@ -19,7 +19,7 @@ namespace nsTornadoEngine
     public:
         TPhysicEngineModule();
 
-        bool StartEvent() override;
+        bool ModuleStartEvent() override;
         void ModuleWork() override;
         void StopEvent() override;
 

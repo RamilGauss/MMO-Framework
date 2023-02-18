@@ -25,7 +25,7 @@ namespace nsTornadoEngine
         nsLogicWrapper::TBeginLogicFeature mBeginFeature;
         nsLogicWrapper::TEndLogicFeature mEndFeature;
     public:
-        bool StartEvent() override;
+        bool ModuleStartEvent() override;
         void ModuleWork() override;
         void StopEvent() override;
 

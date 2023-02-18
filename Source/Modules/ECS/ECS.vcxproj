@@ -47,6 +47,8 @@
     <ClInclude Include="include\FastAllocatorForeachVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BaseCollectReactiveSystem.cpp" />
+    <ClCompile Include="src\BaseReactiveSystem.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\EntityManagerMaster.cpp" />
