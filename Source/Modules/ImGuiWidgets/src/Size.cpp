@@ -10,10 +10,12 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-void TSize::SetSize(const ImVec2& newSize)
+void TSize::SetSize(const ImVec2& value, bool withNotify)
 {
-    if (mSize != newSize) {
-        mSize = newSize;
+    withNotify &= (mSize != value);
+    mSize = value;
+
+    if (withNotify) {
         mOnSizeCB.Notify();
     }
 }

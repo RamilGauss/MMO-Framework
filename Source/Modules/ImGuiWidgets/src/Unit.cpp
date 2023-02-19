@@ -28,7 +28,7 @@ void TUnit::Render()
 //------------------------------------------------------------------------
 void TUnit::BeginRender()
 {
-    ImGui::SetCursorPos(GetPos());
+    ImGui::SetCursorPos(GetPosition());
 
     if (GetSubType() == SubType::UNIT) {
         ImGui::PushID(GetId());
@@ -48,10 +48,8 @@ void TUnit::EndRender()
     auto activeId = ImGui::GetActiveID();
     auto focusId = ImGui::GetFocusID();
     auto IsfreshFocused = (activeId == mIdFromWindow);
-    if (IsfreshFocused != IsFocused()) {
-        SetIsFocused(IsfreshFocused);
-        mFocusCB.Notify(IsFocused());
-    }
+    
+    SetFocused(IsfreshFocused);
 }
 //------------------------------------------------------------------------
 TWidget::SubType TUnit::GetSubType() const
@@ -119,11 +117,11 @@ ImVec2 TUnit::CalculateMinSizeInFree() const
 
     // !IsAnyAnchor по каждой из осей
     if (!GetLeftAnchor().isUsed && !GetRightAnchor().isUsed) {
-        unitMinSize.x = GetPos().x + GetSize().x + GetRightMinDistance();
+        unitMinSize.x = GetPosition().x + GetSize().x + GetRightMinDistance();
     }
 
     if (!GetTopAnchor().isUsed && !GetBottomAnchor().isUsed) {
-        unitMinSize.y = GetPos().y + GetSize().y + GetBottomMinDistance();
+        unitMinSize.y = GetPosition().y + GetSize().y + GetBottomMinDistance();
     }
 
     return unitMinSize;
@@ -239,7 +237,7 @@ void TUnit::UpdateGeometryInGrid(const ImVec2& offset, const ImVec2& contentSize
     // Set up
     newPos += offset;
 
-    SetPos(newPos);
+    SetPosition(newPos);
     SetSize(newSize);
 }
 //------------------------------------------------------------------------
@@ -303,10 +301,10 @@ void TUnit::UpdateGeometryInFree(const ImVec2& contentSize)
 
     // Set up
     if (!IsAnyAnchor()) {
-        newPos = GetPos();
+        newPos = GetPosition();
     }
 
-    SetPos(newPos);
+    SetPosition(newPos);
     SetSize(newSize);
 }
 //------------------------------------------------------------------------

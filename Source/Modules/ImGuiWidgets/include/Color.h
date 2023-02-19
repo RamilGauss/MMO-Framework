@@ -18,8 +18,8 @@ namespace nsImGuiWidgets
     struct DllExport TColor
     {
     public:
-        virtual void SetColor(const ImVec4& value);
-        virtual ImVec4 GetColor() const;
+        void SetColor(const ImVec4& value);
+        ImVec4 GetColor() const;
 
     private:
         ImVec4 mColor = { 0.0f, 0.0f, 0.0f, 1.0f };

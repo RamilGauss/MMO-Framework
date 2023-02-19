@@ -31,7 +31,7 @@ namespace nsGraphicEngine
         void HandleEvents(const std::list<SDL_Event>& events, std::list<SDL_Event>& unusedEvents,
             int xOffset, int yOffset);
 
-        void Render(float glPosX, float glPosY, float width, float height);
+        void Render();
 
         // GUI
         void AddRender(IRenderable* pRenderable);

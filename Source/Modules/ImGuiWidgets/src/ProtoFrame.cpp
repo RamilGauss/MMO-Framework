@@ -18,7 +18,7 @@ TProtoFrame::TProtoFrame() : TWidgetContainer(this)
 //---------------------------------------------------------------------------------------
 void TProtoFrame::BeginRender()
 {
-    ImGui::SetCursorPos(GetPos());
+    ImGui::SetCursorPos(GetPosition());
 
     ImGui::BeginChildFrame(GetId(), GetSize());
 }
@@ -30,17 +30,15 @@ void TProtoFrame::EndRender()
 //---------------------------------------------------------------------------------------
 void TProtoFrame::RenderInheritance()
 {
-    auto oldFocus = IsFocused();
-    SetIsFocused(ImGui::IsWindowFocused());
+    auto newFocus = ImGui::IsWindowFocused();
 
     for (auto& child : mWidgets) {
         child->Render();
     }
     // strict order
-    if (oldFocus != IsFocused()) {
-        mFocusCB.Notify(IsFocused());
-    }
-    if (IsFocused()) {
+    SetFocused(newFocus);
+
+    if (GetFocused()) {
         SearchInputEvents();
     }
 }

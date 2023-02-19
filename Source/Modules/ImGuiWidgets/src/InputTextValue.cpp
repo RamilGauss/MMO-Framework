@@ -9,13 +9,14 @@ See for more information LICENSE.md.
 
 namespace nsImGuiWidgets
 {
-    std::string TInputTextValue::GetText() const
+    std::string TInputTextValue::GetInputTextValue() const
     {
         return mInputTextValue;
     }
-
-    void TInputTextValue::SetText(const std::string& str)
+    //-----------------------------------------------------------------------------------
+    void TInputTextValue::SetInputTextValue(const std::string& str)
     {
         mInputTextValue = str;
     }
+    //-----------------------------------------------------------------------------------
 }

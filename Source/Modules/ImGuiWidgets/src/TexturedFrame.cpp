@@ -23,7 +23,7 @@ namespace nsImGuiWidgets
 
         auto textureId = GetTextureId();
         if (textureId != nullptr) {
-            ImGui::Image(textureId, GetSize(), GetMinUV(), GetMaxUV());
+            ImGui::Image(textureId, GetSize(), GetTextureMinUv(), GetTextureMaxUv());
         }
     }
     //----------------------------------------------------------------------------------------------------

@@ -130,7 +130,7 @@ void TLightDockTreeManager::CloneTo(std::vector<TDockTree>& dstTrees)
 //----------------------------------------------------------------------
 void TLightDockTreeManager::CloneTo(TLightDockNode* lightNode, TDockNode* dockNode)
 {
-    dockNode->SetPos(lightNode->pos);
+    dockNode->SetPosition(lightNode->pos);
     dockNode->SetSize(lightNode->size);
 
     dockNode->type = TDockTypeHelper::FromImGui(lightNode->splitMode);

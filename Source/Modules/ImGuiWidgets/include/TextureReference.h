@@ -16,8 +16,8 @@ namespace nsImGuiWidgets
     struct DllExport TTextureReference
     {
     public:
-        virtual void SetTextureId(void* id);
-        virtual void* GetTextureId() const;
+        void SetTextureId(void* id);
+        void* GetTextureId() const;
     private:
         void* mTextureId = nullptr;
     };

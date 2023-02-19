@@ -16,7 +16,7 @@ namespace nsTest
         mWindow.SetTitle("WindowTest");
 
         mWindow.SetSize({ 200, 200 });
-        mWindow.SetPos({ 100, 100 });
+        mWindow.SetPosition({ 100, 100 });
 
         mWindow.SetMinSize({ 10, 10 });
         mWindow.SetMaxSize({ 500, 500 });
@@ -45,7 +45,7 @@ namespace nsTest
         mAButton.SetMinSize({ 65, 25 });
         mAButton.SetMaxSize({ 200, 200 });
         mAButton.SetSize({ 70, 30 });
-        mAButton.SetPos({ 30, 90 });
+        mAButton.SetPosition({ 30, 90 });
 
         mBButton.SetBottomAnchor({ true, 120 });
         mBButton.SetTopMinDistance(10);
@@ -53,12 +53,12 @@ namespace nsTest
         mBButton.SetMinSize({ 65, 25 });
         mBButton.SetMaxSize({ 200, 200 });
         mBButton.SetSize({ 70, 30 });
-        mBButton.SetPos({ 110, 50 });
+        mBButton.SetPosition({ 110, 50 });
 
         mCButton.SetMinSize({ 65, 25 });
         mCButton.SetMaxSize({ 100, 45 });
         mCButton.SetSize({ 70, 30 });
-        mCButton.SetPos({ 110, 90 });
+        mCButton.SetPosition({ 110, 90 });
 
         //mWindow.Add(&mExitButton);
         mWindow.Add(&mAButton);
@@ -71,7 +71,7 @@ namespace nsTest
         mCB.SetItems({"A", "B"});
         mCB.SetCurrentIndex(0);
         mCB.SetSize({ 50, 30 });
-        mCB.SetPos({ 30, 50 });
+        mCB.SetPosition({ 30, 50 });
 
         mCB.SetLeftAnchor({ true, 30 });
         mCB.SetRightAnchor({ true, 100 });

@@ -41,7 +41,7 @@ void TImGuiContext::Init(SDL_Window* window, void* sdl_gl_context)
     ImGui_ImplOpenGL3_Init(GLSL_VERSION.c_str());
 }
 //-------------------------------------------------------------------------------
-void TImGuiContext::Render(float glPosX, float glPosY, float width, float height)
+void TImGuiContext::Render()
 {
     ImGui::SetCurrentContext(mImGuiCtx);
 

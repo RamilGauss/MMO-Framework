@@ -16,7 +16,7 @@ namespace nsTest
         mWindow.SetTitle("WindowFrameTest");
 
         mWindow.SetSize({ 200, 200 });
-        mWindow.SetPos({ 100, 100 });
+        mWindow.SetPosition({ 100, 100 });
 
         mWindow.SetMinSize({ 10, 10 });
         mWindow.SetMaxSize({ 500, 500 });
@@ -24,7 +24,7 @@ namespace nsTest
         mExitButton.mOnClickCB.Register(nullptr, [](auto) { _exit(0); });
         mExitButton.SetTitle("Exit");
         mExitButton.SetSize({ 70, 30 });
-        mExitButton.SetPos({ 30, 50 });
+        mExitButton.SetPosition({ 30, 50 });
 
         mFrame.SetLeftMinDistance(4);
         mFrame.SetRightMinDistance(4);
@@ -33,7 +33,7 @@ namespace nsTest
 
         mFrame.Add(&mExitButton);
         
-        mFrame.SetPos({ 30, 30 });
+        mFrame.SetPosition({ 30, 30 });
         mFrame.SetSize({110, 90});
         //mFrame.SetLeftAnchor({ true, 10 });
         //mFrame.SetRightAnchor({ true, 10 });

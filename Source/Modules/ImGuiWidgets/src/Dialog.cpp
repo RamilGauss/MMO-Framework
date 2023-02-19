@@ -29,7 +29,7 @@ void TDialog::BeginRender()
     mLastIsShown = oldIsShown;
 
     ImGui::SetNextWindowSize(GetSize());
-    ImGui::SetNextWindowPos(GetPos(), ImGuiCond_Appearing);
+    ImGui::SetNextWindowPos(GetPosition(), ImGuiCond_Appearing);
 
     ImGui::BeginPopupModal(mTitle.c_str(), &mIsShown, ImGuiWindowFlags_MenuBar);
 
@@ -51,7 +51,7 @@ void TDialog::EndRender()
         ImGui::EndPopup();
     }
 
-    SetPos(position);
+    SetPosition(position);
     SetSize(size);
 }
 //---------------------------------------------------------------------------------------

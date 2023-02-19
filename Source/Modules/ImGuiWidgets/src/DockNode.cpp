@@ -76,7 +76,7 @@ void TDockNode::Build()
 
     node->SplitAxis = TDockTypeHelper::ToImGui(type);
 
-    ImGui::DockBuilderSetNodePos(GetId(), GetPos());
+    ImGui::DockBuilderSetNodePos(GetId(), GetPosition());
     ImGui::DockBuilderSetNodeSize(GetId(), GetSize());
     ImGui::DockBuilderFinish(GetId());
 

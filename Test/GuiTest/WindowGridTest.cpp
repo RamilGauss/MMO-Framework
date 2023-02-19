@@ -16,7 +16,7 @@ namespace nsTest
         mWindow.SetTitle("WindowGridTest");
 
         mWindow.SetSize({ 200, 200 });
-        mWindow.SetPos({ 100, 100 });
+        mWindow.SetPosition({ 100, 100 });
 
         mWindow.SetMinSize({ 10, 10 });
         mWindow.SetMaxSize({ 700, 700 });

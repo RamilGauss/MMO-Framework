@@ -14,10 +14,8 @@ namespace nsImGuiWidgets
     struct DllExport TSpacing
     {
     public:
-
-        virtual void SetSpacing(int value);
-
-        virtual int GetSpacing() const;
+        void SetSpacing(int value);
+        int GetSpacing() const;
     protected:
         int mSpacing = 0;
     };

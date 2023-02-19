@@ -23,14 +23,14 @@ void TInputText::RenderInheritance()
 {
     ImGui::PushItemWidth(GetSize().x);
 
-    auto str = GetText();
+    auto str = GetInputTextValue();
 
     auto flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackEdit | ImGuiInputTextFlags_AutoSelectAll;
     if (ImGui::InputText(mTitle.c_str(), &str, flags, nsInputText::EditCallback, this)) {
         mOnTextEditEndsCB.Notify(this);
     }
     if (mIsTextEdited) {
-        SetText(str);
+        SetInputTextValue(str);
 
         mOnTextEditCB.Notify(this);
         mIsTextEdited = false;

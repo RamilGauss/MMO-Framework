@@ -16,7 +16,7 @@ namespace nsTest
         mWindow.SetTitle("WindowAndFrameTest");
 
         mWindow.SetSize({ 250, 250 });
-        mWindow.SetPos({ 100, 100 });
+        mWindow.SetPosition({ 100, 100 });
 
         mWindow.SetMinSize({ 10, 10 });
         mWindow.SetMaxSize({ 500, 500 });
@@ -34,7 +34,7 @@ namespace nsTest
         mExitButton.SetMinSize({ 65, 25 });
         mExitButton.SetMaxSize({ 200, 200 });
         mExitButton.SetSize({ 70, 30 });
-        mExitButton.SetPos({ 30, 50 });
+        mExitButton.SetPosition({ 30, 50 });
 
         mExitButton.SetVerticalAlign(TVerticalAlign::Type::BOTTOM);
         mExitButton.SetHorizontalAlign(THorizontalAlign::Type::LEFT);
@@ -44,21 +44,21 @@ namespace nsTest
         mAButton.SetMinSize({ 65, 25 });
         mAButton.SetMaxSize({ 200, 200 });
         mAButton.SetSize({ 70, 30 });
-        mAButton.SetPos({ 30, 90 });
+        mAButton.SetPosition({ 30, 90 });
 
         mBButton.SetBottomAnchor({ true, 120 });
         mBButton.SetMinSize({ 65, 25 });
         mBButton.SetMaxSize({ 200, 200 });
         mBButton.SetSize({ 70, 30 });
-        mBButton.SetPos({ 110, 50 });
+        mBButton.SetPosition({ 110, 50 });
 
         mCButton.SetMinSize({ 65, 25 });
         mCButton.SetMaxSize({ 100, 45 });
         mCButton.SetSize({ 70, 30 });
-        mCButton.SetPos({ 110, 90 });
+        mCButton.SetPosition({ 110, 90 });
 
         mFrame.SetSize({200, 200});
-        mFrame.SetPos({ 30, 30 });
+        mFrame.SetPosition({ 30, 30 });
 
         mFrame.Add(&mExitButton);
         mFrame.Add(&mAButton);

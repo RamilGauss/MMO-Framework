@@ -20,8 +20,8 @@ namespace nsTest
         mTFrame.SetTextureId((void*)texture->mId);
         mTFrame.SetTextureSize(texture->mWidth, texture->mHeight);
 
-        mTFrame.SetMinUV({ 1, 0 });
-        mTFrame.SetMaxUV({ 0, 1 });
+        mTFrame.SetTextureMinUv({ 1, 0 });
+        mTFrame.SetTextureMaxUv({ 0, 1 });
 
         mWindow.SetTitle("TexturedWindowTest");
         mWindow.Add(&mTFrame);
@@ -33,7 +33,7 @@ namespace nsTest
 
         mTFrame.Add(&mExitButton);
 
-        mExitButton.SetPos({ 20, 20 });
+        mExitButton.SetPosition({ 20, 20 });
         mExitButton.SetSize({ 70, 30 });
         mExitButton.SetTitle("Exit");
         mExitButton.mOnClickCB.Register(nullptr, [](auto) { _exit(0); });

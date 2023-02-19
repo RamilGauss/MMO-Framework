@@ -26,9 +26,9 @@ TTreeNode::TTreeNode()
         EndEditing();
     });
 
-    mInputText.mFocusCB.Register(this, [&](bool isFocused)
+    mInputText.mFocusCB.Register(this, [this]()
     {
-        if (isFocused) {
+        if (mInputText.GetFocused()) {
             return;
         }
         if (!mEditProcessong) {
@@ -46,7 +46,7 @@ TTreeNode::~TTreeNode()
 //-------------------------------------------------------------------------
 void TTreeNode::EndEditing()
 {
-    mOnEndEditEventCB.Notify(this, mInputText.GetText());
+    mOnEndEditEventCB.Notify(this, mInputText.GetInputTextValue());
     mEditProcessong = false;
 }
 //-------------------------------------------------------------------------
@@ -68,7 +68,7 @@ void TTreeNode::Render()
         auto& style = ImGui::GetStyle();
         ImVec2 indent = {style.IndentSpacing, 0};
 
-        mInputText.SetPos(GetGlobalPos() - mTreeView->GetGlobalPos() + indent - style.FramePadding);
+        mInputText.SetPosition(GetGlobalPos() - mTreeView->GetGlobalPos() + indent - style.FramePadding);
 
         if (mBeginEditProcessing) {
             ImGui::SetKeyboardFocusHere();
@@ -110,7 +110,7 @@ void TTreeNode::SearchEvents()
     auto pos = ImGui::GetItemRectMin() - parentGlobalPos;
     auto size = ImGui::GetItemRectSize() + ImGui::GetStyle().ItemInnerSpacing;
 
-    SetPos(pos);
+    SetPosition(pos);
     SetSize(size);
 
     if (ImGui::IsItemClicked()) {
@@ -130,7 +130,7 @@ void TTreeNode::SetEdit(bool value)
 {
     mEditProcessong = value;
     mBeginEditProcessing = true;
-    mInputText.SetText(GetTitle());
+    mInputText.SetInputTextValue(GetTitle());
     mInputText.SetTitle("");
 }
 //-------------------------------------------------------------------------

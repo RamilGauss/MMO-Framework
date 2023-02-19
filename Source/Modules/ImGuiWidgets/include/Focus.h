@@ -16,11 +16,11 @@ namespace nsImGuiWidgets
     {
         bool mIsFocused = false;
     public:
-        using TFocusCallback = TCallbackPool<bool>;
+        using TFocusCallback = TCallbackPool<>;
 
         TFocusCallback mFocusCB;
 
-        void SetIsFocused(bool value);
-        bool IsFocused() const;
+        void SetFocused(bool value, bool withNotify = false);
+        bool GetFocused() const;
     };
 }

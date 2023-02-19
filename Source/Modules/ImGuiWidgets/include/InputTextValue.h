@@ -16,8 +16,8 @@ namespace nsImGuiWidgets
     class DllExport TInputTextValue
     {
     public:
-        virtual std::string GetText() const;
-        virtual void SetText(const std::string& str);
+        std::string GetInputTextValue() const;
+        void SetInputTextValue(const std::string& str);
     private:
         std::string mInputTextValue;
     };

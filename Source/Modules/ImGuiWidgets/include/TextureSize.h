@@ -16,10 +16,10 @@ namespace nsImGuiWidgets
     struct DllExport TTextureSize
     {
     public:
-        virtual void SetTextureSize(unsigned int width, unsigned int height);
+        void SetTextureSize(unsigned int width, unsigned int height);
 
-        virtual unsigned int GetTextureWidth() const;
-        virtual unsigned int GetTextureHeight() const;
+        unsigned int GetTextureWidth() const;
+        unsigned int GetTextureHeight() const;
     protected:
         unsigned int mTextureWidth = 0;
         unsigned int mTextureHeight = 0;

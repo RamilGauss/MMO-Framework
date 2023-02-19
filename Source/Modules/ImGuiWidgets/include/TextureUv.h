@@ -16,13 +16,13 @@ namespace nsImGuiWidgets
     struct DllExport TTextureUv
     {
     public:
-        virtual void SetMaxUV(const ImVec2& value);
-        virtual void SetMinUV(const ImVec2& value);
+        void SetTextureMaxUv(const ImVec2& value);
+        void SetTextureMinUv(const ImVec2& value);
 
-        virtual ImVec2 GetMinUV() const;
-        virtual ImVec2 GetMaxUV() const;
+        ImVec2 GetTextureMinUv() const;
+        ImVec2 GetTextureMaxUv() const;
     protected:
-        ImVec2 mMinUV = { 0,0 };
-        ImVec2 mMaxUV = { 1,1 };
+        ImVec2 mTextureMinUv = { 0,0 };
+        ImVec2 mTextureMaxUv = { 1,1 };
     };
 }

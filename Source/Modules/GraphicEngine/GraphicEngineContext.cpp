@@ -76,20 +76,17 @@ TShader* TGraphicEngineContext::CreateRenderableObjectShader()
 void TGraphicEngineContext::Render()
 {
     auto windowHeight = mGE->GetHeight();
+    auto windowWidth = mGE->GetWidth();
 
+    glViewport(0, 0, windowWidth, windowHeight);
     // Draw all renderable objects
     mRenderableObjectShader->MakeCurrentInConveyer();
     mRenderableObjectShader->SetInt("texture1", 0);
 
+    // Accumulate all camera textures.
     for (auto& camera : mCameras) {
 
         camera->Begin();
-
-        auto winSize = camera->GetWindowSize();
-        auto winPos = camera->GetWindowPosition();
-
-        // In OpenGL a lower left corner has (0,0), in BigJack a top left corner has (0,0)
-        glViewport(winPos.x, windowHeight - winSize.y - winPos.y, winSize.x, winSize.y);
 
         glm::mat4 view = camera->GetViewMatrix();
         glm::mat4 projection = camera->GetProjectionMatrix();
@@ -105,18 +102,29 @@ void TGraphicEngineContext::Render()
 
         // Draw Gui
         if (camera == mGuiCamera) {
-            mImGuiContext.Render(winPos.x, windowHeight - winSize.y - winPos.y, winSize.x, winSize.y);
+            mImGuiContext.Render();
         }
 
         camera->End();
     }
 
+    // Render camera textures to the window.
     for (auto& camera : mCameras) {
         if (camera->IsRenderOnDisplay()) {
             mCamerasRenderOnDisplayShader->MakeCurrentInConveyer();
             mCamerasRenderOnDisplayShader->SetInt("texture1", 0);
-            mCamerasRenderOnDisplayShader->SetFloat2("pos", 0.0f, 0.0f);
-            mCamerasRenderOnDisplayShader->SetFloat2("size", 2.0f, 2.0f);
+
+            auto winSize = camera->GetWindowSize();
+            auto winPos = camera->GetWindowPosition();
+
+            float xPos = 2.0f * (2.0f * winPos.x + winSize.x) / windowWidth - 2.0f;
+            float yPos = 2.0f * (2.0f * winPos.y + winSize.y) / windowHeight - 2.0f;
+
+            float xSize = (2.0f * winSize.x) / windowWidth;
+            float ySize = (2.0f * winSize.y) / windowHeight;
+
+            mCamerasRenderOnDisplayShader->SetFloat2("pos", xPos, yPos);
+            mCamerasRenderOnDisplayShader->SetFloat2("size", xSize, ySize);
 
             auto pTexture = camera->GetRenderedTexture();
             mCamerasRenderOnDisplayObject->SetTexture(pTexture);

@@ -20,7 +20,7 @@ int nsImGuiWidgets::nsInputMultiText::EditCallback(ImGuiInputTextCallbackData* d
 //------------------------------------------------------------------------------------
 void TInputMultiText::RenderInheritance()
 {
-    auto str = GetText();
+    auto str = GetInputTextValue();
 
     auto flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackEdit | ImGuiInputTextFlags_AutoSelectAll;
     if (ImGui::InputTextMultiline(mTitle.c_str(), &str, GetSize(), flags, nsInputMultiText::EditCallback, this)) {
@@ -28,7 +28,7 @@ void TInputMultiText::RenderInheritance()
     }
 
     if (mIsTextEdited) {
-        SetText(str);
+        SetInputTextValue(str);
 
         mOnTextEditCB.Notify(this);
         mIsTextEdited = false;

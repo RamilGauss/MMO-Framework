@@ -11,12 +11,17 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-void TFocus::SetIsFocused(bool value)
+void TFocus::SetFocused(bool value, bool withNotify)
 {
+    withNotify &= (mIsFocused != value);
     mIsFocused = value;
+
+    if (withNotify) {
+        mFocusCB.Notify();
+    }
 }
 //----------------------------------------------------------------------------
-bool TFocus::IsFocused() const
+bool TFocus::GetFocused() const
 {
     return mIsFocused;
 }

@@ -16,7 +16,7 @@ void TWindow::BeginRender()
     BeforeBeginRender();
 
     ImGui::SetNextWindowSize(GetSize());
-    ImGui::SetNextWindowPos(GetPos(), ImGuiCond_Appearing);
+    ImGui::SetNextWindowPos(GetPosition(), ImGuiCond_Appearing);
 
     auto oldIsShown = mIsShown;
     ImGui::Begin(mTitle.c_str(), &mIsShown);
@@ -33,7 +33,7 @@ void TWindow::EndRender()
 
     ImGui::End();
 
-    SetPos(position);
+    SetPosition(position);
     SetSize(size);
 }
 //---------------------------------------------------------------------------------------

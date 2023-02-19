@@ -16,8 +16,7 @@ namespace nsImGuiWidgets
     class DllExport TSize
     {
     public:
-        void SetSize(const ImVec2& newSize);
-
+        void SetSize(const ImVec2& value, bool withNotify = false);
         const ImVec2& GetSize() const;
 
         TCallbackPool<> mOnSizeCB;

@@ -10,16 +10,18 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-void TPosition::SetPos(const ImVec2& newPos)
+void TPosition::SetPosition(const ImVec2& value, bool withNotify)
 {
-    if (mPos != newPos) {
-        mPos = newPos;
+    withNotify &= (mPosition != value);
+    mPosition = value;
+
+    if (withNotify) {
         mOnPositionCB.Notify();
     }
 }
 //--------------------------------------------------------------------------------
-const ImVec2& TPosition::GetPos() const
+const ImVec2& TPosition::GetPosition() const
 {
-    return mPos;
+    return mPosition;
 }
 //--------------------------------------------------------------------------------

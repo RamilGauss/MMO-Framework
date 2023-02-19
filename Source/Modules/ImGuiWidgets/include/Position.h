@@ -16,13 +16,12 @@ namespace nsImGuiWidgets
     class DllExport TPosition
     {
     public:
-        void SetPos(const ImVec2& newPos);
-
-        const ImVec2& GetPos() const;
+        void SetPosition(const ImVec2& value, bool withNotify = false);
+        const ImVec2& GetPosition() const;
 
         TCallbackPool<> mOnPositionCB;
 
     private:
-        ImVec2 mPos = { 0, 0 };
+        ImVec2 mPosition = { 0, 0 };
     };
 }

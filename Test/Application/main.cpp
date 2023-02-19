@@ -38,16 +38,16 @@ TMesh* CreateCube()
     auto pMesh = nsGraphicEngine::TMeshFactory::CreateEmpty();
 
     pMesh->AddPoint({ -0.5f, -0.5f, -0.5f,  0.0f, 0.0f });
-    pMesh->AddPoint({  0.5f, -0.5f, -0.5f,  1.0f, 0.0f });
-    pMesh->AddPoint({  0.5f,  0.5f, -0.5f,  1.0f, 1.0f });
-    pMesh->AddPoint({  0.5f,  0.5f, -0.5f,  1.0f, 1.0f });
+    pMesh->AddPoint({ 0.5f, -0.5f, -0.5f,  1.0f, 0.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f });
     pMesh->AddPoint({ -0.5f,  0.5f, -0.5f,  0.0f, 1.0f });
     pMesh->AddPoint({ -0.5f, -0.5f, -0.5f,  0.0f, 0.0f });
 
     pMesh->AddPoint({ -0.5f, -0.5f,  0.5f,  0.0f, 0.0f });
-    pMesh->AddPoint({  0.5f, -0.5f,  0.5f,  1.0f, 0.0f });
-    pMesh->AddPoint({  0.5f,  0.5f,  0.5f,  1.0f, 1.0f });
-    pMesh->AddPoint({  0.5f,  0.5f,  0.5f,  1.0f, 1.0f });
+    pMesh->AddPoint({ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f,  0.5f,  1.0f, 1.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f,  0.5f,  1.0f, 1.0f });
     pMesh->AddPoint({ -0.5f,  0.5f,  0.5f,  0.0f, 1.0f });
     pMesh->AddPoint({ -0.5f, -0.5f,  0.5f,  0.0f, 0.0f });
 
@@ -58,24 +58,24 @@ TMesh* CreateCube()
     pMesh->AddPoint({ -0.5f, -0.5f,  0.5f,  0.0f, 0.0f });
     pMesh->AddPoint({ -0.5f,  0.5f,  0.5f,  1.0f, 0.0f });
 
-    pMesh->AddPoint({  0.5f,  0.5f,  0.5f,  1.0f, 0.0f });
-    pMesh->AddPoint({  0.5f,  0.5f, -0.5f,  1.0f, 1.0f });
-    pMesh->AddPoint({  0.5f, -0.5f, -0.5f,  0.0f, 1.0f });
-    pMesh->AddPoint({  0.5f, -0.5f, -0.5f,  0.0f, 1.0f });
-    pMesh->AddPoint({  0.5f, -0.5f,  0.5f,  0.0f, 0.0f });
-    pMesh->AddPoint({  0.5f,  0.5f,  0.5f,  1.0f, 0.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f });
+    pMesh->AddPoint({ 0.5f, -0.5f, -0.5f,  0.0f, 1.0f });
+    pMesh->AddPoint({ 0.5f, -0.5f, -0.5f,  0.0f, 1.0f });
+    pMesh->AddPoint({ 0.5f, -0.5f,  0.5f,  0.0f, 0.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f });
 
     pMesh->AddPoint({ -0.5f, -0.5f, -0.5f,  0.0f, 1.0f });
-    pMesh->AddPoint({  0.5f, -0.5f, -0.5f,  1.0f, 1.0f });
-    pMesh->AddPoint({  0.5f, -0.5f,  0.5f,  1.0f, 0.0f });
-    pMesh->AddPoint({  0.5f, -0.5f,  0.5f,  1.0f, 0.0f });
+    pMesh->AddPoint({ 0.5f, -0.5f, -0.5f,  1.0f, 1.0f });
+    pMesh->AddPoint({ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f });
+    pMesh->AddPoint({ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f });
     pMesh->AddPoint({ -0.5f, -0.5f,  0.5f,  0.0f, 0.0f });
     pMesh->AddPoint({ -0.5f, -0.5f, -0.5f,  0.0f, 1.0f });
 
     pMesh->AddPoint({ -0.5f,  0.5f, -0.5f,  0.0f, 1.0f });
-    pMesh->AddPoint({  0.5f,  0.5f, -0.5f,  1.0f, 1.0f });
-    pMesh->AddPoint({  0.5f,  0.5f,  0.5f,  1.0f, 0.0f });
-    pMesh->AddPoint({  0.5f,  0.5f,  0.5f,  1.0f, 0.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f });
+    pMesh->AddPoint({ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f });
     pMesh->AddPoint({ -0.5f,  0.5f,  0.5f,  0.0f, 0.0f });
     pMesh->AddPoint({ -0.5f,  0.5f, -0.5f,  0.0f, 1.0f });
 

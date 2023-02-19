@@ -16,7 +16,7 @@ namespace nsTest
         mWindow.SetTitle("WindowGridedFrameTest");
 
         mWindow.SetSize({ 250, 250 });
-        mWindow.SetPos({ 100, 100 });
+        mWindow.SetPosition({ 100, 100 });
 
         mWindow.SetMinSize({ 10, 10 });
         mWindow.SetMaxSize({ 500, 500 });

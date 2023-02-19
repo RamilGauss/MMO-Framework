@@ -14,16 +14,15 @@ namespace nsImGuiWidgets
     struct DllExport TPadding
     {
     public:
+        void SetLeftPadding(int value);
+        void SetTopPadding(int value);
+        void SetRightPadding(int value);
+        void SetBottomPadding(int value);
 
-        virtual void SetLeftPadding(int value);
-        virtual void SetTopPadding(int value);
-        virtual void SetRightPadding(int value);
-        virtual void SetBottomPadding(int value);
-
-        virtual int GetLeftPadding() const;
-        virtual int GetTopPadding() const;
-        virtual int GetRightPadding() const;
-        virtual int GetBottomPadding() const;
+        int GetLeftPadding() const;
+        int GetTopPadding() const;
+        int GetRightPadding() const;
+        int GetBottomPadding() const;
     private:
         int mTop = 0;
         int mLeft = 0;

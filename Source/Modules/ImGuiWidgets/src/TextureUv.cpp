@@ -9,24 +9,24 @@ See for more information LICENSE.md.
 
 using namespace nsImGuiWidgets;
 
-void TTextureUv::SetMaxUV(const ImVec2& value)
+void TTextureUv::SetTextureMaxUv(const ImVec2& value)
 {
-    mMinUV = value;
+    mTextureMinUv = value;
 }
 //---------------------------------------------------------
-void TTextureUv::SetMinUV(const ImVec2& value)
+void TTextureUv::SetTextureMinUv(const ImVec2& value)
 {
-    mMaxUV = value;
+    mTextureMaxUv = value;
 }
 //---------------------------------------------------------
-ImVec2 TTextureUv::GetMinUV() const
+ImVec2 TTextureUv::GetTextureMinUv() const
 {
-    return mMinUV;
+    return mTextureMinUv;
 }
 //---------------------------------------------------------
-ImVec2 TTextureUv::GetMaxUV() const
+ImVec2 TTextureUv::GetTextureMaxUv() const
 {
-    return mMaxUV;
+    return mTextureMaxUv;
 }
 //---------------------------------------------------------
 
