@@ -48,6 +48,7 @@ namespace nsGraphicEngine
         int GetX() const;
         int GetY() const;
 
+        virtual void SetupViewports() = 0;
         bool GenerateInputEvents();
         void Draw();
 

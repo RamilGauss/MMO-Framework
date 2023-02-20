@@ -686,7 +686,10 @@ void ImGui_ImplSDL2_NewFrame()
         io.AddMousePosEvent(-FLT_MAX, -FLT_MAX);
     }
 
-    ImGui_ImplSDL2_UpdateMouseData();
+    //Какого хера ты захватываешь события мышки под капотом??? 
+    // ### Gauss 2023.02.20
+    // ImGui_ImplSDL2_UpdateMouseData();
+    // ###
     ImGui_ImplSDL2_UpdateMouseCursor();
 
     // Update game controllers (if enabled and available)

@@ -15,5 +15,5 @@ using namespace nsGuiWrapper;
 void TFocusUpdateSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TFocusComponent* pFocusComponent)
 {
     auto pUnit = pFocusComponent->pOwner;
-    pUnit->SetIsFocused(pFocusComponent->value);
+    pUnit->SetFocused(pFocusComponent->value);
 }

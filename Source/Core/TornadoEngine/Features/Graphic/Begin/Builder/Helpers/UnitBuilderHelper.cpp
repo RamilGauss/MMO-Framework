@@ -43,8 +43,8 @@ void TUnitBuilderHelper::SetupPosition(nsECSFramework::TEntityManager* entMng,
     pGeometry->mOnPositionCB.Register(nullptr, [entMng, eid, pGeometry]()
     {
         nsGuiWrapper::TPositionComponent positionComponent;
-        positionComponent.x = pGeometry->GetPos().x;
-        positionComponent.y = pGeometry->GetPos().y;
+        positionComponent.x = pGeometry->GetPosition().x;
+        positionComponent.y = pGeometry->GetPosition().y;
         entMng->SetComponent(eid, positionComponent);
     });
 }
@@ -56,7 +56,7 @@ void TUnitBuilderHelper::SetupWidget(nsECSFramework::TEntityManager* entMng,
     pWidget->SetTitle(titleComponent->value);
 
     auto posComponent = entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid);
-    pWidget->SetPos({(float) posComponent->x,(float) posComponent->y});
+    pWidget->SetPosition({(float) posComponent->x,(float) posComponent->y});
 
     auto sizeComponent = entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid);
     pWidget->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});
@@ -84,7 +84,7 @@ void TUnitBuilderHelper::SetupLabel(nsECSFramework::TEntityManager* entMng,
     pLabel->SetText(labelValueComponent->value);
 
     auto posComponent = entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid);
-    pLabel->SetPos({(float) posComponent->x,(float) posComponent->y});
+    pLabel->SetPosition({(float) posComponent->x,(float) posComponent->y});
 
     auto sizeComponent = entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid);
     pLabel->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});
@@ -172,7 +172,7 @@ void TUnitBuilderHelper::SetupTreeView(nsECSFramework::TEntityManager* entMng,
     nsECSFramework::TEntityID eid, nsImGuiWidgets::TTreeView* pTreeView)
 {
     auto posComponent = entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid);
-    pTreeView->SetPos({(float) posComponent->x,(float) posComponent->y});
+    pTreeView->SetPosition({(float) posComponent->x,(float) posComponent->y});
 
     auto sizeComponent = entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid);
     pTreeView->SetSize({(float) sizeComponent->x,(float) sizeComponent->y});

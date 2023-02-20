@@ -245,6 +245,7 @@ int main(int argc, char** argv)
         pCamera[4]->SetWindowPosition({ w / 2 , h / 2 });
         pCamera[4]->SetWindowSize({ w / 2 , h / 2 });
 
+        ge.SetupViewports();
         auto workResult = ge.GenerateInputEvents();
         if (!workResult) {
             break;

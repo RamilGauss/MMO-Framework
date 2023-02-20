@@ -23,6 +23,8 @@ TGraphicEngineModule::TGraphicEngineModule()
 //---------------------------------------------------------------------------------
 void TGraphicEngineModule::ModuleWork()
 {
+    mGE->SetupViewports();
+
     mGE->GenerateInputEvents();
 
     mGE->Draw();

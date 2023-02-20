@@ -36,6 +36,13 @@ void TGraphicEngine::Render()
     }
 }
 //---------------------------------------------------------------------
+void TGraphicEngine::SetupViewports()
+{
+    for (auto& ctx : mContexts) {
+        ctx->SetupGuiViewport();
+    }
+}
+//---------------------------------------------------------------------
 void TGraphicEngine::ApplyInputEventsToGui(const std::list<SDL_Event>& events, std::list<SDL_Event>& unusedEvents)
 {
     bool isApplyEventsByActive = false;

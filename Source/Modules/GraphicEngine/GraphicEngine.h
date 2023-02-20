@@ -34,6 +34,8 @@ namespace nsGraphicEngine
         TGraphicEngineContext* CreateContext(PipeLineType pipeLineType);
         void DestroyContext(TGraphicEngineContext* pCtx);
 
+        void SetupViewports() override;
+
     protected:
         void Render() override;
 

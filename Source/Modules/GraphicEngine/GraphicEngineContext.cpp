@@ -170,12 +170,21 @@ void TGraphicEngineContext::DestroyLight(TLight* pLight)
 
 }
 //--------------------------------------------------------------------------------------------
+void TGraphicEngineContext::SetupGuiViewport()
+{
+    if (mGuiCamera) {
+        auto winPos = mGuiCamera->GetWindowPosition();
+        auto winSize = mGuiCamera->GetWindowSize();
+        auto windowHeight = mGE->GetHeight();
+        auto windowWidth = mGE->GetWidth();
+        mImGuiContext.SetupGuiViewport(windowWidth, windowHeight, winPos.x, winPos.y, winSize.x, winSize.y);
+    }
+}
+//--------------------------------------------------------------------------------------------
 void TGraphicEngineContext::HandleEvents(const std::list<SDL_Event>& events, std::list<SDL_Event>& unusedEvents)
 {
     if (mGuiCamera) {
-        auto pos = mGuiCamera->GetWindowPosition();
-
-        mImGuiContext.HandleEvents(events, unusedEvents, pos.x, pos.y);
+        mImGuiContext.HandleEvents(events, unusedEvents);
     } else {
         unusedEvents = events;
     }

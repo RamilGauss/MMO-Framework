@@ -41,6 +41,28 @@ void TImGuiContext::Init(SDL_Window* window, void* sdl_gl_context)
     ImGui_ImplOpenGL3_Init(GLSL_VERSION.c_str());
 }
 //-------------------------------------------------------------------------------
+void TImGuiContext::SetupGuiViewport(int winWidth, int winHeight, float x, float y, float width, float height)
+{
+    mWindowWidth = winWidth;
+    mWindowHeight = winHeight;
+    mX = x;
+    mY = y;
+    mWidth = width;
+    mHeight = height;
+
+    ApplyViewportParams();
+}
+//-------------------------------------------------------------------------------
+void TImGuiContext::ApplyViewportParams()
+{
+    mImGuiCtx->IO.DisplaySize = { mWidth, mHeight };
+
+    auto v = mImGuiCtx->Viewports[0];
+    v->Size = { mWidth, mHeight };
+    v->WorkSize = { mWidth, mHeight };
+    v->DrawDataP.DisplaySize = { mWidth, mHeight };
+}
+//-------------------------------------------------------------------------------
 void TImGuiContext::Render()
 {
     ImGui::SetCurrentContext(mImGuiCtx);
@@ -48,6 +70,7 @@ void TImGuiContext::Render()
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplSDL2_NewFrame();
+
     ImGui::NewFrame();
 
     for (auto pRenderable : mRenderables) {
@@ -56,17 +79,18 @@ void TImGuiContext::Render()
 
     ImGui::Render();
 
+    ApplyViewportParams();
+
     auto pDrawData = ImGui::GetDrawData();
     ImGui_ImplOpenGL3_RenderDrawData(pDrawData);
 }
 //-------------------------------------------------------------------------------
-void TImGuiContext::HandleEvents(const std::list<SDL_Event>& events, std::list<SDL_Event>& unusedEvents,
-    int xOffset, int yOffset)
+void TImGuiContext::HandleEvents(const std::list<SDL_Event>& events, std::list<SDL_Event>& unusedEvents)
 {
     ImGui::SetCurrentContext(mImGuiCtx);
 
     for (SDL_Event event : events) {
-        CorrectEvent(event, xOffset, yOffset);
+        CorrectEvent(event);
 
         auto applyed = ImGui_ImplSDL2_ProcessEvent(&event);
 
@@ -88,22 +112,24 @@ void TImGuiContext::RemoveRender(IRenderable* pRenderable)
     mRenderables.remove(pRenderable);
 }
 //--------------------------------------------------------------------------------------------
-void TImGuiContext::CorrectEvent(SDL_Event& event, int xOffset, int yOffset)
+void TImGuiContext::CorrectEvent(SDL_Event& event)
 {
+    float dY = mWindowHeight - (mY + mHeight);
+
     switch (event.type) {
         case SDL_MOUSEMOTION:
         {
-            event.motion.x -= xOffset;
-            event.motion.y -= yOffset;
-            event.motion.xrel -= xOffset;
-            event.motion.yrel -= yOffset;
+            event.motion.x -= mX;
+            event.motion.y -= dY;
+            //event.motion.xrel -= xOffset;
+            //event.motion.yrel -= yOffset;
             break;
         }
         case SDL_MOUSEBUTTONDOWN:
         case SDL_MOUSEBUTTONUP:
         {
-            event.button.x -= xOffset;
-            event.button.y -= yOffset;
+            event.button.x -= mX;
+            event.button.y -= dY;
             break;
         }
     }

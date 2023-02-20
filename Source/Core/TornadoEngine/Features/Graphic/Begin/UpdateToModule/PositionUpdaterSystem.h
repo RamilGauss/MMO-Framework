@@ -25,7 +25,7 @@ namespace nsGraphicWrapper
         {
             auto viewComponent = GetEntMng()->ViewComponent<T>(eid);
             if (viewComponent != nullptr) {
-                viewComponent->value->SetPos({(float)pC->x, (float)pC->y});
+                viewComponent->value->SetPosition({(float)pC->x, (float)pC->y});
             }
             return (viewComponent != nullptr);
         }

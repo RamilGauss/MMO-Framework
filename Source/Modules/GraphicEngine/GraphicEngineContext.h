@@ -44,6 +44,8 @@ namespace nsGraphicEngine
         void Render();
 
         // GUI
+        void SetupGuiViewport();
+
         void AddRender(IRenderable* pRenderable);
         void RemoveRender(IRenderable* pRenderable);
 

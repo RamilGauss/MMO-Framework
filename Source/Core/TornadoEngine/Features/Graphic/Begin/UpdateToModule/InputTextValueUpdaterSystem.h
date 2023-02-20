@@ -25,7 +25,7 @@ namespace nsGraphicWrapper
         {
             auto viewComponent = GetEntMng()->ViewComponent<T>(eid);
             if (viewComponent != nullptr) {
-                viewComponent->value->SetText(pC->value);
+                viewComponent->value->SetInputTextValue(pC->value);
             }
             return (viewComponent != nullptr);
         }

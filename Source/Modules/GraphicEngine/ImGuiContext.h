@@ -25,19 +25,29 @@ namespace nsGraphicEngine
         ImGuiContext* mImGuiCtx = nullptr;
 
         std::list<IRenderable*> mRenderables;
+
+        float mX = 0;
+        float mY = 0;
+        float mWidth = 0;
+        float mHeight = 0;
+
+        int mWindowWidth = 0;
+        int mWindowHeight = 0;
     public:
         void Init(SDL_Window* window, void* sdl_gl_context);
 
-        void HandleEvents(const std::list<SDL_Event>& events, std::list<SDL_Event>& unusedEvents,
-            int xOffset, int yOffset);
+        void HandleEvents(const std::list<SDL_Event>& events, std::list<SDL_Event>& unusedEvents);
 
         void Render();
 
         // GUI
+        void SetupGuiViewport(int winWidth, int winHeight, float x, float y, float width, float height);
+
         void AddRender(IRenderable* pRenderable);
         void RemoveRender(IRenderable* pRenderable);
-
     private:
-        void CorrectEvent(SDL_Event& event, int xOffset, int yOffset);
+        void CorrectEvent(SDL_Event& event);
+
+        void ApplyViewportParams();
     };
 }

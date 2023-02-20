@@ -33,13 +33,13 @@ void TInputTextBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGu
     TUnitBuilderHelper::SetupWidget(entMng, eid, pInputTextComponent->value);
 
     auto text = GetEntMng()->ViewComponent<TInputTextValueComponent>(eid)->value;
-    pInputTextComponent->value->SetText(text);
+    pInputTextComponent->value->SetInputTextValue(text);
 
     pInputTextComponent->value->mOnTextEditCB.Register((void*)pInputTextComponent, 
         [eid, entMng, pInputTextComponent](nsImGuiWidgets::TInputText* pInputText)
     {
         TInputTextValueComponent inputTextValueComponent;
-        inputTextValueComponent.value = pInputText->GetText();
+        inputTextValueComponent.value = pInputText->GetInputTextValue();
         entMng->SetComponent(eid, inputTextValueComponent);
     });
 }

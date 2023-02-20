@@ -16,7 +16,7 @@ namespace nsTest
         mWindow.SetTitle("WindowTest");
 
         mWindow.SetSize({ 200, 200 });
-        mWindow.SetPosition({ 100, 100 });
+        mWindow.SetPosition({ 0, 0 });// 100, 100 });
 
         mWindow.SetMinSize({ 10, 10 });
         mWindow.SetMaxSize({ 500, 500 });

@@ -51,11 +51,11 @@ void TSystemViewer::Init()
     mTreeView.SetBottomAnchor({ true, 8 });
     mWindow.Add(&mTreeView);
 
-    mStat.SetPos({ 6, 20 });
+    mStat.SetPosition({ 6, 20 });
     mStat.SetSize({ 200, 25 });
     mWindow.Add(&mStat);
 
-    mRefresh.SetPos({ 211, 20 });
+    mRefresh.SetPosition({ 211, 20 });
     mRefresh.SetSize({ 60, 25 });
     mRefresh.SetTitle("Refresh");
     mRefresh.mOnClickCB.Register(this, [this](nsImGuiWidgets::TButton* pButton) { UpdateGui(); });

@@ -13,5 +13,5 @@ using namespace nsGuiWrapper;
 void TPositionAddSystem::Reactive(nsECSFramework::TEntityID eid, const TPositionComponent* pPositionComponent)
 {
     auto pUnit = pPositionComponent->pOwner;
-    pUnit->SetPos({ (float)pPositionComponent->x, (float)pPositionComponent->y });
+    pUnit->SetPosition({ (float)pPositionComponent->x, (float)pPositionComponent->y });
 }
