@@ -133,6 +133,7 @@
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>

@@ -211,6 +211,7 @@
       <PrecompiledHeaderOutputFile />
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

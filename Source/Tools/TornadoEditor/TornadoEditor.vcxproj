@@ -134,7 +134,7 @@
       <DisableSpecificWarnings>4068;4251;4275;4005;4244;4099;4250;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/bigobj /MP %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Base_d.lib;TornadoEngine_d.lib;ECS_d.lib;GraphicEngine_d.lib;ImGuiWidgets_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>

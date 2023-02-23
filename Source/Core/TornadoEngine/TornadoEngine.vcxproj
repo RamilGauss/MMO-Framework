@@ -138,7 +138,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4068;4251;4275;4005;4244;4250;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>

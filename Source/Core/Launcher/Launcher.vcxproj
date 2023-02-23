@@ -131,6 +131,7 @@
       <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;ws2_32.lib;Base_d.lib;TornadoEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>

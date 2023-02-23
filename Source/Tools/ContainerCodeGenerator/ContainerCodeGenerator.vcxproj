@@ -125,6 +125,7 @@
       <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
