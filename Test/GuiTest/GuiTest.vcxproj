@@ -65,7 +65,6 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\Exe\.conan\conanbuildinfo.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -160,9 +159,6 @@
     <ClCompile Include="WindowGridedFrameTest.cpp" />
     <ClCompile Include="WindowGridTest.cpp" />
     <ClCompile Include="WindowTest.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TexturedWindowTest.h" />
