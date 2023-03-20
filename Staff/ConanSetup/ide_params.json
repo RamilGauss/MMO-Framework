@@ -1,0 +1,5 @@
+{
+    "vsVersion": "VS2022",
+    "includeMacros": "CONAN_INCLUDES",
+    "libMacros": "CONAN_LIBS"
+}

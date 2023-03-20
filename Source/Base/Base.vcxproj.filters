@@ -251,6 +251,9 @@
     <ClInclude Include="include\TypeName.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\magic_enum.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">

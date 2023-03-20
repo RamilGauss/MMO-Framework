@@ -1,0 +1,55 @@
+{
+    "date": "2023-03-20 18:21:12.904236",
+    "packages": {
+        "b2/4.9.3": {
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
+        },
+        "boost/1.81.0": {
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\boosta4bb46e859af6\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\boosta4bb46e859af6\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\boosta4bb46e859af6\\p\\lib"
+        },
+        "bzip2/1.0.8": {
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2ae2c58b442974\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2ae2c58b442974\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2ae2c58b442974\\p\\lib"
+        },
+        "fmt/9.1.0": {
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\fmt8f7ca410f3a11\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\fmt8f7ca410f3a11\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\fmt8f7ca410f3a11\\p\\lib"
+        },
+        "imgui/1.89.3": {
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\imguia5273ff72d3f8\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\imguia5273ff72d3f8\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\imguia5273ff72d3f8\\p\\lib"
+        },
+        "nasm/2.15.05": {
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
+        },
+        "openssl/1.1.1t": {
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\opens4a576c3460bb2\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\opens4a576c3460bb2\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\opens4a576c3460bb2\\p\\lib"
+        },
+        "sdl/2.24.0": {
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl16efe5dc082a2\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl16efe5dc082a2\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl16efe5dc082a2\\p\\lib"
+        },
+        "strawberryperl/5.32.1.1": {
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
+        },
+        "zlib/1.2.13": {
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\zlibb4d63aa5df350\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\zlibb4d63aa5df350\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\zlibb4d63aa5df350\\p\\lib"
+        }
+    }
+}

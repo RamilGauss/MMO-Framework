@@ -1,0 +1,22 @@
+{
+    "packages": [
+        { "name": "boost",   "version": "1.81.0", "shared": false },
+        { "name": "fmt",     "version": "9.1.0",  "shared": true  },
+        { "name": "imgui",   "version": "1.89.3", "shared": false },
+        { "name": "openssl", "version": "1.1.1t", "shared": true  },
+        { "name": "sdl",     "version": "2.24.0", "shared": false }
+    ],
+    "profile": {
+        "arch": "x86_64",
+        "build_type": "Debug",
+        "compiler": "msvc",
+        "compiler_cppstd": "17",
+        "compiler_runtime": "dynamic",
+        "compiler_runtime_type": "Debug",
+        "compiler_version": "193",
+        "os": "Windows"
+    },
+    "resultFileName": "./install_result.json",
+    "debugFlag": false,
+    "forceRebuild": false
+}
