@@ -44,6 +44,10 @@ class Generator:
 
         includeDirs: str = ""
         libNames: str = ""
+        preprocessorNames: str = ""
+
+        for define in self.installResults.defines:
+            preprocessorNames = preprocessorNames + define + ";"
 
         for name, dirs in self.installResults.packages.items():
             if os.path.exists(dirs.includeDir):
@@ -55,7 +59,9 @@ class Generator:
                     if os.path.isfile(f):
                         libNames = libNames + filename + ";"
 
-        propsContent = PropsTemplate.GenerateForVS2022(self.ideParams.includeMacros, includeDirs, self.ideParams.libMacros, libNames)
+        propsContent = PropsTemplate.GenerateForVS2022(self.ideParams.includeMacros, includeDirs, 
+                                                       self.ideParams.libMacros, libNames,
+                                                       self.ideParams.preprocessorMacros, preprocessorNames)
         
         propsAbsFilePath = Relative.Convert(self.absConfigPath, self.config.propsFile)
 

@@ -1,302 +1,302 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|x64">
-      <Configuration>Debug</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|x64">
-      <Configuration>Release</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\Anchors.h" />
-    <ClInclude Include="include\Button.h" />
-    <ClInclude Include="include\CheckBox.h" />
-    <ClInclude Include="include\CheckBoxValue.h" />
-    <ClInclude Include="include\Color.h" />
-    <ClInclude Include="include\ComboBox.h" />
-    <ClInclude Include="include\ComboBoxCurrentIndex.h" />
-    <ClInclude Include="include\ComboBoxItems.h" />
-    <ClInclude Include="include\Dialog.h" />
-    <ClInclude Include="include\DialogStack.h" />
-    <ClInclude Include="include\DockNode.h" />
-    <ClInclude Include="include\DockTree.h" />
-    <ClInclude Include="include\DockTreeManager.h" />
-    <ClInclude Include="include\DockTypeHelper.h" />
-    <ClInclude Include="include\Focus.h" />
-    <ClInclude Include="include\Frame.h" />
-    <ClInclude Include="include\Grid.h" />
-    <ClInclude Include="include\Helper.h" />
-    <ClInclude Include="include\HorizontalAlign.h" />
-    <ClInclude Include="include\Identity.h" />
-    <ClInclude Include="include\ImGuiCustom.h" />
-    <ClInclude Include="include\InputDouble.h" />
-    <ClInclude Include="include\InputDoubleValue.h" />
-    <ClInclude Include="include\InputInt.h" />
-    <ClInclude Include="include\InputIntValue.h" />
-    <ClInclude Include="include\InputMultiText.h" />
-    <ClInclude Include="include\InputText.h" />
-    <ClInclude Include="include\InputTextValue.h" />
-    <ClInclude Include="include\Label.h" />
-    <ClInclude Include="include\LightDockNode.h" />
-    <ClInclude Include="include\LightDockTreeManager.h" />
-    <ClInclude Include="include\LightWindowNode.h" />
-    <ClInclude Include="include\MainWindow.h" />
-    <ClInclude Include="include\MaxSize.h" />
-    <ClInclude Include="include\MenuNode.h" />
-    <ClInclude Include="include\MinDistanceToParent.h" />
-    <ClInclude Include="include\MinSize.h" />
-    <ClInclude Include="include\Node.h" />
-    <ClInclude Include="include\Padding.h" />
-    <ClInclude Include="include\PopupMenu.h" />
-    <ClInclude Include="include\PopupNode.h" />
-    <ClInclude Include="include\Position.h" />
-    <ClInclude Include="include\ProtoFrame.h" />
-    <ClInclude Include="include\RootFrame.h" />
-    <ClInclude Include="include\Separator.h" />
-    <ClInclude Include="include\Size.h" />
-    <ClInclude Include="include\Spacing.h" />
-    <ClInclude Include="include\TextureReference.h" />
-    <ClInclude Include="include\TexturedFrame.h" />
-    <ClInclude Include="include\TextureSize.h" />
-    <ClInclude Include="include\TextureUv.h" />
-    <ClInclude Include="include\Title.h" />
-    <ClInclude Include="include\ToolTip.h" />
-    <ClInclude Include="include\TreeNode.h" />
-    <ClInclude Include="include\TreeView.h" />
-    <ClInclude Include="include\Unit.h" />
-    <ClInclude Include="include\VerticalAlign.h" />
-    <ClInclude Include="include\Visibility.h" />
-    <ClInclude Include="include\Widget.h" />
-    <ClInclude Include="include\WidgetContainer.h" />
-    <ClInclude Include="include\Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Anchors.cpp" />
-    <ClCompile Include="src\Button.cpp" />
-    <ClCompile Include="src\CheckBox.cpp" />
-    <ClCompile Include="src\CheckBoxValue.cpp" />
-    <ClCompile Include="src\Color.cpp" />
-    <ClCompile Include="src\ComboBox.cpp" />
-    <ClCompile Include="src\ComboBoxCurrentIndex.cpp" />
-    <ClCompile Include="src\ComboBoxItems.cpp" />
-    <ClCompile Include="src\Dialog.cpp" />
-    <ClCompile Include="src\DialogStack.cpp" />
-    <ClCompile Include="src\DockNode.cpp" />
-    <ClCompile Include="src\DockTree.cpp" />
-    <ClCompile Include="src\DockTreeManager.cpp" />
-    <ClCompile Include="src\DockTypeHelper.cpp" />
-    <ClCompile Include="src\Focus.cpp" />
-    <ClCompile Include="src\Frame.cpp" />
-    <ClCompile Include="src\Grid.cpp" />
-    <ClCompile Include="src\Helper.cpp" />
-    <ClCompile Include="src\HorizontalAlign.cpp" />
-    <ClCompile Include="src\Identity.cpp" />
-    <ClCompile Include="src\ImGuiCustom.cpp" />
-    <ClCompile Include="src\InputDouble.cpp" />
-    <ClCompile Include="src\InputDoubleValue.cpp" />
-    <ClCompile Include="src\InputInt.cpp" />
-    <ClCompile Include="src\InputIntValue.cpp" />
-    <ClCompile Include="src\InputMultiText.cpp" />
-    <ClCompile Include="src\InputText.cpp" />
-    <ClCompile Include="src\InputTextValue.cpp" />
-    <ClCompile Include="src\Label.cpp" />
-    <ClCompile Include="src\LightDockNode.cpp" />
-    <ClCompile Include="src\LightDockTreeManager.cpp" />
-    <ClCompile Include="src\LightWindowNode.cpp" />
-    <ClCompile Include="src\MainWindow.cpp" />
-    <ClCompile Include="src\MaxSize.cpp" />
-    <ClCompile Include="src\MenuNode.cpp" />
-    <ClCompile Include="src\MinDistanceToParent.cpp" />
-    <ClCompile Include="src\MinSize.cpp" />
-    <ClCompile Include="src\Node.cpp" />
-    <ClCompile Include="src\Padding.cpp" />
-    <ClCompile Include="src\PopupMenu.cpp" />
-    <ClCompile Include="src\PopupNode.cpp" />
-    <ClCompile Include="src\Position.cpp" />
-    <ClCompile Include="src\ProtoFrame.cpp" />
-    <ClCompile Include="src\RootFrame.cpp" />
-    <ClCompile Include="src\Separator.cpp" />
-    <ClCompile Include="src\Size.cpp" />
-    <ClCompile Include="src\Spacing.cpp" />
-    <ClCompile Include="src\TextureReference.cpp" />
-    <ClCompile Include="src\TexturedFrame.cpp" />
-    <ClCompile Include="src\TextureSize.cpp" />
-    <ClCompile Include="src\TextureUv.cpp" />
-    <ClCompile Include="src\Title.cpp" />
-    <ClCompile Include="src\ToolTip.cpp" />
-    <ClCompile Include="src\TreeNode.cpp" />
-    <ClCompile Include="src\TreeView.cpp" />
-    <ClCompile Include="src\Unit.cpp" />
-    <ClCompile Include="src\VerticalAlign.cpp" />
-    <ClCompile Include="src\Visibility.cpp" />
-    <ClCompile Include="src\Widget.cpp" />
-    <ClCompile Include="src\WidgetContainer.cpp" />
-    <ClCompile Include="src\Window.cpp" />
-  </ItemGroup>
-  <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
-    <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{74eef00f-1ad6-4730-a279-c04072d4420a}</ProjectGuid>
-    <RootNamespace>ImGuiWidgets</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="Shared">
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exe\</OutDir>
-    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-    <TargetName>$(ProjectName)_d</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exe\</OutDir>
-    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;IMGUIWIDGETS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;IMGUIWIDGETS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui\misc\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base_d.lib;GraphicEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)Lib\$(TargetName).lib</ImportLibrary>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;IMGUIWIDGETS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui\misc\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>Base.lib;GraphicEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>$(SolutionDir)Lib\$(TargetName).lib</ImportLibrary>
-    </Link>
-  </ItemDefinitionGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+<ItemGroup Label="ProjectConfigurations">
+<ProjectConfiguration Include="Debug|Win32">
+<Configuration>Debug</Configuration>
+<Platform>Win32</Platform>
+</ProjectConfiguration>
+<ProjectConfiguration Include="Release|Win32">
+<Configuration>Release</Configuration>
+<Platform>Win32</Platform>
+</ProjectConfiguration>
+<ProjectConfiguration Include="Debug|x64">
+<Configuration>Debug</Configuration>
+<Platform>x64</Platform>
+</ProjectConfiguration>
+<ProjectConfiguration Include="Release|x64">
+<Configuration>Release</Configuration>
+<Platform>x64</Platform>
+</ProjectConfiguration>
+</ItemGroup>
+<ItemGroup>
+<ClInclude Include="include\Anchors.h"/>
+<ClInclude Include="include\Button.h"/>
+<ClInclude Include="include\CheckBox.h"/>
+<ClInclude Include="include\CheckBoxValue.h"/>
+<ClInclude Include="include\Color.h"/>
+<ClInclude Include="include\ComboBox.h"/>
+<ClInclude Include="include\ComboBoxCurrentIndex.h"/>
+<ClInclude Include="include\ComboBoxItems.h"/>
+<ClInclude Include="include\Dialog.h"/>
+<ClInclude Include="include\DialogStack.h"/>
+<ClInclude Include="include\DockNode.h"/>
+<ClInclude Include="include\DockTree.h"/>
+<ClInclude Include="include\DockTreeManager.h"/>
+<ClInclude Include="include\DockTypeHelper.h"/>
+<ClInclude Include="include\Focus.h"/>
+<ClInclude Include="include\Frame.h"/>
+<ClInclude Include="include\Grid.h"/>
+<ClInclude Include="include\Helper.h"/>
+<ClInclude Include="include\HorizontalAlign.h"/>
+<ClInclude Include="include\Identity.h"/>
+<ClInclude Include="include\ImGuiCustom.h"/>
+<ClInclude Include="include\InputDouble.h"/>
+<ClInclude Include="include\InputDoubleValue.h"/>
+<ClInclude Include="include\InputInt.h"/>
+<ClInclude Include="include\InputIntValue.h"/>
+<ClInclude Include="include\InputMultiText.h"/>
+<ClInclude Include="include\InputText.h"/>
+<ClInclude Include="include\InputTextValue.h"/>
+<ClInclude Include="include\Label.h"/>
+<ClInclude Include="include\LightDockNode.h"/>
+<ClInclude Include="include\LightDockTreeManager.h"/>
+<ClInclude Include="include\LightWindowNode.h"/>
+<ClInclude Include="include\MainWindow.h"/>
+<ClInclude Include="include\MaxSize.h"/>
+<ClInclude Include="include\MenuNode.h"/>
+<ClInclude Include="include\MinDistanceToParent.h"/>
+<ClInclude Include="include\MinSize.h"/>
+<ClInclude Include="include\Node.h"/>
+<ClInclude Include="include\Padding.h"/>
+<ClInclude Include="include\PopupMenu.h"/>
+<ClInclude Include="include\PopupNode.h"/>
+<ClInclude Include="include\Position.h"/>
+<ClInclude Include="include\ProtoFrame.h"/>
+<ClInclude Include="include\RootFrame.h"/>
+<ClInclude Include="include\Separator.h"/>
+<ClInclude Include="include\Size.h"/>
+<ClInclude Include="include\Spacing.h"/>
+<ClInclude Include="include\TextureReference.h"/>
+<ClInclude Include="include\TexturedFrame.h"/>
+<ClInclude Include="include\TextureSize.h"/>
+<ClInclude Include="include\TextureUv.h"/>
+<ClInclude Include="include\Title.h"/>
+<ClInclude Include="include\ToolTip.h"/>
+<ClInclude Include="include\TreeNode.h"/>
+<ClInclude Include="include\TreeView.h"/>
+<ClInclude Include="include\Unit.h"/>
+<ClInclude Include="include\VerticalAlign.h"/>
+<ClInclude Include="include\Visibility.h"/>
+<ClInclude Include="include\Widget.h"/>
+<ClInclude Include="include\WidgetContainer.h"/>
+<ClInclude Include="include\Window.h"/>
+</ItemGroup>
+<ItemGroup>
+<ClCompile Include="src\Anchors.cpp"/>
+<ClCompile Include="src\Button.cpp"/>
+<ClCompile Include="src\CheckBox.cpp"/>
+<ClCompile Include="src\CheckBoxValue.cpp"/>
+<ClCompile Include="src\Color.cpp"/>
+<ClCompile Include="src\ComboBox.cpp"/>
+<ClCompile Include="src\ComboBoxCurrentIndex.cpp"/>
+<ClCompile Include="src\ComboBoxItems.cpp"/>
+<ClCompile Include="src\Dialog.cpp"/>
+<ClCompile Include="src\DialogStack.cpp"/>
+<ClCompile Include="src\DockNode.cpp"/>
+<ClCompile Include="src\DockTree.cpp"/>
+<ClCompile Include="src\DockTreeManager.cpp"/>
+<ClCompile Include="src\DockTypeHelper.cpp"/>
+<ClCompile Include="src\Focus.cpp"/>
+<ClCompile Include="src\Frame.cpp"/>
+<ClCompile Include="src\Grid.cpp"/>
+<ClCompile Include="src\Helper.cpp"/>
+<ClCompile Include="src\HorizontalAlign.cpp"/>
+<ClCompile Include="src\Identity.cpp"/>
+<ClCompile Include="src\ImGuiCustom.cpp"/>
+<ClCompile Include="src\InputDouble.cpp"/>
+<ClCompile Include="src\InputDoubleValue.cpp"/>
+<ClCompile Include="src\InputInt.cpp"/>
+<ClCompile Include="src\InputIntValue.cpp"/>
+<ClCompile Include="src\InputMultiText.cpp"/>
+<ClCompile Include="src\InputText.cpp"/>
+<ClCompile Include="src\InputTextValue.cpp"/>
+<ClCompile Include="src\Label.cpp"/>
+<ClCompile Include="src\LightDockNode.cpp"/>
+<ClCompile Include="src\LightDockTreeManager.cpp"/>
+<ClCompile Include="src\LightWindowNode.cpp"/>
+<ClCompile Include="src\MainWindow.cpp"/>
+<ClCompile Include="src\MaxSize.cpp"/>
+<ClCompile Include="src\MenuNode.cpp"/>
+<ClCompile Include="src\MinDistanceToParent.cpp"/>
+<ClCompile Include="src\MinSize.cpp"/>
+<ClCompile Include="src\Node.cpp"/>
+<ClCompile Include="src\Padding.cpp"/>
+<ClCompile Include="src\PopupMenu.cpp"/>
+<ClCompile Include="src\PopupNode.cpp"/>
+<ClCompile Include="src\Position.cpp"/>
+<ClCompile Include="src\ProtoFrame.cpp"/>
+<ClCompile Include="src\RootFrame.cpp"/>
+<ClCompile Include="src\Separator.cpp"/>
+<ClCompile Include="src\Size.cpp"/>
+<ClCompile Include="src\Spacing.cpp"/>
+<ClCompile Include="src\TextureReference.cpp"/>
+<ClCompile Include="src\TexturedFrame.cpp"/>
+<ClCompile Include="src\TextureSize.cpp"/>
+<ClCompile Include="src\TextureUv.cpp"/>
+<ClCompile Include="src\Title.cpp"/>
+<ClCompile Include="src\ToolTip.cpp"/>
+<ClCompile Include="src\TreeNode.cpp"/>
+<ClCompile Include="src\TreeView.cpp"/>
+<ClCompile Include="src\Unit.cpp"/>
+<ClCompile Include="src\VerticalAlign.cpp"/>
+<ClCompile Include="src\Visibility.cpp"/>
+<ClCompile Include="src\Widget.cpp"/>
+<ClCompile Include="src\WidgetContainer.cpp"/>
+<ClCompile Include="src\Window.cpp"/>
+</ItemGroup>
+<PropertyGroup Label="Globals">
+<VCProjectVersion>16.0</VCProjectVersion>
+<Keyword>Win32Proj</Keyword>
+<ProjectGuid>{74eef00f-1ad6-4730-a279-c04072d4420a}</ProjectGuid>
+<RootNamespace>ImGuiWidgets</RootNamespace>
+<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+</PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>true</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>false</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<WholeProgramOptimization>true</WholeProgramOptimization>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>true</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>false</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<WholeProgramOptimization>true</WholeProgramOptimization>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+<ImportGroup Label="ExtensionSettings">
+</ImportGroup>
+<ImportGroup Label="Shared">
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<PropertyGroup Label="UserMacros"/>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+<LinkIncremental>true</LinkIncremental>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+<LinkIncremental>false</LinkIncremental>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+<LinkIncremental>true</LinkIncremental>
+<OutDir>$(SolutionDir)\Exe\</OutDir>
+<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+<TargetName>$(ProjectName)_d</TargetName>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+<LinkIncremental>false</LinkIncremental>
+<OutDir>$(SolutionDir)\Exe\</OutDir>
+<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+</PropertyGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+<ClCompile>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;IMGUIWIDGETS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>Use</PrecompiledHeader>
+<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+</ClCompile>
+<Link>
+<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+</Link>
+</ItemDefinitionGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+<ClCompile>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
+<FunctionLevelLinking>true</FunctionLevelLinking>
+<IntrinsicFunctions>true</IntrinsicFunctions>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;IMGUIWIDGETS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>Use</PrecompiledHeader>
+<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+</ClCompile>
+<Link>
+<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
+<EnableCOMDATFolding>true</EnableCOMDATFolding>
+<OptimizeReferences>true</OptimizeReferences>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+</Link>
+</ItemDefinitionGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+<ClCompile>
+<WarningLevel>Level3</WarningLevel>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_USRDLL;</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>NotUsing</PrecompiledHeader>
+<PrecompiledHeaderFile>
+</PrecompiledHeaderFile>
+<LanguageStandard>stdcpp20</LanguageStandard>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES);./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui\misc\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+<AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP %(AdditionalOptions)</AdditionalOptions>
+<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+</ClCompile>
+<Link>
+<SubSystem>Windows</SubSystem>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+<AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;GraphicEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+<ImportLibrary>$(SolutionDir)Lib\$(TargetName).lib</ImportLibrary>
+</Link>
+</ItemDefinitionGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+<ClCompile>
+<WarningLevel>Level3</WarningLevel>
+<FunctionLevelLinking>true</FunctionLevelLinking>
+<IntrinsicFunctions>true</IntrinsicFunctions>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;IMGUIWIDGETS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>NotUsing</PrecompiledHeader>
+<PrecompiledHeaderFile>
+</PrecompiledHeaderFile>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES);./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui\misc\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+<LanguageStandard>stdcpp20</LanguageStandard>
+<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+</ClCompile>
+<Link>
+<SubSystem>Windows</SubSystem>
+<EnableCOMDATFolding>true</EnableCOMDATFolding>
+<OptimizeReferences>true</OptimizeReferences>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+<AdditionalDependencies>$(CONAN_LIBS);Base.lib;GraphicEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+<ImportLibrary>$(SolutionDir)Lib\$(TargetName).lib</ImportLibrary>
+</Link>
+</ItemDefinitionGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+<ImportGroup Label="ExtensionTargets">
+</ImportGroup>
 </Project>

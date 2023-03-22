@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<ImportGroup Label="PropertySheets" />
+<PropertyGroup Label="UserMacros">
+    <CONAN_INCLUDES>C:\Users\Gauss\.conan2\p\boostb3b0c11178461\p\include;C:\Users\Gauss\.conan2\p\bullecc7e24f7f7578\p\include;C:\Users\Gauss\.conan2\p\bzip2f3c676a6add6f\p\include;C:\Users\Gauss\.conan2\p\fmta6428d8ed25fb\p\include;C:\Users\Gauss\.conan2\p\glad5c54ac46dfe6a\p\include;C:\Users\Gauss\.conan2\p\glmbdb802798bea2\p\include;C:\Users\Gauss\.conan2\p\gtestce50ef397d7d0\p\include;C:\Users\Gauss\.conan2\p\lz42b7688ec391ea\p\include;C:\Users\Gauss\.conan2\p\magic70eddbb74342b\p\include;C:\Users\Gauss\.conan2\p\opensf390bd9ba8754\p\include;C:\Users\Gauss\.conan2\p\rapid4cabb31a09329\p\include;C:\Users\Gauss\.conan2\p\sdl41afff7a5685f\p\include;C:\Users\Gauss\.conan2\p\stbb3237e7146d86\p\include;C:\Users\Gauss\.conan2\p\zlib9b1259f8e5379\p\include;</CONAN_INCLUDES>
+    <CONAN_LIBS>libboost_atomic.lib;libboost_chrono.lib;libboost_container.lib;libboost_context.lib;libboost_contract.lib;libboost_coroutine.lib;libboost_date_time.lib;libboost_exception.lib;libboost_fiber.lib;libboost_fiber_numa.lib;libboost_filesystem.lib;libboost_graph.lib;libboost_iostreams.lib;libboost_json.lib;libboost_locale.lib;libboost_log.lib;libboost_log_setup.lib;libboost_math_c99.lib;libboost_math_c99f.lib;libboost_math_c99l.lib;libboost_math_tr1.lib;libboost_math_tr1f.lib;libboost_math_tr1l.lib;libboost_nowide.lib;libboost_prg_exec_monitor.lib;libboost_program_options.lib;libboost_random.lib;libboost_regex.lib;libboost_serialization.lib;libboost_stacktrace_noop.lib;libboost_stacktrace_windbg.lib;libboost_stacktrace_windbg_cached.lib;libboost_system.lib;libboost_test_exec_monitor.lib;libboost_thread.lib;libboost_timer.lib;libboost_type_erasure.lib;libboost_unit_test_framework.lib;libboost_url.lib;libboost_wave.lib;libboost_wserialization.lib;Bullet2FileLoader_Debug.lib;Bullet3Collision_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;Bullet3Geometry_Debug.lib;Bullet3OpenCL_clew_Debug.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;BulletInverseDynamics_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;bz2.lib;fmtd.lib;glad.lib;gmock.lib;gmock_main.lib;gtest.lib;gtest_main.lib;lz4.lib;libcryptod.lib;libssld.lib;SDL2d.lib;SDL2maind.lib;SDL2_test.lib;zlib.lib;</CONAN_LIBS>
+    <CONAN_PREPROCESSOR>FMT_SHARED;GTEST_LINKED_AS_SHARED_LIBRARY=1;BOOST_ALL_NO_LIB;BOOST_STACKTRACE_USE_NOOP;BOOST_STACKTRACE_USE_WINDBG;BOOST_STACKTRACE_USE_WINDBG_CACHED;STB_TEXTEDIT_KEYTYPE=unsigned;</CONAN_PREPROCESSOR>
+</PropertyGroup>
+<PropertyGroup />
+<ItemDefinitionGroup />
+<ItemGroup>
+    <BuildMacro Include="CONAN_INCLUDES">
+    <Value>$(CONAN_INCLUDES)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CONAN_LIBS">
+    <Value>$(CONAN_LIBS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CONAN_PREPROCESSOR">
+    <Value>$(CONAN_PREPROCESSOR)</Value>
+    </BuildMacro>
+</ItemGroup>
+</Project>

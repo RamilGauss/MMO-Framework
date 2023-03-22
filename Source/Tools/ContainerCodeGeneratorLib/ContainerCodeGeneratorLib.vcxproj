@@ -1,669 +1,669 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|x64">
-      <Configuration>Debug</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|x64">
-      <Configuration>Release</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Sources\Components\FileListComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\GeneratedFilesComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\HandlerListComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\ReflectionConfigComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\TypeListComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Constants.h" />
-    <ClInclude Include="Sources\MessageException.h" />
-    <ClInclude Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\GenerateDllCppFileSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\AddGeneratedFilesComponentSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\DestroyFileListSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\DestroyGeneratedFileSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\DestroyReflectionConfigSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\DestroyTypeListSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\GenerateFilesByReflectionSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\ParseFileListSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\SaveConfigFileSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\SaveGeneratedFileSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\DeleteGeneratedFilesSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\ImGuiWidgets\PrepareConfigSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\Handler\MakeFileListSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Core\Component\PrepareConfigSystem.h" />
-    <ClInclude Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\Handler\PrepareConfigSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\PathsComponent.h" />
-    <ClInclude Include="Sources\Systems\Project\DeleteGeneratedFilesSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\Handler\TypeListToHandlerListSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\Component\PrepareConfigSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\Project\System\PrepareConfigSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.h" />
-    <ClInclude Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.h" />
-    <ClInclude Include="Sources\Systems\SetupConfig\ResolvePathesSystem.h" />
-    <ClInclude Include="Sources\Systems\SetupConfig\ConfigFeature.h" />
-    <ClInclude Include="Sources\Components\ArgumentComponent.h" />
-    <ClInclude Include="Sources\Generated files\IncludeList.h" />
-    <ClInclude Include="Sources\Generated files\JsonSerializer.h" />
-    <ClInclude Include="Sources\Systems\Aggregator\GeneratorFeature.h" />
-    <ClInclude Include="Sources\Systems\Project\GeneratorFeature.h" />
-    <ClInclude Include="Sources\Systems\Core\GeneratorFeature.h" />
-    <ClInclude Include="Sources\Components\ConfigComponent.h" />
-    <ClInclude Include="Sources\Config.h" />
-    <ClInclude Include="Sources\ContainerCodeGenerator.h" />
-    <ClInclude Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.h" />
-    <ClInclude Include="Sources\Systems\SetupConfig\ValidateConfigSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Sources\Constants.cpp" />
-    <ClCompile Include="Sources\MessageException.cpp" />
-    <ClCompile Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\GenerateDllCppFileSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\AddGeneratedFilesComponentSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\DestroyFileListSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\DestroyGeneratedFileSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\DestroyReflectionConfigSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\DestroyTypeListSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\GenerateFilesByReflectionSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\ParseFileListSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\SaveConfigFileSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\SaveGeneratedFileSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\DeleteGeneratedFilesSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\ImGuiWidgets\PrepareConfigSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\Handler\MakeFileListSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Core\Component\PrepareConfigSystem.cpp" />
-    <ClCompile Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\Handler\PrepareConfigSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\DeleteGeneratedFilesSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\Handler\TypeListToHandlerListSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\Component\PrepareConfigSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\Project\System\PrepareConfigSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.cpp" />
-    <ClCompile Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.cpp" />
-    <ClCompile Include="Sources\Systems\SetupConfig\ResolvePathesSystem.cpp" />
-    <ClCompile Include="Sources\Systems\SetupConfig\ConfigFeature.cpp" />
-    <ClCompile Include="Sources\Generated files\JsonSerializer.cpp" />
-    <ClCompile Include="Sources\Systems\Aggregator\GeneratorFeature.cpp" />
-    <ClCompile Include="Sources\Systems\Project\GeneratorFeature.cpp" />
-    <ClCompile Include="Sources\Systems\Core\GeneratorFeature.cpp" />
-    <ClCompile Include="Sources\ContainerCodeGenerator.cpp" />
-    <ClCompile Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.cpp" />
-    <ClCompile Include="Sources\Systems\SetupConfig\ValidateConfigSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="config.json" />
-  </ItemGroup>
-  <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
-    <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{6eefae6b-8a09-425b-b320-df78f2fb19de}</ProjectGuid>
-    <RootNamespace>ContainerCodeGeneratorLib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="Shared">
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exe\</OutDir>
-    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-    <TargetName>$(ProjectName)_d</TargetName>
-    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exe\</OutDir>
-    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;CONTAINERCODEGENERATORLIB_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;CONTAINERCODEGENERATORLIB_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Tools\Parser\Sources;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base_d.lib;ECS_d.lib;Parser_d.lib;ReflectionCodeGeneratorLib_d.lib;CodeGeneratorImplementation_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-    </Link>
-    <PreBuildEvent>
-      <Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe $(SolutionDir)Source\Tools\ContainerCodeGeneratorLib\config.json</Command>
-    </PreBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Tools\Parser\Sources;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base.lib;ECS.lib;Parser.lib;ReflectionCodeGeneratorLib.lib;CodeGeneratorImplementation.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-    </Link>
-  </ItemDefinitionGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+<ItemGroup Label="ProjectConfigurations">
+<ProjectConfiguration Include="Debug|Win32">
+<Configuration>Debug</Configuration>
+<Platform>Win32</Platform>
+</ProjectConfiguration>
+<ProjectConfiguration Include="Release|Win32">
+<Configuration>Release</Configuration>
+<Platform>Win32</Platform>
+</ProjectConfiguration>
+<ProjectConfiguration Include="Debug|x64">
+<Configuration>Debug</Configuration>
+<Platform>x64</Platform>
+</ProjectConfiguration>
+<ProjectConfiguration Include="Release|x64">
+<Configuration>Release</Configuration>
+<Platform>x64</Platform>
+</ProjectConfiguration>
+</ItemGroup>
+<ItemGroup>
+<ClInclude Include="Sources\Components\FileListComponent.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Components\GeneratedFilesComponent.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Components\HandlerListComponent.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Components\ReflectionConfigComponent.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Components\TypeListComponent.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Constants.h"/>
+<ClInclude Include="Sources\MessageException.h"/>
+<ClInclude Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\GenerateDllCppFileSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\System\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\System\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\AddGeneratedFilesComponentSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Common\DestroyFileListSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\DestroyGeneratedFileSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Common\DestroyReflectionConfigSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Common\DestroyTypeListSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Common\GenerateFilesByReflectionSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Common\ParseFileListSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Common\SaveConfigFileSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Aggregator\SaveGeneratedFileSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Core\DeleteGeneratedFilesSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Core\ImGuiWidgets\PrepareConfigSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Project\Handler\MakeFileListSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Core\Component\PrepareConfigSystem.h"/>
+<ClInclude Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Project\Handler\PrepareConfigSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Components\PathsComponent.h"/>
+<ClInclude Include="Sources\Systems\Project\DeleteGeneratedFilesSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Project\Handler\TypeListToHandlerListSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Project\Component\PrepareConfigSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\Project\System\PrepareConfigSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+<ClInclude Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.h"/>
+<ClInclude Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.h"/>
+<ClInclude Include="Sources\Systems\SetupConfig\ResolvePathesSystem.h"/>
+<ClInclude Include="Sources\Systems\SetupConfig\ConfigFeature.h"/>
+<ClInclude Include="Sources\Components\ArgumentComponent.h"/>
+<ClInclude Include="Sources\Generated files\IncludeList.h"/>
+<ClInclude Include="Sources\Generated files\JsonSerializer.h"/>
+<ClInclude Include="Sources\Systems\Aggregator\GeneratorFeature.h"/>
+<ClInclude Include="Sources\Systems\Project\GeneratorFeature.h"/>
+<ClInclude Include="Sources\Systems\Core\GeneratorFeature.h"/>
+<ClInclude Include="Sources\Components\ConfigComponent.h"/>
+<ClInclude Include="Sources\Config.h"/>
+<ClInclude Include="Sources\ContainerCodeGenerator.h"/>
+<ClInclude Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.h"/>
+<ClInclude Include="Sources\Systems\SetupConfig\ValidateConfigSystem.h">
+<SubType>
+</SubType>
+</ClInclude>
+</ItemGroup>
+<ItemGroup>
+<ClCompile Include="Sources\Constants.cpp"/>
+<ClCompile Include="Sources\MessageException.cpp"/>
+<ClCompile Include="Sources\Systems\Aggregator\AddHeaderInGeneratedFilesSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\EntMng\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\GenerateDllCppFileSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\System\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\AddGeneratedFilesComponentSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Common\DestroyFileListSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\DestroyGeneratedFileSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Common\DestroyReflectionConfigSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Common\DestroyTypeListSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Common\GenerateFilesByReflectionSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Common\ParseFileListSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Common\SaveConfigFileSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Aggregator\SaveGeneratedFileSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Core\DeleteGeneratedFilesSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Core\ImGuiWidgets\PrepareConfigSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Project\Handler\MakeFileListSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Core\Component\PrepareConfigSystem.cpp"/>
+<ClCompile Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Project\Handler\PrepareConfigSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Project\DeleteGeneratedFilesSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Project\Handler\TypeListToHandlerListSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Project\Component\PrepareConfigSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\Project\System\PrepareConfigSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+<ClCompile Include="Sources\Systems\SetupConfig\CheckArgumentsSystem.cpp"/>
+<ClCompile Include="Sources\Systems\SetupConfig\ResolveJsonPathSystem.cpp"/>
+<ClCompile Include="Sources\Systems\SetupConfig\ResolvePathesSystem.cpp"/>
+<ClCompile Include="Sources\Systems\SetupConfig\ConfigFeature.cpp"/>
+<ClCompile Include="Sources\Generated files\JsonSerializer.cpp"/>
+<ClCompile Include="Sources\Systems\Aggregator\GeneratorFeature.cpp"/>
+<ClCompile Include="Sources\Systems\Project\GeneratorFeature.cpp"/>
+<ClCompile Include="Sources\Systems\Core\GeneratorFeature.cpp"/>
+<ClCompile Include="Sources\ContainerCodeGenerator.cpp"/>
+<ClCompile Include="Sources\Systems\SetupConfig\TryLoadConfigSystem.cpp"/>
+<ClCompile Include="Sources\Systems\SetupConfig\ValidateConfigSystem.cpp">
+<SubType>
+</SubType>
+</ClCompile>
+</ItemGroup>
+<ItemGroup>
+<None Include="config.json"/>
+</ItemGroup>
+<PropertyGroup Label="Globals">
+<VCProjectVersion>16.0</VCProjectVersion>
+<Keyword>Win32Proj</Keyword>
+<ProjectGuid>{6eefae6b-8a09-425b-b320-df78f2fb19de}</ProjectGuid>
+<RootNamespace>ContainerCodeGeneratorLib</RootNamespace>
+<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+</PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>true</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>false</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<WholeProgramOptimization>true</WholeProgramOptimization>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>true</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>false</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<WholeProgramOptimization>true</WholeProgramOptimization>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+<ImportGroup Label="ExtensionSettings">
+</ImportGroup>
+<ImportGroup Label="Shared">
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<PropertyGroup Label="UserMacros"/>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+<LinkIncremental>true</LinkIncremental>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+<LinkIncremental>false</LinkIncremental>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+<LinkIncremental>true</LinkIncremental>
+<OutDir>$(SolutionDir)\Exe\</OutDir>
+<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+<TargetName>$(ProjectName)_d</TargetName>
+<PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+<LinkIncremental>false</LinkIncremental>
+<OutDir>$(SolutionDir)\Exe\</OutDir>
+<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+</PropertyGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+<ClCompile>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;CONTAINERCODEGENERATORLIB_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>Use</PrecompiledHeader>
+<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+</ClCompile>
+<Link>
+<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+</Link>
+</ItemDefinitionGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+<ClCompile>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
+<FunctionLevelLinking>true</FunctionLevelLinking>
+<IntrinsicFunctions>true</IntrinsicFunctions>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;CONTAINERCODEGENERATORLIB_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>Use</PrecompiledHeader>
+<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+</ClCompile>
+<Link>
+<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
+<EnableCOMDATFolding>true</EnableCOMDATFolding>
+<OptimizeReferences>true</OptimizeReferences>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+</Link>
+</ItemDefinitionGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+<ClCompile>
+<WarningLevel>Level3</WarningLevel>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>NotUsing</PrecompiledHeader>
+<PrecompiledHeaderFile>
+</PrecompiledHeaderFile>
+<LanguageStandard>stdcpp20</LanguageStandard>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Tools\Parser\Sources;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+<AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+</ClCompile>
+<Link>
+<SubSystem>Windows</SubSystem>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+<AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;ECS_d.lib;Parser_d.lib;ReflectionCodeGeneratorLib_d.lib;CodeGeneratorImplementation_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+</Link>
+<PreBuildEvent>
+<Command>$(SolutionDir)Exe\ReflectionCodeGenerator_d.exe $(SolutionDir)Source\Tools\ContainerCodeGeneratorLib\config.json</Command>
+</PreBuildEvent>
+</ItemDefinitionGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+<ClCompile>
+<WarningLevel>Level3</WarningLevel>
+<FunctionLevelLinking>true</FunctionLevelLinking>
+<IntrinsicFunctions>true</IntrinsicFunctions>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>Use</PrecompiledHeader>
+<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+<LanguageStandard>stdcpp20</LanguageStandard>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Tools\Parser\Sources;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+</ClCompile>
+<Link>
+<SubSystem>Windows</SubSystem>
+<EnableCOMDATFolding>true</EnableCOMDATFolding>
+<OptimizeReferences>true</OptimizeReferences>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+<AdditionalDependencies>$(CONAN_LIBS);Base.lib;ECS.lib;Parser.lib;ReflectionCodeGeneratorLib.lib;CodeGeneratorImplementation.lib;%(AdditionalDependencies)</AdditionalDependencies>
+<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+</Link>
+</ItemDefinitionGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+<ImportGroup Label="ExtensionTargets">
+</ImportGroup>
 </Project>

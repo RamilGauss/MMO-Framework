@@ -64,15 +64,36 @@ class SolutionSetup:
 
             # Project linker and compiler configs
             for prTag in projectTag:
+                # compiler
                 clCompileTag = prTag.find("ClCompile")
                 addDir = clCompileTag.find("AdditionalIncludeDirectories")
-                addDirText = addDir.get_text()
-
-                includeMacrosText = f"$({self.ideParams.includeMacros})"
-                if not includeMacrosText in addDirText:
-                    addDir.string = includeMacrosText + ";" + addDirText
+                if addDir is None:
+                    addDir = soup.new_tag("AdditionalIncludeDirectories")
+                    addDir.string = f"$({self.ideParams.includeMacros})"
+                    clCompileTag.insert(1, addDir)
                     isEdited = True
-
+                else:
+                    addDirText = addDir.get_text()
+                    includeMacrosText = f"$({self.ideParams.includeMacros})"
+                    if not includeMacrosText in addDirText:
+                        addDir.string = includeMacrosText + ";" + addDirText
+                        isEdited = True
+                
+                # Add preprocessor macros
+                preprocessorTag = clCompileTag.find("PreprocessorDefinitions")
+                if preprocessorTag is None:
+                    preprocessorTag = soup.new_tag("PreprocessorDefinitions")
+                    preprocessorTag.string = f"$({self.ideParams.preprocessorMacros})"
+                    clCompileTag.insert(1, addDir)
+                    isEdited = True
+                else:
+                    preprocessorText = preprocessorTag.get_text()
+                    conanPreprocessor = f"$({self.ideParams.preprocessorMacros})"
+                    if not conanPreprocessor in preprocessorText:
+                        preprocessorTag.string = conanPreprocessor + ";" + preprocessorText
+                        isEdited = True
+                
+                # linker
                 link = prTag.find("Link")
                 addDep = link.find("AdditionalDependencies")
                 if addDep is None:
@@ -95,7 +116,7 @@ class SolutionSetup:
                     importProps = importGroup.find_all("Import")
                     hasProps = False
                     for importProp in importProps:
-                        if importProp.has_attr("Project") and importProp.attrs["Project"] == self.config.propsFile:
+                        if importProp.has_attr("Project") and importProp.attrs["Project"] == relConanPropsPath:
                             hasProps = True
                             break
                     if not hasProps:

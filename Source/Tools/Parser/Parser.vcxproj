@@ -1,252 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|x64">
-      <Configuration>Debug</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|x64">
-      <Configuration>Release</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Sources\BlockLexemaEntity.cpp" />
-    <ClCompile Include="Sources\ColonSplitter.cpp" />
-    <ClCompile Include="Sources\CommentRemover.cpp" />
-    <ClCompile Include="Sources\EntitySplitter.cpp" />
-    <ClCompile Include="Sources\ExtendedInfoTypeExtractor.cpp" />
-    <ClCompile Include="Sources\FunctionLexema.cpp" />
-    <ClCompile Include="Sources\ILexema.cpp" />
-    <ClCompile Include="Sources\LexemaEngine.cpp" />
-    <ClCompile Include="Sources\LexemaFactory.cpp" />
-    <ClCompile Include="Sources\LineSplitter.cpp" />
-    <ClCompile Include="Sources\MemberInfo.cpp" />
-    <ClCompile Include="Sources\MemberExtendedTypeInfo.cpp" />
-    <ClCompile Include="Sources\Parser.cpp" />
-    <ClCompile Include="Sources\PreprocessorSplitter.cpp" />
-    <ClCompile Include="Sources\Tokenizer.cpp" />
-    <ClCompile Include="Sources\TypeDeclarationLexema.cpp" />
-    <ClCompile Include="Sources\TypeInfo.cpp" />
-    <ClCompile Include="Sources\TypeInfoCollector.cpp" />
-    <ClCompile Include="Sources\TypeManager.cpp" />
-    <ClCompile Include="Sources\TypeReference.cpp" />
-    <ClCompile Include="Sources\VariableDeclarationLexema.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Sources\AccessLexema.h" />
-    <ClInclude Include="Sources\BlockLexemaEntity.h" />
-    <ClInclude Include="Sources\ClassLexema.h" />
-    <ClInclude Include="Sources\ColonSplitter.h" />
-    <ClInclude Include="Sources\CommentRemover.h" />
-    <ClInclude Include="Sources\EmptyLexema.h" />
-    <ClInclude Include="Sources\EntitySplitter.h" />
-    <ClInclude Include="Sources\EnumLexema.h" />
-    <ClInclude Include="Sources\EnumValuesLexema.h" />
-    <ClInclude Include="Sources\ExtendedInfoTypeExtractor.h" />
-    <ClInclude Include="Sources\IdentifierToken.h" />
-    <ClInclude Include="Sources\FriendInfo.h" />
-    <ClInclude Include="Sources\FriendLexema.h" />
-    <ClInclude Include="Sources\IdentifierLexema.h" />
-    <ClInclude Include="Sources\ILexema.h" />
-    <ClInclude Include="Sources\ILexemaEntity.h" />
-    <ClInclude Include="Sources\LexemaEngine.h" />
-    <ClInclude Include="Sources\LexemaFactory.h" />
-    <ClInclude Include="Sources\LineLexemaEntity.h" />
-    <ClInclude Include="Sources\TypeInfoCollector.h" />
-    <ClInclude Include="Sources\VariableDeclarationLexema.h" />
-    <ClInclude Include="Sources\FunctionDeclarationLexema.h" />
-    <ClInclude Include="Sources\FunctionDefinitionLexema.h" />
-    <ClInclude Include="Sources\FunctionLexema.h" />
-    <ClInclude Include="Sources\NamespaceLexema.h" />
-    <ClInclude Include="Sources\ParserResultContainer.h" />
-    <ClInclude Include="Sources\PragmaLexema.h" />
-    <ClInclude Include="Sources\PreprocessorSplitter.h" />
-    <ClInclude Include="Sources\StructLexema.h" />
-    <ClInclude Include="Sources\TypeDeclarationLexema.h" />
-    <ClInclude Include="Sources\TypeManager.h" />
-    <ClInclude Include="Sources\TypeReference.h" />
-    <ClInclude Include="Sources\Types.h" />
-    <ClInclude Include="Sources\BlockTokenEntity.h" />
-    <ClInclude Include="Sources\InheritanceInfo.h" />
-    <ClInclude Include="Sources\ITokenEntity.h" />
-    <ClInclude Include="Sources\LineSplitter.h" />
-    <ClInclude Include="Sources\LineTokenEntity.h" />
-    <ClInclude Include="Sources\MemberInfo.h" />
-    <ClInclude Include="Sources\MemberExtendedTypeInfo.h" />
-    <ClInclude Include="Sources\MethodInfo.h" />
-    <ClInclude Include="Sources\Parser.h" />
-    <ClInclude Include="Sources\TokenInfo.h" />
-    <ClInclude Include="Sources\Tokenizer.h" />
-    <ClInclude Include="Sources\TypeInfo.h" />
-  </ItemGroup>
-  <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
-    <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ab7dff93-7142-43ca-81db-1aa01eda873c}</ProjectGuid>
-    <RootNamespace>Parser</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="Shared">
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exe\</OutDir>
-    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-    <TargetName>$(ProjectName)_d</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exe\</OutDir>
-    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;PARSER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;PARSER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderOutputFile />
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
-      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>.\Sources;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
-      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Base.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-    </Link>
-  </ItemDefinitionGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+<ItemGroup Label="ProjectConfigurations">
+<ProjectConfiguration Include="Debug|Win32">
+<Configuration>Debug</Configuration>
+<Platform>Win32</Platform>
+</ProjectConfiguration>
+<ProjectConfiguration Include="Release|Win32">
+<Configuration>Release</Configuration>
+<Platform>Win32</Platform>
+</ProjectConfiguration>
+<ProjectConfiguration Include="Debug|x64">
+<Configuration>Debug</Configuration>
+<Platform>x64</Platform>
+</ProjectConfiguration>
+<ProjectConfiguration Include="Release|x64">
+<Configuration>Release</Configuration>
+<Platform>x64</Platform>
+</ProjectConfiguration>
+</ItemGroup>
+<ItemGroup>
+<ClCompile Include="Sources\BlockLexemaEntity.cpp"/>
+<ClCompile Include="Sources\ColonSplitter.cpp"/>
+<ClCompile Include="Sources\CommentRemover.cpp"/>
+<ClCompile Include="Sources\EntitySplitter.cpp"/>
+<ClCompile Include="Sources\ExtendedInfoTypeExtractor.cpp"/>
+<ClCompile Include="Sources\FunctionLexema.cpp"/>
+<ClCompile Include="Sources\ILexema.cpp"/>
+<ClCompile Include="Sources\LexemaEngine.cpp"/>
+<ClCompile Include="Sources\LexemaFactory.cpp"/>
+<ClCompile Include="Sources\LineSplitter.cpp"/>
+<ClCompile Include="Sources\MemberInfo.cpp"/>
+<ClCompile Include="Sources\MemberExtendedTypeInfo.cpp"/>
+<ClCompile Include="Sources\Parser.cpp"/>
+<ClCompile Include="Sources\PreprocessorSplitter.cpp"/>
+<ClCompile Include="Sources\Tokenizer.cpp"/>
+<ClCompile Include="Sources\TypeDeclarationLexema.cpp"/>
+<ClCompile Include="Sources\TypeInfo.cpp"/>
+<ClCompile Include="Sources\TypeInfoCollector.cpp"/>
+<ClCompile Include="Sources\TypeManager.cpp"/>
+<ClCompile Include="Sources\TypeReference.cpp"/>
+<ClCompile Include="Sources\VariableDeclarationLexema.cpp"/>
+</ItemGroup>
+<ItemGroup>
+<ClInclude Include="Sources\AccessLexema.h"/>
+<ClInclude Include="Sources\BlockLexemaEntity.h"/>
+<ClInclude Include="Sources\ClassLexema.h"/>
+<ClInclude Include="Sources\ColonSplitter.h"/>
+<ClInclude Include="Sources\CommentRemover.h"/>
+<ClInclude Include="Sources\EmptyLexema.h"/>
+<ClInclude Include="Sources\EntitySplitter.h"/>
+<ClInclude Include="Sources\EnumLexema.h"/>
+<ClInclude Include="Sources\EnumValuesLexema.h"/>
+<ClInclude Include="Sources\ExtendedInfoTypeExtractor.h"/>
+<ClInclude Include="Sources\IdentifierToken.h"/>
+<ClInclude Include="Sources\FriendInfo.h"/>
+<ClInclude Include="Sources\FriendLexema.h"/>
+<ClInclude Include="Sources\IdentifierLexema.h"/>
+<ClInclude Include="Sources\ILexema.h"/>
+<ClInclude Include="Sources\ILexemaEntity.h"/>
+<ClInclude Include="Sources\LexemaEngine.h"/>
+<ClInclude Include="Sources\LexemaFactory.h"/>
+<ClInclude Include="Sources\LineLexemaEntity.h"/>
+<ClInclude Include="Sources\TypeInfoCollector.h"/>
+<ClInclude Include="Sources\VariableDeclarationLexema.h"/>
+<ClInclude Include="Sources\FunctionDeclarationLexema.h"/>
+<ClInclude Include="Sources\FunctionDefinitionLexema.h"/>
+<ClInclude Include="Sources\FunctionLexema.h"/>
+<ClInclude Include="Sources\NamespaceLexema.h"/>
+<ClInclude Include="Sources\ParserResultContainer.h"/>
+<ClInclude Include="Sources\PragmaLexema.h"/>
+<ClInclude Include="Sources\PreprocessorSplitter.h"/>
+<ClInclude Include="Sources\StructLexema.h"/>
+<ClInclude Include="Sources\TypeDeclarationLexema.h"/>
+<ClInclude Include="Sources\TypeManager.h"/>
+<ClInclude Include="Sources\TypeReference.h"/>
+<ClInclude Include="Sources\Types.h"/>
+<ClInclude Include="Sources\BlockTokenEntity.h"/>
+<ClInclude Include="Sources\InheritanceInfo.h"/>
+<ClInclude Include="Sources\ITokenEntity.h"/>
+<ClInclude Include="Sources\LineSplitter.h"/>
+<ClInclude Include="Sources\LineTokenEntity.h"/>
+<ClInclude Include="Sources\MemberInfo.h"/>
+<ClInclude Include="Sources\MemberExtendedTypeInfo.h"/>
+<ClInclude Include="Sources\MethodInfo.h"/>
+<ClInclude Include="Sources\Parser.h"/>
+<ClInclude Include="Sources\TokenInfo.h"/>
+<ClInclude Include="Sources\Tokenizer.h"/>
+<ClInclude Include="Sources\TypeInfo.h"/>
+</ItemGroup>
+<PropertyGroup Label="Globals">
+<VCProjectVersion>16.0</VCProjectVersion>
+<Keyword>Win32Proj</Keyword>
+<ProjectGuid>{ab7dff93-7142-43ca-81db-1aa01eda873c}</ProjectGuid>
+<RootNamespace>Parser</RootNamespace>
+<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+</PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>true</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>false</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<WholeProgramOptimization>true</WholeProgramOptimization>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>true</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+<ConfigurationType>DynamicLibrary</ConfigurationType>
+<UseDebugLibraries>false</UseDebugLibraries>
+<PlatformToolset>v143</PlatformToolset>
+<WholeProgramOptimization>true</WholeProgramOptimization>
+<CharacterSet>Unicode</CharacterSet>
+</PropertyGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+<ImportGroup Label="ExtensionSettings">
+</ImportGroup>
+<ImportGroup Label="Shared">
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+</ImportGroup>
+<PropertyGroup Label="UserMacros"/>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+<LinkIncremental>true</LinkIncremental>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+<LinkIncremental>false</LinkIncremental>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+<LinkIncremental>true</LinkIncremental>
+<OutDir>$(SolutionDir)\Exe\</OutDir>
+<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+<TargetName>$(ProjectName)_d</TargetName>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+<LinkIncremental>false</LinkIncremental>
+<OutDir>$(SolutionDir)\Exe\</OutDir>
+<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+</PropertyGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+<ClCompile>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;PARSER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>Use</PrecompiledHeader>
+<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+</ClCompile>
+<Link>
+<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+</Link>
+</ItemDefinitionGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+<ClCompile>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
+<FunctionLevelLinking>true</FunctionLevelLinking>
+<IntrinsicFunctions>true</IntrinsicFunctions>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;PARSER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>Use</PrecompiledHeader>
+<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+</ClCompile>
+<Link>
+<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
+<EnableCOMDATFolding>true</EnableCOMDATFolding>
+<OptimizeReferences>true</OptimizeReferences>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+</Link>
+</ItemDefinitionGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+<ClCompile>
+<WarningLevel>Level3</WarningLevel>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>
+</PrecompiledHeader>
+<PrecompiledHeaderFile>
+</PrecompiledHeaderFile>
+<LanguageStandard>stdcpp20</LanguageStandard>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\Sources;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+<PrecompiledHeaderOutputFile/>
+<DisableSpecificWarnings>4251</DisableSpecificWarnings>
+<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+<AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+</ClCompile>
+<Link>
+<SubSystem>Windows</SubSystem>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+<AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+</Link>
+</ItemDefinitionGroup>
+<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+<ClCompile>
+<WarningLevel>Level3</WarningLevel>
+<FunctionLevelLinking>true</FunctionLevelLinking>
+<IntrinsicFunctions>true</IntrinsicFunctions>
+<SDLCheck>true</SDLCheck>
+<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+<ConformanceMode>true</ConformanceMode>
+<PrecompiledHeader>
+</PrecompiledHeader>
+<PrecompiledHeaderFile>
+</PrecompiledHeaderFile>
+<PrecompiledHeaderOutputFile/>
+<AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\Sources;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+<LanguageStandard>stdcpp20</LanguageStandard>
+<DisableSpecificWarnings>4251</DisableSpecificWarnings>
+<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+</ClCompile>
+<Link>
+<SubSystem>Windows</SubSystem>
+<EnableCOMDATFolding>true</EnableCOMDATFolding>
+<OptimizeReferences>true</OptimizeReferences>
+<GenerateDebugInformation>true</GenerateDebugInformation>
+<EnableUAC>false</EnableUAC>
+<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+<AdditionalDependencies>$(CONAN_LIBS);Base.lib;%(AdditionalDependencies)</AdditionalDependencies>
+<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+</Link>
+</ItemDefinitionGroup>
+<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+<ImportGroup Label="ExtensionTargets">
+</ImportGroup>
 </Project>

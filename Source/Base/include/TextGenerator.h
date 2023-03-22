@@ -7,6 +7,7 @@ See for more information LICENSE.md.
 
 #include <list>
 #include <map>
+#include <format>
 
 #include <fmt/core.h>
 
@@ -38,10 +39,11 @@ namespace nsBase
 
         void AddLine(const std::string& str);
 
+
         template<typename ... Args>
-        void AddFormatLine(const char* format, Args && ... args)
+        void AddFormatLine(const char* format, Args&&... args)
         {
-            AddLine(fmt::format(format, std::forward<Args>(args)...));
+            AddLine(fmt::vformat(format, fmt::make_format_args(args...)));
         }
 
         void AddEmpty();

@@ -18,10 +18,10 @@ class Profile:
         self.os = os # 'Windows'
 
 class PackageInfo:
-    def __init__(self, name: str, version: str, shared: bool) -> None:
+    def __init__(self, name: str, version: str, options: list[str]) -> None:
         self.name: str = name
         self.version: str = version
-        self.shared: bool = shared
+        self.options: list[str] = options
 
 class Config:
     def __init__(self, packages: list[PackageInfo], profile: Profile, resultFileName: str, debugFlag: bool, forceRebuild: bool) -> None:
@@ -40,8 +40,10 @@ class PackageResult:
         self.binDir: str = binDir
 
 class Result:
-    def __init__(self, date: str = str(datetime.datetime.now()), packages: dict[str, PackageResult] = {}) -> None:
+    def __init__(self, date: str = str(datetime.datetime.now()), packages: dict[str, PackageResult] = {}, defines: list[str] = []) -> None:
         self.date: str = date
         self.packages: dict[str, PackageResult] = {}
         for key, value in packages.items():
             self.packages[key] = PackageResult(**value)
+        
+        self.defines: list[str] = defines

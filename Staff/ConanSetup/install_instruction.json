@@ -1,22 +1,29 @@
 {
     "packages": [
-        { "name": "boost",   "version": "1.81.0", "shared": false },
-        { "name": "fmt",     "version": "9.1.0",  "shared": true  },
-        { "name": "imgui",   "version": "1.89.3", "shared": false },
-        { "name": "openssl", "version": "1.1.1t", "shared": true  },
-        { "name": "sdl",     "version": "2.24.0", "shared": false }
+        { "name": "fmt",        "version": "9.1.0",        "options" : [ "shared=True" ]},
+        { "name": "openssl",    "version": "1.1.1t",       "options" : [ "shared=True" ]},
+        { "name": "gtest",      "version": "1.13.0",       "options" : [ "shared=True" ]},
+        { "name": "sdl",        "version": "2.26.1",       "options" : [ "shared=True" ]},
+        { "name": "boost",      "version": "1.81.0",       "options" : []},
+        { "name": "rapidjson",  "version": "cci.20220822", "options" : []},
+        { "name": "magic_enum", "version": "0.8.1",        "options" : []},
+        { "name": "lz4",        "version": "1.9.4",        "options" : []},
+        { "name": "bullet3",    "version": "3.24",         "options" : []},
+        { "name": "stb",        "version": "cci.20220909", "options" : []},
+        { "name": "glad",       "version": "0.1.36",       "options" : []},
+        { "name": "glm",        "version": "0.9.9.8",      "options" : []}
     ],
     "profile": {
         "arch": "x86_64",
         "build_type": "Debug",
         "compiler": "msvc",
-        "compiler_cppstd": "17",
+        "compiler_cppstd": "20",
         "compiler_runtime": "dynamic",
         "compiler_runtime_type": "Debug",
         "compiler_version": "193",
         "os": "Windows"
     },
     "resultFileName": "./install_result.json",
-    "debugFlag": false,
+    "debugFlag": true,
     "forceRebuild": false
 }
