@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGeneratorTest
 */
-// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_09_18 22:21:05.375
+// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_03_23 12:54:57.445
 	
 #include "EcsComponentExtensionExtension.h"
 
@@ -24,11 +24,11 @@ void TEcsComponentExtensionExtension::Init()
     std::map<int, Data> m;
     
     Data nsSimpleComponents_TNameComponent_Data;
-        nsSimpleComponents_TNameComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        nsSimpleComponents_TNameComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
         auto lambda = [&](nsSimpleComponents::TNameComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsSimpleComponents::TNameComponent>(eid, lambda, isNotify);
+        pEntMng->CreateComponent<nsSimpleComponents::TNameComponent>(eid, lambda);
     };
-    nsSimpleComponents_TNameComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsSimpleComponents::TNameComponent*)p), isNotify); };
+    nsSimpleComponents_TNameComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsSimpleComponents::TNameComponent*)p)); };
     nsSimpleComponents_TNameComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsSimpleComponents::TNameComponent>(eid); };
     nsSimpleComponents_TNameComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsSimpleComponents::TNameComponent>(eid); };
     nsSimpleComponents_TNameComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsSimpleComponents::TNameComponent>(eid); };
@@ -38,11 +38,11 @@ void TEcsComponentExtensionExtension::Init()
     m.insert({ rtti_nsSimpleComponents_TNameComponent_Data, nsSimpleComponents_TNameComponent_Data });
     
     Data nsSimpleComponents_TSimpleComponent_Data;
-        nsSimpleComponents_TSimpleComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        nsSimpleComponents_TSimpleComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
         auto lambda = [&](nsSimpleComponents::TSimpleComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsSimpleComponents::TSimpleComponent>(eid, lambda, isNotify);
+        pEntMng->CreateComponent<nsSimpleComponents::TSimpleComponent>(eid, lambda);
     };
-    nsSimpleComponents_TSimpleComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsSimpleComponents::TSimpleComponent*)p), isNotify); };
+    nsSimpleComponents_TSimpleComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsSimpleComponents::TSimpleComponent*)p)); };
     nsSimpleComponents_TSimpleComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsSimpleComponents::TSimpleComponent>(eid); };
     nsSimpleComponents_TSimpleComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsSimpleComponents::TSimpleComponent>(eid); };
     nsSimpleComponents_TSimpleComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsSimpleComponents::TSimpleComponent>(eid); };
@@ -52,11 +52,11 @@ void TEcsComponentExtensionExtension::Init()
     m.insert({ rtti_nsSimpleComponents_TSimpleComponent_Data, nsSimpleComponents_TSimpleComponent_Data });
     
     Data nsSimpleComponents_TSizeComponent_Data;
-        nsSimpleComponents_TSizeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        nsSimpleComponents_TSizeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
         auto lambda = [&](nsSimpleComponents::TSizeComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsSimpleComponents::TSizeComponent>(eid, lambda, isNotify);
+        pEntMng->CreateComponent<nsSimpleComponents::TSizeComponent>(eid, lambda);
     };
-    nsSimpleComponents_TSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsSimpleComponents::TSizeComponent*)p), isNotify); };
+    nsSimpleComponents_TSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsSimpleComponents::TSizeComponent*)p)); };
     nsSimpleComponents_TSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsSimpleComponents::TSizeComponent>(eid); };
     nsSimpleComponents_TSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsSimpleComponents::TSizeComponent>(eid); };
     nsSimpleComponents_TSizeComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsSimpleComponents::TSizeComponent>(eid); };
@@ -66,11 +66,11 @@ void TEcsComponentExtensionExtension::Init()
     m.insert({ rtti_nsSimpleComponents_TSizeComponent_Data, nsSimpleComponents_TSizeComponent_Data });
     
     Data nsSimpleComponents_TValueComponent_Data;
-        nsSimpleComponents_TValueComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation, bool isNotify) {
+        nsSimpleComponents_TValueComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
         auto lambda = [&](nsSimpleComponents::TValueComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsSimpleComponents::TValueComponent>(eid, lambda, isNotify);
+        pEntMng->CreateComponent<nsSimpleComponents::TValueComponent>(eid, lambda);
     };
-    nsSimpleComponents_TValueComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p, bool isNotify){ pEntMng->SetComponent(eid, *((nsSimpleComponents::TValueComponent*)p), isNotify); };
+    nsSimpleComponents_TValueComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsSimpleComponents::TValueComponent*)p)); };
     nsSimpleComponents_TValueComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsSimpleComponents::TValueComponent>(eid); };
     nsSimpleComponents_TValueComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsSimpleComponents::TValueComponent>(eid); };
     nsSimpleComponents_TValueComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsSimpleComponents::TValueComponent>(eid); };
@@ -99,16 +99,16 @@ bool TEcsComponentExtensionExtension::Has(int rtti)
     return mRttiVector[rtti].createFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
-void TEcsComponentExtensionExtension::CreateComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation, bool isNotify)
+void TEcsComponentExtensionExtension::CreateComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation)
 {
     Init();
-    mRttiVector[rtti].createFunc(pEntMng, eid, onAfterCreation, isNotify);
+    mRttiVector[rtti].createFunc(pEntMng, eid, onAfterCreation);
 }
 //---------------------------------------------------------------------------------------
-void TEcsComponentExtensionExtension::SetComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, void* p, bool isNotify)
+void TEcsComponentExtensionExtension::SetComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, void* p)
 {
     Init();
-    mRttiVector[rtti].setFunc(pEntMng, eid, p, isNotify);
+    mRttiVector[rtti].setFunc(pEntMng, eid, p);
 }
 //---------------------------------------------------------------------------------------
 const void* TEcsComponentExtensionExtension::ViewComponent(TEntityManager* pEntMng, TEntityID eid, int rtti)

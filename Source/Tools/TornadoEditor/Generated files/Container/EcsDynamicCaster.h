@@ -2,7 +2,7 @@
 Project Ecs System
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_02_18 17:12:09.124
+// File has been generated at 2023_03_23 17:34:32.291
 	
 #pragma once
 

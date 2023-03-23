@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #include "ReflectionCodeGenerator.h"
 
 #include <fmt/core.h>
+#include <fmt/color.h>
 
 #include "SingletonManager.h"
 #include "JsonSerializer.h"
@@ -99,7 +100,7 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
         SaveOut();
 
     } catch (std::exception& ex) {
-        printf("exception: %s\n", ex.what());
+        fmt::print(fg(fmt::color::red), "exception: {}\n", ex.what());
         return Result::INNER_ERROR;
     }
     return Result::OK;
@@ -127,7 +128,7 @@ void TReflectionCodeGenerator::SetOutDumper(IOutDumper* outDumper)
 //---------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::ShowTitle()
 {
-    fmt::print("{}\n", TProgramInfo::Get());
+    fmt::print(fg(fmt::color::green), "{}\n", TProgramInfo::Get());
 }
 //---------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::GetFileAbsPathList(TStringList& fileList)

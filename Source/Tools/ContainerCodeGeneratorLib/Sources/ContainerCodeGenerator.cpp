@@ -8,6 +8,8 @@ See for more information LICENSE.md.
 #include "ContainerCodeGenerator.h"
 
 #include <fmt/core.h>
+#include <fmt/color.h>
+
 #include <magic_enum.hpp>
 
 #include "LoadFromFile.h"
@@ -71,8 +73,8 @@ namespace nsContainerCodeGenerator
         }
 
         // Output result
-        fmt::print("ContainerCodeGenerator:[{}] {}\n", 
-            magic_enum::enum_name(result), resultStr);
+        fmt::print(fg(fmt::color::blue),
+            "ContainerCodeGenerator:[{}] {}\n", magic_enum::enum_name(result), resultStr);
 
         return result;
     }

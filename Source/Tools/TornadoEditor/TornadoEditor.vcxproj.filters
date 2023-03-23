@@ -71,9 +71,6 @@
     <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="$(SolutionDir)\conanfile.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Editor.project" />
     <None Include="componentConfig.json" />
     <None Include="Scenes\Main.scene">

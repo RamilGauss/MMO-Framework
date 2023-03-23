@@ -19,7 +19,10 @@
     },
     "targetForCodeGeneration": {
         "directory": "./",
-        "includeListFileName": "EcsComponentExtensionIncludeList",
+        "includeListParams": {
+            "includeListFileName": "EcsComponentExtensionIncludeList",
+            "dirToInclude": [ "..\\..\\Source\\Modules\\ECS" ]
+        },
         "header": "\tReflectionCodeGeneratorTest",
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,

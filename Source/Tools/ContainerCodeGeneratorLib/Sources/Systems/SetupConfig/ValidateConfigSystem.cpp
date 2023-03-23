@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
+#include <PathOperations.h>
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"
@@ -30,6 +31,32 @@ namespace nsContainerCodeGenerator::nsSetupConfig
 
         ValidateAndThrow("projectConfig.parseDirectory", configComponent->value.projectConfig.parseDirectory);
         ValidateAndThrow("projectConfig.targetDirectory", configComponent->value.projectConfig.targetDirectory);
+
+
+        ValidateAndThrow("projectConfig.absPathToProject", configComponent->value.projectConfig.absPathToProject);
+
+        std::list<std::string> fileList;
+        nsBase::TPathOperations::AddAbsPathsByDirectory(configComponent->value.projectConfig.absPathToProject, 
+            {".project"}, fileList, false);
+
+        if (fileList.size() == 0) {
+            auto msg = fmt::format("Not found project: \"{}\"\n", configComponent->value.projectConfig.absPathToProject);
+            throw TMessageException(msg);
+        }
+
+        auto rootPath = std::filesystem::path(configComponent->value.projectConfig.absPathToProject).root_name();
+        if (rootPath.wstring() != std::wstring(&std::filesystem::path::preferred_separator)) {
+
+            auto root = rootPath.string();
+            std::string upperRoot = root;
+
+            std::transform(root.begin(), root.end(), upperRoot.begin(), ::toupper);
+
+            if (root != upperRoot) {
+                auto msg = fmt::format("Incorrect path, need a upper case for the disk label: \"{}\"\n", configComponent->value.projectConfig.absPathToProject);
+                throw TMessageException(msg);
+            }
+        }
     }
 
     void TValidateConfigSystem::ValidateAndThrow(const std::string& tagName, const std::string& path)

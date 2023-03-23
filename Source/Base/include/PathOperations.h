@@ -30,7 +30,6 @@ namespace nsBase
         // abs = C:\Y\S
         // rel => ..\..\Y\S
         static bool GetRelativePath(const std::string& absBase, const std::string& abs, std::string& rel);
-
     private:
         template <typename DirectoryIterator>
         static void AddAbsPathsByDirectory(const std::string& directory, const std::set<std::string>& extensions, 

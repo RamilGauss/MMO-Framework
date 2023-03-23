@@ -34,7 +34,7 @@
                 "fileName": "ComponentDynamicCaster",
                 "externalSources": {
                     "inFileList": [
-                        "c:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentDynamicCasterOut.json"
+                        "C:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentDynamicCasterOut.json"
                     ],
                     "outFile": ""
                 },
@@ -47,7 +47,7 @@
                 "fileName": "ComponentEntMng",
                 "externalSources": {
                     "inFileList": [
-                        "c:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentEcsOut.json"
+                        "C:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentEcsOut.json"
                     ],
                     "outFile": ""
                 },
@@ -62,7 +62,7 @@
                 "fileName": "ComponentJson",
                 "externalSources": {
                     "inFileList": [
-                        "c:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentJsonOut.json"
+                        "C:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentJsonOut.json"
                     ],
                     "outFile": ""
                 },
@@ -75,7 +75,7 @@
                 "fileName": "ComponentTypeInfo",
                 "externalSources": {
                     "inFileList": [
-                        "c:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json"
+                        "C:\\Data\\Github\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json"
                     ],
                     "outFile": ""
                 },

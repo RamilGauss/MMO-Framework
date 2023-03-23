@@ -49,7 +49,7 @@
         "includeListParams": {
             "includeListFileName": "ImGuiWidgetsIncludeList",
             "dirToInclude": [
-                "c:\\Data\\Github\\MMOFramework\\Source\\Modules\\ImGuiWidgets"
+                "C:\\Data\\Github\\MMOFramework\\Source\\Modules\\ImGuiWidgets"
             ]
         }
     }
