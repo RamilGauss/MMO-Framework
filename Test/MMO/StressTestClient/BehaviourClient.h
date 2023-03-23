@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -16,38 +16,38 @@ class TMakerNetTransport;
 
 class TBehaviourClient
 {
-  typedef enum
-  {
-    eInit,
-    eConnect,
-    eIdle,
-    eStop,
+    typedef enum
+    {
+        eInit,
+        eConnect,
+        eIdle,
+        eStop,
 
-    eDefTimeBegin = 5000,
-    eDefTimeDelta = 3000,
-    eDefTimeEnd = eDefTimeBegin + eDefTimeDelta,
-  }State;
-  State mState;
+        eDefTimeBegin = 5000,
+        eDefTimeDelta = 3000,
+        eDefTimeEnd = eDefTimeBegin + eDefTimeDelta,
+    }State;
+    State mState;
 
-  unsigned int mTimeNextState;
+    unsigned int mTimeNextState;
 
-  THandlerMMO_Client mHandler;
+    THandlerMMO_Client mHandler;
 
-  boost::scoped_ptr<nsMMOEngine::TClient> mClient;
+    boost::scoped_ptr<nsMMOEngine::TClient> mClient;
 
-  TInputCmdTestMMO_Client::TInput mInputArg;
+    TInputCmdTestMMO_Client::TInput mInputArg;
 public:
-  TBehaviourClient();
-  ~TBehaviourClient();
-  void Init(TMakerNetTransport* pMakerTransport, 
-            TInputCmdTestMMO_Client::TInput &inputArg);// начальная настройка
-  void SetTimeNextStep(unsigned int timeNextState = -1);
-  void Work();// работа по своему сценарию
+    TBehaviourClient();
+    ~TBehaviourClient();
+    void Init(TMakerNetTransport* pMakerTransport,
+        TInputCmdTestMMO_Client::TInput& inputArg);// начальная настройка
+    void SetTimeNextStep(unsigned int timeNextState = -1);
+    void Work();// работа по своему сценарию
 protected:
-  unsigned int RandomTime();
+    unsigned int RandomTime();
 
-  void Connect();
-  void Close();
+    void Connect();
+    void Close();
 };
 
 #endif

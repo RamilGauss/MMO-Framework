@@ -1,6 +1,6 @@
 /*
-Author: Gudakov Ramil Sergeevich a.k.a. Gauss 
-Гудаков Рамиль Сергеевич 
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
@@ -13,21 +13,21 @@ See for more information LICENSE.md.
 #include "BehaviourClient.h"
 #include <vector>
 
-class TScenarioStressTestClient 
+class TScenarioStressTestClient
 {
 
-  enum
-  {
-    eWaitForConnect=1500,
-  };
+    enum
+    {
+        eWaitForConnect = 1500,
+    };
 
-  TInputCmdTestMMO_Client mInputCmd;
-  TInputCmdTestMMO_Client::TInput mInputArg;
-  TMakerNetTransport mMakerTransport;
-  std::vector<TBehaviourClient*> pArrClient;
+    TInputCmdTestMMO_Client mInputCmd;
+    TInputCmdTestMMO_Client::TInput mInputArg;
+    TMakerNetTransport mMakerTransport;
+    std::vector<TBehaviourClient*> pArrClient;
 public:
-  void Init(int argc, char** argv);
-  void Work();
+    void Init(int argc, char** argv);
+    void Work();
 };
 
 

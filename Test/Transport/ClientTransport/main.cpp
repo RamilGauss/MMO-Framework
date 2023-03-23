@@ -145,7 +145,7 @@ int main(int argc, char** argv)
         pClient->Open(port, g_InputArg.sub_net);
         pClient->Start();
 
-        pClient->GetCallbackRecv()->Register(&TInfoDisplay::Recv, &infoDisplay);
+        pClient->GetCallbackRecv()->Register(&infoDisplay, &TInfoDisplay::Recv);
 
         bool resConnect = pClient->Connect(g_Server_ip, g_InputArg.server_port);
         if (resConnect == false)
