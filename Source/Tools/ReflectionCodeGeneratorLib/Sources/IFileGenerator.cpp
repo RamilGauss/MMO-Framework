@@ -33,7 +33,7 @@ void IFileGenerator::AddTimeHeader()
 {
     auto s = s_TimeHeader;
 
-    s = fmt::format(s, TProgramInfo::Get(), ht_GetTimeStr());
+    s = fmt::vformat(s, fmt::make_format_args(TProgramInfo::Get(), ht_GetTimeStr()));
 
     Add(s);
 }

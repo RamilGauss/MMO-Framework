@@ -911,10 +911,10 @@ std::string TBinaryMarshallerSourceFileGenerator::GetIsElementNotNull(std::vecto
     if (extArr[depth - 1].mCategory == TypeCategory::MAP) {
         auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[1].mAccessMethod);
         auto keyName = fmt::format("{}.{}", elementName, s_Second);
-        getAddress = fmt::format(templateForGetAddress, keyName);
+        getAddress = fmt::vformat(templateForGetAddress, fmt::make_format_args(keyName));
     } else {
         auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[0].mAccessMethod);
-        getAddress = fmt::format(templateForGetAddress, elementName);
+        getAddress = fmt::vformat(templateForGetAddress, fmt::make_format_args(elementName));
     }
     return fmt::format("{} != {}", getAddress, s_Nullptr);
 }
@@ -925,7 +925,7 @@ void TBinaryMarshallerSourceFileGenerator::AddPushSerializeValue(std::vector<TMe
     auto elementName = ElementName(name, depth - 1);
     auto keyName = fmt::format("{}.{}", elementName, s_Second);
 
-    auto getAddress = fmt::format(templateForGetAddress, keyName);
+    auto getAddress = fmt::vformat(templateForGetAddress, fmt::make_format_args(keyName));
 
     auto pushExpression = fmt::format("{}( {} );", s_Serialize, getAddress);
     Add(pushExpression);
@@ -935,7 +935,7 @@ void TBinaryMarshallerSourceFileGenerator::AddPushSerializeElement(std::vector<T
 {
     auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[0].mAccessMethod);
     auto elementName = ElementName(name, depth - 1);
-    auto getAddress = fmt::format(templateForGetAddress, elementName);
+    auto getAddress = fmt::vformat(templateForGetAddress, fmt::make_format_args(elementName));
 
     auto pushExpression = fmt::format("{}( {} );", s_Serialize, getAddress);
     Add(pushExpression);

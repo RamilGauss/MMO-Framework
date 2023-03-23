@@ -1,5 +1,5 @@
 {
-    "date": "2023-03-22 15:56:15.848511",
+    "date": "2023-03-22 18:25:03.422662",
     "defines": [
         "FMT_SHARED",
         "GTEST_LINKED_AS_SHARED_LIBRARY=1",
@@ -11,9 +11,9 @@
     ],
     "packages": {
         "b2/4.9.3": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b22ab09f136fd13\\p\\bin",
-            "includeDir": "",
-            "libDir": ""
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
         },
         "boost/1.81.0": {
             "binDir": "C:\\Users\\Gauss\\.conan2\\p\\boostb3b0c11178461\\p\\bin",
@@ -22,7 +22,7 @@
         },
         "bullet3/3.24": {
             "binDir": "C:\\Users\\Gauss\\.conan2\\p\\bullecc7e24f7f7578\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\bullecc7e24f7f7578\\p\\include",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\bullecc7e24f7f7578\\p\\include\\bullet",
             "libDir": "C:\\Users\\Gauss\\.conan2\\p\\bullecc7e24f7f7578\\p\\lib"
         },
         "bzip2/1.0.8": {
@@ -77,7 +77,7 @@
         },
         "sdl/2.26.1": {
             "binDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl41afff7a5685f\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl41afff7a5685f\\p\\include",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl41afff7a5685f\\p\\include\\SDL2",
             "libDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl41afff7a5685f\\p\\lib"
         },
         "stb/cci.20220909": {

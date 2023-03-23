@@ -102,16 +102,23 @@ class Downloader:
                 label = node["label"]
 
                 cpp_info = node["cpp_info"]
+
+                includedir = ""
+
+                for info_key, info_value in cpp_info.items():
+                    info_includedirs = info_value["includedirs"]
+                    for info_includedir in info_includedirs:
+                        if len(info_includedir) > len(includedir):
+                            includedir = info_includedir
+
                 root = cpp_info["root"]
-                includedirs = root["includedirs"]
                 libdirs = root["libdirs"]
                 bindirs = root["bindirs"]
 
                 packageResult = PackageResult()
                 if len(bindirs) > 0:
                     packageResult.binDir = bindirs[0]
-                if len(includedirs) > 0:
-                    packageResult.includeDir = includedirs[0]
+                packageResult.includeDir = includedir
                 if len(libdirs) > 0:
                     packageResult.libDir = libdirs[0]
                 self.results.packages[label] = packageResult

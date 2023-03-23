@@ -24,6 +24,6 @@
         "os": "Windows"
     },
     "resultFileName": "./install_result.json",
-    "debugFlag": true,
+    "debugFlag": false,
     "forceRebuild": false
 }

@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include "IRenderable.h"
 

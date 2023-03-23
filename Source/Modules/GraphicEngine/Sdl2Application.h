@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <glad/glad.h>
 
 #include "TypeDef.h"
