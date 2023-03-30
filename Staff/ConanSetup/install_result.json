@@ -1,5 +1,5 @@
 {
-    "date": "2023-03-23 12:07:46.608521",
+    "date": "2023-03-30 10:22:20.694921",
     "defines": [
         "FMT_SHARED",
         "GTEST_LINKED_AS_SHARED_LIBRARY=1",
@@ -50,6 +50,11 @@
             "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\gtestce50ef397d7d0\\p\\include",
             "libDir": "C:\\Users\\Gauss\\.conan2\\p\\gtestce50ef397d7d0\\p\\lib"
         },
+        "inja/3.4.0": {
+            "binDir": "",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\injab1c05d020a6f7\\p\\include",
+            "libDir": ""
+        },
         "lz4/1.9.4": {
             "binDir": "C:\\Users\\Gauss\\.conan2\\p\\lz42b7688ec391ea\\p\\bin",
             "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\lz42b7688ec391ea\\p\\include",
@@ -64,6 +69,11 @@
             "binDir": "bin",
             "includeDir": "include",
             "libDir": "lib"
+        },
+        "nlohmann_json/3.11.2": {
+            "binDir": "",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\nlohm552351c8663ae\\p\\include",
+            "libDir": ""
         },
         "openssl/1.1.1t": {
             "binDir": "C:\\Users\\Gauss\\.conan2\\p\\opensf390bd9ba8754\\p\\bin",

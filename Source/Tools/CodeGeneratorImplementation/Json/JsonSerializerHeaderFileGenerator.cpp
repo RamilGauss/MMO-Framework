@@ -136,8 +136,8 @@ const std::list<std::string> TJsonSerializerHeaderFileGenerator::GetJsonImpl()
 {
     return
     {
-        "//------------------------------------------------------------------------------------------------------------",
-        "template <typename Type>",
+            "//------------------------------------------------------------------------------------------------------------",
+            "template <typename Type>",
 fmt::format("static void {}::Serialize(Type* p, std::string& str)", mSerializer->className),
             "{",
             "    rapidjson::Document doc(rapidjson::Type::kObjectType);",

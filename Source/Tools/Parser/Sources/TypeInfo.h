@@ -36,17 +36,17 @@ namespace nsCppParser
         std::vector<std::string> mNamespaceVec;
         std::vector<std::string> mTemplateArgs;
 
-        using TMethodInfoPtr = std::shared_ptr<TMethodInfo>;
-        using TMethodInfoPtrVec = std::vector<TMethodInfoPtr>;
-        using TAccessLevelMethodInfoPtrVecArray = std::array<TMethodInfoPtrVec, (size_t)AccessLevel::COUNT>;
-
-        TAccessLevelMethodInfoPtrVecArray mMethods;
-
         using TMemberInfoPtr = std::shared_ptr<TMemberInfo>;
         using TMemberInfoPtrVec = std::vector<TMemberInfoPtr>;
         using TAccessLevelMemberInfoPtrVecArray = std::array<TMemberInfoPtrVec, (size_t)AccessLevel::COUNT>;
 
         TAccessLevelMemberInfoPtrVecArray mMembers;
+
+        using TMethodInfoPtr = std::shared_ptr<TMethodInfo>;
+        using TMethodInfoPtrVec = std::vector<TMethodInfoPtr>;
+        using TAccessLevelMethodInfoPtrVecArray = std::array<TMethodInfoPtrVec, (size_t)AccessLevel::COUNT>;
+
+        TAccessLevelMethodInfoPtrVecArray mMethods;
 
         std::string GetNameSpace() const;// all namespaces: A::B::...::Z
         std::string GetNameSpaceAsVar() const;// all namespaces: A_B_..._Z

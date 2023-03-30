@@ -203,7 +203,6 @@ void IFileGenerator::AddProtectedSection()
 {
     auto s = "protected:";
     Add(s);
-
 }
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddPrivateSection()
