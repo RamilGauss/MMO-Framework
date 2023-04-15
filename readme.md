@@ -1,5 +1,3 @@
-![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)
-
 # MMO-Framework
 
 To launch Editor use [Hub](https://github.com/RamilGauss/TornadoHub/releases).
@@ -102,3 +100,4 @@ Dependencies got via the [conan](http://conan.io).
   
 - Написание своей ММО РПГ на PC в Windows/Linux. На данный момент основная целевая платформа - PC.
 
+![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)

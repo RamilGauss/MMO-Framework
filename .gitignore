@@ -86,6 +86,7 @@ build/
 *.scc
 *.lib
 *.dll
+*.exe
 
 # Visual C++ cache files
 ipch/

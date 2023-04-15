@@ -87,14 +87,14 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsDynamicCaste
 
         std::list<std::string> lines =
         {
-            "auto& coreM = %CoreNameSpace%::%CoreType%::GetRttiCombinations();",
+            "auto& coreM = {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_}}::GetRttiCombinations();",
             "",
             "auto coreFit = coreM.find(srcRtti);",
             "auto isFound = (coreFit != coreM.end());",
             "if (isFound) {",
             "    isFound = (coreFit->second.find(dstRtti) != coreFit->second.end());",
             "    if (isFound) {",
-            "        return %CoreNameSpace%::%CoreType%::Cast(srcRtti, srcPtr, dstRtti);",
+            "        return {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_}}::Cast(srcRtti, srcPtr, dstRtti);",
             "    }",
             "}",
             "return nullptr;"
@@ -102,8 +102,8 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsDynamicCaste
 
         std::map<std::string, std::string> namedArgs =
         {
-            {"CoreType", configComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.typeName},
-            {"CoreNameSpace", configComponent->value.coreConfig.nameSpace}
+            {"_CORE_TYPE_", configComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.typeName},
+            {"_CORE_NAME_SPACE_", configComponent->value.coreConfig.nameSpace}
         };
 
         txtGen.AddFormatted(lines, namedArgs);

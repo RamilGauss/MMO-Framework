@@ -1,3 +1,4 @@
+conan==2.0.4
 jsons==1.6.3
 beautifulsoup4==4.11.2
 lxml==4.9.2

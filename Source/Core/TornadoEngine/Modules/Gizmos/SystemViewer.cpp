@@ -113,7 +113,7 @@ void TSystemViewer::UpdateGui()
     mModuleNodeMap.clear();
 
     for (auto& module : mModules) {
-        auto guid = TGuidGenerator::Generate();
+        auto guid = nsBase::TGuidGenerator::Generate();
         auto pNode = AddNode(module.name, guid, "root", &module.color);
 
         mModuleNodeMap.insert({ module.name, pNode });
@@ -232,7 +232,7 @@ nsImGuiWidgets::TTreeNode* TSystemViewer::AddNode(const std::string& title, cons
 //----------------------------------------------------------------------------------------------------------------
 void TSystemViewer::AddNode(nsECSFramework::TFeature* pFeature, const std::string& parentId)
 {
-    auto guid = TGuidGenerator::Generate();
+    auto guid = nsBase::TGuidGenerator::Generate();
 
     auto pNode = AddNode(pFeature->GetTypeName(), guid, parentId);
     mFeatureStatisticsMap.insert({ pFeature , {pNode} });
@@ -243,7 +243,7 @@ void TSystemViewer::AddNode(nsECSFramework::TFeature* pFeature, const std::strin
         if (isFeature) {
             AddNode(dynamic_cast<nsECSFramework::TFeature*>(system), guid);
         } else {
-            AddNode(system->GetTypeName(), TGuidGenerator::Generate(), guid);
+            AddNode(system->GetTypeName(), nsBase::TGuidGenerator::Generate(), guid);
         }
     }
 }
@@ -254,7 +254,7 @@ void TSystemViewer::AddNode(TFeatureManager* pFeatureMng, const std::string& nam
         return;
     }
 
-    auto guid = TGuidGenerator::Generate();
+    auto guid = nsBase::TGuidGenerator::Generate();
     auto pNode = AddNode(name, guid, parentId);
     mFeatureStatisticsMap.insert({ pFeatureMng , {pNode, name} });
 

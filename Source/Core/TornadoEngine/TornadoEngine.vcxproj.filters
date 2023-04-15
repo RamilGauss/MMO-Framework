@@ -288,9 +288,6 @@
     <ClCompile Include="Modules\Resources\Prefab\PrefabManager.cpp">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Resources\Common\GuidGenerator.cpp">
-      <Filter>Modules\Resources\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\Resources\Prefab\PrefabObjectConstructor.cpp">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClCompile>
@@ -798,9 +795,6 @@
     <ClInclude Include="Modules\Resources\Common\GuidConstants.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Resources\Common\GuidGenerator.h">
-      <Filter>Modules\Resources\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Modules\Resources\Scene\ResourceContent.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
@@ -1281,8 +1275,5 @@
     <None Include="Generated files\Container\coreImGuiWidgetsConfig.json" />
     <None Include="Generated files\Container\coreImGuiWidgetsDynamicCasterOut.json" />
     <None Include="Generated files\Container\coreImGuiWidgetsTypeInfoOut.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
 </Project>

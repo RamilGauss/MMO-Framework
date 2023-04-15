@@ -98,25 +98,25 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsDynamicCaster
 
         std::list<std::string> lines =
         {
-            "auto& m = %ProjectType%::GetRttiCombinations();",
+            "auto& m = {{_PROJECT_TYPE_}}::GetRttiCombinations();",
             "",
             "auto fit = m.find(srcRtti);",
             "auto isFound = (fit != m.end());",
             "if (isFound) {",
             "    isFound = (fit->second.find(dstRtti) != fit->second.end());",
             "    if (isFound) {",
-            "        return %ProjectType%::Cast(srcRtti, srcPtr, dstRtti);",
+            "        return {{_PROJECT_TYPE_}}::Cast(srcRtti, srcPtr, dstRtti);",
             "    }",
             "}",
             "",
-            "auto& coreM = %CoreNameSpace%::%CoreType%::GetRttiCombinations();",
+            "auto& coreM = {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_}}::GetRttiCombinations();",
             "",
             "auto coreFit = coreM.find(srcRtti);",
             "isFound = (coreFit != coreM.end());",
             "if (isFound) {",
             "    isFound = (coreFit->second.find(dstRtti) != coreFit->second.end());",
             "    if (isFound) {",
-            "        return %CoreNameSpace%::%CoreType%::Cast(srcRtti, srcPtr, dstRtti);",
+            "        return {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_}}::Cast(srcRtti, srcPtr, dstRtti);",
             "    }",
             "}",
             "return nullptr;"
@@ -124,9 +124,9 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsDynamicCaster
 
         std::map<std::string, std::string> namedArgs = 
         { 
-            {"ProjectType", configComponent->value.projectConfig.componentConfig.dynamicCaster.typeName},
-            {"CoreNameSpace", configComponent->value.coreConfig.nameSpace},
-            {"CoreType", configComponent->value.coreConfig.componentConfig.dynamicCaster.typeName}
+            {"_PROJECT_TYPE_", configComponent->value.projectConfig.componentConfig.dynamicCaster.typeName},
+            {"_CORE_NAME_SPACE_", configComponent->value.coreConfig.nameSpace},
+            {"_CORE_TYPE_", configComponent->value.coreConfig.componentConfig.dynamicCaster.typeName}
         };
 
         txtGen.AddFormatted(lines, namedArgs);

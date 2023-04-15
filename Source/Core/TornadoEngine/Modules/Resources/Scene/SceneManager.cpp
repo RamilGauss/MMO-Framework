@@ -50,7 +50,7 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath, const std::
     // 2. Convert typeName to rtti
     DeserializeObjects(newEntities, sceneContent);
 
-    std::string sceneIstanceGuid = TGuidGenerator::Generate();
+    std::string sceneIstanceGuid = nsBase::TGuidGenerator::Generate();
 
     // 3. Replace all guids to new guid with ParentGuids and SceneGuids
     UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, sceneIstanceGuid);

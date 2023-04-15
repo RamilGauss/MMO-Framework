@@ -176,7 +176,7 @@ void TPrefabManager::InstantiateEntities(const std::list<nsECSFramework::TEntity
         }
     }
 
-    std::string prefabInstanceGuid = TGuidGenerator::Generate();
+    std::string prefabInstanceGuid = nsBase::TGuidGenerator::Generate();
 
     // Replace all guids to new guid with ParentGuids and SceneGuids
     UpdateGuidsAndInstantiate<TPrefabOriginalGuidComponent, TPrefabInstanceGuidComponent>(newEntities, prefabInstanceGuid);

@@ -65,7 +65,7 @@ nsECSFramework::TEntityID TPrefabObjectConstructor::InstatiateByAbsPath(const st
         }
     }
 
-    auto newPrefabGuid = TGuidGenerator::Generate();
+    auto newPrefabGuid = nsBase::TGuidGenerator::Generate();
 
     for (auto& eid : newEntities) {
         auto pGuidComponent = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(eid);
@@ -74,7 +74,7 @@ nsECSFramework::TEntityID TPrefabObjectConstructor::InstatiateByAbsPath(const st
         }
         auto guidComponent = *pGuidComponent;
 
-        auto newGuid = TGuidGenerator::Generate();
+        auto newGuid = nsBase::TGuidGenerator::Generate();
 
         nsCommonWrapper::TParentGuidComponent parentGuidComponent;
         parentGuidComponent.value = guidComponent.value;

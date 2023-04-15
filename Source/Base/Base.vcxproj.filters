@@ -251,6 +251,9 @@
     <ClInclude Include="include\magic_enum.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\GuidGenerator.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -401,6 +404,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\LockFreeFifo.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuidGenerator.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

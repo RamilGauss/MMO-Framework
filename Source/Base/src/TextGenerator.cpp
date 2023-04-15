@@ -7,269 +7,116 @@ See for more information LICENSE.md.
 
 #include "TextGenerator.h"
 
-#include <fmt/core.h>
+#include "GuidGenerator.h"
 
 namespace nsBase
 {
-    TTextGenerator::TTextGenerator(std::string& content) :
-        mContent(content)
+    TTextGenerator::TTextGenerator(const std::list<TLine>& lines)
     {
+        mLines = lines;
+    }
+    //--------------------------------------------------------------------------------------------------
+    void TTextGenerator::SetTabSize(uint8_t value)
+    {
+        mTabSize = value;
+    }
+    //--------------------------------------------------------------------------------------------------
+    bool TTextGenerator::Apply(const inja::json& data, const std::list<TFormatFuncDeclaration>& formatFuncDeclarations)
+    {
+        std::string STAMP = nsBase::TGuidGenerator::Generate();
 
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::IncrementTabs()
-    {
-        mTabCount++;
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::DecrementTabs()
-    {
-        mTabCount--;
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::SetTabs(int value)
-    {
-        mTabCount = value;
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::Add(const std::list<std::string>& strList)
-    {
-        for (auto& s : strList) {
-            Add(s);
-        }
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::Add(const std::string& str)
-    {
-        mContent += str;
-    }
-    //--------------------------------------------------------------------------------------------------
-    template<typename ... Args>
-    void TTextGenerator::AddFormat(const char* format, Args && ... args)
-    {
-        mContent += fmt::format(format, std::forward<Args>(args)...);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddLine(const std::string& str)
-    {
-        AddTabs(mTabCount);
-        Add(str);
-        Add("\n");
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddEmpty()
-    {
-        AddTabs(mTabCount);
-        Add("\n");
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddPragmaOnce()
-    {
-        AddLine("#pragma once");
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddTabs(int count)
-    {
-        Add(std::string(mTabCount * 4, ' '));
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddInclude(const std::string& str)
-    {
-        AddFormatLine("#include \"{}\"", str);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddStdInclude(const std::string& str)
-    {
-        AddFormatLine("#include <{}>", str);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddNamespace(const std::string& str)
-    {
-        AddFormatLine("namespace {}", str);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddUsingNamespace(const std::string& str)
-    {
-        AddFormatLine("using namespace {};", str);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddLeft()
-    {
-        AddLine("{");
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddRight(bool semiColon)
-    {
-        if (semiColon) {
-            AddLine("};");
-        } else {
-            AddLine("}");
-        }
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddClass(const std::string& typeName, const std::list<std::string>& inheritances)
-    {
-        AddTemplateClass(typeName, {}, inheritances);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddTemplateClass(const std::string& typeName, const std::list<std::string>& templateArgs,
-        const std::list<std::string>& inheritances)
-    {
-        AddTemplateType("class", typeName, templateArgs, inheritances);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddStruct(const std::string& typeName, const std::list<std::string>& inheritances)
-    {
-        AddTemplateStruct(typeName, {}, inheritances);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddTemplateStruct(const std::string& typeName, const std::list<std::string>& templateArgs,
-        const std::list<std::string>& inheritances)
-    {
-        AddTemplateType("struct", typeName, templateArgs, inheritances);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddCtorDecl(const std::string& typeName)
-    {
-        AddFormatLine("{}();", typeName);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddVirtualDtorDecl(const std::string& typeName)
-    {
-        AddFormatLine("virtual ~{}();", typeName);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddCtorDef(const std::string& typeName)
-    {
-        AddFormatLine("{}::{}()", typeName, typeName);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddDtorDef(const std::string& typeName)
-    {
-        AddFormatLine("{}::~{}()", typeName, typeName);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddMethodDecl(const std::string& methodName, const std::string& ret,
-        const std::list<std::string>& args, const std::string& modification)
-    {
-        std::string argsStr;
+        try {
+            inja::Environment env;
 
-        int i = 0;
-        for (auto& arg : args) {
-            argsStr += fmt::format("{}", arg);
-
-            if (i < args.size() - 1) {
-                argsStr += ", ";
+            for (auto& formatFuncDeclaration : formatFuncDeclarations) {
+                env.add_callback(formatFuncDeclaration.name, formatFuncDeclaration.argCount, formatFuncDeclaration.func);
             }
 
-            i++;
-        }
+            // Make a string for a inja render
+            std::string str;
 
-        AddFormatLine("{} {}({}){};", ret, methodName, argsStr, modification);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddMethodDef(const std::string& typeName, const std::string& methodName, const std::string& ret,
-        const std::list<std::string>& args)
-    {
-        std::string argsStr;
-
-        int i = 0;
-        for (auto& arg : args) {
-            argsStr += fmt::format("{}", arg);
-
-            if (i < args.size() - 1) {
-                argsStr += ", ";
+            for (auto& line : mLines) {
+                str += STAMP;
+                str += line.str;
+                str += RET_SYMBOL;
             }
 
-            i++;
-        }
+            str = env.render(str, data);
 
-        if (typeName.size()) {
-            AddFormatLine("{} {}::{}({})", ret, typeName, methodName, argsStr);
-        } else {
-            AddFormatLine("{} {}({})", ret, methodName, argsStr);
-        }
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddFuncDef(const std::string& funcName, const std::string& ret,
-        const std::list<std::string>& args)
-    {
-        AddMethodDef("", funcName, ret, args);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddRet(const std::string& retStr)
-    {
-        std::string returnedValue = (retStr.size() == 0) ? "" : " " + retStr;
+            uint32_t offset = 0;
 
-        AddFormatLine("return{};", returnedValue);
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddLongLine()
-    {
-        AddLine("//--------------------------------------------------------------------------------------------------");
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddTemplateType(const std::string& type, const std::string& typeName, const std::list<std::string>& templateArgs,
-        const std::list<std::string>& inheritances)
-    {
-        if (templateArgs.size() > 0) {
-            std::string templateArgsAcc = "template <";
-            int i = 0;
-            for (auto& templateArg : templateArgs) {
-                templateArgsAcc += fmt::format("{}", templateArg);
-                if (i < templateArgs.size() - 1) {
-                    templateArgsAcc += ", ";
+            std::list<std::string> cutStr;
+            // Form new lines
+            while (true) {
+                auto pos = str.find(RET_SYMBOL.c_str(), offset);
+                if (pos == std::string::npos) {
+                    break;
                 }
 
-                i++;
+                cutStr.push_back(str.substr(offset, pos - offset));
+                offset = pos + RET_SYMBOL.size();
             }
 
-            templateArgsAcc += ">";
+            std::list<TLine> newLines;
+            uint32_t currentTabCount = 0;
+            auto line = mLines.begin();
 
-            AddLine(templateArgsAcc);
-        }
+            for (auto& cut : cutStr) {
+                TLine newLine;
 
-        std::string inheritancesAcc;
-        int i = 0;
-        for (auto& inheritance : inheritances) {
-            inheritancesAcc += fmt::format("{}", inheritance);
-            if (i < inheritances.size() - 1) {
-                inheritancesAcc += ", ";
-            }
+                auto stampPos = cut.find(STAMP);
+                if (stampPos != std::string::npos) {
+                    currentTabCount = 0;
+                    newLine.str = cut.substr(STAMP.size());
+                    newLine.tabDiff = line->tabDiff;
 
-            i++;
-        }
-
-        if (inheritancesAcc.size()) {
-            AddFormatLine("{} {} : {}", type, typeName, inheritancesAcc);
-        } else {
-            AddFormatLine("{} {}", type, typeName);
-        }
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TTextGenerator::AddFormatted(const std::list<std::string>& lines, const std::map<std::string, std::string>& namedArgs)
-    {
-        for (auto& line : lines) {
-
-            if (line.find("%") != std::string::npos) {
-                std::string exchangedLine = line;
-                for (auto& namedArg : namedArgs) {
-                    auto forSearch = fmt::format("%{}%", namedArg.first);
-
-                    while (true) {
-                        auto searchIndex = exchangedLine.find(forSearch);
-                        if (searchIndex == std::string::npos) {
+                    line++;
+                } else {
+                    uint8_t tabCount = 0;
+                    for (auto& cutSymbol : cut){
+                        if (cutSymbol == '\t') {
+                            tabCount++;
+                        } else {
                             break;
                         }
-
-                        exchangedLine.replace(searchIndex, forSearch.size(), namedArg.second);
                     }
+                    if (currentTabCount != tabCount) {
+                        newLine.tabDiff = tabCount - currentTabCount;
+                        currentTabCount = tabCount;
+                    }
+
+                    newLine.str = cut.substr(tabCount);
                 }
-                AddLine(exchangedLine);
-            } else {
-                AddLine(line);
+
+                newLines.emplace_back(newLine);
             }
+
+            mLines = std::move(newLines);
+
+        } catch (...) {
+            return false;
         }
+
+        return true;
+    }
+    //--------------------------------------------------------------------------------------------------
+    std::string TTextGenerator::Render() const
+    {
+        std::string str;
+        uint32_t tabCount = 0;
+
+        int i = 0;
+        for (auto& line : mLines) {
+            tabCount += line.tabDiff;
+
+            str += std::string(tabCount * mTabSize, ' ');
+            str += line.str;
+            str += i + 1 < mLines.size() ? "\n" : "";
+
+            i++;
+        }
+
+        return str;
     }
     //--------------------------------------------------------------------------------------------------
 }

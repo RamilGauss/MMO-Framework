@@ -62,17 +62,17 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
 
         std::list<std::string> lines =
         {
-            "auto typeNameList = %CoreNameSpace%::%CoreTypeName%::GetTypeNameList();",
+            "auto typeNameList = {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_NAME}}::GetTypeNameList();",
             "mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());",
             "",
-            "auto rttiList = %CoreNameSpace%::%CoreTypeName%::GetRttiList();",
+            "auto rttiList = {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_NAME}}::GetRttiList();",
             "mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());"
         };
 
         std::map<std::string, std::string> args =
         {
-            {"CoreNameSpace", configComponent->value.coreConfig.nameSpace},
-            {"CoreTypeName", configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.typeName}
+            {"_CORE_NAME_SPACE_", configComponent->value.coreConfig.nameSpace},
+            {"_CORE_TYPE_NAME", configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.typeName}
         };
 
         txtGen.AddFormatted(lines, args);
@@ -124,7 +124,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
 
         lines =
         {
-            "auto pTypeName = %CoreNameSpace%::%CoreTypeName%::ConvertRttiToName(rtti);",
+            "auto pTypeName = {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_NAME}}::ConvertRttiToName(rtti);",
             "if (pTypeName != nullptr) {",
             "    typeName = *pTypeName;",
             "    return true;",
@@ -147,7 +147,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
 
         lines =
         {
-            "return %CoreNameSpace%::%CoreTypeName%::ConvertNameToRtti(typeName, rtti);"
+            "return {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_NAME}}::ConvertNameToRtti(typeName, rtti);"
         };
 
         txtGen.AddFormatted(lines, args);

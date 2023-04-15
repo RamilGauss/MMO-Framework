@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include <boost/uuid/uuid_generators.hpp> // generators
 #include <boost/uuid/uuid_io.hpp>         // streaming operators etc.
 
-using namespace nsTornadoEngine;
+using namespace nsBase;
 
 std::string TGuidGenerator::Generate()
 {

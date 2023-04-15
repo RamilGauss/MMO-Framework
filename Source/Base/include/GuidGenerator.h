@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include <string>
 
-namespace nsTornadoEngine
+namespace nsBase
 {
     class DllExport TGuidGenerator
     {

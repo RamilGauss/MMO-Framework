@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_03_23 17:34:32.390
+// File has been generated at 2023_03_30 15:33:35.568
 	
 #pragma once
 
@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEditor
 {
-    struct DllExport TScenePartReflectionAggregatorImpl : public nsTornadoEngine::TScenePartReflectionAggregator
+    struct DllExport TScenePartReflectionAggregatorImpl: public nsTornadoEngine::TScenePartReflectionAggregator
     {
         TScenePartReflectionAggregatorImpl();
         virtual ~TScenePartReflectionAggregatorImpl();
