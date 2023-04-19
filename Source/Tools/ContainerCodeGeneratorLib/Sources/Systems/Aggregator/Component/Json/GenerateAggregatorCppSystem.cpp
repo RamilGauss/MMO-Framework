@@ -25,6 +25,50 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            {0, "#include \"{{ IMPL_FILE_NAME }}.h\""}, 
+            {0, ""}, 
+            {0, "#include \"{{ CORE_JSON_FILE_NAME }}.h\""}, 
+            {0, "#include \"{{ PROJECT_JSON_FILE_NAME }}.h\""}, 
+            {0, ""}, 
+            {0, "using namespace {{ PROJECT_NAMESPACE }};"}, 
+            {0, ""}, 
+            {0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()"}, 
+            {0, "{"}, 
+            {0, ""}, 
+            {0, "}"}, 
+            {0, "//--------------------------------------------------------------------------------------------------"}, 
+            {0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()"}, 
+            {0, "{"}, 
+            {0, ""}, 
+            {0, "}"}, 
+            {0, "//--------------------------------------------------------------------------------------------------"}, 
+            {0, "void {{ IMPL_TYPE_NAME }}::Serialize(void* p, std::string & json, int rtti)"}, 
+            {0, "{"}, 
+            {0, "    if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
+            {0, "        {{ PROJECT_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"}, 
+            {0, "        return;"}, 
+            {0, "    }"}, 
+            {0, "    if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
+            {0, "        {{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"}, 
+            {0, "    }"}, 
+            {0, "}"}, 
+            {0, "//--------------------------------------------------------------------------------------------------"}, 
+            {0, "bool {{ IMPL_TYPE_NAME }}::Deserialize(void* p, const std::string & json, int rtti, std::string & err)"}, 
+            {0, "{"}, 
+            {0, "    if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
+            {0, "        return {{ PROJECT_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"}, 
+            {0, "    }"}, 
+            {0, "    if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
+            {0, "        return {{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"}, 
+            {0, "    }"}, 
+            {0, "    return false;"}, 
+            {0, "}"}, 
+            {0, "//--------------------------------------------------------------------------------------------------"}, 
+            {0, ""},
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -34,10 +78,6 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
 
-        nsBase::TTextGenerator txtGen(generatedFile.content);
-
-        txtGen.AddInclude(impl.impl.fileName + ".h");
-        txtGen.AddEmpty();
 
         auto absBase = configComponent->value.projectConfig.pathToCore;
         auto abs = configComponent->value.coreConfig.targetDirectory;
@@ -52,119 +92,27 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= configComponent->value.projectConfig.componentConfig.json.fileName + ".h";
+        pathRelToProjectSources /= configComponent->value.projectConfig.componentConfig.json.fileName;
 
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
-        pathRelToCoreSources /= configComponent->value.coreConfig.componentConfig.json.fileName + ".h";
+        pathRelToCoreSources /= configComponent->value.coreConfig.componentConfig.json.fileName;
 
-        txtGen.AddInclude(pathRelToProjectSources.string());
-        txtGen.AddInclude(pathRelToCoreSources.string());
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddEmpty();
-        txtGen.AddUsingNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddEmpty();
+        inja::json data;
 
-        txtGen.AddCtorDef(impl.impl.typeName);
+        data["IMPL_FILE_NAME"] = impl.impl.fileName;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
+        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
 
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
+        data["CORE_JSON_FILE_NAME"] = pathRelToCoreSources.string();
+        data["PROJECT_JSON_FILE_NAME"] = pathRelToProjectSources.string();
+        data["CORE_JSON_TYPE_NAME"] = configComponent->value.coreConfig.componentConfig.json.typeName;
+        data["PROJECT_JSON_TYPE_NAME"] = configComponent->value.projectConfig.componentConfig.json.typeName;
 
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        txtGen.AddDtorDef(impl.impl.typeName);
-
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // Serialize
-        std::list<std::string> args =
-        {
-            "void* p",
-            "std::string& json",
-            "int rtti"
-        };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "Serialize", "void", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("if ({}::Has(rtti)) {{", configComponent->value.projectConfig.componentConfig.json.typeName);
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("{}::Serialize(p, json, rtti);",
-            configComponent->value.projectConfig.componentConfig.json.typeName);
-        txtGen.AddRet("");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddFormatLine("if ({}::{}::Has(rtti)) {{",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.json.typeName);
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("{}::{}::Serialize(p, json, rtti);",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.json.typeName);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // Deserialize
-        args =
-        {
-            "void* p",
-            "const std::string& json",
-            "int rtti",
-            "std::string& err"
-        };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "Deserialize", "bool", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("if ({}::Has(rtti)) {{", configComponent->value.projectConfig.componentConfig.json.typeName);
-        txtGen.IncrementTabs();
-
-        auto deserializeRet = fmt::format("{}::Deserialize(p, json, rtti, err);",
-            configComponent->value.projectConfig.componentConfig.json.typeName);
-        txtGen.AddRet(deserializeRet);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddFormatLine("if ({}::{}::Has(rtti)) {{",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.json.typeName);
-        txtGen.IncrementTabs();
-
-        deserializeRet = fmt::format("{}::{}::Deserialize(p, json, rtti, err);",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.json.typeName);
-        txtGen.AddRet(deserializeRet);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddRet("false");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

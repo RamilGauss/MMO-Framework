@@ -25,6 +25,33 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
 {
     void TGenerateAggregatorHeaderSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            {0, "#pragma once"},
+            {0, ""},
+            {0, "#include \"{{ PARENT_FILE_NAME }}.h\""},
+            {0, ""},
+            {0, "namespace {{ PROJECT_NAMESPACE }}"},
+            {0, "{"},
+            {1, "struct {{ DLL_EXPORT }} {{ IMPL_TYPE_NAME }} : public {{ CORE_NAMESPACE }}::{{ PARENT_TYPE_NAME }}"},
+            {0, "{"},
+            {1, "{{ IMPL_TYPE_NAME }}();"},
+            {0, "virtual ~{{ IMPL_TYPE_NAME }}();"},
+            {0, ""},
+            {0, "const std::list<std::string>* GetTypeNameList() override;"},
+            {0, "const std::list<int>* GetRunTimeTypeIndexList() override;"},
+            {0, ""},
+            {0, "bool ConvertTypeToName(int rtti, std::string& typeName) override;"},
+            {0, "bool ConvertNameToType(const std::string& typeName, int& rtti) override;"},
+            {0, ""},
+            {-1,"private:"},
+            {1, "std::list<std::string> mTypeNameList;"},
+            {0, "std::list<int> mRttiList;"},
+            {-1,"};"},
+            {-1,"}"},
+            {0, ""},
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -32,57 +59,21 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
-            impl.impl.fileName + ".h");
+            impl.impl.fileName);
 
-        nsBase::TTextGenerator txtGen(generatedFile.content);
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddPragmaOnce();
-        txtGen.AddEmpty();
-        txtGen.AddInclude(impl.parent.fileName + ".h");
-        txtGen.AddEmpty();
-        txtGen.AddNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
+        inja::json data;
 
-        auto type = fmt::format("{} {}", configComponent->value.projectConfig.exportDeclaration,
-            impl.impl.typeName);
+        data["PARENT_FILE_NAME"] = impl.parent.fileName;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["DLL_EXPORT"] = configComponent->value.projectConfig.exportDeclaration;
+        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
+        data["PARENT_TYPE_NAME"] = impl.parent.typeName;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
 
-        auto parent = fmt::format("public {}::{}",
-            configComponent->value.coreConfig.nameSpace, impl.parent.typeName);
-
-        txtGen.AddStruct(type, { parent });
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddCtorDecl(impl.impl.typeName);
-        txtGen.AddVirtualDtorDecl(impl.impl.typeName);
-        txtGen.AddEmpty();
-
-        txtGen.AddMethodDecl("GetTypeNameList", "const std::list<std::string>*", {}, " override");
-        txtGen.AddMethodDecl("GetRunTimeTypeIndexList", "const std::list<int>*", {}, " override");
-        txtGen.AddEmpty();
-
-        std::list<std::string> args = { "int rtti", "std::string& typeName" };
-
-        txtGen.AddMethodDecl("ConvertTypeToName", "bool", args, " override");
-
-        args = { "const std::string& typeName", "int& rtti" };
-
-        txtGen.AddMethodDecl("ConvertNameToType", "bool", args, " override");
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddLine("private:");
-        txtGen.IncrementTabs();
-
-        txtGen.AddLine("std::list<std::string> mTypeNameList;");
-        txtGen.AddLine("std::list<int> mRttiList;");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight(true);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

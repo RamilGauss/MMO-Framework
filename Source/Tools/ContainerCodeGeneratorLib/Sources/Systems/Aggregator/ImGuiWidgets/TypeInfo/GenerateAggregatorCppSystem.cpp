@@ -25,6 +25,56 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
+            {0, ""},
+            {0, "#include \"{{ CORE_TYPE_INFO_FILE_NAME }}.h\""},
+            {0, ""},
+            {0, "using namespace {{ PROJECT_NAMESPACE }};"},
+            {0, ""},
+            {0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()"},
+            {0, "{"},
+            {1, "auto typeNameList = {{ CORE_NAMESPACE }}::{{ CORE_TYPE_FACTORY_TYPE_NAME }}::GetTypeNameList();"},
+            {0, "mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());"},
+            {0, ""},
+            {0, "auto rttiList = {{ CORE_NAMESPACE }}::{{ CORE_TYPE_FACTORY_TYPE_NAME }}::GetRttiList();"},
+            {0, "mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()"},
+            {0, "{"},
+            {0, ""},
+            {0, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "const std::list<std::string>* {{ IMPL_TYPE_NAME }}::GetTypeNameList()"},
+            {0, "{"},
+            {1, "return &mTypeNameList;"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "const std::list<int>* {{ IMPL_TYPE_NAME }}::GetRunTimeTypeIndexList()"},
+            {0, "{"},
+            {1, "return &mRttiList;"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "bool {{ IMPL_TYPE_NAME }}::ConvertTypeToName(int rtti, std::string & typeName)"},
+            {0, "{"},
+            {1, "auto pTypeName = {{ CORE_NAMESPACE }}::{{ CORE_TYPE_FACTORY_TYPE_NAME }}::ConvertRttiToName(rtti);"},
+            {0, "if (pTypeName != nullptr) {"},
+            {1, "typeName = *pTypeName;"},
+            {0, "return true;"},
+            {-1,"}"},
+            {0, "return false;"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "bool {{ IMPL_TYPE_NAME }}::ConvertNameToType(const std::string & typeName, int& rtti)"},
+            {0, "{"},
+            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_TYPE_FACTORY_TYPE_NAME }}::ConvertNameToRtti(typeName, rtti);"},
+            {-1, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, ""},
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -34,11 +84,6 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
 
-        nsBase::TTextGenerator txtGen(generatedFile.content);
-
-        txtGen.AddInclude(impl.impl.fileName + ".h");
-        txtGen.AddEmpty();
-
         auto absBase = configComponent->value.projectConfig.pathToCore;
         auto abs = configComponent->value.coreConfig.targetDirectory;
 
@@ -46,115 +91,22 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
 
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
-        pathRelToCoreSources /= configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.fileName + ".h";
+        pathRelToCoreSources /= configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.fileName;
 
-        txtGen.AddInclude(pathRelToCoreSources.string());
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddEmpty();
-        txtGen.AddUsingNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddEmpty();
+        inja::json data;
 
-        // Ctor
-        txtGen.AddCtorDef(impl.impl.typeName);
+        data["IMPL_FILE_NAME"] = impl.impl.fileName;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
+        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
 
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
+        data["CORE_TYPE_INFO_FILE_NAME"] = pathRelToCoreSources.string();
+        data["CORE_TYPE_INFO_TYPE_NAME"] = configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.typeName;
 
-        std::list<std::string> lines =
-        {
-            "auto typeNameList = {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_NAME}}::GetTypeNameList();",
-            "mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());",
-            "",
-            "auto rttiList = {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_NAME}}::GetRttiList();",
-            "mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());"
-        };
-
-        std::map<std::string, std::string> args =
-        {
-            {"_CORE_NAME_SPACE_", configComponent->value.coreConfig.nameSpace},
-            {"_CORE_TYPE_NAME", configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.typeName}
-        };
-
-        txtGen.AddFormatted(lines, args);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // Dtor
-        txtGen.AddDtorDef(impl.impl.typeName);
-
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // GetTypeNameList
-        txtGen.AddMethodDef(impl.impl.typeName, "GetTypeNameList", "const std::list<std::string>*", {});
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddRet("&mTypeNameList");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // GetRunTimeTypeIndexList
-        txtGen.AddMethodDef(impl.impl.typeName, "GetRunTimeTypeIndexList", "const std::list<int>*", {});
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddRet("&mRttiList");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // ConvertTypeToName
-        std::list<std::string> methodArgs = { "int rtti", "std::string& typeName" };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "ConvertTypeToName", "bool", methodArgs);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        lines =
-        {
-            "auto pTypeName = {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_NAME}}::ConvertRttiToName(rtti);",
-            "if (pTypeName != nullptr) {",
-            "    typeName = *pTypeName;",
-            "    return true;",
-            "}",
-            "return false;"
-        };
-
-        txtGen.AddFormatted(lines, args);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // ConvertNameToType
-        methodArgs = { "const std::string& typeName", "int& rtti" };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "ConvertNameToType", "bool", methodArgs);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        lines =
-        {
-            "return {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_NAME}}::ConvertNameToRtti(typeName, rtti);"
-        };
-
-        txtGen.AddFormatted(lines, args);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

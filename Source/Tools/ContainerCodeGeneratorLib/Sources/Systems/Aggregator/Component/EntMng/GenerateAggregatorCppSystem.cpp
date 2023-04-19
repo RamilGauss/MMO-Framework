@@ -25,6 +25,86 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            {0, "#include \"{{ IMPL_FILE_NAME }}ComponentEntityManagerExtensionImpl.h\""},
+            {0, ""},
+            {0, "#include \"{{ PROJECT_ENT_MNG_FILE_NAME }}.h\""},
+            {0, "#include \"{{ CORE_ENT_MNG_FILE_NAME }}.h\""},
+            {0, ""},
+            {0, "using namespace {{ PROJECT_NAMESPACE }};"},
+            {0, ""},
+            {0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()"},
+            {0, "{"},
+            {0, ""},
+            {0, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()"},
+            {0, "{"},
+            {0, ""},
+            {0, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "void {{ IMPL_TYPE_NAME }}::CreateComponent(nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation)"},
+            {0, "{"},
+            {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "{{ PROJECT_ENT_MNG_TYPE_NAME }}::CreateComponent(mEntMng, eid, rtti, onAfterCreation);"},
+            {0, "return;"},
+            {-1,"}"},
+            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "{{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::CreateComponent(mEntMng, eid, rtti, onAfterCreation);"},
+            {0, "return;"},
+            {-1,"}"},
+            {0, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "void {{ IMPL_TYPE_NAME }}::SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p)"},
+            {0, "{"},
+            {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "{{ PROJECT_ENT_MNG_TYPE_NAME }}::SetComponent(mEntMng, eid, rtti, p);"},
+            {0, "return;"},
+            {-1,"}"},
+            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "{{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::SetComponent(mEntMng, eid, rtti, p);"},
+            {0, "return;"},
+            {-1,"}"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "const void* {{ IMPL_TYPE_NAME }}::ViewComponent(nsECSFramework::TEntityID eid, int rtti)"},
+            {0, "{"},
+            {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {0, "return {{ PROJECT_ENT_MNG_TYPE_NAME }}::ViewComponent(mEntMng, eid, rtti);"},
+            {-1,"}"},
+            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {0, "return {{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::ViewComponent(mEntMng, eid, rtti);"},
+            {-1,"}"},
+            {0, "return nullptr;"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "bool {{ IMPL_TYPE_NAME }}::HasComponent(nsECSFramework::TEntityID eid, int rtti)"},
+            {0, "{"},
+            {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "return {{ PROJECT_ENT_MNG_TYPE_NAME }}::HasComponent(mEntMng, eid, rtti);"},
+            {-1,"}"},
+            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::HasComponent(mEntMng, eid, rtti);"},
+            {-1,"}"},
+            {0, "return false;"},
+            {-1, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "void {{ IMPL_TYPE_NAME }}::RemoveComponent(nsECSFramework::TEntityID eid, int rtti)"},
+            {0, "{"},
+            {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "{{ PROJECT_ENT_MNG_TYPE_NAME }}::RemoveComponent(mEntMng, eid, rtti);"},
+            {0, "return;"},
+            {-1,"}"},
+            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "{{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::RemoveComponent(mEntMng, eid, rtti);"},
+            {0, "return;"},
+            {-1,"}"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, ""},
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -33,11 +113,6 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
-
-        nsBase::TTextGenerator txtGen(generatedFile.content);
-
-        txtGen.AddInclude(impl.impl.fileName + ".h");
-        txtGen.AddEmpty();
 
         auto absBase = configComponent->value.projectConfig.pathToCore;
         auto abs = configComponent->value.coreConfig.targetDirectory;
@@ -52,223 +127,27 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= configComponent->value.projectConfig.componentConfig.entMng.fileName + ".h";
+        pathRelToProjectSources /= configComponent->value.projectConfig.componentConfig.entMng.fileName;
 
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
-        pathRelToCoreSources /= configComponent->value.coreConfig.componentConfig.entMng.fileName + ".h";
+        pathRelToCoreSources /= configComponent->value.coreConfig.componentConfig.entMng.fileName;
 
-        txtGen.AddInclude(pathRelToProjectSources.string());
-        txtGen.AddInclude(pathRelToCoreSources.string());
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddEmpty();
-        txtGen.AddUsingNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddEmpty();
+        inja::json data;
 
-        txtGen.AddCtorDef(impl.impl.typeName);
+        data["IMPL_FILE_NAME"] = impl.impl.fileName;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
+        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
 
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
+        data["CORE_ENT_MNG_FILE_NAME"] = pathRelToCoreSources.string();
+        data["PROJECT_ENT_MNG_FILE_NAME"] = pathRelToProjectSources.string();
+        data["CORE_ENT_MNG_TYPE_NAME"] = configComponent->value.coreConfig.componentConfig.entMng.typeName;
+        data["PROJECT_ENT_MNG_TYPE_NAME"] = configComponent->value.projectConfig.componentConfig.entMng.typeName;
 
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        txtGen.AddDtorDef(impl.impl.typeName);
-
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // CreateComponent
-        std::list<std::string> args = 
-        { 
-            "nsECSFramework::TEntityID eid",
-            "int rtti",
-            "std::function<void(void*)> onAfterCreation",
-        };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "CreateComponent", "void", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("if ({}::Has(rtti)) {{", configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("{}::CreateComponent(mEntMng, eid, rtti, onAfterCreation);", 
-            configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet("");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddFormatLine("if ({}::{}::Has(rtti)) {{", 
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("{}::{}::CreateComponent(mEntMng, eid, rtti, onAfterCreation);",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet("");
-        
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // SetComponent
-        args = 
-        { 
-            "nsECSFramework::TEntityID eid",
-            "int rtti",
-            "void* p",
-        };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "SetComponent", "void", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("if ({}::Has(rtti)) {{", configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("{}::SetComponent(mEntMng, eid, rtti, p);",
-            configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet("");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddFormatLine("if ({}::{}::Has(rtti)) {{",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("{}::{}::SetComponent(mEntMng, eid, rtti, p);",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet("");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // ViewComponent
-        args = { "nsECSFramework::TEntityID eid", "int rtti"};
-
-        txtGen.AddMethodDef(impl.impl.typeName, "ViewComponent", "const void*", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("if ({}::Has(rtti)) {{", configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        auto viewRet = fmt::format("{}::ViewComponent(mEntMng, eid, rtti)",
-            configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet(viewRet);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddFormatLine("if ({}::{}::Has(rtti)) {{",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        viewRet = fmt::format("{}::{}::ViewComponent(mEntMng, eid, rtti)",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet(viewRet);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddRet("nullptr");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // HasComponent
-        args = { "nsECSFramework::TEntityID eid", "int rtti" };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "HasComponent", "bool", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("if ({}::Has(rtti)) {{", configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        auto hasRet = fmt::format("{}::HasComponent(mEntMng, eid, rtti)",
-            configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet(hasRet);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddFormatLine("if ({}::{}::Has(rtti)) {{",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        hasRet = fmt::format("{}::{}::HasComponent(mEntMng, eid, rtti)",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet(hasRet);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddRet("false");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // RemoveComponent
-        args = { "nsECSFramework::TEntityID eid", "int rtti" };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "RemoveComponent", "void", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("if ({}::Has(rtti)) {{", configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("{}::RemoveComponent(mEntMng, eid, rtti);",
-            configComponent->value.projectConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet("");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddFormatLine("if ({}::{}::Has(rtti)) {{",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("{}::{}::RemoveComponent(mEntMng, eid, rtti);",
-            configComponent->value.coreConfig.nameSpace,
-            configComponent->value.coreConfig.componentConfig.entMng.typeName);
-        txtGen.AddRet("");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

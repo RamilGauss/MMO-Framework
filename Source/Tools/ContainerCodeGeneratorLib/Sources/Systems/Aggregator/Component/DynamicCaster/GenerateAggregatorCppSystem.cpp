@@ -25,6 +25,54 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsDynamicCaster
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            { 0, "#include \"{{ IMPL_FILE_NAME }}.h\"" },
+            { 0, "" },
+            { 0, "#include \"{{ CORE_DYNAMIC_CASTER_FILE_NAME }}.h\"" },
+            { 0, "#include \"{{ PROJECT_DYNAMIC_CASTER_FILE_NAME }}.h\"" },
+            { 0, "" },
+            { 0, "using namespace {{ PROJECT_NAMESPACE }};" },
+            { 0, "" },
+            { 0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()" },
+            { 0, "{" },
+            { 0, "" },
+            { 0, "}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()" },
+            { 0, "{" },
+            { 0, "" },
+            { 0, "}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "void* {{ IMPL_TYPE_NAME }}::Cast(int srcRtti, void* srcPtr, int dstRtti)" },
+            { 0, "{" },
+            { 1, "auto& m = {{ PROJECT_DYNAMIC_CASTER_TYPE_NAME }}::GetRttiCombinations();" },
+            { 0, "" },
+            { 0, "auto fit = m.find(srcRtti);" },
+            { 0, "auto isFound = (fit != m.end());" },
+            { 0, "if (isFound) {" },
+            { 1, "isFound = (fit->second.find(dstRtti) != fit->second.end());" },
+            { 0, "if (isFound) {" },
+            { 1, "return {{ PROJECT_DYNAMIC_CASTER_TYPE_NAME }}::Cast(srcRtti, srcPtr, dstRtti);" },
+            { -1,"}" },
+            { -1,"}" },
+            { 0, "" },
+            { 0, "auto& coreM = {{ CORE_NAMESPACE }}::{{ CORE_DYNAMIC_CASTER_TYPE_NAME }}::GetRttiCombinations();" },
+            { 0, "" },
+            { 0, "auto coreFit = coreM.find(srcRtti);" },
+            { 0, "isFound = (coreFit != coreM.end());" },
+            { 0, "if (isFound) {" },
+            { 1, "isFound = (coreFit->second.find(dstRtti) != coreFit->second.end());" },
+            { 0, "if (isFound) {" },
+            { 1, "return {{ CORE_NAMESPACE }}::{{ CORE_DYNAMIC_CASTER_TYPE_NAME }}::Cast(srcRtti, srcPtr, dstRtti);" },
+            { -1,"}" },
+            { -1,"}" },
+            { 0, "return nullptr;" },
+            { 0, "}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "" },
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -33,11 +81,6 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsDynamicCaster
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
-
-        nsBase::TTextGenerator txtGen(generatedFile.content);
-
-        txtGen.AddInclude(impl.impl.fileName + ".h");
-        txtGen.AddEmpty();
 
         auto absBase = configComponent->value.projectConfig.pathToCore;
         auto abs = configComponent->value.coreConfig.targetDirectory;
@@ -52,88 +95,27 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsDynamicCaster
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
-        pathRelToCoreSources /= configComponent->value.projectConfig.componentConfig.dynamicCaster.fileName + ".h";
-
-        txtGen.AddInclude(pathRelToCoreSources.string());
+        pathRelToCoreSources /= configComponent->value.projectConfig.componentConfig.dynamicCaster.fileName;
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= configComponent->value.projectConfig.componentConfig.dynamicCaster.fileName + ".h";
+        pathRelToProjectSources /= configComponent->value.projectConfig.componentConfig.dynamicCaster.fileName;
 
-        txtGen.AddInclude(pathRelToProjectSources.string());
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddEmpty();
-        txtGen.AddUsingNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddEmpty();
+        inja::json data;
 
-        // Ctor
-        txtGen.AddCtorDef(impl.impl.typeName);
+        data["IMPL_FILE_NAME"] = impl.impl.fileName;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
+        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
 
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
+        data["CORE_DYNAMIC_CASTER_FILE_NAME"] = pathRelToCoreSources.string();
+        data["PROJECT_DYNAMIC_CASTER_FILE_NAME"] = pathRelToProjectSources.string();
+        data["CORE_DYNAMIC_CASTER_TYPE_NAME"] = configComponent->value.coreConfig.componentConfig.dynamicCaster.typeName;
+        data["PROJECT_DYNAMIC_CASTER_TYPE_NAME"] = configComponent->value.projectConfig.componentConfig.dynamicCaster.typeName;
 
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // Dtor
-        txtGen.AddDtorDef(impl.impl.typeName);
-
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // Cast
-        std::list<std::string> args = { "int srcRtti", "void* srcPtr", "int dstRtti" };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "Cast", "void*", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        std::list<std::string> lines =
-        {
-            "auto& m = {{_PROJECT_TYPE_}}::GetRttiCombinations();",
-            "",
-            "auto fit = m.find(srcRtti);",
-            "auto isFound = (fit != m.end());",
-            "if (isFound) {",
-            "    isFound = (fit->second.find(dstRtti) != fit->second.end());",
-            "    if (isFound) {",
-            "        return {{_PROJECT_TYPE_}}::Cast(srcRtti, srcPtr, dstRtti);",
-            "    }",
-            "}",
-            "",
-            "auto& coreM = {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_}}::GetRttiCombinations();",
-            "",
-            "auto coreFit = coreM.find(srcRtti);",
-            "isFound = (coreFit != coreM.end());",
-            "if (isFound) {",
-            "    isFound = (coreFit->second.find(dstRtti) != coreFit->second.end());",
-            "    if (isFound) {",
-            "        return {{_CORE_NAME_SPACE_}}::{{_CORE_TYPE_}}::Cast(srcRtti, srcPtr, dstRtti);",
-            "    }",
-            "}",
-            "return nullptr;"
-        };
-
-        std::map<std::string, std::string> namedArgs = 
-        { 
-            {"_PROJECT_TYPE_", configComponent->value.projectConfig.componentConfig.dynamicCaster.typeName},
-            {"_CORE_NAME_SPACE_", configComponent->value.coreConfig.nameSpace},
-            {"_CORE_TYPE_", configComponent->value.coreConfig.componentConfig.dynamicCaster.typeName}
-        };
-
-        txtGen.AddFormatted(lines, namedArgs);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

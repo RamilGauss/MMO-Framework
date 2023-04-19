@@ -23,41 +23,43 @@ namespace nsContainerCodeGenerator::nsAggregator
 {
     void TGenerateAggregatorHeaderSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            {0, "#pragma once"},
+            {0, ""},
+            {0, "#include \"{{ PARENT_FILE_NAME }}.h\""},
+            {0, ""},
+            {0, "namespace {{ PROJECT_NAMESPACE }}"},
+            {0, "{"},
+            {1, "struct {{ DLL_EXPORT }} {{ IMPL_TYPE_NAME }} : public {{ CORE_NAMESPACE }}::{{ PARENT_TYPE_NAME }}"},
+            {0, "{"},
+            {1, "{{ IMPL_TYPE_NAME }}();"},
+            {0, "virtual ~{{ IMPL_TYPE_NAME }}();"},
+            {-1,"};"},
+            {-1,"}"},
+            {0, ""},
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
-            configComponent->value.aggregator.impl.fileName + ".h");
+            configComponent->value.aggregator.impl.fileName);
 
-        nsBase::TTextGenerator txtGen(generatedFile.content);
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddPragmaOnce();
-        txtGen.AddEmpty();
-        txtGen.AddInclude(configComponent->value.aggregator.parent.fileName + ".h");
-        txtGen.AddEmpty();
-        txtGen.AddNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
+        inja::json data;
 
-        auto type = fmt::format("{} {}", configComponent->value.projectConfig.exportDeclaration,
-            configComponent->value.aggregator.impl.typeName);
+        data["PARENT_FILE_NAME"] = configComponent->value.aggregator.parent.fileName;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["DLL_EXPORT"] = configComponent->value.projectConfig.exportDeclaration;
+        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
+        data["PARENT_TYPE_NAME"] = configComponent->value.aggregator.parent.typeName;
+        data["IMPL_TYPE_NAME"] = configComponent->value.aggregator.impl.typeName;
 
-        auto parent = fmt::format("public {}::{}",
-            configComponent->value.coreConfig.nameSpace, configComponent->value.aggregator.parent.typeName);
-
-        txtGen.AddStruct(type, { parent });
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddCtorDecl(configComponent->value.aggregator.impl.typeName);
-        txtGen.AddVirtualDtorDecl(configComponent->value.aggregator.impl.typeName);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight(true);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

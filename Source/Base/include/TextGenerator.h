@@ -43,7 +43,10 @@ namespace nsBase
 
         void SetTabSize(uint8_t value);
 
-        bool Apply(const inja::json& data, const std::list<TFormatFuncDeclaration>& formatFuncDeclarations);
+        // Apply data and functions for formatting of Lines
+        bool Apply(const inja::json& data, const std::list<TFormatFuncDeclaration>& formatFuncDeclarations = {});
+
+        // Render lines to string
         std::string Render() const;
     };
 }

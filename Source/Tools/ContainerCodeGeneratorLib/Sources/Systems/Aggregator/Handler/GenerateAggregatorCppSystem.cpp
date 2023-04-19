@@ -23,6 +23,29 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            { 0, "#include \"{{ IMPL_FILE_NAME }}.h\"" },
+            { 0, "" },
+            { 0, "#include \"{{ TYPE_FACTORY_FILE_NAME }}.h\"" },
+            { 0, "#include \"{{ TYPE_INFO_FILE_NAME }}.h\"" },
+            { 0, "" },
+            { 0, "using namespace {{ PROJECT_NAMESPACE }};" },
+            { 0, "" },
+            { 0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()" },
+            { 0, "{" },
+            { 1, "mTypeFactory = new {{ TYPE_FACTORY_TYPE_NAME }}();" },
+            { 0, "mTypeInfo = new {{ TYPE_INFO_TYPE_NAME }}();" },
+            { -1, "}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()" },
+            { 0, "{" },
+            { 1, "delete mTypeFactory;" },
+            { 0, "delete mTypeInfo;" },
+            { -1, "}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -30,43 +53,20 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
             configComponent->value.aggregator.handlerImpl.impl.fileName + ".cpp");
 
-        nsBase::TTextGenerator txtGen(generatedFile.content);
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddInclude(configComponent->value.aggregator.handlerImpl.impl.fileName + ".h");
-        txtGen.AddEmpty();
+        inja::json data;
 
-        txtGen.AddInclude(configComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.fileName + ".h");
-        txtGen.AddInclude(configComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.fileName + ".h");
+        data["IMPL_FILE_NAME"] = configComponent->value.aggregator.handlerImpl.impl.fileName;
+        data["TYPE_FACTORY_FILE_NAME"] = configComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.fileName;
+        data["TYPE_INFO_FILE_NAME"] = configComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.fileName;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["IMPL_TYPE_NAME"] = configComponent->value.aggregator.handlerImpl.impl.typeName;
+        data["TYPE_FACTORY_TYPE_NAME"] = configComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.typeName;
+        data["TYPE_INFO_TYPE_NAME"] = configComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.typeName;
 
-
-        txtGen.AddEmpty();
-        txtGen.AddUsingNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddEmpty();
-
-        txtGen.AddCtorDef(configComponent->value.aggregator.handlerImpl.impl.typeName);
-
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("mTypeFactory = new {}();", configComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.typeName);
-        txtGen.AddFormatLine("mTypeInfo = new {}();", configComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.typeName);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddLongLine();
-
-        txtGen.AddDtorDef(configComponent->value.aggregator.handlerImpl.impl.typeName);
-
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddLine("delete mTypeFactory;");
-        txtGen.AddLine("delete mTypeInfo;");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

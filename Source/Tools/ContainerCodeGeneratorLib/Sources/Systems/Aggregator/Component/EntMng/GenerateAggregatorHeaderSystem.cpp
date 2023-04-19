@@ -24,6 +24,29 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 {
     void TGenerateAggregatorHeaderSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            {0, "#pragma once"},
+            {0, ""},
+            {0, "#include \"{{ PARENT_FILE_NAME }}.h\""},
+            {0, ""},
+            {0, "namespace {{ PROJECT_NAMESPACE }}"},
+            {0, "{"},
+            {1, "struct {{ DLL_EXPORT }} {{ IMPL_TYPE_NAME }} : public {{ CORE_NAMESPACE }}::{{ PARENT_TYPE_NAME }}"},
+            {0, "{"},
+            {1, "{{ IMPL_TYPE_NAME }}();"},
+            {0, "virtual ~{{ IMPL_TYPE_NAME }}();"},
+            {0, ""},
+            {0, "void CreateComponent(nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation) override;"},
+            {0, "void SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p) override;"},
+            {0, "const void* ViewComponent(nsECSFramework::TEntityID eid, int rtti) override;"},
+            {0, "bool HasComponent(nsECSFramework::TEntityID eid, int rtti) override;"},
+            {0, "void RemoveComponent(nsECSFramework::TEntityID eid, int rtti) override;"},
+            {-1,"};"},
+            {-1,"}"},
+            {0, ""},
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -31,64 +54,21 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
-            impl.impl.fileName + ".h");
+            impl.impl.fileName);
 
-        nsBase::TTextGenerator txtGen(generatedFile.content);
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddPragmaOnce();
-        txtGen.AddEmpty();
-        txtGen.AddInclude(impl.parent.fileName + ".h");
-        txtGen.AddEmpty();
-        txtGen.AddNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
+        inja::json data;
 
-        auto type = fmt::format("{} {}", configComponent->value.projectConfig.exportDeclaration,
-            impl.impl.typeName);
+        data["PARENT_FILE_NAME"] = impl.parent.fileName;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["DLL_EXPORT"] = configComponent->value.projectConfig.exportDeclaration;
+        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
+        data["PARENT_TYPE_NAME"] = impl.parent.typeName;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
 
-        auto parent = fmt::format("public {}::{}",
-            configComponent->value.coreConfig.nameSpace, impl.parent.typeName);
-
-        txtGen.AddStruct(type, { parent });
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddCtorDecl(impl.impl.typeName);
-        txtGen.AddVirtualDtorDecl(impl.impl.typeName);
-        txtGen.AddEmpty();
-
-        std::list<std::string> args = 
-        {
-            "nsECSFramework::TEntityID eid", 
-            "int rtti", 
-            "std::function<void(void*)> onAfterCreation", 
-        };
-
-        txtGen.AddMethodDecl("CreateComponent", "void", args, " override");
-
-        args = 
-        { 
-            "nsECSFramework::TEntityID eid",
-            "int rtti",
-            "void* p",
-        };
-
-        txtGen.AddMethodDecl("SetComponent", "void", args, " override");
-
-        args = { "nsECSFramework::TEntityID eid", "int rtti" };
-        txtGen.AddMethodDecl("ViewComponent", "const void*", args, " override");
-
-        args = { "nsECSFramework::TEntityID eid", "int rtti" };
-        txtGen.AddMethodDecl("HasComponent", "bool", args, " override");
-
-        args = { "nsECSFramework::TEntityID eid", "int rtti" };
-        txtGen.AddMethodDecl("RemoveComponent", "void", args, " override");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight(true);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

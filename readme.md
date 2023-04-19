@@ -1,5 +1,11 @@
 # MMO-Framework
 
+Boosty.donate
+<br>
+<img src="./Doc/boosty-mmoframework-donate.png">
+<br>
+<br>
+
 To launch Editor use [Hub](https://github.com/RamilGauss/TornadoHub/releases).
 
 ## Why?

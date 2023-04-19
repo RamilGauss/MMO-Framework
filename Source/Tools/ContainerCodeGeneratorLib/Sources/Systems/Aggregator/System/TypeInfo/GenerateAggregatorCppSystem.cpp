@@ -25,6 +25,56 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            { 0, "#include \"{{ IMPL_FILE_NAME }}.h\"" },
+            { 0, "" },
+            { 0, "#include \"{{ TYPE_INFO_FILE_NAME }}.h\"" },
+            { 0, "" },
+            { 0, "using namespace {{ PROJECT_NAMESPACE }};" },
+            { 0, "" },
+            { 0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()" },
+            { 0, "{" },
+            { 1, "auto typeNameList = {{ TYPE_INFO_TYPE_NAME }}::GetTypeNameList();" },
+            { 0, "mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());" },
+            { -1,"" },
+            { 1, "auto rttiList = {{ TYPE_INFO_TYPE_NAME }}::GetRttiList();" },
+            { 0, "mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());" },
+            { -1,"}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()" },
+            { 0, "{" },
+            { 0, "" },
+            { 0, "}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "const std::list<std::string>* {{ IMPL_TYPE_NAME }}::GetTypeNameList()" },
+            { 0, "{" },
+            { 1, "return &mTypeNameList;" },
+            { -1,"}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "const std::list<int>* {{ IMPL_TYPE_NAME }}::GetRunTimeTypeIndexList()" },
+            { 0, "{" },
+            { 1, "return &mRttiList;" },
+            { -1,"}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "bool {{ IMPL_TYPE_NAME }}::ConvertTypeToName(int rtti, std::string& typeName)" },
+            { 0, "{" },
+            { 1, "auto pTypeName = {{ TYPE_INFO_TYPE_NAME }}::ConvertRttiToName(rtti);" },
+            { 0, "if (pTypeName != nullptr) {" },
+            { 1, "typeName = *pTypeName;" },
+            { 0, "return true;" },
+            { -1,"}" },
+            { 0, "return false;" },
+            { -1, "}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "bool {{ IMPL_TYPE_NAME }}::ConvertNameToType(const std::string& typeName, int& rtti)" },
+            { 0, "{" },
+            { 1, "return {{ TYPE_INFO_TYPE_NAME }}::ConvertNameToRtti(typeName, rtti);" },
+            { -1,"}" },
+            { 0, "//--------------------------------------------------------------------------------------------------" },
+            { 0, "" },
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -34,123 +84,27 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
 
-        nsBase::TTextGenerator txtGen(generatedFile.content);
-
-        txtGen.AddInclude(impl.impl.fileName + ".h");
-        txtGen.AddEmpty();
-
-        auto absBase = configComponent->value.projectConfig.pathToCore;
-        auto abs = configComponent->value.coreConfig.targetDirectory;
-
-        std::string relToCoreSources;
-        nsBase::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
-
-        absBase = configComponent->value.projectConfig.absPathToProject;
-        abs = configComponent->value.projectConfig.targetDirectory;
+        auto absBase = configComponent->value.projectConfig.absPathToProject;
+        auto abs = configComponent->value.projectConfig.targetDirectory;
 
         std::string relToProjectSources;
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= configComponent->value.projectConfig.ecsSystemConfig.typeInfo.fileName + ".h";
+        pathRelToProjectSources /= configComponent->value.projectConfig.ecsSystemConfig.typeInfo.fileName;
 
-        txtGen.AddInclude(pathRelToProjectSources.string());
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddEmpty();
-        txtGen.AddUsingNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddEmpty();
+        inja::json data;
 
-        // Ctor
-        txtGen.AddCtorDef(impl.impl.typeName);
+        data["PARENT_FILE_NAME"] = impl.parent.fileName;
+        data["TYPE_INFO_FILE_NAME"] = pathRelToProjectSources.string();
+        data["TYPE_INFO_TYPE_NAME"] = configComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
 
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("auto typeNameList = {}::GetTypeNameList();",
-            configComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName);
-        txtGen.AddLine("mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());");
-        txtGen.AddEmpty();
-
-        txtGen.AddFormatLine("auto rttiList = {}::GetRttiList();",
-            configComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName);
-        txtGen.AddLine("mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // Dtor
-        txtGen.AddDtorDef(impl.impl.typeName);
-
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // GetTypeNameList
-        txtGen.AddMethodDef(impl.impl.typeName, "GetTypeNameList", "const std::list<std::string>*", {});
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddRet("&mTypeNameList");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // GetRunTimeTypeIndexList
-        txtGen.AddMethodDef(impl.impl.typeName, "GetRunTimeTypeIndexList", "const std::list<int>*", {});
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddRet("&mRttiList");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // ConvertTypeToName
-        std::list<std::string> args = { "int rtti", "std::string& typeName" };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "ConvertTypeToName", "bool", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("auto pTypeName = {}::ConvertRttiToName(rtti);",
-            configComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName);
-
-        txtGen.AddLine("if (pTypeName != nullptr) {");
-        txtGen.IncrementTabs();
-        txtGen.AddLine("typeName = *pTypeName;");
-        txtGen.AddRet("true");
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddRet("false");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // ConvertNameToType
-        args = { "const std::string& typeName", "int& rtti" };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "ConvertNameToType", "bool", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        auto cnvrtNameRet = fmt::format("{}::ConvertNameToRtti(typeName, rtti);",
-            configComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName);
-
-        txtGen.AddRet(cnvrtNameRet);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

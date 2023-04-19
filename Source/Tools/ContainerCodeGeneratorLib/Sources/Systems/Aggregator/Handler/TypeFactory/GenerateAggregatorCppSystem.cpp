@@ -25,6 +25,44 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsTypeFactory
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
+        std::list<nsBase::TLine> lines =
+        {
+            {0, "#include \"{{ IMPL_FILE_NAME }}HandlerTypeFactoryImpl.h\""},
+            {0, ""},
+            {0, "#include \"{{ PROJECT_TYPE_FACTORY_FILE_NAME }}.h\""},
+            {0, ""},
+            {0, "using namespace nsTornadoEditor;"},
+            {0, ""},
+            {0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()"},
+            {0, "{"},
+            {0, ""},
+            {0, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()"},
+            {0, "{"},
+            {0, ""},
+            {0, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "void* {{ IMPL_TYPE_NAME }}::New(int rtti)"},
+            {0, "{"},
+            {1, "auto has = {{ PROJECT_TYPE_FACTORY_TYPE_NAME }}::Has(rtti);"},
+            {0, "if (has) {"},
+            {1, "return {{ PROJECT_TYPE_FACTORY_TYPE_NAME }}::New(rtti);"},
+            {-1,"}"},
+            {0, "return nullptr;"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "void {{ IMPL_TYPE_NAME }}::Delete(void* p, int rtti)"},
+            {0, "{"},
+            {1, "auto has = {{ PROJECT_TYPE_FACTORY_TYPE_NAME }}::Has(rtti);"},
+            {0, "if (has) {"},
+            {1, "{{ PROJECT_TYPE_FACTORY_TYPE_NAME }}::Delete(p, rtti);"},
+            {-1,"}"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, ""},
+        };
+
         auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
@@ -33,11 +71,6 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsTypeFactory
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
-
-        nsBase::TTextGenerator txtGen(generatedFile.content);
-
-        txtGen.AddInclude(impl.impl.fileName + ".h");
-        txtGen.AddEmpty();
 
         auto absBase = configComponent->value.projectConfig.pathToCore;
         auto abs = configComponent->value.coreConfig.targetDirectory;
@@ -52,82 +85,22 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsTypeFactory
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= configComponent->value.projectConfig.handlerConfig.typeFactory.fileName + ".h";
+        pathRelToProjectSources /= configComponent->value.projectConfig.handlerConfig.typeFactory.fileName;
 
-        txtGen.AddInclude(pathRelToProjectSources.string());
+        nsBase::TTextGenerator txtGen(lines);
 
-        txtGen.AddEmpty();
-        txtGen.AddUsingNamespace(configComponent->value.projectConfig.nameSpace);
-        txtGen.AddEmpty();
+        inja::json data;
 
-        // Ctor
-        txtGen.AddCtorDef(impl.impl.typeName);
+        data["IMPL_FILE_NAME"] = impl.impl.fileName;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
+        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
 
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
+        data["PROJECT_TYPE_FACTORY_FILE_NAME"] = pathRelToProjectSources.string();
+        data["PROJECT_TYPE_FACTORY_TYPE_NAME"] = configComponent->value.projectConfig.handlerConfig.typeFactory.typeName;
 
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // Dtor
-        txtGen.AddDtorDef(impl.impl.typeName);
-
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddEmpty();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // New
-        std::list<std::string> args = { "int rtti"};
-
-        txtGen.AddMethodDef(impl.impl.typeName, "New", "void*", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("auto has = {}::Has(rtti);",
-            configComponent->value.projectConfig.handlerConfig.typeFactory.typeName);
-
-        txtGen.AddLine("if (has) {");
-        txtGen.IncrementTabs();
-        auto newRet = fmt::format("{}::New(rtti)", configComponent->value.projectConfig.handlerConfig.typeFactory.typeName);
-        txtGen.AddRet(newRet);
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.AddRet("nullptr");
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
-
-        // Delete
-        args = { "void* p", "int rtti" };
-
-        txtGen.AddMethodDef(impl.impl.typeName, "Delete", "void", args);
-        txtGen.AddLeft();
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("auto has = {}::Has(rtti);",
-            configComponent->value.projectConfig.handlerConfig.typeFactory.typeName);
-
-        txtGen.AddLine("if (has) {");
-        txtGen.IncrementTabs();
-
-        txtGen.AddFormatLine("{}::Delete(p, rtti);", configComponent->value.projectConfig.handlerConfig.typeFactory.typeName);
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-
-        txtGen.DecrementTabs();
-        txtGen.AddRight();
-        txtGen.AddLongLine();
+        txtGen.Apply(data);
+        generatedFile.content = txtGen.Render();
 
         generatedFilesComponent->value.push_back(generatedFile);
     }
