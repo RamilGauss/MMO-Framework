@@ -1,6 +1,6 @@
 # MMO-Framework
 
-Boosty.donate
+[Boosty.donate](https://boosty.to/mmoframework)
 <br>
 <img src="./Doc/boosty-mmoframework-donate.png">
 <br>
