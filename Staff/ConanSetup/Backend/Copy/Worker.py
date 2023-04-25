@@ -52,11 +52,17 @@ class Worker:
 
         binAbsDirPath = Relative.Convert(self.absConfigPath, self.config.binDir)
 
+        if not os.path.exists(binAbsDirPath):
+            os.mkdir(binAbsDirPath)
+
         for b in binDirs:
             dst = os.path.join(binAbsDirPath, os.path.basename(b))
             shutil.copyfile(b, dst)
 
         libAbsDirPath = Relative.Convert(self.absConfigPath, self.config.libDir)
+
+        if not os.path.exists(libAbsDirPath):
+            os.mkdir(libAbsDirPath)
 
         for l in libDirs:
             dst = os.path.join(libAbsDirPath, os.path.basename(l))
