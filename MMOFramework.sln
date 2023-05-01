@@ -228,6 +228,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcessInfo", "ProcessInfo", "{050AA7CC-ED55-4657-9F18-D15B793C5511}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Injector", "Source\Tools\Injector\Injector.vcxproj", "{DC5C2D4B-6B24-4389-94B1-59FF237F9D11}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+		{8E8BBC65-9B8D-4448-9BB0-E779709DD725} = {8E8BBC65-9B8D-4448-9BB0-E779709DD725}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResidentLib", "Source\Tools\ResidentLib\ResidentLib.vcxproj", "{28DBA330-7F02-4D8D-B853-4008C24F72FA}"
 EndProject

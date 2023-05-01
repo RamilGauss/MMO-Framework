@@ -260,6 +260,7 @@
     <ClInclude Include="include\MemoryObjectPool.h" />
     <ClInclude Include="include\MemoryPool.h" />
     <ClInclude Include="include\MemoryObjectPoolAllocator.h" />
+    <ClInclude Include="include\MemoryDumper.h" />
     <ClInclude Include="include\Mutex.h" />
     <ClInclude Include="include\Only_N_Object.h" />
     <ClInclude Include="include\BinaryPopMaster.h" />
@@ -318,6 +319,7 @@
     <ClCompile Include="src\MakerLoaderDLL.cpp" />
     <ClCompile Include="src\MapCallBack.cpp" />
     <ClCompile Include="src\MD5.cpp" />
+    <ClCompile Include="src\MemoryDumper.cpp" />
     <ClCompile Include="src\Mutex.cpp" />
     <ClCompile Include="src\Only_N_Object.cpp" />
     <ClCompile Include="src\BinaryPopMaster.cpp" />

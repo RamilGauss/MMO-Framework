@@ -1,4 +1,3 @@
-
 /*
 Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Гудаков Рамиль Сергеевич
@@ -21,14 +20,15 @@ See for more information LICENSE.md.
 #include <thread>
 #include <utility>
 
+#include "ProcessFinder.h"
+#include "MemoryInfo.h"
+
+#include "MemoryDumper.h"
+#include "CallFinder.h"
+
 //https://github.com/tbhaxor/WinAPI-RedBlue/tree/main
 
-/// <summary>
-/// Print the human-readable error message cause while execution of the function and exit if TRUE
-/// </summary>
-/// <param name="lpFunction">Function name caused error</param>
-/// <param name="bExit">Whether to exit after printing error or not (TRUE/FALSE)</param>
-VOID PrintError(LPCSTR lpFunction, BOOL bExit = FALSE)
+void PrintError(LPCSTR lpFunction)
 {
     DWORD dwErrorCode = GetLastError();
 
@@ -37,10 +37,6 @@ VOID PrintError(LPCSTR lpFunction, BOOL bExit = FALSE)
         std::cout << "Undefined error\n";
     } else {
         std::cout << std::system_category().message(dwErrorCode) << std::endl;
-    }
-
-    if (bExit) {
-        ExitProcess(1);
     }
 }
 
@@ -52,95 +48,60 @@ VOID PrintError(LPCSTR lpFunction, BOOL bExit = FALSE)
 //    [out] SIZE_T* lpNumberOfBytesRead
 //);
 
-//DWORD procid = GetProcId("ac_client.exe");
-//
-//unsigned char* addr = 0;
-//
-//HANDLE hProc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, procid);
-//
-//MEMORY_BASIC_INFORMATION mbi;
-//
-//while (VirtualQueryEx(hProc, addr, &mbi, sizeof(mbi))) {
-//    if (mbi.State == MEM_COMMIT && mbi.Protect != PAGE_NOACCESS && mbi.Protect != PAGE_GUARD) {
-//        std::cout << "base : 0x" << std::hex << mbi.BaseAddress << " end : 0x" << std::hex << (uintptr_t)mbi.BaseAddress + mbi.RegionSize << "\n";
-//    }
-//    addr += mbi.RegionSize;
-//}
-
-#include <cstdio>
-#include <windows.h>
-#include <tlhelp32.h>
-
-void EnableDebugPriv()
-{
-    HANDLE hToken;
-    LUID luid;
-    TOKEN_PRIVILEGES tkp;
-
-    OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken);
-
-    LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &luid);
-
-    tkp.PrivilegeCount = 1;
-    tkp.Privileges[0].Luid = luid;
-    tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-    AdjustTokenPrivileges(hToken, false, &tkp, sizeof(tkp), NULL, NULL);
-
-    CloseHandle(hToken);
-}
-
-int main(int, char* [])
-{
-    EnableDebugPriv();
-
-    PROCESSENTRY32 entry;
-    entry.dwSize = sizeof(PROCESSENTRY32);
-
-    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
-
-    if (Process32First(snapshot, &entry) == TRUE) {
-        while (Process32Next(snapshot, &entry) == TRUE) {
-            if (stricmp(entry.szExeFile, "target.exe") == 0) {
-                HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, entry.th32ProcessID);
-
-                // Do stuff..
-
-                CloseHandle(hProcess);
-            }
-        }
-    }
-
-    CloseHandle(snapshot);
-
-    return 0;
-}
-
 int main(int argc, char* argv[])
 {
-    if (argc < 3) {
-        std::cerr << "Usage: " << argv[0] << " PID /path/to/dll\n";
-        return 0x1;
+    //if (argc < 3) {
+    //    std::cerr << "Usage: " << argv[0] << " PID /path/to/dll\n";
+    //    return 1;
+    //}
+
+    //### DLL begin
+
+    std::wstring processName = L"Injector_d.exe";// argv[1];
+
+    DWORD dwPID = nsWinApiHelper::TProcessFinder::GetProcessIdByName(processName);// argv[1]);
+
+    auto pages = nsWinApiHelper::TMemoryInfo::GetExecutablePages(dwPID);
+
+    size_t commonSize = 0;
+    for (auto p : pages) {
+        printf("base: 0x%p size: %llu\n", p.ptr, p.size);
+
+        commonSize += p.size;
     }
 
-    DWORD dwPID = GetProcId(argv[1]);
+    printf("common size = %llu\n", commonSize);
+
+    void* pFunc = (void*)OpenProcess;
+    printf("Enumerate calling of PrintError(0x%p):\n", pFunc);
+
+    auto callPlaces = nsWinApiHelper::TCallFinder::Find(pages, pFunc);
+
+    for (auto& callPlace : callPlaces) {
+        auto placesStr = nsBase::TMemoryDumper::Dump(callPlace, 5, 5);
+        for (auto& s : placesStr) {
+            printf("%s\n", s.c_str());
+        }
+    }
+    //### DLL end
+
 
     // Permission PROCESS_VM_WRITE | PROCESS_VM_OPERATION are specifically for VirtualAlloc and WriteProcessMemory for the DLL Path
     // PROCESS_CREATE_THREAD is used for CreateRemoteThread function to work.
     HANDLE hProcess = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_CREATE_THREAD, FALSE, dwPID);
     if (hProcess == NULL) {
-        PrintError("OpenProcess()", TRUE);
-        return 0x1;
+        PrintError("OpenProcess()");
+        return 1;
     }
 
     LPVOID lpBaseAddress = VirtualAllocEx(hProcess, nullptr, 1 << 12, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
     if (lpBaseAddress == nullptr) {
-        PrintError("VirtualAllocEx()", TRUE);
-        return 0x0;
+        PrintError("VirtualAllocEx()");
+        return 0;
     }
 
     if (!WriteProcessMemory(hProcess, lpBaseAddress, (LPCVOID)argv[2], strlen(argv[2]), nullptr)) {
-        PrintError("WriteProcessMemory()", TRUE);
+        PrintError("WriteProcessMemory()");
     }
 
     // Kernel32 is ASLRed while booting and is then address is shared by all the processes
@@ -152,8 +113,8 @@ int main(int argc, char* argv[])
         CloseHandle(hProcess);
         hProcess = NULL;
 
-        PrintError("GetModuleHandleA()", TRUE);
-        return 0x0;
+        PrintError("GetModuleHandleA()");
+        return 0;
     }
     FARPROC pLoadLibraryA = GetProcAddress(hKernel32, "LoadLibraryA");
 
@@ -167,8 +128,8 @@ int main(int argc, char* argv[])
         CloseHandle(hProcess);
         hProcess = NULL;
 
-        PrintError("CreateRemoteThread()", TRUE);
-        return 0x0;
+        PrintError("CreateRemoteThread()");
+        return 0;
     }
 
     std::cout << "Injected DLL\n";
