@@ -56,7 +56,6 @@ int main(int argc, char* argv[])
     //}
 
     //### DLL begin
-
     std::wstring processName = L"Injector_d.exe";// argv[1];
 
     DWORD dwPID = nsWinApiHelper::TProcessFinder::GetProcessIdByName(processName);// argv[1]);
@@ -72,8 +71,8 @@ int main(int argc, char* argv[])
 
     printf("common size = %llu\n", commonSize);
 
-    void* pFunc = (void*)OpenProcess;
-    printf("Enumerate calling of PrintError(0x%p):\n", pFunc);
+    void* pFunc = (void*)WSASend;
+    printf("Enumerate calling of pFunc(0x%p):\n", pFunc);
 
     auto callPlaces = nsWinApiHelper::TCallFinder::Find(pages, pFunc);
 
@@ -83,6 +82,8 @@ int main(int argc, char* argv[])
             printf("%s\n", s.c_str());
         }
     }
+
+    WSASend(0, 0, 0, 0, 0, 0, 0);
     //### DLL end
 
 

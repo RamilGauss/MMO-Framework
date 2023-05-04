@@ -21,5 +21,10 @@ namespace nsWinApiHelper
 
         [[nodiscard]]
         static std::list<void*> Find(const std::list<TPageInfo>& pages, void* pFunc);
+
+    private:
+        static void FindAbsoluteCall(const std::list<TPageInfo>& pages, void* pFunc, std::list<void*>& callPlaces);
+
+        static void FindRelativeCall(const std::list<TPageInfo>& pages, void* pFunc, std::list<void*>& callPlaces);
     };
 }

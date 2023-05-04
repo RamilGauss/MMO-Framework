@@ -40,6 +40,7 @@ namespace nsWinApiHelper
             isExecutable |= mbi.Protect & PAGE_EXECUTE_READ;
             isExecutable |= mbi.Protect & PAGE_EXECUTE_READWRITE;
             isExecutable |= mbi.Protect & PAGE_EXECUTE_WRITECOPY;
+            isExecutable |= mbi.Protect & PAGE_READONLY;
 
             if (isExecutable && mbi.State == MEM_COMMIT) {
                 pages.push_back({ mbi.BaseAddress, mbi.RegionSize });
