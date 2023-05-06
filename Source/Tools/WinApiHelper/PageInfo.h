@@ -8,17 +8,34 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeDef.h"
+#include "ContainerTypes.h"
 
 namespace nsWinApiHelper
 {
-    struct DllExport TPageInfo
+    class DllExport TPageInfo
     {
-        void* ptr = nullptr;
-        size_t size = 0;
+        uint8_t* mBaseAddress = nullptr;
 
-        void* GetEnd() const
-        {
-            return (void*)((char*)ptr + size);
-        }
+        size_t mSize = 0;
+
+        TContainer mBuffer;
+
+        size_t mShift = 0;
+
+        bool mIsCopyToBuffer = true;
+
+    public:
+        TPageInfo();
+
+        TPageInfo(uint8_t* baseAddress, size_t size, bool doCopyToBuffer = true);
+
+        void Reset();
+
+        void IncrementShift(size_t shift = 1);
+        
+        uint8_t* GetCurrentAddress() const;
+        uint8_t* GetCurrentBuffer() const;
+
+        size_t GetRemain() const;
     };
 }

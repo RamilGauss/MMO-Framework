@@ -34,5 +34,8 @@
     <ClCompile Include="CallFinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PageInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

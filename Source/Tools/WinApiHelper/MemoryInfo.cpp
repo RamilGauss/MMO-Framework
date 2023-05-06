@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 
 namespace nsWinApiHelper
 {
-    std::list<TPageInfo> TMemoryInfo::GetExecutablePages(unsigned long processId)
+    std::list<std::pair<uint8_t*, size_t>> TMemoryInfo::GetExecutablePages(unsigned long processId)
     {
         unsigned char* addr = 0;
 
@@ -25,7 +25,7 @@ namespace nsWinApiHelper
 
         MEMORY_BASIC_INFORMATION mbi;
 
-        std::list<TPageInfo> pages;
+        std::list<std::pair<uint8_t*, size_t>> pages;
 
         while (VirtualQueryEx(hProc, addr, &mbi, sizeof(mbi))) {
 
@@ -43,7 +43,10 @@ namespace nsWinApiHelper
             isExecutable |= mbi.Protect & PAGE_READONLY;
 
             if (isExecutable && mbi.State == MEM_COMMIT) {
-                pages.push_back({ mbi.BaseAddress, mbi.RegionSize });
+                std::pair<uint8_t*, size_t> newPage;
+                newPage.first = (uint8_t*)mbi.BaseAddress;
+                newPage.second = mbi.RegionSize;
+                pages.push_back(newPage);
             }
             addr += mbi.RegionSize;
         }
@@ -54,13 +57,13 @@ namespace nsWinApiHelper
 
         auto it = pages.begin();
 
-        TPageInfo collectedPage = *it;
-        std::list<TPageInfo> collectedPages;
+        std::pair<uint8_t*, size_t> collectedPage = *it;
+        std::list<std::pair<uint8_t*, size_t>> collectedPages;
 
         it++;
         for (; it != pages.end(); it++) {
-            if (collectedPage.GetEnd() == it->ptr) {
-                collectedPage.size += it->size;
+            if (collectedPage.first + collectedPage.second == it->first) {
+                collectedPage.second += it->second;
             } else {
                 collectedPages.push_back(collectedPage);
                 collectedPage = *it;

@@ -21,6 +21,6 @@ namespace nsWinApiHelper
     public:
 
         [[nodiscard]]
-        static std::list<TPageInfo> GetExecutablePages(unsigned long processId);
+        static std::list<std::pair<uint8_t*, size_t>> GetExecutablePages(unsigned long processId);
     };
 }

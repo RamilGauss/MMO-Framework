@@ -168,6 +168,7 @@
   <ItemGroup>
     <ClCompile Include="CallFinder.cpp" />
     <ClCompile Include="MemoryInfo.cpp" />
+    <ClCompile Include="PageInfo.cpp" />
     <ClCompile Include="ProcessFinder.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
