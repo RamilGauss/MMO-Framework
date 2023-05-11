@@ -56,10 +56,11 @@ TContainerArrObj<T>::~TContainerArrObj()
 template <class T>
 void TContainerArrObj<T>::Done()
 {
-    if (mCount == 1)
+    if (mCount == 1) {
         delete pData;
-    else
+    } else {
         delete[] pData;
+    }
     pData = nullptr;
     mCount = 0;
 }
@@ -89,8 +90,9 @@ void TContainerArrObj<T>::SetDataByCount(char* p, int count)
             int size = GetSize();
             memcpy(pData, p, size);
         } else {
-            for (int i = 0; i < mCount; i++)
+            for (int i = 0; i < mCount; i++) {
                 pData[i] = ((T*)p)[i];
+            }
         }
     }
 }
@@ -138,7 +140,7 @@ template <class T>
 TContainerArrObj<T>& TContainerArrObj<T>::operator = (const TContainerArrObj<T>& c)
 {
     Entrust(c.GetPtr(), c.GetSize());
-    TContainerArrObj<T>* pC = (TContainerArrObj<T>*) & c;
+    TContainerArrObj<T>* pC = (TContainerArrObj<T>*)&c;
     pC->Unlink();
     return *this;
 }
