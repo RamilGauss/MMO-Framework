@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
-
 #include <list>
 #include <string>
+
+#include "TypeDef.h"
 
 namespace nsBase
 {

@@ -252,7 +252,6 @@
     <ClInclude Include="include\Logger.h" />
     <ClInclude Include="include\MacroMaker.h" />
     <ClInclude Include="include\MacroMaker_Prepare.h" />
-    <ClInclude Include="include\magic_enum.hpp" />
     <ClInclude Include="include\MakerLoaderDLL.h" />
     <ClInclude Include="include\MapCallBack.h" />
     <ClInclude Include="include\Marshaller.h" />
