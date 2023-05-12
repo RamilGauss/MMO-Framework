@@ -370,6 +370,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="TimeSliceEngine\TimeSliceEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Gui\Properties\Component.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Components\Meta\GuidComponent.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsIncludeList.h" />

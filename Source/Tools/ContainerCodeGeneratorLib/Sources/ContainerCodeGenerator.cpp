@@ -64,17 +64,26 @@ namespace nsContainerCodeGenerator
 
         try {
             mMainFeature.Execute();
+
+            // Output result
+            fmt::print(fg(fmt::color::blue),
+                "ContainerCodeGenerator:[{}]\n", magic_enum::enum_name(result));
         } catch (const TMessageException& exception) {
             resultStr = exception.what();
 
             result = Result::DEVELOPER_ERROR;
+
+            // Output result
+            fmt::print(fg(fmt::color::red),
+                "ContainerCodeGenerator:[{}] {}\n", magic_enum::enum_name(result), resultStr);
+
         } catch (...) {
             result = Result::INNER_ERROR;
-        }
 
-        // Output result
-        fmt::print(fg(fmt::color::blue),
-            "ContainerCodeGenerator:[{}] {}\n", magic_enum::enum_name(result), resultStr);
+            // Output result
+            fmt::print(fg(fmt::color::red),
+                "ContainerCodeGenerator:[{}]\n", magic_enum::enum_name(result));
+        }
 
         return result;
     }

@@ -283,7 +283,6 @@
     <ClInclude Include="include\TextFile.h" />
     <ClInclude Include="include\TextGenerator.h" />
     <ClInclude Include="include\ThreadBoost.h" />
-    <ClInclude Include="include\TimeManager.h" />
     <ClInclude Include="include\TypeDef.h" />
     <ClInclude Include="include\RunTimeTypeIndex.h" />
     <ClInclude Include="include\TypeName.h" />
@@ -343,7 +342,6 @@
     <ClCompile Include="src\TextFile.cpp" />
     <ClCompile Include="src\TextGenerator.cpp" />
     <ClCompile Include="src\ThreadBoost.cpp" />
-    <ClCompile Include="src\TimeManager.cpp" />
     <ClCompile Include="src\RunTimeTypeIndex.cpp" />
   </ItemGroup>
   <ItemGroup>

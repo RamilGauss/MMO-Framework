@@ -27,7 +27,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
     {
         std::list<nsBase::TLine> lines =
         {
-            {0, "#include \"{{ IMPL_FILE_NAME }}ComponentEntityManagerExtensionImpl.h\""},
+            {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
             {0, "#include \"{{ PROJECT_ENT_MNG_FILE_NAME }}.h\""},
             {0, "#include \"{{ CORE_ENT_MNG_FILE_NAME }}.h\""},
@@ -71,10 +71,10 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
             {0, "const void* {{ IMPL_TYPE_NAME }}::ViewComponent(nsECSFramework::TEntityID eid, int rtti)"},
             {0, "{"},
             {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {0, "return {{ PROJECT_ENT_MNG_TYPE_NAME }}::ViewComponent(mEntMng, eid, rtti);"},
+            {1, "return {{ PROJECT_ENT_MNG_TYPE_NAME }}::ViewComponent(mEntMng, eid, rtti);"},
             {-1,"}"},
             {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {0, "return {{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::ViewComponent(mEntMng, eid, rtti);"},
+            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::ViewComponent(mEntMng, eid, rtti);"},
             {-1,"}"},
             {0, "return nullptr;"},
             {-1,"}"},

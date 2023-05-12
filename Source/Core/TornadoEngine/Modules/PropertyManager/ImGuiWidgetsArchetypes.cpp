@@ -20,7 +20,7 @@ namespace nsTornadoEngine
                 "nsGuiWrapper::TSizeComponent",
                 "nsGuiWrapper::TPositionComponent",
                 "nsGuiWrapper::TVisibilityComponent",
-                //"nsGuiWrapper::TColorComponent",
+                "nsGuiWrapper::TColorComponent",
             },
         },
         {
@@ -109,11 +109,11 @@ namespace nsTornadoEngine
             {"nsGuiWrapper::TPaddingComponent",              "nsImGuiWidgets::TPadding"},
             {"nsGuiWrapper::TGridComponent",                 "nsImGuiWidgets::TGrid"},
             {"nsGuiWrapper::TSpacingComponent",              "nsImGuiWidgets::TSpacing"},
-            {"nsGuiWrapper::T", "nsImGuiWidgets::T"},
-            {"nsGuiWrapper::T", "nsImGuiWidgets::T"},
-            {"nsGuiWrapper::T", "nsImGuiWidgets::T"},
+            //{"nsGuiWrapper::T",                              "nsImGuiWidgets::T"},
+            //{"nsGuiWrapper::T",                              "nsImGuiWidgets::T"},
+            //{"nsGuiWrapper::T",                              "nsImGuiWidgets::T"},
 
-            //{ "nsGuiWrapper::TColorComponent",               "nsImGuiWidgets::TColor" },
+            { "nsGuiWrapper::TColorComponent",               "nsImGuiWidgets::TColor" },
 
             { "nsGuiWrapper::TTitleComponent",               "nsImGuiWidgets::TTitle" },
             { "nsGuiWrapper::TSizeComponent",                "nsImGuiWidgets::TSize" },

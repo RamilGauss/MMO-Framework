@@ -27,7 +27,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsDynamicCaste
     {
         std::list<nsBase::TLine> lines =
         {
-            {0, "#include \"{{ IMPL_FILE_NAME }}.h"},
+            {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
             {0, "#include \"{{ CORE_DYNAMIC_CASTER_FILE_NAME }}.h\""},
             {0, ""},

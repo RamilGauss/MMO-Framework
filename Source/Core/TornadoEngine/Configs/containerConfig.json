@@ -4,7 +4,7 @@
     "baseHandlerTypeName": "nsTornadoEngine::IHandler",
 
     "coreConfig": {
-        "isNeedGenerate": true,
+        "isNeedGenerate": false,
 
         "targetDirectory": "../Generated files/Container",
         "exportDeclaration": "DllExport",

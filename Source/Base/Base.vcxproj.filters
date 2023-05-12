@@ -164,9 +164,6 @@
     <ClInclude Include="include\ThreadBoost.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\TimeManager.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\TypeDef.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -359,9 +356,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ThreadBoost.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TimeManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SingletonManager.cpp">

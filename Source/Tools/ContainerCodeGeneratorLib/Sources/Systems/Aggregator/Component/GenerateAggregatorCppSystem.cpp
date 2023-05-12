@@ -73,7 +73,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
         
         data["IMPL_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.impl.typeName;
-        data["JSON_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.typeInfoImpl.impl.typeName;
+        data["JSON_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.jsonImpl.impl.typeName;
         data["DYNAMIC_CASTER_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.typeName;
         data["TYPE_INFO_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.typeInfoImpl.impl.typeName;
         data["ENT_MNG_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.entMngImpl.impl.typeName;

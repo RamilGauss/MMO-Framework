@@ -91,11 +91,12 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsDynamicCaster
 
         inja::json data;
 
-        data["PARENT_FILE_NAME"] = impl.parent.fileName;
+        data["IMPL_FILE_NAME"] = impl.impl.fileName;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+
         data["PROJECT_DYNAMIC_CASTER_FILE_NAME"] = pathRelToProjectSources.string();
         data["PROJECT_DYNAMIC_CASTER_TYPE_NAME"] = configComponent->value.projectConfig.ecsSystemConfig.dynamicCaster.typeName;
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
-        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

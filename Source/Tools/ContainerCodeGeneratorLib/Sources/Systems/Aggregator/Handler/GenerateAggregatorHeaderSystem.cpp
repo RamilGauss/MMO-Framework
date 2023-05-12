@@ -45,18 +45,18 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
-            configComponent->value.aggregator.handlerImpl.impl.fileName);
+            configComponent->value.aggregator.handlerImpl.impl.fileName + ".h");
 
         nsBase::TTextGenerator txtGen(lines);
 
         inja::json data;
 
-        data["PARENT_FILE_NAME"] = configComponent->value.aggregator.componentImpl.parent.fileName;
+        data["PARENT_FILE_NAME"] = configComponent->value.aggregator.handlerImpl.parent.fileName;
         data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
         data["DLL_EXPORT"] = configComponent->value.projectConfig.exportDeclaration;
         data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
-        data["PARENT_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.parent.typeName;
-        data["IMPL_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.impl.typeName;
+        data["PARENT_TYPE_NAME"] = configComponent->value.aggregator.handlerImpl.parent.typeName;
+        data["IMPL_TYPE_NAME"] = configComponent->value.aggregator.handlerImpl.impl.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

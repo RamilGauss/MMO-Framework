@@ -29,16 +29,16 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
         {
             { 0, "#include \"{{ IMPL_FILE_NAME }}.h\"" },
             { 0, "" },
-            { 0, "#include \"{{ TYPE_INFO_FILE_NAME }}.h\"" },
+            { 0, "#include \"{{ PROJECT_TYPE_INFO_FILE_NAME }}.h\"" },
             { 0, "" },
             { 0, "using namespace {{ PROJECT_NAMESPACE }};" },
             { 0, "" },
             { 0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()" },
             { 0, "{" },
-            { 1, "auto typeNameList = {{ TYPE_INFO_TYPE_NAME }}::GetTypeNameList();" },
+            { 1, "auto typeNameList = {{ PROJECT_TYPE_INFO_TYPE_NAME }}::GetTypeNameList();" },
             { 0, "mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());" },
             { -1,"" },
-            { 1, "auto rttiList = {{ TYPE_INFO_TYPE_NAME }}::GetRttiList();" },
+            { 1, "auto rttiList = {{ PROJECT_TYPE_INFO_TYPE_NAME }}::GetRttiList();" },
             { 0, "mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());" },
             { -1,"}" },
             { 0, "//--------------------------------------------------------------------------------------------------" },
@@ -59,7 +59,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "bool {{ IMPL_TYPE_NAME }}::ConvertTypeToName(int rtti, std::string& typeName)" },
             { 0, "{" },
-            { 1, "auto pTypeName = {{ TYPE_INFO_TYPE_NAME }}::ConvertRttiToName(rtti);" },
+            { 1, "auto pTypeName = {{ PROJECT_TYPE_INFO_TYPE_NAME }}::ConvertRttiToName(rtti);" },
             { 0, "if (pTypeName != nullptr) {" },
             { 1, "typeName = *pTypeName;" },
             { 0, "return true;" },
@@ -69,7 +69,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "bool {{ IMPL_TYPE_NAME }}::ConvertNameToType(const std::string& typeName, int& rtti)" },
             { 0, "{" },
-            { 1, "return {{ TYPE_INFO_TYPE_NAME }}::ConvertNameToRtti(typeName, rtti);" },
+            { 1, "return {{ PROJECT_TYPE_INFO_TYPE_NAME }}::ConvertNameToRtti(typeName, rtti);" },
             { -1,"}" },
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "" },
@@ -97,11 +97,12 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
 
         inja::json data;
 
-        data["PARENT_FILE_NAME"] = impl.parent.fileName;
-        data["TYPE_INFO_FILE_NAME"] = pathRelToProjectSources.string();
-        data["TYPE_INFO_TYPE_NAME"] = configComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName;
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["IMPL_FILE_NAME"] = impl.impl.fileName;
         data["IMPL_TYPE_NAME"] = impl.impl.typeName;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+
+        data["PROJECT_TYPE_INFO_FILE_NAME"] = pathRelToProjectSources.string();
+        data["PROJECT_TYPE_INFO_TYPE_NAME"] = configComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

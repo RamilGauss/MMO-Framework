@@ -92,11 +92,12 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeFactory
 
         inja::json data;
 
-        data["PARENT_FILE_NAME"] = impl.parent.fileName;
+        data["IMPL_FILE_NAME"] = impl.impl.fileName;
+        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
+        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+
         data["PROJECT_TYPE_FACTORY_FILE_NAME"] = pathRelToProjectSources.string();
         data["PROJECT_TYPE_FACTORY_TYPE_NAME"] = configComponent->value.projectConfig.systemConfig.typeFactory.typeName;
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
-        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

@@ -1259,6 +1259,7 @@
     <ClInclude Include="Modules\PropertyManager\PropertyManagerConfigs.h" />
     <ClInclude Include="Modules\PropertyManager\RelativeProperties.h" />
     <ClInclude Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.h" />
+    <ClInclude Include="Components\Gui\Properties\Component.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

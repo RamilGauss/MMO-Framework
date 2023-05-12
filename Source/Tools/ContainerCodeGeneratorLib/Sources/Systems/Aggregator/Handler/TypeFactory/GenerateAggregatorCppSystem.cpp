@@ -27,7 +27,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsTypeFactory
     {
         std::list<nsBase::TLine> lines =
         {
-            {0, "#include \"{{ IMPL_FILE_NAME }}HandlerTypeFactoryImpl.h\""},
+            {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
             {0, "#include \"{{ PROJECT_TYPE_FACTORY_FILE_NAME }}.h\""},
             {0, ""},
