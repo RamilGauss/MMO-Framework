@@ -49,6 +49,7 @@ namespace nsContainerCodeGenerator
 
         [[nodiscard]]
         Result Generate(int argc, char** argv);
+        Result Generate(int argc, char** argv);
 
     private:
         void Init(int argc, char** argv);

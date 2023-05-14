@@ -17,6 +17,8 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TResourceContentMap
     {
+        std::string engineVersion;
+
         std::map<std::string, std::string> guidPathMap;
     };
 }

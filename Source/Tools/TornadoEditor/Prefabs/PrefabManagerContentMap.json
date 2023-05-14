@@ -1,9 +1,0 @@
-{
-    "guidPathMap": {
-        "0": "FileHierarchyWindow.prefab",
-        "1": "OpenProjectDialog.prefab",
-        "2": "WarningDialog.prefab",
-        "3": "FileNode.prefab",
-        "4": "ObjectHierarchyWindow.prefab"
-    }
-}

@@ -25,6 +25,8 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct TFrameworkResources
     {
+        std::string engineVersion;
+
         std::map<std::string, std::string> resources;
 
         TGameEngineResources gameEngine;

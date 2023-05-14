@@ -30,6 +30,8 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TResourceContent
     {
+        std::string engineVersion;
+
         std::list<TEntityContent> entities;
     };
 }

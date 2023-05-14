@@ -259,51 +259,48 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="componentConfig.json" />
     <None Include="Editor.project">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="featureConfig.json" />
     <None Include="Generated files\Container\projectComponentConfig.json" />
     <None Include="Generated files\Container\projectEcsSystemConfig.json" />
     <None Include="Generated files\Container\projectHandlerConfig.json" />
     <None Include="Generated files\Container\projectSystemConfig.json" />
-    <None Include="handlerConfig.json" />
-    <None Include="Prefabs\FileHierarchyWindow.prefab">
+    <None Include="Assets\Prefabs\FileHierarchyWindow.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Prefabs\FileNode.prefab">
+    <None Include="Assets\Prefabs\FileNode.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Prefabs\ObjectHierarchyWindow.prefab">
+    <None Include="Assets\Prefabs\ObjectHierarchyWindow.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Prefabs\OpenProjectDialog.prefab">
+    <None Include="Assets\Prefabs\OpenProjectDialog.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Prefabs\WarningDialog.prefab">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </None>
-    <None Include="Prefabs\PrefabManagerContentMap.json">
+    <None Include="Assets\Prefabs\WarningDialog.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Resources\Resources.json">
+    <None Include="Assets\Prefabs\PrefabManagerContentMap.json">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Scenes\Bootstrapper.scene">
+    <None Include="Assets\Resources.json">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Scenes\Main.scene">
+    <None Include="Assets\Scenes\Bootstrapper.scene">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Scenes\SceneManagerContentMap.json">
+    <None Include="Assets\Scenes\Main.scene">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="Assets\Scenes\SceneManagerContentMap.json">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>

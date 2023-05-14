@@ -5,18 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#pragma once
-
-#include <list>
-
-#include "ModuleType.h"
+#include "EngineVersion.h"
 
 namespace nsTornadoEngine
 {
-    #pragma REFLECTION_ATTRIBUTE
-    struct TConveyorConfig
+    std::string TEngineVersion::Get()
     {
-        std::string engineVecrsion;
-        std::list<ModuleType> modules;
-    };
+        return "0.0.0.1";
+    }
 }

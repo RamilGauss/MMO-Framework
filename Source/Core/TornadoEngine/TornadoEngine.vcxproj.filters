@@ -553,6 +553,7 @@
     <ClCompile Include="Modules\PropertyManager\PropertyManager.cpp" />
     <ClCompile Include="Modules\PropertyManager\PropertyManagerConfigs.cpp" />
     <ClCompile Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.cpp" />
+    <ClCompile Include="TimeSliceEngine\EngineVersion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Share\FrameworkResources.h">
@@ -1260,6 +1261,7 @@
     <ClInclude Include="Modules\PropertyManager\RelativeProperties.h" />
     <ClInclude Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.h" />
     <ClInclude Include="Components\Gui\Properties\Component.h" />
+    <ClInclude Include="TimeSliceEngine\EngineVersion.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

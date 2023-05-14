@@ -1,0 +1,12 @@
+{
+    "engineVecrsion" :  "0.0.0.1",
+    "modules": [
+        "GraphicEngine",
+        "Logic",
+        "PhysicEngine",
+        "MMOEngine",
+        "NetTransport",
+        "DataBase",
+        "SoundEngine"
+    ]
+}

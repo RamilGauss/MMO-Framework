@@ -7,16 +7,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <list>
+#include <string>
 
-#include "ModuleType.h"
+#include "TypeDef.h"
 
 namespace nsTornadoEngine
 {
-    #pragma REFLECTION_ATTRIBUTE
-    struct TConveyorConfig
+    struct DllExport TEngineVersion
     {
-        std::string engineVecrsion;
-        std::list<ModuleType> modules;
+        static std::string Get();
     };
 }

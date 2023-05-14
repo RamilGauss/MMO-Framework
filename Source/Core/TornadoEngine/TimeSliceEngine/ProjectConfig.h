@@ -33,6 +33,8 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TProjectConfig
     {
+        std::string engineVersion;
+
         TProjectInfo info;
 
         std::string binaryFilePath;

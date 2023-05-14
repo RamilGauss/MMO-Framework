@@ -72,37 +72,34 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Editor.project" />
-    <None Include="componentConfig.json" />
-    <None Include="Scenes\Main.scene">
+    <None Include="Assets\Scenes\Main.scene">
       <Filter>Scenes</Filter>
     </None>
-    <None Include="handlerConfig.json" />
-    <None Include="featureConfig.json" />
-    <None Include="Scenes\Bootstrapper.scene">
+    <None Include="Assets\Scenes\Bootstrapper.scene">
       <Filter>Scenes</Filter>
     </None>
-    <None Include="Scenes\SceneManagerContentMap.json">
+    <None Include="Assets\Scenes\SceneManagerContentMap.json">
       <Filter>Scenes</Filter>
     </None>
-    <None Include="Prefabs\FileHierarchyWindow.prefab">
+    <None Include="Assets\Prefabs\FileHierarchyWindow.prefab">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Prefabs\PrefabManagerContentMap.json">
+    <None Include="Assets\Prefabs\PrefabManagerContentMap.json">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Resources\Resources.json">
+    <None Include="Assets\Resources.json">
       <Filter>Resources</Filter>
     </None>
-    <None Include="Prefabs\OpenProjectDialog.prefab">
+    <None Include="Assets\Prefabs\OpenProjectDialog.prefab">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Prefabs\WarningDialog.prefab">
+    <None Include="Assets\Prefabs\WarningDialog.prefab">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Prefabs\FileNode.prefab">
+    <None Include="Assets\Prefabs\FileNode.prefab">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Prefabs\ObjectHierarchyWindow.prefab">
+    <None Include="Assets\Prefabs\ObjectHierarchyWindow.prefab">
       <Filter>Prefabs</Filter>
     </None>
     <None Include="Generated files\Container\projectComponentConfig.json" />

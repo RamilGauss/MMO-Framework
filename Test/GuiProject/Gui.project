@@ -2,10 +2,10 @@
 	"engineVersion": "0.0.0.1",
 	"info": {
 		"company": "C++ Company",
-		"appName": "TornadoEditor",
+		"appName": "Gui test",
 		"license": "MIT"
 	},
-	"binaryFilePath": "../../../Exe/TornadoEditor_d.dll",
+	"binaryFilePath": "../../../Exe/GuiProject_d.dll",
 	"conveyorFilePath": "./Assets/Conveyor.json",
 	"resourcesFilePath": "./Assets/Resources.json",
 	"generatorConfig": {

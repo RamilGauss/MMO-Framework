@@ -1,0 +1,53 @@
+{
+    "engineVersion" : "0.0.0.1",
+    "entities": [
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"FileNode_0\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"FileNode\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"NONE\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TTransformComponent",
+                    "jsonBody": "{\"value\": {\"_11\":0.0, \"_12\":0.0, \"_13\":0.0, \"_14\":1.0, \"_21\":0.0, \"_22\":0.0, \"_23\":0.0, \"_24\":1.0, \"_31\":0.0, \"_32\":0.0, \"_33\":0.0, \"_34\":1.0, \"_41\":0.0, \"_42\":0.0, \"_43\":0.0, \"_44\":1.0 }}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabRootComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
+                    "jsonBody": "{\"value\":\"FileNode\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTitleComponent",
+                    "jsonBody": "{\"value\":\"[Directory]\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TTreeNodeComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsTornadoEditor::TFilePathNodeComponent",
+                    "jsonBody": "{\"value\":\"\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TNodeIconComponent",
+                    "jsonBody": "{\"width\":16, \"height\":16}"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TTextureFromFileComponent",
+                    "jsonBody": "{\"resourceGuid\":\"folder.png\"}"
+                }
+            ]
+        }
+    ]
+}
