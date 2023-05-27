@@ -29,9 +29,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="$(SolutionDir)\conanfile.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="include\Helper.h">
       <Filter>Common</Filter>
     </ClInclude>

@@ -1,7 +1,0 @@
-{
-    "engineVersion" :  "0.0.0.1",
-    "guidPathMap": {
-        "Bootstrapper.scene": "Bootstrapper.scene",
-        "Main.scene": "Main.scene"
-    }
-}

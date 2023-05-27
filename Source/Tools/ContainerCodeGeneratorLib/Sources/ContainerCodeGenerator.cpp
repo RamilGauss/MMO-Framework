@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 
 #include "MessageException.h"
 
-#include "Components/ArgumentComponent.h"
+#include "Components/FilePathComponent.h"
 #include "Components/ConfigComponent.h"
 #include "Components/PathsComponent.h"
 
@@ -30,35 +30,26 @@ namespace nsContainerCodeGenerator
         mEntMng.Setup();
     }
     //-------------------------------------------------------------------------------------------
-    void TContainerCodeGenerator::Init(int argc, char** argv)
+    TContainerCodeGenerator::~TContainerCodeGenerator()
+    {
+
+    }
+    //-------------------------------------------------------------------------------------------
+    void TContainerCodeGenerator::CreateSingleEntity(const std::string& filePath)
     {
         auto singleEid = mEntMng.CreateEntity();
 
         // Input
-        TArgumentComponent argumentComponent;
-        argumentComponent.argc = argc;
-        argumentComponent.argv = argv;
-        mEntMng.SetComponent(singleEid, argumentComponent);
-
-        TConfigComponent configComponent;
-        mEntMng.SetComponent(singleEid, configComponent);
+        TFilePathComponent filePathComponent;
+        filePathComponent.value = filePath;
+        mEntMng.SetComponent(singleEid, filePathComponent);
 
         TPathsComponent pathsComponent;
         mEntMng.SetComponent(singleEid, pathsComponent);
     }
     //-------------------------------------------------------------------------------------------
-    TContainerCodeGenerator::Result TContainerCodeGenerator::Generate(int argc, char** argv)
+    TContainerCodeGenerator::Result TContainerCodeGenerator::Execute()
     {
-        Init(argc, argv);
-
-        mMainFeature.SetEntMng(&mEntMng);
-
-        // Form the logic conveyor.
-        mMainFeature.Add(&mSetupConfigFeature);
-        mMainFeature.Add(&mCoreGeneratorFeature);
-        mMainFeature.Add(&mProjectGeneratorFeature);
-        mMainFeature.Add(&mAggregatorDumperFeature);
-
         TContainerCodeGenerator::Result result = Result::OK;
         std::string resultStr;
 

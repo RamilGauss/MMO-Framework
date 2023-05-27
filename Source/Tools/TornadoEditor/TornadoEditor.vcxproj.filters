@@ -1,93 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Handlers\OpenProjectOkButtonClickHandler.cpp">
+    <ClCompile Include="Sources\Handlers\OpenProjectOkButtonClickHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Handlers\OnMouseClickFileNodeHandler.cpp">
+    <ClCompile Include="Sources\Handlers\OnMouseClickFileNodeHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Features\FileHierarchyWindowRefreshSystem.cpp">
+    <ClCompile Include="Sources\Features\FileHierarchyWindowRefreshSystem.cpp">
       <Filter>Features\Main\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Handlers\OnFileHierarchyClickHandler.cpp">
+    <ClCompile Include="Sources\Handlers\OnFileHierarchyClickHandler.cpp">
       <Filter>Handlers\Menu\View</Filter>
     </ClCompile>
-    <ClCompile Include="Handlers\OnOpenProjectClickHandler.cpp">
+    <ClCompile Include="Sources\Handlers\OnOpenProjectClickHandler.cpp">
       <Filter>Handlers\Menu\File</Filter>
     </ClCompile>
-    <ClCompile Include="Features\ObjectHierarchyWindowRefreshSystem.cpp">
+    <ClCompile Include="Sources\Features\ObjectHierarchyWindowRefreshSystem.cpp">
       <Filter>Features\Main\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Handlers\OnOpenComponentViewerClickHandler.cpp">
+    <ClCompile Include="Sources\Handlers\OnOpenComponentViewerClickHandler.cpp">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Handlers\OnOpenSystemViewerClickHandler.cpp">
+    <ClCompile Include="Sources\Handlers\OnOpenSystemViewerClickHandler.cpp">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Features\InitWindowsFeature.cpp">
+    <ClCompile Include="Sources\Features\InitWindowsFeature.cpp">
       <Filter>Features\Main\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Features\MainFeature.cpp">
+    <ClCompile Include="Sources\Features\MainFeature.cpp">
       <Filter>Features\Main</Filter>
     </ClCompile>
-    <ClCompile Include="Features\BootstrapperFeature.cpp">
+    <ClCompile Include="Sources\Features\BootstrapperFeature.cpp">
       <Filter>Features\Bootstrapper</Filter>
     </ClCompile>
-    <ClCompile Include="Features\BootstrapperSystem.cpp">
+    <ClCompile Include="Sources\Features\BootstrapperSystem.cpp">
       <Filter>Features\Bootstrapper</Filter>
     </ClCompile>
-    <ClCompile Include="Features\FileHierarchyWindowInitSystem.cpp">
+    <ClCompile Include="Sources\Features\FileHierarchyWindowInitSystem.cpp">
       <Filter>Features\Main\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Features\ObjectHierarchyWindowInitSystem.cpp">
+    <ClCompile Include="Sources\Features\ObjectHierarchyWindowInitSystem.cpp">
       <Filter>Features\Main\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Generated files\Aggregator\ComponentEntityManagerExtensionImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\ComponentJsonSerializerImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\ComponentReflectionAggregatorImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\ComponentTypeInfoImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\DefMainFunc_DeveloperDLL.cpp" />
-    <ClCompile Include="Generated files\Aggregator\ScenePartReflectionAggregatorImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\HandlerReflectionAggregatorImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\HandlerTypeInformationImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\HandlerTypeFactoryImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\SystemReflectionAggregatorImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\SystemTypeInformationImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\SystemDynamicCasterImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\SystemTypeFactoryImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\ComponentDynamicCasterImpl.cpp" />
-    <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
-    <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
-    <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\EcsDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Container\EcsTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\HandlerTypeFactory.cpp" />
-    <ClCompile Include="Generated files\Container\HandlerTypeInfo.cpp" />
-    <ClCompile Include="Generated files\Container\SystemTypeFactory.cpp" />
-    <ClCompile Include="Generated files\Container\ComponentDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.cpp" />
-    <ClCompile Include="Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentEntityManagerExtensionImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentJsonSerializerImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentTypeInfoImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\DefMainFunc_DeveloperDLL.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ScenePartReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\HandlerReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\HandlerTypeInformationImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\HandlerTypeFactoryImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\SystemReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\SystemTypeInformationImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\SystemDynamicCasterImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\SystemTypeFactoryImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentDynamicCasterImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\ComponentEntMng.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\ComponentJson.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\ComponentTypeInfo.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\EcsDynamicCaster.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\EcsTypeInfo.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\HandlerTypeFactory.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\HandlerTypeInfo.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\SystemTypeFactory.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\ComponentDynamicCaster.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Editor.project" />
+    <None Include="Meta\Launch.json" />
     <None Include="Assets\Scenes\Main.scene">
       <Filter>Scenes</Filter>
     </None>
     <None Include="Assets\Scenes\Bootstrapper.scene">
       <Filter>Scenes</Filter>
     </None>
-    <None Include="Assets\Scenes\SceneManagerContentMap.json">
-      <Filter>Scenes</Filter>
-    </None>
     <None Include="Assets\Prefabs\FileHierarchyWindow.prefab">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Assets\Prefabs\PrefabManagerContentMap.json">
-      <Filter>Prefabs</Filter>
-    </None>
-    <None Include="Assets\Resources.json">
+    <None Include="Meta\Resources.json">
       <Filter>Resources</Filter>
     </None>
     <None Include="Assets\Prefabs\OpenProjectDialog.prefab">
@@ -102,10 +96,10 @@
     <None Include="Assets\Prefabs\ObjectHierarchyWindow.prefab">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Generated files\Container\projectComponentConfig.json" />
-    <None Include="Generated files\Container\projectEcsSystemConfig.json" />
-    <None Include="Generated files\Container\projectHandlerConfig.json" />
-    <None Include="Generated files\Container\projectSystemConfig.json" />
+    <None Include="Meta\Generated files\Container\projectComponentConfig.json" />
+    <None Include="Meta\Generated files\Container\projectEcsSystemConfig.json" />
+    <None Include="Meta\Generated files\Container\projectHandlerConfig.json" />
+    <None Include="Meta\Generated files\Container\projectSystemConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -197,127 +191,127 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Handlers\OpenProjectOkButtonClickHandler.h">
+    <ClInclude Include="Sources\Handlers\OpenProjectOkButtonClickHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnCloseDialogHandler.h">
+    <ClInclude Include="Sources\Handlers\OnCloseDialogHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnCloseWindowHandler.h">
+    <ClInclude Include="Sources\Handlers\OnCloseWindowHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\CurrentPathToInputTextHandler.h">
+    <ClInclude Include="Sources\Handlers\CurrentPathToInputTextHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OpenProjectCancelButtonClickHandler.h">
+    <ClInclude Include="Sources\Handlers\OpenProjectCancelButtonClickHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\FilePathNodeComponent.h">
+    <ClInclude Include="Sources\Components\FilePathNodeComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\FileHierarchyWindowTagComponent.h">
+    <ClInclude Include="Sources\Components\FileHierarchyWindowTagComponent.h">
       <Filter>Components\WindowTags</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnMouseClickFileNodeHandler.h">
+    <ClInclude Include="Sources\Handlers\OnMouseClickFileNodeHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Components\ObjectHierarchyWindowTagComponent.h">
+    <ClInclude Include="Sources\Components\ObjectHierarchyWindowTagComponent.h">
       <Filter>Components\WindowTags</Filter>
     </ClInclude>
-    <ClInclude Include="Components\InspectorWindowTagComponent.h">
+    <ClInclude Include="Sources\Components\InspectorWindowTagComponent.h">
       <Filter>Components\WindowTags</Filter>
     </ClInclude>
-    <ClInclude Include="Components\FileHierarchyWindowRefreshTagComponent.h">
+    <ClInclude Include="Sources\Components\FileHierarchyWindowRefreshTagComponent.h">
       <Filter>Components\ServiceTags</Filter>
     </ClInclude>
-    <ClInclude Include="Features\FileHierarchyWindowRefreshSystem.h">
+    <ClInclude Include="Sources\Features\FileHierarchyWindowRefreshSystem.h">
       <Filter>Features\Main\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnExitClickHandler.h">
+    <ClInclude Include="Sources\Handlers\OnExitClickHandler.h">
       <Filter>Handlers\Menu\File</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnOpenProjectClickHandler.h">
+    <ClInclude Include="Sources\Handlers\OnOpenProjectClickHandler.h">
       <Filter>Handlers\Menu\File</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnFileHierarchyClickHandler.h">
+    <ClInclude Include="Sources\Handlers\OnFileHierarchyClickHandler.h">
       <Filter>Handlers\Menu\View</Filter>
     </ClInclude>
-    <ClInclude Include="Components\ObjectHierarchyWindowRefreshTagComponent.h">
+    <ClInclude Include="Sources\Components\ObjectHierarchyWindowRefreshTagComponent.h">
       <Filter>Components\ServiceTags</Filter>
     </ClInclude>
-    <ClInclude Include="Features\ObjectHierarchyWindowRefreshSystem.h">
+    <ClInclude Include="Sources\Features\ObjectHierarchyWindowRefreshSystem.h">
       <Filter>Features\Main\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Components\ProjectConfigComponent.h">
+    <ClInclude Include="Sources\Components\ProjectConfigComponent.h">
       <Filter>Components\ProjectEntity</Filter>
     </ClInclude>
-    <ClInclude Include="Components\EditorInfoTagComponent.h">
+    <ClInclude Include="Sources\Components\EditorInfoTagComponent.h">
       <Filter>Components\ProjectEntity</Filter>
     </ClInclude>
-    <ClInclude Include="Components\AbsoluteFilePathComponent.h">
+    <ClInclude Include="Sources\Components\AbsoluteFilePathComponent.h">
       <Filter>Components\ProjectEntity</Filter>
     </ClInclude>
-    <ClInclude Include="Components\AssetAbsoluteFilePathComponent.h">
+    <ClInclude Include="Sources\Components\AssetAbsoluteFilePathComponent.h">
       <Filter>Components\ProjectEntity</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnOpenComponentViewerClickHandler.h">
+    <ClInclude Include="Sources\Handlers\OnOpenComponentViewerClickHandler.h">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\OnOpenSystemViewerClickHandler.h">
+    <ClInclude Include="Sources\Handlers\OnOpenSystemViewerClickHandler.h">
       <Filter>Handlers\Menu\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Features\InitWindowsFeature.h">
+    <ClInclude Include="Sources\Features\InitWindowsFeature.h">
       <Filter>Features\Main\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Components\MainWindowTagComponent.h">
+    <ClInclude Include="Sources\Components\MainWindowTagComponent.h">
       <Filter>Components\WindowTags</Filter>
     </ClInclude>
-    <ClInclude Include="Features\MainFeature.h">
+    <ClInclude Include="Sources\Features\MainFeature.h">
       <Filter>Features\Main</Filter>
     </ClInclude>
-    <ClInclude Include="Features\BootstrapperFeature.h">
+    <ClInclude Include="Sources\Features\BootstrapperFeature.h">
       <Filter>Features\Bootstrapper</Filter>
     </ClInclude>
-    <ClInclude Include="Features\BootstrapperSystem.h">
+    <ClInclude Include="Sources\Features\BootstrapperSystem.h">
       <Filter>Features\Bootstrapper</Filter>
     </ClInclude>
-    <ClInclude Include="Features\FileHierarchyWindowInitSystem.h">
+    <ClInclude Include="Sources\Features\FileHierarchyWindowInitSystem.h">
       <Filter>Features\Main\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Features\ObjectHierarchyWindowInitSystem.h">
+    <ClInclude Include="Sources\Features\ObjectHierarchyWindowInitSystem.h">
       <Filter>Features\Main\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Components\MainWindowPrefabGuidComponent.h">
+    <ClInclude Include="Sources\Components\MainWindowPrefabGuidComponent.h">
       <Filter>Components\WindowTags</Filter>
     </ClInclude>
-    <ClInclude Include="Generated files\Aggregator\ComponentEntityManagerExtensionImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\ComponentJsonSerializerImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\ComponentReflectionAggregatorImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\ComponentTypeInfoImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\ScenePartReflectionAggregatorImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\HandlerReflectionAggregatorImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\HandlerTypeInformationImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\HandlerTypeFactoryImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\SystemReflectionAggregatorImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\SystemTypeInformationImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\SystemDynamicCasterImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\SystemTypeFactoryImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\ComponentDynamicCasterImpl.h" />
-    <ClInclude Include="Generated files\Container\ComponentEntMng.h" />
-    <ClInclude Include="Generated files\Container\ComponentIncludeList.h" />
-    <ClInclude Include="Generated files\Container\ComponentJson.h" />
-    <ClInclude Include="Generated files\Container\ComponentTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\EcsDynamicCaster.h" />
-    <ClInclude Include="Generated files\Container\EcsSystemIncludeList.h" />
-    <ClInclude Include="Generated files\Container\EcsTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\HandlerIncludeList.h" />
-    <ClInclude Include="Generated files\Container\HandlerTypeFactory.h" />
-    <ClInclude Include="Generated files\Container\HandlerTypeInfo.h" />
-    <ClInclude Include="Generated files\Container\SystemIncludeList.h" />
-    <ClInclude Include="Generated files\Container\SystemTypeFactory.h" />
-    <ClInclude Include="Generated files\Container\ComponentDynamicCaster.h" />
-    <ClInclude Include="Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.h" />
-    <ClInclude Include="Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentEntityManagerExtensionImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentJsonSerializerImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentReflectionAggregatorImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentTypeInfoImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ScenePartReflectionAggregatorImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\HandlerReflectionAggregatorImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\HandlerTypeInformationImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\HandlerTypeFactoryImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\SystemReflectionAggregatorImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\SystemTypeInformationImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\SystemDynamicCasterImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\SystemTypeFactoryImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentDynamicCasterImpl.h" />
+    <ClInclude Include="Meta\Generated files\Container\ComponentEntMng.h" />
+    <ClInclude Include="Meta\Generated files\Container\ComponentIncludeList.h" />
+    <ClInclude Include="Meta\Generated files\Container\ComponentJson.h" />
+    <ClInclude Include="Meta\Generated files\Container\ComponentTypeInfo.h" />
+    <ClInclude Include="Meta\Generated files\Container\EcsDynamicCaster.h" />
+    <ClInclude Include="Meta\Generated files\Container\EcsSystemIncludeList.h" />
+    <ClInclude Include="Meta\Generated files\Container\EcsTypeInfo.h" />
+    <ClInclude Include="Meta\Generated files\Container\HandlerIncludeList.h" />
+    <ClInclude Include="Meta\Generated files\Container\HandlerTypeFactory.h" />
+    <ClInclude Include="Meta\Generated files\Container\HandlerTypeInfo.h" />
+    <ClInclude Include="Meta\Generated files\Container\SystemIncludeList.h" />
+    <ClInclude Include="Meta\Generated files\Container\SystemTypeFactory.h" />
+    <ClInclude Include="Meta\Generated files\Container\ComponentDynamicCaster.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.h" />
   </ItemGroup>
 </Project>

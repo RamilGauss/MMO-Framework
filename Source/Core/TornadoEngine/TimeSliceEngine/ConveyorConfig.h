@@ -9,14 +9,15 @@ See for more information LICENSE.md.
 
 #include <list>
 
+#include "TypeDef.h"
+
 #include "ModuleType.h"
 
 namespace nsTornadoEngine
 {
     #pragma REFLECTION_ATTRIBUTE
-    struct TConveyorConfig
+    struct DllExport TConveyorConfig
     {
-        std::string engineVecrsion;
         std::list<ModuleType> modules;
     };
 }

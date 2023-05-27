@@ -16,7 +16,7 @@ using namespace nsTornadoEngine;
 
 void TStartedScenesInitSystem::Init()
 {
-    auto& startedScenes = Project()->mResources.gameEngine.startScenesGuid;
+    auto& startedScenes = Project()->mProjectConfig.startScenesGuid;
 
     for (auto& sceneGuid : startedScenes) {
         Modules()->SceneMng()->InstantiateByGuid(sceneGuid);

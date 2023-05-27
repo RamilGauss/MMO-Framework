@@ -1,0 +1,52 @@
+{
+    "reflectionCodeGeneratorFileName": "../../../../Exe/ReflectionCodeGenerator_d.exe",
+    "entityManagerHeaderPath": "ECS/include/EntityManager.h",
+
+    "coreConfig": {
+        "exportDeclaration": "DllExport",
+        "targetDirectory": "../Generated files/Container",
+        "nameSpace": "nsTornadoEngine",
+        "parseDirectory": "..",
+
+        "componentConfig": {
+            "includeListFileName": "ComponentIncludeList",
+            "inheritanceFilter": "nsECSFramework::IComponent",
+            "typeInfo": {
+                "fileName": "ComponentTypeInfo",
+                "typeName": "TComponentTypeInfo"
+            },
+            "json": {
+                "fileName": "ComponentJson",
+                "typeName": "TComponentJson"
+            },
+            "binary": {
+                "fileName": "ComponentBinary",
+                "typeName": "TComponentBinary"
+            },
+            "imGui": {
+                "fileName": "ComponentImGui",
+                "typeName": "TComponentImGui"
+            },
+            "entMng": {
+                "fileName": "ComponentEntMng",
+                "typeName": "TComponentEntMng"
+            },
+            "dynamicCaster": {
+                "fileName": "ComponentDynamicCaster",
+                "typeName": "TComponentDynamicCaster"
+            }
+        },
+        "imGuiWidgetsConfig": {
+            "includeListFileName": "ImGuiWidgetsIncludeList",
+            "imGuiWidgetsDirectory": "../../../Modules/ImGuiWidgets",
+            "typeInfo": {
+                "fileName": "ImGuiWidgetsTypeInfo",
+                "typeName": "TImGuiWidgetsTypeInfo"
+            },
+            "dynamicCaster": {
+                "fileName": "ImGuiWidgetsDynamicCaster",
+                "typeName": "TImGuiWidgetsDynamicCaster"
+            }
+        }
+    }
+}

@@ -15,11 +15,6 @@ See for more information LICENSE.md.
 
 #include "Config.h"
 
-#include "Systems/Aggregator/GeneratorFeature.h"
-#include "Systems/Core/GeneratorFeature.h"
-#include "Systems/Project/GeneratorFeature.h"
-#include "Systems/SetupConfig/ConfigFeature.h"
-
 // Автоматизация
 // Управляющий над кодогенератором для нужд ядра и проекта в редакторе.
 // Настраивает задания для генератора, хранит изначальные настройки.
@@ -29,14 +24,9 @@ namespace nsContainerCodeGenerator
 {
     class DllExport TContainerCodeGenerator
     {
+    protected:
         nsECSFramework::TEntityManager mEntMng;
         nsECSFramework::TFeature mMainFeature;
-
-        nsSetupConfig::TConfigFeature    mSetupConfigFeature;
-        nsCore::TGeneratorFeature        mCoreGeneratorFeature;
-        nsProject::TGeneratorFeature     mProjectGeneratorFeature;
-        nsAggregator::TGeneratorFeature  mAggregatorDumperFeature;
-
     public:
         enum Result : int
         {
@@ -46,12 +36,14 @@ namespace nsContainerCodeGenerator
         };
 
         TContainerCodeGenerator();
+        virtual ~TContainerCodeGenerator();
 
         [[nodiscard]]
-        Result Generate(int argc, char** argv);
-        Result Generate(int argc, char** argv);
+        virtual Result Generate(const std::string& filePath) = 0;
 
-    private:
-        void Init(int argc, char** argv);
+    protected:
+        void CreateSingleEntity(const std::string& filePath);
+
+        Result Execute();
     };
 }

@@ -35,15 +35,8 @@ bool TProjectConfigLoader::Load(TProjectConfigContainer* pcc)
     if (!LoadBinary()) {
         return false;
     }
-    if (!LoadSceneContentMap()) {
-        return false;
-    }
-    if (!LoadPrefabContentMap()) {
-        return false;
-    }
 
-    ConvertRelToAbsScene();
-    ConvertRelToAbsPrefab();
+    ConvertResourcesRelToAbs();
 
     return true;
 }
@@ -95,33 +88,16 @@ bool TProjectConfigLoader::LoadResources()
     return Load(mPcc->GetResourcesAbsPath(), &(mPcc->mResources));
 }
 //------------------------------------------------------------------------
-bool TProjectConfigLoader::LoadSceneContentMap()
+void TProjectConfigLoader::ConvertResourcesRelToAbs()
 {
-    return Load(mPcc->GetSceneContentMapAbsPath(), &(mPcc->mSceneContentMap));
-}
-//------------------------------------------------------------------------
-bool TProjectConfigLoader::LoadPrefabContentMap()
-{
-    return Load(mPcc->GetPrefabContentMapAbsPath(), &(mPcc->mPrefabContentMap));
-}
-//------------------------------------------------------------------------
-void TProjectConfigLoader::ConvertRelToAbsScene()
-{
-    auto sceneContentMapAbsPath = mPcc->GetSceneContentMapAbsPath();
-    auto sceneContentMapDirPath = TPathOperations::FileDirPath(sceneContentMapAbsPath);
+    auto resourcesAbsPath = mPcc->GetResourcesAbsPath();
 
-    for (auto& guidPath : mPcc->mSceneContentMap.guidPathMap) {
-        guidPath.second = TPathOperations::CalculatePathBy(sceneContentMapDirPath, guidPath.second);
+    for (auto& guidPath : mPcc->mResources.scenes.guidPathMap) {
+        guidPath.second = TPathOperations::CalculatePathBy(resourcesAbsPath, guidPath.second);
     }
-}
-//------------------------------------------------------------------------
-void TProjectConfigLoader::ConvertRelToAbsPrefab()
-{
-    auto prefabContentMapAbsPath = mPcc->GetPrefabContentMapAbsPath();
-    auto prefabContentMapDirPath = TPathOperations::FileDirPath(prefabContentMapAbsPath);
 
-    for (auto& guidPath : mPcc->mPrefabContentMap.guidPathMap) {
-        guidPath.second = TPathOperations::CalculatePathBy(prefabContentMapDirPath, guidPath.second);
+    for (auto& guidPath : mPcc->mResources.prefabs.guidPathMap) {
+        guidPath.second = TPathOperations::CalculatePathBy(resourcesAbsPath, guidPath.second);
     }
 }
 //------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_12 15:22:23.581
+// File has been generated at 2023_05_27 10:43:54.595
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -197,30 +197,6 @@ void TTornadoEngineJsonSerializer::Init()
     
     m.insert({ rtti__nsTornadoEngine_TFrameworkResourcesTypeFunc, _nsTornadoEngine_TFrameworkResourcesTypeFunc });
     
-    TypeFunc _nsTornadoEngine_TGameEngineResourcesTypeFunc;
-    _nsTornadoEngine_TGameEngineResourcesTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsTornadoEngine::TGameEngineResources>((nsTornadoEngine::TGameEngineResources*) p, str);
-    };
-    _nsTornadoEngine_TGameEngineResourcesTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsTornadoEngine::TGameEngineResources>((nsTornadoEngine::TGameEngineResources*) p, str, err);
-    };
-    
-    auto rtti__nsTornadoEngine_TGameEngineResourcesTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TGameEngineResources>();
-    
-    m.insert({ rtti__nsTornadoEngine_TGameEngineResourcesTypeFunc, _nsTornadoEngine_TGameEngineResourcesTypeFunc });
-    
-    TypeFunc _nsTornadoEngine_TGeneratorConfigTypeFunc;
-    _nsTornadoEngine_TGeneratorConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsTornadoEngine::TGeneratorConfig>((nsTornadoEngine::TGeneratorConfig*) p, str);
-    };
-    _nsTornadoEngine_TGeneratorConfigTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsTornadoEngine::TGeneratorConfig>((nsTornadoEngine::TGeneratorConfig*) p, str, err);
-    };
-    
-    auto rtti__nsTornadoEngine_TGeneratorConfigTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TGeneratorConfig>();
-    
-    m.insert({ rtti__nsTornadoEngine_TGeneratorConfigTypeFunc, _nsTornadoEngine_TGeneratorConfigTypeFunc });
-    
     TypeFunc _nsTornadoEngine_TProjectConfigTypeFunc;
     _nsTornadoEngine_TProjectConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsTornadoEngine::TProjectConfig>((nsTornadoEngine::TProjectConfig*) p, str);
@@ -232,18 +208,6 @@ void TTornadoEngineJsonSerializer::Init()
     auto rtti__nsTornadoEngine_TProjectConfigTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TProjectConfig>();
     
     m.insert({ rtti__nsTornadoEngine_TProjectConfigTypeFunc, _nsTornadoEngine_TProjectConfigTypeFunc });
-    
-    TypeFunc _nsTornadoEngine_TProjectInfoTypeFunc;
-    _nsTornadoEngine_TProjectInfoTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsTornadoEngine::TProjectInfo>((nsTornadoEngine::TProjectInfo*) p, str);
-    };
-    _nsTornadoEngine_TProjectInfoTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsTornadoEngine::TProjectInfo>((nsTornadoEngine::TProjectInfo*) p, str, err);
-    };
-    
-    auto rtti__nsTornadoEngine_TProjectInfoTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TProjectInfo>();
-    
-    m.insert({ rtti__nsTornadoEngine_TProjectInfoTypeFunc, _nsTornadoEngine_TProjectInfoTypeFunc });
     
     TypeFunc _nsTornadoEngine_TResourceContentTypeFunc;
     _nsTornadoEngine_TResourceContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -609,38 +573,41 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TEntityContent*
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TFrameworkResources* p, Jobj& obj)
 {
-    auto resources_c0 = PUM::AddObject(obj, "resources");
-    for(auto& resources_e0 : p->resources) {
-        PUM::Push(resources_c0, PUM::ConvertToString(resources_e0.first).data(), resources_e0.second);
-    }
-    auto gameEngine_o = PUM::AddObject(obj, "gameEngine");
-    _Serialize(&(p->gameEngine), gameEngine_o);
+    auto resources_o = PUM::AddObject(obj, "resources");
+    _Serialize(&(p->resources), resources_o);
+    auto prefabs_o = PUM::AddObject(obj, "prefabs");
+    _Serialize(&(p->prefabs), prefabs_o);
+    auto scenes_o = PUM::AddObject(obj, "scenes");
+    _Serialize(&(p->scenes), scenes_o);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TFrameworkResources* p, const Jobj& obj)
 {
-    auto resources_a0 = POM::FindObject(obj, "resources");
-    for(auto& resources_e0 : resources_a0) {
-        p->resources.insert({ resources_e0.name.GetString(), resources_e0.value.GetString() });
-    }
-    auto gameEngine_o0 = POM::FindObject(obj, "gameEngine");
-    _Deserialize(&(p->gameEngine), gameEngine_o0);
+    auto resources_o0 = POM::FindObject(obj, "resources");
+    _Deserialize(&(p->resources), resources_o0);
+    auto prefabs_o0 = POM::FindObject(obj, "prefabs");
+    _Deserialize(&(p->prefabs), prefabs_o0);
+    auto scenes_o0 = POM::FindObject(obj, "scenes");
+    _Deserialize(&(p->scenes), scenes_o0);
 }
 //---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TGameEngineResources* p, Jobj& obj)
+void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TProjectConfig* p, Jobj& obj)
 {
-    PUM::Push(obj, "sceneManagerContentMapPath", p->sceneManagerContentMapPath);
+    PUM::Push(obj, "binaryFilePath", p->binaryFilePath);
+    PUM::Push(obj, "conveyorFilePath", p->conveyorFilePath);
+    PUM::Push(obj, "resourcesFilePath", p->resourcesFilePath);
     PUM::Value startScenesGuid_a0(rapidjson::kArrayType);
     for(auto& startScenesGuid_e0 : p->startScenesGuid) {
         PUM::PushBack(startScenesGuid_a0, startScenesGuid_e0);
     }
     PUM::Push(obj, "startScenesGuid", startScenesGuid_a0);
-    PUM::Push(obj, "prefabManagerContentMapPath", p->prefabManagerContentMapPath);
 }
 //---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TGameEngineResources* p, const Jobj& obj)
+void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TProjectConfig* p, const Jobj& obj)
 {
-    POM::PopStr(obj, "sceneManagerContentMapPath", p->sceneManagerContentMapPath);
+    POM::PopStr(obj, "binaryFilePath", p->binaryFilePath);
+    POM::PopStr(obj, "conveyorFilePath", p->conveyorFilePath);
+    POM::PopStr(obj, "resourcesFilePath", p->resourcesFilePath);
     if (POM::IsArray(obj, "startScenesGuid")) {
         auto startScenesGuid_a0 = POM::FindArray(obj, "startScenesGuid");
         for(auto& startScenesGuid_e0 : startScenesGuid_a0) {
@@ -651,55 +618,6 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TGameEngineReso
         POM::PopStr(obj, "startScenesGuid", startScenesGuid_t0);
         p->startScenesGuid.push_back(startScenesGuid_t0);
     }
-    POM::PopStr(obj, "prefabManagerContentMapPath", p->prefabManagerContentMapPath);
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TGeneratorConfig* p, Jobj& obj)
-{
-    PUM::Push(obj, "nameSpace", p->nameSpace);
-    PUM::Push(obj, "directoryPath", p->directoryPath);
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TGeneratorConfig* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "nameSpace", p->nameSpace);
-    POM::PopStr(obj, "directoryPath", p->directoryPath);
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TProjectConfig* p, Jobj& obj)
-{
-    auto info_o = PUM::AddObject(obj, "info");
-    _Serialize(&(p->info), info_o);
-    PUM::Push(obj, "binaryFilePath", p->binaryFilePath);
-    PUM::Push(obj, "conveyorFilePath", p->conveyorFilePath);
-    PUM::Push(obj, "resourcesFilePath", p->resourcesFilePath);
-    auto generatorConfig_o = PUM::AddObject(obj, "generatorConfig");
-    _Serialize(&(p->generatorConfig), generatorConfig_o);
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TProjectConfig* p, const Jobj& obj)
-{
-    auto info_o0 = POM::FindObject(obj, "info");
-    _Deserialize(&(p->info), info_o0);
-    POM::PopStr(obj, "binaryFilePath", p->binaryFilePath);
-    POM::PopStr(obj, "conveyorFilePath", p->conveyorFilePath);
-    POM::PopStr(obj, "resourcesFilePath", p->resourcesFilePath);
-    auto generatorConfig_o0 = POM::FindObject(obj, "generatorConfig");
-    _Deserialize(&(p->generatorConfig), generatorConfig_o0);
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TProjectInfo* p, Jobj& obj)
-{
-    PUM::Push(obj, "company", p->company);
-    PUM::Push(obj, "appName", p->appName);
-    PUM::Push(obj, "license", p->license);
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TProjectInfo* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "company", p->company);
-    POM::PopStr(obj, "appName", p->appName);
-    POM::PopStr(obj, "license", p->license);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TResourceContent* p, Jobj& obj)
@@ -727,17 +645,9 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TResourceConten
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TResourceContentMap* p, Jobj& obj)
 {
-    auto guidPathMap_c0 = PUM::AddObject(obj, "guidPathMap");
-    for(auto& guidPathMap_e0 : p->guidPathMap) {
-        PUM::Push(guidPathMap_c0, PUM::ConvertToString(guidPathMap_e0.first).data(), guidPathMap_e0.second);
-    }
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TResourceContentMap* p, const Jobj& obj)
 {
-    auto guidPathMap_a0 = POM::FindObject(obj, "guidPathMap");
-    for(auto& guidPathMap_e0 : guidPathMap_a0) {
-        p->guidPathMap.insert({ guidPathMap_e0.name.GetString(), guidPathMap_e0.value.GetString() });
-    }
 }
 //---------------------------------------------------------------------------------------

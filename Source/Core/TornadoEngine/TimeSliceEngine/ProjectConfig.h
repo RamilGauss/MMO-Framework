@@ -7,41 +7,20 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <vector>
-#include <list>
 #include <string>
+#include <list>
 
 #include "TypeDef.h"
 
 namespace nsTornadoEngine
 {
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TProjectInfo
-    {
-        std::string company;
-        std::string appName;
-        std::string license;
-    };
-
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TGeneratorConfig
-    {
-        std::string nameSpace;
-        std::string directoryPath;
-    };
-
-#pragma REFLECTION_ATTRIBUTE
     struct DllExport TProjectConfig
     {
-        std::string engineVersion;
-
-        TProjectInfo info;
-
         std::string binaryFilePath;
-
         std::string conveyorFilePath;
         std::string resourcesFilePath;
 
-        TGeneratorConfig generatorConfig;
+        std::list<std::string> startScenesGuid;
     };
 }

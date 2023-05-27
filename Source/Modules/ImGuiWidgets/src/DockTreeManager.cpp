@@ -18,7 +18,7 @@ void TDockTreeManager::Render()
 {
     mLightForFrameTrees.Build();
 
-    if (mLightForFrameTrees == mLightTrees) {
+    if (mLightForFrameTrees.operator==(mLightTrees)) {
         return;
     }
 

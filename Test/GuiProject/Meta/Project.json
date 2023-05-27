@@ -1,0 +1,11 @@
+{
+	"engineVersion": "0.0.0.1",
+	"info": {
+		"company": "C++ Company",
+		"appName": "GuiTest",
+		"license": "MIT"
+	},
+	"binaryFilePath": "../../../../../Exe/GuiProject_d.dll",
+	"conveyorFilePath": "./Conveyor.json",
+	"resourcesFilePath": "../Assets/Resources.json"
+}

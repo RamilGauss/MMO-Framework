@@ -82,15 +82,6 @@ namespace nsContainerCodeGenerator
         TGeneratedClass typeFactory;
     };
 
-//#pragma REFLECTION_ATTRIBUTE
-//    struct DllExport TMenuItemConfig : TIncludeListFileName
-//    {
-//        std::string inheritanceFilter;
-//
-//        TGeneratedClass typeInfo;
-//        TGeneratedClass typeFactory;
-//    };
-
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TAggregatorClass
     {
@@ -131,18 +122,9 @@ namespace nsContainerCodeGenerator
         TAggregatorClass dynamicCasterImpl;
     };
 
-//#pragma REFLECTION_ATTRIBUTE
-//    struct DllExport TMenuItemAggregator : TAggregatorClass
-//    {
-//        TAggregatorClass typeInfoImpl;
-//        TAggregatorClass typeFactoryImpl;
-//    };
-
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TCoreConfig
     {
-        bool isNeedGenerate;
-
         std::string exportDeclaration;
         std::string targetDirectory;
         std::string nameSpace;
@@ -155,8 +137,7 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TProjectConfig
     {
-        std::string pathToCore;
-        std::string absPathToProject;
+        std::string relPathToSources;
 
         std::string exportDeclaration;
         std::string targetDirectory;
@@ -167,7 +148,6 @@ namespace nsContainerCodeGenerator
         THandlerConfig handlerConfig;
         TSystemConfig systemConfig;
         TEcsSystemConfig ecsSystemConfig;
-        //TMenuItemConfig menuItemConfig;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -186,20 +166,27 @@ namespace nsContainerCodeGenerator
         TComponentAggregator componentImpl;
         THandlerAggregator handlerImpl;
         TSystemAggregator systemImpl;
-        //TMenuItemAggregator menuItemImpl;
         TImGuiWidgetsAggregator imGuiWidgetsImpl;
     };
 
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TConfig
+    struct DllExport TCoreContainerConfig
     {
         std::string reflectionCodeGeneratorFileName;
 
         std::string entityManagerHeaderPath;
 
+        TCoreConfig coreConfig;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TProjectContainerConfig
+    {
         std::string baseHandlerTypeName;
 
-        TCoreConfig coreConfig;
+        std::string absCorePath;
+        std::string relCoreConfigPath;
+
         TProjectConfig projectConfig;
         TAggregator aggregator;
     };

@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 #include "Constants.h"
 #include "MessageException.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/CoreConfigComponent.h"
 #include "Components/ReflectionConfigComponent.h"
 
 #include "CodeGeneratorImplementation/GeneratorList.h"
@@ -27,13 +27,9 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
 {
     void TPrepareConfigSystem::Execute()
     {
-        auto eid = nsECSFramework::SingleEntity<TConfigComponent>(mEntMng);
+        auto eid = nsECSFramework::SingleEntity<TCoreConfigComponent>(mEntMng);
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
-
-        if (!configComponent->value.coreConfig.isNeedGenerate) {
-            return;
-        }
+        auto configComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
 
         const auto& componentConfig = configComponent->value.coreConfig.componentConfig;
 

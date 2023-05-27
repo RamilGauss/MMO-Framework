@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_05 12:07:31.818
+// File has been generated at 2023_05_16 15:19:57.717
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -77,18 +77,6 @@ void TJsonSerializer::Init()
     
     m.insert({ rtti__nsContainerCodeGenerator_TComponentConfigTypeFunc, _nsContainerCodeGenerator_TComponentConfigTypeFunc });
     
-    TypeFunc _nsContainerCodeGenerator_TConfigTypeFunc;
-    _nsContainerCodeGenerator_TConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsContainerCodeGenerator::TConfig>((nsContainerCodeGenerator::TConfig*) p, str);
-    };
-    _nsContainerCodeGenerator_TConfigTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsContainerCodeGenerator::TConfig>((nsContainerCodeGenerator::TConfig*) p, str, err);
-    };
-    
-    auto rtti__nsContainerCodeGenerator_TConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TConfig>();
-    
-    m.insert({ rtti__nsContainerCodeGenerator_TConfigTypeFunc, _nsContainerCodeGenerator_TConfigTypeFunc });
-    
     TypeFunc _nsContainerCodeGenerator_TCoreConfigTypeFunc;
     _nsContainerCodeGenerator_TCoreConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsContainerCodeGenerator::TCoreConfig>((nsContainerCodeGenerator::TCoreConfig*) p, str);
@@ -100,6 +88,18 @@ void TJsonSerializer::Init()
     auto rtti__nsContainerCodeGenerator_TCoreConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TCoreConfig>();
     
     m.insert({ rtti__nsContainerCodeGenerator_TCoreConfigTypeFunc, _nsContainerCodeGenerator_TCoreConfigTypeFunc });
+    
+    TypeFunc _nsContainerCodeGenerator_TCoreContainerConfigTypeFunc;
+    _nsContainerCodeGenerator_TCoreContainerConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsContainerCodeGenerator::TCoreContainerConfig>((nsContainerCodeGenerator::TCoreContainerConfig*) p, str);
+    };
+    _nsContainerCodeGenerator_TCoreContainerConfigTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsContainerCodeGenerator::TCoreContainerConfig>((nsContainerCodeGenerator::TCoreContainerConfig*) p, str, err);
+    };
+    
+    auto rtti__nsContainerCodeGenerator_TCoreContainerConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TCoreContainerConfig>();
+    
+    m.insert({ rtti__nsContainerCodeGenerator_TCoreContainerConfigTypeFunc, _nsContainerCodeGenerator_TCoreContainerConfigTypeFunc });
     
     TypeFunc _nsContainerCodeGenerator_TEcsSystemConfigTypeFunc;
     _nsContainerCodeGenerator_TEcsSystemConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -208,6 +208,18 @@ void TJsonSerializer::Init()
     auto rtti__nsContainerCodeGenerator_TProjectConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TProjectConfig>();
     
     m.insert({ rtti__nsContainerCodeGenerator_TProjectConfigTypeFunc, _nsContainerCodeGenerator_TProjectConfigTypeFunc });
+    
+    TypeFunc _nsContainerCodeGenerator_TProjectContainerConfigTypeFunc;
+    _nsContainerCodeGenerator_TProjectContainerConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsContainerCodeGenerator::TProjectContainerConfig>((nsContainerCodeGenerator::TProjectContainerConfig*) p, str);
+    };
+    _nsContainerCodeGenerator_TProjectContainerConfigTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsContainerCodeGenerator::TProjectContainerConfig>((nsContainerCodeGenerator::TProjectContainerConfig*) p, str, err);
+    };
+    
+    auto rtti__nsContainerCodeGenerator_TProjectContainerConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TProjectContainerConfig>();
+    
+    m.insert({ rtti__nsContainerCodeGenerator_TProjectContainerConfigTypeFunc, _nsContainerCodeGenerator_TProjectContainerConfigTypeFunc });
     
     TypeFunc _nsContainerCodeGenerator_TSystemAggregatorTypeFunc;
     _nsContainerCodeGenerator_TSystemAggregatorTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -391,35 +403,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TComponentConfig* p
     _Deserialize(&(p->dynamicCaster), dynamicCaster_o0);
 }
 //---------------------------------------------------------------------------------------
-void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TConfig* p, Jobj& obj)
-{
-    PUM::Push(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
-    PUM::Push(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
-    PUM::Push(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
-    auto coreConfig_o = PUM::AddObject(obj, "coreConfig");
-    _Serialize(&(p->coreConfig), coreConfig_o);
-    auto projectConfig_o = PUM::AddObject(obj, "projectConfig");
-    _Serialize(&(p->projectConfig), projectConfig_o);
-    auto aggregator_o = PUM::AddObject(obj, "aggregator");
-    _Serialize(&(p->aggregator), aggregator_o);
-}
-//---------------------------------------------------------------------------------------
-void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TConfig* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
-    POM::PopStr(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
-    POM::PopStr(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
-    auto coreConfig_o0 = POM::FindObject(obj, "coreConfig");
-    _Deserialize(&(p->coreConfig), coreConfig_o0);
-    auto projectConfig_o0 = POM::FindObject(obj, "projectConfig");
-    _Deserialize(&(p->projectConfig), projectConfig_o0);
-    auto aggregator_o0 = POM::FindObject(obj, "aggregator");
-    _Deserialize(&(p->aggregator), aggregator_o0);
-}
-//---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TCoreConfig* p, Jobj& obj)
 {
-    PUM::Push(obj, "isNeedGenerate", p->isNeedGenerate);
     PUM::Push(obj, "exportDeclaration", p->exportDeclaration);
     PUM::Push(obj, "targetDirectory", p->targetDirectory);
     PUM::Push(obj, "nameSpace", p->nameSpace);
@@ -432,7 +417,6 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TCoreConfig* p, Jobj&
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TCoreConfig* p, const Jobj& obj)
 {
-    POM::PopBool(obj, "isNeedGenerate", p->isNeedGenerate);
     POM::PopStr(obj, "exportDeclaration", p->exportDeclaration);
     POM::PopStr(obj, "targetDirectory", p->targetDirectory);
     POM::PopStr(obj, "nameSpace", p->nameSpace);
@@ -441,6 +425,22 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TCoreConfig* p, con
     _Deserialize(&(p->componentConfig), componentConfig_o0);
     auto imGuiWidgetsConfig_o0 = POM::FindObject(obj, "imGuiWidgetsConfig");
     _Deserialize(&(p->imGuiWidgetsConfig), imGuiWidgetsConfig_o0);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TCoreContainerConfig* p, Jobj& obj)
+{
+    PUM::Push(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
+    PUM::Push(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
+    auto coreConfig_o = PUM::AddObject(obj, "coreConfig");
+    _Serialize(&(p->coreConfig), coreConfig_o);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TCoreContainerConfig* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
+    POM::PopStr(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
+    auto coreConfig_o0 = POM::FindObject(obj, "coreConfig");
+    _Deserialize(&(p->coreConfig), coreConfig_o0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TEcsSystemConfig* p, Jobj& obj)
@@ -588,8 +588,7 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TParentClass* p, co
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectConfig* p, Jobj& obj)
 {
-    PUM::Push(obj, "pathToCore", p->pathToCore);
-    PUM::Push(obj, "absPathToProject", p->absPathToProject);
+    PUM::Push(obj, "relPathToSources", p->relPathToSources);
     PUM::Push(obj, "exportDeclaration", p->exportDeclaration);
     PUM::Push(obj, "targetDirectory", p->targetDirectory);
     PUM::Push(obj, "nameSpace", p->nameSpace);
@@ -606,8 +605,7 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectConfig* p, Jo
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectConfig* p, const Jobj& obj)
 {
-    POM::PopStr(obj, "pathToCore", p->pathToCore);
-    POM::PopStr(obj, "absPathToProject", p->absPathToProject);
+    POM::PopStr(obj, "relPathToSources", p->relPathToSources);
     POM::PopStr(obj, "exportDeclaration", p->exportDeclaration);
     POM::PopStr(obj, "targetDirectory", p->targetDirectory);
     POM::PopStr(obj, "nameSpace", p->nameSpace);
@@ -620,6 +618,30 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectConfig* p, 
     _Deserialize(&(p->systemConfig), systemConfig_o0);
     auto ecsSystemConfig_o0 = POM::FindObject(obj, "ecsSystemConfig");
     _Deserialize(&(p->ecsSystemConfig), ecsSystemConfig_o0);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectContainerConfig* p, Jobj& obj)
+{
+    PUM::Push(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
+    PUM::Push(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
+    PUM::Push(obj, "absCorePath", p->absCorePath);
+    PUM::Push(obj, "relCoreConfigPath", p->relCoreConfigPath);
+    auto projectConfig_o = PUM::AddObject(obj, "projectConfig");
+    _Serialize(&(p->projectConfig), projectConfig_o);
+    auto aggregator_o = PUM::AddObject(obj, "aggregator");
+    _Serialize(&(p->aggregator), aggregator_o);
+}
+//---------------------------------------------------------------------------------------
+void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectContainerConfig* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
+    POM::PopStr(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
+    POM::PopStr(obj, "absCorePath", p->absCorePath);
+    POM::PopStr(obj, "relCoreConfigPath", p->relCoreConfigPath);
+    auto projectConfig_o0 = POM::FindObject(obj, "projectConfig");
+    _Deserialize(&(p->projectConfig), projectConfig_o0);
+    auto aggregator_o0 = POM::FindObject(obj, "aggregator");
+    _Deserialize(&(p->aggregator), aggregator_o0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TSystemAggregator* p, Jobj& obj)

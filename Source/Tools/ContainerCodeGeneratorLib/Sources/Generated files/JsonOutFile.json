@@ -7,8 +7,8 @@
         "nsContainerCodeGenerator::TAggregatorClass",
         "nsContainerCodeGenerator::TComponentAggregator",
         "nsContainerCodeGenerator::TComponentConfig",
-        "nsContainerCodeGenerator::TConfig",
         "nsContainerCodeGenerator::TCoreConfig",
+        "nsContainerCodeGenerator::TCoreContainerConfig",
         "nsContainerCodeGenerator::TEcsSystemConfig",
         "nsContainerCodeGenerator::TGeneratedClass",
         "nsContainerCodeGenerator::THandlerAggregator",
@@ -18,6 +18,7 @@
         "nsContainerCodeGenerator::TIncludeListFileName",
         "nsContainerCodeGenerator::TParentClass",
         "nsContainerCodeGenerator::TProjectConfig",
+        "nsContainerCodeGenerator::TProjectContainerConfig",
         "nsContainerCodeGenerator::TSystemAggregator",
         "nsContainerCodeGenerator::TSystemConfig"
     ]

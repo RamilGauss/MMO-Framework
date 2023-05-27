@@ -21,9 +21,6 @@
     <Filter Include="Generator\Source Files">
       <UniqueIdentifier>{4fa2b2d8-36ce-4c13-b148-bfc3a8b5a3b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{d3bc664f-128b-473b-8f02-83289cf877c4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Dumper.cpp">
@@ -133,16 +130,5 @@
     <ClInclude Include="Sources\ReflectionCodeGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="$(SolutionDir)\conanfile.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="config.json">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Sources\JsonOutFile.json">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

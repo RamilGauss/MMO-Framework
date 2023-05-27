@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_01_05 12:07:31.814
+// File has been generated at 2023_05_16 15:19:57.711
 	
 #pragma once
 
@@ -51,11 +51,11 @@ namespace nsContainerCodeGenerator
         static void _Serialize(nsContainerCodeGenerator::TComponentConfig* p, Jobj& obj);
         static void _Deserialize(nsContainerCodeGenerator::TComponentConfig* p, const Jobj& obj);
         
-        static void _Serialize(nsContainerCodeGenerator::TConfig* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TConfig* p, const Jobj& obj);
-        
         static void _Serialize(nsContainerCodeGenerator::TCoreConfig* p, Jobj& obj);
         static void _Deserialize(nsContainerCodeGenerator::TCoreConfig* p, const Jobj& obj);
+        
+        static void _Serialize(nsContainerCodeGenerator::TCoreContainerConfig* p, Jobj& obj);
+        static void _Deserialize(nsContainerCodeGenerator::TCoreContainerConfig* p, const Jobj& obj);
         
         static void _Serialize(nsContainerCodeGenerator::TEcsSystemConfig* p, Jobj& obj);
         static void _Deserialize(nsContainerCodeGenerator::TEcsSystemConfig* p, const Jobj& obj);
@@ -83,6 +83,9 @@ namespace nsContainerCodeGenerator
         
         static void _Serialize(nsContainerCodeGenerator::TProjectConfig* p, Jobj& obj);
         static void _Deserialize(nsContainerCodeGenerator::TProjectConfig* p, const Jobj& obj);
+        
+        static void _Serialize(nsContainerCodeGenerator::TProjectContainerConfig* p, Jobj& obj);
+        static void _Deserialize(nsContainerCodeGenerator::TProjectContainerConfig* p, const Jobj& obj);
         
         static void _Serialize(nsContainerCodeGenerator::TSystemAggregator* p, Jobj& obj);
         static void _Deserialize(nsContainerCodeGenerator::TSystemAggregator* p, const Jobj& obj);

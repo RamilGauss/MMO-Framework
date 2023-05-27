@@ -13,14 +13,14 @@ See for more information LICENSE.md.
 
 #include "MessageException.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/CoreConfigComponent.h"
 #include "Components/ReflectionConfigComponent.h"
 
 namespace nsContainerCodeGenerator::nsCommon
 {
     void TGenerateFilesByReflectionSystem::Execute()
     {
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto configComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
         auto reflectionConfigComponent = nsECSFramework::SingleComponent<TReflectionConfigComponent>(mEntMng);
 
         if (reflectionConfigComponent == nullptr) {

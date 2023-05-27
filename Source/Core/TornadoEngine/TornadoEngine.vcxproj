@@ -609,8 +609,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Common\Modules.h" />
     <ClInclude Include="Modules\Common\ModulesAccessor.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabObjectConstructor.h" />
-    <ClInclude Include="Modules\Resources\Scene\ResourceContent.h" />
-    <ClInclude Include="Modules\Resources\Scene\ResourceContentMap.h" />
+    <ClInclude Include="Modules\Resources\Common\ResourceContent.h" />
+    <ClInclude Include="Modules\Resources\Common\ResourceContentMap.h" />
     <ClInclude Include="Modules\Implementations\SoundEngineModule.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabManager.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneManager.h" />
@@ -628,7 +628,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="ReflectionAggregators\ITypeInformation.h" />
     <ClInclude Include="ReflectionAggregators\MenuItemReflectionAggregator.h" />
     <ClInclude Include="ReflectionAggregators\ScenePartReflectionAggregator.h" />
-    <ClInclude Include="Share\FrameworkResources.h" />
+    <ClInclude Include="Modules\Resources\Common\FrameworkResources.h" />
     <ClInclude Include="Share\GameObject.h" />
     <ClInclude Include="Share\HandlerPool.h" />
     <ClInclude Include="Share\ImGuiSerializeTask.h" />
@@ -651,7 +651,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />
-    <None Include="Configs\containerConfig.json" />
     <None Include="Generated files\Container\coreComponentConfig.json" />
     <None Include="Generated files\Container\coreComponentDynamicCasterOut.json" />
     <None Include="Generated files\Container\coreComponentEcsOut.json" />
@@ -663,7 +662,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <None Include="Generated files\ecsConfig.json" />
     <None Include="Generated files\featureConfig.json" />
     <None Include="Generated files\handlerConfig.json" />
-    <None Include="Configs\reflectionConfig.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -30,8 +30,6 @@ namespace nsTornadoEngine
         TProjectConfig mProjectConfig;
         TConveyorConfig mConveyor;
         TFrameworkResources mResources;
-        TResourceContentMap mSceneContentMap;
-        TResourceContentMap mPrefabContentMap;
 
         // From binary
         FuncGetScenePartReflectionAggregator mGetScenePartAggregator = nullptr;
@@ -45,9 +43,6 @@ namespace nsTornadoEngine
         std::string GetConveyorAbsPath();
         std::string GetResourcesAbsPath();
         
-        std::string GetSceneContentMapAbsPath();
-        std::string GetPrefabContentMapAbsPath();
-
         std::string GetResourcesAbsPath(const std::string& guid);
     };
 

@@ -1,0 +1,13 @@
+{
+    "engineVersion": "0.0.0.1",
+    // All possible resources.
+    "resources": {
+    },
+    "gameEngine": {
+        "sceneManagerContentMapPath": "./Scenes/SceneManagerContentMap.json",
+        "startScenesGuid": [
+            "Bootstrapper.scene"
+        ],
+        "prefabManagerContentMapPath": "./Prefabs/PrefabManagerContentMap.json"
+    }
+}

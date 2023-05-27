@@ -1,0 +1,9 @@
+{
+	"binaryFilePath": "../../../../Exe/TornadoEditor_d.dll",
+	"conveyorFilePath": "./Conveyor.json",
+	"resourcesFilePath": "./Resources.json",
+
+	"startScenesGuid": [
+		"Bootstrapper.scene"
+	]
+}

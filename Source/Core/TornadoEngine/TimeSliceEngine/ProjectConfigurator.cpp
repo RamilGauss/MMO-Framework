@@ -32,17 +32,17 @@ void TProjectConfigurator::Setup()
     entMng->Setup(dllPathList);
     
     Modules()->PrefabObjConstructor()->Setup(dllPathList);
-    Modules()->PrefabObjConstructor()->SetContentMap(Project()->mPrefabContentMap);
+    Modules()->PrefabObjConstructor()->SetContentMap(Project()->mResources.prefabs);
 
     auto sceneMng = Modules()->SceneMng();
 
     sceneMng->SetEntityManager(entMng);
-    sceneMng->SetContentMap(Project()->mSceneContentMap);
+    sceneMng->SetContentMap(Project()->mResources.scenes);
 
     auto prefabMng = Modules()->PrefabMng();
 
     prefabMng->SetEntityManager(entMng);
-    prefabMng->SetContentMap(Project()->mPrefabContentMap);
+    prefabMng->SetContentMap(Project()->mResources.prefabs);
 
     auto propertyMng = Modules()->PropertyMng();
     propertyMng->Init();
