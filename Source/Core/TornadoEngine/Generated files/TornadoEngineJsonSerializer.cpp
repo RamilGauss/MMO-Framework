@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_27 10:43:54.595
+// File has been generated at 2023_05_27 18:04:35.378
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -645,9 +645,17 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TResourceConten
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TResourceContentMap* p, Jobj& obj)
 {
+    auto guidPathMap_c0 = PUM::AddObject(obj, "guidPathMap");
+    for(auto& guidPathMap_e0 : p->guidPathMap) {
+        PUM::Push(guidPathMap_c0, PUM::ConvertToString(guidPathMap_e0.first).data(), guidPathMap_e0.second);
+    }
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TResourceContentMap* p, const Jobj& obj)
 {
+    auto guidPathMap_a0 = POM::FindObject(obj, "guidPathMap");
+    for(auto& guidPathMap_e0 : guidPathMap_a0) {
+        p->guidPathMap.insert({ guidPathMap_e0.name.GetString(), guidPathMap_e0.value.GetString() });
+    }
 }
 //---------------------------------------------------------------------------------------

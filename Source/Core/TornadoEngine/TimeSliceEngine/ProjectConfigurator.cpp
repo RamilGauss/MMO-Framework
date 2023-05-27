@@ -30,19 +30,21 @@ void TProjectConfigurator::Setup()
         Project()->GetBinaryAbsPath()
     };
     entMng->Setup(dllPathList);
+
+    auto& resources = Project()->mResources;
     
     Modules()->PrefabObjConstructor()->Setup(dllPathList);
-    Modules()->PrefabObjConstructor()->SetContentMap(Project()->mResources.prefabs);
+    Modules()->PrefabObjConstructor()->SetContentMap(resources.prefabs);
 
     auto sceneMng = Modules()->SceneMng();
 
     sceneMng->SetEntityManager(entMng);
-    sceneMng->SetContentMap(Project()->mResources.scenes);
+    sceneMng->SetContentMap(resources.scenes);
 
     auto prefabMng = Modules()->PrefabMng();
 
     prefabMng->SetEntityManager(entMng);
-    prefabMng->SetContentMap(Project()->mResources.prefabs);
+    prefabMng->SetContentMap(resources.prefabs);
 
     auto propertyMng = Modules()->PropertyMng();
     propertyMng->Init();

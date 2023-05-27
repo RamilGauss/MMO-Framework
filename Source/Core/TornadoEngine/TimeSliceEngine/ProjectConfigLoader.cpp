@@ -91,13 +91,14 @@ bool TProjectConfigLoader::LoadResources()
 void TProjectConfigLoader::ConvertResourcesRelToAbs()
 {
     auto resourcesAbsPath = mPcc->GetResourcesAbsPath();
+    auto resourcesFileAbsPath = TPathOperations::FileDirPath(resourcesAbsPath);
 
     for (auto& guidPath : mPcc->mResources.scenes.guidPathMap) {
-        guidPath.second = TPathOperations::CalculatePathBy(resourcesAbsPath, guidPath.second);
+        guidPath.second = TPathOperations::CalculatePathBy(resourcesFileAbsPath, guidPath.second);
     }
 
     for (auto& guidPath : mPcc->mResources.prefabs.guidPathMap) {
-        guidPath.second = TPathOperations::CalculatePathBy(resourcesAbsPath, guidPath.second);
+        guidPath.second = TPathOperations::CalculatePathBy(resourcesFileAbsPath, guidPath.second);
     }
 }
 //------------------------------------------------------------------------

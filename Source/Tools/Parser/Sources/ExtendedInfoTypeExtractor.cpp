@@ -48,6 +48,8 @@ TExtendedInfoTypeExtractor::TExtendedInfoTypeExtractor()
 
         {"std::map", TypeCategory::MAP},
         {"std::set", TypeCategory::SET},
+        {"std::unordered_map", TypeCategory::MAP},
+        {"std::unordered_set", TypeCategory::SET},
 
         {"std::auto_ptr", TypeCategory::SMART_POINTER},
         {"std::shared_ptr", TypeCategory::SMART_POINTER},
