@@ -21,11 +21,7 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
     {
         auto configComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
 
-        ResolvePath(configComponent->value.reflectionCodeGeneratorFileName);
-
-        ResolvePath(configComponent->value.projectConfig. pathToCore);
-
-        // TODO: delete
+        ResolvePath(configComponent->value.projectConfig.relPathToSources);
         ResolvePath(configComponent->value.projectConfig.parseDirectory);
         ResolvePath(configComponent->value.projectConfig.targetDirectory);
         ResolvePath(configComponent->value.projectConfig.ecsSystemConfig.ecsDirectory);

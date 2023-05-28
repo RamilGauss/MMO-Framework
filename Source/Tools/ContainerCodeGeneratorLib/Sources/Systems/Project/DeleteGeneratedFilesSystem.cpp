@@ -13,13 +13,13 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Helper.h>
 
-#include "Components/ConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 
 namespace nsContainerCodeGenerator::nsProject
 {
     void TDeleteGeneratedFilesSystem::Execute()
     {
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto configComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
 
         auto targetDir = std::filesystem::path(configComponent->value.projectConfig.targetDirectory);
 

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_16 15:19:57.717
+// File has been generated at 2023_05_28 09:35:55.577
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -622,7 +622,6 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectConfig* p, 
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectContainerConfig* p, Jobj& obj)
 {
-    PUM::Push(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
     PUM::Push(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
     PUM::Push(obj, "absCorePath", p->absCorePath);
     PUM::Push(obj, "relCoreConfigPath", p->relCoreConfigPath);
@@ -634,7 +633,6 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectContainerConf
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectContainerConfig* p, const Jobj& obj)
 {
-    POM::PopStr(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
     POM::PopStr(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
     POM::PopStr(obj, "absCorePath", p->absCorePath);
     POM::PopStr(obj, "relCoreConfigPath", p->relCoreConfigPath);

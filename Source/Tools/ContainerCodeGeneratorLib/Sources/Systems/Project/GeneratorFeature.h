@@ -12,7 +12,6 @@ See for more information LICENSE.md.
 #include "Systems/Common/SaveConfigFileSystem.h"
 #include "Systems/Common/GenerateFilesByReflectionSystem.h"
 #include "Systems/Common/DestroyReflectionConfigSystem.h"
-#include "Systems/Common/ParseFileListSystem.h"
 #include "Systems/Common/DestroyFileListSystem.h"
 #include "Systems/Common/DestroyTypeListSystem.h"
 
@@ -23,6 +22,7 @@ See for more information LICENSE.md.
 #include "Systems/Project/Handler/MakeFileListSystem.h"
 #include "Systems/Project/Handler/TypeListToHandlerListSystem.h"
 #include "Systems/Project/Handler/PrepareConfigSystem.h"
+#include "Systems/Project/Handler/ParseFileListSystem.h"
 #include "Systems/Project/System/PrepareConfigSystem.h"
 
 namespace nsContainerCodeGenerator::nsProject
@@ -41,7 +41,7 @@ namespace nsContainerCodeGenerator::nsProject
 
         // Handlers
         nsHandler::TMakeFileListSystem mMakeFileListSystem;
-        nsCommon::TParseFileListSystem mParseFileListSystem;
+        nsHandler::TParseFileListSystem mParseFileListSystem;
         nsHandler::TTypeListToHandlerListSystem mHandleTypeListToHandlerListSystem;
 
         nsHandler::TPrepareConfigSystem mPrepareHandlerConfSystem;

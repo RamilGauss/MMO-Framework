@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 #include "Constants.h"
 #include "MessageException.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/HandlerListComponent.h"
 #include "Components/ReflectionConfigComponent.h"
 
@@ -26,9 +26,9 @@ namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
 {
     void TPrepareConfigSystem::Execute()
     {
-        auto eid = nsECSFramework::SingleEntity<TConfigComponent>(mEntMng);
+        auto eid = nsECSFramework::SingleEntity<TProjectConfigComponent>(mEntMng);
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto configComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
 
         TReflectionConfigComponent reflectionConfigComponent;
 

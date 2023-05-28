@@ -216,7 +216,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\ParseFileListSystem.h">
+    <ClInclude Include="Sources\Systems\Project\Handler\ParseFileListSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -280,6 +280,10 @@
     <ClInclude Include="Sources\Systems\Core\GeneratorFeature.h" />
     <ClInclude Include="Sources\Config.h" />
     <ClInclude Include="Sources\ContainerCodeGenerator.h" />
+    <ClInclude Include="Sources\Systems\SetupConfig\Project\ResetupCoreConfigFileSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Sources\Systems\SetupConfig\Project\ResolvePathesSystem.h" />
     <ClInclude Include="Sources\Systems\SetupConfig\Project\TryLoadConfigSystem.h" />
     <ClInclude Include="Sources\Systems\SetupConfig\Project\ValidateConfigSystem.h" />
@@ -454,7 +458,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\ParseFileListSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\Handler\ParseFileListSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -514,6 +518,10 @@
     <ClCompile Include="Sources\Systems\Project\GeneratorFeature.cpp" />
     <ClCompile Include="Sources\Systems\Core\GeneratorFeature.cpp" />
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp" />
+    <ClCompile Include="Sources\Systems\SetupConfig\Project\ResetupCoreConfigFileSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Sources\Systems\SetupConfig\Project\ResolvePathesSystem.cpp" />
     <ClCompile Include="Sources\Systems\SetupConfig\Project\TryLoadConfigSystem.cpp" />
     <ClCompile Include="Sources\Systems\SetupConfig\Project\ValidateConfigSystem.cpp" />
@@ -643,6 +651,7 @@
       <AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\Sources;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Tools\Parser\Sources;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4068;4250;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

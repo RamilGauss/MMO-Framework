@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 
 #include <Parser/Sources/Parser.h>
 
-#include "Components/ConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/HandlerListComponent.h"
 #include "Components/TypeListComponent.h"
 
@@ -24,9 +24,9 @@ namespace nsContainerCodeGenerator::nsProject::nsHandler
 {
     void TTypeListToHandlerListSystem::Execute()
     {
-        auto eid = nsECSFramework::SingleEntity<TConfigComponent>(mEntMng);
+        auto eid = nsECSFramework::SingleEntity<TProjectConfigComponent>(mEntMng);
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto configComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
         auto typeListComponent = nsECSFramework::SingleComponent<TTypeListComponent>(mEntMng);
 
         THandlerListComponent handlerListComponent;

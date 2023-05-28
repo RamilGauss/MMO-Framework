@@ -14,8 +14,11 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
         Add(&mResolveJsonPathSystem);
         Add(&mTryLoadConfigSystem);
         Add(&mResolvePathesSystem);
+        Add(&mResetupCoreConfigFileSystem);
         
-        Add(&mValidateCoreConfigSystem);
-        Add(&mValidateProjectConfigSystem);
+        Add(&mCoreResolveJsonPathSystem);
+        Add(&mCoreTryLoadConfigSystem);
+        Add(&mCoreResolvePathesSystem);
+        Add(&mCoreValidateConfigSystem);
     }
 }

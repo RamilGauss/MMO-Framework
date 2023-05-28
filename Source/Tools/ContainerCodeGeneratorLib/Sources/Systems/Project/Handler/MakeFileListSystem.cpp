@@ -17,16 +17,16 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/CoreConfigComponent.h"
 #include "Components/FileListComponent.h"
 
 namespace nsContainerCodeGenerator::nsProject::nsHandler
 {
     void TMakeFileListSystem::Execute()
     {
-        auto eid = nsECSFramework::SingleEntity<TConfigComponent>(mEntMng);
+        auto eid = nsECSFramework::SingleEntity<TCoreConfigComponent>(mEntMng);
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto configComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
 
         // Search in core sources!
         auto targetDir = configComponent->value.coreConfig.parseDirectory;

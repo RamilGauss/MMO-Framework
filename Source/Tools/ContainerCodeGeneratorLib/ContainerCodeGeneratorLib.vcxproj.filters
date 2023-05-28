@@ -75,7 +75,7 @@
     <ClInclude Include="Sources\Systems\Project\Handler\MakeFileListSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Common\ParseFileListSystem.h">
+    <ClInclude Include="Sources\Systems\Project\Handler\ParseFileListSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.h">
@@ -267,6 +267,9 @@
     <ClInclude Include="Sources\PathValidator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Systems\SetupConfig\Project\ResetupCoreConfigFileSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp">
@@ -308,7 +311,7 @@
     <ClCompile Include="Sources\Systems\Project\Handler\MakeFileListSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Common\ParseFileListSystem.cpp">
+    <ClCompile Include="Sources\Systems\Project\Handler\ParseFileListSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Project\EcsSystem\PrepareConfigSystem.cpp">
@@ -486,6 +489,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\PathValidator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\SetupConfig\Project\ResetupCoreConfigFileSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

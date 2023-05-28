@@ -5,12 +5,12 @@
     "relCoreConfigPath": "./TornadoEngine/Configs/coreContainerConfig.json",
 
     "projectConfig": {
-        "relPathToProject": "..",
+        "relPathToProject": ".",
 
         "targetDirectory": "./Generated files/Container",
         "exportDeclaration": "DllExport",
         "nameSpace": "nsTornadoEditor",
-        "parseDirectory": "..",
+        "parseDirectory": "../Sources",
 
         "componentConfig": {
             "includeListFileName": "ComponentIncludeList",

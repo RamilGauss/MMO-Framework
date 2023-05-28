@@ -16,7 +16,8 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/CoreConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
 namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets
@@ -47,26 +48,28 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets
             {0, ""},
         };
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
+        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
-            configComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName + ".cpp");
+        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+            projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName + ".cpp");
 
         nsBase::TTextGenerator txtGen(lines);
 
         inja::json data;
 
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
         
-        data["IMPL_FILE_NAME"] = configComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName;
-        data["DYNAMIC_CASTER_FILE_NAME"] = configComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.fileName;
-        data["TYPE_INFO_FILE_NAME"] = configComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl.impl.fileName;
+        data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName;
+        data["DYNAMIC_CASTER_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.fileName;
+        data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl.impl.fileName;
         
-        data["IMPL_TYPE_NAME"] = configComponent->value.aggregator.imGuiWidgetsImpl.impl.typeName;
-        data["DYNAMIC_CASTER_TYPE_NAME"] = configComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.typeName;
-        data["TYPE_INFO_TYPE_NAME"] = configComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl.impl.typeName;
+        data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.typeName;
+        data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.typeName;
+        data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl.impl.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

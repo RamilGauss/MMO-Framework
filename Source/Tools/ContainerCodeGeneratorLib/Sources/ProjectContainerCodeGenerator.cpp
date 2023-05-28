@@ -29,11 +29,11 @@ namespace nsContainerCodeGenerator
 
         auto singleId = nsECSFramework::SingleEntity<TFilePathComponent>(&mEntMng);
 
-        TCoreConfigComponent configComponent;
-        mEntMng.SetComponent(singleId, configComponent);
+        TCoreConfigComponent coreConfigComponent;
+        mEntMng.SetComponent(singleId, coreConfigComponent);
 
-        TProjectConfigComponent configComponent;
-        mEntMng.SetComponent(singleId, configComponent);
+        TProjectConfigComponent projectConfigComponent;
+        mEntMng.SetComponent(singleId, projectConfigComponent);
 
         mMainFeature.SetEntMng(&mEntMng);
 

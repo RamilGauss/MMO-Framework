@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include <ECS/include/ExecuteSystem.h>
 
-namespace nsContainerCodeGenerator::nsCommon
+namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
 {
-    class DllExport TParseFileListSystem : public nsECSFramework::TExecuteSystem
+    class DllExport TResetupCoreConfigFileSystem : public nsECSFramework::TExecuteSystem
     {
     public:
         void Execute() override;

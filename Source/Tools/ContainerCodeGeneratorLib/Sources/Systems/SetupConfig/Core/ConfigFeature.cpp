@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 namespace nsContainerCodeGenerator::nsSetupConfig::nsCore
 {
-    void TCoreConfigFeature::InitConveyor()
+    void TConfigFeature::InitConveyor()
     {
         Add(&mResolveJsonPathSystem);
         Add(&mTryLoadConfigSystem);

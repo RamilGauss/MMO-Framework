@@ -25,7 +25,6 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
 {
     void TTryLoadConfigSystem::Execute()
     {
-        auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
         auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
 
         auto pathsComponent = nsECSFramework::SingleComponent<TPathsComponent>(mEntMng);
@@ -49,16 +48,5 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
             auto msg = fmt::format("Not loaded file \"{}\"\n", pathsComponent->absPathJsonFile);
             throw TMessageException(msg);
         }
-
-        auto fillRes = TJsonSerializer::Deserialize(&projectConfigComponent->value, str, err);
-        if (!fillRes) {
-            auto msg = fmt::format("Deserilaize error in \"{}\", {}\n", pathsComponent->absPathJsonFile, err);
-            throw TMessageException(msg);
-        }
-
-        configComponent->value.absCorePath
-
-        std::string absCorePath;
-        std::string relCoreConfigPath;
     }
 }

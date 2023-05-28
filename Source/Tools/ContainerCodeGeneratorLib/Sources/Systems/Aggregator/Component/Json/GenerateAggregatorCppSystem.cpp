@@ -18,7 +18,8 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/CoreConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
 namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
@@ -46,56 +47,57 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
             {0, "//--------------------------------------------------------------------------------------------------"}, 
             {0, "void {{ IMPL_TYPE_NAME }}::Serialize(void* p, std::string & json, int rtti)"}, 
             {0, "{"}, 
-            {0, "    if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
-            {0, "        {{ PROJECT_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"}, 
-            {0, "        return;"}, 
-            {0, "    }"}, 
-            {0, "    if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
-            {0, "        {{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"}, 
-            {0, "    }"}, 
-            {0, "}"}, 
+            {1, "if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
+            {1, "{{ PROJECT_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"}, 
+            {0, "return;"}, 
+            {-1,"}"}, 
+            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
+            {1, "{{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"}, 
+            {-1,"}"}, 
+            {-1,"}"}, 
             {0, "//--------------------------------------------------------------------------------------------------"}, 
             {0, "bool {{ IMPL_TYPE_NAME }}::Deserialize(void* p, const std::string & json, int rtti, std::string & err)"}, 
             {0, "{"}, 
-            {0, "    if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
-            {0, "        return {{ PROJECT_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"}, 
-            {0, "    }"}, 
-            {0, "    if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
-            {0, "        return {{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"}, 
-            {0, "    }"}, 
-            {0, "    return false;"}, 
-            {0, "}"}, 
+            {1, "if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
+            {1, "return {{ PROJECT_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"}, 
+            {-1,"}"}, 
+            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
+            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"}, 
+            {-1,"}"}, 
+            {0, "return false;"}, 
+            {-1,"}"}, 
             {0, "//--------------------------------------------------------------------------------------------------"}, 
             {0, ""},
         };
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
+        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = configComponent->value.aggregator.componentImpl.jsonImpl;
+        auto& impl = projectConfigComponent->value.aggregator.componentImpl.jsonImpl;
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
 
 
-        auto absBase = configComponent->value.projectConfig.pathToCore;
-        auto abs = configComponent->value.coreConfig.targetDirectory;
+        auto absBase = projectConfigComponent->value.absCorePath;
+        auto abs = coreConfigComponent->value.coreConfig.targetDirectory;
 
         std::string relToCoreSources;
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
 
-        absBase = configComponent->value.projectConfig.absPathToProject;
-        abs = configComponent->value.projectConfig.targetDirectory;
+        absBase = projectConfigComponent->value.projectConfig.relPathToSources;
+        abs = projectConfigComponent->value.projectConfig.targetDirectory;
 
         std::string relToProjectSources;
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= configComponent->value.projectConfig.componentConfig.json.fileName;
+        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.componentConfig.json.fileName;
 
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
-        pathRelToCoreSources /= configComponent->value.coreConfig.componentConfig.json.fileName;
+        pathRelToCoreSources /= coreConfigComponent->value.coreConfig.componentConfig.json.fileName;
 
         nsBase::TTextGenerator txtGen(lines);
 
@@ -103,13 +105,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
 
         data["IMPL_FILE_NAME"] = impl.impl.fileName;
         data["IMPL_TYPE_NAME"] = impl.impl.typeName;
-        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
 
         data["CORE_JSON_FILE_NAME"] = pathRelToCoreSources.string();
         data["PROJECT_JSON_FILE_NAME"] = pathRelToProjectSources.string();
-        data["CORE_JSON_TYPE_NAME"] = configComponent->value.coreConfig.componentConfig.json.typeName;
-        data["PROJECT_JSON_TYPE_NAME"] = configComponent->value.projectConfig.componentConfig.json.typeName;
+        data["CORE_JSON_TYPE_NAME"] = coreConfigComponent->value.coreConfig.componentConfig.json.typeName;
+        data["PROJECT_JSON_TYPE_NAME"] = projectConfigComponent->value.projectConfig.componentConfig.json.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

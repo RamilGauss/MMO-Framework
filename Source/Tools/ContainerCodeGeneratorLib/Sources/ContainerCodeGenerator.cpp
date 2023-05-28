@@ -17,7 +17,6 @@ See for more information LICENSE.md.
 #include "MessageException.h"
 
 #include "Components/FilePathComponent.h"
-#include "Components/ConfigComponent.h"
 #include "Components/PathsComponent.h"
 
 #include "Generated files/JsonSerializer.h"
