@@ -18,7 +18,9 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/CoreConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
+
 #include "Components/GeneratedFilesComponent.h"
 
 namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsDynamicCaster
@@ -61,23 +63,25 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsDynamicCaste
             {0, ""},
         };
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
+        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = configComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl;
+        auto& impl = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl;
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
 
-        auto absBase = configComponent->value.projectConfig.pathToCore;
-        auto abs = configComponent->value.coreConfig.targetDirectory;
+        auto absBase = projectConfigComponent->value.absCorePath;
+        auto abs = coreConfigComponent->value.coreConfig.targetDirectory;
 
         std::string relToCoreSources;
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
 
         std::filesystem::path pathRelToProjectSources(relToCoreSources);
-        pathRelToProjectSources /= configComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.fileName;
+        pathRelToProjectSources /= coreConfigComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.fileName;
 
         nsBase::TTextGenerator txtGen(lines);
 
@@ -85,11 +89,11 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsDynamicCaste
 
         data["IMPL_FILE_NAME"] = impl.impl.fileName;
         data["IMPL_TYPE_NAME"] = impl.impl.typeName;
-        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
 
         data["CORE_DYNAMIC_CASTER_FILE_NAME"] = pathRelToProjectSources.string();
-        data["CORE_DYNAMIC_CASTER_TYPE_NAME"] = configComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.typeName;
+        data["CORE_DYNAMIC_CASTER_TYPE_NAME"] = coreConfigComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

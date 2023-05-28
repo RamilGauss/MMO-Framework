@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
 namespace nsContainerCodeGenerator::nsAggregator
@@ -53,28 +53,29 @@ namespace nsContainerCodeGenerator::nsAggregator
             { 0, ""},
         };
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
-            configComponent->value.aggregator.impl.fileName + ".cpp");
+        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+            projectConfigComponent->value.aggregator.impl.fileName + ".cpp");
 
         nsBase::TTextGenerator txtGen(lines);
 
         inja::json data;
 
-        data["IMPL_FILE_NAME"] = configComponent->value.aggregator.impl.fileName;
-        data["COMPONENT_FILE_NAME"] = configComponent->value.aggregator.componentImpl.impl.fileName;
-        data["HANDLER_FILE_NAME"] = configComponent->value.aggregator.handlerImpl.impl.fileName;
-        data["SYSTEM_FILE_NAME"] = configComponent->value.aggregator.systemImpl.impl.fileName;
-        data["IMGUI_WIDGETS_FILE_NAME"] = configComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName;
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
-        data["IMPL_TYPE_NAME"] = configComponent->value.aggregator.impl.typeName;
-        data["COMPONENT_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.impl.typeName;
-        data["HANDLER_TYPE_NAME"] = configComponent->value.aggregator.handlerImpl.impl.typeName;
-        data["SYSTEM_TYPE_NAME"] = configComponent->value.aggregator.systemImpl.impl.typeName;
-        data["IMGUI_WIDGETS_TYPE_NAME"] = configComponent->value.aggregator.imGuiWidgetsImpl.impl.typeName;
+        data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.impl.fileName;
+        data["COMPONENT_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.impl.fileName;
+        data["HANDLER_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.impl.fileName;
+        data["SYSTEM_FILE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.impl.fileName;
+        data["IMGUI_WIDGETS_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName;
+        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
+        data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.impl.typeName;
+        data["COMPONENT_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.impl.typeName;
+        data["HANDLER_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.impl.typeName;
+        data["SYSTEM_TYPE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.impl.typeName;
+        data["IMGUI_WIDGETS_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

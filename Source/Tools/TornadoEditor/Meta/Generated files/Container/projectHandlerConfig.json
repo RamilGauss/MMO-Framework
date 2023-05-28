@@ -1,7 +1,7 @@
 {
     "targetForParsing": {
         "directories": [
-            "..\\.."
+            "..\\..\\..\\Sources"
         ],
         "recursive": true
     },

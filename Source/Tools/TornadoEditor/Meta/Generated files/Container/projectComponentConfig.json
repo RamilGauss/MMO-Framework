@@ -1,7 +1,7 @@
 {
     "targetForParsing": {
         "directories": [
-            "..\\.."
+            "..\\..\\..\\Sources"
         ],
         "recursive": true
     },
@@ -34,7 +34,7 @@
                 "fileName": "ComponentDynamicCaster",
                 "externalSources": {
                     "inFileList": [
-                        "C:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentDynamicCasterOut.json"
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentDynamicCasterOut.json"
                     ],
                     "outFile": ""
                 },
@@ -47,7 +47,7 @@
                 "fileName": "ComponentEntMng",
                 "externalSources": {
                     "inFileList": [
-                        "C:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentEcsOut.json"
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentEcsOut.json"
                     ],
                     "outFile": ""
                 },
@@ -62,7 +62,7 @@
                 "fileName": "ComponentJson",
                 "externalSources": {
                     "inFileList": [
-                        "C:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentJsonOut.json"
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentJsonOut.json"
                     ],
                     "outFile": ""
                 },
@@ -75,7 +75,7 @@
                 "fileName": "ComponentTypeInfo",
                 "externalSources": {
                     "inFileList": [
-                        "C:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json"
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json"
                     ],
                     "outFile": ""
                 },

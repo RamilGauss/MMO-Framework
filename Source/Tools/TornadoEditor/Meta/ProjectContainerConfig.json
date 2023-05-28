@@ -5,7 +5,7 @@
     "relCoreConfigPath": "./TornadoEngine/Configs/coreContainerConfig.json",
 
     "projectConfig": {
-        "relPathToProject": ".",
+        "relPathToSources": ".",
 
         "targetDirectory": "./Generated files/Container",
         "exportDeclaration": "DllExport",

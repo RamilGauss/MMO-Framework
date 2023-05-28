@@ -1,8 +1,8 @@
 {
     "targetForParsing": {
         "directories": [
-            "..\\..",
-            "..\\..\\..\\..\\Modules\\ECS"
+            "..\\..\\..\\Sources",
+            "..\\..\\..\\..\\..\\Modules\\ECS"
         ],
         "recursive": true
     },
@@ -72,7 +72,7 @@
         "includeListParams": {
             "includeListFileName": "EcsSystemIncludeList",
             "dirToInclude": [
-                "..\\..\\..\\..\\Modules\\ECS"
+                "..\\..\\..\\..\\..\\Modules\\ECS"
             ]
         }
     }

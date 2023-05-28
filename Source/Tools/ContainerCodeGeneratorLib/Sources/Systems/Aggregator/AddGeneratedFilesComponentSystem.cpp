@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Helper.h>
 
-#include "Components/ConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
 namespace nsContainerCodeGenerator::nsAggregator
 {
     void TAddGeneratedFilesComponentSystem::Execute()
     {
-        auto eid = nsECSFramework::SingleEntity<TConfigComponent>(mEntMng);
+        auto eid = nsECSFramework::SingleEntity<TProjectConfigComponent>(mEntMng);
 
         TGeneratedFilesComponent generatedFilesComponent;
         mEntMng->SetComponent(eid, generatedFilesComponent);

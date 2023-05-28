@@ -95,7 +95,7 @@ class Downloader:
             d = json.loads(j)
 
             nodes = d["graph"]["nodes"]
-            for node in nodes:
+            for key, node in nodes.items():
                 if node["label"] == "cli":
                     continue
 

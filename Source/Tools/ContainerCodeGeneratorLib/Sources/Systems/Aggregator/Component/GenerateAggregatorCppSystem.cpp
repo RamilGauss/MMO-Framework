@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
 namespace nsContainerCodeGenerator::nsAggregator::nsComponent
@@ -53,30 +53,31 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
             {0, ""},
         };
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
-            configComponent->value.aggregator.componentImpl.impl.fileName + ".cpp");
+        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+            projectConfigComponent->value.aggregator.componentImpl.impl.fileName + ".cpp");
 
         nsBase::TTextGenerator txtGen(lines);
 
         inja::json data;
 
-        data["IMPL_FILE_NAME"] = configComponent->value.aggregator.componentImpl.impl.fileName;
-        data["JSON_FILE_NAME"] = configComponent->value.aggregator.componentImpl.jsonImpl.impl.fileName;
-        data["DYNAMIC_CASTER_FILE_NAME"] = configComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.fileName;
-        data["TYPE_INFO_FILE_NAME"] = configComponent->value.aggregator.componentImpl.typeInfoImpl.impl.fileName;
-        data["ENT_MNG_FILE_NAME"] = configComponent->value.aggregator.componentImpl.entMngImpl.impl.fileName;
+        data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.impl.fileName;
+        data["JSON_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.jsonImpl.impl.fileName;
+        data["DYNAMIC_CASTER_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.fileName;
+        data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeInfoImpl.impl.fileName;
+        data["ENT_MNG_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.entMngImpl.impl.fileName;
         
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
         
-        data["IMPL_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.impl.typeName;
-        data["JSON_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.jsonImpl.impl.typeName;
-        data["DYNAMIC_CASTER_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.typeName;
-        data["TYPE_INFO_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.typeInfoImpl.impl.typeName;
-        data["ENT_MNG_TYPE_NAME"] = configComponent->value.aggregator.componentImpl.entMngImpl.impl.typeName;
+        data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.impl.typeName;
+        data["JSON_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.jsonImpl.impl.typeName;
+        data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.typeName;
+        data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeInfoImpl.impl.typeName;
+        data["ENT_MNG_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.entMngImpl.impl.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

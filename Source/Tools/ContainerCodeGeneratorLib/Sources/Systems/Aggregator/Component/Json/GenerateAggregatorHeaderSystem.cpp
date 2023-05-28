@@ -16,8 +16,8 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
-#include "Components/ConfigComponent.h"
-
+#include "Components/CoreConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
 namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
@@ -44,13 +44,15 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
             {0, ""},
         };
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
+        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = configComponent->value.aggregator.componentImpl.jsonImpl;
+        auto& impl = projectConfigComponent->value.aggregator.componentImpl.jsonImpl;
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".h");
 
         nsBase::TTextGenerator txtGen(lines);
@@ -58,9 +60,9 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
         inja::json data;
 
         data["PARENT_FILE_NAME"] = impl.parent.fileName;
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
-        data["DLL_EXPORT"] = configComponent->value.projectConfig.exportDeclaration;
-        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
+        data["DLL_EXPORT"] = projectConfigComponent->value.projectConfig.exportDeclaration;
+        data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
         data["PARENT_TYPE_NAME"] = impl.parent.typeName;
         data["IMPL_TYPE_NAME"] = impl.impl.typeName;
 

@@ -18,7 +18,8 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/CoreConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
 namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
@@ -75,23 +76,25 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
             { 0, "" },
         };
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
+        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = configComponent->value.aggregator.systemImpl.typeInfoImpl;
+        auto& impl = projectConfigComponent->value.aggregator.systemImpl.typeInfoImpl;
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
 
-        auto absBase = configComponent->value.projectConfig.absPathToProject;
-        auto abs = configComponent->value.projectConfig.targetDirectory;
+        auto absBase = projectConfigComponent->value.projectConfig.relPathToSources;
+        auto abs = projectConfigComponent->value.projectConfig.targetDirectory;
 
         std::string relToProjectSources;
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= configComponent->value.projectConfig.ecsSystemConfig.typeInfo.fileName;
+        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.ecsSystemConfig.typeInfo.fileName;
 
         nsBase::TTextGenerator txtGen(lines);
 
@@ -99,10 +102,10 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
 
         data["IMPL_FILE_NAME"] = impl.impl.fileName;
         data["IMPL_TYPE_NAME"] = impl.impl.typeName;
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
 
         data["PROJECT_TYPE_INFO_FILE_NAME"] = pathRelToProjectSources.string();
-        data["PROJECT_TYPE_INFO_TYPE_NAME"] = configComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName;
+        data["PROJECT_TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

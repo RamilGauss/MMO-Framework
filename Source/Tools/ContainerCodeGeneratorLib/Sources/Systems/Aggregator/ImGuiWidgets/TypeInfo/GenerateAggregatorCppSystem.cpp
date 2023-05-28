@@ -18,7 +18,8 @@ See for more information LICENSE.md.
 
 #include "Constants.h"
 
-#include "Components/ConfigComponent.h"
+#include "Components/CoreConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
 namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
@@ -75,23 +76,25 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
             {0, ""},
         };
 
-        auto configComponent = nsECSFramework::SingleComponent<TConfigComponent>(mEntMng);
+        auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
+        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = configComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl;
+        auto& impl = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl;
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(configComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
 
-        auto absBase = configComponent->value.projectConfig.pathToCore;
-        auto abs = configComponent->value.coreConfig.targetDirectory;
+        auto absBase = projectConfigComponent->value.absCorePath;
+        auto abs = coreConfigComponent->value.coreConfig.targetDirectory;
 
         std::string relToCoreSources;
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
 
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
-        pathRelToCoreSources /= configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.fileName;
+        pathRelToCoreSources /= coreConfigComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.fileName;
 
         nsBase::TTextGenerator txtGen(lines);
 
@@ -99,11 +102,11 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
 
         data["IMPL_FILE_NAME"] = impl.impl.fileName;
         data["IMPL_TYPE_NAME"] = impl.impl.typeName;
-        data["CORE_NAMESPACE"] = configComponent->value.coreConfig.nameSpace;
-        data["PROJECT_NAMESPACE"] = configComponent->value.projectConfig.nameSpace;
+        data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
+        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
 
         data["CORE_TYPE_INFO_FILE_NAME"] = pathRelToCoreSources.string();
-        data["CORE_TYPE_INFO_TYPE_NAME"] = configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.typeName;
+        data["CORE_TYPE_INFO_TYPE_NAME"] = coreConfigComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();
