@@ -96,10 +96,6 @@
     <None Include="Assets\Prefabs\ObjectHierarchyWindow.prefab">
       <Filter>Prefabs</Filter>
     </None>
-    <None Include="Meta\Generated files\Container\projectComponentConfig.json" />
-    <None Include="Meta\Generated files\Container\projectEcsSystemConfig.json" />
-    <None Include="Meta\Generated files\Container\projectHandlerConfig.json" />
-    <None Include="Meta\Generated files\Container\projectSystemConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

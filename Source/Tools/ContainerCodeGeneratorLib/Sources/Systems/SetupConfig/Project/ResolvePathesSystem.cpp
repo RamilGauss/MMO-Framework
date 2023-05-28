@@ -24,7 +24,6 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
         ResolvePath(configComponent->value.projectConfig.relPathToSources);
         ResolvePath(configComponent->value.projectConfig.parseDirectory);
         ResolvePath(configComponent->value.projectConfig.targetDirectory);
-        ResolvePath(configComponent->value.projectConfig.ecsSystemConfig.ecsDirectory);
 
         ResolvePath(configComponent->value.aggregator.targetDirectory);
     }

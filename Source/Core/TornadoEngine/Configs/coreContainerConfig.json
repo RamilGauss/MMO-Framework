@@ -1,6 +1,7 @@
 {
     "reflectionCodeGeneratorFileName": "../../../../Exe/ReflectionCodeGenerator_d.exe",
     "entityManagerHeaderPath": "ECS/include/EntityManager.h",
+    "ecsDirectory": "../../../Modules/ECS",
 
     "coreConfig": {
         "exportDeclaration": "DllExport",

@@ -1,0 +1,82 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "..\\..\\..\\Sources"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "extensions": [
+            ".h",
+            ".h++",
+            ".hh",
+            ".hpp",
+            ".hxx"
+        ],
+        "attribute": "",
+        "inheritances": [
+            [
+                "nsGuiWrapper::IButtonClickHandler"
+            ],
+            [
+                "nsGuiWrapper::IDialogCloseEventHandler"
+            ],
+            [
+                "nsGuiWrapper::IFrameKeyHandler"
+            ],
+            [
+                "nsGuiWrapper::IFrameMouseClickHandler"
+            ],
+            [
+                "nsGuiWrapper::IFrameMouseMoveHandler"
+            ],
+            [
+                "nsGuiWrapper::IFrameMouseWheelHandler"
+            ],
+            [
+                "nsGuiWrapper::IMenuNodeClickHandler"
+            ],
+            [
+                "nsGuiWrapper::IWindowCloseEventHandler"
+            ],
+            [
+                "nsLogicWrapper::IObjectInstantiationCompletionHandler"
+            ],
+            [
+                "nsLogicWrapper::IPrefabInstantiationCompletionHandler"
+            ],
+            [
+                "nsLogicWrapper::ISceneInstantiationCompletionHandler"
+            ]
+        ],
+        "memberIgnore": "IGNORE_ATTRIBUTE"
+    },
+    "targetForCodeGeneration": {
+        "directory": ".",
+        "header": "Project Handler",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "TypeFactoryGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "THandlerTypeFactory",
+                "fileName": "HandlerTypeFactory",
+                "externalSources": null,
+                "keyValueMap": {}
+            },
+            "TypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "THandlerTypeInfo",
+                "fileName": "HandlerTypeInfo",
+                "externalSources": null,
+                "keyValueMap": {}
+            }
+        },
+        "includeListParams": {
+            "includeListFileName": "HandlerIncludeList",
+            "dirToInclude": []
+        }
+    }
+}

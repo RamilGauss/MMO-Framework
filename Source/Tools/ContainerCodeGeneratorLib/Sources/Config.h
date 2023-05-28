@@ -66,8 +66,6 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TEcsSystemConfig : TIncludeListFileName
     {
-        std::string ecsDirectory;
-
         std::list<std::string> inheritances;
 
         TGeneratedClass typeInfo;
@@ -175,6 +173,7 @@ namespace nsContainerCodeGenerator
         std::string reflectionCodeGeneratorFileName;
 
         std::string entityManagerHeaderPath;
+        std::string ecsDirectory;
 
         TCoreConfig coreConfig;
     };

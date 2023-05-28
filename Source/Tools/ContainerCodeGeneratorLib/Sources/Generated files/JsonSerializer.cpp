@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 09:35:55.577
+// File has been generated at 2023_05_28 16:12:50.811
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -431,6 +431,7 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TCoreContainerConfig*
 {
     PUM::Push(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
     PUM::Push(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
+    PUM::Push(obj, "ecsDirectory", p->ecsDirectory);
     auto coreConfig_o = PUM::AddObject(obj, "coreConfig");
     _Serialize(&(p->coreConfig), coreConfig_o);
 }
@@ -439,6 +440,7 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TCoreContainerConfi
 {
     POM::PopStr(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
     POM::PopStr(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
+    POM::PopStr(obj, "ecsDirectory", p->ecsDirectory);
     auto coreConfig_o0 = POM::FindObject(obj, "coreConfig");
     _Deserialize(&(p->coreConfig), coreConfig_o0);
 }
@@ -446,7 +448,6 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TCoreContainerConfi
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TEcsSystemConfig* p, Jobj& obj)
 {
     _Serialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
-    PUM::Push(obj, "ecsDirectory", p->ecsDirectory);
     PUM::Value inheritances_a0(rapidjson::kArrayType);
     for(auto& inheritances_e0 : p->inheritances) {
         PUM::PushBack(inheritances_a0, inheritances_e0);
@@ -461,7 +462,6 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TEcsSystemConfig* p, 
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TEcsSystemConfig* p, const Jobj& obj)
 {
     _Deserialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
-    POM::PopStr(obj, "ecsDirectory", p->ecsDirectory);
     if (POM::IsArray(obj, "inheritances")) {
         auto inheritances_a0 = POM::FindArray(obj, "inheritances");
         for(auto& inheritances_e0 : inheritances_a0) {

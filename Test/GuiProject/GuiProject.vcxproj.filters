@@ -14,4 +14,173 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Meta\Generated files\Container\ComponentDynamicCaster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\ComponentEntMng.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\ComponentJson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\ComponentTypeInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\HandlerTypeFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\HandlerTypeInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\SystemTypeFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentDynamicCasterImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentEntityManagerExtensionImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentJsonSerializerImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentReflectionAggregatorImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentTypeInfoImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\DefMainFunc_DeveloperDLL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\HandlerReflectionAggregatorImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\HandlerTypeFactoryImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\HandlerTypeInformationImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ScenePartReflectionAggregatorImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\SystemDynamicCasterImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\SystemReflectionAggregatorImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\SystemTypeFactoryImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\SystemTypeInformationImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\EcsDynamicCaster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\EcsTypeInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Meta\Generated files\Container\ComponentDynamicCaster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\ComponentEntMng.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\ComponentIncludeList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\ComponentJson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\ComponentTypeInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\HandlerIncludeList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\HandlerTypeFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\HandlerTypeInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\SystemIncludeList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\SystemTypeFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentDynamicCasterImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentEntityManagerExtensionImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentJsonSerializerImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentReflectionAggregatorImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentTypeInfoImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\HandlerReflectionAggregatorImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\HandlerTypeFactoryImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\HandlerTypeInformationImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ScenePartReflectionAggregatorImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\SystemDynamicCasterImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\SystemReflectionAggregatorImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\SystemTypeFactoryImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\SystemTypeInformationImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\EcsDynamicCaster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\EcsSystemIncludeList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\EcsTypeInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

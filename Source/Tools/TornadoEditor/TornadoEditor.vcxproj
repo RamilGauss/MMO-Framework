@@ -263,10 +263,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="Meta\Generated files\Container\projectComponentConfig.json" />
-    <None Include="Meta\Generated files\Container\projectEcsSystemConfig.json" />
-    <None Include="Meta\Generated files\Container\projectHandlerConfig.json" />
-    <None Include="Meta\Generated files\Container\projectSystemConfig.json" />
     <None Include="Assets\Prefabs\FileHierarchyWindow.prefab">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>

@@ -2,7 +2,7 @@
 	DynamicCasterTest
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_01 22:10:53.710
+// File has been generated at 2023_05_28 18:22:21.276
 	
 #include "DynamicCaster_0.h"
 #include "SingletonManager.h"
@@ -12,6 +12,15 @@ using namespace nsDynamicCasterTest;
 
 std::vector<std::vector<TDynamicCaster_0::Data>> TDynamicCaster_0::mDataVector;
 std::map<int, std::set<int>> TDynamicCaster_0::mRttiCombinations;
+
+template <typename FromType, typename ToType>
+ToType* SmartCast(void* p)
+{
+    if constexpr (std::is_polymorphic<FromType>() && std::is_polymorphic<ToType>()) {
+        return dynamic_cast<ToType*>(static_cast<FromType*>(p));
+    }
+    return reinterpret_cast<ToType*>(static_cast<FromType*>(p));
+}
 
 void TDynamicCaster_0::Init()
 {
@@ -28,7 +37,7 @@ void TDynamicCaster_0::Init()
     std::map<int, Data> nsFirst_A_Map;
     
     Data nsFirst_A_nsFirst_B_Data;
-    nsFirst_A_nsFirst_B_Data.castFunc = [](void* p){ return dynamic_cast<nsFirst::B*>(static_cast<nsFirst::A*>(p)); };
+    nsFirst_A_nsFirst_B_Data.castFunc = [](void* p){ return SmartCast<nsFirst::B, nsFirst::A>(p); };
     auto nsFirst_A_nsFirst_B_rtti = globalTypeIdentifier->Type<nsFirst::B>();
     
     nsFirst_A_Map.insert({ nsFirst_A_nsFirst_B_rtti, nsFirst_A_nsFirst_B_Data });
@@ -40,7 +49,7 @@ void TDynamicCaster_0::Init()
     std::map<int, Data> nsFirst_B_Map;
     
     Data nsFirst_B_nsFirst_A_Data;
-    nsFirst_B_nsFirst_A_Data.castFunc = [](void* p){ return dynamic_cast<nsFirst::A*>(static_cast<nsFirst::B*>(p)); };
+    nsFirst_B_nsFirst_A_Data.castFunc = [](void* p){ return SmartCast<nsFirst::A, nsFirst::B>(p); };
     auto nsFirst_B_nsFirst_A_rtti = globalTypeIdentifier->Type<nsFirst::A>();
     
     nsFirst_B_Map.insert({ nsFirst_B_nsFirst_A_rtti, nsFirst_B_nsFirst_A_Data });
@@ -78,7 +87,7 @@ void TDynamicCaster_0::Init()
 void* TDynamicCaster_0::Cast(int srcRtti, void* p, int dstRtti)
 {
     Init();
-    return mDataVector[srcRtti][dstRtti].castFunc(p);
+    return mDataVector[dstRtti][srcRtti].castFunc(p);
 }
 //---------------------------------------------------------------------------------------
 const std::map<int, std::set<int>>& TDynamicCaster_0::GetRttiCombinations()

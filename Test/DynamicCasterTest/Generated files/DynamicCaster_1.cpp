@@ -2,7 +2,7 @@
 	DynamicCasterTest
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_01 22:10:53.798
+// File has been generated at 2023_05_28 18:22:21.415
 	
 #include "DynamicCaster_1.h"
 #include "SingletonManager.h"
@@ -12,6 +12,15 @@ using namespace nsDynamicCasterTest;
 
 std::vector<std::vector<TDynamicCaster_1::Data>> TDynamicCaster_1::mDataVector;
 std::map<int, std::set<int>> TDynamicCaster_1::mRttiCombinations;
+
+template <typename FromType, typename ToType>
+ToType* SmartCast(void* p)
+{
+    if constexpr (std::is_polymorphic<FromType>() && std::is_polymorphic<ToType>()) {
+        return dynamic_cast<ToType*>(static_cast<FromType*>(p));
+    }
+    return reinterpret_cast<ToType*>(static_cast<FromType*>(p));
+}
 
 void TDynamicCaster_1::Init()
 {
@@ -28,13 +37,13 @@ void TDynamicCaster_1::Init()
     std::map<int, Data> nsFirst_A_Map;
     
     Data nsFirst_A_nsSecond_C_Data;
-    nsFirst_A_nsSecond_C_Data.castFunc = [](void* p){ return dynamic_cast<nsSecond::C*>(static_cast<nsFirst::A*>(p)); };
+    nsFirst_A_nsSecond_C_Data.castFunc = [](void* p){ return SmartCast<nsSecond::C, nsFirst::A>(p); };
     auto nsFirst_A_nsSecond_C_rtti = globalTypeIdentifier->Type<nsSecond::C>();
     
     nsFirst_A_Map.insert({ nsFirst_A_nsSecond_C_rtti, nsFirst_A_nsSecond_C_Data });
     
     Data nsFirst_A_nsSecond_D_Data;
-    nsFirst_A_nsSecond_D_Data.castFunc = [](void* p){ return dynamic_cast<nsSecond::D*>(static_cast<nsFirst::A*>(p)); };
+    nsFirst_A_nsSecond_D_Data.castFunc = [](void* p){ return SmartCast<nsSecond::D, nsFirst::A>(p); };
     auto nsFirst_A_nsSecond_D_rtti = globalTypeIdentifier->Type<nsSecond::D>();
     
     nsFirst_A_Map.insert({ nsFirst_A_nsSecond_D_rtti, nsFirst_A_nsSecond_D_Data });
@@ -46,13 +55,13 @@ void TDynamicCaster_1::Init()
     std::map<int, Data> nsFirst_B_Map;
     
     Data nsFirst_B_nsSecond_C_Data;
-    nsFirst_B_nsSecond_C_Data.castFunc = [](void* p){ return dynamic_cast<nsSecond::C*>(static_cast<nsFirst::B*>(p)); };
+    nsFirst_B_nsSecond_C_Data.castFunc = [](void* p){ return SmartCast<nsSecond::C, nsFirst::B>(p); };
     auto nsFirst_B_nsSecond_C_rtti = globalTypeIdentifier->Type<nsSecond::C>();
     
     nsFirst_B_Map.insert({ nsFirst_B_nsSecond_C_rtti, nsFirst_B_nsSecond_C_Data });
     
     Data nsFirst_B_nsSecond_D_Data;
-    nsFirst_B_nsSecond_D_Data.castFunc = [](void* p){ return dynamic_cast<nsSecond::D*>(static_cast<nsFirst::B*>(p)); };
+    nsFirst_B_nsSecond_D_Data.castFunc = [](void* p){ return SmartCast<nsSecond::D, nsFirst::B>(p); };
     auto nsFirst_B_nsSecond_D_rtti = globalTypeIdentifier->Type<nsSecond::D>();
     
     nsFirst_B_Map.insert({ nsFirst_B_nsSecond_D_rtti, nsFirst_B_nsSecond_D_Data });
@@ -64,19 +73,19 @@ void TDynamicCaster_1::Init()
     std::map<int, Data> nsSecond_C_Map;
     
     Data nsSecond_C_nsFirst_A_Data;
-    nsSecond_C_nsFirst_A_Data.castFunc = [](void* p){ return dynamic_cast<nsFirst::A*>(static_cast<nsSecond::C*>(p)); };
+    nsSecond_C_nsFirst_A_Data.castFunc = [](void* p){ return SmartCast<nsFirst::A, nsSecond::C>(p); };
     auto nsSecond_C_nsFirst_A_rtti = globalTypeIdentifier->Type<nsFirst::A>();
     
     nsSecond_C_Map.insert({ nsSecond_C_nsFirst_A_rtti, nsSecond_C_nsFirst_A_Data });
     
     Data nsSecond_C_nsFirst_B_Data;
-    nsSecond_C_nsFirst_B_Data.castFunc = [](void* p){ return dynamic_cast<nsFirst::B*>(static_cast<nsSecond::C*>(p)); };
+    nsSecond_C_nsFirst_B_Data.castFunc = [](void* p){ return SmartCast<nsFirst::B, nsSecond::C>(p); };
     auto nsSecond_C_nsFirst_B_rtti = globalTypeIdentifier->Type<nsFirst::B>();
     
     nsSecond_C_Map.insert({ nsSecond_C_nsFirst_B_rtti, nsSecond_C_nsFirst_B_Data });
     
     Data nsSecond_C_nsSecond_D_Data;
-    nsSecond_C_nsSecond_D_Data.castFunc = [](void* p){ return dynamic_cast<nsSecond::D*>(static_cast<nsSecond::C*>(p)); };
+    nsSecond_C_nsSecond_D_Data.castFunc = [](void* p){ return SmartCast<nsSecond::D, nsSecond::C>(p); };
     auto nsSecond_C_nsSecond_D_rtti = globalTypeIdentifier->Type<nsSecond::D>();
     
     nsSecond_C_Map.insert({ nsSecond_C_nsSecond_D_rtti, nsSecond_C_nsSecond_D_Data });
@@ -88,19 +97,19 @@ void TDynamicCaster_1::Init()
     std::map<int, Data> nsSecond_D_Map;
     
     Data nsSecond_D_nsFirst_A_Data;
-    nsSecond_D_nsFirst_A_Data.castFunc = [](void* p){ return dynamic_cast<nsFirst::A*>(static_cast<nsSecond::D*>(p)); };
+    nsSecond_D_nsFirst_A_Data.castFunc = [](void* p){ return SmartCast<nsFirst::A, nsSecond::D>(p); };
     auto nsSecond_D_nsFirst_A_rtti = globalTypeIdentifier->Type<nsFirst::A>();
     
     nsSecond_D_Map.insert({ nsSecond_D_nsFirst_A_rtti, nsSecond_D_nsFirst_A_Data });
     
     Data nsSecond_D_nsFirst_B_Data;
-    nsSecond_D_nsFirst_B_Data.castFunc = [](void* p){ return dynamic_cast<nsFirst::B*>(static_cast<nsSecond::D*>(p)); };
+    nsSecond_D_nsFirst_B_Data.castFunc = [](void* p){ return SmartCast<nsFirst::B, nsSecond::D>(p); };
     auto nsSecond_D_nsFirst_B_rtti = globalTypeIdentifier->Type<nsFirst::B>();
     
     nsSecond_D_Map.insert({ nsSecond_D_nsFirst_B_rtti, nsSecond_D_nsFirst_B_Data });
     
     Data nsSecond_D_nsSecond_C_Data;
-    nsSecond_D_nsSecond_C_Data.castFunc = [](void* p){ return dynamic_cast<nsSecond::C*>(static_cast<nsSecond::D*>(p)); };
+    nsSecond_D_nsSecond_C_Data.castFunc = [](void* p){ return SmartCast<nsSecond::C, nsSecond::D>(p); };
     auto nsSecond_D_nsSecond_C_rtti = globalTypeIdentifier->Type<nsSecond::C>();
     
     nsSecond_D_Map.insert({ nsSecond_D_nsSecond_C_rtti, nsSecond_D_nsSecond_C_Data });
@@ -138,7 +147,7 @@ void TDynamicCaster_1::Init()
 void* TDynamicCaster_1::Cast(int srcRtti, void* p, int dstRtti)
 {
     Init();
-    return mDataVector[srcRtti][dstRtti].castFunc(p);
+    return mDataVector[dstRtti][srcRtti].castFunc(p);
 }
 //---------------------------------------------------------------------------------------
 const std::map<int, std::set<int>>& TDynamicCaster_1::GetRttiCombinations()

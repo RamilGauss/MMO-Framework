@@ -1,13 +1,15 @@
 {
-    "engineVersion": "0.0.0.1",
-    // All possible resources.
     "resources": {
+        "guidPathMap": {
+        }
     },
-    "gameEngine": {
-        "sceneManagerContentMapPath": "./Scenes/SceneManagerContentMap.json",
-        "startScenesGuid": [
-            "Bootstrapper.scene"
-        ],
-        "prefabManagerContentMapPath": "./Prefabs/PrefabManagerContentMap.json"
+    "prefabs": {
+        "guidPathMap": {
+        }
+    },
+    "scenes": {
+        "guidPathMap": {
+            "Bootstrapper.scene": "../Assets/Scenes/Bootstrapper.scene",
+        }
     }
 }
