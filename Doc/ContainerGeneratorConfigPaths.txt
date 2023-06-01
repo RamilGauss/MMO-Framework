@@ -1,0 +1,1 @@
+core $(SolutionDir)Source\Core\TornadoEngine\Configs\CoreContainerConfig.json

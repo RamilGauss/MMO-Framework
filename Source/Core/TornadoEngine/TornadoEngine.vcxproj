@@ -363,7 +363,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Share\ImGuiSerializeTask.cpp" />
     <ClCompile Include="Share\MathStructs.cpp" />
     <ClCompile Include="Share\MathTools.cpp" />
-    <ClCompile Include="TimeSliceEngine\EngineVersion.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigContainer.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigLoader.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigUnloader.cpp" />

@@ -15,6 +15,6 @@ namespace nsTornadoEngine
 {
     struct DllExport TEngineVersion
     {
-        static std::string Get();
+        static inline const std::string ENGINE_VERSION = "0.0.0.1";
     };
 }

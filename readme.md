@@ -8,20 +8,36 @@
 
 To launch Editor use [Hub](https://github.com/RamilGauss/TornadoHub/releases).
 
+## Disclaimer
+
+### Idea  
+
+`You have to think in another dimension`. In OOP, you have to think about how an object owns other objects.  
+You have to think about the hierarchy of ownership and class inheritance. How to pass data from one object to other objects.  
+In ECS, on the other hand, data is separate from logic. Logic has access to data anywhere and anytime. Everything is global. No need to think about hierarchy.   
+All data is separated into pieces that are independent of each other. All logic is isolated. Behavior can be configured more flexibly.  
+The only disadvantage of this approach is the impossibility to see in debugging what entities currently exist. But this problem is solved with the help of the wizard editor.  
+In the editor (as well as in Unity, for example) you can create scenes and prefabs. A scene or prefab can contain logic in the form of an object like a system.  
+Then run debugging in the editor. Press pause and see the state of the entities and the logic pipeline.  
+
+The idea of ECS breaks the mind, twists the brain inside out. It's a new programming experience.
+
+### Motivation  
+
+No claims to compete with engines such as Unity, UnrealEngine, Godot, etc.   
+I would like to try a bunch of C ++ with a code generator and see what happens.  
+Will the code generator and ECS add convenience and speed to development?   
+This is a research project.  
+
+
 ## Why?
 
-- Proof of Concept. Expanding the capabilities of ready-made MMO RPG games. You can add new functionality by writing your own server for an existing client.
-One of the possible options for such an implementation: a client patch that embeds the MMO transport from the MMO-Framework into the client (or intercepting and replacing packets).
-Further, the transfer of the commands used in the client to the server code. And writing server logic.
-Server implementation with MMO-Framework can include physics, network, logic and database. 
+- Proof of Concept. Expanding the capabilities of ready-made MMO RPG games. You can add new functionality by writing your own server for an existing client.  
+One of the possible options for such an implementation: a client patch that embeds the MMO transport from the MMO-Framework into the client (or intercepting and replacing packets).  
+Further, the transfer of the commands used in the client to the server code. And writing server logic.  
+Server implementation with MMO-Framework can include physics, network, logic and database.  
 
 - Writing your own MMO RPG on PC in Windows/Linux. At the moment, the main target platform is PC. 
-
-## Disclaimer
-No claims to compete with engines such as Unity, UnrealEngine, Godot, etc.  
-I would like to try a bunch of C ++ with a code generator and see what happens.
-Will the code generator and ECS add convenience and speed to development?  
-This is a research project.  
 
 ## Features
 
@@ -70,40 +86,5 @@ To view the architectural decisions need Enterprise Architect 7.0+.
 [Article on habrahabr](http://habrahabr.ru/post/233915/).
 
 Dependencies got via the [conan](http://conan.io).
-
----
-
-# MMO-Framework (rus)
-
-## Дисклеймер
-Без претензий конкурировать с такими движками как Unity, UnrealEngine, Godot и т.д.  
-Хочется попробовать связку C++ с кодогенератором и посмотреть что из этого выйдет.  
-Добавит ли кодогенератор и ECS удобства и скорость разработки?  
-Это исследовательский проект.  
-    
-## Возможности движка
-
-Возможность управления количеством модулей.
-Модуль это графический, физический, сетевой, GUI и т.д движки.
-    
-  ММО(сетевой) компонент может работать с более чем миллионом Клиентов.
-Это достигается с помощью кластерной организации внутри Сервера.
-
-  Для компиляции требуется: смотри HowToCompile_Win.txt.
-  
-Для просмотра архитектурных решений потребуется Enterprise Architect 7.0+.
-[Статья на хабре](http://habrahabr.ru/post/233915/).
-
-Зависимости через [conan](http://conan.io).
-//------------------------------------------------------------------------------------------
-
-## Зачем?  
-
-- Proof of Concept. Расширение возможностей готовых ММО РПГ игр. Вы можете добавить новую функциональность с помощью написания своего собственного сервера для уже готового клиента.
-Один из возможных вариантов такой реализации: патч клиента, который встраивает ММО-транспорт из фреймворка в клиент (или перехват и подмена пакетов).
-Далее перенос используемых команд в клиенте в серверный код. И написание серверной логики.
-Серверная реализация с помощью MMO-Framework может включать физику, сеть, логику и базу данных.
-  
-- Написание своей ММО РПГ на PC в Windows/Linux. На данный момент основная целевая платформа - PC.
 
 ![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)

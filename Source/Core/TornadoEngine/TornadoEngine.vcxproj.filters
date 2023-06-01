@@ -553,7 +553,6 @@
     <ClCompile Include="Modules\PropertyManager\PropertyManager.cpp" />
     <ClCompile Include="Modules\PropertyManager\PropertyManagerConfigs.cpp" />
     <ClCompile Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.cpp" />
-    <ClCompile Include="TimeSliceEngine\EngineVersion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Resources\Common\FrameworkResources.h">
