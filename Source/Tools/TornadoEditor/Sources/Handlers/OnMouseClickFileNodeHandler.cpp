@@ -74,7 +74,7 @@ void TOnMouseClickFileNodeHandler::Handle(nsECSFramework::TEntityID eid, const n
 
     auto ext = path.extension();
 
-    if (ext.string() != ".prefab"&& ext.string() != ".scene") {
+    if (ext.string() != ".prefab" && ext.string() != ".scene") {
         return;
     }
 
