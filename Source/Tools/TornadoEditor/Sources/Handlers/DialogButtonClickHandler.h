@@ -33,7 +33,11 @@ namespace nsTornadoEditor
 
             auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid);
 
-            prefabMng->InstantiateByGuid(prefabRef->prefabGuid, sceneInstanceGuid->value);// , objectRef->objectGuid);
+            nsTornadoEngine::TInstantiatePrefabParams instantiatePrefabParams;
+            instantiatePrefabParams.guid = prefabRef->prefabGuid;
+            instantiatePrefabParams.sceneInstanceGuid = sceneInstanceGuid->value;
+
+            prefabMng->InstantiateByGuid(instantiatePrefabParams);
         }
     };
 }

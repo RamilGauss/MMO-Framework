@@ -26,7 +26,12 @@ void TOnFileHierarchyClickHandler::Handle(nsECSFramework::TEntityID eid, const n
     auto fileHierarchyWindowEid = nsECSFramework::SingleEntity<TFileHierarchyWindowTagComponent>(entMng);
 
     if (fileHierarchyWindowEid == nsECSFramework::NONE) {
-        prefabMng->InstantiateByGuid("0", sceneInstanceGuid);
+
+        nsTornadoEngine::TInstantiatePrefabParams instantiatePrefabParams;
+        instantiatePrefabParams.guid = "0";
+        instantiatePrefabParams.sceneInstanceGuid = sceneInstanceGuid;
+
+        prefabMng->InstantiateByGuid(instantiatePrefabParams);
     } else {
         prefabMng->Destroy(fileHierarchyWindowEid);
     }

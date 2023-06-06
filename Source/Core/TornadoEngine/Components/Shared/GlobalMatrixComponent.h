@@ -19,7 +19,8 @@ See for more information LICENSE.md.
 
 namespace nsCommonWrapper
 {
-    struct DllExport TTransformComponent : nsTornadoEngine::TPropertyOf<nsGraphicEngine::TRenderableObject>, nsECSFramework::IComponent
+    struct DllExport TGlobalMatrixComponent : 
+        nsTornadoEngine::TPropertyOf<nsGraphicEngine::TRenderableObject>, nsECSFramework::IComponent
     {
         nsMathTools::TMatrix16 value;
     };

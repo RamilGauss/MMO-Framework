@@ -606,7 +606,7 @@
     <ClInclude Include="Generated files\ReflectionIncludeList.h">
       <Filter>Generated files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Shared\TransformComponent.h">
+    <ClInclude Include="Components\Shared\GlobalMatrixComponent.h">
       <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\CameraComponent.h">
@@ -1261,6 +1261,8 @@
     <ClInclude Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.h" />
     <ClInclude Include="Components\Gui\Properties\Component.h" />
     <ClInclude Include="TimeSliceEngine\EngineVersion.h" />
+    <ClInclude Include="Modules\Resources\Scene\InstantiateSceneParams.h" />
+    <ClInclude Include="Modules\Resources\Prefab\InstantiatePrefabParams.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

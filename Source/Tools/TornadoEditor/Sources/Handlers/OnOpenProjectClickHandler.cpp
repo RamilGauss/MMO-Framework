@@ -28,5 +28,9 @@ void TOnOpenProjectClickHandler::Handle(nsECSFramework::TEntityID eid, const nsG
     auto prefabRef = entMng->ViewComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid);
     auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid);
 
-    prefabMng->InstantiateByGuid(prefabRef->prefabGuid, sceneInstanceGuid->value);
+    nsTornadoEngine::TInstantiatePrefabParams instantiatePrefabParams;
+    instantiatePrefabParams.guid = prefabRef->prefabGuid;
+    instantiatePrefabParams.sceneInstanceGuid = sceneInstanceGuid->value;
+
+    prefabMng->InstantiateByGuid(instantiatePrefabParams);
 }

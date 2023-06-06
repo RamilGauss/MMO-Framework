@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 18:19:31.908
+// File has been generated at 2023_06_05 10:37:23.395
 	
 #pragma once
 
@@ -77,7 +77,7 @@ Core Component
 #include "SceneRootComponent.h"
 #include "UniverseGuidComponent.h"
 #include "UniverseIndexComponent.h"
-#include "TransformComponent.h"
+#include "GlobalMatrixComponent.h"
 #include "HandlerTarget.h"
 #include "IPropertyOf.h"
 #include "MathStructs.h"

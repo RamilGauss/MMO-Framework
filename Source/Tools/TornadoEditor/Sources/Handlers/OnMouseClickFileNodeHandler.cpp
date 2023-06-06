@@ -87,7 +87,11 @@ void TOnMouseClickFileNodeHandler::Handle(nsECSFramework::TEntityID eid, const n
     entMng->SetComponent(editorInfoTagEid, assetAbsoluteFilePathComponent);
 
     if (fileHierarchyWindowEid == nsECSFramework::NONE) {
-        prefabMng->InstantiateByGuid("4", sceneInstanceGuid);
+        nsTornadoEngine::TInstantiatePrefabParams instantiatePrefabParams;
+        instantiatePrefabParams.guid = "4";
+        instantiatePrefabParams.sceneInstanceGuid = sceneInstanceGuid;
+
+        prefabMng->InstantiateByGuid(instantiatePrefabParams);
     } else {
 
         // Destroy file hierarchy

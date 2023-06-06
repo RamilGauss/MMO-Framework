@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 #include "ParentGuidComponent.h"
 #include "NameComponent.h"
 #include "GuidComponent.h"
-#include "TransformComponent.h"
+#include "GlobalMatrixComponent.h"
 #include "ResourceContentMap.h"
 #include "ResourceContent.h"
 #include "ObjectManager.h"

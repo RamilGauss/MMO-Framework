@@ -3,6 +3,7 @@
     "nameSpaceName": "nsTornadoEngine",
     "typeName": "TComponentJson",
     "customizedTypes": [
+        "nsCommonWrapper::TGlobalMatrixComponent",
         "nsCommonWrapper::TGuidComponent",
         "nsCommonWrapper::THandlerTarget",
         "nsCommonWrapper::TNameComponent",
@@ -18,7 +19,6 @@
         "nsCommonWrapper::TSceneInstanceGuidComponent",
         "nsCommonWrapper::TSceneOriginalGuidComponent",
         "nsCommonWrapper::TSceneRootComponent",
-        "nsCommonWrapper::TTransformComponent",
         "nsCommonWrapper::TUniverseGuidComponent",
         "nsCommonWrapper::TUniverseIndexComponent",
         "nsGraphicWrapper::TCameraComponent",

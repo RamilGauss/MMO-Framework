@@ -52,7 +52,7 @@ struct TGraphicComponent : IComponent
     std::shared_ptr<TOgreObject> p;
 };
 
-struct TTransformComponent : IComponent
+struct TGlobalMatrixComponent : IComponent
 {
     std::array<float, 16> m;
 };
@@ -65,7 +65,7 @@ void EcsFrameworkInit()
 
     TPhysicComponent pc;
     TGraphicComponent gc;
-    TTransformComponent tc;
+    TGlobalMatrixComponent tc;
 
     for (int i = 0; i < OBJECT_COUNT; i++) {
         auto eid = g_EntMng.CreateEntity();
@@ -101,9 +101,9 @@ void EcsFrameworkPhysicToCore()
     auto gp = g_EntMng.GetByHasCopy<TGraphicComponent, TPhysicComponent>();
     for (auto& eid : gp) {
         auto pc = g_EntMng.ViewComponent<TPhysicComponent>(eid);
-        auto tc = *(g_EntMng.ViewComponent<TTransformComponent>(eid));
+        auto tc = *(g_EntMng.ViewComponent<TGlobalMatrixComponent>(eid));
         tc.m = pc->p->m;
-        g_EntMng.SetComponent<TTransformComponent>(eid, tc);
+        g_EntMng.SetComponent<TGlobalMatrixComponent>(eid, tc);
     }
 }
 
@@ -111,7 +111,7 @@ void EcsFrameworkCoreToGraphic()
 {
     auto gp = g_EntMng.GetByHasCopy<TGraphicComponent, TPhysicComponent>();
     for (auto& eid : gp) {
-        auto tc = g_EntMng.ViewComponent<TTransformComponent>(eid);
+        auto tc = g_EntMng.ViewComponent<TGlobalMatrixComponent>(eid);
         auto gc = *(g_EntMng.ViewComponent<TGraphicComponent>(eid));
         gc.p->m = tc->m;
         g_EntMng.SetComponent<TGraphicComponent>(eid, *gc);
@@ -132,13 +132,13 @@ void EnttInit()
 {
     TPhysicComponent pc;
     TGraphicComponent gc;
-    TTransformComponent tc;
+    TGlobalMatrixComponent tc;
 
     for (int i = 0; i < OBJECT_COUNT; i++) {
         auto eid = registry.create();
         pc.p.reset(new TBulletObject());
         registry.emplace<TPhysicComponent>(eid, pc);
-        registry.emplace<TTransformComponent>(eid, tc);
+        registry.emplace<TGlobalMatrixComponent>(eid, tc);
     }
     for (int i = 0; i < OBJECT_COUNT; i++) {
         auto eid = registry.create();
@@ -148,13 +148,13 @@ void EnttInit()
         gc.p.reset(new TOgreObject());
         registry.emplace<TGraphicComponent>(eid, gc);
 
-        registry.emplace<TTransformComponent>(eid, tc);
+        registry.emplace<TGlobalMatrixComponent>(eid, tc);
     }
     for (int i = 0; i < OBJECT_COUNT; i++) {
         auto eid = registry.create();
         gc.p.reset(new TOgreObject());
         registry.emplace<TGraphicComponent>(eid, gc);
-        registry.emplace<TTransformComponent>(eid, tc);
+        registry.emplace<TGlobalMatrixComponent>(eid, tc);
     }
 }
 
@@ -168,9 +168,9 @@ void EnttPhysicToCore()
     auto gp = registry.view<TGraphicComponent, TPhysicComponent>();
     for (auto& eid : gp) {
         auto& pc = registry.get<TPhysicComponent>(eid);
-        auto& tc = registry.get<TTransformComponent>(eid);
+        auto& tc = registry.get<TGlobalMatrixComponent>(eid);
         tc.m = pc.p->m;
-        registry.replace<TTransformComponent>(eid, tc);
+        registry.replace<TGlobalMatrixComponent>(eid, tc);
     }
 }
 
@@ -178,7 +178,7 @@ void EnttCoreToGraphic()
 {
     auto gp = registry.view<TGraphicComponent, TPhysicComponent>();
     for (auto& eid : gp) {
-        auto& tc = registry.get<TTransformComponent>(eid);
+        auto& tc = registry.get<TGlobalMatrixComponent>(eid);
         auto& gc = registry.get<TGraphicComponent>(eid);
         gc.p->m = tc.m;
         registry.replace<TGraphicComponent>(eid, gc);

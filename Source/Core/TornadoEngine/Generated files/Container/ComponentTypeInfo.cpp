@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 18:19:31.577
+// File has been generated at 2023_06_05 10:37:23.379
 	
 #include "ComponentTypeInfo.h"
 
@@ -26,6 +26,12 @@ void TComponentTypeInfo::Init()
     isNeedInit = false;
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
+    
+    int nsCommonWrapper_TGlobalMatrixComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TGlobalMatrixComponent>();
+    std::string nsCommonWrapper_TGlobalMatrixComponent_n = "nsCommonWrapper::TGlobalMatrixComponent";
+    mTypeNameList.push_back(nsCommonWrapper_TGlobalMatrixComponent_n);
+    mRttiList.push_back(nsCommonWrapper_TGlobalMatrixComponent_i);
+    mNameRttiMap.insert({ nsCommonWrapper_TGlobalMatrixComponent_n, nsCommonWrapper_TGlobalMatrixComponent_i });
     
     int nsCommonWrapper_TGuidComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TGuidComponent>();
     std::string nsCommonWrapper_TGuidComponent_n = "nsCommonWrapper::TGuidComponent";
@@ -116,12 +122,6 @@ void TComponentTypeInfo::Init()
     mTypeNameList.push_back(nsCommonWrapper_TSceneRootComponent_n);
     mRttiList.push_back(nsCommonWrapper_TSceneRootComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TSceneRootComponent_n, nsCommonWrapper_TSceneRootComponent_i });
-    
-    int nsCommonWrapper_TTransformComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TTransformComponent>();
-    std::string nsCommonWrapper_TTransformComponent_n = "nsCommonWrapper::TTransformComponent";
-    mTypeNameList.push_back(nsCommonWrapper_TTransformComponent_n);
-    mRttiList.push_back(nsCommonWrapper_TTransformComponent_i);
-    mNameRttiMap.insert({ nsCommonWrapper_TTransformComponent_n, nsCommonWrapper_TTransformComponent_i });
     
     int nsCommonWrapper_TUniverseGuidComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseGuidComponent>();
     std::string nsCommonWrapper_TUniverseGuidComponent_n = "nsCommonWrapper::TUniverseGuidComponent";

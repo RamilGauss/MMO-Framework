@@ -15,7 +15,10 @@ using namespace nsTornadoEditor;
 
 void TBootstrapperSystem::Init()
 {
-    nsTornadoEngine::Modules()->SceneMng()->InstantiateByGuid("Main.scene");
+    nsTornadoEngine::TInstantiateSceneParams instantiateSceneParams;
+    instantiateSceneParams.guid = "Main.scene";
+
+    nsTornadoEngine::Modules()->SceneMng()->InstantiateByGuid(instantiateSceneParams);
 
     auto editorEid = GetEntMng()->CreateEntity();
 

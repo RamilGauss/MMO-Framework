@@ -120,9 +120,9 @@ namespace nsMathTools
         float* pThis = (float*) ((unsigned char*) this + sizeof(float*));
     public:
 
-        float _11 = 0; float _12 = 0; float _13 = 0;
-        float _21 = 0; float _22 = 0; float _23 = 0;
-        float _31 = 0; float _32 = 0; float _33 = 0;
+        float _11 = 1; float _12 = 0; float _13 = 0;
+        float _21 = 0; float _22 = 1; float _23 = 0;
+        float _31 = 0; float _32 = 0; float _33 = 1;
 
         inline float& m(const unsigned char i, const unsigned char j) const
         {
@@ -135,10 +135,10 @@ namespace nsMathTools
     {
         float* pThis = (float*) ((unsigned char*) this + sizeof(float*));
     public:
-        float _11 = 0; float _12 = 0; float _13 = 0; float _14 = 0;
-        float _21 = 0; float _22 = 0; float _23 = 0; float _24 = 0;
-        float _31 = 0; float _32 = 0; float _33 = 0; float _34 = 0;
-        float _41 = 0; float _42 = 0; float _43 = 0; float _44 = 0;
+        float _11 = 1; float _12 = 0; float _13 = 0; float _14 = 0;
+        float _21 = 0; float _22 = 1; float _23 = 0; float _24 = 0;
+        float _31 = 0; float _32 = 0; float _33 = 1; float _34 = 0;
+        float _41 = 0; float _42 = 0; float _43 = 0; float _44 = 1;
 
         inline float& m(const unsigned char i, const unsigned char j) const
         {

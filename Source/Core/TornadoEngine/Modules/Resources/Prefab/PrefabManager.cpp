@@ -37,11 +37,10 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std::string& sceneInstanceGuid,
-    const std::string& parentGuid)
+void TPrefabManager::InstantiateByAbsPath(const TInstantiatePrefabParams& instantiatePrefabParams)
 {
     TResourceContent prefabContent;
-    auto deserializeResult = Deserialize(prefabContent, absPath);
+    auto deserializeResult = Deserialize(prefabContent, instantiatePrefabParams.absPath);
     if (!deserializeResult) {
         return;
     }
@@ -50,20 +49,21 @@ void TPrefabManager::InstantiateByAbsPath(const std::string& absPath, const std:
     std::list<nsECSFramework::TEntityID> newEntities;
     DeserializeObjects(newEntities, prefabContent);
 
-    SetupUniverse(newEntities, sceneInstanceGuid, parentGuid);
+    SetupUniverse(newEntities, instantiatePrefabParams.sceneInstanceGuid, instantiatePrefabParams.parentGuid);
 }
 //--------------------------------------------------------------------------------
-void TPrefabManager::InstantiateByGuid(const std::string& prefabGuid, const std::string& sceneInstanceGuid,
-    const std::string& parentGuid)
+void TPrefabManager::InstantiateByGuid(TInstantiatePrefabParams instantiatePrefabParams)
 {
     // Convert to abs path
-    auto fit = mResourceContentMap.guidPathMap.find(prefabGuid);
+    auto fit = mResourceContentMap.guidPathMap.find(instantiatePrefabParams.guid);
     if (fit == mResourceContentMap.guidPathMap.end()) {
-        GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", prefabGuid.c_str());
+        GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", instantiatePrefabParams.guid.c_str());
         return;
     }
 
-    InstantiateByAbsPath(fit->second, sceneInstanceGuid, parentGuid);
+    instantiatePrefabParams.absPath = fit->second;
+
+    InstantiateByAbsPath(instantiatePrefabParams);
 }
 //--------------------------------------------------------------------------------
 void TPrefabManager::Save(const std::string& sceneGuid)

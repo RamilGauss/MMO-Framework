@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 18:19:31.228
+// File has been generated at 2023_06_05 10:37:23.305
 	
 #pragma once
 
@@ -39,6 +39,9 @@ namespace nsTornadoEngine
         static bool Has(int rtti);
     
     public:
+        static void _Serialize(nsCommonWrapper::TGlobalMatrixComponent* p, Jobj& obj);
+        static void _Deserialize(nsCommonWrapper::TGlobalMatrixComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsCommonWrapper::TGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TGuidComponent* p, const Jobj& obj);
         
@@ -83,9 +86,6 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsCommonWrapper::TSceneRootComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TSceneRootComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsCommonWrapper::TTransformComponent* p, Jobj& obj);
-        static void _Deserialize(nsCommonWrapper::TTransformComponent* p, const Jobj& obj);
         
         static void _Serialize(nsCommonWrapper::TUniverseGuidComponent* p, Jobj& obj);
         static void _Deserialize(nsCommonWrapper::TUniverseGuidComponent* p, const Jobj& obj);

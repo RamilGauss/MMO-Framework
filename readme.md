@@ -1,3 +1,5 @@
+![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)
+
 # MMO-Framework
 
 [Boosty.donate](https://boosty.to/mmoframework)
@@ -86,5 +88,3 @@ To view the architectural decisions need Enterprise Architect 7.0+.
 [Article on habrahabr](http://habrahabr.ru/post/233915/).
 
 Dependencies got via the [conan](http://conan.io).
-
-![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)

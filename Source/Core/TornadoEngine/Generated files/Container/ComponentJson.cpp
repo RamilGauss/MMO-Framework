@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 18:19:31.265
+// File has been generated at 2023_06_05 10:37:23.313
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -28,6 +28,18 @@ void TComponentJson::Init()
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
     std::map<int, TypeFunc> m;
+    
+    TypeFunc _nsCommonWrapper_TGlobalMatrixComponentTypeFunc;
+    _nsCommonWrapper_TGlobalMatrixComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsCommonWrapper::TGlobalMatrixComponent>((nsCommonWrapper::TGlobalMatrixComponent*) p, str);
+    };
+    _nsCommonWrapper_TGlobalMatrixComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsCommonWrapper::TGlobalMatrixComponent>((nsCommonWrapper::TGlobalMatrixComponent*) p, str, err);
+    };
+    
+    auto rtti__nsCommonWrapper_TGlobalMatrixComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TGlobalMatrixComponent>();
+    
+    m.insert({ rtti__nsCommonWrapper_TGlobalMatrixComponentTypeFunc, _nsCommonWrapper_TGlobalMatrixComponentTypeFunc });
     
     TypeFunc _nsCommonWrapper_TGuidComponentTypeFunc;
     _nsCommonWrapper_TGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -208,18 +220,6 @@ void TComponentJson::Init()
     auto rtti__nsCommonWrapper_TSceneRootComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TSceneRootComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TSceneRootComponentTypeFunc, _nsCommonWrapper_TSceneRootComponentTypeFunc });
-    
-    TypeFunc _nsCommonWrapper_TTransformComponentTypeFunc;
-    _nsCommonWrapper_TTransformComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsCommonWrapper::TTransformComponent>((nsCommonWrapper::TTransformComponent*) p, str);
-    };
-    _nsCommonWrapper_TTransformComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsCommonWrapper::TTransformComponent>((nsCommonWrapper::TTransformComponent*) p, str, err);
-    };
-    
-    auto rtti__nsCommonWrapper_TTransformComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TTransformComponent>();
-    
-    m.insert({ rtti__nsCommonWrapper_TTransformComponentTypeFunc, _nsCommonWrapper_TTransformComponentTypeFunc });
     
     TypeFunc _nsCommonWrapper_TUniverseGuidComponentTypeFunc;
     _nsCommonWrapper_TUniverseGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -961,6 +961,18 @@ bool TComponentJson::Has(int rtti)
     return mTypeFuncVector[rtti].serializeFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsCommonWrapper::TGlobalMatrixComponent* p, Jobj& obj)
+{
+    auto value_o = PUM::AddObject(obj, "value");
+    _Serialize(&(p->value), value_o);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsCommonWrapper::TGlobalMatrixComponent* p, const Jobj& obj)
+{
+    auto value_o0 = POM::FindObject(obj, "value");
+    _Deserialize(&(p->value), value_o0);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsCommonWrapper::TGuidComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "value", p->value);
@@ -1107,18 +1119,6 @@ void TComponentJson::_Serialize(nsCommonWrapper::TSceneRootComponent* p, Jobj& o
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Deserialize(nsCommonWrapper::TSceneRootComponent* p, const Jobj& obj)
 {
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsCommonWrapper::TTransformComponent* p, Jobj& obj)
-{
-    auto value_o = PUM::AddObject(obj, "value");
-    _Serialize(&(p->value), value_o);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsCommonWrapper::TTransformComponent* p, const Jobj& obj)
-{
-    auto value_o0 = POM::FindObject(obj, "value");
-    _Deserialize(&(p->value), value_o0);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsCommonWrapper::TUniverseGuidComponent* p, Jobj& obj)

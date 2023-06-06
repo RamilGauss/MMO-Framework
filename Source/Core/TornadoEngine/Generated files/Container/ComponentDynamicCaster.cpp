@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 18:19:31.490
+// File has been generated at 2023_06_05 10:37:23.365
 	
 #include "ComponentDynamicCaster.h"
 #include "SingletonManager.h"
@@ -33,6 +33,18 @@ void TComponentDynamicCaster::Init()
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
     std::map<int, std::map<int, Data>> m;
+    
+    std::map<int, Data> nsCommonWrapper_TGlobalMatrixComponent_Map;
+    
+    Data nsCommonWrapper_TGlobalMatrixComponent_nsTornadoEngine_IPropertyOf_Data;
+    nsCommonWrapper_TGlobalMatrixComponent_nsTornadoEngine_IPropertyOf_Data.castFunc = [](void* p){ return SmartCast<nsTornadoEngine::IPropertyOf, nsCommonWrapper::TGlobalMatrixComponent>(p); };
+    auto nsCommonWrapper_TGlobalMatrixComponent_nsTornadoEngine_IPropertyOf_rtti = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
+    
+    nsCommonWrapper_TGlobalMatrixComponent_Map.insert({ nsCommonWrapper_TGlobalMatrixComponent_nsTornadoEngine_IPropertyOf_rtti, nsCommonWrapper_TGlobalMatrixComponent_nsTornadoEngine_IPropertyOf_Data });
+    
+    auto nsCommonWrapper_TGlobalMatrixComponent_rtti = globalTypeIdentifier->Type<nsCommonWrapper::TGlobalMatrixComponent>();
+    
+    m.insert({ nsCommonWrapper_TGlobalMatrixComponent_rtti, nsCommonWrapper_TGlobalMatrixComponent_Map });
     
     std::map<int, Data> nsCommonWrapper_THandlerTarget_Map;
     
@@ -87,18 +99,6 @@ void TComponentDynamicCaster::Init()
     auto nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
     
     m.insert({ nsCommonWrapper_THandlerTarget_rtti, nsCommonWrapper_THandlerTarget_Map });
-    
-    std::map<int, Data> nsCommonWrapper_TTransformComponent_Map;
-    
-    Data nsCommonWrapper_TTransformComponent_nsTornadoEngine_IPropertyOf_Data;
-    nsCommonWrapper_TTransformComponent_nsTornadoEngine_IPropertyOf_Data.castFunc = [](void* p){ return SmartCast<nsTornadoEngine::IPropertyOf, nsCommonWrapper::TTransformComponent>(p); };
-    auto nsCommonWrapper_TTransformComponent_nsTornadoEngine_IPropertyOf_rtti = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
-    
-    nsCommonWrapper_TTransformComponent_Map.insert({ nsCommonWrapper_TTransformComponent_nsTornadoEngine_IPropertyOf_rtti, nsCommonWrapper_TTransformComponent_nsTornadoEngine_IPropertyOf_Data });
-    
-    auto nsCommonWrapper_TTransformComponent_rtti = globalTypeIdentifier->Type<nsCommonWrapper::TTransformComponent>();
-    
-    m.insert({ nsCommonWrapper_TTransformComponent_rtti, nsCommonWrapper_TTransformComponent_Map });
     
     std::map<int, Data> nsGraphicWrapper_TTextureFromFileComponent_Map;
     
@@ -462,11 +462,11 @@ void TComponentDynamicCaster::Init()
     
     std::map<int, Data> nsTornadoEngine_IPropertyOf_Map;
     
-    Data nsTornadoEngine_IPropertyOf_nsCommonWrapper_TTransformComponent_Data;
-    nsTornadoEngine_IPropertyOf_nsCommonWrapper_TTransformComponent_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::TTransformComponent, nsTornadoEngine::IPropertyOf>(p); };
-    auto nsTornadoEngine_IPropertyOf_nsCommonWrapper_TTransformComponent_rtti = globalTypeIdentifier->Type<nsCommonWrapper::TTransformComponent>();
+    Data nsTornadoEngine_IPropertyOf_nsCommonWrapper_TGlobalMatrixComponent_Data;
+    nsTornadoEngine_IPropertyOf_nsCommonWrapper_TGlobalMatrixComponent_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::TGlobalMatrixComponent, nsTornadoEngine::IPropertyOf>(p); };
+    auto nsTornadoEngine_IPropertyOf_nsCommonWrapper_TGlobalMatrixComponent_rtti = globalTypeIdentifier->Type<nsCommonWrapper::TGlobalMatrixComponent>();
     
-    nsTornadoEngine_IPropertyOf_Map.insert({ nsTornadoEngine_IPropertyOf_nsCommonWrapper_TTransformComponent_rtti, nsTornadoEngine_IPropertyOf_nsCommonWrapper_TTransformComponent_Data });
+    nsTornadoEngine_IPropertyOf_Map.insert({ nsTornadoEngine_IPropertyOf_nsCommonWrapper_TGlobalMatrixComponent_rtti, nsTornadoEngine_IPropertyOf_nsCommonWrapper_TGlobalMatrixComponent_Data });
     
     Data nsTornadoEngine_IPropertyOf_nsGraphicWrapper_TTextureFromFileComponent_Data;
     nsTornadoEngine_IPropertyOf_nsGraphicWrapper_TTextureFromFileComponent_Data.castFunc = [](void* p){ return SmartCast<nsGraphicWrapper::TTextureFromFileComponent, nsTornadoEngine::IPropertyOf>(p); };

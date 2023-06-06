@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 18:19:31.421
+// File has been generated at 2023_06_05 10:37:23.349
 	
 #include "ComponentEntMng.h"
 
@@ -22,6 +22,20 @@ void TComponentEntMng::Init()
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
     std::map<int, Data> m;
+    
+    Data nsCommonWrapper_TGlobalMatrixComponent_Data;
+        nsCommonWrapper_TGlobalMatrixComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
+        auto lambda = [&](nsCommonWrapper::TGlobalMatrixComponent* pC){ onAfterCreation((void*)pC); };
+        pEntMng->CreateComponent<nsCommonWrapper::TGlobalMatrixComponent>(eid, lambda);
+    };
+    nsCommonWrapper_TGlobalMatrixComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TGlobalMatrixComponent*)p)); };
+    nsCommonWrapper_TGlobalMatrixComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TGlobalMatrixComponent>(eid); };
+    nsCommonWrapper_TGlobalMatrixComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TGlobalMatrixComponent>(eid); };
+    nsCommonWrapper_TGlobalMatrixComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TGlobalMatrixComponent>(eid); };
+    nsCommonWrapper_TGlobalMatrixComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsCommonWrapper::TGlobalMatrixComponent>(); };
+    auto rtti_nsCommonWrapper_TGlobalMatrixComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TGlobalMatrixComponent>();
+    
+    m.insert({ rtti_nsCommonWrapper_TGlobalMatrixComponent_Data, nsCommonWrapper_TGlobalMatrixComponent_Data });
     
     Data nsCommonWrapper_TGuidComponent_Data;
         nsCommonWrapper_TGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
@@ -218,20 +232,6 @@ void TComponentEntMng::Init()
     auto rtti_nsCommonWrapper_TSceneRootComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TSceneRootComponent>();
     
     m.insert({ rtti_nsCommonWrapper_TSceneRootComponent_Data, nsCommonWrapper_TSceneRootComponent_Data });
-    
-    Data nsCommonWrapper_TTransformComponent_Data;
-        nsCommonWrapper_TTransformComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TTransformComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TTransformComponent>(eid, lambda);
-    };
-    nsCommonWrapper_TTransformComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TTransformComponent*)p)); };
-    nsCommonWrapper_TTransformComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TTransformComponent>(eid); };
-    nsCommonWrapper_TTransformComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TTransformComponent>(eid); };
-    nsCommonWrapper_TTransformComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TTransformComponent>(eid); };
-    nsCommonWrapper_TTransformComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsCommonWrapper::TTransformComponent>(); };
-    auto rtti_nsCommonWrapper_TTransformComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TTransformComponent>();
-    
-    m.insert({ rtti_nsCommonWrapper_TTransformComponent_Data, nsCommonWrapper_TTransformComponent_Data });
     
     Data nsCommonWrapper_TUniverseGuidComponent_Data;
         nsCommonWrapper_TUniverseGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {

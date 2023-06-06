@@ -31,13 +31,13 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-void TSceneManager::InstantiateByAbsPath(const std::string& absPath, const std::string& universeGuid)
+void TSceneManager::InstantiateByAbsPath(const TInstantiateSceneParams& instantiateSceneParams)
 {
     using namespace nsCommonWrapper;
 
     // 1. Deserialize to object
     TResourceContent sceneContent;
-    auto deserializeResult = Deserialize(sceneContent, absPath);
+    auto deserializeResult = Deserialize(sceneContent, instantiateSceneParams.absPath);
     if (!deserializeResult) {
         return;
     }
@@ -56,14 +56,14 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath, const std::
     UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, sceneIstanceGuid);
 
     TUniverseGuidComponent universeGuidComponent;
-    universeGuidComponent.value = universeGuid;
+    universeGuidComponent.value = instantiateSceneParams.universeGuid;
     AddComponent(newEntities, &universeGuidComponent);
 
 
-    auto universeIndex = mUniverseManager.GetIndexByGuid(universeGuid);
+    auto universeIndex = mUniverseManager.GetIndexByGuid(instantiateSceneParams.universeGuid);
     if (universeIndex == TUniverseManager::UNDEFINED_INDEX) {
-        mUniverseManager.Create(universeGuid);
-        universeIndex = mUniverseManager.GetIndexByGuid(universeGuid);
+        mUniverseManager.Create(instantiateSceneParams.universeGuid);
+        universeIndex = mUniverseManager.GetIndexByGuid(instantiateSceneParams.universeGuid);
     }
 
     IncrementCounter(universeIndex);
@@ -73,16 +73,17 @@ void TSceneManager::InstantiateByAbsPath(const std::string& absPath, const std::
     AddComponent(newEntities, &universeIndexComponent);
 }
 //--------------------------------------------------------------------------------
-void TSceneManager::InstantiateByGuid(const std::string& sceneGuid, const std::string& universeGuid)
+void TSceneManager::InstantiateByGuid(TInstantiateSceneParams instantiateSceneParams)
 {
     // Convert to abs path
-    auto fit = mResourceContentMap.guidPathMap.find(sceneGuid);
+    auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
     if (fit == mResourceContentMap.guidPathMap.end()) {
-        GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", sceneGuid.c_str());
+        GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", instantiateSceneParams.guid.c_str());
         return;
     }
 
-    InstantiateByAbsPath(fit->second, universeGuid);
+    instantiateSceneParams.absPath = fit->second;
+    InstantiateByAbsPath(instantiateSceneParams);
 }
 //--------------------------------------------------------------------------------
 void TSceneManager::Save(const std::string& sceneGuid)
