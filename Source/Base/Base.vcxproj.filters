@@ -9,9 +9,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Docs">
-      <UniqueIdentifier>{5d2557ee-5ab0-43b6-a509-93f7abb6aa50}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AllocatorPool.h">
@@ -406,19 +403,5 @@
     <ClCompile Include="src\MemoryDumper.cpp">
       <Filter>src</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\Doc\SoftwareDevelopmentPrinciples.md">
-      <Filter>Docs</Filter>
-    </None>
-    <None Include="..\..\LICENSE.md">
-      <Filter>Docs</Filter>
-    </None>
-    <None Include="..\..\readme.md">
-      <Filter>Docs</Filter>
-    </None>
-    <None Include="..\..\Blog.md">
-      <Filter>Docs</Filter>
-    </None>
   </ItemGroup>
 </Project>

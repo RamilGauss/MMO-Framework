@@ -227,6 +227,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{7E
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GuiProject", "Test\GuiProject\GuiProject.vcxproj", "{9A784A99-FD44-4592-B758-1EB945BE3B36}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{A5BBD996-EB37-48E5-A52D-FE46D58D08E3}"
+	ProjectSection(SolutionItems) = preProject
+		Blog.md = Blog.md
+		Doc\Core\EntityContent.md = Doc\Core\EntityContent.md
+		LICENSE.md = LICENSE.md
+		readme.md = readme.md
+		Doc\SoftwareDevelopmentPrinciples.md = Doc\SoftwareDevelopmentPrinciples.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
