@@ -36,9 +36,9 @@ namespace nsTornadoEngine
         void Save(const std::string& sceneGuid);
     private:
 
-        void IncrementCounter(TUniverseManager::IndexType index);
-        void DecrementCounter(TUniverseManager::IndexType index);
+        void IncrementReferenceCounter(TUniverseManager::IndexType index);
+        void DecrementReferenceCounter(TUniverseManager::IndexType index);
 
-        int GetCounter(TUniverseManager::IndexType index);
+        int GetReferenceCounter(TUniverseManager::IndexType index);
     };
 }

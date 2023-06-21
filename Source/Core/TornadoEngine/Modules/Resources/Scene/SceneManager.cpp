@@ -66,7 +66,7 @@ void TSceneManager::InstantiateByAbsPath(const TInstantiateSceneParams& instanti
         universeIndex = mUniverseManager.GetIndexByGuid(instantiateSceneParams.universeGuid);
     }
 
-    IncrementCounter(universeIndex);
+    IncrementReferenceCounter(universeIndex);
 
     TUniverseIndexComponent universeIndexComponent;
     universeIndexComponent.value = universeIndex;
@@ -107,7 +107,7 @@ void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
     // Try destroy universe
     auto firstEid = *(eids.begin());
     auto index = mEntityManager->ViewComponent<nsCommonWrapper::TUniverseIndexComponent>(firstEid)->value;
-    if (GetCounter(index) == 0) {
+    if (GetReferenceCounter(index) == 0) {
         mUniverseManager.Delete(index);
     }
 }
@@ -122,19 +122,19 @@ void TSceneManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
     Destroy(pSceneInstanceGuid->value);
 }
 //--------------------------------------------------------------------------------
-void TSceneManager::IncrementCounter(TUniverseManager::IndexType index)
+void TSceneManager::IncrementReferenceCounter(TUniverseManager::IndexType index)
 {
     mReferenceCounters[index].counter++;
 }
 //--------------------------------------------------------------------------------
-void TSceneManager::DecrementCounter(TUniverseManager::IndexType index)
+void TSceneManager::DecrementReferenceCounter(TUniverseManager::IndexType index)
 {
     mReferenceCounters[index].counter--;
 
     BL_ASSERT(mReferenceCounters[index].counter >= 0);
 }
 //--------------------------------------------------------------------------------
-int TSceneManager::GetCounter(TUniverseManager::IndexType index)
+int TSceneManager::GetReferenceCounter(TUniverseManager::IndexType index)
 {
     return mReferenceCounters[index].counter;
 }

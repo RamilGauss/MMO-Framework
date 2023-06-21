@@ -22,5 +22,7 @@ namespace nsTornadoEngine
         nsMathTools::TMatrix16 rootMatrix;
 
         std::string absPath;
+
+        std::string projectionToUniverseGuid;// ???
     };
 }
