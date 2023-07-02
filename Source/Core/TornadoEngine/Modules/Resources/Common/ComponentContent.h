@@ -20,16 +20,4 @@ namespace nsTornadoEngine
         std::string typeName;
         std::string jsonBody;
     };
-
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TEntityContent
-    {
-        std::list<TComponentContent> components;
-    };
-
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TResourceContent
-    {
-        std::list<TEntityContent> entities;
-    };
 }

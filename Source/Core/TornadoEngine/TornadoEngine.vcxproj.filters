@@ -795,9 +795,6 @@
     <ClInclude Include="Modules\Resources\Common\GuidConstants.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Resources\Common\ResourceContent.h">
-      <Filter>Modules\Resources\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Modules\Resources\Prefab\PrefabObjectConstructor.h">
       <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
@@ -1263,6 +1260,12 @@
     <ClInclude Include="TimeSliceEngine\EngineVersion.h" />
     <ClInclude Include="Modules\Resources\Scene\InstantiateSceneParams.h" />
     <ClInclude Include="Modules\Resources\Prefab\InstantiatePrefabParams.h" />
+    <ClInclude Include="Modules\Resources\Prefab\PrefabResourceContent.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneResourceContent.h" />
+    <ClInclude Include="Modules\Resources\Common\EntityContent.h" />
+    <ClInclude Include="Modules\Resources\Common\ComponentContent.h" />
+    <ClInclude Include="Modules\Resources\Scene\PrefabInstance.h" />
+    <ClInclude Include="Modules\Resources\Prefab\PrefabPatch.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

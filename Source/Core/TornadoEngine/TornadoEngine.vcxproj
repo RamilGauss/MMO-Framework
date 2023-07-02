@@ -384,8 +384,14 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\PropertyManager\Archetype.h" />
     <ClInclude Include="Modules\PropertyManager\PropertyManager.h" />
     <ClInclude Include="Modules\PropertyManager\RelativeProperties.h" />
+    <ClInclude Include="Modules\Resources\Common\ComponentContent.h" />
+    <ClInclude Include="Modules\Resources\Common\EntityContent.h" />
     <ClInclude Include="Modules\Resources\Prefab\InstantiatePrefabParams.h" />
+    <ClInclude Include="Modules\Resources\Prefab\PrefabPatch.h" />
+    <ClInclude Include="Modules\Resources\Prefab\PrefabResourceContent.h" />
     <ClInclude Include="Modules\Resources\Scene\InstantiateSceneParams.h" />
+    <ClInclude Include="Modules\Resources\Scene\PrefabInstance.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneResourceContent.h" />
     <ClInclude Include="ReflectionAggregators\ImGuiWidgetsReflectionAggregator.h" />
     <ClInclude Include="Share\HandlerTarget.h" />
     <ClInclude Include="Components\Meta\NameComponent.h" />
@@ -610,7 +616,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Common\Modules.h" />
     <ClInclude Include="Modules\Common\ModulesAccessor.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabObjectConstructor.h" />
-    <ClInclude Include="Modules\Resources\Common\ResourceContent.h" />
     <ClInclude Include="Modules\Resources\Common\ResourceContentMap.h" />
     <ClInclude Include="Modules\Implementations\SoundEngineModule.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabManager.h" />
