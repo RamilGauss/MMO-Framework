@@ -15,6 +15,8 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TSceneResourceContent
     {
+        std::string guid;
+        
         std::list<TEntityContent> entities;
 
         std::list<TPrefabInstance> prefabInstances;
