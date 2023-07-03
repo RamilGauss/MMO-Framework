@@ -15,6 +15,8 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TPrefabResourceContent
     {
+        std::string guid;
+        
         std::list<TEntityContent> entities;
 
         TPrefabPatch patch;
