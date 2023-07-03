@@ -16,6 +16,8 @@ namespace nsTornadoEngine
     struct DllExport TPrefabResourceContent
     {
         std::string guid;
+
+        std::string prefabParentGuid = TGuidConstants::ORIGINAL;
         
         std::list<TEntityContent> entities;
 
