@@ -16,13 +16,11 @@ Root:
 - nsCommonWrapper::TGuidComponent  
 - nsCommonWrapper::TNameComponent  
 - nsCommonWrapper::TParentGuidComponent  
-- nsCommonWrapper::TPrefabGuidComponent  
 
 Childs:  
 - nsCommonWrapper::TGuidComponent
 - nsCommonWrapper::TNameComponent
-- nsCommonWrapper::TParentGuidComponent
-- nsCommonWrapper::TPrefabGuidComponent
+- nsCommonWrapper::TParentGuidComponent  
 
 
 #### After instantiate  
@@ -31,8 +29,14 @@ Childs:
 инстанцируется префаб.
 Но можно инстанцировать в сцену с одной вселенной, но сделать проекцию объектов префаба в другую вселенную.
 
+Root:  
+
+- nsCommonWrapper::TPrefabParentGuidComponent
+- nsCommonWrapper::TLocalMatrixComponent  
+
 Root, Others:  
 
+- nsCommonWrapper::TPrefabGuidComponent  
 - nsCommonWrapper::TPrefabOriginalGuidComponent  
 - nsCommonWrapper::TPrefabInstanceGuidComponent  
 
@@ -52,19 +56,18 @@ Root:
 - nsCommonWrapper::TGuidComponent  
 - nsCommonWrapper::TParentGuidComponent  
 - nsCommonWrapper::TNameComponent  
-- nsCommonWrapper::TSceneGuidComponent  
 
 Others:  
 
 - nsCommonWrapper::TGuidComponent  
 - nsCommonWrapper::TNameComponent  
 - nsCommonWrapper::TParentGuidComponent  
-- nsCommonWrapper::TSceneGuidComponent  
 
 #### After instantiate  
 
 Root, Others:
 
+- nsCommonWrapper::TSceneGuidComponent  
 - nsCommonWrapper::TSceneOriginalGuidComponent  
 - nsCommonWrapper::TSceneInstanceGuidComponent  
 
