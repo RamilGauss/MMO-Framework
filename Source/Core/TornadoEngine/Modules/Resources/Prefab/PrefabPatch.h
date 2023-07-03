@@ -43,9 +43,7 @@ namespace nsTornadoEngine
 
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TPrefabPatch
-    {
-        std::string prefabParentGuid = TGuidConstants::ORIGINAL;
-        
+    {   
         std::unordered_map<TPrefabPatchOperation::Operation, TPrefabPatchOperation> operations;
     };
 }
