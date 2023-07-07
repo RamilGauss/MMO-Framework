@@ -16,6 +16,8 @@ namespace nsTornadoEngine
     struct DllExport TSceneResourceContent
     {
         std::string guid;
+
+        std::string groupedByRankEntityGuidHash;
         
         std::list<TEntityContent> entities;
 
