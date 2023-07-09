@@ -1,0 +1,17 @@
+{
+    "guid": "scene_prefab_test_variant_add_component",
+    "prefabParentGuid": "scene_prefab_test_original",
+    "entities": [],
+    "patch": {
+        "operations": {
+            "operation": "ADD_COMPONENT",
+            "guid": "root",
+            "components": [
+                {
+                    "typeName": "nsGuiProject::TScenePrefabTestComponent",
+                    "jsonBody": "{\"value\":\"\"}"
+                }
+            ]
+        }
+    }
+}

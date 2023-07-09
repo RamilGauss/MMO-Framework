@@ -1,0 +1,38 @@
+{
+    "guid": "scene_prefab_test_variant_remove_component",
+    "prefabParentGuid": "scene_prefab_test_original",
+    "entities": [
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TPrefabRootComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"root\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"NONE\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"\"}"
+                }
+            ]
+        }
+    ],
+    "patch": {
+        "operations": {
+            "operation": "REMOVE_COMPONENT",
+            "guid": "second_object",
+            "components": [
+                {
+                    "typeName": "nsGuiProject::TScenePrefabTestComponent",
+                    "jsonBody": ""
+                }
+            ]
+        }
+    }
+}

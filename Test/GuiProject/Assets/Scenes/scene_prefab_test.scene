@@ -1,0 +1,48 @@
+{
+    "guid": "scene_prefab_test",
+    "groupedByRankEntityGuidHash": "abcdef",
+    "entities": [
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TSceneRootComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"root\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"NONE\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"Bootstrapper scene\"}"
+                }
+            ]
+        }
+    ],
+    "prefabInstances": [
+        {
+            "parentGuid": "root",
+            "prefabGuid": "scene_prefab_test_original",
+            "localMatrix": { 
+                "_11": 0.0, "_12": 0.0, "_13": 0.0, "_14": 0.0,
+                "_21": 0.0, "_22": 0.0, "_23": 0.0, "_24": 0.0,
+                "_31": 0.0, "_32": 0.0, "_33": 0.0, "_34": 0.0,
+                "_41": 0.0, "_42": 0.0, "_43": 0.0, "_44": 0.0
+            }
+        },
+        {
+            "parentGuid": "root",
+            "prefabGuid": "orignal",
+            "localMatrix": { 
+                "_11": 0.0, "_12": 0.0, "_13": 0.0, "_14": 0.0,
+                "_21": 0.0, "_22": 0.0, "_23": 0.0, "_24": 0.0,
+                "_31": 0.0, "_32": 0.0, "_33": 0.0, "_34": 0.0,
+                "_41": 0.0, "_42": 0.0, "_43": 0.0, "_44": 0.0
+            }
+        }
+    ]
+}

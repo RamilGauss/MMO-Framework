@@ -182,5 +182,8 @@
     <ClInclude Include="Meta\Generated files\Container\EcsTypeInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Components\ScenePrefabTestComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

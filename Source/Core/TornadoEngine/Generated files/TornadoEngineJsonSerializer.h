@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_06_05 10:36:51.327
+// File has been generated at 2023_07_09 18:13:58.585
 	
 #pragma once
 
@@ -87,14 +87,29 @@ namespace nsTornadoEngine
         static void _Serialize(nsTornadoEngine::TFrameworkResources* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TFrameworkResources* p, const Jobj& obj);
         
+        static void _Serialize(nsTornadoEngine::TPrefabInstance* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TPrefabInstance* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TPrefabPatch* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TPrefabPatch* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TPrefabPatchOperation* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TPrefabPatchOperation* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TPrefabResourceContent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TPrefabResourceContent* p, const Jobj& obj);
+        
         static void _Serialize(nsTornadoEngine::TProjectConfig* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TProjectConfig* p, const Jobj& obj);
         
-        static void _Serialize(nsTornadoEngine::TResourceContent* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::TResourceContent* p, const Jobj& obj);
-        
         static void _Serialize(nsTornadoEngine::TResourceContentMap* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TResourceContentMap* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TSceneResourceContent* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TSceneResourceContent* p, const Jobj& obj);
+        
+        static std::string _SerializeEnum(nsTornadoEngine::TPrefabPatchOperation::Operation* p);
+        static void _DeserializeEnum(std::string& str, nsTornadoEngine::TPrefabPatchOperation::Operation* p);
         
     };
     //------------------------------------------------------------------------------------------------------------

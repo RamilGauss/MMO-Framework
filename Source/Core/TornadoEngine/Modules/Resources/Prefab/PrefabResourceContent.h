@@ -7,6 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include "GuidConstants.h"
 #include "EntityContent.h"
 #include "PrefabPatch.h"
 

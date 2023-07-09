@@ -1,0 +1,47 @@
+{
+    "guid": "scene_prefab_test_original",
+    "prefabParentGuid": "ORIGINAL",
+    "entities": [
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TPrefabRootComponent",
+                    "jsonBody": "{}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"root\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"NONE\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"\"}"
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"second_object\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"root\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"second_object\"}"
+                },
+                {
+                    "typeName": "nsGuiProject::TScenePrefabTestComponent",
+                    "jsonBody": "{\"value\":\"\"}"
+                }
+            ]
+        }
+    ],
+    "patch": {}
+}

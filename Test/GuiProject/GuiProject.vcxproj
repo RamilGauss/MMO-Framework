@@ -76,6 +76,10 @@
     <ClInclude Include="Meta\Generated files\Container\HandlerTypeInfo.h" />
     <ClInclude Include="Meta\Generated files\Container\SystemIncludeList.h" />
     <ClInclude Include="Meta\Generated files\Container\SystemTypeFactory.h" />
+    <ClInclude Include="Sources\Components\ScenePrefabTestComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_06_05 10:36:51.332
+// File has been generated at 2023_07_09 18:13:58.588
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -197,6 +197,54 @@ void TTornadoEngineJsonSerializer::Init()
     
     m.insert({ rtti__nsTornadoEngine_TFrameworkResourcesTypeFunc, _nsTornadoEngine_TFrameworkResourcesTypeFunc });
     
+    TypeFunc _nsTornadoEngine_TPrefabInstanceTypeFunc;
+    _nsTornadoEngine_TPrefabInstanceTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEngine::TPrefabInstance>((nsTornadoEngine::TPrefabInstance*) p, str);
+    };
+    _nsTornadoEngine_TPrefabInstanceTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEngine::TPrefabInstance>((nsTornadoEngine::TPrefabInstance*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEngine_TPrefabInstanceTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabInstance>();
+    
+    m.insert({ rtti__nsTornadoEngine_TPrefabInstanceTypeFunc, _nsTornadoEngine_TPrefabInstanceTypeFunc });
+    
+    TypeFunc _nsTornadoEngine_TPrefabPatchTypeFunc;
+    _nsTornadoEngine_TPrefabPatchTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEngine::TPrefabPatch>((nsTornadoEngine::TPrefabPatch*) p, str);
+    };
+    _nsTornadoEngine_TPrefabPatchTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEngine::TPrefabPatch>((nsTornadoEngine::TPrefabPatch*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEngine_TPrefabPatchTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabPatch>();
+    
+    m.insert({ rtti__nsTornadoEngine_TPrefabPatchTypeFunc, _nsTornadoEngine_TPrefabPatchTypeFunc });
+    
+    TypeFunc _nsTornadoEngine_TPrefabPatchOperationTypeFunc;
+    _nsTornadoEngine_TPrefabPatchOperationTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEngine::TPrefabPatchOperation>((nsTornadoEngine::TPrefabPatchOperation*) p, str);
+    };
+    _nsTornadoEngine_TPrefabPatchOperationTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEngine::TPrefabPatchOperation>((nsTornadoEngine::TPrefabPatchOperation*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEngine_TPrefabPatchOperationTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabPatchOperation>();
+    
+    m.insert({ rtti__nsTornadoEngine_TPrefabPatchOperationTypeFunc, _nsTornadoEngine_TPrefabPatchOperationTypeFunc });
+    
+    TypeFunc _nsTornadoEngine_TPrefabResourceContentTypeFunc;
+    _nsTornadoEngine_TPrefabResourceContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEngine::TPrefabResourceContent>((nsTornadoEngine::TPrefabResourceContent*) p, str);
+    };
+    _nsTornadoEngine_TPrefabResourceContentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEngine::TPrefabResourceContent>((nsTornadoEngine::TPrefabResourceContent*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEngine_TPrefabResourceContentTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabResourceContent>();
+    
+    m.insert({ rtti__nsTornadoEngine_TPrefabResourceContentTypeFunc, _nsTornadoEngine_TPrefabResourceContentTypeFunc });
+    
     TypeFunc _nsTornadoEngine_TProjectConfigTypeFunc;
     _nsTornadoEngine_TProjectConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsTornadoEngine::TProjectConfig>((nsTornadoEngine::TProjectConfig*) p, str);
@@ -209,18 +257,6 @@ void TTornadoEngineJsonSerializer::Init()
     
     m.insert({ rtti__nsTornadoEngine_TProjectConfigTypeFunc, _nsTornadoEngine_TProjectConfigTypeFunc });
     
-    TypeFunc _nsTornadoEngine_TResourceContentTypeFunc;
-    _nsTornadoEngine_TResourceContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsTornadoEngine::TResourceContent>((nsTornadoEngine::TResourceContent*) p, str);
-    };
-    _nsTornadoEngine_TResourceContentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsTornadoEngine::TResourceContent>((nsTornadoEngine::TResourceContent*) p, str, err);
-    };
-    
-    auto rtti__nsTornadoEngine_TResourceContentTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TResourceContent>();
-    
-    m.insert({ rtti__nsTornadoEngine_TResourceContentTypeFunc, _nsTornadoEngine_TResourceContentTypeFunc });
-    
     TypeFunc _nsTornadoEngine_TResourceContentMapTypeFunc;
     _nsTornadoEngine_TResourceContentMapTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsTornadoEngine::TResourceContentMap>((nsTornadoEngine::TResourceContentMap*) p, str);
@@ -232,6 +268,18 @@ void TTornadoEngineJsonSerializer::Init()
     auto rtti__nsTornadoEngine_TResourceContentMapTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TResourceContentMap>();
     
     m.insert({ rtti__nsTornadoEngine_TResourceContentMapTypeFunc, _nsTornadoEngine_TResourceContentMapTypeFunc });
+    
+    TypeFunc _nsTornadoEngine_TSceneResourceContentTypeFunc;
+    _nsTornadoEngine_TSceneResourceContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEngine::TSceneResourceContent>((nsTornadoEngine::TSceneResourceContent*) p, str);
+    };
+    _nsTornadoEngine_TSceneResourceContentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEngine::TSceneResourceContent>((nsTornadoEngine::TSceneResourceContent*) p, str, err);
+    };
+    
+    auto rtti__nsTornadoEngine_TSceneResourceContentTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TSceneResourceContent>();
+    
+    m.insert({ rtti__nsTornadoEngine_TSceneResourceContentTypeFunc, _nsTornadoEngine_TSceneResourceContentTypeFunc });
     
     int max = 0;
     for (auto& vt : m) {
@@ -591,6 +639,103 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TFrameworkResou
     _Deserialize(&(p->scenes), scenes_o0);
 }
 //---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabInstance* p, Jobj& obj)
+{
+    PUM::Push(obj, "parentGuid", p->parentGuid);
+    PUM::Push(obj, "prefabGuid", p->prefabGuid);
+    auto localMatrix_o = PUM::AddObject(obj, "localMatrix");
+    _Serialize(&(p->localMatrix), localMatrix_o);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TPrefabInstance* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "parentGuid", p->parentGuid);
+    POM::PopStr(obj, "prefabGuid", p->prefabGuid);
+    auto localMatrix_o0 = POM::FindObject(obj, "localMatrix");
+    _Deserialize(&(p->localMatrix), localMatrix_o0);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabPatch* p, Jobj& obj)
+{
+    auto operations_c0 = PUM::AddObject(obj, "operations");
+    for(auto& operations_e0 : p->operations) {
+        auto operations_a0 = PUM::AddObject(operations_c0, PUM::ConvertToString(operations_e0.first).data());
+        _Serialize(&(operations_e0.second), operations_a0);
+    }
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TPrefabPatch* p, const Jobj& obj)
+{
+    auto operations_a0 = POM::FindObject(obj, "operations");
+    for(auto& operations_e0 : operations_a0) {
+        auto operations_o1 = operations_e0.value.GetObject();
+        nsTornadoEngine::TPrefabPatchOperation operations_c1;
+        _Deserialize(&operations_c1, operations_o1);
+        p->operations.insert({ (TPrefabPatchOperation::Operation)std::stod(operations_e0.name.GetString()), operations_c1 });
+    }
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabPatchOperation* p, Jobj& obj)
+{
+    auto operation_c0 = _SerializeEnum(&(p->operation));
+    PUM::Push(obj, "operation", operation_c0);
+    PUM::Push(obj, "guid", p->guid);
+    PUM::Value components_a0(rapidjson::kArrayType);
+    for(auto& components_e0 : p->components) {
+        PUM::Value components_a1(rapidjson::kObjectType);
+        auto components_c1 = components_a1.GetObject();
+        _Serialize(&components_e0, components_c1);
+        PUM::PushBack(components_a0, components_a1);
+    }
+    PUM::Push(obj, "components", components_a0);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TPrefabPatchOperation* p, const Jobj& obj)
+{
+    std::string operation_c0;
+    POM::PopStr(obj, "operation", operation_c0);
+    _DeserializeEnum(operation_c0, &(p->operation));
+    POM::PopStr(obj, "guid", p->guid);
+    auto components_a0 = POM::FindArray(obj, "components");
+    for(auto& components_e0 : components_a0) {
+        auto components_o1 = components_e0.GetObject();
+        nsTornadoEngine::TComponentContent components_c1;
+        _Deserialize(&components_c1, components_o1);
+        p->components.push_back(components_c1);
+    }
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabResourceContent* p, Jobj& obj)
+{
+    PUM::Push(obj, "guid", p->guid);
+    PUM::Push(obj, "prefabParentGuid", p->prefabParentGuid);
+    PUM::Value entities_a0(rapidjson::kArrayType);
+    for(auto& entities_e0 : p->entities) {
+        PUM::Value entities_a1(rapidjson::kObjectType);
+        auto entities_c1 = entities_a1.GetObject();
+        _Serialize(&entities_e0, entities_c1);
+        PUM::PushBack(entities_a0, entities_a1);
+    }
+    PUM::Push(obj, "entities", entities_a0);
+    auto patch_o = PUM::AddObject(obj, "patch");
+    _Serialize(&(p->patch), patch_o);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TPrefabResourceContent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "guid", p->guid);
+    POM::PopStr(obj, "prefabParentGuid", p->prefabParentGuid);
+    auto entities_a0 = POM::FindArray(obj, "entities");
+    for(auto& entities_e0 : entities_a0) {
+        auto entities_o1 = entities_e0.GetObject();
+        nsTornadoEngine::TEntityContent entities_c1;
+        _Deserialize(&entities_c1, entities_o1);
+        p->entities.push_back(entities_c1);
+    }
+    auto patch_o0 = POM::FindObject(obj, "patch");
+    _Deserialize(&(p->patch), patch_o0);
+}
+//---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TProjectConfig* p, Jobj& obj)
 {
     PUM::Push(obj, "binaryFilePath", p->binaryFilePath);
@@ -620,29 +765,6 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TProjectConfig*
     }
 }
 //---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TResourceContent* p, Jobj& obj)
-{
-    PUM::Value entities_a0(rapidjson::kArrayType);
-    for(auto& entities_e0 : p->entities) {
-        PUM::Value entities_a1(rapidjson::kObjectType);
-        auto entities_c1 = entities_a1.GetObject();
-        _Serialize(&entities_e0, entities_c1);
-        PUM::PushBack(entities_a0, entities_a1);
-    }
-    PUM::Push(obj, "entities", entities_a0);
-}
-//---------------------------------------------------------------------------------------
-void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TResourceContent* p, const Jobj& obj)
-{
-    auto entities_a0 = POM::FindArray(obj, "entities");
-    for(auto& entities_e0 : entities_a0) {
-        auto entities_o1 = entities_e0.GetObject();
-        nsTornadoEngine::TEntityContent entities_c1;
-        _Deserialize(&entities_c1, entities_o1);
-        p->entities.push_back(entities_c1);
-    }
-}
-//---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TResourceContentMap* p, Jobj& obj)
 {
     auto guidPathMap_c0 = PUM::AddObject(obj, "guidPathMap");
@@ -657,5 +779,76 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TResourceConten
     for(auto& guidPathMap_e0 : guidPathMap_a0) {
         p->guidPathMap.insert({ guidPathMap_e0.name.GetString(), guidPathMap_e0.value.GetString() });
     }
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TSceneResourceContent* p, Jobj& obj)
+{
+    PUM::Push(obj, "guid", p->guid);
+    PUM::Push(obj, "groupedByRankEntityGuidHash", p->groupedByRankEntityGuidHash);
+    PUM::Value entities_a0(rapidjson::kArrayType);
+    for(auto& entities_e0 : p->entities) {
+        PUM::Value entities_a1(rapidjson::kObjectType);
+        auto entities_c1 = entities_a1.GetObject();
+        _Serialize(&entities_e0, entities_c1);
+        PUM::PushBack(entities_a0, entities_a1);
+    }
+    PUM::Push(obj, "entities", entities_a0);
+    PUM::Value prefabInstances_a0(rapidjson::kArrayType);
+    for(auto& prefabInstances_e0 : p->prefabInstances) {
+        PUM::Value prefabInstances_a1(rapidjson::kObjectType);
+        auto prefabInstances_c1 = prefabInstances_a1.GetObject();
+        _Serialize(&prefabInstances_e0, prefabInstances_c1);
+        PUM::PushBack(prefabInstances_a0, prefabInstances_a1);
+    }
+    PUM::Push(obj, "prefabInstances", prefabInstances_a0);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TSceneResourceContent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "guid", p->guid);
+    POM::PopStr(obj, "groupedByRankEntityGuidHash", p->groupedByRankEntityGuidHash);
+    auto entities_a0 = POM::FindArray(obj, "entities");
+    for(auto& entities_e0 : entities_a0) {
+        auto entities_o1 = entities_e0.GetObject();
+        nsTornadoEngine::TEntityContent entities_c1;
+        _Deserialize(&entities_c1, entities_o1);
+        p->entities.push_back(entities_c1);
+    }
+    auto prefabInstances_a0 = POM::FindArray(obj, "prefabInstances");
+    for(auto& prefabInstances_e0 : prefabInstances_a0) {
+        auto prefabInstances_o1 = prefabInstances_e0.GetObject();
+        nsTornadoEngine::TPrefabInstance prefabInstances_c1;
+        _Deserialize(&prefabInstances_c1, prefabInstances_o1);
+        p->prefabInstances.push_back(prefabInstances_c1);
+    }
+}
+//---------------------------------------------------------------------------------------
+std::string TTornadoEngineJsonSerializer::_SerializeEnum(nsTornadoEngine::TPrefabPatchOperation::Operation* p)
+{
+    switch (*p) {
+        case nsTornadoEngine::TPrefabPatchOperation::Operation::ADD_COMPONENT:
+            return "ADD_COMPONENT";
+        case nsTornadoEngine::TPrefabPatchOperation::Operation::ADD_ENTITY:
+            return "ADD_ENTITY";
+        case nsTornadoEngine::TPrefabPatchOperation::Operation::REMOVE_COMPONENT:
+            return "REMOVE_COMPONENT";
+        case nsTornadoEngine::TPrefabPatchOperation::Operation::REMOVE_ENTITY:
+            return "REMOVE_ENTITY";
+        case nsTornadoEngine::TPrefabPatchOperation::Operation::UPDATE_COMPONENT:
+            return "UPDATE_COMPONENT";
+        default:;
+    }
+    return "";
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_DeserializeEnum(std::string& str, nsTornadoEngine::TPrefabPatchOperation::Operation* p)
+{
+    std::map<std::string, nsTornadoEngine::TPrefabPatchOperation::Operation> m;
+    m.insert({"ADD_COMPONENT", nsTornadoEngine::TPrefabPatchOperation::Operation::ADD_COMPONENT});
+    m.insert({"ADD_ENTITY", nsTornadoEngine::TPrefabPatchOperation::Operation::ADD_ENTITY});
+    m.insert({"REMOVE_COMPONENT", nsTornadoEngine::TPrefabPatchOperation::Operation::REMOVE_COMPONENT});
+    m.insert({"REMOVE_ENTITY", nsTornadoEngine::TPrefabPatchOperation::Operation::REMOVE_ENTITY});
+    m.insert({"UPDATE_COMPONENT", nsTornadoEngine::TPrefabPatchOperation::Operation::UPDATE_COMPONENT});
+    *p = m[str];
 }
 //---------------------------------------------------------------------------------------

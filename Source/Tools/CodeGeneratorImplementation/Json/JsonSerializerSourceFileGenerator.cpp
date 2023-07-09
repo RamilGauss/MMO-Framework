@@ -924,7 +924,7 @@ void TJsonSerializerSourceFileGenerator::AddPopDepth(TMemberInfo* pMemberInfo,
         std::string key = fmt::format("{}.name.{}()", curE, s_GetString);
         auto keyExt = prevExt->mTemplateChildArr.at(0);
         if (keyExt.mCategory != TypeCategory::STRING) {
-            key = fmt::format("{}({})", s_StrToNum, key);
+            key = fmt::format("({}){}({})", keyExt.GetTypeNameWithNameSpace(), s_StrToNum, key);
         }
 
         str = fmt::format("{}.{}({{ {}, {}.value.{}() }});", curC, s_Insert, key, curE, get);
@@ -1150,7 +1150,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthMap(TMemberInfo* p
     auto keyExt = pExtArr->at(depth - 1).mTemplateChildArr.at(0);
 
     if (keyExt.mCategory != TypeCategory::STRING) {
-        key = fmt::format("{}({})", s_StrToNum, key);
+        key = fmt::format("({}){}({})", keyExt.GetTypeNameWithNameSpace(), s_StrToNum, key);
     }
 
     auto dst = fmt::format("{}->{}", s_TypeObject, pMemberInfo->mName);

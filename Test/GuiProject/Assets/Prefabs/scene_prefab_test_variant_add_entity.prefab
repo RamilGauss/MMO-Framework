@@ -1,0 +1,29 @@
+{
+    "guid": "scene_prefab_test_variant_add_entity",
+    "prefabParentGuid": "scene_prefab_test_original",
+    "entities": [],
+    "patch": {
+        "operations": {
+            "operation": "ADD_ENTITY",
+            "guid": "",
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"third_object\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"root\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"third_object\"}"
+                },
+                {
+                    "typeName": "nsGuiProject::TScenePrefabTestComponent",
+                    "jsonBody": "{\"value\":\"\"}"
+                }
+            ]
+        }
+    }
+}

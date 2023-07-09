@@ -28,17 +28,15 @@ namespace nsTornadoEngine
 
         Operation operation;
 
-        TEntityContent value;
-
         std::string guid;
-        TComponentContent value;
+        std::list<TComponentContent> components;
 
-        //AddEntity       -> TEntityContent
+        //AddEntity       -> components
         //RemoveEntity    -> guid
                              
-        //AddComponent    -> guid, TComponentContent
-        //UpdateComponent -> guid, TComponentContent
-        //RemoveComponent -> guid, TComponentContent
+        //AddComponent    -> guid, components
+        //UpdateComponent -> guid, components
+        //RemoveComponent -> guid, components
     };
 
 #pragma REFLECTION_ATTRIBUTE
