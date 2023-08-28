@@ -19,9 +19,10 @@ namespace nsTornadoEngine
         enum Step
         {
             // Loading
-            BEGIN,
-            DESERIALIZING,
-            SORTING,
+            FILE_LOADING,
+            SCENE_DESERIALIZING,
+            COMPONENTS_DESERIALIZING,
+            SORTING_ENTITY_BY_RANK,
             ENTITY_INSTANTIATING,
             PREFAB_INSTANTIATING,
 
@@ -40,6 +41,15 @@ namespace nsTornadoEngine
 
     private:
         std::string mGuid;
-        Step mStep;
+        Step mStep = Step::FILE_LOADING;
+
+        int mPartCount = 1;
+        int mPartProgress = 0;
+
+        const int FILE_PART_SIZE = 10`000`000;
+        const int COMPONENT_PART_SIZE = 100;
+        const int SORTING_PART_SIZE = 100;
+        const int ENTITY_INSTANTIATING_PART_SIZE = 1000;
+        const int PREFAB_INSTANTIATING_PART_SIZE = 10;
     };
 }
