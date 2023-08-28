@@ -33,9 +33,6 @@ void TProjectConfigurator::Setup()
 
     auto& resources = Project()->mResources;
     
-    Modules()->PrefabObjConstructor()->Setup(dllPathList);
-    Modules()->PrefabObjConstructor()->SetContentMap(resources.prefabs);
-
     auto sceneMng = Modules()->SceneMng();
 
     sceneMng->SetEntityManager(entMng);

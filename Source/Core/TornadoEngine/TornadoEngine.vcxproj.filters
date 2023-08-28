@@ -198,9 +198,6 @@
     <ClCompile Include="Modules\Common\Modules.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Resources\Scene\SceneManager.cpp">
-      <Filter>Modules\Resources\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\Common\ModulesAccessor.cpp">
       <Filter>Modules\Common</Filter>
     </ClCompile>
@@ -285,12 +282,6 @@
     <ClCompile Include="Features\Logic\End\Terminator\SystemTerminatorSystem.cpp">
       <Filter>Features\Logic\Terminator</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Resources\Prefab\PrefabManager.cpp">
-      <Filter>Modules\Resources\Prefab</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\Resources\Prefab\PrefabObjectConstructor.cpp">
-      <Filter>Modules\Resources\Prefab</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\Resources\Common\HandlerCallCollector.cpp">
       <Filter>Modules\Resources\Common</Filter>
     </ClCompile>
@@ -302,9 +293,6 @@
     </ClCompile>
     <ClCompile Include="Features\Logic\End\Object\ObjectFeature.cpp">
       <Filter>Features\Logic\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\Resources\Common\ObjectManager.cpp">
-      <Filter>Modules\Resources\Common</Filter>
     </ClCompile>
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\InputTextValueUpdaterSystem.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
@@ -516,9 +504,6 @@
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\PositionUpdaterSystem.cpp">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClCompile>
-    <ClCompile Include="Share\GameObject.cpp">
-      <Filter>Share</Filter>
-    </ClCompile>
     <ClCompile Include="Features\Graphic\Begin\Builder\Properties\AnchorsAddSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Properties\FocusAddSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Properties\HorizontalAlignAddSystem.cpp" />
@@ -553,6 +538,10 @@
     <ClCompile Include="Modules\PropertyManager\PropertyManager.cpp" />
     <ClCompile Include="Modules\PropertyManager\PropertyManagerConfigs.cpp" />
     <ClCompile Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\SceneManager.cpp" />
+    <ClCompile Include="Modules\Resources\Prefab\PrefabManager.cpp" />
+    <ClCompile Include="Modules\Resources\Common\GameObject.cpp" />
+    <ClCompile Include="Modules\Resources\Common\ObjectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Resources\Common\FrameworkResources.h">
@@ -653,9 +642,6 @@
     </ClInclude>
     <ClInclude Include="Modules\Common\LogicWrapperModule.h">
       <Filter>Modules\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Resources\Scene\SceneManager.h">
-      <Filter>Modules\Resources\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Modules\Common\ModulesAccessor.h">
       <Filter>Modules\Common</Filter>
@@ -786,23 +772,11 @@
     <ClInclude Include="Features\Logic\End\Terminator\SystemTerminatorSystem.h">
       <Filter>Features\Logic\Terminator</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Resources\Prefab\PrefabManager.h">
-      <Filter>Modules\Resources\Prefab</Filter>
-    </ClInclude>
     <ClInclude Include="Modules\Resources\Common\ResourceContentMap.h">
       <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
     <ClInclude Include="Modules\Resources\Common\GuidConstants.h">
       <Filter>Modules\Resources\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Resources\Prefab\PrefabObjectConstructor.h">
-      <Filter>Modules\Resources\Prefab</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Resources\Prefab\ObjectInMemory.h">
-      <Filter>Modules\Resources\Prefab</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Resources\Prefab\ComponentInMemory.h">
-      <Filter>Modules\Resources\Prefab</Filter>
     </ClInclude>
     <ClInclude Include="Components\Meta\ObjectInMemoryComponent.h">
       <Filter>Components\Common\Prefab</Filter>
@@ -827,9 +801,6 @@
     </ClInclude>
     <ClInclude Include="Share\HandlerTarget.h">
       <Filter>Components\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\Resources\Common\ObjectManager.h">
-      <Filter>Modules\Resources\Common</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\Gui\IMenuNodeClickHandler.h">
       <Filter>Handlers\Gui</Filter>
@@ -1185,9 +1156,6 @@
     <ClInclude Include="Features\Graphic\Begin\UpdateToModule\PositionUpdaterSystem.h">
       <Filter>Features\Graphic\UpdaterToModule</Filter>
     </ClInclude>
-    <ClInclude Include="Share\GameObject.h">
-      <Filter>Share</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Graphic\TextureFromCameraComponent.h">
       <Filter>Components\Graphic</Filter>
     </ClInclude>
@@ -1266,6 +1234,11 @@
     <ClInclude Include="Modules\Resources\Common\ComponentContent.h" />
     <ClInclude Include="Modules\Resources\Scene\PrefabInstance.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabPatch.h" />
+    <ClInclude Include="Modules\Resources\Common\GameObject.h" />
+    <ClInclude Include="Modules\Resources\Common\ObjectManager.h" />
+    <ClInclude Include="Modules\Resources\Prefab\PrefabManager.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneInstanceState.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

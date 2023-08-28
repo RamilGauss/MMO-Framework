@@ -8,7 +8,6 @@
         "nsCommonWrapper::THandlerTarget",
         "nsCommonWrapper::TNameComponent",
         "nsCommonWrapper::TNeedDestroyObjectTagComponent",
-        "nsCommonWrapper::TObjectInMemoryComponent",
         "nsCommonWrapper::TParentGuidComponent",
         "nsCommonWrapper::TPrefabGuidComponent",
         "nsCommonWrapper::TPrefabInstanceGuidComponent",

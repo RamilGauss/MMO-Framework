@@ -1,4 +1,6 @@
 core $(SolutionDir)Source\Core\TornadoEngine\Configs\CoreContainerConfig.json
-project e:\Projects\TornadoEngine\Source\MMOFramework\Source\Tools\TornadoEditor\Meta\ProjectContainerConfig.json
+
+project $(SolutionDir)\Source\Tools\TornadoEditor\Meta\ProjectContainerConfig.json
+project $(SolutionDir)\Test\GuiProject\Meta\ProjectContainerConfig.json
 
 $(SolutionDir)Source\Core\TornadoEngine\Configs\ReflectionConfig.json

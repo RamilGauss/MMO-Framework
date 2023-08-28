@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "InstantiatePrefabParams.h"
 #include "ObjectManager.h"
-
+#include "GameObject.h"
 
 namespace nsTornadoEngine
 {
@@ -21,12 +21,10 @@ namespace nsTornadoEngine
         // Если SceneInstance не задан, то искать нужно по родителю
         // И наоборот, если не задан родитель, то нужен SceneInstance, что бы найти root.
 
-        void InstantiateByGuid(TInstantiatePrefabParams instantiatePrefabParams);
-        void InstantiateByAbsPath(const TInstantiatePrefabParams& instantiatePrefabParams);
+        TGameObject InstantiateByGuid(TInstantiatePrefabParams instantiatePrefabParams);
+        TGameObject InstantiateByAbsPath(const TInstantiatePrefabParams& instantiatePrefabParams);
 
-        void InstantiateByObjectInMemory(TPrefabObjectConstructor* prefabObjConstructor, nsECSFramework::TEntityID eid, 
-            const std::string& sceneInstanceGuid, const std::string& parentGuid = TGuidConstants::NONE);
-
+        // Уничтожить 
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
         void Destroy(const std::string& prefabInstanceGuid);
 

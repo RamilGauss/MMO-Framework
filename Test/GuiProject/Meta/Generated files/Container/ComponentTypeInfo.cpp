@@ -2,7 +2,7 @@
 Project Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 17:59:37.840
+// File has been generated at 2023_08_28 11:41:40.860
 	
 #include "ComponentTypeInfo.h"
 
@@ -26,6 +26,12 @@ void TComponentTypeInfo::Init()
     isNeedInit = false;
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
+    
+    int nsGuiProject_TScenePrefabTestComponent_i = globalTypeIdentifier->Type<nsGuiProject::TScenePrefabTestComponent>();
+    std::string nsGuiProject_TScenePrefabTestComponent_n = "nsGuiProject::TScenePrefabTestComponent";
+    mTypeNameList.push_back(nsGuiProject_TScenePrefabTestComponent_n);
+    mRttiList.push_back(nsGuiProject_TScenePrefabTestComponent_i);
+    mNameRttiMap.insert({ nsGuiProject_TScenePrefabTestComponent_n, nsGuiProject_TScenePrefabTestComponent_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

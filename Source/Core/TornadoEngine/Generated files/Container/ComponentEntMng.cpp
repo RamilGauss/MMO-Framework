@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_06_05 10:37:23.349
+// File has been generated at 2023_08_28 10:01:15.067
 	
 #include "ComponentEntMng.h"
 
@@ -78,20 +78,6 @@ void TComponentEntMng::Init()
     auto rtti_nsCommonWrapper_TNeedDestroyObjectTagComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroyObjectTagComponent>();
     
     m.insert({ rtti_nsCommonWrapper_TNeedDestroyObjectTagComponent_Data, nsCommonWrapper_TNeedDestroyObjectTagComponent_Data });
-    
-    Data nsCommonWrapper_TObjectInMemoryComponent_Data;
-        nsCommonWrapper_TObjectInMemoryComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TObjectInMemoryComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TObjectInMemoryComponent>(eid, lambda);
-    };
-    nsCommonWrapper_TObjectInMemoryComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TObjectInMemoryComponent*)p)); };
-    nsCommonWrapper_TObjectInMemoryComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TObjectInMemoryComponent>(eid); };
-    nsCommonWrapper_TObjectInMemoryComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TObjectInMemoryComponent>(eid); };
-    nsCommonWrapper_TObjectInMemoryComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsCommonWrapper::TObjectInMemoryComponent>(eid); };
-    nsCommonWrapper_TObjectInMemoryComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsCommonWrapper::TObjectInMemoryComponent>(); };
-    auto rtti_nsCommonWrapper_TObjectInMemoryComponent_Data = globalTypeIdentifier->Type<nsCommonWrapper::TObjectInMemoryComponent>();
-    
-    m.insert({ rtti_nsCommonWrapper_TObjectInMemoryComponent_Data, nsCommonWrapper_TObjectInMemoryComponent_Data });
     
     Data nsCommonWrapper_TParentGuidComponent_Data;
         nsCommonWrapper_TParentGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {

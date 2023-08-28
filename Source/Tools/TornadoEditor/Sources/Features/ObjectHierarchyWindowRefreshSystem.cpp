@@ -13,7 +13,6 @@ See for more information LICENSE.md.
 #include "Modules.h"
 #include "StopAccessor.h"
 #include "PrefabManager.h"
-#include "PrefabObjectConstructor.h"
 
 #include "GuidComponent.h"
 #include "InputTextValueComponent.h"

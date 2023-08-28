@@ -23,7 +23,7 @@ namespace nsTornadoEngine
         nsECSFramework::TEntityManager* mEntMng = nullptr;
     public:
         TGameObject();
-        TGameObject(nsECSFramework::TEntityID eid);
+        TGameObject(nsECSFramework::TEntityID eid, nsECSFramework::TEntityManager* entMng = nullptr);
 
         nsECSFramework::TEntityID GetEid() const;
 
@@ -66,7 +66,7 @@ namespace nsTornadoEngine
         void SetEntityManager(nsECSFramework::TEntityManager* entMng);
         nsECSFramework::TEntityManager* GetEntityManager() const;
     };
-
+    //--------------------------------------------------------------------------------------------------
     template <typename Component>
     Component TGameObject::GetComponent()
     {
@@ -77,11 +77,10 @@ namespace nsTornadoEngine
 
         return *pComponent;
     }
-
+    //--------------------------------------------------------------------------------------------------
     template <typename Component>
     void TGameObject::SetComponent(const Component& component)
     {
         mEntMng->SetComponent<Component>(mEid);
     }
-
 }

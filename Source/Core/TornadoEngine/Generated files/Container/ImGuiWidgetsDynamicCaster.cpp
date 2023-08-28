@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_06_05 10:37:24.587
+// File has been generated at 2023_08_28 10:01:16.248
 	
 #include "ImGuiWidgetsDynamicCaster.h"
 #include "SingletonManager.h"

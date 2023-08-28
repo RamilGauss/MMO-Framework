@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_06_05 10:37:23.395
+// File has been generated at 2023_08_28 10:01:15.111
 	
 #pragma once
 
@@ -64,7 +64,6 @@ Core Component
 #include "GuidComponent.h"
 #include "NameComponent.h"
 #include "NeedDestroyObjectTagComponent.h"
-#include "ObjectInMemoryComponent.h"
 #include "ParentGuidComponent.h"
 #include "PrefabGuidComponent.h"
 #include "PrefabInstanceGuidComponent.h"

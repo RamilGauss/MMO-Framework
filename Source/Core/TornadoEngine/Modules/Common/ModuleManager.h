@@ -17,7 +17,6 @@ See for more information LICENSE.md.
 #include "PrefabManager.h"
 #include "IModule.h"
 #include "HandlerCallCollector.h"
-#include "PrefabObjectConstructor.h"
 #include "Gizmo.h"
 #include "PropertyManager.h"
 
@@ -32,7 +31,6 @@ namespace nsTornadoEngine
         TStopAccessor* mStopAccessor = nullptr;
         nsGraphicEngine::TKeyMouseEventContainer mKeyMouseEventContainer;
         THandlerCallCollector mHandlerCallCollector;
-        TPrefabObjectConstructor mPrefabObjConstructor;
         TGizmo mGizmo;
         TPropertyManager mPropertyMng;
 

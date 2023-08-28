@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_06_05 10:37:23.313
+// File has been generated at 2023_08_28 10:01:15.030
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -88,18 +88,6 @@ void TComponentJson::Init()
     auto rtti__nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroyObjectTagComponent>();
     
     m.insert({ rtti__nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc, _nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc });
-    
-    TypeFunc _nsCommonWrapper_TObjectInMemoryComponentTypeFunc;
-    _nsCommonWrapper_TObjectInMemoryComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsCommonWrapper::TObjectInMemoryComponent>((nsCommonWrapper::TObjectInMemoryComponent*) p, str);
-    };
-    _nsCommonWrapper_TObjectInMemoryComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsCommonWrapper::TObjectInMemoryComponent>((nsCommonWrapper::TObjectInMemoryComponent*) p, str, err);
-    };
-    
-    auto rtti__nsCommonWrapper_TObjectInMemoryComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TObjectInMemoryComponent>();
-    
-    m.insert({ rtti__nsCommonWrapper_TObjectInMemoryComponentTypeFunc, _nsCommonWrapper_TObjectInMemoryComponentTypeFunc });
     
     TypeFunc _nsCommonWrapper_TParentGuidComponentTypeFunc;
     _nsCommonWrapper_TParentGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -1013,16 +1001,6 @@ void TComponentJson::_Serialize(nsCommonWrapper::TNeedDestroyObjectTagComponent*
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Deserialize(nsCommonWrapper::TNeedDestroyObjectTagComponent* p, const Jobj& obj)
 {
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsCommonWrapper::TObjectInMemoryComponent* p, Jobj& obj)
-{
-    PUM::Push(obj, "prefabGuid", p->prefabGuid);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsCommonWrapper::TObjectInMemoryComponent* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "prefabGuid", p->prefabGuid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsCommonWrapper::TParentGuidComponent* p, Jobj& obj)

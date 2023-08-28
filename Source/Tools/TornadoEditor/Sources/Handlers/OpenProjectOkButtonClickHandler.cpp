@@ -16,7 +16,6 @@ See for more information LICENSE.md.
 #include "SceneManager.h"
 #include "PrefabManager.h"
 #include "GameObject.h"
-#include "PrefabObjectConstructor.h"
 
 #include "SceneInstanceGuidComponent.h"
 #include "SceneObjectReferenceComponent.h"
@@ -73,20 +72,20 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
             err = "File not found";
         }
 
-        auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
-        prefabObjConstructor->EntMng()->Clear();
-        auto warningDialogEid = prefabObjConstructor->InstantiateByGuid("2");
+        //auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
+        //prefabObjConstructor->EntMng()->Clear();
+        //auto warningDialogEid = prefabObjConstructor->InstantiateByGuid("2");
 
-        nsGuiWrapper::TTitleComponent titleComponent;
-        titleComponent.value = "Tornado editor";
-        prefabObjConstructor->EntMng()->SetComponent(warningDialogEid, titleComponent);
+        //nsGuiWrapper::TTitleComponent titleComponent;
+        //titleComponent.value = "Tornado editor";
+        //prefabObjConstructor->EntMng()->SetComponent(warningDialogEid, titleComponent);
 
-        auto labelEid = prefabObjConstructor->GetChildByName(warningDialogEid, "Label");
+        //auto labelEid = prefabObjConstructor->GetChildByName(warningDialogEid, "Label");
 
-        nsGuiWrapper::TLabelValueComponent labelValueComponent;
-        labelValueComponent.value = "\"" + absPath + "\" - " + err;
-        prefabObjConstructor->EntMng()->SetComponent(labelEid, labelValueComponent);
-        prefabMng->InstantiateByObjectInMemory(prefabObjConstructor, warningDialogEid, sceneInstanceGuid);
+        //nsGuiWrapper::TLabelValueComponent labelValueComponent;
+        //labelValueComponent.value = "\"" + absPath + "\" - " + err;
+        //prefabObjConstructor->EntMng()->SetComponent(labelEid, labelValueComponent);
+        //prefabMng->InstantiateByObjectInMemory(prefabObjConstructor, warningDialogEid, sceneInstanceGuid);
         return;
     }
 

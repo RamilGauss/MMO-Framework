@@ -74,11 +74,6 @@ void TModulesAccessor::SetHandlerCall(THandlerCallCollector* value)
     Modules()->handlerCallCollector = value;
 }
 //--------------------------------------------------------------------------
-void TModulesAccessor::SetPrefabObjConstructor(TPrefabObjectConstructor* value)
-{
-    Modules()->prefabObjectConstructor = value;
-}
-//--------------------------------------------------------------------------
 void TModulesAccessor::SetGizmo(TGizmo* value)
 {
     Modules()->gizmo = value;

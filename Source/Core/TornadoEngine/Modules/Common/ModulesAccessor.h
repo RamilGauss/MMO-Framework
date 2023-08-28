@@ -28,7 +28,6 @@ namespace nsTornadoEngine
         static void SetStopAccessor(TStopAccessor* value);
         static void SetKeyMouse(nsGraphicEngine::TKeyMouseEventContainer* value);
         static void SetHandlerCall(THandlerCallCollector* value);
-        static void SetPrefabObjConstructor(TPrefabObjectConstructor* value);
         static void SetGizmo(TGizmo* value);
         static void SetPropertyMng(TPropertyManager* value);
     };

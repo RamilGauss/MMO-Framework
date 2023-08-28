@@ -19,6 +19,8 @@ See for more information LICENSE.md.
 #include "ParentGuidComponent.h"
 #include "GuidComponent.h"
 
+#include "EntityContent.h"
+
 namespace nsTornadoEngine
 {
     class DllExport TObjectManager
@@ -36,9 +38,9 @@ namespace nsTornadoEngine
         void DestroyObject(const std::string& guid);
 
     protected:
-        bool Deserialize(TResourceContent& content, const std::string& absPath);
+        bool Deserialize(const std::string& absPath, std::list<TEntityContent>& entities);
 
-        void DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities, const TResourceContent& content);
+        void DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities, const std::list<TEntityContent>& entities);
 
         template <typename Component>
         void AddComponent(const std::list<nsECSFramework::TEntityID>& newEntities, Component* pComponent);

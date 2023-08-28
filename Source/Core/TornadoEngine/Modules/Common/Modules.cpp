@@ -83,11 +83,6 @@ THandlerCallCollector* TModules::HandlerCalls() const
     return handlerCallCollector;
 }
 //----------------------------------------------------------
-TPrefabObjectConstructor* TModules::PrefabObjConstructor() const
-{
-    return prefabObjectConstructor;
-}
-//----------------------------------------------------------
 TGizmo* TModules::Gizmo() const
 {
     return gizmo;

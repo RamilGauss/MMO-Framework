@@ -26,9 +26,9 @@ namespace nsTornadoEngine
             PREFAB_INSTANTIATING,
 
             STABLE,
-            
+
             DESTROYING,
-        }
+        };
 
         std::string GetGuid() const;
 

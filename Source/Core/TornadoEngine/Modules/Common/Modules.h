@@ -65,8 +65,6 @@ namespace nsTornadoEngine
         nsGraphicEngine::TKeyMouseEventContainer* KeyMouse() const;
 
         THandlerCallCollector* HandlerCalls() const;
-        TPrefabObjectConstructor* PrefabObjConstructor() const;
-
         TGizmo* Gizmo() const;
 
         TPropertyManager* PropertyMng() const;

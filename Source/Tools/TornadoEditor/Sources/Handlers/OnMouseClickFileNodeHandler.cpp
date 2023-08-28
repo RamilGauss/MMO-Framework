@@ -16,7 +16,6 @@ See for more information LICENSE.md.
 #include "SceneManager.h"
 #include "PrefabManager.h"
 #include "GameObject.h"
-#include "PrefabObjectConstructor.h"
 #include "SceneInstanceGuidComponent.h"
 #include "FilePathNodeComponent.h"
 #include "ObjectHierarchyWindowTagComponent.h"
@@ -46,9 +45,6 @@ void TOnMouseClickFileNodeHandler::Handle(nsECSFramework::TEntityID eid, const n
     auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
     auto stopAccessor = nsTornadoEngine::Modules()->StopAccessor();
     auto entMng = nsTornadoEngine::Modules()->EntMng();
-    auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
-
-    prefabObjConstructor->EntMng()->Clear();
 
     auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid)->value;
 

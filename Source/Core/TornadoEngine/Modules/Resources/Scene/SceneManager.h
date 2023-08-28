@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include "UniverseManager.h"
 #include "ObjectManager.h"
 #include "InstantiateSceneParams.h"
+#include "SceneInstanceState.h"
 
 namespace nsTornadoEngine
 {
@@ -26,16 +27,29 @@ namespace nsTornadoEngine
 
         TColanderVector<TReference> mReferenceCounters;
 
+        std::unordered_map<std::string, TSceneInstanceState> mSceneInstances;
+
+        TSceneInstanceState mGhostSceneInstance;
+
+        float mLoadQuant = 5.0f;// ms
+
     public:
-        void InstantiateByGuid(TInstantiateSceneParams instantiateSceneParams);
-        void InstantiateByAbsPath(const TInstantiateSceneParams& instantiateSceneParams);
+        void SetLoadQuant(float ms);
+        float GetLoadQuant() const;
+
+        const TSceneInstanceState& GetSceneInstanceState(const std::string& sceneInstanceGuid);
+
+        // Return SceneStateGuid
+        std::string InstantiateByGuid(TInstantiateSceneParams instantiateSceneParams);
+        std::string InstantiateByAbsPath(const TInstantiateSceneParams& instantiateSceneParams);
 
         void Destroy(const std::string& sceneInstanceGuid);
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
 
         void Save(const std::string& sceneGuid);
-    private:
 
+        void Work();
+    private:
         void IncrementReferenceCounter(TUniverseManager::IndexType index);
         void DecrementReferenceCounter(TUniverseManager::IndexType index);
 

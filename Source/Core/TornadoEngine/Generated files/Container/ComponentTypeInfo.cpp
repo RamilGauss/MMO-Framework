@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_06_05 10:37:23.379
+// File has been generated at 2023_08_28 10:01:15.100
 	
 #include "ComponentTypeInfo.h"
 
@@ -56,12 +56,6 @@ void TComponentTypeInfo::Init()
     mTypeNameList.push_back(nsCommonWrapper_TNeedDestroyObjectTagComponent_n);
     mRttiList.push_back(nsCommonWrapper_TNeedDestroyObjectTagComponent_i);
     mNameRttiMap.insert({ nsCommonWrapper_TNeedDestroyObjectTagComponent_n, nsCommonWrapper_TNeedDestroyObjectTagComponent_i });
-    
-    int nsCommonWrapper_TObjectInMemoryComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TObjectInMemoryComponent>();
-    std::string nsCommonWrapper_TObjectInMemoryComponent_n = "nsCommonWrapper::TObjectInMemoryComponent";
-    mTypeNameList.push_back(nsCommonWrapper_TObjectInMemoryComponent_n);
-    mRttiList.push_back(nsCommonWrapper_TObjectInMemoryComponent_i);
-    mNameRttiMap.insert({ nsCommonWrapper_TObjectInMemoryComponent_n, nsCommonWrapper_TObjectInMemoryComponent_i });
     
     int nsCommonWrapper_TParentGuidComponent_i = globalTypeIdentifier->Type<nsCommonWrapper::TParentGuidComponent>();
     std::string nsCommonWrapper_TParentGuidComponent_n = "nsCommonWrapper::TParentGuidComponent";

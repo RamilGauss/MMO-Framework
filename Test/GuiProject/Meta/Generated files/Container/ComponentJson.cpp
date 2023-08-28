@@ -2,7 +2,7 @@
 Project Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 17:59:37.795
+// File has been generated at 2023_08_28 11:41:40.839
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -28,6 +28,18 @@ void TComponentJson::Init()
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
     std::map<int, TypeFunc> m;
+    
+    TypeFunc _nsGuiProject_TScenePrefabTestComponentTypeFunc;
+    _nsGuiProject_TScenePrefabTestComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiProject::TScenePrefabTestComponent>((nsGuiProject::TScenePrefabTestComponent*) p, str);
+    };
+    _nsGuiProject_TScenePrefabTestComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiProject::TScenePrefabTestComponent>((nsGuiProject::TScenePrefabTestComponent*) p, str, err);
+    };
+    
+    auto rtti__nsGuiProject_TScenePrefabTestComponentTypeFunc = globalTypeIdentifier->Type<nsGuiProject::TScenePrefabTestComponent>();
+    
+    m.insert({ rtti__nsGuiProject_TScenePrefabTestComponentTypeFunc, _nsGuiProject_TScenePrefabTestComponentTypeFunc });
     
     int max = 0;
     for (auto& vt : m) {
@@ -59,5 +71,15 @@ bool TComponentJson::Has(int rtti)
         return false;
     }
     return mTypeFuncVector[rtti].serializeFunc != nullptr;
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsGuiProject::TScenePrefabTestComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "value", p->value);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsGuiProject::TScenePrefabTestComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
