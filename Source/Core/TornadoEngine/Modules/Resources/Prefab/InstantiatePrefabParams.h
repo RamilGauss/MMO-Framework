@@ -24,5 +24,20 @@ namespace nsTornadoEngine
         std::string absPath;
 
         std::string projectionToUniverseGuid;// ???
+
+        TInstantiatePrefabParams() {}
+
+        TInstantiatePrefabParams(const std::string& guid, const std::string& sceneInstanceGuid)
+        {
+            this->guid = guid;
+            this->sceneInstanceGuid = sceneInstanceGuid;
+        }
+
+        TInstantiatePrefabParams(const std::string& guid, const std::string& sceneInstanceGuid, const std::string& parentGuid)
+        {
+            this->guid = guid;
+            this->sceneInstanceGuid = sceneInstanceGuid;
+            this->parentGuid = parentGuid;
+        }
     };
 }

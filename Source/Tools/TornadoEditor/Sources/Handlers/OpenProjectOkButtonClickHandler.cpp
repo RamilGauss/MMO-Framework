@@ -72,20 +72,18 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
             err = "File not found";
         }
 
-        //auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
-        //prefabObjConstructor->EntMng()->Clear();
-        //auto warningDialogEid = prefabObjConstructor->InstantiateByGuid("2");
+        auto warningDialogObject = nsTornadoEngine::Modules()->PrefabMng()->InstantiateByGuid({ "2", sceneInstanceGuid });
+        auto warningDialogEid = warningDialogObject.GetEid();
 
-        //nsGuiWrapper::TTitleComponent titleComponent;
-        //titleComponent.value = "Tornado editor";
-        //prefabObjConstructor->EntMng()->SetComponent(warningDialogEid, titleComponent);
+        nsGuiWrapper::TTitleComponent titleComponent;
+        titleComponent.value = "Tornado editor";
+        warningDialogObject.SetComponent(titleComponent);
 
-        //auto labelEid = prefabObjConstructor->GetChildByName(warningDialogEid, "Label");
+        auto labelObject = warningDialogObject.GetChildByName("Label");
 
-        //nsGuiWrapper::TLabelValueComponent labelValueComponent;
-        //labelValueComponent.value = "\"" + absPath + "\" - " + err;
-        //prefabObjConstructor->EntMng()->SetComponent(labelEid, labelValueComponent);
-        //prefabMng->InstantiateByObjectInMemory(prefabObjConstructor, warningDialogEid, sceneInstanceGuid);
+        nsGuiWrapper::TLabelValueComponent labelValueComponent;
+        labelValueComponent.value = "\"" + absPath + "\" - " + err;
+        labelObject.SetComponent(labelValueComponent);
         return;
     }
 
@@ -99,24 +97,24 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
 
     prefabMng->Destroy(eid);
 
-    //auto fileHierarchyWindowEid = nsECSFramework::SingleEntity<TFileHierarchyWindowTagComponent>(entMng);
+    auto fileHierarchyWindowEid = nsECSFramework::SingleEntity<TFileHierarchyWindowTagComponent>(entMng);
 
-    //if (fileHierarchyWindowEid == nsECSFramework::NONE) {
-    //    prefabMng->InstantiateByGuid("0", sceneInstanceGuid);
-    //} else {
+    if (fileHierarchyWindowEid == nsECSFramework::NONE) {
+        prefabMng->InstantiateByGuid({ "0", sceneInstanceGuid });
+    } else {
 
-    //    // Destroy file hierarchy
-    //    TGameObject go(fileHierarchyWindowEid);
-    //    
-    //    auto treeViewGo = go.GetChildByName("TreeView");
+        // Destroy file hierarchy
+        TGameObject go(fileHierarchyWindowEid);
+        
+        auto treeViewGo = go.GetChildByName("TreeView");
 
-    //    nsECSFramework::TEntityList treeNodeEids;
-    //    treeViewGo.GetChilds(treeNodeEids);
-    //    for (auto& treeNodeEid : treeNodeEids) {
-    //        prefabMng->Destroy(treeNodeEid);
-    //    }
+        nsECSFramework::TEntityList treeNodeEids;
+        treeViewGo.GetChilds(treeNodeEids);
+        for (auto& treeNodeEid : treeNodeEids) {
+            prefabMng->Destroy(treeNodeEid);
+        }
 
-    //    entMng->SetComponent(fileHierarchyWindowEid, TFileHierarchyWindowRefreshTagComponent());
-    //}
+        entMng->SetComponent(fileHierarchyWindowEid, TFileHierarchyWindowRefreshTagComponent());
+    }
 }
 //---------------------------------------------------------------------------------------------------------------------

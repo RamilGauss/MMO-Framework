@@ -542,6 +542,7 @@
     <ClCompile Include="Modules\Resources\Prefab\PrefabManager.cpp" />
     <ClCompile Include="Modules\Resources\Common\GameObject.cpp" />
     <ClCompile Include="Modules\Resources\Common\ObjectManager.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\SceneInstanceState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Resources\Common\FrameworkResources.h">

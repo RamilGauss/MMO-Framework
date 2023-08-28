@@ -81,6 +81,7 @@ namespace nsTornadoEngine
     template <typename Component>
     void TGameObject::SetComponent(const Component& component)
     {
-        mEntMng->SetComponent<Component>(mEid);
+        mEntMng->SetComponent<Component>(mEid, component);
     }
+    //--------------------------------------------------------------------------------------------------
 }

@@ -17,6 +17,7 @@ See for more information LICENSE.md.
 
 #include "SceneObjectReferenceComponent.h"
 #include "PrefabReferenceComponent.h"
+#include "InstantiatePrefabParams.h"
 
 namespace nsTornadoEditor
 {
@@ -33,11 +34,7 @@ namespace nsTornadoEditor
 
             auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid);
 
-            nsTornadoEngine::TInstantiatePrefabParams instantiatePrefabParams;
-            instantiatePrefabParams.guid = prefabRef->prefabGuid;
-            instantiatePrefabParams.sceneInstanceGuid = sceneInstanceGuid->value;
-
-            prefabMng->InstantiateByGuid(instantiatePrefabParams);
+            prefabMng->InstantiateByGuid({ prefabRef->prefabGuid, sceneInstanceGuid->value });
         }
     };
 }

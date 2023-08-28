@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #include "FileHierarchyWindowRefreshSystem.h"
 
-#include "Modules.h"
-#include "GameObject.h"
 #include <filesystem>
+#include <iostream>
+
 #include "Modules.h"
 #include "StopAccessor.h"
 #include "PrefabManager.h"
@@ -25,7 +25,6 @@ See for more information LICENSE.md.
 #include "NodeIconComponent.h"
 #include "TextureFromFileComponent.h"
 
-#include <iostream>
 
 namespace fs = std::filesystem;
 
@@ -45,89 +44,78 @@ void TFileHierarchyWindowRefreshSystem::Reactive(nsECSFramework::TEntityID eid, 
 //--------------------------------------------------------------------------------------------
 void TFileHierarchyWindowRefreshSystem::Handle(nsECSFramework::TEntityID treeViewEid)
 {
-    //auto entMng = nsTornadoEngine::Modules()->EntMng();
-    //auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
-    //auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
+    auto entMng = nsTornadoEngine::Modules()->EntMng();
+    auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
 
-    //auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(treeViewEid)->value;
-    //auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TGuidComponent>(treeViewEid)->value;
+    auto sceneInstanceGuid = entMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(treeViewEid)->value;
+    auto parentGuid = entMng->ViewComponent<nsCommonWrapper::TGuidComponent>(treeViewEid)->value;
 
-    //auto editorInfoEid = nsECSFramework::SingleEntity<TEditorInfoTagComponent>(entMng);
+    auto editorInfoEid = nsECSFramework::SingleEntity<TEditorInfoTagComponent>(entMng);
 
-    //auto absoluteFilePathComponent = entMng->ViewComponent<TAbsoluteFilePathComponent>(editorInfoEid);
-    //if (absoluteFilePathComponent == nullptr) {
-    //    return;
-    //}
+    auto absoluteFilePathComponent = entMng->ViewComponent<TAbsoluteFilePathComponent>(editorInfoEid);
+    if (absoluteFilePathComponent == nullptr) {
+        return;
+    }
 
-    //auto absoluteFilePath = absoluteFilePathComponent->value;
-    //if (!fs::exists(absoluteFilePath)) {
-    //    return;
-    //}
+    auto absoluteFilePath = absoluteFilePathComponent->value;
+    if (!fs::exists(absoluteFilePath)) {
+        return;
+    }
 
-    //prefabObjConstructor->EntMng()->Clear();
-
-    //auto directory = fs::path(absoluteFilePath).parent_path();
-    //AddFileNodes(nsECSFramework::NONE, directory.string(), sceneInstanceGuid, parentGuid);
+    auto directory = fs::path(absoluteFilePath).parent_path();
+    AddFileNodes({}, directory.string(), sceneInstanceGuid, parentGuid);
 }
 //--------------------------------------------------------------------------------------------
-void TFileHierarchyWindowRefreshSystem::AddFileNodes(nsECSFramework::TEntityID parentNodeEid,
+void TFileHierarchyWindowRefreshSystem::AddFileNodes(const nsTornadoEngine::TGameObject& parentGo,
     const std::string& absoluteFilePath, const std::string& sceneInstanceGuid, const std::string& parentGuid)
 {
-    //nsECSFramework::TEntityID fileNodeEid;
+    auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
 
-    //auto prefabMng = nsTornadoEngine::Modules()->PrefabMng();
-    //auto prefabObjConstructor = nsTornadoEngine::Modules()->PrefabObjConstructor();
+    std::list<std::filesystem::path> paths;
+    GetFiles(absoluteFilePath, paths, true);
+    GetFiles(absoluteFilePath, paths, false);
 
-    //std::list<std::filesystem::path> paths;
-    //GetFiles(absoluteFilePath, paths, true);
-    //GetFiles(absoluteFilePath, paths, false);
+    for (const auto& path : paths) {
 
-    //for (const auto& path : paths) {
-    //    fileNodeEid = prefabObjConstructor->InstantiateByGuid("3");
-    //    if (parentNodeEid != nsECSFramework::NONE) {
-    //        prefabObjConstructor->Attach(parentNodeEid, fileNodeEid);
-    //    }
+        auto go = prefabMng->InstantiateByGuid({ "3", sceneInstanceGuid, parentGuid});
 
-    //    auto absFilePathStr = path.string();
+        auto absFilePathStr = path.string();
 
-    //    auto fileName = path.filename().string();
+        auto fileName = path.filename().string();
 
-    //    std::string icon;
+        std::string icon;
 
-    //    auto isDir = std::filesystem::is_directory(path);
-    //    if (isDir) {
-    //        fileName = "[" + fileName + "]";
+        auto isDir = std::filesystem::is_directory(path);
+        if (isDir) {
+            fileName = "[" + fileName + "]";
 
-    //        icon = "folder.png";
-    //    } else {
-    //        icon = GetIcon(path);
-    //    }
+            icon = "folder.png";
+        } else {
+            icon = GetIcon(path);
+        }
 
-    //    nsGuiWrapper::TTitleComponent titleComponent;
-    //    titleComponent.value = fileName;
-    //    prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, titleComponent);
+        nsGuiWrapper::TTitleComponent titleComponent;
+        titleComponent.value = fileName;
+        go.SetComponent(titleComponent);
 
-    //    TFilePathNodeComponent filePathNodeComponent;
-    //    filePathNodeComponent.value = absFilePathStr;
-    //    prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, filePathNodeComponent);
+        TFilePathNodeComponent filePathNodeComponent;
+        filePathNodeComponent.value = absFilePathStr;
+        go.SetComponent(filePathNodeComponent);
 
-    //    nsGraphicWrapper::TTextureFromFileComponent textureComponent;
-    //    textureComponent.resourceGuid = icon;
-    //    prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, textureComponent);
+        nsGraphicWrapper::TTextureFromFileComponent textureComponent;
+        textureComponent.resourceGuid = icon;
+        go.SetComponent(textureComponent);
 
-    //    nsGuiWrapper::TNodeIconComponent nodeIconComponent;
-    //    nodeIconComponent.width = 16;
-    //    nodeIconComponent.height = 16;
-    //    prefabObjConstructor->EntMng()->SetComponent(fileNodeEid, nodeIconComponent);
+        nsGuiWrapper::TNodeIconComponent nodeIconComponent;
+        nodeIconComponent.width = 16;
+        nodeIconComponent.height = 16;
+        go.SetComponent(nodeIconComponent);
 
-    //    if (isDir) {
-    //        AddFileNodes(fileNodeEid, absFilePathStr, sceneInstanceGuid, parentGuid);
-    //    }
-
-    //    if (parentNodeEid == nsECSFramework::NONE) {
-    //        prefabMng->InstantiateByObjectInMemory(prefabObjConstructor, fileNodeEid, sceneInstanceGuid, parentGuid);
-    //    }
-    //}
+        if (isDir) {
+            auto parentGoGuid = go.GetComponent<nsCommonWrapper::TGuidComponent>().value;
+            AddFileNodes(go, absFilePathStr, sceneInstanceGuid, parentGoGuid);
+        }
+    }
 }
 //--------------------------------------------------------------------------------------------
 void TFileHierarchyWindowRefreshSystem::GetFiles(const std::filesystem::path& directory,

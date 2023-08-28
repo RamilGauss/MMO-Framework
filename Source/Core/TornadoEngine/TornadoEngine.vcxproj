@@ -357,6 +357,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\Gizmos\SystemViewer.cpp" />
     <ClCompile Include="Modules\Resources\Common\ObjectManager.cpp" />
     <ClCompile Include="Modules\Resources\Prefab\PrefabManager.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\SceneInstanceState.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneManager.cpp" />
     <ClCompile Include="Modules\Resources\Scene\UniverseManager.cpp" />
     <ClCompile Include="Share\ImGuiSerializeTask.cpp" />

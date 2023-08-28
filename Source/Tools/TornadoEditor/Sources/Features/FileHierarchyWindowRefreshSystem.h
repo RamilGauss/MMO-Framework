@@ -7,12 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <string>
+#include <filesystem>
+
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
 #include "FileHierarchyWindowRefreshTagComponent.h"
-
-#include <string>
-#include <filesystem>
+#include "GameObject.h"
 
 namespace nsTornadoEditor
 {
@@ -25,7 +26,7 @@ namespace nsTornadoEditor
     private:
         void Handle(nsECSFramework::TEntityID eid);
 
-        void AddFileNodes(nsECSFramework::TEntityID parentNodeEid,
+        void AddFileNodes(const nsTornadoEngine::TGameObject& parentGo,
             const std::string& absoluteFilePath, const std::string& sceneInstanceGuid, const std::string& parentGuid);
 
         void GetFiles(const std::filesystem::path& directory,
