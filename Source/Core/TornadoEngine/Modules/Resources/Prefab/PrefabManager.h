@@ -13,10 +13,11 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    class TPrefabObjectConstructor;
+    class TSceneManager;
 
     class DllExport TPrefabManager : public TObjectManager
     {
+        TSceneManager* mSceneMng = nullptr;
     public:
         // Если SceneInstance не задан, то искать нужно по родителю
         // И наоборот, если не задан родитель, то нужен SceneInstance, что бы найти root.
@@ -29,10 +30,9 @@ namespace nsTornadoEngine
         void Destroy(const std::string& prefabInstanceGuid);
 
         void Save(const std::string& prefabGuid);
-    private:
-        void CreateEntity(TPrefabObjectConstructor* prefabObjConstructor, 
-            nsECSFramework::TEntityID eid, std::list<nsECSFramework::TEntityID>& newEntities);
 
+        void SetSceneManager(TSceneManager* pSceneMng);
+    private:
         void InstantiateEntities(const std::list<nsECSFramework::TEntityID>& newEntities, 
             const std::string& sceneInstanceGuid, const std::string& parentGuid);
 

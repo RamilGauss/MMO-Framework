@@ -14,7 +14,8 @@ See for more information LICENSE.md.
 namespace nsLogicWrapper
 {
     class DllExport TObjectInstantiationCompletionHandlerTerminatorSystem :
-        public nsECSFramework::TOnRemoveInstantReactiveSystem<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent, TObjectInstantiationCompletionHandlerTerminatorSystem>
+        public nsECSFramework::TOnRemoveInstantReactiveSystem<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent, 
+                                                                              TObjectInstantiationCompletionHandlerTerminatorSystem>
     {
     public:
         void Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* pC);

@@ -7,8 +7,16 @@ See for more information LICENSE.md.
 
 #include "SceneInstanceState.h"
 
+#include "GuidGenerator.h"
+
 namespace nsTornadoEngine
 {
+    TSceneInstanceState::TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams)
+    {
+        mGuid = nsBase::TGuidGenerator::Generate();
+        mInstantiateSceneParams = instantiateSceneParams;
+    }
+    //--------------------------------------------------------------------------------------------------
     std::string TSceneInstanceState::GetGuid() const
     {
         return mGuid;

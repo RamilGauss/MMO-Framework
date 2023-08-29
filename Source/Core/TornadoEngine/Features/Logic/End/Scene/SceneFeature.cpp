@@ -12,4 +12,5 @@ using namespace nsLogicWrapper;
 void TSceneFeature::InitConveyor()
 {
     Add(&mStartedScenesInitSystem);
+    Add(&mSceneInstantiatingSystem);
 }

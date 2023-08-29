@@ -13,7 +13,8 @@ See for more information LICENSE.md.
 
 using namespace nsLogicWrapper;
 
-void TObjectInstantiationCompletionHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* pC)
+void TObjectInstantiationCompletionHandlerBuilderSystem::Reactive(nsECSFramework::TEntityID eid, 
+    const nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* pC)
 {
     auto handler = pC->handler;
     if (handler == nullptr) {

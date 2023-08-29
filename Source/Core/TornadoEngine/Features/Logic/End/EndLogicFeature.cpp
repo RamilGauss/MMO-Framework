@@ -11,10 +11,11 @@ using namespace nsLogicWrapper;
 
 void TEndLogicFeature::InitConveyor()
 {
+    Add(&mSceneFeature);
+
     Add(&mLogicMakerFeature);
     Add(&mLogicBuilderFeature);
     Add(&mLogicTerminatorFeature);
     
-    Add(&mSceneFeature);
     Add(&mObjectFeature);
 }

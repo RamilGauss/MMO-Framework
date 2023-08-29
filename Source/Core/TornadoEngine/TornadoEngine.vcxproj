@@ -291,6 +291,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Graphic\Begin\Terminator\Units\MenuNodeTerminatorSystem.cpp" />
     <ClCompile Include="Features\Logic\End\Builder\ObjectInstantiationCompletionHandlerBuilderSystem.cpp" />
     <ClCompile Include="Features\Logic\End\Maker\ObjectInstantiationCompletionHandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Scene\SceneInstantiatingSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Features\Logic\End\Terminator\ObjectInstantiationCompletionHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\GraphicContext\OnAddUniverseContextSystem.cpp" />
     <ClCompile Include="Features\Graphic\End\GraphicContext\OnRemoveUniverseContextSystem.cpp" />
@@ -375,6 +379,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
       </SubType>
     </ClInclude>
     <ClInclude Include="Components\Meta\GuidComponent.h" />
+    <ClInclude Include="Features\Logic\End\Scene\SceneInstantiatingSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Generated files\Container\ImGuiWidgetsDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsIncludeList.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsTypeInfo.h" />

@@ -11,6 +11,8 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
+#include "InstantiateSceneParams.h"
+
 namespace nsTornadoEngine
 {
     class DllExport TSceneInstanceState
@@ -19,10 +21,13 @@ namespace nsTornadoEngine
         enum Step
         {
             // Loading
+            // Async
             FILE_LOADING,
             SCENE_DESERIALIZING,
             COMPONENTS_DESERIALIZING,
             SORTING_ENTITY_BY_RANK,
+
+            // Sync
             ENTITY_INSTANTIATING,
             PREFAB_INSTANTIATING,
 
@@ -30,6 +35,8 @@ namespace nsTornadoEngine
 
             DESTROYING,
         };
+
+        TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams);
 
         std::string GetGuid() const;
 
@@ -40,6 +47,8 @@ namespace nsTornadoEngine
         void Work();
 
     private:
+        TInstantiateSceneParams mInstantiateSceneParams;
+
         std::string mGuid;
         Step mStep = Step::FILE_LOADING;
 
@@ -49,6 +58,7 @@ namespace nsTornadoEngine
         const int FILE_PART_SIZE = 10'000'000;
         const int COMPONENT_PART_SIZE = 100;
         const int SORTING_PART_SIZE = 100;
+
         const int ENTITY_INSTANTIATING_PART_SIZE = 1000;
         const int PREFAB_INSTANTIATING_PART_SIZE = 10;
     };

@@ -16,6 +16,8 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
+    class TPrefabManager;
+
     class DllExport TSceneManager : public TObjectManager
     {
         TUniverseManager mUniverseManager;
@@ -33,7 +35,11 @@ namespace nsTornadoEngine
 
         float mLoadQuant = 5.0f;// ms
 
+        TPrefabManager* mPrefabMng = nullptr;
+
     public:
+        TSceneManager();
+
         void SetLoadQuant(float ms);
         float GetLoadQuant() const;
 
@@ -49,6 +55,8 @@ namespace nsTornadoEngine
         void Save(const std::string& sceneGuid);
 
         void Work();
+
+        void SetPrefabManager(TPrefabManager* pPrefabMng);
     private:
         void IncrementReferenceCounter(TUniverseManager::IndexType index);
         void DecrementReferenceCounter(TUniverseManager::IndexType index);

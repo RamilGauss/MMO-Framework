@@ -34,12 +34,6 @@ namespace nsTornadoEngine
 
     }
     //---------------------------------------------------------------------------------------------------------
-    void TPrefabManager::CreateEntity(TPrefabObjectConstructor* prefabObjConstructor,
-        nsECSFramework::TEntityID eid, std::list<nsECSFramework::TEntityID>& newEntities)
-    {
-
-    }
-    //---------------------------------------------------------------------------------------------------------
     void TPrefabManager::InstantiateEntities(const std::list<nsECSFramework::TEntityID>& newEntities,
         const std::string& sceneInstanceGuid, const std::string& parentGuid)
     {
@@ -50,6 +44,11 @@ namespace nsTornadoEngine
         const std::string& sceneInstanceGuid, const std::string& parentGuid)
     {
 
+    }
+    //---------------------------------------------------------------------------------------------------------
+    void TPrefabManager::SetSceneManager(TSceneManager* pSceneMng)
+    {
+        mSceneMng = pSceneMng;
     }
     //---------------------------------------------------------------------------------------------------------
 }

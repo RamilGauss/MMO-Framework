@@ -10,12 +10,15 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 
 #include "StartedScenesInitSystem.h"
+#include "SceneInstantiatingSystem.h"
 
 namespace nsLogicWrapper
 {
     class DllExport TSceneFeature : public nsECSFramework::TFeature
     {
         TStartedScenesInitSystem mStartedScenesInitSystem;
+
+        TSceneInstantiatingSystem mSceneInstantiatingSystem;
     public:
         void InitConveyor() override;
     };

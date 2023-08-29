@@ -9,8 +9,32 @@ See for more information LICENSE.md.
 
 #include "SceneManager.h"
 
+#include "TextFile.h"
+#include "Logger.h"
+#include "TimeSliceEngine.h"
+#include "TornadoEngineJsonSerializer.h"
+#include "ProjectConfigContainer.h"
+
+#include "GuidComponent.h"
+#include "ParentGuidComponent.h"
+#include "SceneOriginalGuidComponent.h"
+#include "SceneInstanceGuidComponent.h"
+#include "NeedDestroyObjectTagComponent.h"
+#include "SceneRootComponent.h"
+#include "SceneGuidComponent.h"
+
+#include "GuidGenerator.h"
+
+#include "UniverseIndexComponent.h"
+#include "UniverseGuidComponent.h"
+
 namespace nsTornadoEngine
 {
+    TSceneManager::TSceneManager() : mGhostSceneInstance({})
+    {
+
+    }
+    //--------------------------------------------------------------------------------------------------------
     void TSceneManager::SetLoadQuant(float ms)
     {
         mLoadQuant = ms;
@@ -23,17 +47,34 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     const TSceneInstanceState& TSceneManager::GetSceneInstanceState(const std::string& sceneInstanceGuid)
     {
-        return mGhostSceneInstance;
+        auto fit = mSceneInstances.find(sceneInstanceGuid);
+        if (fit == mSceneInstances.end()) {
+            return mGhostSceneInstance;
+        }
+
+        return fit->second;
     }
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::InstantiateByGuid(TInstantiateSceneParams instantiateSceneParams)
     {
-        return {};
+        // Convert to abs path
+        auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
+        if (fit == mResourceContentMap.guidPathMap.end()) {
+            GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", instantiateSceneParams.guid.c_str());
+            return "Not found";
+        }
+
+        instantiateSceneParams.absPath = fit->second;
+        return InstantiateByAbsPath(instantiateSceneParams);
     }
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::InstantiateByAbsPath(const TInstantiateSceneParams& instantiateSceneParams)
     {
-        return {};
+        TSceneInstanceState sceneInstanceState(instantiateSceneParams);
+
+        mSceneInstances.insert({ sceneInstanceState.GetGuid(), sceneInstanceState });
+
+        return sceneInstanceState.GetGuid();
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
@@ -53,22 +94,31 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()
     {
-
+        for (auto& sceneInstance : mSceneInstances) {
+            sceneInstance.second.Work();
+        }
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::IncrementReferenceCounter(TUniverseManager::IndexType index)
     {
-
+        mReferenceCounters[index].counter++;
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::DecrementReferenceCounter(TUniverseManager::IndexType index)
     {
+        mReferenceCounters[index].counter--;
 
+        BL_ASSERT(mReferenceCounters[index].counter >= 0);
     }
     //--------------------------------------------------------------------------------------------------------
     int TSceneManager::GetReferenceCounter(TUniverseManager::IndexType index)
     {
-        return 0;
+        return mReferenceCounters[index].counter;
+    }
+    //--------------------------------------------------------------------------------------------------------
+    void TSceneManager::SetPrefabManager(TPrefabManager* pPrefabMng)
+    {
+        mPrefabMng = pPrefabMng;
     }
     //--------------------------------------------------------------------------------------------------------
 }

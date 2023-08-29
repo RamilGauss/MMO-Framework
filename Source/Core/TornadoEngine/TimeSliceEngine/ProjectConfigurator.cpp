@@ -43,6 +43,10 @@ void TProjectConfigurator::Setup()
     prefabMng->SetEntityManager(entMng);
     prefabMng->SetContentMap(resources.prefabs);
 
+    // Crossing
+    sceneMng->SetPrefabManager(prefabMng);
+    prefabMng->SetSceneManager(sceneMng);
+
     auto propertyMng = Modules()->PropertyMng();
     propertyMng->Init();
 }
