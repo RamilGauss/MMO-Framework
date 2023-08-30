@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include "SceneManager.h"
 
+#include "HiTimer.h"
 #include "TextFile.h"
 #include "Logger.h"
 #include "TimeSliceEngine.h"
@@ -22,6 +23,7 @@ See for more information LICENSE.md.
 #include "NeedDestroyObjectTagComponent.h"
 #include "SceneRootComponent.h"
 #include "SceneGuidComponent.h"
+#include "SceneInstanceLoader.h"
 
 #include "GuidGenerator.h"
 
@@ -30,17 +32,19 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    TSceneManager::TSceneManager() : mGhostSceneInstance({})
+    TSceneManager::TSceneManager() :
+        mGhostSceneInstance({}),
+        mAsyncScenes(MAX_ASYNC_LOADING_SCENE_COUNT, mAsyncCondition),
+        mSyncScenes(MAX_SYNC_LOADING_SCENE_COUNT, mSyncCondition)
     {
-
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::SetLoadQuant(float ms)
+    void TSceneManager::SetLoadQuant(int ms)
     {
         mLoadQuant = ms;
     }
     //--------------------------------------------------------------------------------------------------------
-    float TSceneManager::GetLoadQuant() const
+    int TSceneManager::GetLoadQuant() const
     {
         return mLoadQuant;
     }
@@ -52,7 +56,7 @@ namespace nsTornadoEngine
             return mGhostSceneInstance;
         }
 
-        return fit->second;
+        return *(fit->second.get());
     }
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::InstantiateByGuid(TInstantiateSceneParams instantiateSceneParams)
@@ -70,11 +74,13 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::InstantiateByAbsPath(const TInstantiateSceneParams& instantiateSceneParams)
     {
-        TSceneInstanceState sceneInstanceState(instantiateSceneParams);
+        TSceneInstanceStatePtr sceneInstanceState = std::make_shared<TSceneInstanceState>(instantiateSceneParams);
 
-        mSceneInstances.insert({ sceneInstanceState.GetGuid(), sceneInstanceState });
+        mSceneInstances.insert({ sceneInstanceState->mGuid, sceneInstanceState });
 
-        return sceneInstanceState.GetGuid();
+        mAsyncScenes.AddToWait(sceneInstanceState);
+
+        return sceneInstanceState->mGuid;
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
@@ -87,15 +93,68 @@ namespace nsTornadoEngine
 
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::Save(const std::string& sceneGuid)
+    bool TSceneManager::Save(const std::string& sceneGuid)
     {
-
+        return false;
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()
     {
-        for (auto& sceneInstance : mSceneInstances) {
-            sceneInstance.second.Work();
+        // Async
+        std::list<TSceneInstanceStatePtr> asyncDeactivatedScenes;
+        mAsyncScenes.TryDeactivate(asyncDeactivatedScenes);
+
+        for (auto& scene : asyncDeactivatedScenes) {
+            mSyncScenes.AddToWait(scene);
+        }
+
+        std::list<TSceneInstanceStatePtr> asyncActivatedScenes;
+        mAsyncScenes.TryActivate(asyncActivatedScenes);
+
+        for (auto& scene : asyncActivatedScenes) {
+            TSceneInstanceLoader::AsyncWork(scene.get());
+        }
+
+        // Sync
+        {
+            std::list<TSceneInstanceStatePtr> activatedSyncScenes;
+            mSyncScenes.TryActivate(activatedSyncScenes);
+        }
+
+        auto start = ht_GetMSCount();
+        while (true) {
+
+            auto activeScenes = mSyncScenes.GetActive();
+
+            if (activeScenes.empty()) {
+                break;
+            }
+
+            int maxDuration = GetLoadQuant();
+
+            for (auto& scene : activeScenes) {
+
+                TSceneInstanceLoader::SyncWork(scene.get(), maxDuration);
+
+                std::list<TSceneInstanceStatePtr> deactivatedSyncScenes;
+                mSyncScenes.TryDeactivate(deactivatedSyncScenes);
+
+                std::list<TSceneInstanceStatePtr> activatedSyncScenes;
+                mSyncScenes.TryActivate(activatedSyncScenes);
+
+                auto now = ht_GetMSCount();
+                auto dt = now - start;
+
+                maxDuration = GetLoadQuant() - dt;
+
+                if (maxDuration <= 0) {
+                    break;
+                }
+            }
+
+            if (maxDuration <= 0) {
+                break;
+            }
         }
     }
     //--------------------------------------------------------------------------------------------------------

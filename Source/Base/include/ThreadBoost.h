@@ -7,14 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <atomic>
+
 #include "TypeDef.h"
 
 class DllExport TThreadBoost
 {
-    volatile bool flgActive;
-    volatile bool flgNeedStop;
+    std::atomic_bool flgActive;
+    std::atomic_bool flgNeedStop;
 
-    volatile unsigned int mTimeStart;
+    std::atomic_uint32_t mTimeStart;
     enum
     {
         eWaitFeedBack = 1, // ждать пока активизируется двигатель, мс

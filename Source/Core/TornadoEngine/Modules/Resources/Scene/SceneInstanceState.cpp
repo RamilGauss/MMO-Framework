@@ -17,24 +17,33 @@ namespace nsTornadoEngine
         mInstantiateSceneParams = instantiateSceneParams;
     }
     //--------------------------------------------------------------------------------------------------
-    std::string TSceneInstanceState::GetGuid() const
+    TSceneInstanceState::SubStep TSceneInstanceState::GetSubStep() const
     {
-        return mGuid;
+        TSceneInstanceState::SubStep subStep = SubStep::STABLE;
+        switch (mStep) {
+            case Step::FILE_LOADING:
+            case Step::SCENE_DESERIALIZING:
+            case Step::COMPONENTS_DESERIALIZING:
+            case Step::SORTING_ENTITY_BY_RANK:
+                subStep = SubStep::ASYNC_LOADING;
+                break;
+            case Step::ENTITY_INSTANTIATING:
+            case Step::PREFAB_INSTANTIATING:
+                subStep = SubStep::SYNC_LOADING;
+                break;
+            case Step::STABLE:
+                subStep = SubStep::STABLE;
+                break;
+            case Step::DESTROYING:
+                subStep = SubStep::DESTROYING;
+                break;
+        }
+        return subStep;
     }
     //--------------------------------------------------------------------------------------------------
-    TSceneInstanceState::Step TSceneInstanceState::GetStep() const
-    {
-        return mStep;
-    }
-    //--------------------------------------------------------------------------------------------------
-    float TSceneInstanceState::GetLoadingProgress()
+    float TSceneInstanceState::GetLoadingProgress() const
     {
         return 0.0f;
-    }
-    //--------------------------------------------------------------------------------------------------
-    void TSceneInstanceState::Work()
-    {
-
     }
     //--------------------------------------------------------------------------------------------------
 }

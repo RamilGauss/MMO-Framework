@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include "ObjectManager.h"
 #include "InstantiateSceneParams.h"
 #include "SceneInstanceState.h"
+#include "SceneList.h"
 
 namespace nsTornadoEngine
 {
@@ -29,19 +30,29 @@ namespace nsTornadoEngine
 
         TColanderVector<TReference> mReferenceCounters;
 
-        std::unordered_map<std::string, TSceneInstanceState> mSceneInstances;
+        std::unordered_map<std::string, TSceneInstanceStatePtr> mSceneInstances;
+
+        const int MAX_ASYNC_LOADING_SCENE_COUNT = 1;
+        const int MAX_SYNC_LOADING_SCENE_COUNT = 1;
+
+        TSceneList mAsyncScenes;
+        TSceneList mSyncScenes;
 
         TSceneInstanceState mGhostSceneInstance;
 
-        float mLoadQuant = 5.0f;// ms
+        int mLoadQuant = 5;// ms
 
         TPrefabManager* mPrefabMng = nullptr;
 
+        std::function<bool(TSceneInstanceStatePtr)> mAsyncCondition = 
+            [](TSceneInstanceStatePtr pSc) {return pSc->GetSubStep() != TSceneInstanceState::SubStep::ASYNC_LOADING; };
+        std::function<bool(TSceneInstanceStatePtr)> mSyncCondition = 
+            [](TSceneInstanceStatePtr pSc) {return pSc->GetSubStep() != TSceneInstanceState::SubStep::SYNC_LOADING; };
     public:
         TSceneManager();
 
-        void SetLoadQuant(float ms);
-        float GetLoadQuant() const;
+        void SetLoadQuant(int ms);
+        int GetLoadQuant() const;
 
         const TSceneInstanceState& GetSceneInstanceState(const std::string& sceneInstanceGuid);
 
@@ -52,7 +63,7 @@ namespace nsTornadoEngine
         void Destroy(const std::string& sceneInstanceGuid);
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
 
-        void Save(const std::string& sceneGuid);
+        bool Save(const std::string& sceneGuid);
 
         void Work();
 

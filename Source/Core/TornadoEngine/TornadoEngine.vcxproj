@@ -361,7 +361,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\Gizmos\SystemViewer.cpp" />
     <ClCompile Include="Modules\Resources\Common\ObjectManager.cpp" />
     <ClCompile Include="Modules\Resources\Prefab\PrefabManager.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\SceneInstanceLoader.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneInstanceState.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\SceneInstantiatingThread.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\SceneList.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneManager.cpp" />
     <ClCompile Include="Modules\Resources\Scene\UniverseManager.cpp" />
     <ClCompile Include="Share\ImGuiSerializeTask.cpp" />
@@ -400,7 +403,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Resources\Prefab\InstantiatePrefabParams.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabPatch.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabResourceContent.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneInstanceLoader.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneInstanceState.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneInstantiatingThread.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneList.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneManager.h" />
     <ClInclude Include="Modules\Resources\Scene\InstantiateSceneParams.h" />
     <ClInclude Include="Modules\Resources\Scene\PrefabInstance.h" />
