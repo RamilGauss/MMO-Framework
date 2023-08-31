@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    TSceneList::TSceneList(int maxActiveCount, std::function<bool(TSceneInstanceStatePtr)> deactivateCondition)
+    void TSceneList::Setup(int maxActiveCount, std::function<bool(TSceneInstanceStatePtr)> deactivateCondition)
     {
         mMaxActiveCount = maxActiveCount;
         mDeactivateCondition = deactivateCondition;

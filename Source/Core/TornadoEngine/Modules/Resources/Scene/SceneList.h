@@ -22,7 +22,7 @@ namespace nsTornadoEngine
         int mMaxActiveCount = 1;
         std::function<bool(TSceneInstanceStatePtr)> mDeactivateCondition;
     public:
-        TSceneList(int maxActiveCount, 
+        void Setup(int maxActiveCount, 
             std::function<bool(TSceneInstanceStatePtr)> deactivateCondition);
 
         void AddToWait(TSceneInstanceStatePtr pSceneInstanceState);

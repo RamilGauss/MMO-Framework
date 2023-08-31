@@ -44,10 +44,8 @@ namespace nsTornadoEngine
 
         TPrefabManager* mPrefabMng = nullptr;
 
-        std::function<bool(TSceneInstanceStatePtr)> mAsyncCondition = 
-            [](TSceneInstanceStatePtr pSc) {return pSc->GetSubStep() != TSceneInstanceState::SubStep::ASYNC_LOADING; };
-        std::function<bool(TSceneInstanceStatePtr)> mSyncCondition = 
-            [](TSceneInstanceStatePtr pSc) {return pSc->GetSubStep() != TSceneInstanceState::SubStep::SYNC_LOADING; };
+        std::function<bool(TSceneInstanceStatePtr)> mAsyncCondition;
+        std::function<bool(TSceneInstanceStatePtr)> mSyncCondition;
     public:
         TSceneManager();
 

@@ -33,10 +33,15 @@ See for more information LICENSE.md.
 namespace nsTornadoEngine
 {
     TSceneManager::TSceneManager() :
-        mGhostSceneInstance({}),
-        mAsyncScenes(MAX_ASYNC_LOADING_SCENE_COUNT, mAsyncCondition),
-        mSyncScenes(MAX_SYNC_LOADING_SCENE_COUNT, mSyncCondition)
+        mGhostSceneInstance({})
     {
+        mAsyncCondition =
+            [](TSceneInstanceStatePtr pSc) {return pSc->GetSubStep() != TSceneInstanceState::SubStep::ASYNC_LOADING; };
+        mSyncCondition =
+            [](TSceneInstanceStatePtr pSc) {return pSc->GetSubStep() != TSceneInstanceState::SubStep::SYNC_LOADING; };
+
+        mAsyncScenes.Setup(MAX_ASYNC_LOADING_SCENE_COUNT, mAsyncCondition);
+        mSyncScenes.Setup(MAX_SYNC_LOADING_SCENE_COUNT, mSyncCondition);
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::SetLoadQuant(int ms)
