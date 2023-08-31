@@ -22,10 +22,11 @@ namespace nsTornadoEngine
     {
         enum class Step
         {
+            INIT,
             FILE_LOADING,
             SCENE_DESERIALIZING,
             COMPONENTS_DESERIALIZING,
-            SORTING_ENTITY_BY_RANK,
+            SORTING_ENTITIES_BY_RANK,
 
             ENTITY_INSTANTIATING,
             PREFAB_INSTANTIATING,
@@ -47,15 +48,19 @@ namespace nsTornadoEngine
         TInstantiateSceneParams mInstantiateSceneParams;
 
         std::string mGuid;
-        std::atomic<Step> mStep = Step::FILE_LOADING;
+        std::atomic<Step> mStep = Step::INIT;
 
         std::shared_ptr<TSceneInstantiatingThread> mAsyncThread;
 
-        int mPartCount = 1;
-        int mPartProgress = 0;
+        int mFileSize = 0;
 
+
+        int mComponentCount = 0;
         int mEntityCount = 0;
         int mPrefabCount = 0;
+
+        int mPartCount = 1;
+        int mPartProgress = 0;
 
         const int FILE_PART_SIZE = 10'000'000;
         const int COMPONENT_PART_SIZE = 100;
@@ -70,6 +75,7 @@ namespace nsTornadoEngine
         SubStep GetSubStep() const;
 
         float GetLoadingProgress() const;
+        bool IsLoadCompleted() const;
     };
 
     using TSceneInstanceStatePtr = std::shared_ptr<TSceneInstanceState>;

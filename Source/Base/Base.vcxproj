@@ -265,6 +265,7 @@
     <ClInclude Include="include\BinaryPopMaster.h" />
     <ClInclude Include="include\BinaryPushMaster.h" />
     <ClInclude Include="include\PathOperations.h" />
+    <ClInclude Include="include\ProgressValue.h" />
     <ClInclude Include="include\ResolverSelf_IP_v4.h" />
     <ClInclude Include="include\ReversedContainerRise.h" />
     <ClInclude Include="include\SaveToFile.h" />
@@ -323,6 +324,7 @@
     <ClCompile Include="src\BinaryPopMaster.cpp" />
     <ClCompile Include="src\BinaryPushMaster.cpp" />
     <ClCompile Include="src\PathOperations.cpp" />
+    <ClCompile Include="src\ProgressValue.cpp" />
     <ClCompile Include="src\ResolverSelf_IP_v4.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp14</LanguageStandard>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdcpp14</LanguageStandard>

@@ -110,6 +110,8 @@ namespace nsTornadoEngine
         mAsyncScenes.TryDeactivate(asyncDeactivatedScenes);
 
         for (auto& scene : asyncDeactivatedScenes) {
+            scene->mAsyncThread->Stop();
+
             mSyncScenes.AddToWait(scene);
         }
 

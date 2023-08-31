@@ -21,10 +21,11 @@ namespace nsTornadoEngine
     {
         TSceneInstanceState::SubStep subStep = SubStep::STABLE;
         switch (mStep) {
+            case Step::INIT:
             case Step::FILE_LOADING:
             case Step::SCENE_DESERIALIZING:
             case Step::COMPONENTS_DESERIALIZING:
-            case Step::SORTING_ENTITY_BY_RANK:
+            case Step::SORTING_ENTITIES_BY_RANK:
                 subStep = SubStep::ASYNC_LOADING;
                 break;
             case Step::ENTITY_INSTANTIATING:
@@ -44,6 +45,11 @@ namespace nsTornadoEngine
     float TSceneInstanceState::GetLoadingProgress() const
     {
         return 0.0f;
+    }
+    //--------------------------------------------------------------------------------------------------
+    bool TSceneInstanceState::IsLoadCompleted() const
+    {
+        return false;
     }
     //--------------------------------------------------------------------------------------------------
 }

@@ -20,5 +20,11 @@ namespace nsTornadoEngine
         TSceneInstantiatingThread(TSceneInstanceState* pSceneInstanceState);
     protected:
         void Work() override;
+    private:
+        void Init();
+        void FileLoading();
+        void SceneDeserializing();
+        void ComponentsDeserializing();
+        void SortingEntitiesByRank();
     };
 }
