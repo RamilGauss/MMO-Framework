@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 #include <atomic>
 
 #include "TypeDef.h"
+#include "ProgressValue.h"
 
 #include "SceneInstantiatingThread.h"
 #include "InstantiateSceneParams.h"
@@ -24,7 +25,7 @@ namespace nsTornadoEngine
         {
             INIT,
             FILE_LOADING,
-            SCENE_DESERIALIZING,
+            SCENE_DESERIALIZING,     // in one step
             COMPONENTS_DESERIALIZING,
             SORTING_ENTITIES_BY_RANK,
 
@@ -33,7 +34,7 @@ namespace nsTornadoEngine
 
             STABLE,
 
-            DESTROYING,
+            DESTROYING, // in one step
         };
 
         enum class SubStep
@@ -52,15 +53,11 @@ namespace nsTornadoEngine
 
         std::shared_ptr<TSceneInstantiatingThread> mAsyncThread;
 
-        int mFileSize = 0;
-
-
-        int mComponentCount = 0;
-        int mEntityCount = 0;
-        int mPrefabCount = 0;
-
-        int mPartCount = 1;
-        int mPartProgress = 0;
+        nsBase::TProgressValue mFileProgress;
+        nsBase::TProgressValue mComponentProgress;
+        nsBase::TProgressValue mSortingProgress;
+        nsBase::TProgressValue mEntityProgress;
+        nsBase::TProgressValue mPrefabProgress;
 
         const int FILE_PART_SIZE = 10'000'000;
         const int COMPONENT_PART_SIZE = 100;

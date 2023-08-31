@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <atomic>
+#include <list>
 
 #include "TypeDef.h"
 
@@ -15,15 +16,24 @@ namespace nsBase
 {
     class DllExport TProgressValue
     {
-        std::atomic_int mTotal = 1;
+        std::atomic_int mTotal = 0;
         std::atomic_int mValue = 0;
 
     public:
-        void Setup(int total);
+        TProgressValue();
+        TProgressValue(const TProgressValue& other);
+
+        TProgressValue operator = (const TProgressValue& other);
 
         float GetProgress() const;
         bool IsCompleted() const;
 
-        void Increment(int value = 1);
+        void IncrementValue(int value = 1);
+        void IncrementTotal(int total = 1);
+
+        int GetValue() const;
+        int GetTotal() const;
+
+        static TProgressValue Accumulate(const std::list<TProgressValue> list);
     };
 }
