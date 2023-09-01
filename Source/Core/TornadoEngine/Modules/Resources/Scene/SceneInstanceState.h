@@ -59,6 +59,8 @@ namespace nsTornadoEngine
         nsBase::TProgressValue mEntityProgress;
         nsBase::TProgressValue mPrefabProgress;
 
+        std::unordered_map<std::string, > mGuidEntities;
+
         const int FILE_PART_SIZE = 10'000'000;
         const int COMPONENT_PART_SIZE = 100;
         const int SORTING_PART_SIZE = 100;

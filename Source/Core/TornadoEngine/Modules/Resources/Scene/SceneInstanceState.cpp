@@ -49,7 +49,8 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------
     bool TSceneInstanceState::IsLoadCompleted() const
     {
-        return false;
+        return nsBase::TProgressValue::Accumulate(
+            { mFileProgress, mComponentProgress, }).IsCompleted();
     }
     //--------------------------------------------------------------------------------------------------
 }
