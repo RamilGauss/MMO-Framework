@@ -7,14 +7,17 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ComponentContent.h"
+#include "EntityContent.h"
 
 namespace nsTornadoEngine
 {
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TEntityContent
+    struct DllExport TEntityMetaContent
     {
+        TEntityContent conent;
+
         std::string guid;
-        std::list<TComponentContent> components;
+        std::string parentGuid;
     };
+
+    using TEntityMetaContentPtr = std::shared_ptr<TEntityMetaContent>;
 }

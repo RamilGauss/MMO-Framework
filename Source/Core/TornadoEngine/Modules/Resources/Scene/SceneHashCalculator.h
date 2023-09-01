@@ -7,14 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ComponentContent.h"
+#include "SceneResourceContent.h"
 
 namespace nsTornadoEngine
 {
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TEntityContent
+    class DllExport TSceneHashCalculator
     {
-        std::string guid;
-        std::list<TComponentContent> components;
+    public:
+        static std::string Calculate(const TSceneResourceContent& sceneResourceContent);
     };
 }

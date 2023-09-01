@@ -44,13 +44,14 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------
     float TSceneInstanceState::GetLoadingProgress() const
     {
-        return 0.0f;
+        return nsBase::TProgressValue::Accumulate(
+            { mFileProgress, mComponentProgress, mSortingProgress, mEntityProgress, mPrefabProgress }).GetProgress();
     }
     //--------------------------------------------------------------------------------------------------
     bool TSceneInstanceState::IsLoadCompleted() const
     {
         return nsBase::TProgressValue::Accumulate(
-            { mFileProgress, mComponentProgress, }).IsCompleted();
+            { mFileProgress, mComponentProgress, mSortingProgress, mEntityProgress, mPrefabProgress }).IsCompleted();
     }
     //--------------------------------------------------------------------------------------------------
 }

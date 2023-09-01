@@ -1,6 +1,7 @@
 {
     "entities": [
         {
+            "guid": "bootstrapper_0",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -25,6 +26,7 @@
             ]
         },
         {
+            "guid": "bootstrapper_1",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",

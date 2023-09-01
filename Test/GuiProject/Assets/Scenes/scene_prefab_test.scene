@@ -3,6 +3,7 @@
     "groupedByRankEntityGuidHash": "abcdef",
     "entities": [
         {
+            "guid":  "root",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TSceneRootComponent",

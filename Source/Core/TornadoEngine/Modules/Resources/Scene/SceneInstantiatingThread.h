@@ -15,7 +15,7 @@ namespace nsTornadoEngine
 
     class DllExport TSceneInstantiatingThread : public TThreadBoost
     {
-        TSceneInstanceState* mSceneInstanceState = nullptr;
+        TSceneInstanceState* mScState = nullptr;
     public:
         TSceneInstantiatingThread(TSceneInstanceState* pSceneInstanceState);
     protected:
@@ -26,5 +26,7 @@ namespace nsTornadoEngine
         void SceneDeserializing();
         void ComponentsDeserializing();
         void SortingEntitiesByRank();
+        
+        void CalculateRoughProgressValues();
     };
 }

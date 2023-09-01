@@ -10,12 +10,15 @@ See for more information LICENSE.md.
 #include <string>
 #include <memory>
 #include <atomic>
+#include <unordered_map>
 
 #include "TypeDef.h"
 #include "ProgressValue.h"
 
 #include "SceneInstantiatingThread.h"
 #include "InstantiateSceneParams.h"
+#include "EntityMetaContent.h"
+#include "SceneResourceContent.h"
 
 namespace nsTornadoEngine
 {
@@ -59,14 +62,20 @@ namespace nsTornadoEngine
         nsBase::TProgressValue mEntityProgress;
         nsBase::TProgressValue mPrefabProgress;
 
-        std::unordered_map<std::string, > mGuidEntities;
+        TSceneResourceContent mSceneContent;
 
-        const int FILE_PART_SIZE = 10'000'000;
-        const int COMPONENT_PART_SIZE = 100;
-        const int SORTING_PART_SIZE = 100;
+        std::unordered_map<std::string, std::list<TEntityMetaContentPtr>> mParentGuidEntities;
+        TEntityMetaContent mRootEntity;
 
-        const int ENTITY_INSTANTIATING_PART_SIZE = 1000;
-        const int PREFAB_INSTANTIATING_PART_SIZE = 10;
+        static const int FILE_PART_SIZE = 10'000'000;
+        static const int COMPONENT_PART_SIZE = 100;
+        static const int SORTING_PART_SIZE = 100;
+
+        static const int ENTITY_INSTANTIATING_PART_SIZE = 1000;
+        static const int PREFAB_INSTANTIATING_PART_SIZE = 10;
+
+        static const int ROUGH_COMPONENT_SIZE = 50;
+        static const int ROUGH_ENTITY_SIZE = 7 * ROUGH_COMPONENT_SIZE;
 
         // Helpers
         TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams);
