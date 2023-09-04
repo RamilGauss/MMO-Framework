@@ -27,6 +27,7 @@ namespace nsTornadoEngine
         void ComponentsDeserializing();
         void SortingEntitiesByRank();
         
+        void CalculateAccurateProgressValues();
         void CalculateRoughProgressValues();
     };
 }

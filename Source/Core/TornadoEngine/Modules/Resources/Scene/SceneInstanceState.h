@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include <unordered_map>
 
 #include "TypeDef.h"
+#include "LoadFromFile.h"
 #include "ProgressValue.h"
 
 #include "SceneInstantiatingThread.h"
@@ -61,6 +62,11 @@ namespace nsTornadoEngine
         nsBase::TProgressValue mSortingProgress;
         nsBase::TProgressValue mEntityProgress;
         nsBase::TProgressValue mPrefabProgress;
+
+        TContainer mFileBuffer;
+        std::string mFileContent;
+
+        TLoadFromFile mFile;
 
         TSceneResourceContent mSceneContent;
 

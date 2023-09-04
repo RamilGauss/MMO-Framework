@@ -62,6 +62,26 @@ namespace nsBase
         return mTotal;
     }
     //-----------------------------------------------------------------------------------
+    int TProgressValue::GetRemain() const
+    {
+        return (mTotal - mValue);
+    }
+    //-----------------------------------------------------------------------------------
+    void TProgressValue::SetTotal(int total)
+    {
+        mTotal = total;
+    }
+    //-----------------------------------------------------------------------------------
+    int TProgressValue::GetSteppedRemain() const
+    {
+        return std::min(GetRemain(), mStep.load());
+    }
+    //-----------------------------------------------------------------------------------
+    int TProgressValue::GetStep() const
+    {
+        return mStep;
+    }
+    //-----------------------------------------------------------------------------------
     TProgressValue TProgressValue::Accumulate(const std::list<TProgressValue> list)
     {
         TProgressValue acc;

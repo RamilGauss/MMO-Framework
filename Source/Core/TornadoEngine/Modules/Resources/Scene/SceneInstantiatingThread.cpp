@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include "SceneInstantiatingThread.h"
 #include "SceneInstanceState.h"
+#include "TornadoEngineJsonSerializer.h"
 
 namespace nsTornadoEngine
 {
@@ -45,26 +46,41 @@ namespace nsTornadoEngine
 
         mScState->mInstantiateSceneParams.absPath;
 
-        std::error_code ec;
-        std::uintmax_t size = fs::file_size({ mScState->mInstantiateSceneParams.absPath }, ec);
+        mScState->mFile.ReOpen((char*)mScState->mInstantiateSceneParams.absPath.c_str());
 
-        mScState->mFileProgress.IncrementTotal(size);
+        auto size = mScState->mFile.Size();
 
-        if (size >= TSceneInstanceState::FILE_PART_SIZE) {
-            CalculateRoughProgressValues();
-        }
+        mScState->mFileProgress.SetTotal(size);
+        mScState->mFileContent.reserve(size);
+
+        CalculateRoughProgressValues();
 
         mScState->mStep = TSceneInstanceState::Step::FILE_LOADING;
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::FileLoading()
     {
-        //mSceneInstanceState->mPartCount
+        int partSize = mScState->mFileProgress.GetSteppedRemain();
+
+        mScState->mFile.Read(mScState->mFileBuffer.GetPtr(), partSize, mScState->mFileProgress.GetValue());
+
+        mScState->mFileContent.append(mScState->mFileBuffer.GetPtr(), partSize);
+        mScState->mFileProgress.IncrementValue(partSize);
+
+        if (mScState->mFileProgress.IsCompleted()) {
+            mScState->mFile.Close();
+            mScState->mStep = TSceneInstanceState::Step::SCENE_DESERIALIZING;
+        }
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::SceneDeserializing()
     {
+        std::string err;
+        auto deserResult = TTornadoEngineJsonSerializer::Deserialize(&mScState->mSceneContent, mScState->mFileContent, err);
 
+        CalculateAccurateProgressValues();
+
+        mScState->mStep = TSceneInstanceState::Step::COMPONENTS_DESERIALIZING;
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::ComponentsDeserializing()
@@ -77,13 +93,30 @@ namespace nsTornadoEngine
 
     }
     //---------------------------------------------------------------------------------------------------
+    void TSceneInstantiatingThread::CalculateAccurateProgressValues()
+    {
+        int componentCount = 0;
+        for (auto& entity : mScState->mSceneContent.entities) {
+            componentCount += entity.components.size();
+        }
+
+        mScState->mComponentProgress.SetTotal(componentCount);
+        mScState->mSortingProgress.SetTotal(mScState->mSceneContent.entities.size());
+        mScState->mEntityProgress.SetTotal(mScState->mSceneContent.entities.size());
+        mScState->mPrefabProgress.SetTotal(mScState->mSceneContent.prefabInstances.size());
+    }
+    //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::CalculateRoughProgressValues()
     {
-        mScState->mFileProgress.GetTotal();
-        nsBase::TProgressValue mComponentProgress;
-        nsBase::TProgressValue mSortingProgress;
-        nsBase::TProgressValue mEntityProgress;
-        nsBase::TProgressValue mPrefabProgress;
+        auto fileSize = mScState->mFileProgress.GetTotal();
+
+        int componentCount = fileSize / 187.0f;
+        int entityCount = fileSize / 1312.0f;
+
+        mScState->mComponentProgress.SetTotal(componentCount);
+        mScState->mSortingProgress.SetTotal(entityCount);
+        mScState->mEntityProgress.SetTotal(entityCount);
+        mScState->mPrefabProgress.SetTotal(1);
     }
     //---------------------------------------------------------------------------------------------------
 }

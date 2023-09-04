@@ -18,6 +18,7 @@ namespace nsBase
     {
         std::atomic_int mTotal = 0;
         std::atomic_int mValue = 0;
+        std::atomic_int mStep = 0;
 
     public:
         TProgressValue();
@@ -33,6 +34,13 @@ namespace nsBase
 
         int GetValue() const;
         int GetTotal() const;
+        int GetRemain() const;
+
+        int GetSteppedRemain() const;
+        int GetStep() const;
+
+        void SetTotal(int total);
+        void SetStep(int step);
 
         static TProgressValue Accumulate(const std::list<TProgressValue> list);
     };
