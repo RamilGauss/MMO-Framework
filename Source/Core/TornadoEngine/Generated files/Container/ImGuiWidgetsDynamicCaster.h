@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_08_29 09:06:47.366
+// File has been generated at 2023_09_05 10:10:41.327
 	
 #pragma once
 

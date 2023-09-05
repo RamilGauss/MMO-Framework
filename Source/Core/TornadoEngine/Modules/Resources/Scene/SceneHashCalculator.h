@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <set>
+
 #include "SceneResourceContent.h"
 
 namespace nsTornadoEngine
@@ -14,6 +16,6 @@ namespace nsTornadoEngine
     class DllExport TSceneHashCalculator
     {
     public:
-        static std::string Calculate(const TSceneResourceContent& sceneResourceContent);
+        static std::string Calculate(const std::list<std::string>& entityGuids);
     };
 }

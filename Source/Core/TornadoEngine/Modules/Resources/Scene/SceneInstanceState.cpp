@@ -16,6 +16,12 @@ namespace nsTornadoEngine
         mFileBuffer.SetData(nullptr, FILE_PART_SIZE);
         mGuid = nsBase::TGuidGenerator::Generate();
         mInstantiateSceneParams = instantiateSceneParams;
+
+        mFileProgress.SetStep(FILE_PART_SIZE);
+        mPrepareTreeEntityProgress.SetStep(PREPARE_TREE_ENTITY_PART_SIZE);
+        mSortingProgress.SetStep(SORTING_PART_SIZE);
+        mEntityProgress.SetStep(ENTITY_INSTANTIATING_PART_SIZE);
+        mPrefabProgress.SetStep(PREFAB_INSTANTIATING_PART_SIZE);
     }
     //--------------------------------------------------------------------------------------------------
     TSceneInstanceState::SubStep TSceneInstanceState::GetSubStep() const
@@ -25,7 +31,7 @@ namespace nsTornadoEngine
             case Step::INIT:
             case Step::FILE_LOADING:
             case Step::SCENE_DESERIALIZING:
-            case Step::COMPONENTS_DESERIALIZING:
+            case Step::PREPARE_TREE_ENTITY:
             case Step::SORTING_ENTITIES_BY_RANK:
                 subStep = SubStep::ASYNC_LOADING;
                 break;
@@ -46,13 +52,13 @@ namespace nsTornadoEngine
     float TSceneInstanceState::GetLoadingProgress() const
     {
         return nsBase::TProgressValue::Accumulate(
-            { mFileProgress, mComponentProgress, mSortingProgress, mEntityProgress, mPrefabProgress }).GetProgress();
+            { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mEntityProgress, mPrefabProgress }).GetProgress();
     }
     //--------------------------------------------------------------------------------------------------
     bool TSceneInstanceState::IsLoadCompleted() const
     {
         return nsBase::TProgressValue::Accumulate(
-            { mFileProgress, mComponentProgress, mSortingProgress, mEntityProgress, mPrefabProgress }).IsCompleted();
+            { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mEntityProgress, mPrefabProgress }).IsCompleted();
     }
     //--------------------------------------------------------------------------------------------------
 }

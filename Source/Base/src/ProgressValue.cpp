@@ -72,6 +72,11 @@ namespace nsBase
         mTotal = total;
     }
     //-----------------------------------------------------------------------------------
+    void TProgressValue::SetStep(int step)
+    {
+        mStep = step;
+    }
+    //-----------------------------------------------------------------------------------
     int TProgressValue::GetSteppedRemain() const
     {
         return std::min(GetRemain(), mStep.load());

@@ -7,15 +7,36 @@ See for more information LICENSE.md.
 
 #include <filesystem>
 
+#include "SceneHashCalculator.h"
+
+#include "Modules.h"
+#include "TornadoEngineJsonSerializer.h"
+#include "ProjectConfigContainer.h"
+
 #include "SceneInstantiatingThread.h"
 #include "SceneInstanceState.h"
-#include "TornadoEngineJsonSerializer.h"
+
+#include "GuidComponent.h"
+#include "ParentGuidComponent.h"
+#include "SceneRootComponent.h"
 
 namespace nsTornadoEngine
 {
     TSceneInstantiatingThread::TSceneInstantiatingThread(TSceneInstanceState* pSceneInstanceState)
     {
         mScState = pSceneInstanceState;
+
+        auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
+
+        auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
+
+        mGuidComponentRtti = globalTypeIdentifier->Type<nsCommonWrapper::TGuidComponent>();
+        mParentGuidComponentRtti = globalTypeIdentifier->Type<nsCommonWrapper::TParentGuidComponent>();
+        mSceneRootComponentRtti = globalTypeIdentifier->Type<nsCommonWrapper::TSceneRootComponent>();
+
+        componentReflection->mTypeInfo->ConvertTypeToName(mGuidComponentRtti, mGuidComponentTypeName);
+        componentReflection->mTypeInfo->ConvertTypeToName(mParentGuidComponentRtti, mParentGuidComponentTypeName);
+        componentReflection->mTypeInfo->ConvertTypeToName(mSceneRootComponentRtti, mSceneRootComponentTypeName);
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::Work()
@@ -30,8 +51,8 @@ namespace nsTornadoEngine
             case TSceneInstanceState::Step::SCENE_DESERIALIZING:
                 SceneDeserializing();
                 break;
-            case TSceneInstanceState::Step::COMPONENTS_DESERIALIZING:
-                ComponentsDeserializing();
+            case TSceneInstanceState::Step::PREPARE_TREE_ENTITY:
+                PrepareTreeEntity();
                 break;
             case TSceneInstanceState::Step::SORTING_ENTITIES_BY_RANK:
                 SortingEntitiesByRank();
@@ -42,10 +63,6 @@ namespace nsTornadoEngine
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::Init()
     {
-        namespace fs = std::filesystem;
-
-        mScState->mInstantiateSceneParams.absPath;
-
         mScState->mFile.ReOpen((char*)mScState->mInstantiateSceneParams.absPath.c_str());
 
         auto size = mScState->mFile.Size();
@@ -80,29 +97,105 @@ namespace nsTornadoEngine
 
         CalculateAccurateProgressValues();
 
-        mScState->mStep = TSceneInstanceState::Step::COMPONENTS_DESERIALIZING;
+        mScState->mCurrentEntIt = mScState->mSceneContent.entities.begin();
+
+        std::list<std::string> entityGuids;
+
+        // Calculate the hash and compare with a hash in the saved file
+        std::string calculatedHash = TSceneHashCalculator::Calculate(entityGuids);
+
+        if (calculatedHash != mScState->mSceneContent.groupedByRankEntityGuidHash) {
+            mScState->mStep = TSceneInstanceState::Step::PREPARE_TREE_ENTITY;
+        } else {
+            mScState->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
+        }
     }
     //---------------------------------------------------------------------------------------------------
-    void TSceneInstantiatingThread::ComponentsDeserializing()
+    void TSceneInstantiatingThread::PrepareTreeEntity()
     {
+        std::string err;
 
+        auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
+        int partSize = mScState->mPrepareTreeEntityProgress.GetSteppedRemain();
+
+        for (int i = 0; i < partSize; i++, mScState->mCurrentEntIt++) {
+
+            TEntityMetaContentPtr entityMetaContentPtr = std::make_shared<TEntityMetaContent>();
+
+            bool isRoot = false;
+
+            entityMetaContentPtr->conent = *(mScState->mCurrentEntIt);
+
+            for (auto component : mScState->mCurrentEntIt->components) {
+                if (component.typeName == mGuidComponentTypeName) {
+                    nsCommonWrapper::TGuidComponent guidComponent;
+                    componentReflection->mJson->Deserialize(&guidComponent, component.jsonBody, mGuidComponentRtti, err);
+                    entityMetaContentPtr->guid = guidComponent.value;
+                }
+                if (component.typeName == mParentGuidComponentTypeName) {
+                    nsCommonWrapper::TParentGuidComponent parentGuidComponent;
+                    componentReflection->mJson->Deserialize(&parentGuidComponent, component.jsonBody, mParentGuidComponentRtti, err);
+                    entityMetaContentPtr->parentGuid = parentGuidComponent.value;
+                }
+                if (component.typeName == mSceneRootComponentTypeName) {
+                    isRoot = true;
+                }
+            }
+
+            if (isRoot) {
+                mScState->mRootEntity = entityMetaContentPtr;
+            } else {
+                auto fit = mScState->mParentGuidEntities.find(entityMetaContentPtr->parentGuid);
+                if (fit == mScState->mParentGuidEntities.end()) {
+                    mScState->mParentGuidEntities.insert({ entityMetaContentPtr->parentGuid, {} });
+                    fit = mScState->mParentGuidEntities.find(entityMetaContentPtr->parentGuid);
+                }
+
+                fit->second.insert({ entityMetaContentPtr->guid, entityMetaContentPtr });
+            }
+        }
+
+        mScState->mPrepareTreeEntityProgress.IncrementValue(partSize);
+
+        if (mScState->mPrepareTreeEntityProgress.IsCompleted()) {
+            std::map<std::string, TEntityMetaContentPtr> rootLayer;
+            rootLayer.insert({ mScState->mRootEntity->guid, mScState->mRootEntity });
+
+            mScState->mLayers.push_back(rootLayer);
+            mScState->mCurrentLayerIndex = 0;
+
+            mScState->mCurrentLayerEntIt = mScState->mLayers[mScState->mCurrentLayerIndex].begin();
+
+            mScState->mStep = TSceneInstanceState::Step::SORTING_ENTITIES_BY_RANK;
+        }
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::SortingEntitiesByRank()
     {
+        int partSize = mScState->mSortingProgress.GetSteppedRemain();
 
+        for (int i = 0; i < partSize; i++) {
+
+        }
+
+
+        if (mScState->mSortingProgress.IsCompleted()) {
+
+            mScState->mSceneContent.entities.clear();
+
+            mScState->mSceneContent.entities.splice(mScState->mSceneContent.entities.end(), mScState->mSortedByRankEntities);
+
+            mScState->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
+        }
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::CalculateAccurateProgressValues()
     {
-        int componentCount = 0;
-        for (auto& entity : mScState->mSceneContent.entities) {
-            componentCount += entity.components.size();
-        }
+        int entityCount = mScState->mSceneContent.entities.size();
 
-        mScState->mComponentProgress.SetTotal(componentCount);
-        mScState->mSortingProgress.SetTotal(mScState->mSceneContent.entities.size());
-        mScState->mEntityProgress.SetTotal(mScState->mSceneContent.entities.size());
+        mScState->mPrepareTreeEntityProgress.SetTotal(entityCount);
+        mScState->mSortingProgress.SetTotal(entityCount);
+        mScState->mEntityProgress.SetTotal(entityCount);
         mScState->mPrefabProgress.SetTotal(mScState->mSceneContent.prefabInstances.size());
     }
     //---------------------------------------------------------------------------------------------------
@@ -110,10 +203,10 @@ namespace nsTornadoEngine
     {
         auto fileSize = mScState->mFileProgress.GetTotal();
 
-        int componentCount = fileSize / 187.0f;
-        int entityCount = fileSize / 1312.0f;
+        int entityCount = fileSize / ROUGH_ENTITY_SIZE_IN_FILE;
+        entityCount = std::min(entityCount, 1);
 
-        mScState->mComponentProgress.SetTotal(componentCount);
+        mScState->mPrepareTreeEntityProgress.SetTotal(entityCount);
         mScState->mSortingProgress.SetTotal(entityCount);
         mScState->mEntityProgress.SetTotal(entityCount);
         mScState->mPrefabProgress.SetTotal(1);

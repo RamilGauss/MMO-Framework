@@ -14,7 +14,6 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TEntityContent
     {
-        std::string guid;
         std::list<TComponentContent> components;
     };
 }

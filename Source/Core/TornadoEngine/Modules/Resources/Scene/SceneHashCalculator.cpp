@@ -10,12 +10,12 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    std::string TSceneHashCalculator::Calculate(const TSceneResourceContent& sceneResourceContent)
+    std::string TSceneHashCalculator::Calculate(const std::list<std::string>& entityGuids)
     {
         std::string accGuid;
 
-        for (auto& entity : sceneResourceContent.entities) {
-            accGuid += entity.guid;
+        for (auto& guid : entityGuids) {
+            accGuid += guid;
         }
 
         TContainer hash;

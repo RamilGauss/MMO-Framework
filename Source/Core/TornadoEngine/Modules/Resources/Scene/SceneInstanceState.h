@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 #include <memory>
 #include <atomic>
 #include <unordered_map>
+#include <map>
 
 #include "TypeDef.h"
 #include "LoadFromFile.h"
@@ -30,7 +31,7 @@ namespace nsTornadoEngine
             INIT,
             FILE_LOADING,
             SCENE_DESERIALIZING,     // in one step
-            COMPONENTS_DESERIALIZING,
+            PREPARE_TREE_ENTITY,
             SORTING_ENTITIES_BY_RANK,
 
             ENTITY_INSTANTIATING,
@@ -58,7 +59,7 @@ namespace nsTornadoEngine
         std::shared_ptr<TSceneInstantiatingThread> mAsyncThread;
 
         nsBase::TProgressValue mFileProgress;
-        nsBase::TProgressValue mComponentProgress;
+        nsBase::TProgressValue mPrepareTreeEntityProgress;
         nsBase::TProgressValue mSortingProgress;
         nsBase::TProgressValue mEntityProgress;
         nsBase::TProgressValue mPrefabProgress;
@@ -70,18 +71,26 @@ namespace nsTornadoEngine
 
         TSceneResourceContent mSceneContent;
 
-        std::unordered_map<std::string, std::list<TEntityMetaContentPtr>> mParentGuidEntities;
-        TEntityMetaContent mRootEntity;
+        std::list<TEntityContent> mSortedByRankEntities;
+
+        std::list<TEntityContent>::iterator mCurrentEntIt;
+
+        // Sorting in map need for same sorting as in a saved file.
+        std::unordered_map<std::string, std::map<std::string, TEntityMetaContentPtr>> mParentGuidEntities;
+        TEntityMetaContentPtr mRootEntity;
+
+
+        std::vector<std::map<std::string, TEntityMetaContentPtr>> mLayers;
+        int mCurrentLayerIndex = 0;
+
+        std::map<std::string, TEntityMetaContentPtr>::iterator mCurrentLayerEntIt;
 
         static const int FILE_PART_SIZE = 10'000'000;
-        static const int COMPONENT_PART_SIZE = 100;
+        static const int PREPARE_TREE_ENTITY_PART_SIZE = 100;
         static const int SORTING_PART_SIZE = 100;
 
         static const int ENTITY_INSTANTIATING_PART_SIZE = 1000;
         static const int PREFAB_INSTANTIATING_PART_SIZE = 10;
-
-        static const int ROUGH_COMPONENT_SIZE = 50;
-        static const int ROUGH_ENTITY_SIZE = 7 * ROUGH_COMPONENT_SIZE;
 
         // Helpers
         TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams);

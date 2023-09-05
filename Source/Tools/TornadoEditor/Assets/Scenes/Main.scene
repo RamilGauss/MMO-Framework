@@ -1,7 +1,8 @@
 {
+    "guid": "scene_prefab_test",
+    "groupedByRankEntityGuidHash": "abcdef",
     "entities": [
         {
-            "guid": "main_0",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -38,7 +39,6 @@
             ]
         },
         {
-            "guid": "main_1",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -75,7 +75,6 @@
             ]
         },
         {
-            "guid": "main_2",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -104,7 +103,6 @@
             ]
         },
         {
-            "guid": "main_3",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -141,7 +139,6 @@
             ]
         },
         {
-            "guid": "main_4",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -182,7 +179,6 @@
             ]
         },
         {
-            "guid": "main_5",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -211,7 +207,6 @@
             ]
         },
         {
-            "guid": "main_6",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -244,7 +239,6 @@
             ]
         },
         {
-            "guid": "main_7",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -273,7 +267,6 @@
             ]
         },
         {
-            "guid": "main_8",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -302,7 +295,6 @@
             ]
         },
         {
-            "guid": "main_9",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -331,7 +323,6 @@
             ]
         },
         {
-            "guid": "main_10",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -364,7 +355,6 @@
             ]
         },
         {
-            "guid": "main_11",
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
