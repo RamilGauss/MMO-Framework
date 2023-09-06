@@ -71,8 +71,6 @@ namespace nsTornadoEngine
 
         TSceneResourceContent mSceneContent;
 
-        std::list<TEntityContent> mSortedByRankEntities;
-
         std::list<TEntityContent>::iterator mCurrentEntIt;
 
         // Sorting in map need for same sorting as in a saved file.
@@ -80,7 +78,10 @@ namespace nsTornadoEngine
         TEntityMetaContentPtr mRootEntity;
 
 
-        std::vector<std::map<std::string, TEntityMetaContentPtr>> mLayers;
+        std::list<std::map<std::string, TEntityMetaContentPtr>> mLayers;
+
+        std::list<std::map<std::string, TEntityMetaContentPtr>>::iterator mCurrentLayer;
+
         int mCurrentLayerIndex = 0;
 
         std::map<std::string, TEntityMetaContentPtr>::iterator mCurrentLayerEntIt;

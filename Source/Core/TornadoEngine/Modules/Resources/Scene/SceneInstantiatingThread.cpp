@@ -163,10 +163,30 @@ namespace nsTornadoEngine
 
             mScState->mLayers.push_back(rootLayer);
             mScState->mCurrentLayerIndex = 0;
+            mScState->mCurrentLayer = mScState->mLayers.back();
 
-            mScState->mCurrentLayerEntIt = mScState->mLayers[mScState->mCurrentLayerIndex].begin();
+            mScState->mCurrentLayerEntIt = mScState->mLayers.back().begin();
 
             mScState->mStep = TSceneInstanceState::Step::SORTING_ENTITIES_BY_RANK;
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    void TSceneInstantiatingThread::SingleSortingEntitiesByRank()
+    {
+        auto fit = mScState->mParentGuidEntities.find(mScState->mCurrentLayerEntIt->parentGuid);
+        if (fit != mScState->mParentGuidEntities.end()) {
+            if (mScState->mCurrentLayerIndex == mScState->mLayers.size() - 1) {
+                mScState->mLayers.push_back(std::map<std::string, TEntityMetaContentPtr>());
+            }
+
+            mScState->mLayers.back().insert({fit->second->guid, fit->second});
+        }
+
+        mScState->mCurrentLayerEntIt++;
+
+        if (mScState->mCurrentLayer.end() == mScState->mCurrentLayerEntIt) {
+            mScState->mCurrentLayer = mScState->mLayers.back();
+            mScState->mCurrentLayerEntIt = mScState->mCurrentLayer->begin();
         }
     }
     //---------------------------------------------------------------------------------------------------
@@ -175,15 +195,23 @@ namespace nsTornadoEngine
         int partSize = mScState->mSortingProgress.GetSteppedRemain();
 
         for (int i = 0; i < partSize; i++) {
-
+            SingleSortingEntitiesByRank();
         }
 
+        mScState->mSortingProgress.Increment(partSize);
 
         if (mScState->mSortingProgress.IsCompleted()) {
 
             mScState->mSceneContent.entities.clear();
 
-            mScState->mSceneContent.entities.splice(mScState->mSceneContent.entities.end(), mScState->mSortedByRankEntities);
+            std::list<TEntityContent> sortedByRankEntities;
+            for (auto& layer : mScState->mLayers) {
+                for (auto& entity : layer) {
+                    sortedByRankEntities.push_back(entity);
+                }
+            }
+            
+            mScState->mSceneContent.entities.splice(mScState->mSceneContent.entities.end(), sortedByRankEntities);
 
             mScState->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
         }

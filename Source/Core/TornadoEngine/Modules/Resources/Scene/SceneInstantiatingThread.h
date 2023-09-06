@@ -34,6 +34,8 @@ namespace nsTornadoEngine
         void SceneDeserializing();
         void PrepareTreeEntity();
         void SortingEntitiesByRank();
+
+        void SingleSortingEntitiesByRank();
         
         void CalculateAccurateProgressValues();
         void CalculateRoughProgressValues();
