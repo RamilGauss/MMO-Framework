@@ -386,5 +386,7 @@
                 }
             ]
         }
+    ],
+    "prefabInstances": [
     ]
 }

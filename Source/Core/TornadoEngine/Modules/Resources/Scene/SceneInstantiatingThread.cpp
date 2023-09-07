@@ -163,7 +163,7 @@ namespace nsTornadoEngine
 
             mScState->mLayers.push_back(rootLayer);
             mScState->mCurrentLayerIndex = 0;
-            mScState->mCurrentLayer = mScState->mLayers.back();
+            mScState->mCurrentLayer = --(mScState->mLayers.end());
 
             mScState->mCurrentLayerEntIt = mScState->mLayers.back().begin();
 
@@ -173,20 +173,28 @@ namespace nsTornadoEngine
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::SingleSortingEntitiesByRank()
     {
-        auto fit = mScState->mParentGuidEntities.find(mScState->mCurrentLayerEntIt->parentGuid);
+        auto fit = mScState->mParentGuidEntities.find(mScState->mCurrentLayerEntIt->second->guid);
         if (fit != mScState->mParentGuidEntities.end()) {
+
             if (mScState->mCurrentLayerIndex == mScState->mLayers.size() - 1) {
                 mScState->mLayers.push_back(std::map<std::string, TEntityMetaContentPtr>());
             }
 
-            mScState->mLayers.back().insert({fit->second->guid, fit->second});
+            for (auto& guidEntity : fit->second) {
+                mScState->mLayers.back().insert({ guidEntity.first, guidEntity.second });
+            }
         }
 
         mScState->mCurrentLayerEntIt++;
 
-        if (mScState->mCurrentLayer.end() == mScState->mCurrentLayerEntIt) {
-            mScState->mCurrentLayer = mScState->mLayers.back();
-            mScState->mCurrentLayerEntIt = mScState->mCurrentLayer->begin();
+        if (mScState->mCurrentLayer->end() == mScState->mCurrentLayerEntIt) {
+
+            if (mScState->mCurrentLayerIndex < mScState->mLayers.size() - 1) {
+
+                mScState->mCurrentLayer = --(mScState->mLayers.end());
+                mScState->mCurrentLayerEntIt = mScState->mCurrentLayer->begin();
+                mScState->mCurrentLayerIndex++;
+            }
         }
     }
     //---------------------------------------------------------------------------------------------------
@@ -198,7 +206,7 @@ namespace nsTornadoEngine
             SingleSortingEntitiesByRank();
         }
 
-        mScState->mSortingProgress.Increment(partSize);
+        mScState->mSortingProgress.IncrementValue(partSize);
 
         if (mScState->mSortingProgress.IsCompleted()) {
 
@@ -207,10 +215,10 @@ namespace nsTornadoEngine
             std::list<TEntityContent> sortedByRankEntities;
             for (auto& layer : mScState->mLayers) {
                 for (auto& entity : layer) {
-                    sortedByRankEntities.push_back(entity);
+                    sortedByRankEntities.push_back(entity.second->conent);
                 }
             }
-            
+
             mScState->mSceneContent.entities.splice(mScState->mSceneContent.entities.end(), sortedByRankEntities);
 
             mScState->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
