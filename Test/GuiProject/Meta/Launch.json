@@ -4,6 +4,6 @@
     "resourcesFilePath": "./Resources.json",
 
     "startScenesGuid": [
-        "Bootstrapper.scene"
+        "window_test.scene"
     ]
 }

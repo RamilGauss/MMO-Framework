@@ -91,6 +91,8 @@ namespace nsTornadoEngine
         std::list<TEntityContent>::const_iterator mEntIt;
         std::list<TPrefabInstance>::const_iterator mPrefabIt;
 
+        std::string mSceneIstanceGuid;
+
         unsigned short mUniverseIndex = 0;
 
         static const int FILE_PART_SIZE = 10'000'000;

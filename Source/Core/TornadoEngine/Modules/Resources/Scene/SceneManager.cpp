@@ -16,6 +16,8 @@ See for more information LICENSE.md.
 #include "TornadoEngineJsonSerializer.h"
 #include "ProjectConfigContainer.h"
 
+#include "PrefabManager.h"
+
 #include "GuidComponent.h"
 #include "ParentGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
@@ -238,24 +240,24 @@ namespace nsTornadoEngine
 
         pSc->mUniverseIndex = universeIndex;
 
+        pSc->mSceneIstanceGuid = nsBase::TGuidGenerator::Generate();
+
         pSc->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
     }
     //---------------------------------------------------------------------------------------
     void TSceneManager::EntityInstantiating(TSceneInstanceState* pSc)
     {
-        int count = pSc->mEntityProgress.GetSteppedRemain();
+        int partSize = pSc->mEntityProgress.GetSteppedRemain();
 
         using namespace nsCommonWrapper;
 
         std::list<nsECSFramework::TEntityID> newEntities;
 
         // Convert typeName to rtti
-        DeserializeObjects(newEntities, pSc->mEntIt, count);
-
-        std::string sceneIstanceGuid = nsBase::TGuidGenerator::Generate();
+        DeserializeObjects(newEntities, pSc->mEntIt, partSize);
 
         // Replace all guids to new guid with ParentGuids and SceneGuids
-        UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, sceneIstanceGuid);
+        UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, pSc->mSceneIstanceGuid);
 
         TUniverseGuidComponent universeGuidComponent;
         universeGuidComponent.value = pSc->mInstantiateSceneParams.universeGuid;
@@ -265,7 +267,7 @@ namespace nsTornadoEngine
         universeIndexComponent.value = pSc->mUniverseIndex;
         AddComponent(newEntities, &universeIndexComponent);
 
-        pSc->mEntityProgress.IncrementValue(count);
+        pSc->mEntityProgress.IncrementValue(partSize);
 
         if (pSc->mEntityProgress.IsCompleted()) {
 
@@ -279,7 +281,24 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------
     void TSceneManager::PrefabInstantiating(TSceneInstanceState* pSc)
     {
+        int partSize = pSc->mPrefabProgress.GetSteppedRemain();
 
+        for (int i = 0; i < partSize; i++, pSc->mPrefabIt++) {
+            TInstantiatePrefabParams instantiatePrefabParams;
+
+            instantiatePrefabParams.guid = pSc->mPrefabIt->prefabGuid;
+            instantiatePrefabParams.rootMatrix = pSc->mPrefabIt->localMatrix;
+            instantiatePrefabParams.parentGuid = pSc->mPrefabIt->parentGuid;
+            instantiatePrefabParams.sceneInstanceGuid = pSc->mSceneIstanceGuid;
+                 
+            mPrefabMng->InstantiateByGuid(instantiatePrefabParams);
+        }
+
+        pSc->mPrefabProgress.IncrementValue(partSize);
+
+        if (pSc->mPrefabProgress.IsCompleted()) {
+            pSc->mStep = TSceneInstanceState::Step::STABLE;
+        }
     }
     //--------------------------------------------------------------------------------
 }
