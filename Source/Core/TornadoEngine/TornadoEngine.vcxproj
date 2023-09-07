@@ -362,7 +362,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\Resources\Common\ObjectManager.cpp" />
     <ClCompile Include="Modules\Resources\Prefab\PrefabManager.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneHashCalculator.cpp" />
-    <ClCompile Include="Modules\Resources\Scene\SceneInstanceLoader.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneInstanceState.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneInstantiatingThread.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneList.cpp" />
@@ -406,7 +405,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Resources\Prefab\PrefabResourceContent.h" />
     <ClInclude Include="Modules\Resources\Scene\EntityMetaContent.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneHashCalculator.h" />
-    <ClInclude Include="Modules\Resources\Scene\SceneInstanceLoader.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneInstanceState.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneInstantiatingThread.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneList.h" />

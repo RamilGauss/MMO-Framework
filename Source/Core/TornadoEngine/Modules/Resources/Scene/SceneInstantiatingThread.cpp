@@ -107,7 +107,7 @@ namespace nsTornadoEngine
         if (calculatedHash != mScState->mSceneContent.groupedByRankEntityGuidHash) {
             mScState->mStep = TSceneInstanceState::Step::PREPARE_TREE_ENTITY;
         } else {
-            mScState->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
+            mScState->mStep = TSceneInstanceState::Step::PREPARE_INSTANTIATING;
         }
     }
     //---------------------------------------------------------------------------------------------------
@@ -221,7 +221,7 @@ namespace nsTornadoEngine
 
             mScState->mSceneContent.entities.splice(mScState->mSceneContent.entities.end(), sortedByRankEntities);
 
-            mScState->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
+            mScState->mStep = TSceneInstanceState::Step::PREPARE_INSTANTIATING;
         }
     }
     //---------------------------------------------------------------------------------------------------

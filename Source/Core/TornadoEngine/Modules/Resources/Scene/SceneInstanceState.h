@@ -34,6 +34,8 @@ namespace nsTornadoEngine
             PREPARE_TREE_ENTITY,
             SORTING_ENTITIES_BY_RANK,
 
+            PREPARE_INSTANTIATING,
+
             ENTITY_INSTANTIATING,
             PREFAB_INSTANTIATING,
 
@@ -85,6 +87,11 @@ namespace nsTornadoEngine
         int mCurrentLayerIndex = 0;
 
         std::map<std::string, TEntityMetaContentPtr>::iterator mCurrentLayerEntIt;
+
+        std::list<TEntityContent>::const_iterator mEntIt;
+        std::list<TPrefabInstance>::const_iterator mPrefabIt;
+
+        unsigned short mUniverseIndex = 0;
 
         static const int FILE_PART_SIZE = 10'000'000;
         static const int PREPARE_TREE_ENTITY_PART_SIZE = 100;

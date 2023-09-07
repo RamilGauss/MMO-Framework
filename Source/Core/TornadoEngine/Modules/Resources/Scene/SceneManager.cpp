@@ -23,7 +23,6 @@ See for more information LICENSE.md.
 #include "NeedDestroyObjectTagComponent.h"
 #include "SceneRootComponent.h"
 #include "SceneGuidComponent.h"
-#include "SceneInstanceLoader.h"
 
 #include "GuidGenerator.h"
 
@@ -119,7 +118,7 @@ namespace nsTornadoEngine
         mAsyncScenes.TryActivate(asyncActivatedScenes);
 
         for (auto& scene : asyncActivatedScenes) {
-            TSceneInstanceLoader::AsyncWork(scene.get());
+            AsyncWork(scene.get());
         }
 
         // Sync
@@ -141,7 +140,7 @@ namespace nsTornadoEngine
 
             for (auto& scene : activeScenes) {
 
-                TSceneInstanceLoader::SyncWork(scene.get(), maxDuration);
+                SyncWork(scene.get(), maxDuration);
 
                 std::list<TSceneInstanceStatePtr> deactivatedSyncScenes;
                 mSyncScenes.TryDeactivate(deactivatedSyncScenes);
@@ -187,4 +186,100 @@ namespace nsTornadoEngine
         mPrefabMng = pPrefabMng;
     }
     //--------------------------------------------------------------------------------------------------------
+    void TSceneManager::AsyncWork(TSceneInstanceState* pSc)
+    {
+        pSc->mAsyncThread = std::make_shared<TSceneInstantiatingThread>(pSc);
+
+        pSc->mAsyncThread->Start();
+    }
+    //---------------------------------------------------------------------------------------
+    void TSceneManager::SyncWork(TSceneInstanceState* pSc, unsigned int maxDuration)
+    {
+        auto start = ht_GetMSCount();
+
+        while (true) {
+
+            switch (pSc->mStep) {
+                case TSceneInstanceState::Step::PREPARE_INSTANTIATING:
+                    PrepareInstantiating(pSc);
+                    break;
+                case TSceneInstanceState::Step::ENTITY_INSTANTIATING:
+                    EntityInstantiating(pSc);
+                    break;
+                case TSceneInstanceState::Step::PREFAB_INSTANTIATING:
+                    PrefabInstantiating(pSc);
+                    break;
+                default:;
+            }
+
+            if (pSc->IsLoadCompleted()) {
+                break;
+            }
+
+            auto dt = ht_GetMSCount() - start;
+
+            if (dt >= maxDuration) {
+                break;
+            }
+        }
+    }
+    //---------------------------------------------------------------------------------------
+    void TSceneManager::PrepareInstantiating(TSceneInstanceState* pSc)
+    {
+        pSc->mEntIt = pSc->mSceneContent.entities.begin();
+
+        auto universeIndex = mUniverseManager.GetIndexByGuid(pSc->mInstantiateSceneParams.universeGuid);
+        if (universeIndex == TUniverseManager::UNDEFINED_INDEX) {
+            mUniverseManager.Create(pSc->mInstantiateSceneParams.universeGuid);
+            universeIndex = mUniverseManager.GetIndexByGuid(pSc->mInstantiateSceneParams.universeGuid);
+        }
+
+        IncrementReferenceCounter(universeIndex);
+
+        pSc->mUniverseIndex = universeIndex;
+
+        pSc->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
+    }
+    //---------------------------------------------------------------------------------------
+    void TSceneManager::EntityInstantiating(TSceneInstanceState* pSc)
+    {
+        int count = pSc->mEntityProgress.GetSteppedRemain();
+
+        using namespace nsCommonWrapper;
+
+        std::list<nsECSFramework::TEntityID> newEntities;
+
+        // Convert typeName to rtti
+        DeserializeObjects(newEntities, pSc->mEntIt, count);
+
+        std::string sceneIstanceGuid = nsBase::TGuidGenerator::Generate();
+
+        // Replace all guids to new guid with ParentGuids and SceneGuids
+        UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, sceneIstanceGuid);
+
+        TUniverseGuidComponent universeGuidComponent;
+        universeGuidComponent.value = pSc->mInstantiateSceneParams.universeGuid;
+        AddComponent(newEntities, &universeGuidComponent);
+
+        TUniverseIndexComponent universeIndexComponent;
+        universeIndexComponent.value = pSc->mUniverseIndex;
+        AddComponent(newEntities, &universeIndexComponent);
+
+        pSc->mEntityProgress.IncrementValue(count);
+
+        if (pSc->mEntityProgress.IsCompleted()) {
+
+            if (pSc->mSceneContent.prefabInstances.size()) {
+                pSc->mStep = TSceneInstanceState::Step::PREFAB_INSTANTIATING;
+            } else {
+                pSc->mStep = TSceneInstanceState::Step::STABLE;
+            }
+        }
+    }
+    //--------------------------------------------------------------------------------
+    void TSceneManager::PrefabInstantiating(TSceneInstanceState* pSc)
+    {
+
+    }
+    //--------------------------------------------------------------------------------
 }

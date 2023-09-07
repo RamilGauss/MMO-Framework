@@ -71,5 +71,12 @@ namespace nsTornadoEngine
         void DecrementReferenceCounter(TUniverseManager::IndexType index);
 
         int GetReferenceCounter(TUniverseManager::IndexType index);
+
+        void AsyncWork(TSceneInstanceState* pSc);
+        void SyncWork(TSceneInstanceState* pSc, unsigned int maxDuration);
+
+        void PrepareInstantiating(TSceneInstanceState* pSc);
+        void EntityInstantiating(TSceneInstanceState* pSc);
+        void PrefabInstantiating(TSceneInstanceState* pSc);
     };
 }

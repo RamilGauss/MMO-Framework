@@ -38,9 +38,7 @@ namespace nsTornadoEngine
         void DestroyObject(const std::string& guid);
 
     protected:
-        bool Deserialize(const std::string& absPath, std::list<TEntityContent>& entities);
-
-        void DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities, const std::list<TEntityContent>& entities);
+        void DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities, std::list<TEntityContent>::const_iterator& entIt, int count);
 
         template <typename Component>
         void AddComponent(const std::list<nsECSFramework::TEntityID>& newEntities, Component* pComponent);

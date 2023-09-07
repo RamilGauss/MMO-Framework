@@ -35,6 +35,7 @@ namespace nsTornadoEngine
             case Step::SORTING_ENTITIES_BY_RANK:
                 subStep = SubStep::ASYNC_LOADING;
                 break;
+            case Step::PREPARE_INSTANTIATING:
             case Step::ENTITY_INSTANTIATING:
             case Step::PREFAB_INSTANTIATING:
                 subStep = SubStep::SYNC_LOADING;
