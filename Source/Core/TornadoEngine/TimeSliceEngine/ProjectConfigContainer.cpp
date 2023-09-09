@@ -47,3 +47,8 @@ std::string TProjectConfigContainer::GetResourcesAbsPath(const std::string& guid
     return TPathOperations::CalculatePathBy(dirPath, fit->second);
 }
 //---------------------------------------------------------------------
+void TProjectConfigContainer::SetEntityManager(nsECSFramework::TEntityManager* pEntMng)
+{
+    mScenePartAggregator->mComponents->mEntMng->SetEntityManager(pEntMng);
+}
+//---------------------------------------------------------------------

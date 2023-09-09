@@ -32,6 +32,8 @@ namespace nsImGuiWidgets
         TWidget* mParent = nullptr;
 
     public:
+        virtual ~TWidget() {};
+
         enum class SubType
         {
             WIDGET, NODE, UNIT, PROTO_FRAME, FRAME

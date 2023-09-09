@@ -62,24 +62,24 @@ namespace nsTornadoEngine
         std::list<std::string> downCasters;
         GetDownCasters(componentTypeName, downCasters);
 
-        for (auto& downCaster : downCasters) {// nsImGuiWidgets::TWidget, ...
+        for (auto& downCaster : downCasters) {
 
             std::list<std::string> properties;
             GetProperties(downCaster, properties);
-            for (auto& componentProperty : properties) {// nsGuiWrapper::TTitleComponent, ...
+            for (auto& componentProperty : properties) {
 
                 std::string typeProperty;
                 mRelativeProperties.componentType.FindByKey(componentProperty, typeProperty);
 
                 int srcRtti;
-                componentReflection->mTypeInfo->ConvertNameToType(componentProperty/*"nsGuiWrapper::TTitleComponent"*/, srcRtti);
+                componentReflection->mTypeInfo->ConvertNameToType(componentProperty, srcRtti);
 
                 void* pC = (void*)componentReflection->mEntMng->ViewComponent(eid, srcRtti);
 
                 auto propertyOf = (nsTornadoEngine::IPropertyOf*)componentReflection->mDynamicCaster->Cast(srcRtti, pC, dstRtti);
 
                 int targetRtti;
-                imGuiWidgetsReflection->mTypeInfo->ConvertNameToType(typeProperty/*"nsImGuiWidgets::TTitle"*/, targetRtti);
+                imGuiWidgetsReflection->mTypeInfo->ConvertNameToType(typeProperty, targetRtti);
                 auto targetPtr = imGuiWidgetsReflection->mDynamicCaster->Cast(typeRtti, pObject, targetRtti);
 
                 propertyOf->SetOwner(targetPtr);

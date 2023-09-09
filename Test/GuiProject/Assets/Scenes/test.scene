@@ -23,6 +23,39 @@
             ]
         },
         {
+            //"nsGraphicWrapper::TCameraComponent"
+            "components": [
+                {
+                    "typeName": "nsCommonWrapper::TGuidComponent",
+                    "jsonBody": "{\"value\":\"camera\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TParentGuidComponent",
+                    "jsonBody": "{\"value\":\"root\"}"
+                },
+                {
+                    "typeName": "nsCommonWrapper::TNameComponent",
+                    "jsonBody": "{\"value\":\"camera\"}"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TCameraComponent",
+                    "jsonBody": "{ }"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TGuiCameraTagComponent",
+                    "jsonBody": "{ }"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TCameraWindowSizeComponent",
+                    "jsonBody": "{ \"x\": 1.0f, \"y\": 1.0f }"
+                },
+                {
+                    "typeName": "nsGraphicWrapper::TCameraWindowPositionComponent",
+                    "jsonBody": "{ \"x\": 1.0f, \"y\": 1.0f }"
+                }
+            ]
+        },
+        {
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -51,6 +84,46 @@
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"Object hierarchy window\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPaddingComponent",
+                    "jsonBody": "{\"left\":0, \"right\":0, \"top\":0, \"bottom\":0 }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TGridComponent",
+                    "jsonBody": "{\"value\": false }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSpacingComponent",
+                    "jsonBody": "{\"value\": 0 }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::THorizontalAlignComponent",
+                    "jsonBody": "{\"value\": \"CENTER\" }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TFocusComponent",
+                    "jsonBody": "{\"value\": false }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMaxSizeComponent",
+                    "jsonBody": "{\"x\": 1000, \"y\": 1000 }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMinDistanceToParentComponent",
+                    "jsonBody": "{\"left\":0, \"right\":0, \"top\":0, \"bottom\":0  }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMinSizeComponent",
+                    "jsonBody": "{\"x\": 0, \"y\": 0 }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TVerticalAlignComponent",
+                    "jsonBody": "{\"value\": \"CENTER\" }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TVisibilityComponent",
+                    "jsonBody": "{\"value\": true }"
                 }
             ]
         }

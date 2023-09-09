@@ -49,6 +49,8 @@ void TProjectConfigurator::Setup()
 
     auto propertyMng = Modules()->PropertyMng();
     propertyMng->Init();
+
+    Project()->SetEntityManager(entMng);
 }
 //-----------------------------------------------------------------------------------
 void TProjectConfigurator::UnloadProject()

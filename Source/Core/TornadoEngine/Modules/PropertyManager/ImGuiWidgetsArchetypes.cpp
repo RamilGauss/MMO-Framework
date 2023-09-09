@@ -20,7 +20,7 @@ namespace nsTornadoEngine
                 "nsGuiWrapper::TSizeComponent",
                 "nsGuiWrapper::TPositionComponent",
                 "nsGuiWrapper::TVisibilityComponent",
-                "nsGuiWrapper::TColorComponent",
+                //"nsGuiWrapper::TColorComponent",
             },
         },
         {

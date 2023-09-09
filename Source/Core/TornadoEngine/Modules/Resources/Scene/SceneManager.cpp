@@ -281,14 +281,32 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------
     void TSceneManager::PrefabInstantiating(TSceneInstanceState* pSc)
     {
+        using namespace nsCommonWrapper;
+
         int partSize = pSc->mPrefabProgress.GetSteppedRemain();
 
         for (int i = 0; i < partSize; i++, pSc->mPrefabIt++) {
+
+            std::string parentGuid;
+
+            TSceneOriginalGuidComponent sceneOriginalGuidComponent;
+            sceneOriginalGuidComponent.value = pSc->mPrefabIt->parentGuid;
+
+            auto sceneOriginalGuidEntities = mEntityManager->GetByValueCopy(sceneOriginalGuidComponent);
+            for (auto eid : sceneOriginalGuidEntities) {
+                
+                auto sceneInstanceGuid = mEntityManager->ViewComponent<TSceneInstanceGuidComponent>(eid)->value;
+                if (sceneInstanceGuid == pSc->mSceneIstanceGuid) {
+                    parentGuid = sceneInstanceGuid;
+                    break;
+                }
+            }
+
             TInstantiatePrefabParams instantiatePrefabParams;
 
             instantiatePrefabParams.guid = pSc->mPrefabIt->prefabGuid;
             instantiatePrefabParams.rootMatrix = pSc->mPrefabIt->localMatrix;
-            instantiatePrefabParams.parentGuid = pSc->mPrefabIt->parentGuid;
+            instantiatePrefabParams.parentGuid = parentGuid;
             instantiatePrefabParams.sceneInstanceGuid = pSc->mSceneIstanceGuid;
                  
             mPrefabMng->InstantiateByGuid(instantiatePrefabParams);

@@ -16,6 +16,12 @@ namespace nsImGuiWidgets
     class DllExport TWindow : public TRootFrame
     {
     public:
+        virtual ~TWindow() 
+        {
+            int a = 0;
+        };
+
+
         using TShowCallback = TCallbackPool<bool>;
 
         TShowCallback mOnShowCB;
