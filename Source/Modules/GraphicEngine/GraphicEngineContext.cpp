@@ -200,13 +200,13 @@ TCamera* TGraphicEngineContext::GetGuiCamera() const
     return mGuiCamera;
 }
 //--------------------------------------------------------------------------------------------
-void TGraphicEngineContext::AddRender(IRenderable* pRenderable)
-{
-    mImGuiContext.AddRender(pRenderable);
-}
-//--------------------------------------------------------------------------------------------
-void TGraphicEngineContext::RemoveRender(IRenderable* pRenderable)
-{
-    mImGuiContext.RemoveRender(pRenderable);
-}
+//void TGraphicEngineContext::AddRender(IRenderable* pRenderable)
+//{
+//    mImGuiContext.AddRender(pRenderable);
+//}
+////--------------------------------------------------------------------------------------------
+//void TGraphicEngineContext::RemoveRender(IRenderable* pRenderable)
+//{
+//    mImGuiContext.RemoveRender(pRenderable);
+//}
 //--------------------------------------------------------------------------------------------

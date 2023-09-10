@@ -1229,7 +1229,7 @@
     <ClInclude Include="Modules\PropertyManager\PropertyManagerConfigs.h" />
     <ClInclude Include="Modules\PropertyManager\RelativeProperties.h" />
     <ClInclude Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.h" />
-    <ClInclude Include="Components\Gui\Properties\Component.h" />
+    <ClInclude Include="Components\Gui\Properties\ColorComponent.h" />
     <ClInclude Include="TimeSliceEngine\EngineVersion.h" />
     <ClInclude Include="Modules\Resources\Scene\InstantiateSceneParams.h" />
     <ClInclude Include="Modules\Resources\Prefab\InstantiatePrefabParams.h" />

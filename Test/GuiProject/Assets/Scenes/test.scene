@@ -23,7 +23,6 @@
             ]
         },
         {
-            //"nsGraphicWrapper::TCameraComponent"
             "components": [
                 {
                     "typeName": "nsCommonWrapper::TGuidComponent",
@@ -71,11 +70,11 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TPositionComponent",
-                    "jsonBody": "{\"x\":402, \"y\":20}"
+                    "jsonBody": "{\"x\":202, \"y\":20}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TSizeComponent",
-                    "jsonBody": "{\"x\":400, \"y\":700}"
+                    "jsonBody": "{\"x\":300, \"y\":300}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TWindowComponent",
@@ -124,6 +123,10 @@
                 {
                     "typeName": "nsGuiWrapper::TVisibilityComponent",
                     "jsonBody": "{\"value\": true }"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TColorComponent",
+                    "jsonBody": "{ \"r\": 0.1f, \"g\": 0.1f, \"b\": 0.1f, \"a\": 1.0f, }"
                 }
             ]
         }

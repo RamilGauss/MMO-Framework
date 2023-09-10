@@ -377,7 +377,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="TimeSliceEngine\TimeSliceEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Components\Gui\Properties\Component.h">
+    <ClInclude Include="Components\Gui\Properties\ColorComponent.h">
       <SubType>
       </SubType>
     </ClInclude>

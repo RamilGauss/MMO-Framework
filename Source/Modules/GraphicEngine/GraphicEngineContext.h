@@ -46,8 +46,22 @@ namespace nsGraphicEngine
         // GUI
         void SetupGuiViewport();
 
-        void AddRender(IRenderable* pRenderable);
-        void RemoveRender(IRenderable* pRenderable);
+        template <typename T>
+        void AddRender(T* p)
+        {
+            auto pRenderable = dynamic_cast<IRenderable*>(p);
+            mImGuiContext.AddRender(pRenderable);
+        }
+
+        template <typename T>
+        void RemoveRender(T* p)
+        {
+            auto pRenderable = dynamic_cast<IRenderable*>(p);
+            mImGuiContext.RemoveRender(pRenderable);
+        }
+
+        //void AddRender(IRenderable* pRenderable);
+        //void RemoveRender(IRenderable* pRenderable);
 
         TCamera* CreateCamera();
         TRenderableObject* CreateRenderableObject();
