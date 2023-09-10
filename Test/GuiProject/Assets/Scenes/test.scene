@@ -46,11 +46,11 @@
                 },
                 {
                     "typeName": "nsGraphicWrapper::TCameraWindowSizeComponent",
-                    "jsonBody": "{ \"x\": 1.0f, \"y\": 1.0f }"
+                    "jsonBody": "{ \"x\": 1.0, \"y\": 1.0 }"
                 },
                 {
                     "typeName": "nsGraphicWrapper::TCameraWindowPositionComponent",
-                    "jsonBody": "{ \"x\": 1.0f, \"y\": 1.0f }"
+                    "jsonBody": "{ \"x\": 1.0, \"y\": 1.0 }"
                 }
             ]
         },
@@ -126,7 +126,7 @@
                 },
                 {
                     "typeName": "nsGuiWrapper::TColorComponent",
-                    "jsonBody": "{ \"r\": 0.1f, \"g\": 0.1f, \"b\": 0.1f, \"a\": 1.0f, }"
+                    "jsonBody": "{ \"r\": 0.1, \"g\": 0.1, \"b\": 0.1, \"a\": 1.0, }"
                 }
             ]
         }

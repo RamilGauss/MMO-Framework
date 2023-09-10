@@ -8,17 +8,53 @@ See for more information LICENSE.md.
 #include "StopWatch.h"
 #include "HiTimer.h"
 
-void TStopWatch::Start()
+namespace nsBase
 {
-    mBegin = ht_GetMSCount();
-    mStamp = mBegin;
-}
-//------------------------------------------------------------------------------------------
-unsigned int TStopWatch::Stamp()
-{
-    mBegin = mStamp;
-    mStamp = ht_GetMSCount();
+    void TStopWatch::Start()
+    {
+        mBegin = ht_GetUSCount();
+        mStamp = mBegin;
+    }
+    //------------------------------------------------------------------------------------------
+    uint64_t TStopWatch::Stamp(std::string name)
+    {
+        if (name.empty()) {
+            name = "stamp_" + std::to_string(mStampCounter);
+        }
 
-    return mStamp - mBegin;
+        mStampCounter++;
+
+        auto now = ht_GetUSCount();
+        mDuration = now - mBegin;
+        auto delta = now - mStamp;
+
+        mStamp = now;
+
+        mDeltas.push_back({ delta, name });
+
+        return delta;
+    }
+    //------------------------------------------------------------------------------------------
+    std::string TStopWatch::ToString(bool toMs) const
+    {
+        std::string str;
+
+        for (auto delta : mDeltas) {
+
+            if (toMs) {
+                delta.first /= 1000;
+            }
+            str += delta.second + ": " + std::to_string(delta.first) + "\n";
+        }
+
+        uint64_t duration = mDuration;
+        if (toMs) {
+            duration /= 1000;
+        }
+
+        str += "duration = " + std::to_string(duration) + "\n";
+
+        return str;
+    }
+    //------------------------------------------------------------------------------------------
 }
-//------------------------------------------------------------------------------------------

@@ -7,13 +7,27 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <list>
+#include <string>
+
 #include "TypeDef.h"
 
-class DllExport TStopWatch
+namespace nsBase
 {
-    unsigned int mBegin = 0;
-    unsigned int mStamp = 0;
-private:
-    void Start();
-    unsigned int Stamp();
-};
+    class DllExport TStopWatch
+    {
+        uint64_t mBegin = 0;
+        uint64_t mStamp = 0;
+
+        uint64_t mDuration = 0;
+
+        unsigned int mStampCounter = 0;
+
+        std::list<std::pair<uint64_t, std::string>> mDeltas;
+    public:
+        void Start();
+        uint64_t Stamp(std::string name = "");
+
+        std::string ToString(bool toMs = true) const;
+    };
+}
