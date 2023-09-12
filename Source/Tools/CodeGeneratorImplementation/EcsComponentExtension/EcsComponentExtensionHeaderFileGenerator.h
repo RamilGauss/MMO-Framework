@@ -18,6 +18,7 @@ namespace nsCodeGeneratorImplementation
         {
 fmt::format("    struct {}", s_Data),
             "    {",
+            "        int rtti = 0;",
 fmt::format("        std::function<void({}::{}* {}, {}::{} {}, std::function<void(void*)> onAfterCreation)> {};",
                 s_nsECSFramework, s_TEntityManager, s_pEntMng, s_nsECSFramework, s_TEntityID, s_eid, s_createFunc),
 fmt::format("        std::function<void({}::{}* {}, {}::{} {}, void* p)> {};",
@@ -34,9 +35,8 @@ fmt::format("        std::function<nsECSFramework::TEntityList({}::{}* {})> {};"
             "",
 fmt::format("    static std::vector<{}> {};", s_Data, s_mRttiVector),
             "",
-fmt::format("    static void {}();", s_Init),
-            "",
             "public:",
+fmt::format("    static void {}();", s_Init),
 fmt::format("    static bool {}(int {});", s_Has, s_rtti),
 fmt::format("    static void {}({}::{}* {},", s_CreateComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
 fmt::format("        {}::{} {}, int {}, std::function<void(void*)> onAfterCreation);", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),

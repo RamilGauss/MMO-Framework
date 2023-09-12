@@ -28,6 +28,6 @@ namespace nsBase
         void Start();
         uint64_t Stamp(std::string name = "");
 
-        std::string ToString(bool toMs = true) const;
+        std::string ToString(bool toMs = false) const;
     };
 }

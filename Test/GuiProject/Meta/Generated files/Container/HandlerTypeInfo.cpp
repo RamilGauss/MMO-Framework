@@ -2,7 +2,7 @@
 Project Handler
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:38:50.356
+// File has been generated at 2023_09_12 12:37:50.855
 	
 #include "HandlerTypeInfo.h"
 
@@ -15,7 +15,7 @@ std::list<std::string> THandlerTypeInfo::mTypeNameList;
 std::list<int> THandlerTypeInfo::mRttiList;
 
 std::vector<std::string> THandlerTypeInfo::mNameVector;
-std::map<std::string, int> THandlerTypeInfo::mNameRttiMap;
+std::unordered_map<std::string, int> THandlerTypeInfo::mNameRttiMap;
 
 void THandlerTypeInfo::Init()
 {

@@ -2,7 +2,7 @@
 Project Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:38:46.499
+// File has been generated at 2023_09_12 12:37:48.335
 	
 #include "ComponentDynamicCaster.h"
 #include "SingletonManager.h"

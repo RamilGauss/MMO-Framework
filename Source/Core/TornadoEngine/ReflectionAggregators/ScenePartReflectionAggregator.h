@@ -19,6 +19,15 @@ namespace nsTornadoEngine
     {
         virtual ~TScenePartReflectionAggregator() {}
 
+        void Init()
+        {
+            mComponents->Init();
+            mHandlers->Init();
+            mSystems->Init();
+            //mMenuItems->Init();
+            mImGuiWidgets->Init();
+        }
+
         TComponentReflectionAggregator* mComponents = nullptr;
         THandlerReflectionAggregator* mHandlers = nullptr;
         TSystemReflectionAggregator* mSystems = nullptr;

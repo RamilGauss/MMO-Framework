@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_09_10 14:38:51.437
+// File has been generated at 2023_09_12 12:37:51.402
 	
 #include "ImGuiWidgetsDynamicCasterImpl.h"
 
@@ -22,6 +22,11 @@ TImGuiWidgetsDynamicCasterImpl::TImGuiWidgetsDynamicCasterImpl()
 TImGuiWidgetsDynamicCasterImpl::~TImGuiWidgetsDynamicCasterImpl()
 {
 
+}
+//--------------------------------------------------------------------------------------------------
+void TImGuiWidgetsDynamicCasterImpl::Init()
+{
+    nsTornadoEngine::TImGuiWidgetsDynamicCaster::Init();
 }
 //--------------------------------------------------------------------------------------------------
 void* TImGuiWidgetsDynamicCasterImpl::Cast(int srcRtti, void* srcPtr, int dstRtti)

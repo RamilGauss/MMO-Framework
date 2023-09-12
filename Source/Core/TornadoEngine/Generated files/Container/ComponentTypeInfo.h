@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:38:27.754
+// File has been generated at 2023_09_12 12:08:26.925
 	
 #pragma once
 
@@ -22,11 +22,11 @@ namespace nsTornadoEngine
         static std::list<int> mRttiList;
     
         static std::vector<std::string> mNameVector;
-        static std::map<std::string, int> mNameRttiMap;
-    
-        static void Init();
+        static std::unordered_map<std::string, int> mNameRttiMap;
     
     public:
+        static void Init();
+    
         static const std::list<std::string>* GetTypeNameList();
         static const std::list<int>* GetRttiList();
     

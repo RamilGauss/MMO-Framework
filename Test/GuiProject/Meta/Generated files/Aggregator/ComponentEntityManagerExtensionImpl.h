@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_09_10 14:38:51.437
+// File has been generated at 2023_09_12 12:37:51.402
 	
 #pragma once
 
@@ -19,6 +19,7 @@ namespace nsTornadoEditor
         TComponentEntityManagerExtensionImpl();
         virtual ~TComponentEntityManagerExtensionImpl();
         
+        void Init() override;
         void CreateComponent(nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation) override;
         void SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p) override;
         const void* ViewComponent(nsECSFramework::TEntityID eid, int rtti) override;

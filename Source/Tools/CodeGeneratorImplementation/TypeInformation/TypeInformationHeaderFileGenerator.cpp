@@ -18,7 +18,7 @@ void TTypeInformationHeaderFileGenerator::Work()
     AddPragmaOnce();
     AddEmptyLine();
     AddStandartInclude("string");
-    AddStandartInclude("map");
+    AddStandartInclude("unordered_map");
     AddStandartInclude("list");
     AddStandartInclude("vector");
 

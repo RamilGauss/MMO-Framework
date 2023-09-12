@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:38:27.686
+// File has been generated at 2023_09_12 12:08:26.866
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -27,7 +27,7 @@ void TComponentJson::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    std::map<int, TypeFunc> m;
+    std::list<TypeFunc> funcs;
     
     TypeFunc _nsCommonWrapper_TGlobalMatrixComponentTypeFunc;
     _nsCommonWrapper_TGlobalMatrixComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -37,9 +37,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TGlobalMatrixComponent>((nsCommonWrapper::TGlobalMatrixComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TGlobalMatrixComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TGlobalMatrixComponent>();
+    _nsCommonWrapper_TGlobalMatrixComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TGlobalMatrixComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TGlobalMatrixComponentTypeFunc, _nsCommonWrapper_TGlobalMatrixComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TGlobalMatrixComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TGuidComponentTypeFunc;
     _nsCommonWrapper_TGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -49,9 +49,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TGuidComponent>((nsCommonWrapper::TGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TGuidComponent>();
+    _nsCommonWrapper_TGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TGuidComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TGuidComponentTypeFunc, _nsCommonWrapper_TGuidComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TGuidComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_THandlerTargetTypeFunc;
     _nsCommonWrapper_THandlerTargetTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -61,9 +61,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::THandlerTarget>((nsCommonWrapper::THandlerTarget*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_THandlerTargetTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
+    _nsCommonWrapper_THandlerTargetTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
     
-    m.insert({ rtti__nsCommonWrapper_THandlerTargetTypeFunc, _nsCommonWrapper_THandlerTargetTypeFunc });
+    funcs.push_back(_nsCommonWrapper_THandlerTargetTypeFunc);
     
     TypeFunc _nsCommonWrapper_TNameComponentTypeFunc;
     _nsCommonWrapper_TNameComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -73,9 +73,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TNameComponent>((nsCommonWrapper::TNameComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TNameComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TNameComponent>();
+    _nsCommonWrapper_TNameComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TNameComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TNameComponentTypeFunc, _nsCommonWrapper_TNameComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TNameComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc;
     _nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -85,9 +85,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TNeedDestroyObjectTagComponent>((nsCommonWrapper::TNeedDestroyObjectTagComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroyObjectTagComponent>();
+    _nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TNeedDestroyObjectTagComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc, _nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TNeedDestroyObjectTagComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TParentGuidComponentTypeFunc;
     _nsCommonWrapper_TParentGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -97,9 +97,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TParentGuidComponent>((nsCommonWrapper::TParentGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TParentGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TParentGuidComponent>();
+    _nsCommonWrapper_TParentGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TParentGuidComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TParentGuidComponentTypeFunc, _nsCommonWrapper_TParentGuidComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TParentGuidComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TPrefabGuidComponentTypeFunc;
     _nsCommonWrapper_TPrefabGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -109,9 +109,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TPrefabGuidComponent>((nsCommonWrapper::TPrefabGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TPrefabGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabGuidComponent>();
+    _nsCommonWrapper_TPrefabGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabGuidComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TPrefabGuidComponentTypeFunc, _nsCommonWrapper_TPrefabGuidComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TPrefabGuidComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc;
     _nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -121,9 +121,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TPrefabInstanceGuidComponent>((nsCommonWrapper::TPrefabInstanceGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabInstanceGuidComponent>();
+    _nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabInstanceGuidComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc, _nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TPrefabInstanceGuidComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc;
     _nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -133,9 +133,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TPrefabOriginalGuidComponent>((nsCommonWrapper::TPrefabOriginalGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabOriginalGuidComponent>();
+    _nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabOriginalGuidComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc, _nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TPrefabOriginalGuidComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TPrefabRootComponentTypeFunc;
     _nsCommonWrapper_TPrefabRootComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -145,9 +145,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TPrefabRootComponent>((nsCommonWrapper::TPrefabRootComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TPrefabRootComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabRootComponent>();
+    _nsCommonWrapper_TPrefabRootComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TPrefabRootComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TPrefabRootComponentTypeFunc, _nsCommonWrapper_TPrefabRootComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TPrefabRootComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TProjectionToUniverseComponentTypeFunc;
     _nsCommonWrapper_TProjectionToUniverseComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -157,9 +157,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TProjectionToUniverseComponent>((nsCommonWrapper::TProjectionToUniverseComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TProjectionToUniverseComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TProjectionToUniverseComponent>();
+    _nsCommonWrapper_TProjectionToUniverseComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TProjectionToUniverseComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TProjectionToUniverseComponentTypeFunc, _nsCommonWrapper_TProjectionToUniverseComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TProjectionToUniverseComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TSceneGuidComponentTypeFunc;
     _nsCommonWrapper_TSceneGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -169,9 +169,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TSceneGuidComponent>((nsCommonWrapper::TSceneGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TSceneGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TSceneGuidComponent>();
+    _nsCommonWrapper_TSceneGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TSceneGuidComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TSceneGuidComponentTypeFunc, _nsCommonWrapper_TSceneGuidComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TSceneGuidComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc;
     _nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -181,9 +181,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TSceneInstanceGuidComponent>((nsCommonWrapper::TSceneInstanceGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TSceneInstanceGuidComponent>();
+    _nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TSceneInstanceGuidComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc, _nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TSceneInstanceGuidComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc;
     _nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -193,9 +193,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TSceneOriginalGuidComponent>((nsCommonWrapper::TSceneOriginalGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TSceneOriginalGuidComponent>();
+    _nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TSceneOriginalGuidComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc, _nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TSceneOriginalGuidComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TSceneRootComponentTypeFunc;
     _nsCommonWrapper_TSceneRootComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -205,9 +205,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TSceneRootComponent>((nsCommonWrapper::TSceneRootComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TSceneRootComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TSceneRootComponent>();
+    _nsCommonWrapper_TSceneRootComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TSceneRootComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TSceneRootComponentTypeFunc, _nsCommonWrapper_TSceneRootComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TSceneRootComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TUniverseGuidComponentTypeFunc;
     _nsCommonWrapper_TUniverseGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -217,9 +217,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TUniverseGuidComponent>((nsCommonWrapper::TUniverseGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TUniverseGuidComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseGuidComponent>();
+    _nsCommonWrapper_TUniverseGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseGuidComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TUniverseGuidComponentTypeFunc, _nsCommonWrapper_TUniverseGuidComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TUniverseGuidComponentTypeFunc);
     
     TypeFunc _nsCommonWrapper_TUniverseIndexComponentTypeFunc;
     _nsCommonWrapper_TUniverseIndexComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -229,9 +229,9 @@ void TComponentJson::Init()
         return Deserialize<nsCommonWrapper::TUniverseIndexComponent>((nsCommonWrapper::TUniverseIndexComponent*) p, str, err);
     };
     
-    auto rtti__nsCommonWrapper_TUniverseIndexComponentTypeFunc = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseIndexComponent>();
+    _nsCommonWrapper_TUniverseIndexComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TUniverseIndexComponent>();
     
-    m.insert({ rtti__nsCommonWrapper_TUniverseIndexComponentTypeFunc, _nsCommonWrapper_TUniverseIndexComponentTypeFunc });
+    funcs.push_back(_nsCommonWrapper_TUniverseIndexComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TCameraComponentTypeFunc;
     _nsGraphicWrapper_TCameraComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -241,9 +241,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TCameraComponent>((nsGraphicWrapper::TCameraComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TCameraComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraComponent>();
+    _nsGraphicWrapper_TCameraComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TCameraComponentTypeFunc, _nsGraphicWrapper_TCameraComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TCameraComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TCameraTextureTagComponentTypeFunc;
     _nsGraphicWrapper_TCameraTextureTagComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -253,9 +253,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TCameraTextureTagComponent>((nsGraphicWrapper::TCameraTextureTagComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TCameraTextureTagComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraTextureTagComponent>();
+    _nsGraphicWrapper_TCameraTextureTagComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraTextureTagComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TCameraTextureTagComponentTypeFunc, _nsGraphicWrapper_TCameraTextureTagComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TCameraTextureTagComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc;
     _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -265,9 +265,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TCameraWindowPositionComponent>((nsGraphicWrapper::TCameraWindowPositionComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowPositionComponent>();
+    _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowPositionComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc, _nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TCameraWindowPositionComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc;
     _nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -277,9 +277,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TCameraWindowSizeComponent>((nsGraphicWrapper::TCameraWindowSizeComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowSizeComponent>();
+    _nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TCameraWindowSizeComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc, _nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TCameraWindowSizeComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TGuiCameraTagComponentTypeFunc;
     _nsGraphicWrapper_TGuiCameraTagComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -289,9 +289,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TGuiCameraTagComponent>((nsGraphicWrapper::TGuiCameraTagComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TGuiCameraTagComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraTagComponent>();
+    _nsGraphicWrapper_TGuiCameraTagComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TGuiCameraTagComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TGuiCameraTagComponentTypeFunc, _nsGraphicWrapper_TGuiCameraTagComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TGuiCameraTagComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TLightComponentTypeFunc;
     _nsGraphicWrapper_TLightComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -301,9 +301,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TLightComponent>((nsGraphicWrapper::TLightComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TLightComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TLightComponent>();
+    _nsGraphicWrapper_TLightComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TLightComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TLightComponentTypeFunc, _nsGraphicWrapper_TLightComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TLightComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc;
     _nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -313,9 +313,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TRenderToTextureCameraComponent>((nsGraphicWrapper::TRenderToTextureCameraComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TRenderToTextureCameraComponent>();
+    _nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TRenderToTextureCameraComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc, _nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TRenderToTextureCameraComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TTextureFromCameraComponentTypeFunc;
     _nsGraphicWrapper_TTextureFromCameraComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -325,9 +325,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TTextureFromCameraComponent>((nsGraphicWrapper::TTextureFromCameraComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TTextureFromCameraComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureFromCameraComponent>();
+    _nsGraphicWrapper_TTextureFromCameraComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureFromCameraComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TTextureFromCameraComponentTypeFunc, _nsGraphicWrapper_TTextureFromCameraComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TTextureFromCameraComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TTextureFromFileComponentTypeFunc;
     _nsGraphicWrapper_TTextureFromFileComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -337,9 +337,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TTextureFromFileComponent>((nsGraphicWrapper::TTextureFromFileComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TTextureFromFileComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureFromFileComponent>();
+    _nsGraphicWrapper_TTextureFromFileComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TTextureFromFileComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TTextureFromFileComponentTypeFunc, _nsGraphicWrapper_TTextureFromFileComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TTextureFromFileComponentTypeFunc);
     
     TypeFunc _nsGraphicWrapper_TUniverseCameraComponentTypeFunc;
     _nsGraphicWrapper_TUniverseCameraComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -349,9 +349,9 @@ void TComponentJson::Init()
         return Deserialize<nsGraphicWrapper::TUniverseCameraComponent>((nsGraphicWrapper::TUniverseCameraComponent*) p, str, err);
     };
     
-    auto rtti__nsGraphicWrapper_TUniverseCameraComponentTypeFunc = globalTypeIdentifier->Type<nsGraphicWrapper::TUniverseCameraComponent>();
+    _nsGraphicWrapper_TUniverseCameraComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGraphicWrapper::TUniverseCameraComponent>();
     
-    m.insert({ rtti__nsGraphicWrapper_TUniverseCameraComponentTypeFunc, _nsGraphicWrapper_TUniverseCameraComponentTypeFunc });
+    funcs.push_back(_nsGraphicWrapper_TUniverseCameraComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TAnchorsComponentTypeFunc;
     _nsGuiWrapper_TAnchorsComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -361,9 +361,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TAnchorsComponent>((nsGuiWrapper::TAnchorsComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TAnchorsComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TAnchorsComponent>();
+    _nsGuiWrapper_TAnchorsComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TAnchorsComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TAnchorsComponentTypeFunc, _nsGuiWrapper_TAnchorsComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TAnchorsComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc;
     _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -373,9 +373,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TButtonClickHandlerComponent>((nsGuiWrapper::TButtonClickHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TButtonClickHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
+    _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TButtonClickHandlerComponentTypeFunc, _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TButtonClickHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TButtonComponentTypeFunc;
     _nsGuiWrapper_TButtonComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -385,9 +385,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TButtonComponent>((nsGuiWrapper::TButtonComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TButtonComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TButtonComponent>();
+    _nsGuiWrapper_TButtonComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TButtonComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TButtonComponentTypeFunc, _nsGuiWrapper_TButtonComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TButtonComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TColorComponentTypeFunc;
     _nsGuiWrapper_TColorComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -397,9 +397,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TColorComponent>((nsGuiWrapper::TColorComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TColorComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TColorComponent>();
+    _nsGuiWrapper_TColorComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TColorComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TColorComponentTypeFunc, _nsGuiWrapper_TColorComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TColorComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc;
     _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -409,9 +409,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TDialogCloseEventHandlerComponent>((nsGuiWrapper::TDialogCloseEventHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
+    _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc, _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TDialogComponentTypeFunc;
     _nsGuiWrapper_TDialogComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -421,9 +421,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TDialogComponent>((nsGuiWrapper::TDialogComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TDialogComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TDialogComponent>();
+    _nsGuiWrapper_TDialogComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TDialogComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TDialogComponentTypeFunc, _nsGuiWrapper_TDialogComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TDialogComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TFocusComponentTypeFunc;
     _nsGuiWrapper_TFocusComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -433,9 +433,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TFocusComponent>((nsGuiWrapper::TFocusComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TFocusComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TFocusComponent>();
+    _nsGuiWrapper_TFocusComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFocusComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TFocusComponentTypeFunc, _nsGuiWrapper_TFocusComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TFocusComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TFrameComponentTypeFunc;
     _nsGuiWrapper_TFrameComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -445,9 +445,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TFrameComponent>((nsGuiWrapper::TFrameComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TFrameComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TFrameComponent>();
+    _nsGuiWrapper_TFrameComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TFrameComponentTypeFunc, _nsGuiWrapper_TFrameComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TFrameComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc;
     _nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -457,9 +457,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TFrameKeyHandlerComponent>((nsGuiWrapper::TFrameKeyHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TFrameKeyHandlerComponent>();
+    _nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameKeyHandlerComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc, _nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc;
     _nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -469,9 +469,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TFrameMouseClickHandlerComponent>((nsGuiWrapper::TFrameMouseClickHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseClickHandlerComponent>();
+    _nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseClickHandlerComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc, _nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc;
     _nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -481,9 +481,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TFrameMouseMoveHandlerComponent>((nsGuiWrapper::TFrameMouseMoveHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseMoveHandlerComponent>();
+    _nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseMoveHandlerComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc, _nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc;
     _nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -493,9 +493,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TFrameMouseWheelHandlerComponent>((nsGuiWrapper::TFrameMouseWheelHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseWheelHandlerComponent>();
+    _nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseWheelHandlerComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc, _nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TGridComponentTypeFunc;
     _nsGuiWrapper_TGridComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -505,9 +505,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TGridComponent>((nsGuiWrapper::TGridComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TGridComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TGridComponent>();
+    _nsGuiWrapper_TGridComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TGridComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TGridComponentTypeFunc, _nsGuiWrapper_TGridComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TGridComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_THorizontalAlignComponentTypeFunc;
     _nsGuiWrapper_THorizontalAlignComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -517,9 +517,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::THorizontalAlignComponent>((nsGuiWrapper::THorizontalAlignComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_THorizontalAlignComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::THorizontalAlignComponent>();
+    _nsGuiWrapper_THorizontalAlignComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::THorizontalAlignComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_THorizontalAlignComponentTypeFunc, _nsGuiWrapper_THorizontalAlignComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_THorizontalAlignComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TInputTextComponentTypeFunc;
     _nsGuiWrapper_TInputTextComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -529,9 +529,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TInputTextComponent>((nsGuiWrapper::TInputTextComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TInputTextComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TInputTextComponent>();
+    _nsGuiWrapper_TInputTextComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TInputTextComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TInputTextComponentTypeFunc, _nsGuiWrapper_TInputTextComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TInputTextComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TInputTextValueComponentTypeFunc;
     _nsGuiWrapper_TInputTextValueComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -541,9 +541,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TInputTextValueComponent>((nsGuiWrapper::TInputTextValueComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TInputTextValueComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TInputTextValueComponent>();
+    _nsGuiWrapper_TInputTextValueComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TInputTextValueComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TInputTextValueComponentTypeFunc, _nsGuiWrapper_TInputTextValueComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TInputTextValueComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TLabelComponentTypeFunc;
     _nsGuiWrapper_TLabelComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -553,9 +553,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TLabelComponent>((nsGuiWrapper::TLabelComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TLabelComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TLabelComponent>();
+    _nsGuiWrapper_TLabelComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TLabelComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TLabelComponentTypeFunc, _nsGuiWrapper_TLabelComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TLabelComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TLabelValueComponentTypeFunc;
     _nsGuiWrapper_TLabelValueComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -565,9 +565,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TLabelValueComponent>((nsGuiWrapper::TLabelValueComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TLabelValueComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TLabelValueComponent>();
+    _nsGuiWrapper_TLabelValueComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TLabelValueComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TLabelValueComponentTypeFunc, _nsGuiWrapper_TLabelValueComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TLabelValueComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TMainWindowComponentTypeFunc;
     _nsGuiWrapper_TMainWindowComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -577,9 +577,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TMainWindowComponent>((nsGuiWrapper::TMainWindowComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TMainWindowComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMainWindowComponent>();
+    _nsGuiWrapper_TMainWindowComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMainWindowComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TMainWindowComponentTypeFunc, _nsGuiWrapper_TMainWindowComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TMainWindowComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TMaxSizeComponentTypeFunc;
     _nsGuiWrapper_TMaxSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -589,9 +589,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TMaxSizeComponent>((nsGuiWrapper::TMaxSizeComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TMaxSizeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMaxSizeComponent>();
+    _nsGuiWrapper_TMaxSizeComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMaxSizeComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TMaxSizeComponentTypeFunc, _nsGuiWrapper_TMaxSizeComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TMaxSizeComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc;
     _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -601,9 +601,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TMenuNodeClickHandlerComponent>((nsGuiWrapper::TMenuNodeClickHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
+    _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc, _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TMenuNodeComponentTypeFunc;
     _nsGuiWrapper_TMenuNodeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -613,9 +613,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TMenuNodeComponent>((nsGuiWrapper::TMenuNodeComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TMenuNodeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeComponent>();
+    _nsGuiWrapper_TMenuNodeComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TMenuNodeComponentTypeFunc, _nsGuiWrapper_TMenuNodeComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TMenuNodeComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TMinDistanceToParentComponentTypeFunc;
     _nsGuiWrapper_TMinDistanceToParentComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -625,9 +625,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TMinDistanceToParentComponent>((nsGuiWrapper::TMinDistanceToParentComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TMinDistanceToParentComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMinDistanceToParentComponent>();
+    _nsGuiWrapper_TMinDistanceToParentComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMinDistanceToParentComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TMinDistanceToParentComponentTypeFunc, _nsGuiWrapper_TMinDistanceToParentComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TMinDistanceToParentComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TMinSizeComponentTypeFunc;
     _nsGuiWrapper_TMinSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -637,9 +637,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TMinSizeComponent>((nsGuiWrapper::TMinSizeComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TMinSizeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TMinSizeComponent>();
+    _nsGuiWrapper_TMinSizeComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMinSizeComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TMinSizeComponentTypeFunc, _nsGuiWrapper_TMinSizeComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TMinSizeComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TNodeIconComponentTypeFunc;
     _nsGuiWrapper_TNodeIconComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -649,9 +649,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TNodeIconComponent>((nsGuiWrapper::TNodeIconComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TNodeIconComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TNodeIconComponent>();
+    _nsGuiWrapper_TNodeIconComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TNodeIconComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TNodeIconComponentTypeFunc, _nsGuiWrapper_TNodeIconComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TNodeIconComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TPaddingComponentTypeFunc;
     _nsGuiWrapper_TPaddingComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -661,9 +661,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TPaddingComponent>((nsGuiWrapper::TPaddingComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TPaddingComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TPaddingComponent>();
+    _nsGuiWrapper_TPaddingComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TPaddingComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TPaddingComponentTypeFunc, _nsGuiWrapper_TPaddingComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TPaddingComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TPositionComponentTypeFunc;
     _nsGuiWrapper_TPositionComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -673,9 +673,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TPositionComponent>((nsGuiWrapper::TPositionComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TPositionComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TPositionComponent>();
+    _nsGuiWrapper_TPositionComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TPositionComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TPositionComponentTypeFunc, _nsGuiWrapper_TPositionComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TPositionComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TPositionInGridComponentTypeFunc;
     _nsGuiWrapper_TPositionInGridComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -685,9 +685,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TPositionInGridComponent>((nsGuiWrapper::TPositionInGridComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TPositionInGridComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TPositionInGridComponent>();
+    _nsGuiWrapper_TPositionInGridComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TPositionInGridComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TPositionInGridComponentTypeFunc, _nsGuiWrapper_TPositionInGridComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TPositionInGridComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc;
     _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -697,9 +697,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TSelectedTreeNodeGuidComponent>((nsGuiWrapper::TSelectedTreeNodeGuidComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TSelectedTreeNodeGuidComponent>();
+    _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TSelectedTreeNodeGuidComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc, _nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TSelectedTreeNodeGuidComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TSizeComponentTypeFunc;
     _nsGuiWrapper_TSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -709,9 +709,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TSizeComponent>((nsGuiWrapper::TSizeComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TSizeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TSizeComponent>();
+    _nsGuiWrapper_TSizeComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TSizeComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TSizeComponentTypeFunc, _nsGuiWrapper_TSizeComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TSizeComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TSizeInGridComponentTypeFunc;
     _nsGuiWrapper_TSizeInGridComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -721,9 +721,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TSizeInGridComponent>((nsGuiWrapper::TSizeInGridComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TSizeInGridComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TSizeInGridComponent>();
+    _nsGuiWrapper_TSizeInGridComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TSizeInGridComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TSizeInGridComponentTypeFunc, _nsGuiWrapper_TSizeInGridComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TSizeInGridComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TSpacingComponentTypeFunc;
     _nsGuiWrapper_TSpacingComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -733,9 +733,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TSpacingComponent>((nsGuiWrapper::TSpacingComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TSpacingComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TSpacingComponent>();
+    _nsGuiWrapper_TSpacingComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TSpacingComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TSpacingComponentTypeFunc, _nsGuiWrapper_TSpacingComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TSpacingComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TTitleComponentTypeFunc;
     _nsGuiWrapper_TTitleComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -745,9 +745,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TTitleComponent>((nsGuiWrapper::TTitleComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TTitleComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TTitleComponent>();
+    _nsGuiWrapper_TTitleComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTitleComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TTitleComponentTypeFunc, _nsGuiWrapper_TTitleComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TTitleComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TTreeNodeComponentTypeFunc;
     _nsGuiWrapper_TTreeNodeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -757,9 +757,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TTreeNodeComponent>((nsGuiWrapper::TTreeNodeComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TTreeNodeComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeComponent>();
+    _nsGuiWrapper_TTreeNodeComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTreeNodeComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TTreeNodeComponentTypeFunc, _nsGuiWrapper_TTreeNodeComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TTreeNodeComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TTreeViewComponentTypeFunc;
     _nsGuiWrapper_TTreeViewComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -769,9 +769,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TTreeViewComponent>((nsGuiWrapper::TTreeViewComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TTreeViewComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TTreeViewComponent>();
+    _nsGuiWrapper_TTreeViewComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTreeViewComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TTreeViewComponentTypeFunc, _nsGuiWrapper_TTreeViewComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TTreeViewComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TVerticalAlignComponentTypeFunc;
     _nsGuiWrapper_TVerticalAlignComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -781,9 +781,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TVerticalAlignComponent>((nsGuiWrapper::TVerticalAlignComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TVerticalAlignComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TVerticalAlignComponent>();
+    _nsGuiWrapper_TVerticalAlignComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TVerticalAlignComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TVerticalAlignComponentTypeFunc, _nsGuiWrapper_TVerticalAlignComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TVerticalAlignComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TVisibilityComponentTypeFunc;
     _nsGuiWrapper_TVisibilityComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -793,9 +793,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TVisibilityComponent>((nsGuiWrapper::TVisibilityComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TVisibilityComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TVisibilityComponent>();
+    _nsGuiWrapper_TVisibilityComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TVisibilityComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TVisibilityComponentTypeFunc, _nsGuiWrapper_TVisibilityComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TVisibilityComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc;
     _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -805,9 +805,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TWindowCloseEventHandlerComponent>((nsGuiWrapper::TWindowCloseEventHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
+    _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc, _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TWindowComponentTypeFunc;
     _nsGuiWrapper_TWindowComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -817,9 +817,9 @@ void TComponentJson::Init()
         return Deserialize<nsGuiWrapper::TWindowComponent>((nsGuiWrapper::TWindowComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiWrapper_TWindowComponentTypeFunc = globalTypeIdentifier->Type<nsGuiWrapper::TWindowComponent>();
+    _nsGuiWrapper_TWindowComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowComponent>();
     
-    m.insert({ rtti__nsGuiWrapper_TWindowComponentTypeFunc, _nsGuiWrapper_TWindowComponentTypeFunc });
+    funcs.push_back(_nsGuiWrapper_TWindowComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc;
     _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -829,9 +829,9 @@ void TComponentJson::Init()
         return Deserialize<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>((nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>();
+    _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>();
     
-    m.insert({ rtti__nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc, _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc });
+    funcs.push_back(_nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc;
     _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -841,9 +841,9 @@ void TComponentJson::Init()
         return Deserialize<nsLogicWrapper::TPrefabObjectReferenceComponent>((nsLogicWrapper::TPrefabObjectReferenceComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabObjectReferenceComponent>();
+    _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabObjectReferenceComponent>();
     
-    m.insert({ rtti__nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc, _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc });
+    funcs.push_back(_nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TPrefabReferenceComponentTypeFunc;
     _nsLogicWrapper_TPrefabReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -853,9 +853,9 @@ void TComponentJson::Init()
         return Deserialize<nsLogicWrapper::TPrefabReferenceComponent>((nsLogicWrapper::TPrefabReferenceComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TPrefabReferenceComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabReferenceComponent>();
+    _nsLogicWrapper_TPrefabReferenceComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabReferenceComponent>();
     
-    m.insert({ rtti__nsLogicWrapper_TPrefabReferenceComponentTypeFunc, _nsLogicWrapper_TPrefabReferenceComponentTypeFunc });
+    funcs.push_back(_nsLogicWrapper_TPrefabReferenceComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc;
     _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -865,9 +865,9 @@ void TComponentJson::Init()
         return Deserialize<nsLogicWrapper::TSceneObjectReferenceComponent>((nsLogicWrapper::TSceneObjectReferenceComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TSceneObjectReferenceComponent>();
+    _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSceneObjectReferenceComponent>();
     
-    m.insert({ rtti__nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc, _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc });
+    funcs.push_back(_nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TSceneReferenceComponentTypeFunc;
     _nsLogicWrapper_TSceneReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -877,9 +877,9 @@ void TComponentJson::Init()
         return Deserialize<nsLogicWrapper::TSceneReferenceComponent>((nsLogicWrapper::TSceneReferenceComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TSceneReferenceComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TSceneReferenceComponent>();
+    _nsLogicWrapper_TSceneReferenceComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSceneReferenceComponent>();
     
-    m.insert({ rtti__nsLogicWrapper_TSceneReferenceComponentTypeFunc, _nsLogicWrapper_TSceneReferenceComponentTypeFunc });
+    funcs.push_back(_nsLogicWrapper_TSceneReferenceComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TSystemComponentTypeFunc;
     _nsLogicWrapper_TSystemComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -889,9 +889,9 @@ void TComponentJson::Init()
         return Deserialize<nsLogicWrapper::TSystemComponent>((nsLogicWrapper::TSystemComponent*) p, str, err);
     };
     
-    auto rtti__nsLogicWrapper_TSystemComponentTypeFunc = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
+    _nsLogicWrapper_TSystemComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
     
-    m.insert({ rtti__nsLogicWrapper_TSystemComponentTypeFunc, _nsLogicWrapper_TSystemComponentTypeFunc });
+    funcs.push_back(_nsLogicWrapper_TSystemComponentTypeFunc);
     
     TypeFunc _nsMathTools_TMatrix16TypeFunc;
     _nsMathTools_TMatrix16TypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -901,9 +901,9 @@ void TComponentJson::Init()
         return Deserialize<nsMathTools::TMatrix16>((nsMathTools::TMatrix16*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TMatrix16TypeFunc = globalTypeIdentifier->Type<nsMathTools::TMatrix16>();
+    _nsMathTools_TMatrix16TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TMatrix16>();
     
-    m.insert({ rtti__nsMathTools_TMatrix16TypeFunc, _nsMathTools_TMatrix16TypeFunc });
+    funcs.push_back(_nsMathTools_TMatrix16TypeFunc);
     
     TypeFunc _nsTornadoEngine_IPropertyOfTypeFunc;
     _nsTornadoEngine_IPropertyOfTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -913,18 +913,18 @@ void TComponentJson::Init()
         return Deserialize<nsTornadoEngine::IPropertyOf>((nsTornadoEngine::IPropertyOf*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_IPropertyOfTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
+    _nsTornadoEngine_IPropertyOfTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
     
-    m.insert({ rtti__nsTornadoEngine_IPropertyOfTypeFunc, _nsTornadoEngine_IPropertyOfTypeFunc });
+    funcs.push_back(_nsTornadoEngine_IPropertyOfTypeFunc);
     
     int max = 0;
-    for (auto& vt : m) {
-        max = std::max(vt.first, max);
+    for (auto& f : funcs) {
+        max = std::max(f.rtti, max);
     }
     
     mTypeFuncVector.resize(max + 1);
-    for (auto& vt : m) {
-        mTypeFuncVector[vt.first] = vt.second;
+    for (auto& f : funcs) {
+        mTypeFuncVector[f.rtti] = f;
     }
 }
 //---------------------------------------------------------------------------------------

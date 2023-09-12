@@ -2,7 +2,7 @@
 Project Ecs System
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:38:51.318
+// File has been generated at 2023_09_12 12:37:51.341
 	
 #include "EcsTypeInfo.h"
 
@@ -15,7 +15,7 @@ std::list<std::string> TEcsTypeInfo::mTypeNameList;
 std::list<int> TEcsTypeInfo::mRttiList;
 
 std::vector<std::string> TEcsTypeInfo::mNameVector;
-std::map<std::string, int> TEcsTypeInfo::mNameRttiMap;
+std::unordered_map<std::string, int> TEcsTypeInfo::mNameRttiMap;
 
 void TEcsTypeInfo::Init()
 {

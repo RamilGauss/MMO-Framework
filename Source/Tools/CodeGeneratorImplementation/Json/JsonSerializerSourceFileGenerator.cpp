@@ -71,7 +71,7 @@ void TJsonSerializerSourceFileGenerator::AddInit()
     Add("auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();");
     AddEmptyLine();
 
-    auto str = fmt::format("std::map<int, TypeFunc> m;");
+    auto str = fmt::format("std::list<TypeFunc> funcs;");
     Add(str);
     AddEmptyLine();
 
@@ -100,31 +100,31 @@ void TJsonSerializerSourceFileGenerator::AddInit()
 
         AddEmptyLine();
 
-        str = fmt::format("auto rtti_{} = globalTypeIdentifier->Type<{}>();", typeNameObject, typeNameWithNameSpace);
+        str = fmt::format("{}.rtti = globalTypeIdentifier->Type<{}>();", typeNameObject, typeNameWithNameSpace);
         Add(str);
         AddEmptyLine();
 
-        str = fmt::format("m.insert({{ rtti_{}, {} }});", typeNameObject, typeNameObject);
+        str = fmt::format("funcs.push_back({});", typeNameObject);
         Add(str);
         AddEmptyLine();
     }
 
     Add("int max = 0;");
-    str = fmt::format("for (auto& vt : m) {{");
+    str = fmt::format("for (auto& f : funcs) {{");
     Add(str);
     IncrementTabs();
 
-    Add("max = std::max(vt.first, max);");
+    Add("max = std::max(f.rtti, max);");
     DecrementTabs();
     AddRightBrace();
 
     AddEmptyLine();
     str = fmt::format("{}.resize(max + 1);", s_TypeFuncVector);
     Add(str);
-    str = fmt::format("for (auto& vt : m) {{");
+    str = fmt::format("for (auto& f : funcs) {{");
     Add(str);
     IncrementTabs();
-    str = fmt::format("{}[vt.first] = vt.second;", s_TypeFuncVector);
+    str = fmt::format("{}[f.rtti] = f;", s_TypeFuncVector);
     Add(str);
     DecrementTabs();
     AddRightBrace();

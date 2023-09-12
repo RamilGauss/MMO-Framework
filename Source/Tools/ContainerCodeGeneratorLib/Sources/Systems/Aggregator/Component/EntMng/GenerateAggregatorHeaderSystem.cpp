@@ -37,6 +37,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
             {1, "{{ IMPL_TYPE_NAME }}();"},
             {0, "virtual ~{{ IMPL_TYPE_NAME }}();"},
             {0, ""},
+            {0, "void Init() override;"},
             {0, "void CreateComponent(nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation) override;"},
             {0, "void SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p) override;"},
             {0, "const void* ViewComponent(nsECSFramework::TEntityID eid, int rtti) override;"},

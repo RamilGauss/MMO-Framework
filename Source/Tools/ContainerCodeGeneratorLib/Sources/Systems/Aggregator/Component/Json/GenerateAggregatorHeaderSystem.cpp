@@ -37,6 +37,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
             {1, "{{ IMPL_TYPE_NAME }}();"},
             {0, "virtual ~{{ IMPL_TYPE_NAME }}();"},
             {0, ""},
+            {0, "void Init() override;"},
             {0, "void Serialize(void* p, std::string& json, int rtti) override;"},
             {0, "bool Deserialize(void* p, const std::string& json, int rtti, std::string& err) override;"},
             {-1,"};"},

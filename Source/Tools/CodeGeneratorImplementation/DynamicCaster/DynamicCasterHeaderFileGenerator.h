@@ -17,18 +17,19 @@ namespace nsCodeGeneratorImplementation
         const std::list<std::string> s_Decl =
         {
             "public:",
+fmt::format("    static void {}();", s_Init),
 fmt::format("    static const std::map<int, std::set<int>>& {}();// rtti <---> rtti-es", s_GetRttiCombinations),
 fmt::format("    static void* {}(int {}, void* p, int {});", s_Cast, s_SrcRtti, s_DstRtti),
             "private:",
 fmt::format("    struct {}", s_Data),
             "    {",
+            "        int rtti = 0;",
 fmt::format("        std::function<void*(void*)> {} = nullptr;", s_castFunc),
             "    };",
             "",
 fmt::format("    static std::vector<std::vector<{}>> {};", s_Data, s_mDataVector),
 fmt::format("    static std::map<int, std::set<int>> {};", s_mRttiCombinations),
             "",
-fmt::format("    static void {}();", s_Init),
         };
 
     public:

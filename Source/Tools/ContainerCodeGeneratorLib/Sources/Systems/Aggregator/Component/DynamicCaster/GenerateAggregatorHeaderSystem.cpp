@@ -38,6 +38,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsDynamicCaster
             {1, "{{ IMPL_TYPE_NAME }}();"},
             {0, "virtual ~{{ IMPL_TYPE_NAME }}();"},
             {0, ""},
+            {0, "void Init() override;"},
             {0, "void* Cast(int srcRtti, void* srcPtr, int dstRtti) override;"},
             {-1,"};"},
             {-1,"}"},

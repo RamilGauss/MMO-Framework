@@ -21,6 +21,16 @@ namespace nsTornadoEngine
     {
         virtual ~TComponentReflectionAggregator() {}
 
+        void Init()
+        {
+            mTypeInfo->Init();
+            mJson->Init();
+            //mBin->Init();
+            //mImGui->Init();
+            mEntMng->Init();
+            mDynamicCaster->Init();
+        }
+
         ITypeInformation* mTypeInfo = nullptr;
         IJsonSerializer* mJson = nullptr;
         IBinaryMarshaller* mBin = nullptr;

@@ -16,6 +16,12 @@ namespace nsTornadoEngine
     {
         virtual ~TImGuiWidgetsReflectionAggregator() {}
 
+        void Init()
+        {
+            mTypeInfo->Init();
+            mDynamicCaster->Init();
+        }
+
         ITypeInformation* mTypeInfo = nullptr;
         IDynamicCaster* mDynamicCaster = nullptr;
     };

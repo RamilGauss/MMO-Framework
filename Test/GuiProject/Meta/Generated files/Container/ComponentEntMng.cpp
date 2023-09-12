@@ -2,7 +2,7 @@
 Project Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:38:46.497
+// File has been generated at 2023_09_12 12:37:48.333
 	
 #include "ComponentEntMng.h"
 
@@ -21,7 +21,7 @@ void TComponentEntMng::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    std::map<int, Data> m;
+    std::list<Data> datas;
     
     Data nsGuiProject_TScenePrefabTestComponent_Data;
         nsGuiProject_TScenePrefabTestComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
@@ -33,18 +33,18 @@ void TComponentEntMng::Init()
     nsGuiProject_TScenePrefabTestComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiProject::TScenePrefabTestComponent>(eid); };
     nsGuiProject_TScenePrefabTestComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiProject::TScenePrefabTestComponent>(eid); };
     nsGuiProject_TScenePrefabTestComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiProject::TScenePrefabTestComponent>(); };
-    auto rtti_nsGuiProject_TScenePrefabTestComponent_Data = globalTypeIdentifier->Type<nsGuiProject::TScenePrefabTestComponent>();
+    nsGuiProject_TScenePrefabTestComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiProject::TScenePrefabTestComponent>();
     
-    m.insert({ rtti_nsGuiProject_TScenePrefabTestComponent_Data, nsGuiProject_TScenePrefabTestComponent_Data });
+    datas.push_back(nsGuiProject_TScenePrefabTestComponent_Data);
     
     int max = 0;
-    for (auto& vt : m) {
-        max = std::max(vt.first, max);
+    for (auto& d : datas) {
+        max = std::max(d.rtti, max);
     }
     
     mRttiVector.resize(max + 1);
-    for (auto& vt : m) {
-        mRttiVector[vt.first] = vt.second;
+    for (auto& d : datas) {
+        mRttiVector[d.rtti] = d;
     }
 }
 //---------------------------------------------------------------------------------------

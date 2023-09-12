@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_09_10 14:38:51.437
+// File has been generated at 2023_09_12 12:37:51.402
 	
 #include "ComponentTypeInfoImpl.h"
 
@@ -33,6 +33,12 @@ TComponentTypeInfoImpl::TComponentTypeInfoImpl()
 TComponentTypeInfoImpl::~TComponentTypeInfoImpl()
 {
 
+}
+//--------------------------------------------------------------------------------------------------
+void TComponentTypeInfoImpl::Init()
+{
+    TComponentTypeInfo::Init();
+    nsTornadoEngine::TComponentTypeInfo::Init();
 }
 //--------------------------------------------------------------------------------------------------
 const std::list<std::string>* TComponentTypeInfoImpl::GetTypeNameList()

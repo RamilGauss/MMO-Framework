@@ -37,6 +37,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeFactory
             {1, "{{ IMPL_TYPE_NAME }}();"},
             {0, "virtual ~{{ IMPL_TYPE_NAME }}();"},
             {0, ""},
+            {0, "void Init() override;"},
             {0, "void* New(int rtti) override;"},
             {0, "void Delete(void* p, int rtti) override;"},
             {-1,"};"},

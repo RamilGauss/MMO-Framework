@@ -18,6 +18,8 @@ namespace nsTornadoEngine
     public:
         virtual ~IImGuiSerializer() {}
 
+        virtual void Init() = 0;
+
         virtual void Serialize(void* p, TImGuiSerializeTask*& pTask, int rtti) = 0;
         virtual void Deserialize(void* p, TImGuiSerializeTask* pTask, int rtti) = 0;
     };

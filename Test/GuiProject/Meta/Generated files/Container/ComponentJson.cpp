@@ -2,7 +2,7 @@
 Project Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:38:46.494
+// File has been generated at 2023_09_12 12:37:48.332
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -27,7 +27,7 @@ void TComponentJson::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    std::map<int, TypeFunc> m;
+    std::list<TypeFunc> funcs;
     
     TypeFunc _nsGuiProject_TScenePrefabTestComponentTypeFunc;
     _nsGuiProject_TScenePrefabTestComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -37,18 +37,18 @@ void TComponentJson::Init()
         return Deserialize<nsGuiProject::TScenePrefabTestComponent>((nsGuiProject::TScenePrefabTestComponent*) p, str, err);
     };
     
-    auto rtti__nsGuiProject_TScenePrefabTestComponentTypeFunc = globalTypeIdentifier->Type<nsGuiProject::TScenePrefabTestComponent>();
+    _nsGuiProject_TScenePrefabTestComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiProject::TScenePrefabTestComponent>();
     
-    m.insert({ rtti__nsGuiProject_TScenePrefabTestComponentTypeFunc, _nsGuiProject_TScenePrefabTestComponentTypeFunc });
+    funcs.push_back(_nsGuiProject_TScenePrefabTestComponentTypeFunc);
     
     int max = 0;
-    for (auto& vt : m) {
-        max = std::max(vt.first, max);
+    for (auto& f : funcs) {
+        max = std::max(f.rtti, max);
     }
     
     mTypeFuncVector.resize(max + 1);
-    for (auto& vt : m) {
-        mTypeFuncVector[vt.first] = vt.second;
+    for (auto& f : funcs) {
+        mTypeFuncVector[f.rtti] = f;
     }
 }
 //---------------------------------------------------------------------------------------

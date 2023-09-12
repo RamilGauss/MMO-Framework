@@ -1,3 +1,10 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information LICENSE.md.
+*/
+
 #include "ProjectConfigurator.h"
 
 #include "ProjectConfigContainer.h"
@@ -51,6 +58,8 @@ void TProjectConfigurator::Setup()
     propertyMng->Init();
 
     Project()->SetEntityManager(entMng);
+
+    Project()->mScenePartAggregator->Init();
 }
 //-----------------------------------------------------------------------------------
 void TProjectConfigurator::UnloadProject()

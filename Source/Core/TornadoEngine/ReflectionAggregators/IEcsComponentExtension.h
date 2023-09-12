@@ -21,6 +21,8 @@ namespace nsTornadoEngine
     public:
         virtual ~IEcsComponentExtension() {}
 
+        virtual void Init() = 0;
+
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng) { mEntMng = pEntMng; }
         nsECSFramework::TEntityManager* GetEntityManager() { return mEntMng; }
 

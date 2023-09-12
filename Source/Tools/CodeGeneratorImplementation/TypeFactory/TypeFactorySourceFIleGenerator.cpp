@@ -65,7 +65,7 @@ void TTypeFactorySourceFileGenerator::AddInit()
     Add("auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();");
     AddEmptyLine();
 
-    auto str = fmt::format("std::map<int, {}> m;", s_Data);
+    auto str = fmt::format("std::list<{}> datas;", s_Data);
     Add(str);
     AddEmptyLine();
 
@@ -95,32 +95,32 @@ void TTypeFactorySourceFileGenerator::AddInit()
 
         auto typeNameWithNameSpace = pTypeInfo->GetTypeNameWithNameSpace();
 
-        str = fmt::format("auto rtti_{} = globalTypeIdentifier->Type<{}>();", var, typeNameWithNameSpace);
+        str = fmt::format("{}.rtti = globalTypeIdentifier->Type<{}>();", var, typeNameWithNameSpace);
         Add(str);
         AddEmptyLine();
 
-        str = fmt::format("m.insert({{ rtti_{}, {} }});", var, var);
+        str = fmt::format("datas.push_back({});", var);
         Add(str);
 
         AddEmptyLine();
     }
 
     Add("int max = 0;");
-    str = fmt::format("for (auto& vt : m) {{");
+    str = fmt::format("for (auto& d : datas) {{");
     Add(str);
     IncrementTabs();
 
-    Add("max = std::max(vt.first, max);");
+    Add("max = std::max(d.rtti, max);");
     DecrementTabs();
     AddRightBrace();
 
     AddEmptyLine();
     str = fmt::format("{}.resize(max + 1);", s_mDataVector);
     Add(str);
-    str = fmt::format("for (auto& vt : m) {{");
+    str = fmt::format("for (auto& d : datas) {{");
     Add(str);
     IncrementTabs();
-    str = fmt::format("{}[vt.first] = vt.second;", s_mDataVector);
+    str = fmt::format("{}[d.rtti] = d;", s_mDataVector);
     Add(str);
     DecrementTabs();
     AddRightBrace();

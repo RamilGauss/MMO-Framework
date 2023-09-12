@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:38:28.890
+// File has been generated at 2023_09_12 12:08:28.140
 	
 #include "ImGuiWidgetsTypeInfo.h"
 
@@ -15,7 +15,7 @@ std::list<std::string> TImGuiWidgetsTypeInfo::mTypeNameList;
 std::list<int> TImGuiWidgetsTypeInfo::mRttiList;
 
 std::vector<std::string> TImGuiWidgetsTypeInfo::mNameVector;
-std::map<std::string, int> TImGuiWidgetsTypeInfo::mNameRttiMap;
+std::unordered_map<std::string, int> TImGuiWidgetsTypeInfo::mNameRttiMap;
 
 void TImGuiWidgetsTypeInfo::Init()
 {

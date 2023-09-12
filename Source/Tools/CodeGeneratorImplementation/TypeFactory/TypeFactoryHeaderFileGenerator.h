@@ -20,16 +20,17 @@ namespace nsCodeGeneratorImplementation
 fmt::format("    static void* {}(int {});", s_New, s_rtti),
 fmt::format("    static void {}(void* p, int {});", s_Delete, s_rtti),
 fmt::format("    static bool {}(int {});", s_Has, s_rtti),
+            "",
+fmt::format("    static void {}();", s_Init),
             "private:",
 fmt::format("    struct {}", s_Data),
             "    {",
+            "        int rtti = 0;",
 fmt::format("        std::function<void* ()> {};", s_newFunc),
 fmt::format("        std::function<void (void*)> {};", s_deleteFunc),
             "    };",
             "",
 fmt::format("    static std::vector<{}> {};", s_Data, s_mDataVector),
-            "",
-fmt::format("    static void {}();", s_Init),
         };
 
     public:

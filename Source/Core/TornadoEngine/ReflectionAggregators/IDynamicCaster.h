@@ -19,6 +19,8 @@ namespace nsTornadoEngine
     public:
         virtual ~IDynamicCaster() {}
 
+        virtual void Init() = 0;
+
         virtual void* Cast(int srcRtti, void* srcPtr, int dstRtti) = 0;
     };
 }

@@ -43,7 +43,7 @@ void TTypeInformationSourceFileGenerator::Work()
 
     str = fmt::format("std::vector<std::string> {}::{};", mSerializer->className, s_mNameVector);
     Add(str);
-    str = fmt::format("std::map<std::string, int> {}::{};", mSerializer->className, s_mNameRttiMap);
+    str = fmt::format("std::unordered_map<std::string, int> {}::{};", mSerializer->className, s_mNameRttiMap);
     Add(str);
 
     AddEmptyLine();

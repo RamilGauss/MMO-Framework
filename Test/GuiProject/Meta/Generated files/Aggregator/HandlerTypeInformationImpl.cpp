@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_09_10 14:38:51.437
+// File has been generated at 2023_09_12 12:37:51.402
 	
 #include "HandlerTypeInformationImpl.h"
 
@@ -26,6 +26,11 @@ THandlerTypeInformationImpl::THandlerTypeInformationImpl()
 THandlerTypeInformationImpl::~THandlerTypeInformationImpl()
 {
 
+}
+//--------------------------------------------------------------------------------------------------
+void THandlerTypeInformationImpl::Init()
+{
+    THandlerTypeInfo::Init();
 }
 //--------------------------------------------------------------------------------------------------
 const std::list<std::string>* THandlerTypeInformationImpl::GetTypeNameList()

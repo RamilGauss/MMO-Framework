@@ -16,6 +16,11 @@ namespace nsTornadoEngine
     {
         virtual ~TMenuItemReflectionAggregator() {}
 
+        void Init()
+        {
+            mTypeInfo->Init();
+        }
+
         ITypeInformation* mTypeInfo = nullptr;
     };
 }

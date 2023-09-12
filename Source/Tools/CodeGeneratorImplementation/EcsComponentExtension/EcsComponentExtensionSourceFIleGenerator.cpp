@@ -66,7 +66,7 @@ void TEcsComponentExtensionSourceFileGenerator::AddInit()
     Add("auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();");
     AddEmptyLine();
 
-    auto str = fmt::format("std::map<int, {}> m;", s_Data);
+    auto str = fmt::format("std::list<{}> datas;", s_Data);
     Add(str);
     AddEmptyLine();
 
@@ -77,21 +77,21 @@ void TEcsComponentExtensionSourceFileGenerator::AddInit()
     }
 
     Add("int max = 0;");
-    str = fmt::format("for (auto& vt : m) {{");
+    str = fmt::format("for (auto& d : datas) {{");
     Add(str);
     IncrementTabs();
 
-    Add("max = std::max(vt.first, max);");
+    Add("max = std::max(d.rtti, max);");
     DecrementTabs();
     AddRightBrace();
 
     AddEmptyLine();
     str = fmt::format("{}.resize(max + 1);", s_mRttiVector);
     Add(str);
-    str = fmt::format("for (auto& vt : m) {{");
+    str = fmt::format("for (auto& d : datas) {{");
     Add(str);
     IncrementTabs();
-    str = fmt::format("{}[vt.first] = vt.second;", s_mRttiVector);
+    str = fmt::format("{}[d.rtti] = d;", s_mRttiVector);
     Add(str);
     DecrementTabs();
     AddRightBrace();
@@ -303,11 +303,11 @@ void TEcsComponentExtensionSourceFileGenerator::AddType(const nsReflectionCodeGe
         var, s_getByHasFunc, s_TEntityManager, s_pEntMng, s_pEntMng, s_GetByHas, typeNameWithNameSpace);
     Add(str);
 
-    str = fmt::format("auto rtti_{} = globalTypeIdentifier->Type<{}>();", var, typeNameWithNameSpace);
+    str = fmt::format("{}.rtti = globalTypeIdentifier->Type<{}>();", var, typeNameWithNameSpace);
     Add(str);
     AddEmptyLine();
 
-    str = fmt::format("m.{}({{ rtti_{}, {} }});", s_Insert, var, var);
+    str = fmt::format("datas.{}({});", s_PushBack, var);
     Add(str);
 
     AddEmptyLine();

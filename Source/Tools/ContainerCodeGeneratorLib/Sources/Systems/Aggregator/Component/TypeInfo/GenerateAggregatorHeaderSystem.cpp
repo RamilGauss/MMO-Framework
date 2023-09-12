@@ -40,6 +40,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsTypeInfo
             {0, "const std::list<std::string>* GetTypeNameList() override;"},
             {0, "const std::list<int>* GetRunTimeTypeIndexList() override;"},
             {0, ""},
+            {0, "void Init() override;"},
             {0, "bool ConvertTypeToName(int rtti, std::string& typeName) override;"},
             {0, "bool ConvertNameToType(const std::string& typeName, int& rtti) override;"},
             {0, ""},

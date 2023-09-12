@@ -19,6 +19,8 @@ namespace nsTornadoEngine
     public:
         virtual ~ITypeInformation() {}
 
+        virtual void Init() = 0;
+
         virtual const std::list<std::string>* GetTypeNameList() = 0;
         virtual const std::list<int>* GetRunTimeTypeIndexList() = 0;
 

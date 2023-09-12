@@ -17,6 +17,13 @@ namespace nsTornadoEngine
     {
         virtual ~TSystemReflectionAggregator() {}
 
+        void Init()
+        {
+            mTypeInfo->Init();
+            mTypeFactory->Init();
+            mDynamicCaster->Init();
+        }
+
         ITypeInformation* mTypeInfo = nullptr;
         ITypeFactory* mTypeFactory = nullptr;
         IDynamicCaster* mDynamicCaster = nullptr;

@@ -2,7 +2,7 @@
 Project System
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:38:50.456
+// File has been generated at 2023_09_12 12:37:50.903
 	
 #include "SystemTypeFactory.h"
 #include "SingletonManager.h"
@@ -22,16 +22,16 @@ void TSystemTypeFactory::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    std::map<int, Data> m;
+    std::list<Data> datas;
     
     int max = 0;
-    for (auto& vt : m) {
-        max = std::max(vt.first, max);
+    for (auto& d : datas) {
+        max = std::max(d.rtti, max);
     }
     
     mDataVector.resize(max + 1);
-    for (auto& vt : m) {
-        mDataVector[vt.first] = vt.second;
+    for (auto& d : datas) {
+        mDataVector[d.rtti] = d;
     }
 }
 //---------------------------------------------------------------------------------------

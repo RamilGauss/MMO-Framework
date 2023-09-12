@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include "HiTimer.h" //###
+
 #include "ObjectManager.h"
 #include "Modules.h"
 #include "TornadoEngineJsonSerializer.h"
@@ -34,6 +36,8 @@ namespace nsTornadoEngine
     void TObjectManager::DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities,
         std::list<TEntityContent>::const_iterator& entIt, int count)
     {
+        auto start = ht_GetUSCount();//###
+
         auto logger = GetLogger()->Get(TTimeSliceEngine::NAME);
 
         auto componentReflection = Project()->mScenePartAggregator->mComponents;
@@ -52,6 +56,7 @@ namespace nsTornadoEngine
                     logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
                     continue;
                 }
+
                 componentReflection->mEntMng->CreateComponent(eid, rtti, [&](void* pComponent)
                     {
                         // Deserialize component by rtti and json body
@@ -65,6 +70,12 @@ namespace nsTornadoEngine
                     });
             }
         }
+
+        //###
+        auto dt = ht_GetUSCount() - start;
+        logger->WriteF_time("%s", std::to_string(dt).c_str());
+        logger->ReOpen((char*)"1.log");
+        //###
     }
     //------------------------------------------------------------------------------------------------------
 }
