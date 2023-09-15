@@ -26,6 +26,7 @@ namespace nsContainerCodeGenerator
         constexpr static char CORE_COMPONENT_BINARY_OUT[]         = "coreComponentBinaryOut.json";
         constexpr static char CORE_COMPONENT_IMGUI_OUT[]          = "coreComponentImGuiOut.json";
         constexpr static char CORE_COMPONENT_DYNAMIC_CASTER_OUT[] = "coreComponentDynamicCasterOut.json";
+        constexpr static char CORE_COMPONENT_TYPE_FACTORY_OUT[]   = "coreComponentTypeFactoryOut.json";
 
         constexpr static char CORE_IMGUI_WIDGETS_CONFIG[] = "coreImGuiWidgetsConfig.json";
 

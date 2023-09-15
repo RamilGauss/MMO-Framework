@@ -2,12 +2,12 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_12 12:08:28.140
+// File has been generated at 2023_09_15 19:05:16.332
 	
 #pragma once
 
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <list>
 #include <vector>
 

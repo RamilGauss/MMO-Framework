@@ -53,17 +53,20 @@ namespace nsTornadoEngine
                     continue;
                 }
 
-                componentReflection->mEntMng->CreateComponent(eid, rtti, [&](void* pComponent)
-                    {
-                        // Deserialize component by rtti and json body
-                        std::string err;
-                        auto componentDeserialzieResult =
-                            componentReflection->mJson->Deserialize(pComponent, component.jsonBody, rtti, err);
+                auto pComponent = componentReflection->mTypeFactory->New(rtti);
 
-                        if (!componentDeserialzieResult) {
-                            logger->WriteF_time("Not converted typename \"%s\", err=%s", component.typeName.c_str(), err.c_str());
-                        }
-                    });
+                // Deserialize component by rtti and json body
+                std::string err;
+                auto componentDeserialzieResult =
+                    componentReflection->mJson->Deserialize(pComponent, component.jsonBody, rtti, err);
+
+                if (!componentDeserialzieResult) {
+                    logger->WriteF_time("Not converted typename \"%s\", err=%s", component.typeName.c_str(), err.c_str());
+                }
+
+                componentReflection->mEntMng->SetComponent(eid, rtti, pComponent);
+
+                componentReflection->mTypeFactory->Delete(pComponent);
             }
         }
     }

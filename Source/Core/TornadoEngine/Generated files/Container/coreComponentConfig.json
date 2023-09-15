@@ -62,6 +62,17 @@
                 },
                 "keyValueMap": {}
             },
+            "TypeFactoryGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "className": "TComponentTypeFactory",
+                "fileName": "ComponentTypeFactory",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "coreComponentTypeFactoryOut.json"
+                },
+                "keyValueMap": {}
+            },
             "TypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",

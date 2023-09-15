@@ -114,6 +114,19 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
 
+        // TypeFactory
+        nsReflectionCodeGenerator::TSerializer typeFactory;
+        typeFactory.className = configComponent->value.coreConfig.componentConfig.typeFactory.typeName;
+        typeFactory.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        typeFactory.fileName = configComponent->value.coreConfig.componentConfig.typeFactory.fileName;
+        typeFactory.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+
+        typeFactory.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        typeFactory.externalSources->outFile = TConstants::CORE_COMPONENT_TYPE_FACTORY_OUT;
+
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });
+
+
         // TODO: Add
         // ImGui
 

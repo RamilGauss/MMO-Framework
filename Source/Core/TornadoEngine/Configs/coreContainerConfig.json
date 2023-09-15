@@ -35,6 +35,10 @@
             "dynamicCaster": {
                 "fileName": "ComponentDynamicCaster",
                 "typeName": "TComponentDynamicCaster"
+            },
+            "typeFactory": {
+                "fileName": "ComponentTypeFactory",
+                "typeName": "TComponentTypeFactory"
             }
         },
         "imGuiWidgetsConfig": {

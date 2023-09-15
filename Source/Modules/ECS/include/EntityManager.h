@@ -59,16 +59,13 @@ namespace nsECSFramework
 
         // components
         template<typename Component>
-        void CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation);
-
-        template<typename Component>
         void SetComponent(TEntityID eid, const Component& c);// => add or update event
 
         template<typename Component>
         const Component* ViewComponent(TEntityID eid);// for view, fast,
 
         template<typename Component>
-        void GetComponent(TEntityID eid, std::function<void(const Component&)> onIfExist);// for copy
+        std::optional<Component> GetComponent(TEntityID eid);// for copy
 
         template<typename Component>
         bool HasComponent(TEntityID eid);
@@ -262,36 +259,6 @@ namespace nsECSFramework
     };
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::CreateComponent(TEntityID eid, std::function<void(Component*)> onAfterCreation)
-    {
-        auto pEntity = GetEntity(eid);
-#ifdef _DEBUG
-        if (pEntity == nullptr) {
-            BL_FIX_BUG();
-            return;
-        }
-#endif
-        const auto index = TypeIndex<Component>();
-#ifdef _DEBUG
-        const auto has = pEntity->HasComponent(index);
-        if (has) {
-            BL_FIX_BUG();
-            return;
-        }
-#endif
-        auto pC = pEntity->AddComponent<Component>(index);
-        BL_ASSERT(onAfterCreation);
-        onAfterCreation(pC);
-
-        TryAddInHas(eid, index, pEntity);
-        TryAddInUnique(eid, pC, index);
-        TryAddInValue(eid, index, pEntity);
-
-        NotifyOnAddComponent(index, eid, pC);
-        PushEventToCollector(mAddCollector, index, eid, pC);
-    }
-    //---------------------------------------------------------------------------------------
-    template <typename Component>
     void TEntityManager::SetComponent(TEntityID eid, const Component& c)
     {
         auto pEntity = GetEntity(eid);
@@ -342,22 +309,13 @@ namespace nsECSFramework
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>
-    void TEntityManager::GetComponent(TEntityID eid, std::function<void(const Component&)> onIfExist)
+    std::optional<Component> TEntityManager::GetComponent(TEntityID eid)
     {
-        auto pEntity = GetEntity(eid);
-#ifdef _DEBUG
-        if (pEntity == nullptr) {
-            BL_FIX_BUG();
-            return;
-        }
-#endif
-        const auto index = TypeIndex<Component>();
-        auto pC = (Component*)pEntity->GetComponent(index);
+        auto pC = ViewComponent<Component>(eid);
         if (pC == nullptr) {
-            return;
+            return {};
         }
-        BL_ASSERT(onIfExist);
-        onIfExist(*pC);
+        return { *pC };
     }
     //---------------------------------------------------------------------------------------
     template <typename Component>

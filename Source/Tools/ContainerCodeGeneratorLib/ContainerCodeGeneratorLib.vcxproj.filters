@@ -270,6 +270,12 @@
     <ClInclude Include="Sources\Systems\SetupConfig\Project\ResetupCoreConfigFileSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\ContainerCodeGenerator.cpp">
@@ -492,6 +498,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\SetupConfig\Project\ResetupCoreConfigFileSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

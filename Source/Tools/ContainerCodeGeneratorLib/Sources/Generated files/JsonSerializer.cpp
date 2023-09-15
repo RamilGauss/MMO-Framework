@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 16:12:50.811
+// File has been generated at 2023_09_15 18:38:35.551
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -27,7 +27,7 @@ void TJsonSerializer::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    std::map<int, TypeFunc> m;
+    std::list<TypeFunc> funcs;
     
     TypeFunc _nsContainerCodeGenerator_TAggregatorTypeFunc;
     _nsContainerCodeGenerator_TAggregatorTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -37,9 +37,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TAggregator>((nsContainerCodeGenerator::TAggregator*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TAggregatorTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TAggregator>();
+    _nsContainerCodeGenerator_TAggregatorTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TAggregator>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TAggregatorTypeFunc, _nsContainerCodeGenerator_TAggregatorTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TAggregatorTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TAggregatorClassTypeFunc;
     _nsContainerCodeGenerator_TAggregatorClassTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -49,9 +49,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TAggregatorClass>((nsContainerCodeGenerator::TAggregatorClass*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TAggregatorClassTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TAggregatorClass>();
+    _nsContainerCodeGenerator_TAggregatorClassTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TAggregatorClass>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TAggregatorClassTypeFunc, _nsContainerCodeGenerator_TAggregatorClassTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TAggregatorClassTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TComponentAggregatorTypeFunc;
     _nsContainerCodeGenerator_TComponentAggregatorTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -61,9 +61,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TComponentAggregator>((nsContainerCodeGenerator::TComponentAggregator*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TComponentAggregatorTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TComponentAggregator>();
+    _nsContainerCodeGenerator_TComponentAggregatorTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TComponentAggregator>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TComponentAggregatorTypeFunc, _nsContainerCodeGenerator_TComponentAggregatorTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TComponentAggregatorTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TComponentConfigTypeFunc;
     _nsContainerCodeGenerator_TComponentConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -73,9 +73,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TComponentConfig>((nsContainerCodeGenerator::TComponentConfig*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TComponentConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TComponentConfig>();
+    _nsContainerCodeGenerator_TComponentConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TComponentConfig>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TComponentConfigTypeFunc, _nsContainerCodeGenerator_TComponentConfigTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TComponentConfigTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TCoreConfigTypeFunc;
     _nsContainerCodeGenerator_TCoreConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -85,9 +85,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TCoreConfig>((nsContainerCodeGenerator::TCoreConfig*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TCoreConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TCoreConfig>();
+    _nsContainerCodeGenerator_TCoreConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TCoreConfig>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TCoreConfigTypeFunc, _nsContainerCodeGenerator_TCoreConfigTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TCoreConfigTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TCoreContainerConfigTypeFunc;
     _nsContainerCodeGenerator_TCoreContainerConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -97,9 +97,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TCoreContainerConfig>((nsContainerCodeGenerator::TCoreContainerConfig*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TCoreContainerConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TCoreContainerConfig>();
+    _nsContainerCodeGenerator_TCoreContainerConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TCoreContainerConfig>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TCoreContainerConfigTypeFunc, _nsContainerCodeGenerator_TCoreContainerConfigTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TCoreContainerConfigTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TEcsSystemConfigTypeFunc;
     _nsContainerCodeGenerator_TEcsSystemConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -109,9 +109,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TEcsSystemConfig>((nsContainerCodeGenerator::TEcsSystemConfig*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TEcsSystemConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TEcsSystemConfig>();
+    _nsContainerCodeGenerator_TEcsSystemConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TEcsSystemConfig>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TEcsSystemConfigTypeFunc, _nsContainerCodeGenerator_TEcsSystemConfigTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TEcsSystemConfigTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TGeneratedClassTypeFunc;
     _nsContainerCodeGenerator_TGeneratedClassTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -121,9 +121,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TGeneratedClass>((nsContainerCodeGenerator::TGeneratedClass*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TGeneratedClassTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TGeneratedClass>();
+    _nsContainerCodeGenerator_TGeneratedClassTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TGeneratedClass>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TGeneratedClassTypeFunc, _nsContainerCodeGenerator_TGeneratedClassTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TGeneratedClassTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_THandlerAggregatorTypeFunc;
     _nsContainerCodeGenerator_THandlerAggregatorTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -133,9 +133,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::THandlerAggregator>((nsContainerCodeGenerator::THandlerAggregator*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_THandlerAggregatorTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::THandlerAggregator>();
+    _nsContainerCodeGenerator_THandlerAggregatorTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::THandlerAggregator>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_THandlerAggregatorTypeFunc, _nsContainerCodeGenerator_THandlerAggregatorTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_THandlerAggregatorTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_THandlerConfigTypeFunc;
     _nsContainerCodeGenerator_THandlerConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -145,9 +145,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::THandlerConfig>((nsContainerCodeGenerator::THandlerConfig*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_THandlerConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::THandlerConfig>();
+    _nsContainerCodeGenerator_THandlerConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::THandlerConfig>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_THandlerConfigTypeFunc, _nsContainerCodeGenerator_THandlerConfigTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_THandlerConfigTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TImGuiWidgetsAggregatorTypeFunc;
     _nsContainerCodeGenerator_TImGuiWidgetsAggregatorTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -157,9 +157,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TImGuiWidgetsAggregator>((nsContainerCodeGenerator::TImGuiWidgetsAggregator*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TImGuiWidgetsAggregatorTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TImGuiWidgetsAggregator>();
+    _nsContainerCodeGenerator_TImGuiWidgetsAggregatorTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TImGuiWidgetsAggregator>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TImGuiWidgetsAggregatorTypeFunc, _nsContainerCodeGenerator_TImGuiWidgetsAggregatorTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TImGuiWidgetsAggregatorTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TImGuiWidgetsConfigTypeFunc;
     _nsContainerCodeGenerator_TImGuiWidgetsConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -169,9 +169,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TImGuiWidgetsConfig>((nsContainerCodeGenerator::TImGuiWidgetsConfig*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TImGuiWidgetsConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TImGuiWidgetsConfig>();
+    _nsContainerCodeGenerator_TImGuiWidgetsConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TImGuiWidgetsConfig>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TImGuiWidgetsConfigTypeFunc, _nsContainerCodeGenerator_TImGuiWidgetsConfigTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TImGuiWidgetsConfigTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TIncludeListFileNameTypeFunc;
     _nsContainerCodeGenerator_TIncludeListFileNameTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -181,9 +181,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TIncludeListFileName>((nsContainerCodeGenerator::TIncludeListFileName*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TIncludeListFileNameTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TIncludeListFileName>();
+    _nsContainerCodeGenerator_TIncludeListFileNameTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TIncludeListFileName>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TIncludeListFileNameTypeFunc, _nsContainerCodeGenerator_TIncludeListFileNameTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TIncludeListFileNameTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TParentClassTypeFunc;
     _nsContainerCodeGenerator_TParentClassTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -193,9 +193,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TParentClass>((nsContainerCodeGenerator::TParentClass*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TParentClassTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TParentClass>();
+    _nsContainerCodeGenerator_TParentClassTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TParentClass>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TParentClassTypeFunc, _nsContainerCodeGenerator_TParentClassTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TParentClassTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TProjectConfigTypeFunc;
     _nsContainerCodeGenerator_TProjectConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -205,9 +205,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TProjectConfig>((nsContainerCodeGenerator::TProjectConfig*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TProjectConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TProjectConfig>();
+    _nsContainerCodeGenerator_TProjectConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TProjectConfig>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TProjectConfigTypeFunc, _nsContainerCodeGenerator_TProjectConfigTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TProjectConfigTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TProjectContainerConfigTypeFunc;
     _nsContainerCodeGenerator_TProjectContainerConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -217,9 +217,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TProjectContainerConfig>((nsContainerCodeGenerator::TProjectContainerConfig*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TProjectContainerConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TProjectContainerConfig>();
+    _nsContainerCodeGenerator_TProjectContainerConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TProjectContainerConfig>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TProjectContainerConfigTypeFunc, _nsContainerCodeGenerator_TProjectContainerConfigTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TProjectContainerConfigTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TSystemAggregatorTypeFunc;
     _nsContainerCodeGenerator_TSystemAggregatorTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -229,9 +229,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TSystemAggregator>((nsContainerCodeGenerator::TSystemAggregator*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TSystemAggregatorTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TSystemAggregator>();
+    _nsContainerCodeGenerator_TSystemAggregatorTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TSystemAggregator>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TSystemAggregatorTypeFunc, _nsContainerCodeGenerator_TSystemAggregatorTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TSystemAggregatorTypeFunc);
     
     TypeFunc _nsContainerCodeGenerator_TSystemConfigTypeFunc;
     _nsContainerCodeGenerator_TSystemConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -241,18 +241,18 @@ void TJsonSerializer::Init()
         return Deserialize<nsContainerCodeGenerator::TSystemConfig>((nsContainerCodeGenerator::TSystemConfig*) p, str, err);
     };
     
-    auto rtti__nsContainerCodeGenerator_TSystemConfigTypeFunc = globalTypeIdentifier->Type<nsContainerCodeGenerator::TSystemConfig>();
+    _nsContainerCodeGenerator_TSystemConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsContainerCodeGenerator::TSystemConfig>();
     
-    m.insert({ rtti__nsContainerCodeGenerator_TSystemConfigTypeFunc, _nsContainerCodeGenerator_TSystemConfigTypeFunc });
+    funcs.push_back(_nsContainerCodeGenerator_TSystemConfigTypeFunc);
     
     int max = 0;
-    for (auto& vt : m) {
-        max = std::max(vt.first, max);
+    for (auto& f : funcs) {
+        max = std::max(f.rtti, max);
     }
     
     mTypeFuncVector.resize(max + 1);
-    for (auto& vt : m) {
-        mTypeFuncVector[vt.first] = vt.second;
+    for (auto& f : funcs) {
+        mTypeFuncVector[f.rtti] = f;
     }
 }
 //---------------------------------------------------------------------------------------
@@ -348,6 +348,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TComponentAggregator*
     _Serialize(&(p->entMngImpl), entMngImpl_o);
     auto dynamicCasterImpl_o = PUM::AddObject(obj, "dynamicCasterImpl");
     _Serialize(&(p->dynamicCasterImpl), dynamicCasterImpl_o);
+    auto typeFactoryImpl_o = PUM::AddObject(obj, "typeFactoryImpl");
+    _Serialize(&(p->typeFactoryImpl), typeFactoryImpl_o);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TComponentAggregator* p, const Jobj& obj)
@@ -365,6 +367,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TComponentAggregato
     _Deserialize(&(p->entMngImpl), entMngImpl_o0);
     auto dynamicCasterImpl_o0 = POM::FindObject(obj, "dynamicCasterImpl");
     _Deserialize(&(p->dynamicCasterImpl), dynamicCasterImpl_o0);
+    auto typeFactoryImpl_o0 = POM::FindObject(obj, "typeFactoryImpl");
+    _Deserialize(&(p->typeFactoryImpl), typeFactoryImpl_o0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TComponentConfig* p, Jobj& obj)
@@ -383,6 +387,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TComponentConfig* p, 
     _Serialize(&(p->entMng), entMng_o);
     auto dynamicCaster_o = PUM::AddObject(obj, "dynamicCaster");
     _Serialize(&(p->dynamicCaster), dynamicCaster_o);
+    auto typeFactory_o = PUM::AddObject(obj, "typeFactory");
+    _Serialize(&(p->typeFactory), typeFactory_o);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TComponentConfig* p, const Jobj& obj)
@@ -401,6 +407,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TComponentConfig* p
     _Deserialize(&(p->entMng), entMng_o0);
     auto dynamicCaster_o0 = POM::FindObject(obj, "dynamicCaster");
     _Deserialize(&(p->dynamicCaster), dynamicCaster_o0);
+    auto typeFactory_o0 = POM::FindObject(obj, "typeFactory");
+    _Deserialize(&(p->typeFactory), typeFactory_o0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TCoreConfig* p, Jobj& obj)

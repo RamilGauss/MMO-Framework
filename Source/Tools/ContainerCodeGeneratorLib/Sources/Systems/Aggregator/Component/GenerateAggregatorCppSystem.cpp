@@ -31,6 +31,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
             {0, "#include \"{{ ENT_MNG_FILE_NAME }}.h\""},
             {0, "#include \"{{ TYPE_INFO_FILE_NAME }}.h\""},
             {0, "#include \"{{ DYNAMIC_CASTER_FILE_NAME }}.h\""},
+            {0, "#include \"{{ TYPE_FACTORY_FILE_NAME }}.h\""},
             {0, ""},
             {0, "using namespace {{ PROJECT_NAMESPACE }};"},
             {0, ""},
@@ -40,6 +41,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
             {0, "mEntMng = new {{ ENT_MNG_TYPE_NAME }}();"},
             {0, "mTypeInfo = new {{ TYPE_INFO_TYPE_NAME }}();"},
             {0, "mDynamicCaster = new {{ DYNAMIC_CASTER_TYPE_NAME }}();"},
+            {0, "mTypeFactory = new {{ TYPE_FACTORY_TYPE_NAME }}();"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()"},
@@ -48,6 +50,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
             {0, "delete mEntMng;"},
             {0, "delete mTypeInfo;"},
             {0, "delete mDynamicCaster;"},
+            {0, "delete mTypeFactory;"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, ""},
@@ -70,6 +73,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         data["DYNAMIC_CASTER_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.fileName;
         data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeInfoImpl.impl.fileName;
         data["ENT_MNG_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.entMngImpl.impl.fileName;
+        data["TYPE_FACTORY_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeFactoryImpl.impl.fileName;
         
         data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
         
@@ -78,6 +82,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.typeName;
         data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeInfoImpl.impl.typeName;
         data["ENT_MNG_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.entMngImpl.impl.typeName;
+        data["TYPE_FACTORY_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeFactoryImpl.impl.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

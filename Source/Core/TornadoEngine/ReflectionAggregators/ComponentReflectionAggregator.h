@@ -29,6 +29,7 @@ namespace nsTornadoEngine
             //mImGui->Init();
             mEntMng->Init();
             mDynamicCaster->Init();
+            mTypeFactory->Init();
         }
 
         ITypeInformation* mTypeInfo = nullptr;
@@ -37,5 +38,6 @@ namespace nsTornadoEngine
         IImGuiSerializer* mImGui = nullptr;
         IEcsComponentExtension* mEntMng = nullptr;
         IDynamicCaster* mDynamicCaster = nullptr;
+        ITypeFactory* mTypeFactory = nullptr;
     };
 }

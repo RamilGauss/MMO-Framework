@@ -331,6 +331,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Generated files\Container\ComponentDynamicCaster.cpp" />
     <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentTypeFactory.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
     <ClCompile Include="Generated files\Container\ImGuiWidgetsDynamicCaster.cpp" />
     <ClCompile Include="Generated files\Container\ImGuiWidgetsTypeInfo.cpp" />
@@ -386,6 +387,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Generated files\Container\ComponentTypeFactory.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsIncludeList.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsTypeInfo.h" />
@@ -674,6 +676,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <None Include="Generated files\Container\coreComponentDynamicCasterOut.json" />
     <None Include="Generated files\Container\coreComponentEcsOut.json" />
     <None Include="Generated files\Container\coreComponentJsonOut.json" />
+    <None Include="Generated files\Container\coreComponentTypeFactoryOut.json" />
     <None Include="Generated files\Container\coreComponentTypeInfoOut.json" />
     <None Include="Generated files\Container\coreImGuiWidgetsConfig.json" />
     <None Include="Generated files\Container\coreImGuiWidgetsDynamicCasterOut.json" />

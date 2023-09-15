@@ -23,6 +23,8 @@ See for more information LICENSE.md.
 #include "Systems/Aggregator/Component/GenerateAggregatorCppSystem.h"
 #include "Systems/Aggregator/Component/TypeInfo/GenerateAggregatorHeaderSystem.h"
 #include "Systems/Aggregator/Component/TypeInfo/GenerateAggregatorCppSystem.h"
+#include "Systems/Aggregator/Component/TypeFactory/GenerateAggregatorHeaderSystem.h"
+#include "Systems/Aggregator/Component/TypeFactory/GenerateAggregatorCppSystem.h"
 #include "Systems/Aggregator/Component/Json/GenerateAggregatorHeaderSystem.h"
 #include "Systems/Aggregator/Component/Json/GenerateAggregatorCppSystem.h"
 #include "Systems/Aggregator/Component/EntMng/GenerateAggregatorHeaderSystem.h"
@@ -84,6 +86,9 @@ namespace nsContainerCodeGenerator::nsAggregator
         nsComponent::nsDynamicCaster::TGenerateAggregatorHeaderSystem    mGenerateComponentDynamicCasterAggregatorHeaderSystem;
         nsComponent::nsDynamicCaster::TGenerateAggregatorCppSystem       mGenerateComponentDynamicCasterAggregatorCppSystem;
                                                                          
+        nsComponent::nsTypeFactory::TGenerateAggregatorHeaderSystem      mGenerateComponentTypeFactoryAggregatorHeaderSystem;
+        nsComponent::nsTypeFactory::TGenerateAggregatorCppSystem         mGenerateComponentTypeFactoryAggregatorCppSystem;
+
         // Handler                                                       
         nsHandler::TGenerateAggregatorHeaderSystem                       mGenerateHandlerAggregatorHeaderSystem;
         nsHandler::TGenerateAggregatorCppSystem                          mGenerateHandlerAggregatorCppSystem;

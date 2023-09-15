@@ -64,6 +64,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorCppSystem.h" />
+    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorHeaderSystem.h" />
     <ClInclude Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.h">
       <SubType>
       </SubType>
@@ -306,6 +308,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorCppSystem.cpp" />
+    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorHeaderSystem.cpp" />
     <ClCompile Include="Sources\Systems\Aggregator\DeleteGeneratedFilesSystem.cpp">
       <SubType>
       </SubType>

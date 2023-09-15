@@ -22,7 +22,7 @@ See for more information LICENSE.md.
 #include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
-namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
+namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsTypeFactory
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
@@ -30,8 +30,8 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         {
             {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
-            {0, "#include \"{{ PROJECT_ENT_MNG_FILE_NAME }}.h\""},
-            {0, "#include \"{{ CORE_ENT_MNG_FILE_NAME }}.h\""},
+            {0, "#include \"{{ CORE_JSON_FILE_NAME }}.h\""},
+            {0, "#include \"{{ PROJECT_TYPE_FACTORY_FILE_NAME }}.h\""},
             {0, ""},
             {0, "using namespace {{ PROJECT_NAMESPACE }};"},
             {0, ""},
@@ -47,53 +47,33 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, "void {{ IMPL_TYPE_NAME }}::Init()"},
             {0, "{"},
-            {1, "{{ PROJECT_ENT_MNG_TYPE_NAME }}::Init();"},
-            {0, "{{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Init();"},
+            {1, "{{ PROJECT_TYPE_FACTORY_TYPE_NAME }}::Init();"},
+            {0, "{{ CORE_NAMESPACE }}::{{ CORE_TYPE_FACTORY_TYPE_NAME }}::Init();"},
             {-1, "}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
-            {0, "void {{ IMPL_TYPE_NAME }}::SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p)"},
+            {0, "void* {{ IMPL_TYPE_NAME }}::New(int rtti)"},
             {0, "{"},
-            {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {1, "{{ PROJECT_ENT_MNG_TYPE_NAME }}::SetComponent(mEntMng, eid, rtti, p);"},
-            {0, "return;"},
+            {1, "auto has = {{ CORE_NAMESPACE }}::{{ CORE_TYPE_FACTORY_TYPE_NAME }}::Has(rtti);"},
+            {0, "if (has) {"},
+            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_TYPE_FACTORY_TYPE_NAME }}::New(rtti);"},
             {-1,"}"},
-            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {1, "{{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::SetComponent(mEntMng, eid, rtti, p);"},
-            {0, "return;"},
-            {-1,"}"},
-            {-1,"}"},
-            {0, "//--------------------------------------------------------------------------------------------------"},
-            {0, "const void* {{ IMPL_TYPE_NAME }}::ViewComponent(nsECSFramework::TEntityID eid, int rtti)"},
-            {0, "{"},
-            {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {1, "return {{ PROJECT_ENT_MNG_TYPE_NAME }}::ViewComponent(mEntMng, eid, rtti);"},
-            {-1,"}"},
-            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::ViewComponent(mEntMng, eid, rtti);"},
+            {1, "has = {{ PROJECT_TYPE_FACTORY_TYPE_NAME }}::Has(rtti);"},
+            {0, "if (has) {"},
+            {1, "return {{ PROJECT_TYPE_FACTORY_TYPE_NAME }}::New(rtti);"},
             {-1,"}"},
             {0, "return nullptr;"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
-            {0, "bool {{ IMPL_TYPE_NAME }}::HasComponent(nsECSFramework::TEntityID eid, int rtti)"},
+            {0, "void {{ IMPL_TYPE_NAME }}::Delete(void* p, int rtti)"},
             {0, "{"},
-            {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {1, "return {{ PROJECT_ENT_MNG_TYPE_NAME }}::HasComponent(mEntMng, eid, rtti);"},
-            {-1,"}"},
-            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::HasComponent(mEntMng, eid, rtti);"},
-            {-1,"}"},
-            {0, "return false;"},
-            {-1, "}"},
-            {0, "//--------------------------------------------------------------------------------------------------"},
-            {0, "void {{ IMPL_TYPE_NAME }}::RemoveComponent(nsECSFramework::TEntityID eid, int rtti)"},
-            {0, "{"},
-            {1, "if ({{ PROJECT_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {1, "{{ PROJECT_ENT_MNG_TYPE_NAME }}::RemoveComponent(mEntMng, eid, rtti);"},
+            {1, "auto has = {{ CORE_NAMESPACE }}::{{ CORE_TYPE_FACTORY_TYPE_NAME }}::Has(rtti);"},
+            {0, "if (has) {"},
+            {1, "{{ CORE_NAMESPACE }}::{{ CORE_TYPE_FACTORY_TYPE_NAME }}::Delete(p, rtti);"},
             {0, "return;"},
             {-1,"}"},
-            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::Has(rtti)) {"},
-            {1, "{{ CORE_NAMESPACE }}::{{ CORE_ENT_MNG_TYPE_NAME }}::RemoveComponent(mEntMng, eid, rtti);"},
-            {0, "return;"},
+            {1, "has = {{ PROJECT_TYPE_FACTORY_TYPE_NAME }}::Has(rtti);"},
+            {0, "if (has) {"},
+            {1, "{{ PROJECT_TYPE_FACTORY_TYPE_NAME }}::Delete(p, rtti);"},
             {-1,"}"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
@@ -102,9 +82,10 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 
         auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
         auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = projectConfigComponent->value.aggregator.componentImpl.entMngImpl;
+        auto& impl = projectConfigComponent->value.aggregator.systemImpl.typeFactoryImpl;
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
@@ -123,10 +104,10 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.componentConfig.entMng.fileName;
+        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.componentConfig.typeFactory.fileName;
 
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
-        pathRelToCoreSources /= coreConfigComponent->value.coreConfig.componentConfig.entMng.fileName;
+        pathRelToCoreSources /= coreConfigComponent->value.coreConfig.componentConfig.typeFactory.fileName;
 
         nsBase::TTextGenerator txtGen(lines);
 
@@ -134,13 +115,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 
         data["IMPL_FILE_NAME"] = impl.impl.fileName;
         data["IMPL_TYPE_NAME"] = impl.impl.typeName;
-        data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
         data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
 
-        data["CORE_ENT_MNG_FILE_NAME"] = pathRelToCoreSources.string();
-        data["PROJECT_ENT_MNG_FILE_NAME"] = pathRelToProjectSources.string();
-        data["CORE_ENT_MNG_TYPE_NAME"] = coreConfigComponent->value.coreConfig.componentConfig.entMng.typeName;
-        data["PROJECT_ENT_MNG_TYPE_NAME"] = projectConfigComponent->value.projectConfig.componentConfig.entMng.typeName;
+        data["PROJECT_TYPE_FACTORY_FILE_NAME"] = pathRelToProjectSources.string();
+        data["PROJECT_TYPE_FACTORY_TYPE_NAME"] = projectConfigComponent->value.projectConfig.componentConfig.typeFactory.typeName;
+
+        data["CORE_TYPE_FACTORY_FILE_NAME"] = pathRelToCoreSources.string();
+        data["CORE_TYPE_FACTORY_TYPE_NAME"] = coreConfigComponent->value.coreConfig.componentConfig.typeFactory.typeName;
 
         txtGen.Apply(data);
         generatedFile.content = txtGen.Render();

@@ -45,6 +45,7 @@ namespace nsContainerCodeGenerator
         TGeneratedClass imGui;
         TGeneratedClass entMng;
         TGeneratedClass dynamicCaster;
+        TGeneratedClass typeFactory;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -96,6 +97,7 @@ namespace nsContainerCodeGenerator
         TAggregatorClass imGuiImpl;
         TAggregatorClass entMngImpl;
         TAggregatorClass dynamicCasterImpl;
+        TAggregatorClass typeFactoryImpl;
     };
 
 #pragma REFLECTION_ATTRIBUTE

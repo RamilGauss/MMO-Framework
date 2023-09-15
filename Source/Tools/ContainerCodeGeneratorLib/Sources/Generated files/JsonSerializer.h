@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 16:12:50.808
+// File has been generated at 2023_09_15 18:38:35.548
 	
 #pragma once
 
@@ -21,14 +21,15 @@ namespace nsContainerCodeGenerator
     
         struct TypeFunc
         {
+            int rtti = 0;
             std::function<void(void*, std::string&)>  serializeFunc;
             std::function<bool(void*, const std::string&, std::string&)> deserializeFunc;
         };
     
         static std::vector<TypeFunc> mTypeFuncVector;
-    
-        static void Init();
     public:
+        static void Init();
+    
         template <typename Type>
         static void Serialize(Type* p, std::string& str);
         template <typename Type>

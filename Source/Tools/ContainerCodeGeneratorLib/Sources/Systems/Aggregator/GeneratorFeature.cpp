@@ -34,6 +34,9 @@ namespace nsContainerCodeGenerator::nsAggregator
         Add(&mGenerateComponentDynamicCasterAggregatorHeaderSystem);
         Add(&mGenerateComponentDynamicCasterAggregatorCppSystem);
 
+        Add(&mGenerateComponentTypeFactoryAggregatorHeaderSystem);
+        Add(&mGenerateComponentTypeFactoryAggregatorCppSystem);
+
         // Handler
         Add(&mGenerateHandlerAggregatorHeaderSystem);
         Add(&mGenerateHandlerAggregatorCppSystem);

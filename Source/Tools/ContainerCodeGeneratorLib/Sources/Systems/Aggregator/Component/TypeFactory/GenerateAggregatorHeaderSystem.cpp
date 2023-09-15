@@ -20,7 +20,7 @@ See for more information LICENSE.md.
 #include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
-namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
+namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsTypeFactory
 {
     void TGenerateAggregatorHeaderSystem::Execute()
     {
@@ -38,10 +38,8 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
             {0, "virtual ~{{ IMPL_TYPE_NAME }}();"},
             {0, ""},
             {0, "void Init() override;"},
-            {0, "void SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p) override;"},
-            {0, "const void* ViewComponent(nsECSFramework::TEntityID eid, int rtti) override;"},
-            {0, "bool HasComponent(nsECSFramework::TEntityID eid, int rtti) override;"},
-            {0, "void RemoveComponent(nsECSFramework::TEntityID eid, int rtti) override;"},
+            {0, "void* New(int rtti) override;"},
+            {0, "void Delete(void* p, int rtti) override;"},
             {-1,"};"},
             {-1,"}"},
             {0, ""},
@@ -52,7 +50,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = projectConfigComponent->value.aggregator.componentImpl.entMngImpl;
+        auto& impl = projectConfigComponent->value.aggregator.componentImpl.typeFactoryImpl;
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
