@@ -1,5 +1,5 @@
 {
-    "date": "2023-09-12 14:40:22.971524",
+    "date": "2023-09-14 18:08:40.557509",
     "defines": [
         "FMT_SHARED",
         "GTEST_LINKED_AS_SHARED_LIBRARY=1",
@@ -11,9 +11,9 @@
     ],
     "packages": {
         "b2/4.9.6": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b2a71d18914917d\\p\\bin",
-            "includeDir": "",
-            "libDir": ""
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
         },
         "boost/1.81.0": {
             "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\boost1d73bc8fb7b94\\p\\bin",
@@ -71,9 +71,9 @@
             "libDir": "lib"
         },
         "nasm/2.15.05": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\nasm1e66b7028cb03\\p\\bin",
-            "includeDir": "",
-            "libDir": ""
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
         },
         "nlohmann_json/3.11.2": {
             "binDir": "",
@@ -101,9 +101,9 @@
             "libDir": ""
         },
         "strawberryperl/5.32.1.1": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\straw4602bdba38fca\\p\\bin",
-            "includeDir": "",
-            "libDir": ""
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
         },
         "zlib/1.2.13": {
             "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\zlib01b985620de9b\\p\\bin",

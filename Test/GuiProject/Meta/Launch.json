@@ -1,5 +1,5 @@
 {
-    "binaryFilePath": "../../../Exe/GuiProject.dll",
+    "binaryFilePath": "../../../Exe/GuiProject_d.dll",
     "conveyorFilePath": "./Conveyor.json",
     "resourcesFilePath": "./Resources.json",
 
