@@ -16,7 +16,7 @@ using namespace nsReflectionCodeGenerator;
 const std::string TProgramInfo::NAME = "ReflectionCodeGenerator";
 const std::string TProgramInfo::VERSION_MAJOR = "2";
 const std::string TProgramInfo::VERSION_MINOR_HIGH = "4";
-const std::string TProgramInfo::VERSION_MINOR_LOW = "0";
+const std::string TProgramInfo::VERSION_MINOR_LOW = "2";
 const int TProgramInfo::COUNTER_BUILD = 58;
 const std::string TProgramInfo::INFO = "Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation";
 

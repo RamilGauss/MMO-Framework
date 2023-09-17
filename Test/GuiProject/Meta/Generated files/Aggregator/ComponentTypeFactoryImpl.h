@@ -10,13 +10,17 @@ See for more information LICENSE.md.
 	
 #pragma once
 
-#include "ScenePartReflectionAggregator.h"
+#include "ITypeFactory.h"
 
 namespace nsTornadoEditor
 {
-    struct DllExport TScenePartReflectionAggregatorImpl : public nsTornadoEngine::TScenePartReflectionAggregator
+    struct DllExport TComponentTypeFactoryImpl : public nsTornadoEngine::ITypeFactory
     {
-        TScenePartReflectionAggregatorImpl();
-        virtual ~TScenePartReflectionAggregatorImpl();
+        TComponentTypeFactoryImpl();
+        virtual ~TComponentTypeFactoryImpl();
+        
+        void Init() override;
+        void* New(int rtti) override;
+        void Delete(void* p, int rtti) override;
     };
 }

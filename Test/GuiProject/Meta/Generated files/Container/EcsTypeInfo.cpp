@@ -1,8 +1,8 @@
 /*
 Project Ecs System
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_12 12:37:51.341
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_09_17 12:05:08.730
 	
 #include "EcsTypeInfo.h"
 
@@ -39,29 +39,11 @@ void TEcsTypeInfo::Init()
     mRttiList.push_back(nsECSFramework_TBaseReactiveSystem_i);
     mNameRttiMap.insert({ nsECSFramework_TBaseReactiveSystem_n, nsECSFramework_TBaseReactiveSystem_i });
     
-    int nsECSFramework_TExecuteSystem_i = globalTypeIdentifier->Type<nsECSFramework::TExecuteSystem>();
-    std::string nsECSFramework_TExecuteSystem_n = "nsECSFramework::TExecuteSystem";
-    mTypeNameList.push_back(nsECSFramework_TExecuteSystem_n);
-    mRttiList.push_back(nsECSFramework_TExecuteSystem_i);
-    mNameRttiMap.insert({ nsECSFramework_TExecuteSystem_n, nsECSFramework_TExecuteSystem_i });
-    
     int nsECSFramework_TFeature_i = globalTypeIdentifier->Type<nsECSFramework::TFeature>();
     std::string nsECSFramework_TFeature_n = "nsECSFramework::TFeature";
     mTypeNameList.push_back(nsECSFramework_TFeature_n);
     mRttiList.push_back(nsECSFramework_TFeature_i);
     mNameRttiMap.insert({ nsECSFramework_TFeature_n, nsECSFramework_TFeature_i });
-    
-    int nsECSFramework_TSystem_i = globalTypeIdentifier->Type<nsECSFramework::TSystem>();
-    std::string nsECSFramework_TSystem_n = "nsECSFramework::TSystem";
-    mTypeNameList.push_back(nsECSFramework_TSystem_n);
-    mRttiList.push_back(nsECSFramework_TSystem_i);
-    mNameRttiMap.insert({ nsECSFramework_TSystem_n, nsECSFramework_TSystem_i });
-    
-    int nsECSFramework_TTearDownSystem_i = globalTypeIdentifier->Type<nsECSFramework::TTearDownSystem>();
-    std::string nsECSFramework_TTearDownSystem_n = "nsECSFramework::TTearDownSystem";
-    mTypeNameList.push_back(nsECSFramework_TTearDownSystem_n);
-    mRttiList.push_back(nsECSFramework_TTearDownSystem_i);
-    mNameRttiMap.insert({ nsECSFramework_TTearDownSystem_n, nsECSFramework_TTearDownSystem_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

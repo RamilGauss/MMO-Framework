@@ -23,6 +23,7 @@
     <ClCompile Include="Meta\Generated files\Aggregator\ComponentEntityManagerExtensionImpl.cpp" />
     <ClCompile Include="Meta\Generated files\Aggregator\ComponentJsonSerializerImpl.cpp" />
     <ClCompile Include="Meta\Generated files\Aggregator\ComponentReflectionAggregatorImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.cpp" />
     <ClCompile Include="Meta\Generated files\Aggregator\ComponentTypeInfoImpl.cpp" />
     <ClCompile Include="Meta\Generated files\Aggregator\DefMainFunc_DeveloperDLL.cpp" />
     <ClCompile Include="Meta\Generated files\Aggregator\HandlerReflectionAggregatorImpl.cpp" />
@@ -39,6 +40,7 @@
     <ClCompile Include="Meta\Generated files\Container\ComponentDynamicCaster.cpp" />
     <ClCompile Include="Meta\Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Meta\Generated files\Container\ComponentJson.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\ComponentTypeFactory.cpp" />
     <ClCompile Include="Meta\Generated files\Container\ComponentTypeInfo.cpp" />
     <ClCompile Include="Meta\Generated files\Container\EcsDynamicCaster.cpp" />
     <ClCompile Include="Meta\Generated files\Container\EcsTypeInfo.cpp" />
@@ -51,6 +53,7 @@
     <ClInclude Include="Meta\Generated files\Aggregator\ComponentEntityManagerExtensionImpl.h" />
     <ClInclude Include="Meta\Generated files\Aggregator\ComponentJsonSerializerImpl.h" />
     <ClInclude Include="Meta\Generated files\Aggregator\ComponentReflectionAggregatorImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.h" />
     <ClInclude Include="Meta\Generated files\Aggregator\ComponentTypeInfoImpl.h" />
     <ClInclude Include="Meta\Generated files\Aggregator\HandlerReflectionAggregatorImpl.h" />
     <ClInclude Include="Meta\Generated files\Aggregator\HandlerTypeFactoryImpl.h" />
@@ -67,6 +70,7 @@
     <ClInclude Include="Meta\Generated files\Container\ComponentEntMng.h" />
     <ClInclude Include="Meta\Generated files\Container\ComponentIncludeList.h" />
     <ClInclude Include="Meta\Generated files\Container\ComponentJson.h" />
+    <ClInclude Include="Meta\Generated files\Container\ComponentTypeFactory.h" />
     <ClInclude Include="Meta\Generated files\Container\ComponentTypeInfo.h" />
     <ClInclude Include="Meta\Generated files\Container\EcsDynamicCaster.h" />
     <ClInclude Include="Meta\Generated files\Container\EcsSystemIncludeList.h" />

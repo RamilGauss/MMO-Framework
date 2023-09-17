@@ -87,12 +87,12 @@ namespace nsReflectionCodeGenerator
 
             std::set<std::string> dependenciesTypeNameSet;
             std::set<nsCppParser::TTypeInfo*> depAndFilterSet;
+
+            std::set<std::string> unionedDependenciesTypeNameSet;
+            std::set<nsCppParser::TTypeInfo*> unionedDependenciesTypeSet;// Filtered by availability in type manager
         };
 
         std::list<TGeneratorInfo> mGenerators;
-
-        std::set<std::string> mUnionedDependenciesTypeNameSet;
-        std::set<nsCppParser::TTypeInfo*> mUnionedDependenciesTypeSet;// Filtered by availability in type manager
 
         IIncludeListGenerator* mIncludeList = nullptr;
 

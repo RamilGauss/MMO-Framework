@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"
+#include "MessageException.h"
 
 #include "Components/CoreConfigComponent.h"
 #include "Components/ProjectConfigComponent.h"
@@ -60,8 +61,13 @@ namespace nsContainerCodeGenerator::nsAggregator
         data["PARENT_TYPE_NAME"] = projectConfigComponent->value.aggregator.parent.typeName;
         data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.impl.typeName;
 
-        txtGen.Apply(data);
-        generatedFile.content = txtGen.Render();
+        try {
+            txtGen.Apply(data);
+            generatedFile.content = txtGen.Render();
+        } catch (...) {
+            std::string msg = "Render error";
+            throw MSG_EXCEPTION(msg);
+        }
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

@@ -43,7 +43,7 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
             if (root != upperRoot) {
                 auto msg = fmt::format("Incorrect path, need a upper case for the disk label: \"{}\"\n", 
                     configComponent->value.projectConfig.relPathToSources);
-                throw TMessageException(msg);
+                throw MSG_EXCEPTION(msg);
             }
         }
     }

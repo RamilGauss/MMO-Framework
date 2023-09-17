@@ -4,3 +4,4 @@ project $(SolutionDir)\Source\Tools\TornadoEditor\Meta\ProjectContainerConfig.js
 project $(SolutionDir)\Test\GuiProject\Meta\ProjectContainerConfig.json
 
 $(SolutionDir)Source\Core\TornadoEngine\Configs\ReflectionConfig.json
+

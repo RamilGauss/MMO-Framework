@@ -20,6 +20,7 @@ namespace nsTornadoEngine
         mFileProgress.SetStep(FILE_PART_SIZE);
         mPrepareTreeEntityProgress.SetStep(PREPARE_TREE_ENTITY_PART_SIZE);
         mSortingProgress.SetStep(SORTING_PART_SIZE);
+        mComponentDeserializingProgress.SetStep(COMPONENT_DESERIALZING_PART_SIZE);
         mEntityProgress.SetStep(ENTITY_INSTANTIATING_PART_SIZE);
         mPrefabProgress.SetStep(PREFAB_INSTANTIATING_PART_SIZE);
     }

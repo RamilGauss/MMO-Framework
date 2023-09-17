@@ -5,7 +5,6 @@
     "customizedTypes": [
         "nsCommonWrapper::TGlobalMatrixComponent",
         "nsCommonWrapper::TGuidComponent",
-        "nsCommonWrapper::THandlerTarget",
         "nsCommonWrapper::TNameComponent",
         "nsCommonWrapper::TNeedDestroyObjectTagComponent",
         "nsCommonWrapper::TParentGuidComponent",
@@ -44,7 +43,6 @@
         "nsGuiWrapper::TFrameMouseWheelHandlerComponent",
         "nsGuiWrapper::TGridComponent",
         "nsGuiWrapper::THorizontalAlignComponent",
-        "nsGuiWrapper::THorizontalAlignComponent::Type",
         "nsGuiWrapper::TInputTextComponent",
         "nsGuiWrapper::TInputTextValueComponent",
         "nsGuiWrapper::TLabelComponent",
@@ -67,7 +65,6 @@
         "nsGuiWrapper::TTreeNodeComponent",
         "nsGuiWrapper::TTreeViewComponent",
         "nsGuiWrapper::TVerticalAlignComponent",
-        "nsGuiWrapper::TVerticalAlignComponent::Type",
         "nsGuiWrapper::TVisibilityComponent",
         "nsGuiWrapper::TWindowCloseEventHandlerComponent",
         "nsGuiWrapper::TWindowComponent",
@@ -76,8 +73,6 @@
         "nsLogicWrapper::TPrefabReferenceComponent",
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
-        "nsLogicWrapper::TSystemComponent",
-        "nsMathTools::TMatrix16",
-        "nsTornadoEngine::IPropertyOf"
+        "nsLogicWrapper::TSystemComponent"
     ]
 }

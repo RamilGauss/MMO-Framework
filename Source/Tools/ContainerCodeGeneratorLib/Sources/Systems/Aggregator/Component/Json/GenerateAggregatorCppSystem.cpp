@@ -17,6 +17,7 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"
+#include "MessageException.h"
 
 #include "Components/CoreConfigComponent.h"
 #include "Components/ProjectConfigComponent.h"
@@ -28,23 +29,23 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
     {
         std::list<nsBase::TLine> lines =
         {
-            {0, "#include \"{{ IMPL_FILE_NAME }}.h\""}, 
-            {0, ""}, 
-            {0, "#include \"{{ CORE_JSON_FILE_NAME }}.h\""}, 
-            {0, "#include \"{{ PROJECT_JSON_FILE_NAME }}.h\""}, 
-            {0, ""}, 
-            {0, "using namespace {{ PROJECT_NAMESPACE }};"}, 
-            {0, ""}, 
-            {0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()"}, 
-            {0, "{"}, 
-            {0, ""}, 
-            {0, "}"}, 
-            {0, "//--------------------------------------------------------------------------------------------------"}, 
-            {0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()"}, 
-            {0, "{"}, 
-            {0, ""}, 
-            {0, "}"}, 
-            {0, "//--------------------------------------------------------------------------------------------------"}, 
+            {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
+            {0, ""},
+            {0, "#include \"{{ CORE_JSON_FILE_NAME }}.h\""},
+            {0, "#include \"{{ PROJECT_JSON_FILE_NAME }}.h\""},
+            {0, ""},
+            {0, "using namespace {{ PROJECT_NAMESPACE }};"},
+            {0, ""},
+            {0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()"},
+            {0, "{"},
+            {0, ""},
+            {0, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()"},
+            {0, "{"},
+            {0, ""},
+            {0, "}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
             {0, "void {{ IMPL_TYPE_NAME }}::Init()"},
             {0, "{"},
             {1, "{{ PROJECT_JSON_TYPE_NAME }}::Init();"},
@@ -52,27 +53,27 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
             {0, "}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, "void {{ IMPL_TYPE_NAME }}::Serialize(void* p, std::string & json, int rtti)"},
-            {0, "{"}, 
-            {1, "if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
-            {1, "{{ PROJECT_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"}, 
-            {0, "return;"}, 
-            {-1,"}"}, 
-            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
-            {1, "{{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"}, 
-            {-1,"}"}, 
-            {-1,"}"}, 
-            {0, "//--------------------------------------------------------------------------------------------------"}, 
-            {0, "bool {{ IMPL_TYPE_NAME }}::Deserialize(void* p, const std::string & json, int rtti, std::string & err)"}, 
-            {0, "{"}, 
-            {1, "if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
-            {1, "return {{ PROJECT_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"}, 
-            {-1,"}"}, 
-            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"}, 
-            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"}, 
-            {-1,"}"}, 
-            {0, "return false;"}, 
-            {-1,"}"}, 
-            {0, "//--------------------------------------------------------------------------------------------------"}, 
+            {0, "{"},
+            {1, "if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "{{ PROJECT_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"},
+            {0, "return;"},
+            {-1,"}"},
+            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "{{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Serialize(p, json, rtti);"},
+            {-1,"}"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
+            {0, "bool {{ IMPL_TYPE_NAME }}::Deserialize(void* p, const std::string & json, int rtti, std::string & err)"},
+            {0, "{"},
+            {1, "if ({{ PROJECT_JSON_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "return {{ PROJECT_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"},
+            {-1,"}"},
+            {0, "if ({{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Has(rtti)) {"},
+            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_JSON_TYPE_NAME }}::Deserialize(p, json, rtti, err);"},
+            {-1,"}"},
+            {0, "return false;"},
+            {-1,"}"},
+            {0, "//--------------------------------------------------------------------------------------------------"},
             {0, ""},
         };
 
@@ -119,8 +120,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
         data["CORE_JSON_TYPE_NAME"] = coreConfigComponent->value.coreConfig.componentConfig.json.typeName;
         data["PROJECT_JSON_TYPE_NAME"] = projectConfigComponent->value.projectConfig.componentConfig.json.typeName;
 
-        txtGen.Apply(data);
-        generatedFile.content = txtGen.Render();
+        try {
+            txtGen.Apply(data);
+            generatedFile.content = txtGen.Render();
+        } catch (...) {
+            std::string msg = "Render error";
+            throw MSG_EXCEPTION(msg);
+        }
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

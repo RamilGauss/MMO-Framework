@@ -57,6 +57,9 @@ namespace nsTornadoEngine
             case TSceneInstanceState::Step::SORTING_ENTITIES_BY_RANK:
                 SortingEntitiesByRank();
                 break;
+            case TSceneInstanceState::Step::COMPONENT_DESERIALIZING:
+                ComponentDeserialising();
+                break;
             default:;
         }
     }
@@ -107,7 +110,7 @@ namespace nsTornadoEngine
         if (calculatedHash != mScState->mSceneContent.groupedByRankEntityGuidHash) {
             mScState->mStep = TSceneInstanceState::Step::PREPARE_TREE_ENTITY;
         } else {
-            mScState->mStep = TSceneInstanceState::Step::PREPARE_INSTANTIATING;
+            mScState->mStep = TSceneInstanceState::Step::COMPONENT_DESERIALIZING;
         }
     }
     //---------------------------------------------------------------------------------------------------
@@ -221,10 +224,47 @@ namespace nsTornadoEngine
 
             mScState->mSceneContent.entities.splice(mScState->mSceneContent.entities.end(), sortedByRankEntities);
 
-            mScState->mStep = TSceneInstanceState::Step::PREPARE_INSTANTIATING;
+            mScState->mCurrentEntIt = mScState->mSceneContent.entities.begin();
+
+            mScState->mStep = TSceneInstanceState::Step::COMPONENT_DESERIALIZING;
         }
     }
     //---------------------------------------------------------------------------------------------------
+    void TSceneInstantiatingThread::SingleComponentDeserialising()
+    {
+        std::string err;
+
+        auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
+        for (auto& component : mScState->mCurrentEntIt->components) {
+            // Add component by rtti
+            auto convertResult = componentReflection->mTypeInfo->ConvertNameToType(component.typeName, component.rtti);
+            if (convertResult == false) {
+                continue;
+            }
+
+            component.p = componentReflection->mTypeFactory->New(component.rtti);
+
+            // Deserialize component by rtti and json body
+            std::string err;
+            componentReflection->mJson->Deserialize(component.p, component.jsonBody, component.rtti, err);
+        }
+    }
+    //---------------------------------------------------------------------------------------------------
+    void TSceneInstantiatingThread::ComponentDeserialising()
+    {
+        int partSize = mScState->mComponentDeserializingProgress.GetSteppedRemain();
+
+        for (int i = 0; i < partSize; i++, mScState->mCurrentEntIt++) {
+            SingleComponentDeserialising();
+        }
+
+        mScState->mComponentDeserializingProgress.IncrementValue(partSize);
+
+        if (mScState->mComponentDeserializingProgress.IsCompleted()) {
+            mScState->mStep = TSceneInstanceState::Step::PREPARE_INSTANTIATING;
+        }
+    }
+        //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::CalculateAccurateProgressValues()
     {
         int entityCount = mScState->mSceneContent.entities.size();
@@ -233,6 +273,7 @@ namespace nsTornadoEngine
         mScState->mSortingProgress.SetTotal(entityCount);
         mScState->mEntityProgress.SetTotal(entityCount);
         mScState->mPrefabProgress.SetTotal(mScState->mSceneContent.prefabInstances.size());
+        mScState->mComponentDeserializingProgress.SetTotal(entityCount);
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::CalculateRoughProgressValues()
@@ -246,6 +287,7 @@ namespace nsTornadoEngine
         mScState->mSortingProgress.SetTotal(entityCount);
         mScState->mEntityProgress.SetTotal(entityCount);
         mScState->mPrefabProgress.SetTotal(1);
+        mScState->mComponentDeserializingProgress.SetTotal(entityCount);
     }
     //---------------------------------------------------------------------------------------------------
 }

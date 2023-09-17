@@ -55,7 +55,7 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         if (!relPathResult) {
             auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
-            throw TMessageException(msg);
+            throw MSG_EXCEPTION(msg);
         }
 
         conf.targetForParsing.directories.push_back(rel);
@@ -132,6 +132,21 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
 
+        // TypeFactory
+        nsReflectionCodeGenerator::TSerializer typeFactory;
+        typeFactory.className = projectConfigComponent->value.projectConfig.componentConfig.typeFactory.typeName;
+        typeFactory.exportDeclaration = projectConfigComponent->value.projectConfig.exportDeclaration;
+        typeFactory.fileName = projectConfigComponent->value.projectConfig.componentConfig.typeFactory.fileName;
+        typeFactory.nameSpaceName = projectConfigComponent->value.projectConfig.nameSpace;
+
+        typeFactory.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+
+        std::string typeFactoryInFileName = std::string("./") + TConstants::CORE_COMPONENT_TYPE_FACTORY_OUT;
+        std::string absTypeFactoryInFileName =
+            nsBase::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, typeFactoryInFileName);
+        typeInfo.externalSources->inFileList.push_back(typeFactoryInFileName);
+
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });
         // TODO: Add
         // ImGui
 

@@ -19,8 +19,11 @@ namespace nsContainerCodeGenerator
         std::string mWhat;
 
     public:
-        TMessageException(const std::string& what);
+        TMessageException(const std::string& what, const char* fileName, int line);
 
         const char* what() const noexcept;
     };
+
+#define MSG_EXCEPTION(what) TMessageException(what, __FILE__, __LINE__)
+
 }

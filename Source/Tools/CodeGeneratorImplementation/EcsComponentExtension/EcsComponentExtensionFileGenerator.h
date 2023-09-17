@@ -16,7 +16,6 @@ namespace nsCodeGeneratorImplementation
     protected:
         const std::string s_Has = "Has";
 
-        const std::string s_CreateComponent = "CreateComponent";
         const std::string s_SetComponent = "SetComponent";
         const std::string s_ViewComponent = "ViewComponent";
         const std::string s_HasComponent = "HasComponent";
@@ -36,7 +35,6 @@ namespace nsCodeGeneratorImplementation
 
         const std::string s_Data = "Data";
 
-        const std::string s_createFunc = "createFunc";
         const std::string s_setFunc = "setFunc";
         const std::string s_viewFunc = "viewFunc";
         const std::string s_hasFunc = "hasFunc";

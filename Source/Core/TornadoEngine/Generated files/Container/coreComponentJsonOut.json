@@ -77,7 +77,6 @@
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
         "nsLogicWrapper::TSystemComponent",
-        "nsMathTools::TMatrix16",
-        "nsTornadoEngine::IPropertyOf"
+        "nsMathTools::TMatrix16"
     ]
 }

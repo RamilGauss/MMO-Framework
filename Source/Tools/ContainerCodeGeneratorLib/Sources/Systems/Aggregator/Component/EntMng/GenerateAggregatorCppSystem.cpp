@@ -17,6 +17,7 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"
+#include "MessageException.h"
 
 #include "Components/CoreConfigComponent.h"
 #include "Components/ProjectConfigComponent.h"
@@ -142,8 +143,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         data["CORE_ENT_MNG_TYPE_NAME"] = coreConfigComponent->value.coreConfig.componentConfig.entMng.typeName;
         data["PROJECT_ENT_MNG_TYPE_NAME"] = projectConfigComponent->value.projectConfig.componentConfig.entMng.typeName;
 
-        txtGen.Apply(data);
-        generatedFile.content = txtGen.Render();
+        try {
+            txtGen.Apply(data);
+            generatedFile.content = txtGen.Render();
+        } catch (...) {
+            std::string msg = "Render error";
+            throw MSG_EXCEPTION(msg);
+        }
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

@@ -20,7 +20,7 @@ namespace nsContainerCodeGenerator
 
         if (!isExist) {
             auto msg = fmt::format("Not valid {}: \"{}\"\n", tagName, path);
-            throw TMessageException(msg);
+            throw MSG_EXCEPTION(msg);
         }
     }
 }

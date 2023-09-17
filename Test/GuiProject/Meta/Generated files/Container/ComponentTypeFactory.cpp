@@ -1,17 +1,17 @@
 /*
-Project System
+Project Component
 */
 // ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_17 12:05:08.026
+// File has been generated at 2023_09_17 12:05:03.303
 	
-#include "SystemTypeFactory.h"
+#include "ComponentTypeFactory.h"
 #include "SingletonManager.h"
 #include "RunTimeTypeIndex.h"
 
 using namespace nsTornadoEditor;
 
-std::vector<TSystemTypeFactory::Data> TSystemTypeFactory::mDataVector;
-void TSystemTypeFactory::Init()
+std::vector<TComponentTypeFactory::Data> TComponentTypeFactory::mDataVector;
+void TComponentTypeFactory::Init()
 {
     static bool isNeedInit = true;
     if ( !isNeedInit )
@@ -24,6 +24,13 @@ void TSystemTypeFactory::Init()
     
     std::list<Data> datas;
     
+    Data nsGuiProject_TScenePrefabTestComponent_Data;
+    nsGuiProject_TScenePrefabTestComponent_Data.newFunc = [](){ return new nsGuiProject::TScenePrefabTestComponent(); };
+    nsGuiProject_TScenePrefabTestComponent_Data.deleteFunc = [](void* p){ delete (nsGuiProject::TScenePrefabTestComponent*)p; };
+    nsGuiProject_TScenePrefabTestComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiProject::TScenePrefabTestComponent>();
+    
+    datas.push_back(nsGuiProject_TScenePrefabTestComponent_Data);
+    
     int max = 0;
     for (auto& d : datas) {
         max = std::max(d.rtti, max);
@@ -35,19 +42,19 @@ void TSystemTypeFactory::Init()
     }
 }
 //---------------------------------------------------------------------------------------
-void* TSystemTypeFactory::New(int rtti)
+void* TComponentTypeFactory::New(int rtti)
 {
     Init();
     return mDataVector[rtti].newFunc();
 }
 //---------------------------------------------------------------------------------------
-void TSystemTypeFactory::Delete(void* p, int rtti)
+void TComponentTypeFactory::Delete(void* p, int rtti)
 {
     Init();
     mDataVector[rtti].deleteFunc(p);
 }
 //---------------------------------------------------------------------------------------
-bool TSystemTypeFactory::Has(int rtti)
+bool TComponentTypeFactory::Has(int rtti)
 {
     Init();
     if (rtti < 0 || rtti >= mDataVector.size()) {

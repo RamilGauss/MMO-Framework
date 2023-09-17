@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"
+#include "MessageException.h"
 
 #include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
@@ -74,9 +75,9 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeInfoImpl.impl.fileName;
         data["ENT_MNG_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.entMngImpl.impl.fileName;
         data["TYPE_FACTORY_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeFactoryImpl.impl.fileName;
-        
+
         data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
-        
+
         data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.impl.typeName;
         data["JSON_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.jsonImpl.impl.typeName;
         data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.typeName;
@@ -84,8 +85,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         data["ENT_MNG_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.entMngImpl.impl.typeName;
         data["TYPE_FACTORY_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeFactoryImpl.impl.typeName;
 
-        txtGen.Apply(data);
-        generatedFile.content = txtGen.Render();
+        try {
+            txtGen.Apply(data);
+            generatedFile.content = txtGen.Render();
+        } catch (...) {
+            std::string msg = "Render error";
+            throw MSG_EXCEPTION(msg);
+        }
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

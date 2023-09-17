@@ -1,5 +1,5 @@
 {
-    "date": "2023-09-14 18:08:40.557509",
+    "date": "2023-09-17 13:05:17.693576",
     "defines": [
         "FMT_SHARED",
         "GTEST_LINKED_AS_SHARED_LIBRARY=1",
@@ -10,105 +10,100 @@
         "STB_TEXTEDIT_KEYTYPE=unsigned"
     ],
     "packages": {
-        "b2/4.9.6": {
-            "binDir": "bin",
-            "includeDir": "include",
-            "libDir": "lib"
+        "b2/4.9.3": {
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b22ab09f136fd13\\p\\bin",
+            "includeDir": "",
+            "libDir": ""
         },
         "boost/1.81.0": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\boost1d73bc8fb7b94\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\boost1d73bc8fb7b94\\p\\include",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\boost1d73bc8fb7b94\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\boost5e549013a4c7b\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\boost5e549013a4c7b\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\boost5e549013a4c7b\\p\\lib"
         },
         "bullet3/3.24": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\bulle7b93ef72404d5\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\bulle7b93ef72404d5\\p\\include\\bullet",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\bulle7b93ef72404d5\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\bulleed6ad170f77d2\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\bulleed6ad170f77d2\\p\\include\\bullet",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\bulleed6ad170f77d2\\p\\lib"
         },
         "bzip2/1.0.8": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\bzip26eaf3b76efa2b\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\bzip26eaf3b76efa2b\\p\\include",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\bzip26eaf3b76efa2b\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2390e62dbed9cd\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2390e62dbed9cd\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2390e62dbed9cd\\p\\lib"
         },
         "fmt/9.1.0": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\fmt615ca90cd9e09\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\fmt615ca90cd9e09\\p\\include",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\fmt615ca90cd9e09\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\fmt9edf67330c1dd\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\fmt9edf67330c1dd\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\fmt9edf67330c1dd\\p\\lib"
         },
         "glad/0.1.36": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\glad8e75d2c52196d\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\glad8e75d2c52196d\\p\\include",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\glad8e75d2c52196d\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\gladd4b2b7c738483\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\gladd4b2b7c738483\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\gladd4b2b7c738483\\p\\lib"
         },
         "glm/0.9.9.8": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\glmbdb802798bea2\\p\\include",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\glmbdb802798bea2\\p\\include",
             "libDir": ""
         },
         "gtest/1.13.0": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\gtestdc7d89ec9a520\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\gtestdc7d89ec9a520\\p\\include",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\gtestdc7d89ec9a520\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\gtestbb51f23eb67ed\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\gtestbb51f23eb67ed\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\gtestbb51f23eb67ed\\p\\lib"
         },
         "inja/3.4.0": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\injab1c05d020a6f7\\p\\include",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\injab1c05d020a6f7\\p\\include",
             "libDir": ""
         },
         "lz4/1.9.4": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\lz43c4063e8ae2ad\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\lz43c4063e8ae2ad\\p\\include",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\lz43c4063e8ae2ad\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\lz45e9cb18ab150a\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\lz45e9cb18ab150a\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\lz45e9cb18ab150a\\p\\lib"
         },
         "magic_enum/0.8.1": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\magicf543c72c2856d\\p\\include",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\magic70eddbb74342b\\p\\include",
             "libDir": ""
         },
-        "msys2/cci.latest": {
-            "binDir": "bin",
-            "includeDir": "include",
-            "libDir": "lib"
-        },
         "nasm/2.15.05": {
-            "binDir": "bin",
-            "includeDir": "include",
-            "libDir": "lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\nasm6f59671565601\\p\\bin",
+            "includeDir": "",
+            "libDir": ""
         },
         "nlohmann_json/3.11.2": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\nlohm552351c8663ae\\p\\include",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\nlohm552351c8663ae\\p\\include",
             "libDir": ""
         },
         "openssl/1.1.1t": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\opensfd2d88a6317ad\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\opensfd2d88a6317ad\\p\\include",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\opensfd2d88a6317ad\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\opens2c5654d639b80\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\opens2c5654d639b80\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\opens2c5654d639b80\\p\\lib"
         },
         "rapidjson/cci.20220822": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\rapid4cabb31a09329\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\rapid4cabb31a09329\\p\\include",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\rapid4cabb31a09329\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\rapid4cabb31a09329\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\rapid4cabb31a09329\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\rapid4cabb31a09329\\p\\lib"
         },
         "sdl/2.26.1": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\sdld8a28e075191e\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\sdld8a28e075191e\\p\\include\\SDL2",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\sdld8a28e075191e\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\sdl466fccaa531d1\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\sdl466fccaa531d1\\p\\include\\SDL2",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\sdl466fccaa531d1\\p\\lib"
         },
         "stb/cci.20220909": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\stbb3237e7146d86\\p\\include",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\stbb3237e7146d86\\p\\include",
             "libDir": ""
         },
         "strawberryperl/5.32.1.1": {
-            "binDir": "bin",
-            "includeDir": "include",
-            "libDir": "lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\straw4602bdba38fca\\p\\bin",
+            "includeDir": "",
+            "libDir": ""
         },
         "zlib/1.2.13": {
-            "binDir": "C:\\Users\\Anna\\.conan2\\p\\b\\zlib01b985620de9b\\p\\bin",
-            "includeDir": "C:\\Users\\Anna\\.conan2\\p\\b\\zlib01b985620de9b\\p\\include",
-            "libDir": "C:\\Users\\Anna\\.conan2\\p\\b\\zlib01b985620de9b\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\zlib8fa523d68fd0f\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\zlib8fa523d68fd0f\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\zlib8fa523d68fd0f\\p\\lib"
         }
     }
 }

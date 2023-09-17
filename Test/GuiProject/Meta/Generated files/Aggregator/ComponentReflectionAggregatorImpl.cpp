@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_09_12 12:37:51.402
+// File has been generated at 2023_09_17 12:05:11.770
 	
 #include "ComponentReflectionAggregatorImpl.h"
 
@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 #include "ComponentEntityManagerExtensionImpl.h"
 #include "ComponentTypeInfoImpl.h"
 #include "ComponentDynamicCasterImpl.h"
+#include "ComponentTypeFactoryImpl.h"
 
 using namespace nsTornadoEditor;
 
@@ -23,6 +24,7 @@ TComponentReflectionAggregatorImpl::TComponentReflectionAggregatorImpl()
     mEntMng = new TComponentEntityManagerExtensionImpl();
     mTypeInfo = new TComponentTypeInfoImpl();
     mDynamicCaster = new TComponentDynamicCasterImpl();
+    mTypeFactory = new TComponentTypeFactoryImpl();
 }
 //--------------------------------------------------------------------------------------------------
 TComponentReflectionAggregatorImpl::~TComponentReflectionAggregatorImpl()
@@ -31,5 +33,6 @@ TComponentReflectionAggregatorImpl::~TComponentReflectionAggregatorImpl()
     delete mEntMng;
     delete mTypeInfo;
     delete mDynamicCaster;
+    delete mTypeFactory;
 }
 //--------------------------------------------------------------------------------------------------

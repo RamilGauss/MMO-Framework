@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_15 19:05:15.667
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_09_17 10:25:19.739
 	
 #include "ComponentTypeFactory.h"
 #include "SingletonManager.h"
@@ -37,13 +37,6 @@ void TComponentTypeFactory::Init()
     nsCommonWrapper_TGuidComponent_Data.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TGuidComponent>();
     
     datas.push_back(nsCommonWrapper_TGuidComponent_Data);
-    
-    Data nsCommonWrapper_THandlerTarget_Data;
-    nsCommonWrapper_THandlerTarget_Data.newFunc = [](){ return new nsCommonWrapper::THandlerTarget(); };
-    nsCommonWrapper_THandlerTarget_Data.deleteFunc = [](void* p){ delete (nsCommonWrapper::THandlerTarget*)p; };
-    nsCommonWrapper_THandlerTarget_Data.rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    datas.push_back(nsCommonWrapper_THandlerTarget_Data);
     
     Data nsCommonWrapper_TNameComponent_Data;
     nsCommonWrapper_TNameComponent_Data.newFunc = [](){ return new nsCommonWrapper::TNameComponent(); };
@@ -486,20 +479,6 @@ void TComponentTypeFactory::Init()
     
     datas.push_back(nsGuiWrapper_TWindowComponent_Data);
     
-    Data nsGuiWrapper_THorizontalAlignComponent_Type_Data;
-    nsGuiWrapper_THorizontalAlignComponent_Type_Data.newFunc = [](){ return new nsGuiWrapper::THorizontalAlignComponent::Type(); };
-    nsGuiWrapper_THorizontalAlignComponent_Type_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::THorizontalAlignComponent::Type*)p; };
-    nsGuiWrapper_THorizontalAlignComponent_Type_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::THorizontalAlignComponent::Type>();
-    
-    datas.push_back(nsGuiWrapper_THorizontalAlignComponent_Type_Data);
-    
-    Data nsGuiWrapper_TVerticalAlignComponent_Type_Data;
-    nsGuiWrapper_TVerticalAlignComponent_Type_Data.newFunc = [](){ return new nsGuiWrapper::TVerticalAlignComponent::Type(); };
-    nsGuiWrapper_TVerticalAlignComponent_Type_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TVerticalAlignComponent::Type*)p; };
-    nsGuiWrapper_TVerticalAlignComponent_Type_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TVerticalAlignComponent::Type>();
-    
-    datas.push_back(nsGuiWrapper_TVerticalAlignComponent_Type_Data);
-    
     Data nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data;
     nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent(); };
     nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*)p; };
@@ -541,20 +520,6 @@ void TComponentTypeFactory::Init()
     nsLogicWrapper_TSystemComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
     
     datas.push_back(nsLogicWrapper_TSystemComponent_Data);
-    
-    Data nsMathTools_TMatrix16_Data;
-    nsMathTools_TMatrix16_Data.newFunc = [](){ return new nsMathTools::TMatrix16(); };
-    nsMathTools_TMatrix16_Data.deleteFunc = [](void* p){ delete (nsMathTools::TMatrix16*)p; };
-    nsMathTools_TMatrix16_Data.rtti = globalTypeIdentifier->Type<nsMathTools::TMatrix16>();
-    
-    datas.push_back(nsMathTools_TMatrix16_Data);
-    
-    Data nsTornadoEngine_IPropertyOf_Data;
-    nsTornadoEngine_IPropertyOf_Data.newFunc = [](){ return new nsTornadoEngine::IPropertyOf(); };
-    nsTornadoEngine_IPropertyOf_Data.deleteFunc = [](void* p){ delete (nsTornadoEngine::IPropertyOf*)p; };
-    nsTornadoEngine_IPropertyOf_Data.rtti = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
-    
-    datas.push_back(nsTornadoEngine_IPropertyOf_Data);
     
     int max = 0;
     for (auto& d : datas) {

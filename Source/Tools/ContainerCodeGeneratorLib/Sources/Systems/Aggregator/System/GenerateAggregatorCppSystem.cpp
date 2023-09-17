@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"
+#include "MessageException.h"
 
 #include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
@@ -72,8 +73,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem
         data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.dynamicCasterImpl.impl.typeName;
         data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.typeInfoImpl.impl.typeName;
 
-        txtGen.Apply(data);
-        generatedFile.content = txtGen.Render();
+        try {
+            txtGen.Apply(data);
+            generatedFile.content = txtGen.Render();
+        } catch (...) {
+            std::string msg = "Render error";
+            throw MSG_EXCEPTION(msg);
+        }
 
         generatedFilesComponent->value.push_back(generatedFile);
     }

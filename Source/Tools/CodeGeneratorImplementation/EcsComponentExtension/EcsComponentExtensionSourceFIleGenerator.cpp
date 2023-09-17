@@ -119,29 +119,7 @@ void TEcsComponentExtensionSourceFileGenerator::AddMethodDeinitions()
     Add("return false;");
     DecrementTabs();
     AddRightBrace();
-    str = fmt::format("return {}[{}].{} != nullptr;", s_mRttiVector, s_rtti, s_createFunc, s_pEntMng, s_eid);
-    Add(str);
-
-    DecrementTabs();
-    AddRightBrace();
-    AddCommentedLongLine();
-    // create
-    paramList =
-    {
-        fmt::format("{}* {}", s_TEntityManager, s_pEntMng),
-        fmt::format("{} {}", s_TEntityID, s_eid),
-        fmt::format("int {}", s_rtti),
-        "std::function<void(void*)> onAfterCreation",
-    };
-    std::string ret = s_Void;
-    AddMethodImplementationBegin(ret, mSerializer->className, s_CreateComponent, paramList);
-    AddLeftBrace();
-    IncrementTabs();
-
-    str = fmt::format("{}();", s_Init);
-    Add(str);
-    str = fmt::format("{}[{}].{}({}, {}, onAfterCreation);", 
-        s_mRttiVector, s_rtti, s_createFunc, s_pEntMng, s_eid);
+    str = fmt::format("return {}[{}].{} != nullptr;", s_mRttiVector, s_rtti, s_setFunc, s_pEntMng, s_eid);
     Add(str);
 
     DecrementTabs();
@@ -155,7 +133,7 @@ void TEcsComponentExtensionSourceFileGenerator::AddMethodDeinitions()
         fmt::format("int {}", s_rtti),
         fmt::format("{}* p", s_Void),
     };
-    ret = s_Void;
+    auto ret = s_Void;
     AddMethodImplementationBegin(ret, mSerializer->className, s_SetComponent, paramList);
     AddLeftBrace();
     IncrementTabs();
@@ -265,19 +243,6 @@ void TEcsComponentExtensionSourceFileGenerator::AddType(const nsReflectionCodeGe
     Add(str);
 
     // Too long
-    str = fmt::format("{}.{} = []({}* {}, {} {}, std::function<void(void*)> onAfterCreation) {{",
-        var, s_createFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid);
-    IncrementTabs();
-    Add(str);
-    str = fmt::format("auto lambda = [&]({}* pC){{ onAfterCreation((void*)pC); }};",
-        typeNameWithNameSpace);
-    Add(str);
-    str = fmt::format("{}->{}<{}>({}, lambda);",
-        s_pEntMng, s_CreateComponent, typeNameWithNameSpace, s_eid);
-    Add(str);
-    DecrementTabs();
-    Add("};");
-
     str = fmt::format("{}.{} = []({}* {}, {} {}, void* p){{ {}->{}({}, *(({}*)p)); }};",
         var, s_setFunc, s_TEntityManager, s_pEntMng, s_TEntityID, s_eid,
         s_pEntMng, s_SetComponent, s_eid, typeNameWithNameSpace);

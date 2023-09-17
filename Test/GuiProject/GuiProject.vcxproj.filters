@@ -93,6 +93,12 @@
     <ClCompile Include="Meta\Generated files\Container\EcsTypeInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\ComponentTypeFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Meta\Generated files\Container\ComponentDynamicCaster.h">
@@ -183,6 +189,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Components\ScenePrefabTestComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\ComponentTypeFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

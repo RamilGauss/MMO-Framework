@@ -19,5 +19,10 @@ namespace nsTornadoEngine
     {
         std::string typeName;
         std::string jsonBody;
+
+#pragma IGNORE_ATTRIBUTE
+        void* p = nullptr;
+#pragma IGNORE_ATTRIBUTE
+        int rtti = 0;
     };
 }

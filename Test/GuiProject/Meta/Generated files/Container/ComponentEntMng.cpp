@@ -1,8 +1,8 @@
 /*
 Project Component
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_12 12:37:48.333
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_09_17 12:05:03.314
 	
 #include "ComponentEntMng.h"
 
@@ -24,10 +24,6 @@ void TComponentEntMng::Init()
     std::list<Data> datas;
     
     Data nsGuiProject_TScenePrefabTestComponent_Data;
-        nsGuiProject_TScenePrefabTestComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiProject::TScenePrefabTestComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiProject::TScenePrefabTestComponent>(eid, lambda);
-    };
     nsGuiProject_TScenePrefabTestComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiProject::TScenePrefabTestComponent*)p)); };
     nsGuiProject_TScenePrefabTestComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiProject::TScenePrefabTestComponent>(eid); };
     nsGuiProject_TScenePrefabTestComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiProject::TScenePrefabTestComponent>(eid); };
@@ -54,13 +50,7 @@ bool TComponentEntMng::Has(int rtti)
     if (rtti < 0 || rtti >= mRttiVector.size()) {
         return false;
     }
-    return mRttiVector[rtti].createFunc != nullptr;
-}
-//---------------------------------------------------------------------------------------
-void TComponentEntMng::CreateComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation)
-{
-    Init();
-    mRttiVector[rtti].createFunc(pEntMng, eid, onAfterCreation);
+    return mRttiVector[rtti].setFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
 void TComponentEntMng::SetComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, void* p)

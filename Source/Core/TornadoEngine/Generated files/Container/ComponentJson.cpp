@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_15 19:05:15.621
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_09_17 10:25:19.697
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -905,18 +905,6 @@ void TComponentJson::Init()
     
     funcs.push_back(_nsMathTools_TMatrix16TypeFunc);
     
-    TypeFunc _nsTornadoEngine_IPropertyOfTypeFunc;
-    _nsTornadoEngine_IPropertyOfTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsTornadoEngine::IPropertyOf>((nsTornadoEngine::IPropertyOf*) p, str);
-    };
-    _nsTornadoEngine_IPropertyOfTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsTornadoEngine::IPropertyOf>((nsTornadoEngine::IPropertyOf*) p, str, err);
-    };
-    
-    _nsTornadoEngine_IPropertyOfTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
-    
-    funcs.push_back(_nsTornadoEngine_IPropertyOfTypeFunc);
-    
     int max = 0;
     for (auto& f : funcs) {
         max = std::max(f.rtti, max);
@@ -1781,13 +1769,5 @@ void TComponentJson::_Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj)
     POM::PopNum(obj, "_42", p->_42);
     POM::PopNum(obj, "_43", p->_43);
     POM::PopNum(obj, "_44", p->_44);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsTornadoEngine::IPropertyOf* p, Jobj& obj)
-{
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsTornadoEngine::IPropertyOf* p, const Jobj& obj)
-{
 }
 //---------------------------------------------------------------------------------------

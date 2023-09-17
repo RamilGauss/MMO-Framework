@@ -309,16 +309,18 @@ void TReflectionCodeGenerator::SolveDependencies()
 void TReflectionCodeGenerator::UnionDependencies()
 {
     for (auto& genInfo : mGenerators) {
-        mUnionedDependenciesTypeNameSet.insert(genInfo.dependenciesTypeNameSet.begin(), genInfo.dependenciesTypeNameSet.end());
+        genInfo.unionedDependenciesTypeNameSet.insert(genInfo.dependenciesTypeNameSet.begin(), genInfo.dependenciesTypeNameSet.end());
     }
 }
 //---------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::FilterDependenciesByTypeManager()
 {
-    for (auto& dep : mUnionedDependenciesTypeNameSet) {
-        auto type = mTypeManager->Get(dep);
-        if (type != nullptr) {
-            mUnionedDependenciesTypeSet.insert(type);
+    for (auto& genInfo : mGenerators) {
+        for (auto& dep : genInfo.unionedDependenciesTypeNameSet) {
+            auto type = mTypeManager->Get(dep);
+            if (type != nullptr) {
+                genInfo.unionedDependenciesTypeSet.insert(type);
+            }
         }
     }
 }
@@ -327,7 +329,7 @@ void TReflectionCodeGenerator::MergeDependeciesWithFiltered()
 {
     for (auto& genInfo : mGenerators) {
         genInfo.depAndFilterSet.insert(mFilteredTypeList.begin(), mFilteredTypeList.end());
-        genInfo.depAndFilterSet.insert(mUnionedDependenciesTypeSet.begin(), mUnionedDependenciesTypeSet.end());
+        genInfo.depAndFilterSet.insert(genInfo.unionedDependenciesTypeSet.begin(), genInfo.unionedDependenciesTypeSet.end());
     }
 }
 //---------------------------------------------------------------------------------------

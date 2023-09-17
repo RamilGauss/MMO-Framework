@@ -33,6 +33,7 @@ namespace nsTornadoEngine
             SCENE_DESERIALIZING,     // in one step
             PREPARE_TREE_ENTITY,
             SORTING_ENTITIES_BY_RANK,
+            COMPONENT_DESERIALIZING,
 
             PREPARE_INSTANTIATING,
 
@@ -63,6 +64,7 @@ namespace nsTornadoEngine
         nsBase::TProgressValue mFileProgress;
         nsBase::TProgressValue mPrepareTreeEntityProgress;
         nsBase::TProgressValue mSortingProgress;
+        nsBase::TProgressValue mComponentDeserializingProgress;
         nsBase::TProgressValue mEntityProgress;
         nsBase::TProgressValue mPrefabProgress;
 
@@ -98,6 +100,7 @@ namespace nsTornadoEngine
         static const int FILE_PART_SIZE = 10'000'000;
         static const int PREPARE_TREE_ENTITY_PART_SIZE = 100;
         static const int SORTING_PART_SIZE = 100;
+        static const int COMPONENT_DESERIALZING_PART_SIZE = 1000;
 
         static const int ENTITY_INSTANTIATING_PART_SIZE = 1000;
         static const int PREFAB_INSTANTIATING_PART_SIZE = 10;

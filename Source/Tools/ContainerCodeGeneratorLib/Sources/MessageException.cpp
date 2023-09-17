@@ -5,13 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <fmt/core.h>
+
 #include "MessageException.h"
 
 namespace nsContainerCodeGenerator
 {
-    TMessageException::TMessageException(const std::string& what)
+    TMessageException::TMessageException(const std::string& what, const char* fileName, int line)
     {
-        mWhat = what;
+        mWhat = fmt::format("{}, {}: {}", what, fileName, line);
     }
     //---------------------------------------------------------------------------------------------
     const char* TMessageException::what() const noexcept

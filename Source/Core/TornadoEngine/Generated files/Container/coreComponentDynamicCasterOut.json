@@ -44,7 +44,6 @@
         "nsGuiWrapper::TFrameMouseWheelHandlerComponent",
         "nsGuiWrapper::TGridComponent",
         "nsGuiWrapper::THorizontalAlignComponent",
-        "nsGuiWrapper::THorizontalAlignComponent::Type",
         "nsGuiWrapper::TInputTextComponent",
         "nsGuiWrapper::TInputTextValueComponent",
         "nsGuiWrapper::TLabelComponent",
@@ -67,7 +66,6 @@
         "nsGuiWrapper::TTreeNodeComponent",
         "nsGuiWrapper::TTreeViewComponent",
         "nsGuiWrapper::TVerticalAlignComponent",
-        "nsGuiWrapper::TVerticalAlignComponent::Type",
         "nsGuiWrapper::TVisibilityComponent",
         "nsGuiWrapper::TWindowCloseEventHandlerComponent",
         "nsGuiWrapper::TWindowComponent",
@@ -77,7 +75,6 @@
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
         "nsLogicWrapper::TSystemComponent",
-        "nsMathTools::TMatrix16",
         "nsTornadoEngine::IPropertyOf"
     ]
 }

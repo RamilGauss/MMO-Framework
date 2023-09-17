@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_15 19:05:15.680
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_09_17 10:25:19.748
 	
 #pragma once
 
@@ -20,7 +20,6 @@ namespace nsTornadoEngine
         struct Data
         {
             int rtti = 0;
-            std::function<void(nsECSFramework::TEntityManager* pEntMng, nsECSFramework::TEntityID eid, std::function<void(void*)> onAfterCreation)> createFunc;
             std::function<void(nsECSFramework::TEntityManager* pEntMng, nsECSFramework::TEntityID eid, void* p)> setFunc;
             std::function<const void*(nsECSFramework::TEntityManager* pEntMng, nsECSFramework::TEntityID eid)> viewFunc;
             std::function<bool(nsECSFramework::TEntityManager* pEntMng, nsECSFramework::TEntityID eid)> hasFunc;
@@ -33,8 +32,6 @@ namespace nsTornadoEngine
     public:
         static void Init();
         static bool Has(int rtti);
-        static void CreateComponent(nsECSFramework::TEntityManager* pEntMng,
-            nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation);
         static void SetComponent(nsECSFramework::TEntityManager* pEntMng,
             nsECSFramework::TEntityID eid, int rtti, void* p);
         static const void* ViewComponent(nsECSFramework::TEntityManager* pEntMng,

@@ -6,6 +6,9 @@ See for more information LICENSE.md.
 */
 
 #include "ObjectManager.h"
+
+#include "HiTimer.h"//###
+
 #include "Modules.h"
 #include "TornadoEngineJsonSerializer.h"
 #include "Logger.h"
@@ -36,6 +39,8 @@ namespace nsTornadoEngine
     {
         auto logger = GetLogger()->Get(TTimeSliceEngine::NAME);
 
+        //auto start = ht_GetUSCount();//###
+
         auto componentReflection = Project()->mScenePartAggregator->mComponents;
 
         // Convert typeName to rtti
@@ -45,30 +50,15 @@ namespace nsTornadoEngine
             newEntities.push_back(eid);
 
             for (auto& component : entIt->components) {
-                // Add component by rtti
-                int rtti;
-                auto convertResult = componentReflection->mTypeInfo->ConvertNameToType(component.typeName, rtti);
-                if (convertResult == false) {
-                    logger->WriteF_time("Not converted typename \"%s\"", component.typeName);
-                    continue;
-                }
-
-                auto pComponent = componentReflection->mTypeFactory->New(rtti);
-
-                // Deserialize component by rtti and json body
-                std::string err;
-                auto componentDeserialzieResult =
-                    componentReflection->mJson->Deserialize(pComponent, component.jsonBody, rtti, err);
-
-                if (!componentDeserialzieResult) {
-                    logger->WriteF_time("Not converted typename \"%s\", err=%s", component.typeName.c_str(), err.c_str());
-                }
-
-                componentReflection->mEntMng->SetComponent(eid, rtti, pComponent);
-
-                componentReflection->mTypeFactory->Delete(pComponent);
+                componentReflection->mEntMng->SetComponent(eid, component.rtti, component.p);
             }
         }
+
+        //###
+        //int dt = ht_GetUSCount() - start;
+        //logger->WriteF_time("sync load %d us\n", dt);
+        //logger->ReOpen((char*)"1.log", true);
+        //###
     }
     //------------------------------------------------------------------------------------------------------
 }

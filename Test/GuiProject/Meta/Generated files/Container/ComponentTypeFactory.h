@@ -1,8 +1,8 @@
 /*
-Core Component
+Project Component
 */
 // ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_17 10:25:19.738
+// File has been generated at 2023_09_17 12:05:03.303
 	
 #pragma once
 
@@ -12,7 +12,7 @@ Core Component
 #include "TypeDef.h"
 #include "ComponentIncludeList.h"
 
-namespace nsTornadoEngine
+namespace nsTornadoEditor
 {
     class DllExport TComponentTypeFactory
     {

@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_15 19:05:15.681
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_09_17 10:25:19.748
 	
 #include "ComponentEntMng.h"
 
@@ -24,10 +24,6 @@ void TComponentEntMng::Init()
     std::list<Data> datas;
     
     Data nsCommonWrapper_TGlobalMatrixComponent_Data;
-        nsCommonWrapper_TGlobalMatrixComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TGlobalMatrixComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TGlobalMatrixComponent>(eid, lambda);
-    };
     nsCommonWrapper_TGlobalMatrixComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TGlobalMatrixComponent*)p)); };
     nsCommonWrapper_TGlobalMatrixComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TGlobalMatrixComponent>(eid); };
     nsCommonWrapper_TGlobalMatrixComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TGlobalMatrixComponent>(eid); };
@@ -38,10 +34,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TGlobalMatrixComponent_Data);
     
     Data nsCommonWrapper_TGuidComponent_Data;
-        nsCommonWrapper_TGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TGuidComponent>(eid, lambda);
-    };
     nsCommonWrapper_TGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TGuidComponent*)p)); };
     nsCommonWrapper_TGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TGuidComponent>(eid); };
     nsCommonWrapper_TGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TGuidComponent>(eid); };
@@ -52,10 +44,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TGuidComponent_Data);
     
     Data nsCommonWrapper_TNameComponent_Data;
-        nsCommonWrapper_TNameComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TNameComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TNameComponent>(eid, lambda);
-    };
     nsCommonWrapper_TNameComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TNameComponent*)p)); };
     nsCommonWrapper_TNameComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TNameComponent>(eid); };
     nsCommonWrapper_TNameComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TNameComponent>(eid); };
@@ -66,10 +54,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TNameComponent_Data);
     
     Data nsCommonWrapper_TNeedDestroyObjectTagComponent_Data;
-        nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TNeedDestroyObjectTagComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TNeedDestroyObjectTagComponent>(eid, lambda);
-    };
     nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TNeedDestroyObjectTagComponent*)p)); };
     nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TNeedDestroyObjectTagComponent>(eid); };
     nsCommonWrapper_TNeedDestroyObjectTagComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TNeedDestroyObjectTagComponent>(eid); };
@@ -80,10 +64,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TNeedDestroyObjectTagComponent_Data);
     
     Data nsCommonWrapper_TParentGuidComponent_Data;
-        nsCommonWrapper_TParentGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TParentGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TParentGuidComponent>(eid, lambda);
-    };
     nsCommonWrapper_TParentGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TParentGuidComponent*)p)); };
     nsCommonWrapper_TParentGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid); };
     nsCommonWrapper_TParentGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TParentGuidComponent>(eid); };
@@ -94,10 +74,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TParentGuidComponent_Data);
     
     Data nsCommonWrapper_TPrefabGuidComponent_Data;
-        nsCommonWrapper_TPrefabGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TPrefabGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TPrefabGuidComponent>(eid, lambda);
-    };
     nsCommonWrapper_TPrefabGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TPrefabGuidComponent*)p)); };
     nsCommonWrapper_TPrefabGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TPrefabGuidComponent>(eid); };
     nsCommonWrapper_TPrefabGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TPrefabGuidComponent>(eid); };
@@ -108,10 +84,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TPrefabGuidComponent_Data);
     
     Data nsCommonWrapper_TPrefabInstanceGuidComponent_Data;
-        nsCommonWrapper_TPrefabInstanceGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TPrefabInstanceGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TPrefabInstanceGuidComponent>(eid, lambda);
-    };
     nsCommonWrapper_TPrefabInstanceGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TPrefabInstanceGuidComponent*)p)); };
     nsCommonWrapper_TPrefabInstanceGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TPrefabInstanceGuidComponent>(eid); };
     nsCommonWrapper_TPrefabInstanceGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TPrefabInstanceGuidComponent>(eid); };
@@ -122,10 +94,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TPrefabInstanceGuidComponent_Data);
     
     Data nsCommonWrapper_TPrefabOriginalGuidComponent_Data;
-        nsCommonWrapper_TPrefabOriginalGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TPrefabOriginalGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TPrefabOriginalGuidComponent>(eid, lambda);
-    };
     nsCommonWrapper_TPrefabOriginalGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TPrefabOriginalGuidComponent*)p)); };
     nsCommonWrapper_TPrefabOriginalGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TPrefabOriginalGuidComponent>(eid); };
     nsCommonWrapper_TPrefabOriginalGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TPrefabOriginalGuidComponent>(eid); };
@@ -136,10 +104,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TPrefabOriginalGuidComponent_Data);
     
     Data nsCommonWrapper_TPrefabRootComponent_Data;
-        nsCommonWrapper_TPrefabRootComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TPrefabRootComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TPrefabRootComponent>(eid, lambda);
-    };
     nsCommonWrapper_TPrefabRootComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TPrefabRootComponent*)p)); };
     nsCommonWrapper_TPrefabRootComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TPrefabRootComponent>(eid); };
     nsCommonWrapper_TPrefabRootComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TPrefabRootComponent>(eid); };
@@ -150,10 +114,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TPrefabRootComponent_Data);
     
     Data nsCommonWrapper_TProjectionToUniverseComponent_Data;
-        nsCommonWrapper_TProjectionToUniverseComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TProjectionToUniverseComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TProjectionToUniverseComponent>(eid, lambda);
-    };
     nsCommonWrapper_TProjectionToUniverseComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TProjectionToUniverseComponent*)p)); };
     nsCommonWrapper_TProjectionToUniverseComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TProjectionToUniverseComponent>(eid); };
     nsCommonWrapper_TProjectionToUniverseComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TProjectionToUniverseComponent>(eid); };
@@ -164,10 +124,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TProjectionToUniverseComponent_Data);
     
     Data nsCommonWrapper_TSceneGuidComponent_Data;
-        nsCommonWrapper_TSceneGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TSceneGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TSceneGuidComponent>(eid, lambda);
-    };
     nsCommonWrapper_TSceneGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TSceneGuidComponent*)p)); };
     nsCommonWrapper_TSceneGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TSceneGuidComponent>(eid); };
     nsCommonWrapper_TSceneGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TSceneGuidComponent>(eid); };
@@ -178,10 +134,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TSceneGuidComponent_Data);
     
     Data nsCommonWrapper_TSceneInstanceGuidComponent_Data;
-        nsCommonWrapper_TSceneInstanceGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TSceneInstanceGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid, lambda);
-    };
     nsCommonWrapper_TSceneInstanceGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TSceneInstanceGuidComponent*)p)); };
     nsCommonWrapper_TSceneInstanceGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid); };
     nsCommonWrapper_TSceneInstanceGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TSceneInstanceGuidComponent>(eid); };
@@ -192,10 +144,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TSceneInstanceGuidComponent_Data);
     
     Data nsCommonWrapper_TSceneOriginalGuidComponent_Data;
-        nsCommonWrapper_TSceneOriginalGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TSceneOriginalGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid, lambda);
-    };
     nsCommonWrapper_TSceneOriginalGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TSceneOriginalGuidComponent*)p)); };
     nsCommonWrapper_TSceneOriginalGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid); };
     nsCommonWrapper_TSceneOriginalGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid); };
@@ -206,10 +154,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TSceneOriginalGuidComponent_Data);
     
     Data nsCommonWrapper_TSceneRootComponent_Data;
-        nsCommonWrapper_TSceneRootComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TSceneRootComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TSceneRootComponent>(eid, lambda);
-    };
     nsCommonWrapper_TSceneRootComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TSceneRootComponent*)p)); };
     nsCommonWrapper_TSceneRootComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TSceneRootComponent>(eid); };
     nsCommonWrapper_TSceneRootComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TSceneRootComponent>(eid); };
@@ -220,10 +164,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TSceneRootComponent_Data);
     
     Data nsCommonWrapper_TUniverseGuidComponent_Data;
-        nsCommonWrapper_TUniverseGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TUniverseGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TUniverseGuidComponent>(eid, lambda);
-    };
     nsCommonWrapper_TUniverseGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TUniverseGuidComponent*)p)); };
     nsCommonWrapper_TUniverseGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TUniverseGuidComponent>(eid); };
     nsCommonWrapper_TUniverseGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TUniverseGuidComponent>(eid); };
@@ -234,10 +174,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TUniverseGuidComponent_Data);
     
     Data nsCommonWrapper_TUniverseIndexComponent_Data;
-        nsCommonWrapper_TUniverseIndexComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsCommonWrapper::TUniverseIndexComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsCommonWrapper::TUniverseIndexComponent>(eid, lambda);
-    };
     nsCommonWrapper_TUniverseIndexComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsCommonWrapper::TUniverseIndexComponent*)p)); };
     nsCommonWrapper_TUniverseIndexComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsCommonWrapper::TUniverseIndexComponent>(eid); };
     nsCommonWrapper_TUniverseIndexComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsCommonWrapper::TUniverseIndexComponent>(eid); };
@@ -248,10 +184,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsCommonWrapper_TUniverseIndexComponent_Data);
     
     Data nsGraphicWrapper_TCameraComponent_Data;
-        nsGraphicWrapper_TCameraComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TCameraComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TCameraComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TCameraComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TCameraComponent*)p)); };
     nsGraphicWrapper_TCameraComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TCameraComponent>(eid); };
     nsGraphicWrapper_TCameraComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TCameraComponent>(eid); };
@@ -262,10 +194,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TCameraComponent_Data);
     
     Data nsGraphicWrapper_TCameraTextureTagComponent_Data;
-        nsGraphicWrapper_TCameraTextureTagComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TCameraTextureTagComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TCameraTextureTagComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TCameraTextureTagComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TCameraTextureTagComponent*)p)); };
     nsGraphicWrapper_TCameraTextureTagComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TCameraTextureTagComponent>(eid); };
     nsGraphicWrapper_TCameraTextureTagComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TCameraTextureTagComponent>(eid); };
@@ -276,10 +204,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TCameraTextureTagComponent_Data);
     
     Data nsGraphicWrapper_TCameraWindowPositionComponent_Data;
-        nsGraphicWrapper_TCameraWindowPositionComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TCameraWindowPositionComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TCameraWindowPositionComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TCameraWindowPositionComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TCameraWindowPositionComponent*)p)); };
     nsGraphicWrapper_TCameraWindowPositionComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TCameraWindowPositionComponent>(eid); };
     nsGraphicWrapper_TCameraWindowPositionComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TCameraWindowPositionComponent>(eid); };
@@ -290,10 +214,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TCameraWindowPositionComponent_Data);
     
     Data nsGraphicWrapper_TCameraWindowSizeComponent_Data;
-        nsGraphicWrapper_TCameraWindowSizeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TCameraWindowSizeComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TCameraWindowSizeComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TCameraWindowSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TCameraWindowSizeComponent*)p)); };
     nsGraphicWrapper_TCameraWindowSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TCameraWindowSizeComponent>(eid); };
     nsGraphicWrapper_TCameraWindowSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TCameraWindowSizeComponent>(eid); };
@@ -304,10 +224,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TCameraWindowSizeComponent_Data);
     
     Data nsGraphicWrapper_TGuiCameraTagComponent_Data;
-        nsGraphicWrapper_TGuiCameraTagComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TGuiCameraTagComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TGuiCameraTagComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TGuiCameraTagComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TGuiCameraTagComponent*)p)); };
     nsGraphicWrapper_TGuiCameraTagComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TGuiCameraTagComponent>(eid); };
     nsGraphicWrapper_TGuiCameraTagComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TGuiCameraTagComponent>(eid); };
@@ -318,10 +234,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TGuiCameraTagComponent_Data);
     
     Data nsGraphicWrapper_TLightComponent_Data;
-        nsGraphicWrapper_TLightComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TLightComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TLightComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TLightComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TLightComponent*)p)); };
     nsGraphicWrapper_TLightComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TLightComponent>(eid); };
     nsGraphicWrapper_TLightComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TLightComponent>(eid); };
@@ -332,10 +244,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TLightComponent_Data);
     
     Data nsGraphicWrapper_TRenderToTextureCameraComponent_Data;
-        nsGraphicWrapper_TRenderToTextureCameraComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TRenderToTextureCameraComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TRenderToTextureCameraComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TRenderToTextureCameraComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TRenderToTextureCameraComponent*)p)); };
     nsGraphicWrapper_TRenderToTextureCameraComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TRenderToTextureCameraComponent>(eid); };
     nsGraphicWrapper_TRenderToTextureCameraComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TRenderToTextureCameraComponent>(eid); };
@@ -346,10 +254,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TRenderToTextureCameraComponent_Data);
     
     Data nsGraphicWrapper_TTextureFromCameraComponent_Data;
-        nsGraphicWrapper_TTextureFromCameraComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TTextureFromCameraComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TTextureFromCameraComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TTextureFromCameraComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TTextureFromCameraComponent*)p)); };
     nsGraphicWrapper_TTextureFromCameraComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TTextureFromCameraComponent>(eid); };
     nsGraphicWrapper_TTextureFromCameraComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TTextureFromCameraComponent>(eid); };
@@ -360,10 +264,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TTextureFromCameraComponent_Data);
     
     Data nsGraphicWrapper_TTextureFromFileComponent_Data;
-        nsGraphicWrapper_TTextureFromFileComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TTextureFromFileComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TTextureFromFileComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TTextureFromFileComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TTextureFromFileComponent*)p)); };
     nsGraphicWrapper_TTextureFromFileComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TTextureFromFileComponent>(eid); };
     nsGraphicWrapper_TTextureFromFileComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TTextureFromFileComponent>(eid); };
@@ -374,10 +274,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TTextureFromFileComponent_Data);
     
     Data nsGraphicWrapper_TUniverseCameraComponent_Data;
-        nsGraphicWrapper_TUniverseCameraComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGraphicWrapper::TUniverseCameraComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGraphicWrapper::TUniverseCameraComponent>(eid, lambda);
-    };
     nsGraphicWrapper_TUniverseCameraComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGraphicWrapper::TUniverseCameraComponent*)p)); };
     nsGraphicWrapper_TUniverseCameraComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGraphicWrapper::TUniverseCameraComponent>(eid); };
     nsGraphicWrapper_TUniverseCameraComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGraphicWrapper::TUniverseCameraComponent>(eid); };
@@ -388,10 +284,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGraphicWrapper_TUniverseCameraComponent_Data);
     
     Data nsGuiWrapper_TAnchorsComponent_Data;
-        nsGuiWrapper_TAnchorsComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TAnchorsComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TAnchorsComponent>(eid, lambda);
-    };
     nsGuiWrapper_TAnchorsComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TAnchorsComponent*)p)); };
     nsGuiWrapper_TAnchorsComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TAnchorsComponent>(eid); };
     nsGuiWrapper_TAnchorsComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TAnchorsComponent>(eid); };
@@ -402,10 +294,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TAnchorsComponent_Data);
     
     Data nsGuiWrapper_TButtonClickHandlerComponent_Data;
-        nsGuiWrapper_TButtonClickHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TButtonClickHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TButtonClickHandlerComponent>(eid, lambda);
-    };
     nsGuiWrapper_TButtonClickHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TButtonClickHandlerComponent*)p)); };
     nsGuiWrapper_TButtonClickHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TButtonClickHandlerComponent>(eid); };
     nsGuiWrapper_TButtonClickHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TButtonClickHandlerComponent>(eid); };
@@ -416,10 +304,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TButtonClickHandlerComponent_Data);
     
     Data nsGuiWrapper_TButtonComponent_Data;
-        nsGuiWrapper_TButtonComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TButtonComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TButtonComponent>(eid, lambda);
-    };
     nsGuiWrapper_TButtonComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TButtonComponent*)p)); };
     nsGuiWrapper_TButtonComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TButtonComponent>(eid); };
     nsGuiWrapper_TButtonComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TButtonComponent>(eid); };
@@ -430,10 +314,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TButtonComponent_Data);
     
     Data nsGuiWrapper_TColorComponent_Data;
-        nsGuiWrapper_TColorComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TColorComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TColorComponent>(eid, lambda);
-    };
     nsGuiWrapper_TColorComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TColorComponent*)p)); };
     nsGuiWrapper_TColorComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TColorComponent>(eid); };
     nsGuiWrapper_TColorComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TColorComponent>(eid); };
@@ -444,10 +324,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TColorComponent_Data);
     
     Data nsGuiWrapper_TDialogCloseEventHandlerComponent_Data;
-        nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TDialogCloseEventHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid, lambda);
-    };
     nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TDialogCloseEventHandlerComponent*)p)); };
     nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid); };
     nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid); };
@@ -458,10 +334,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TDialogCloseEventHandlerComponent_Data);
     
     Data nsGuiWrapper_TDialogComponent_Data;
-        nsGuiWrapper_TDialogComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TDialogComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TDialogComponent>(eid, lambda);
-    };
     nsGuiWrapper_TDialogComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TDialogComponent*)p)); };
     nsGuiWrapper_TDialogComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TDialogComponent>(eid); };
     nsGuiWrapper_TDialogComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TDialogComponent>(eid); };
@@ -472,10 +344,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TDialogComponent_Data);
     
     Data nsGuiWrapper_TFocusComponent_Data;
-        nsGuiWrapper_TFocusComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TFocusComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TFocusComponent>(eid, lambda);
-    };
     nsGuiWrapper_TFocusComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFocusComponent*)p)); };
     nsGuiWrapper_TFocusComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFocusComponent>(eid); };
     nsGuiWrapper_TFocusComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFocusComponent>(eid); };
@@ -486,10 +354,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TFocusComponent_Data);
     
     Data nsGuiWrapper_TFrameComponent_Data;
-        nsGuiWrapper_TFrameComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TFrameComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TFrameComponent>(eid, lambda);
-    };
     nsGuiWrapper_TFrameComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameComponent*)p)); };
     nsGuiWrapper_TFrameComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameComponent>(eid); };
     nsGuiWrapper_TFrameComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameComponent>(eid); };
@@ -500,10 +364,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TFrameComponent_Data);
     
     Data nsGuiWrapper_TFrameKeyHandlerComponent_Data;
-        nsGuiWrapper_TFrameKeyHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TFrameKeyHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid, lambda);
-    };
     nsGuiWrapper_TFrameKeyHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameKeyHandlerComponent*)p)); };
     nsGuiWrapper_TFrameKeyHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid); };
     nsGuiWrapper_TFrameKeyHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid); };
@@ -514,10 +374,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TFrameKeyHandlerComponent_Data);
     
     Data nsGuiWrapper_TFrameMouseClickHandlerComponent_Data;
-        nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TFrameMouseClickHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid, lambda);
-    };
     nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameMouseClickHandlerComponent*)p)); };
     nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid); };
     nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid); };
@@ -528,10 +384,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TFrameMouseClickHandlerComponent_Data);
     
     Data nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data;
-        nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TFrameMouseMoveHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid, lambda);
-    };
     nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameMouseMoveHandlerComponent*)p)); };
     nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid); };
     nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid); };
@@ -542,10 +394,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data);
     
     Data nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data;
-        nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TFrameMouseWheelHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid, lambda);
-    };
     nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameMouseWheelHandlerComponent*)p)); };
     nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid); };
     nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid); };
@@ -556,10 +404,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data);
     
     Data nsGuiWrapper_TGridComponent_Data;
-        nsGuiWrapper_TGridComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TGridComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TGridComponent>(eid, lambda);
-    };
     nsGuiWrapper_TGridComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TGridComponent*)p)); };
     nsGuiWrapper_TGridComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TGridComponent>(eid); };
     nsGuiWrapper_TGridComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TGridComponent>(eid); };
@@ -570,10 +414,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TGridComponent_Data);
     
     Data nsGuiWrapper_THorizontalAlignComponent_Data;
-        nsGuiWrapper_THorizontalAlignComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::THorizontalAlignComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::THorizontalAlignComponent>(eid, lambda);
-    };
     nsGuiWrapper_THorizontalAlignComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::THorizontalAlignComponent*)p)); };
     nsGuiWrapper_THorizontalAlignComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::THorizontalAlignComponent>(eid); };
     nsGuiWrapper_THorizontalAlignComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::THorizontalAlignComponent>(eid); };
@@ -584,10 +424,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_THorizontalAlignComponent_Data);
     
     Data nsGuiWrapper_TInputTextComponent_Data;
-        nsGuiWrapper_TInputTextComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TInputTextComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TInputTextComponent>(eid, lambda);
-    };
     nsGuiWrapper_TInputTextComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TInputTextComponent*)p)); };
     nsGuiWrapper_TInputTextComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TInputTextComponent>(eid); };
     nsGuiWrapper_TInputTextComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TInputTextComponent>(eid); };
@@ -598,10 +434,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TInputTextComponent_Data);
     
     Data nsGuiWrapper_TInputTextValueComponent_Data;
-        nsGuiWrapper_TInputTextValueComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TInputTextValueComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TInputTextValueComponent>(eid, lambda);
-    };
     nsGuiWrapper_TInputTextValueComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TInputTextValueComponent*)p)); };
     nsGuiWrapper_TInputTextValueComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TInputTextValueComponent>(eid); };
     nsGuiWrapper_TInputTextValueComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TInputTextValueComponent>(eid); };
@@ -612,10 +444,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TInputTextValueComponent_Data);
     
     Data nsGuiWrapper_TLabelComponent_Data;
-        nsGuiWrapper_TLabelComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TLabelComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TLabelComponent>(eid, lambda);
-    };
     nsGuiWrapper_TLabelComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TLabelComponent*)p)); };
     nsGuiWrapper_TLabelComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TLabelComponent>(eid); };
     nsGuiWrapper_TLabelComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TLabelComponent>(eid); };
@@ -626,10 +454,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TLabelComponent_Data);
     
     Data nsGuiWrapper_TLabelValueComponent_Data;
-        nsGuiWrapper_TLabelValueComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TLabelValueComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TLabelValueComponent>(eid, lambda);
-    };
     nsGuiWrapper_TLabelValueComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TLabelValueComponent*)p)); };
     nsGuiWrapper_TLabelValueComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TLabelValueComponent>(eid); };
     nsGuiWrapper_TLabelValueComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TLabelValueComponent>(eid); };
@@ -640,10 +464,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TLabelValueComponent_Data);
     
     Data nsGuiWrapper_TMainWindowComponent_Data;
-        nsGuiWrapper_TMainWindowComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TMainWindowComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TMainWindowComponent>(eid, lambda);
-    };
     nsGuiWrapper_TMainWindowComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TMainWindowComponent*)p)); };
     nsGuiWrapper_TMainWindowComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TMainWindowComponent>(eid); };
     nsGuiWrapper_TMainWindowComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TMainWindowComponent>(eid); };
@@ -654,10 +474,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TMainWindowComponent_Data);
     
     Data nsGuiWrapper_TMaxSizeComponent_Data;
-        nsGuiWrapper_TMaxSizeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TMaxSizeComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TMaxSizeComponent>(eid, lambda);
-    };
     nsGuiWrapper_TMaxSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TMaxSizeComponent*)p)); };
     nsGuiWrapper_TMaxSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TMaxSizeComponent>(eid); };
     nsGuiWrapper_TMaxSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TMaxSizeComponent>(eid); };
@@ -668,10 +484,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TMaxSizeComponent_Data);
     
     Data nsGuiWrapper_TMenuNodeClickHandlerComponent_Data;
-        nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TMenuNodeClickHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid, lambda);
-    };
     nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TMenuNodeClickHandlerComponent*)p)); };
     nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid); };
     nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid); };
@@ -682,10 +494,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TMenuNodeClickHandlerComponent_Data);
     
     Data nsGuiWrapper_TMenuNodeComponent_Data;
-        nsGuiWrapper_TMenuNodeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TMenuNodeComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TMenuNodeComponent>(eid, lambda);
-    };
     nsGuiWrapper_TMenuNodeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TMenuNodeComponent*)p)); };
     nsGuiWrapper_TMenuNodeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TMenuNodeComponent>(eid); };
     nsGuiWrapper_TMenuNodeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TMenuNodeComponent>(eid); };
@@ -696,10 +504,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TMenuNodeComponent_Data);
     
     Data nsGuiWrapper_TMinDistanceToParentComponent_Data;
-        nsGuiWrapper_TMinDistanceToParentComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TMinDistanceToParentComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TMinDistanceToParentComponent>(eid, lambda);
-    };
     nsGuiWrapper_TMinDistanceToParentComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TMinDistanceToParentComponent*)p)); };
     nsGuiWrapper_TMinDistanceToParentComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TMinDistanceToParentComponent>(eid); };
     nsGuiWrapper_TMinDistanceToParentComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TMinDistanceToParentComponent>(eid); };
@@ -710,10 +514,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TMinDistanceToParentComponent_Data);
     
     Data nsGuiWrapper_TMinSizeComponent_Data;
-        nsGuiWrapper_TMinSizeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TMinSizeComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TMinSizeComponent>(eid, lambda);
-    };
     nsGuiWrapper_TMinSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TMinSizeComponent*)p)); };
     nsGuiWrapper_TMinSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TMinSizeComponent>(eid); };
     nsGuiWrapper_TMinSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TMinSizeComponent>(eid); };
@@ -724,10 +524,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TMinSizeComponent_Data);
     
     Data nsGuiWrapper_TNodeIconComponent_Data;
-        nsGuiWrapper_TNodeIconComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TNodeIconComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TNodeIconComponent>(eid, lambda);
-    };
     nsGuiWrapper_TNodeIconComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TNodeIconComponent*)p)); };
     nsGuiWrapper_TNodeIconComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid); };
     nsGuiWrapper_TNodeIconComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TNodeIconComponent>(eid); };
@@ -738,10 +534,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TNodeIconComponent_Data);
     
     Data nsGuiWrapper_TPaddingComponent_Data;
-        nsGuiWrapper_TPaddingComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TPaddingComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TPaddingComponent>(eid, lambda);
-    };
     nsGuiWrapper_TPaddingComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TPaddingComponent*)p)); };
     nsGuiWrapper_TPaddingComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TPaddingComponent>(eid); };
     nsGuiWrapper_TPaddingComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TPaddingComponent>(eid); };
@@ -752,10 +544,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TPaddingComponent_Data);
     
     Data nsGuiWrapper_TPositionComponent_Data;
-        nsGuiWrapper_TPositionComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TPositionComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TPositionComponent>(eid, lambda);
-    };
     nsGuiWrapper_TPositionComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TPositionComponent*)p)); };
     nsGuiWrapper_TPositionComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid); };
     nsGuiWrapper_TPositionComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TPositionComponent>(eid); };
@@ -766,10 +554,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TPositionComponent_Data);
     
     Data nsGuiWrapper_TPositionInGridComponent_Data;
-        nsGuiWrapper_TPositionInGridComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TPositionInGridComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TPositionInGridComponent>(eid, lambda);
-    };
     nsGuiWrapper_TPositionInGridComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TPositionInGridComponent*)p)); };
     nsGuiWrapper_TPositionInGridComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TPositionInGridComponent>(eid); };
     nsGuiWrapper_TPositionInGridComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TPositionInGridComponent>(eid); };
@@ -780,10 +564,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TPositionInGridComponent_Data);
     
     Data nsGuiWrapper_TSelectedTreeNodeGuidComponent_Data;
-        nsGuiWrapper_TSelectedTreeNodeGuidComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TSelectedTreeNodeGuidComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TSelectedTreeNodeGuidComponent>(eid, lambda);
-    };
     nsGuiWrapper_TSelectedTreeNodeGuidComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TSelectedTreeNodeGuidComponent*)p)); };
     nsGuiWrapper_TSelectedTreeNodeGuidComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TSelectedTreeNodeGuidComponent>(eid); };
     nsGuiWrapper_TSelectedTreeNodeGuidComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TSelectedTreeNodeGuidComponent>(eid); };
@@ -794,10 +574,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TSelectedTreeNodeGuidComponent_Data);
     
     Data nsGuiWrapper_TSizeComponent_Data;
-        nsGuiWrapper_TSizeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TSizeComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TSizeComponent>(eid, lambda);
-    };
     nsGuiWrapper_TSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TSizeComponent*)p)); };
     nsGuiWrapper_TSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid); };
     nsGuiWrapper_TSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TSizeComponent>(eid); };
@@ -808,10 +584,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TSizeComponent_Data);
     
     Data nsGuiWrapper_TSizeInGridComponent_Data;
-        nsGuiWrapper_TSizeInGridComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TSizeInGridComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TSizeInGridComponent>(eid, lambda);
-    };
     nsGuiWrapper_TSizeInGridComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TSizeInGridComponent*)p)); };
     nsGuiWrapper_TSizeInGridComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TSizeInGridComponent>(eid); };
     nsGuiWrapper_TSizeInGridComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TSizeInGridComponent>(eid); };
@@ -822,10 +594,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TSizeInGridComponent_Data);
     
     Data nsGuiWrapper_TSpacingComponent_Data;
-        nsGuiWrapper_TSpacingComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TSpacingComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TSpacingComponent>(eid, lambda);
-    };
     nsGuiWrapper_TSpacingComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TSpacingComponent*)p)); };
     nsGuiWrapper_TSpacingComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TSpacingComponent>(eid); };
     nsGuiWrapper_TSpacingComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TSpacingComponent>(eid); };
@@ -836,10 +604,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TSpacingComponent_Data);
     
     Data nsGuiWrapper_TTitleComponent_Data;
-        nsGuiWrapper_TTitleComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TTitleComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TTitleComponent>(eid, lambda);
-    };
     nsGuiWrapper_TTitleComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTitleComponent*)p)); };
     nsGuiWrapper_TTitleComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid); };
     nsGuiWrapper_TTitleComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TTitleComponent>(eid); };
@@ -850,10 +614,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TTitleComponent_Data);
     
     Data nsGuiWrapper_TTreeNodeComponent_Data;
-        nsGuiWrapper_TTreeNodeComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TTreeNodeComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TTreeNodeComponent>(eid, lambda);
-    };
     nsGuiWrapper_TTreeNodeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTreeNodeComponent*)p)); };
     nsGuiWrapper_TTreeNodeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TTreeNodeComponent>(eid); };
     nsGuiWrapper_TTreeNodeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TTreeNodeComponent>(eid); };
@@ -864,10 +624,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TTreeNodeComponent_Data);
     
     Data nsGuiWrapper_TTreeViewComponent_Data;
-        nsGuiWrapper_TTreeViewComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TTreeViewComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TTreeViewComponent>(eid, lambda);
-    };
     nsGuiWrapper_TTreeViewComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTreeViewComponent*)p)); };
     nsGuiWrapper_TTreeViewComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TTreeViewComponent>(eid); };
     nsGuiWrapper_TTreeViewComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TTreeViewComponent>(eid); };
@@ -878,10 +634,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TTreeViewComponent_Data);
     
     Data nsGuiWrapper_TVerticalAlignComponent_Data;
-        nsGuiWrapper_TVerticalAlignComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TVerticalAlignComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TVerticalAlignComponent>(eid, lambda);
-    };
     nsGuiWrapper_TVerticalAlignComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TVerticalAlignComponent*)p)); };
     nsGuiWrapper_TVerticalAlignComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TVerticalAlignComponent>(eid); };
     nsGuiWrapper_TVerticalAlignComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TVerticalAlignComponent>(eid); };
@@ -892,10 +644,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TVerticalAlignComponent_Data);
     
     Data nsGuiWrapper_TVisibilityComponent_Data;
-        nsGuiWrapper_TVisibilityComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TVisibilityComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TVisibilityComponent>(eid, lambda);
-    };
     nsGuiWrapper_TVisibilityComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TVisibilityComponent*)p)); };
     nsGuiWrapper_TVisibilityComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid); };
     nsGuiWrapper_TVisibilityComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TVisibilityComponent>(eid); };
@@ -906,10 +654,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TVisibilityComponent_Data);
     
     Data nsGuiWrapper_TWindowCloseEventHandlerComponent_Data;
-        nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TWindowCloseEventHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid, lambda);
-    };
     nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TWindowCloseEventHandlerComponent*)p)); };
     nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid); };
     nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid); };
@@ -920,10 +664,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TWindowCloseEventHandlerComponent_Data);
     
     Data nsGuiWrapper_TWindowComponent_Data;
-        nsGuiWrapper_TWindowComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsGuiWrapper::TWindowComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsGuiWrapper::TWindowComponent>(eid, lambda);
-    };
     nsGuiWrapper_TWindowComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TWindowComponent*)p)); };
     nsGuiWrapper_TWindowComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TWindowComponent>(eid); };
     nsGuiWrapper_TWindowComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TWindowComponent>(eid); };
@@ -934,10 +674,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsGuiWrapper_TWindowComponent_Data);
     
     Data nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data;
-        nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>(eid, lambda);
-    };
     nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*)p)); };
     nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>(eid); };
     nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>(eid); };
@@ -948,10 +684,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data);
     
     Data nsLogicWrapper_TPrefabObjectReferenceComponent_Data;
-        nsLogicWrapper_TPrefabObjectReferenceComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsLogicWrapper::TPrefabObjectReferenceComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsLogicWrapper::TPrefabObjectReferenceComponent>(eid, lambda);
-    };
     nsLogicWrapper_TPrefabObjectReferenceComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TPrefabObjectReferenceComponent*)p)); };
     nsLogicWrapper_TPrefabObjectReferenceComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TPrefabObjectReferenceComponent>(eid); };
     nsLogicWrapper_TPrefabObjectReferenceComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TPrefabObjectReferenceComponent>(eid); };
@@ -962,10 +694,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsLogicWrapper_TPrefabObjectReferenceComponent_Data);
     
     Data nsLogicWrapper_TPrefabReferenceComponent_Data;
-        nsLogicWrapper_TPrefabReferenceComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsLogicWrapper::TPrefabReferenceComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid, lambda);
-    };
     nsLogicWrapper_TPrefabReferenceComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TPrefabReferenceComponent*)p)); };
     nsLogicWrapper_TPrefabReferenceComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid); };
     nsLogicWrapper_TPrefabReferenceComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TPrefabReferenceComponent>(eid); };
@@ -976,10 +704,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsLogicWrapper_TPrefabReferenceComponent_Data);
     
     Data nsLogicWrapper_TSceneObjectReferenceComponent_Data;
-        nsLogicWrapper_TSceneObjectReferenceComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsLogicWrapper::TSceneObjectReferenceComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsLogicWrapper::TSceneObjectReferenceComponent>(eid, lambda);
-    };
     nsLogicWrapper_TSceneObjectReferenceComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TSceneObjectReferenceComponent*)p)); };
     nsLogicWrapper_TSceneObjectReferenceComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TSceneObjectReferenceComponent>(eid); };
     nsLogicWrapper_TSceneObjectReferenceComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TSceneObjectReferenceComponent>(eid); };
@@ -990,10 +714,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsLogicWrapper_TSceneObjectReferenceComponent_Data);
     
     Data nsLogicWrapper_TSceneReferenceComponent_Data;
-        nsLogicWrapper_TSceneReferenceComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsLogicWrapper::TSceneReferenceComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsLogicWrapper::TSceneReferenceComponent>(eid, lambda);
-    };
     nsLogicWrapper_TSceneReferenceComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TSceneReferenceComponent*)p)); };
     nsLogicWrapper_TSceneReferenceComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TSceneReferenceComponent>(eid); };
     nsLogicWrapper_TSceneReferenceComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TSceneReferenceComponent>(eid); };
@@ -1004,10 +724,6 @@ void TComponentEntMng::Init()
     datas.push_back(nsLogicWrapper_TSceneReferenceComponent_Data);
     
     Data nsLogicWrapper_TSystemComponent_Data;
-        nsLogicWrapper_TSystemComponent_Data.createFunc = [](TEntityManager* pEntMng, TEntityID eid, std::function<void(void*)> onAfterCreation) {
-        auto lambda = [&](nsLogicWrapper::TSystemComponent* pC){ onAfterCreation((void*)pC); };
-        pEntMng->CreateComponent<nsLogicWrapper::TSystemComponent>(eid, lambda);
-    };
     nsLogicWrapper_TSystemComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TSystemComponent*)p)); };
     nsLogicWrapper_TSystemComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TSystemComponent>(eid); };
     nsLogicWrapper_TSystemComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TSystemComponent>(eid); };
@@ -1034,13 +750,7 @@ bool TComponentEntMng::Has(int rtti)
     if (rtti < 0 || rtti >= mRttiVector.size()) {
         return false;
     }
-    return mRttiVector[rtti].createFunc != nullptr;
-}
-//---------------------------------------------------------------------------------------
-void TComponentEntMng::CreateComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation)
-{
-    Init();
-    mRttiVector[rtti].createFunc(pEntMng, eid, onAfterCreation);
+    return mRttiVector[rtti].setFunc != nullptr;
 }
 //---------------------------------------------------------------------------------------
 void TComponentEntMng::SetComponent(TEntityManager* pEntMng, TEntityID eid, int rtti, void* p)

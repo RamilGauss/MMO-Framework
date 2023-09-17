@@ -56,8 +56,8 @@ namespace nsTornadoEngine
 
         auto imGuiWidgetsReflection = nsTornadoEngine::Project()->mScenePartAggregator->mImGuiWidgets;
 
-        int dstRtti;
-        componentReflection->mTypeInfo->ConvertNameToType("nsTornadoEngine::IPropertyOf", dstRtti);
+        auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
+        auto propertyOfRtti = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
 
         std::list<std::string> downCasters;
         GetDownCasters(componentTypeName, downCasters);
@@ -76,7 +76,7 @@ namespace nsTornadoEngine
 
                 void* pC = (void*)componentReflection->mEntMng->ViewComponent(eid, srcRtti);
 
-                auto propertyOf = (nsTornadoEngine::IPropertyOf*)componentReflection->mDynamicCaster->Cast(srcRtti, pC, dstRtti);
+                auto propertyOf = (nsTornadoEngine::IPropertyOf*)componentReflection->mDynamicCaster->Cast(srcRtti, pC, propertyOfRtti);
 
                 int targetRtti;
                 imGuiWidgetsReflection->mTypeInfo->ConvertNameToType(typeProperty, targetRtti);

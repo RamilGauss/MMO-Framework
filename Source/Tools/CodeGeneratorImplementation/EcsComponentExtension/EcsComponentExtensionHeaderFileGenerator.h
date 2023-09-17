@@ -19,8 +19,6 @@ namespace nsCodeGeneratorImplementation
 fmt::format("    struct {}", s_Data),
             "    {",
             "        int rtti = 0;",
-fmt::format("        std::function<void({}::{}* {}, {}::{} {}, std::function<void(void*)> onAfterCreation)> {};",
-                s_nsECSFramework, s_TEntityManager, s_pEntMng, s_nsECSFramework, s_TEntityID, s_eid, s_createFunc),
 fmt::format("        std::function<void({}::{}* {}, {}::{} {}, void* p)> {};",
                 s_nsECSFramework, s_TEntityManager, s_pEntMng, s_nsECSFramework, s_TEntityID, s_eid, s_setFunc),
 fmt::format("        std::function<const void*({}::{}* {}, {}::{} {})> {};",
@@ -38,8 +36,6 @@ fmt::format("    static std::vector<{}> {};", s_Data, s_mRttiVector),
             "public:",
 fmt::format("    static void {}();", s_Init),
 fmt::format("    static bool {}(int {});", s_Has, s_rtti),
-fmt::format("    static void {}({}::{}* {},", s_CreateComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
-fmt::format("        {}::{} {}, int {}, std::function<void(void*)> onAfterCreation);", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
 fmt::format("    static void {}({}::{}* {},", s_SetComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
 fmt::format("        {}::{} {}, int {}, void* p);", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
 fmt::format("    static const void* {}({}::{}* {},", s_ViewComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
@@ -51,7 +47,6 @@ fmt::format("        {}::{} {}, int {});", s_nsECSFramework, s_TEntityID, s_eid,
 fmt::format("    static nsECSFramework::TEntityList {}({}::{}* {},", s_GetByHas, s_nsECSFramework, s_TEntityManager, s_pEntMng),
 fmt::format("        int {});", s_rtti),
         };
-
 
     public:
         virtual void Work() override;
