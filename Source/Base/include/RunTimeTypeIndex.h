@@ -30,6 +30,9 @@ See for more information LICENSE.md.
 template<typename...>
 class DllExport TRunTimeTypeIndex
 {
+protected:
+    friend class TSingletonManager;
+    TRunTimeTypeIndex() {}
 public:
     using TypeCounter = unsigned int;
     using AtomicTypeCounter = 
@@ -84,6 +87,3 @@ public:
         return innerCounter;
     }
 };
-
-typedef TRunTimeTypeIndex<struct GlobalTypeIdentifier> TGlobalTypeIdentifier;
-extern DllExport TGlobalTypeIdentifier* GlobalTypeIdentifier();// for use in SingletonManager 

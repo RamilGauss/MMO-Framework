@@ -16,6 +16,6 @@ namespace nsLogicWrapper
     class DllExport ISceneInstantiationCompletionHandler : public nsTornadoEngine::IHandler
     {
     public:
-        virtual void Handle(nsECSFramework::TEntityID eid) = 0;
+        virtual void Handle(nsECSFramework::TEntityID eid, const std::string& sceneIstanceGuid) = 0;
     };
 }

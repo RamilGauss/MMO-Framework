@@ -13,9 +13,10 @@ See for more information LICENSE.md.
 
 namespace nsLogicWrapper
 {
+    // Зачем это нужно? А если нужно, то с каким интерфейсом?
     class DllExport IPrefabInstantiationCompletionHandler : public nsTornadoEngine::IHandler
     {
     public:
-        virtual void Handle(nsECSFramework::TEntityID eid, ) = 0;
+        virtual void Handle(nsECSFramework::TEntityID eid) = 0;
     };
 }

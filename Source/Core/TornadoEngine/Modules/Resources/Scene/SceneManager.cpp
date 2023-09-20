@@ -86,7 +86,7 @@ namespace nsTornadoEngine
 
         mAsyncScenes.AddToWait(sceneInstanceState);
 
-        return sceneInstanceState->mGuid;
+        return sceneInstanceState->mSceneIstanceGuid;
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
@@ -239,8 +239,6 @@ namespace nsTornadoEngine
         IncrementReferenceCounter(universeIndex);
 
         pSc->mUniverseIndex = universeIndex;
-
-        pSc->mSceneIstanceGuid = nsBase::TGuidGenerator::Generate();
 
         pSc->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
     }

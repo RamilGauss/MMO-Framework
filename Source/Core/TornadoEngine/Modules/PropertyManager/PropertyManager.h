@@ -52,8 +52,6 @@ namespace nsTornadoEngine
         std::string componentTypeName;
         mRelativeProperties.componentType.FindByValue(typeName, componentTypeName);
 
-        componentReflection->mEntMng->SetEntityManager(pEntMng);
-
         auto imGuiWidgetsReflection = nsTornadoEngine::Project()->mScenePartAggregator->mImGuiWidgets;
 
         auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();

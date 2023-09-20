@@ -18,11 +18,15 @@ class DllExport TSingletonManager
     typedef std::vector<void*> TPtrVector;
 
     TPtrVector mTypeObjVec;
+
+    typedef TRunTimeTypeIndex<struct GlobalTypeIdentifier> TGlobalTypeIdentifier;
+
+    TGlobalTypeIdentifier mGlobalTypeIdentifier;
 public:
     template<typename Type>
     Type* Get()
     {
-        auto index = GlobalTypeIdentifier()->Type<Type>();
+        auto index = mGlobalTypeIdentifier.Type<Type>();
         size_t count = index + 1;
         if ( mTypeObjVec.size() < count ) {
             mTypeObjVec.resize(count);

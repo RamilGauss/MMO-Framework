@@ -43,7 +43,6 @@ void TSystemMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWr
     }
 
     auto newSystem = systemReflection->mTypeFactory->New(rtti);
-    //auto systemRtti = GlobalTypeIdentifier()->Type<nsECSFramework::TSystem>();
 
     auto systemRtti = SingletonManager()->Get<TRunTimeTypeIndex<>>()->Type<nsECSFramework::TSystem>();
 

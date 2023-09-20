@@ -14,7 +14,7 @@ namespace nsTornadoEngine
     TSceneInstanceState::TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams)
     {
         mFileBuffer.SetData(nullptr, FILE_PART_SIZE);
-        mGuid = nsBase::TGuidGenerator::Generate();
+        mSceneIstanceGuid = nsBase::TGuidGenerator::Generate();
         mInstantiateSceneParams = instantiateSceneParams;
 
         mFileProgress.SetStep(FILE_PART_SIZE);
@@ -54,13 +54,13 @@ namespace nsTornadoEngine
     float TSceneInstanceState::GetLoadingProgress() const
     {
         return nsBase::TProgressValue::Accumulate(
-            { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mEntityProgress, mPrefabProgress }).GetProgress();
+            { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mComponentDeserializingProgress, mEntityProgress, mPrefabProgress }).GetProgress();
     }
     //--------------------------------------------------------------------------------------------------
     bool TSceneInstanceState::IsLoadCompleted() const
     {
         return nsBase::TProgressValue::Accumulate(
-            { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mEntityProgress, mPrefabProgress }).IsCompleted();
+            { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mComponentDeserializingProgress, mEntityProgress, mPrefabProgress }).IsCompleted();
     }
     //--------------------------------------------------------------------------------------------------
 }

@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 
 namespace nsLogicWrapper
 {
+    // Зачем это нужно? А если нужно, то с каким интерфейсом?
     class DllExport IObjectInstantiationCompletionHandler : public nsTornadoEngine::IHandler
     {
     public:

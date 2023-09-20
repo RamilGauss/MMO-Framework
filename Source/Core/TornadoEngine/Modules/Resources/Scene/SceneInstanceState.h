@@ -56,7 +56,7 @@ namespace nsTornadoEngine
         // Data
         TInstantiateSceneParams mInstantiateSceneParams;
 
-        std::string mGuid;
+        std::string mSceneIstanceGuid;
         std::atomic<Step> mStep = Step::INIT;
 
         std::shared_ptr<TSceneInstantiatingThread> mAsyncThread;
@@ -92,8 +92,6 @@ namespace nsTornadoEngine
 
         std::list<TEntityContent>::const_iterator mEntIt;
         std::list<TPrefabInstance>::const_iterator mPrefabIt;
-
-        std::string mSceneIstanceGuid;
 
         unsigned short mUniverseIndex = 0;
 
