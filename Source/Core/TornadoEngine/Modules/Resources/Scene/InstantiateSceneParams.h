@@ -20,6 +20,14 @@ namespace nsTornadoEngine
         std::string universeGuid = TGuidConstants::DEFAULT_UNIVERSE;
         nsMathTools::TMatrix16 rootMatrix;
 
+        void SetTag(const std::string& tag);
+        std::string GetTag() const;
+
+        void SetAbsPath(const std::string& absPath);
+        std::string GetAbsPath() const;
+
+    private:
+        std::string tag;
         std::string absPath;
     };
 }

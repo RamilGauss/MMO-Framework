@@ -65,7 +65,7 @@ namespace nsTornadoEngine
         return *(fit->second.get());
     }
     //--------------------------------------------------------------------------------------------------------
-    std::string TSceneManager::InstantiateByGuid(TInstantiateSceneParams instantiateSceneParams)
+    std::string TSceneManager::InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams, const std::string& tag)
     {
         // Convert to abs path
         auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
@@ -74,13 +74,10 @@ namespace nsTornadoEngine
             return "Not found";
         }
 
-        instantiateSceneParams.absPath = fit->second;
-        return InstantiateByAbsPath(instantiateSceneParams);
-    }
-    //--------------------------------------------------------------------------------------------------------
-    std::string TSceneManager::InstantiateByAbsPath(const TInstantiateSceneParams& instantiateSceneParams)
-    {
         TSceneInstanceStatePtr sceneInstanceState = std::make_shared<TSceneInstanceState>(instantiateSceneParams);
+
+        sceneInstanceState->mInstantiateSceneParams.SetAbsPath(fit->second);
+        sceneInstanceState->mInstantiateSceneParams.SetTag(tag);
 
         mSceneInstances.insert({ sceneInstanceState->mGuid, sceneInstanceState });
 
@@ -129,6 +126,7 @@ namespace nsTornadoEngine
             mSyncScenes.TryActivate(activatedSyncScenes);
         }
 
+
         auto start = ht_GetMSCount();
         while (true) {
 
@@ -144,11 +142,9 @@ namespace nsTornadoEngine
 
                 SyncWork(scene.get(), maxDuration);
 
-                std::list<TSceneInstanceStatePtr> deactivatedSyncScenes;
-                mSyncScenes.TryDeactivate(deactivatedSyncScenes);
+                TryDeactivateSyncScenes();
 
-                std::list<TSceneInstanceStatePtr> activatedSyncScenes;
-                mSyncScenes.TryActivate(activatedSyncScenes);
+                TryActivateSyncScenes();
 
                 auto now = ht_GetMSCount();
                 auto dt = now - start;
@@ -315,6 +311,41 @@ namespace nsTornadoEngine
         if (pSc->mPrefabProgress.IsCompleted()) {
             pSc->mStep = TSceneInstanceState::Step::STABLE;
         }
+    }
+    //--------------------------------------------------------------------------------
+    void TSceneManager::TryDeactivateSyncScenes()
+    {
+        auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
+
+        std::list<TSceneInstanceStatePtr> deactivatedSyncScenes;
+        mSyncScenes.TryDeactivate(deactivatedSyncScenes);
+
+        for (auto& deactivatedSyncScene : deactivatedSyncScenes) {
+            if (deactivatedSyncScene->IsCancelled()) {
+                // TODO
+            } else {
+
+                auto pEntMng = GetEntityManager();
+                auto eids = pEntMng->GetByHasCopy<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
+
+                for (auto& eid : eids) {
+                    auto handler = pEntMng->ViewComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid)->handler;
+
+                    auto tag = deactivatedSyncScene->mInstantiateSceneParams.GetTag();
+                    auto sceneInstanceGuid = deactivatedSyncScene->mSceneInstanceGuid;
+                    handlerCallCollector->Add([handler, eid, sceneInstanceGuid, tag]()
+                    {
+                        handler->Handle(eid, sceneInstanceGuid, tag);
+                    });
+                }
+            }
+        }
+    }
+    //--------------------------------------------------------------------------------
+    void TSceneManager::TryActivateSyncScenes()
+    {
+        std::list<TSceneInstanceStatePtr> activatedSyncScenes;
+        mSyncScenes.TryActivate(activatedSyncScenes);
     }
     //--------------------------------------------------------------------------------
 }

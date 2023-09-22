@@ -110,6 +110,8 @@ namespace nsTornadoEngine
 
         float GetLoadingProgress() const;
         bool IsLoadCompleted() const;
+
+        bool IsCancelled() const;
     };
 
     using TSceneInstanceStatePtr = std::shared_ptr<TSceneInstanceState>;

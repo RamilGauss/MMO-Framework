@@ -55,8 +55,7 @@ namespace nsTornadoEngine
         const TSceneInstanceState& GetSceneInstanceState(const std::string& sceneInstanceGuid);
 
         // Return SceneStateGuid
-        std::string InstantiateByGuid(TInstantiateSceneParams instantiateSceneParams);
-        std::string InstantiateByAbsPath(const TInstantiateSceneParams& instantiateSceneParams);
+        std::string InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams, const std::string& tag = "");
 
         void Destroy(const std::string& sceneInstanceGuid);
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
@@ -78,5 +77,8 @@ namespace nsTornadoEngine
         void PrepareInstantiating(TSceneInstanceState* pSc);
         void EntityInstantiating(TSceneInstanceState* pSc);
         void PrefabInstantiating(TSceneInstanceState* pSc);
+
+        void TryDeactivateSyncScenes();
+        void TryActivateSyncScenes();
     };
 }

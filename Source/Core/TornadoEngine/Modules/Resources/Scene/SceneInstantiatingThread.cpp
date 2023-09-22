@@ -66,7 +66,7 @@ namespace nsTornadoEngine
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::Init()
     {
-        mScState->mFile.ReOpen((char*)mScState->mInstantiateSceneParams.absPath.c_str());
+        mScState->mFile.ReOpen((char*)mScState->mInstantiateSceneParams.GetAbsPath().c_str());
 
         auto size = mScState->mFile.Size();
 
