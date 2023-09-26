@@ -7,15 +7,21 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <unordered_map>
+#include <list>
 
 #include "TypeDef.h"
 
 namespace nsTornadoEngine
 {
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TPrefabPatchOperation
-    {
+    struct DllExport TPatchOperation
+    {        
+        //AddEntity       -> components
+        //RemoveEntity    -> guid
+                             
+        //AddComponent    -> guid, components
+        //UpdateComponent -> guid, components
+        //RemoveComponent -> guid, components
         enum Operation
         {
             ADD_ENTITY,
@@ -30,18 +36,5 @@ namespace nsTornadoEngine
 
         std::string guid;
         std::list<TComponentContent> components;
-
-        //AddEntity       -> components
-        //RemoveEntity    -> guid
-                             
-        //AddComponent    -> guid, components
-        //UpdateComponent -> guid, components
-        //RemoveComponent -> guid, components
-    };
-
-#pragma REFLECTION_ATTRIBUTE
-    struct DllExport TPrefabPatch
-    {   
-        std::unordered_map<TPrefabPatchOperation::Operation, TPrefabPatchOperation> operations;
     };
 }

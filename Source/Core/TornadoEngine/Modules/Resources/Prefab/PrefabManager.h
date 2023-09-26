@@ -30,8 +30,6 @@ namespace nsTornadoEngine
         void Destroy(const std::string& prefabInstanceGuid);
 
         void Save(const std::string& prefabGuid);
-
-        void SetSceneManager(TSceneManager* pSceneMng);
     private:
         void InstantiateEntities(const std::list<nsECSFramework::TEntityID>& newEntities, 
             const std::string& sceneInstanceGuid, const std::string& parentGuid);

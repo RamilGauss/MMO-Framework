@@ -15,14 +15,13 @@ See for more information LICENSE.md.
 #include "SceneInstanceState.h"
 #include "SceneList.h"
 
+#include "Patch.h"
 namespace nsTornadoEngine
 {
     class TPrefabManager;
-
     class DllExport TSceneManager : public TObjectManager
     {
         TUniverseManager mUniverseManager;
-
         struct TReference
         {
             int counter = 0;
@@ -49,22 +48,26 @@ namespace nsTornadoEngine
     public:
         TSceneManager();
 
-        void SetLoadQuant(int ms);
-        int GetLoadQuant() const;
-
         const TSceneInstanceState& GetSceneInstanceState(const std::string& sceneInstanceGuid);
 
+        std::string Create(const std::string& absPath); // -> sceneGuid
         // Return SceneStateGuid
         std::string InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams, const std::string& tag = "");
 
         void Destroy(const std::string& sceneInstanceGuid);
-        void Destroy(nsECSFramework::TEntityID anyEidInScene);
 
-        bool Save(const std::string& sceneGuid);
+        void Save(const std::string& sceneInstanceGuid);// 
+        std::string SaveAs(const std::string& sceneInstanceGuid, const std::string& absPath);// -> sceneGuid
 
-        void Work();
+        TPatch GetPatch(const std::string& sceneInstanceGuid) const;
+        void SetPatch(const std::string& sceneInstanceGuid, const TPatch& patch);
 
+        // For Engine usage
+        void SetLoadQuant(int ms);
+        int GetLoadQuant() const;
         void SetPrefabManager(TPrefabManager* pPrefabMng);
+        void SetSceneCacheManager(TSceneCacheManager* pSceneCachebMng);
+        void Work();
     private:
         void IncrementReferenceCounter(TUniverseManager::IndexType index);
         void DecrementReferenceCounter(TUniverseManager::IndexType index);
