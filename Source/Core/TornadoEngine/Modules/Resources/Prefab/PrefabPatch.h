@@ -11,13 +11,13 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include "PatchOperation.h"
+#include "PrefabPatchOperation.h"
 
 namespace nsTornadoEngine
 {
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TPatch
+    struct DllExport TPrefabPatch
     {   
-        std::list<TPatchOperation> operations;
+        std::list<TPrefabPatchOperation> operations;
     };
 }

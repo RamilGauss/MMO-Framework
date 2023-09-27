@@ -15,7 +15,6 @@ See for more information LICENSE.md.
 #include "SceneInstanceState.h"
 #include "SceneList.h"
 
-#include "Patch.h"
 namespace nsTornadoEngine
 {
     class TPrefabManager;
@@ -58,9 +57,6 @@ namespace nsTornadoEngine
 
         void Save(const std::string& sceneInstanceGuid);// 
         std::string SaveAs(const std::string& sceneInstanceGuid, const std::string& absPath);// -> sceneGuid
-
-        TPatch GetPatch(const std::string& sceneInstanceGuid) const;
-        void SetPatch(const std::string& sceneInstanceGuid, const TPatch& patch);
 
         // For Engine usage
         void SetLoadQuant(int ms);

@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 namespace nsTornadoEngine
 {
 #pragma REFLECTION_ATTRIBUTE
-    struct DllExport TPatchOperation
+    struct DllExport TPrefabPatchOperation
     {        
         //AddEntity       -> components
         //RemoveEntity    -> guid
