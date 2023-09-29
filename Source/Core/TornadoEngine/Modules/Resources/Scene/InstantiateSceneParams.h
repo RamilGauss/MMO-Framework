@@ -19,18 +19,7 @@ namespace nsTornadoEngine
         std::string guid;
         std::string universeGuid = TGuidConstants::DEFAULT_UNIVERSE;
         nsMathTools::TMatrix16 rootMatrix;
-
-        void SetTag(const std::string& tag);
-        std::string GetTag() const;
-
-        void SetAbsPath(const std::string& absPath);
-        std::string GetAbsPath() const;
-
-        void SetSceneInstanceGuid(const std::string& sceneInstanceGuid);
-        std::string GetSceneInstanceGuid() const;
-    private:
         std::string tag;
-        std::string absPath;
         std::string sceneInstanceGuid;
     };
 }

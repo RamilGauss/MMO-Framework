@@ -56,7 +56,7 @@ namespace nsTornadoEngine
         // Data
         TInstantiateSceneParams mInstantiateSceneParams;
 
-        std::string mSceneIstanceGuid;
+        std::string mAbsPath;
         std::atomic<Step> mStep = Step::INIT;
 
         std::shared_ptr<TSceneInstantiatingThread> mAsyncThread;
@@ -81,7 +81,6 @@ namespace nsTornadoEngine
         std::unordered_map<std::string, std::map<std::string, TEntityMetaContentPtr>> mParentGuidEntities;
         TEntityMetaContentPtr mRootEntity;
 
-
         std::list<std::map<std::string, TEntityMetaContentPtr>> mLayers;
 
         std::list<std::map<std::string, TEntityMetaContentPtr>>::iterator mCurrentLayer;
@@ -92,6 +91,9 @@ namespace nsTornadoEngine
 
         std::list<TEntityContent>::const_iterator mEntIt;
         std::list<TPrefabInstance>::const_iterator mPrefabIt;
+
+        unsigned int mEntityInstanceIndex = 0;
+        unsigned int mPrefabInstanceIndex = 0
 
         unsigned short mUniverseIndex = 0;
 

@@ -51,7 +51,7 @@ namespace nsTornadoEngine
 
         std::string Create(const std::string& absPath); // -> sceneGuid
         // Return SceneStateGuid
-        std::string InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams, const std::string& tag = "", const std::string& sceneInstanceGuid = "");
+        std::string InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams);
 
         void Destroy(const std::string& sceneInstanceGuid);
 
