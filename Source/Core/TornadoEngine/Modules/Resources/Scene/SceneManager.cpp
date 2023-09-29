@@ -65,7 +65,7 @@ namespace nsTornadoEngine
         return *(fit->second.get());
     }
     //--------------------------------------------------------------------------------------------------------
-    std::string TSceneManager::InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams, const std::string& tag)
+    std::string TSceneManager::InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams, const std::string& tag, const std::string& sceneInstanceGuid)
     {
         // Convert to abs path
         auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
@@ -74,12 +74,13 @@ namespace nsTornadoEngine
             return "Not found";
         }
 
+        instantiateSceneParams.SetSceneInstanceGuid(sceneInstanceGuid);
         TSceneInstanceStatePtr sceneInstanceState = std::make_shared<TSceneInstanceState>(instantiateSceneParams);
 
         sceneInstanceState->mInstantiateSceneParams.SetAbsPath(fit->second);
         sceneInstanceState->mInstantiateSceneParams.SetTag(tag);
 
-        mSceneInstances.insert({ sceneInstanceState->mGuid, sceneInstanceState });
+        mSceneInstances.insert({ sceneInstanceState->mSceneInstanceGuid, sceneInstanceState });
 
         mAsyncScenes.AddToWait(sceneInstanceState);
 

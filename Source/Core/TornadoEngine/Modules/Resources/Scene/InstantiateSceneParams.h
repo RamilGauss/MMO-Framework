@@ -26,8 +26,11 @@ namespace nsTornadoEngine
         void SetAbsPath(const std::string& absPath);
         std::string GetAbsPath() const;
 
+        void SetSceneInstanceGuid(const std::string& sceneInstanceGuid);
+        std::string GetSceneInstanceGuid() const;
     private:
         std::string tag;
         std::string absPath;
+        std::string sceneInstanceGuid;
     };
 }

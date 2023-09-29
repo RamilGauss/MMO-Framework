@@ -13,9 +13,13 @@ namespace nsTornadoEngine
 {
     TSceneInstanceState::TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams)
     {
-        mFileBuffer.SetData(nullptr, FILE_PART_SIZE);
-        mSceneIstanceGuid = nsBase::TGuidGenerator::Generate();
         mInstantiateSceneParams = instantiateSceneParams;
+        
+        mFileBuffer.SetData(nullptr, FILE_PART_SIZE);
+        mSceneIstanceGuid = mInstantiateSceneParams.GetSceneInstanceGuid()
+        if (mSceneIstanceGuid.empty()) {
+            mSceneIstanceGuid = nsBase::TGuidGenerator::Generate();
+        }
 
         mFileProgress.SetStep(FILE_PART_SIZE);
         mPrepareTreeEntityProgress.SetStep(PREPARE_TREE_ENTITY_PART_SIZE);
