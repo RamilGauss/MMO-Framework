@@ -548,6 +548,7 @@
     <ClCompile Include="Modules\Resources\Scene\SceneInstantiatingThread.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneHashCalculator.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeFactory.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\SceneCacheManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Resources\Common\FrameworkResources.h">
@@ -1251,6 +1252,7 @@
     <ClInclude Include="Modules\Resources\Scene\EntityMetaContent.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneHashCalculator.h" />
     <ClInclude Include="Generated files\Container\ComponentTypeFactory.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneCacheManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

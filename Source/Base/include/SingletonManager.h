@@ -19,9 +19,7 @@ class DllExport TSingletonManager
 
     TPtrVector mTypeObjVec;
 
-    typedef TRunTimeTypeIndex<struct GlobalTypeIdentifier> TGlobalTypeIdentifier;
-
-    TGlobalTypeIdentifier mGlobalTypeIdentifier;
+    TRunTimeTypeIndex<TSingletonManager> mGlobalTypeIdentifier;
 public:
     template<typename Type>
     Type* Get()

@@ -344,7 +344,6 @@
     <ClCompile Include="src\TextFile.cpp" />
     <ClCompile Include="src\TextGenerator.cpp" />
     <ClCompile Include="src\ThreadBoost.cpp" />
-    <ClCompile Include="src\RunTimeTypeIndex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

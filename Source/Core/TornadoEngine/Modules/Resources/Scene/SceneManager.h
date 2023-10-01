@@ -17,6 +17,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
+    class TSceneCacheManager;
     class TPrefabManager;
     class DllExport TSceneManager : public TObjectManager
     {
@@ -41,6 +42,7 @@ namespace nsTornadoEngine
         int mLoadQuant = 5;// ms
 
         TPrefabManager* mPrefabMng = nullptr;
+        TSceneCacheManager* mSceneCacheMng = nullptr;
 
         std::function<bool(TSceneInstanceStatePtr)> mAsyncCondition;
         std::function<bool(TSceneInstanceStatePtr)> mSyncCondition;
@@ -56,7 +58,8 @@ namespace nsTornadoEngine
         void Destroy(const std::string& sceneInstanceGuid);
 
         void Save(const std::string& sceneInstanceGuid);// 
-        std::string SaveAs(const std::string& sceneInstanceGuid, const std::string& absPath);// -> sceneGuid
+        void SaveAs(const std::string& sceneInstanceGuid, const std::string& absPath);
+        std::string Copy(const std::string& srcGuid, const std::string& dstGuid);
 
         // For Engine usage
         void SetLoadQuant(int ms);

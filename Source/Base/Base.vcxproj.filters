@@ -376,9 +376,6 @@
     <ClCompile Include="src\SortedVecWithKeyMap.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\RunTimeTypeIndex.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\JsonPushMaster.cpp">
       <Filter>src</Filter>
     </ClCompile>

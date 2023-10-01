@@ -93,7 +93,7 @@ namespace nsTornadoEngine
         std::list<TPrefabInstance>::const_iterator mPrefabIt;
 
         unsigned int mEntityInstanceIndex = 0;
-        unsigned int mPrefabInstanceIndex = 0
+        unsigned int mPrefabInstanceIndex = 0;
 
         unsigned short mUniverseIndex = 0;
 

@@ -1,5 +1,5 @@
 {
-    "date": "2023-09-17 13:05:17.693576",
+    "date": "2023-10-01 19:22:47.207620",
     "defines": [
         "FMT_SHARED",
         "GTEST_LINKED_AS_SHARED_LIBRARY=1",
@@ -11,34 +11,34 @@
     ],
     "packages": {
         "b2/4.9.3": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b22ab09f136fd13\\p\\bin",
-            "includeDir": "",
-            "libDir": ""
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
         },
         "boost/1.81.0": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\boost5e549013a4c7b\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\boost5e549013a4c7b\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\boost5e549013a4c7b\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\boostb3b0c11178461\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\boostb3b0c11178461\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\boostb3b0c11178461\\p\\lib"
         },
         "bullet3/3.24": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\bulleed6ad170f77d2\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\bulleed6ad170f77d2\\p\\include\\bullet",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\bulleed6ad170f77d2\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\bullecc7e24f7f7578\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\bullecc7e24f7f7578\\p\\include\\bullet",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\bullecc7e24f7f7578\\p\\lib"
         },
         "bzip2/1.0.8": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2390e62dbed9cd\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2390e62dbed9cd\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2390e62dbed9cd\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2f3c676a6add6f\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2f3c676a6add6f\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\bzip2f3c676a6add6f\\p\\lib"
         },
         "fmt/9.1.0": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\fmt9edf67330c1dd\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\fmt9edf67330c1dd\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\fmt9edf67330c1dd\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\fmta6428d8ed25fb\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\fmta6428d8ed25fb\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\fmta6428d8ed25fb\\p\\lib"
         },
         "glad/0.1.36": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\gladd4b2b7c738483\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\gladd4b2b7c738483\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\gladd4b2b7c738483\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\glad5c54ac46dfe6a\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\glad5c54ac46dfe6a\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\glad5c54ac46dfe6a\\p\\lib"
         },
         "glm/0.9.9.8": {
             "binDir": "",
@@ -46,9 +46,9 @@
             "libDir": ""
         },
         "gtest/1.13.0": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\gtestbb51f23eb67ed\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\gtestbb51f23eb67ed\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\gtestbb51f23eb67ed\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\gtestce50ef397d7d0\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\gtestce50ef397d7d0\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\gtestce50ef397d7d0\\p\\lib"
         },
         "inja/3.4.0": {
             "binDir": "",
@@ -56,9 +56,9 @@
             "libDir": ""
         },
         "lz4/1.9.4": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\lz45e9cb18ab150a\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\lz45e9cb18ab150a\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\lz45e9cb18ab150a\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\lz42b7688ec391ea\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\lz42b7688ec391ea\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\lz42b7688ec391ea\\p\\lib"
         },
         "magic_enum/0.8.1": {
             "binDir": "",
@@ -66,9 +66,9 @@
             "libDir": ""
         },
         "nasm/2.15.05": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\nasm6f59671565601\\p\\bin",
-            "includeDir": "",
-            "libDir": ""
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
         },
         "nlohmann_json/3.11.2": {
             "binDir": "",
@@ -76,9 +76,9 @@
             "libDir": ""
         },
         "openssl/1.1.1t": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\opens2c5654d639b80\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\opens2c5654d639b80\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\opens2c5654d639b80\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\opensf390bd9ba8754\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\opensf390bd9ba8754\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\opensf390bd9ba8754\\p\\lib"
         },
         "rapidjson/cci.20220822": {
             "binDir": "C:\\Users\\Gauss\\.conan2\\p\\rapid4cabb31a09329\\p\\bin",
@@ -86,9 +86,9 @@
             "libDir": "C:\\Users\\Gauss\\.conan2\\p\\rapid4cabb31a09329\\p\\lib"
         },
         "sdl/2.26.1": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\sdl466fccaa531d1\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\sdl466fccaa531d1\\p\\include\\SDL2",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\sdl466fccaa531d1\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl41afff7a5685f\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl41afff7a5685f\\p\\include\\SDL2",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\sdl41afff7a5685f\\p\\lib"
         },
         "stb/cci.20220909": {
             "binDir": "",
@@ -96,14 +96,14 @@
             "libDir": ""
         },
         "strawberryperl/5.32.1.1": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\straw4602bdba38fca\\p\\bin",
-            "includeDir": "",
-            "libDir": ""
+            "binDir": "bin",
+            "includeDir": "include",
+            "libDir": "lib"
         },
         "zlib/1.2.13": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\zlib8fa523d68fd0f\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\zlib8fa523d68fd0f\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\zlib8fa523d68fd0f\\p\\lib"
+            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\zlib9b1259f8e5379\\p\\bin",
+            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\zlib9b1259f8e5379\\p\\include",
+            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\zlib9b1259f8e5379\\p\\lib"
         }
     }
 }

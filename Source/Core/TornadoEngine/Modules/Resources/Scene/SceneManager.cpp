@@ -16,6 +16,9 @@ See for more information LICENSE.md.
 #include "TornadoEngineJsonSerializer.h"
 #include "ProjectConfigContainer.h"
 
+#include "Modules.h"
+#include "HandlerCallCollector.h"
+
 #include "PrefabManager.h"
 
 #include "GuidComponent.h"
@@ -30,6 +33,7 @@ See for more information LICENSE.md.
 
 #include "UniverseIndexComponent.h"
 #include "UniverseGuidComponent.h"
+#include "SceneInstantiationCompletionHandlerComponent.h"
 
 namespace nsTornadoEngine
 {
@@ -65,7 +69,7 @@ namespace nsTornadoEngine
         return *(fit->second.get());
     }
     //--------------------------------------------------------------------------------------------------------
-    std::string TSceneManager::InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams, const std::string& tag, const std::string& sceneInstanceGuid)
+    std::string TSceneManager::InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams)
     {
         // Convert to abs path
         auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
@@ -74,17 +78,19 @@ namespace nsTornadoEngine
             return "Not found";
         }
 
-        instantiateSceneParams.SetSceneInstanceGuid(sceneInstanceGuid);
         TSceneInstanceStatePtr sceneInstanceState = std::make_shared<TSceneInstanceState>(instantiateSceneParams);
 
-        sceneInstanceState->mInstantiateSceneParams.SetAbsPath(fit->second);
-        sceneInstanceState->mInstantiateSceneParams.SetTag(tag);
+        if (sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid.empty()) {
+            sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid = nsBase::TGuidGenerator::Generate();
+        }
 
-        mSceneInstances.insert({ sceneInstanceState->mSceneInstanceGuid, sceneInstanceState });
+        sceneInstanceState->mAbsPath = fit->second;
+
+        mSceneInstances.insert({ sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid, sceneInstanceState });
 
         mAsyncScenes.AddToWait(sceneInstanceState);
 
-        return sceneInstanceState->mSceneIstanceGuid;
+        return sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid;
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
@@ -92,14 +98,19 @@ namespace nsTornadoEngine
 
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
+    void TSceneManager::Save(const std::string& sceneInstanceGuid)
     {
 
     }
     //--------------------------------------------------------------------------------------------------------
-    bool TSceneManager::Save(const std::string& sceneGuid)
+    void TSceneManager::SaveAs(const std::string& sceneInstanceGuid, const std::string& absPath)
     {
-        return false;
+
+    }
+    //--------------------------------------------------------------------------------------------------------
+    std::string TSceneManager::Copy(const std::string& srcGuid, const std::string& dstGuid)
+    {
+        return {};
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()
@@ -185,6 +196,11 @@ namespace nsTornadoEngine
         mPrefabMng = pPrefabMng;
     }
     //--------------------------------------------------------------------------------------------------------
+    void TSceneManager::SetSceneCacheManager(TSceneCacheManager* pSceneCachebMng)
+    {
+        mSceneCacheMng = pSceneCachebMng;
+    }
+    //--------------------------------------------------------------------------------------------------------
     void TSceneManager::AsyncWork(TSceneInstanceState* pSc)
     {
         pSc->mAsyncThread = std::make_shared<TSceneInstantiatingThread>(pSc);
@@ -252,7 +268,7 @@ namespace nsTornadoEngine
         DeserializeObjects(newEntities, pSc->mEntIt, partSize);
 
         // Replace all guids to new guid with ParentGuids and SceneGuids
-        UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, pSc->mSceneIstanceGuid);
+        UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, pSc->mInstantiateSceneParams.sceneInstanceGuid);
 
         TUniverseGuidComponent universeGuidComponent;
         universeGuidComponent.value = pSc->mInstantiateSceneParams.universeGuid;
@@ -291,7 +307,7 @@ namespace nsTornadoEngine
             for (auto eid : sceneOriginalGuidEntities) {
                 
                 auto sceneInstanceGuid = mEntityManager->ViewComponent<TSceneInstanceGuidComponent>(eid)->value;
-                if (sceneInstanceGuid == pSc->mSceneIstanceGuid) {
+                if (sceneInstanceGuid == pSc->mInstantiateSceneParams.sceneInstanceGuid) {
                     parentGuid = sceneInstanceGuid;
                     break;
                 }
@@ -302,7 +318,7 @@ namespace nsTornadoEngine
             instantiatePrefabParams.guid = pSc->mPrefabIt->prefabGuid;
             instantiatePrefabParams.rootMatrix = pSc->mPrefabIt->localMatrix;
             instantiatePrefabParams.parentGuid = parentGuid;
-            instantiatePrefabParams.sceneInstanceGuid = pSc->mSceneIstanceGuid;
+            instantiatePrefabParams.sceneInstanceGuid = pSc->mInstantiateSceneParams.sceneInstanceGuid;
                  
             mPrefabMng->InstantiateByGuid(instantiatePrefabParams);
         }
@@ -326,14 +342,14 @@ namespace nsTornadoEngine
                 // TODO
             } else {
 
-                auto pEntMng = GetEntityManager();
+                auto pEntMng = mEntityManager;
                 auto eids = pEntMng->GetByHasCopy<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
 
                 for (auto& eid : eids) {
                     auto handler = pEntMng->ViewComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid)->handler;
 
-                    auto tag = deactivatedSyncScene->mInstantiateSceneParams.GetTag();
-                    auto sceneInstanceGuid = deactivatedSyncScene->mSceneInstanceGuid;
+                    auto tag = deactivatedSyncScene->mInstantiateSceneParams.tag;
+                    auto sceneInstanceGuid = deactivatedSyncScene->mInstantiateSceneParams.sceneInstanceGuid;
                     handlerCallCollector->Add([handler, eid, sceneInstanceGuid, tag]()
                     {
                         handler->Handle(eid, sceneInstanceGuid, tag);
