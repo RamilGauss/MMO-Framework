@@ -60,11 +60,10 @@ namespace nsTornadoEngine
         void Destroy(const std::string& sceneInstanceGuid);
 
         // Sync + Async
-        void Save(const std::string& sceneInstanceGuid);// 
-        void SaveAs(const std::string& sceneInstanceGuid, const std::string& absPath);
+        void Save(const std::string& sceneInstanceGuid, const std::string& guid = "");
 
-        // Async
-        std::string Copy(const std::string& srcGuid, const std::string& dstGuid);
+        // Per one call
+        void Copy(const std::string& srcGuid, const std::string& dstGuid);
 
         // For Engine usage
         void SetLoadQuant(int ms);

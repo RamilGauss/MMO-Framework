@@ -56,6 +56,8 @@ namespace nsTornadoEngine
         // Data
         TInstantiateSceneParams mInstantiateSceneParams;
 
+        std::string mGuid;
+
         std::string mAbsPath;
         std::atomic<Step> mStep = Step::INIT;
 

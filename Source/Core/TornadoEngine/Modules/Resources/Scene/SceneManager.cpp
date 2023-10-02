@@ -108,19 +108,14 @@ namespace nsTornadoEngine
 
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::Save(const std::string& sceneInstanceGuid)
+    void TSceneManager::SaveAs(const std::string& sceneInstanceGuid, const std::string& guid)
     {
 
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::SaveAs(const std::string& sceneInstanceGuid, const std::string& absPath)
+    void TSceneManager::Copy(const std::string& srcGuid, const std::string& dstGuid)
     {
-
-    }
-    //--------------------------------------------------------------------------------------------------------
-    std::string TSceneManager::Copy(const std::string& srcGuid, const std::string& dstGuid)
-    {
-        return {};
+        
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()

@@ -16,8 +16,6 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TPrefabResourceContent
     {
-        std::string guid;
-
         std::string prefabParentGuid = TGuidConstants::ORIGINAL;
         
         std::list<TEntityContent> entities;
