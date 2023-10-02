@@ -51,14 +51,19 @@ namespace nsTornadoEngine
 
         const TSceneInstanceState& GetSceneInstanceState(const std::string& sceneInstanceGuid);
 
+        // Per one call
         std::string Create(const std::string& absPath); // -> sceneGuid
-        // Return SceneStateGuid
-        std::string InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams);
+        void Delete(const std::string& guid);
 
+        // Aync + sync
+        std::string Instantiate(const TInstantiateSceneParams& instantiateSceneParams);// -> sceneInstanceGuid
         void Destroy(const std::string& sceneInstanceGuid);
 
+        // Sync + Async
         void Save(const std::string& sceneInstanceGuid);// 
         void SaveAs(const std::string& sceneInstanceGuid, const std::string& absPath);
+
+        // Async
         std::string Copy(const std::string& srcGuid, const std::string& dstGuid);
 
         // For Engine usage

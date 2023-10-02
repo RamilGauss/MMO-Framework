@@ -17,6 +17,8 @@ namespace nsTornadoEngine
     struct DllExport TInstantiateSceneParams
     {
         std::string guid;
+
+        // optionality
         std::string universeGuid = TGuidConstants::DEFAULT_UNIVERSE;
         nsMathTools::TMatrix16 rootMatrix;
         std::string tag;

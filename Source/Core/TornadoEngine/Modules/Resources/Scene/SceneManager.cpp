@@ -49,6 +49,16 @@ namespace nsTornadoEngine
         mSyncScenes.Setup(MAX_SYNC_LOADING_SCENE_COUNT, mSyncCondition);
     }
     //--------------------------------------------------------------------------------------------------------
+    std::string TSceneManager::Create(const std::string& absPath)
+    {
+        return {};
+    }
+    //--------------------------------------------------------------------------------------------------------
+    void TSceneManager::Delete(const std::string& guid)
+    {
+
+    }
+    //--------------------------------------------------------------------------------------------------------
     void TSceneManager::SetLoadQuant(int ms)
     {
         mLoadQuant = ms;
@@ -69,7 +79,7 @@ namespace nsTornadoEngine
         return *(fit->second.get());
     }
     //--------------------------------------------------------------------------------------------------------
-    std::string TSceneManager::InstantiateByGuid(const TInstantiateSceneParams& instantiateSceneParams)
+    std::string TSceneManager::Instantiate(const TInstantiateSceneParams& instantiateSceneParams)
     {
         // Convert to abs path
         auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
