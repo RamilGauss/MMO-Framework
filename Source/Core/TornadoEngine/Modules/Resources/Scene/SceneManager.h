@@ -37,8 +37,6 @@ namespace nsTornadoEngine
         TSceneList mAsyncScenes;
         TSceneList mSyncScenes;
 
-        TSceneInstanceState mGhostSceneInstance;
-
         int mLoadQuant = 5;// ms
 
         TPrefabManager* mPrefabMng = nullptr;
@@ -49,7 +47,7 @@ namespace nsTornadoEngine
     public:
         TSceneManager();
 
-        const TSceneInstanceState& GetSceneInstanceState(const std::string& sceneInstanceGuid);
+        const ISceneInstanceState* GetSceneInstanceState(const std::string& sceneInstanceGuid);
 
         // Per one call
         std::string Create(const std::string& absPath); // -> sceneGuid

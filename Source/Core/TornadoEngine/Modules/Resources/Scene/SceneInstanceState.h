@@ -13,7 +13,6 @@ See for more information LICENSE.md.
 #include <unordered_map>
 #include <map>
 
-#include "TypeDef.h"
 #include "LoadFromFile.h"
 #include "ProgressValue.h"
 
@@ -22,11 +21,13 @@ See for more information LICENSE.md.
 #include "EntityMetaContent.h"
 #include "SceneResourceContent.h"
 
+#include "ISceneInstanceState.h"
+
 namespace nsTornadoEngine
 {
-    struct DllExport TSceneInstanceState
+    struct DllExport TSceneInstanceState : ISceneInstanceState
     {
-        enum class Step
+        enum class SubState
         {
             INIT,
             FILE_LOADING,
@@ -36,21 +37,12 @@ namespace nsTornadoEngine
             COMPONENT_DESERIALIZING,
 
             PREPARE_INSTANTIATING,
-
             ENTITY_INSTANTIATING,
             PREFAB_INSTANTIATING,
 
-            STABLE,
+            INSTANTIATED,
 
-            DESTROYING, // in one step
-        };
-
-        enum class SubStep
-        {
-            ASYNC_LOADING,
-            SYNC_LOADING,
-            STABLE,
-            DESTROYING,
+            SAVING
         };
 
         // Data
@@ -110,12 +102,16 @@ namespace nsTornadoEngine
         // Helpers
         TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams);
 
-        SubStep GetSubStep() const;
+        State GetState() const override;
 
-        float GetLoadingProgress() const;
-        bool IsLoadCompleted() const;
+        float GetInstantiatingProgress() const override;
+        bool IsInstantiateCompleted() const override;
 
-        bool IsCancelled() const;
+        float GetDestroyingProgress() const override;
+        bool IsIDestroyCompleted() const override;
+
+        float GetSsavingProgress() const override;
+        bool IsSaveCompleted() const override;
     };
 
     using TSceneInstanceStatePtr = std::shared_ptr<TSceneInstanceState>;
