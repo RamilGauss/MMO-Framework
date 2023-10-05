@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_05 10:09:54.655
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_10_05 13:10:12.983
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -27,7 +27,7 @@ void TTornadoEngineJsonSerializer::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    std::map<int, TypeFunc> m;
+    std::list<TypeFunc> funcs;
     
     TypeFunc _nsMathTools_TMatrix16TypeFunc;
     _nsMathTools_TMatrix16TypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -37,9 +37,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsMathTools::TMatrix16>((nsMathTools::TMatrix16*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TMatrix16TypeFunc = globalTypeIdentifier->Type<nsMathTools::TMatrix16>();
+    _nsMathTools_TMatrix16TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TMatrix16>();
     
-    m.insert({ rtti__nsMathTools_TMatrix16TypeFunc, _nsMathTools_TMatrix16TypeFunc });
+    funcs.push_back(_nsMathTools_TMatrix16TypeFunc);
     
     TypeFunc _nsMathTools_TMatrix9TypeFunc;
     _nsMathTools_TMatrix9TypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -49,9 +49,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsMathTools::TMatrix9>((nsMathTools::TMatrix9*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TMatrix9TypeFunc = globalTypeIdentifier->Type<nsMathTools::TMatrix9>();
+    _nsMathTools_TMatrix9TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TMatrix9>();
     
-    m.insert({ rtti__nsMathTools_TMatrix9TypeFunc, _nsMathTools_TMatrix9TypeFunc });
+    funcs.push_back(_nsMathTools_TMatrix9TypeFunc);
     
     TypeFunc _nsMathTools_TOrientationTypeFunc;
     _nsMathTools_TOrientationTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -61,9 +61,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsMathTools::TOrientation>((nsMathTools::TOrientation*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TOrientationTypeFunc = globalTypeIdentifier->Type<nsMathTools::TOrientation>();
+    _nsMathTools_TOrientationTypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TOrientation>();
     
-    m.insert({ rtti__nsMathTools_TOrientationTypeFunc, _nsMathTools_TOrientationTypeFunc });
+    funcs.push_back(_nsMathTools_TOrientationTypeFunc);
     
     TypeFunc _nsMathTools_TPlaneTypeFunc;
     _nsMathTools_TPlaneTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -73,9 +73,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsMathTools::TPlane>((nsMathTools::TPlane*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TPlaneTypeFunc = globalTypeIdentifier->Type<nsMathTools::TPlane>();
+    _nsMathTools_TPlaneTypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TPlane>();
     
-    m.insert({ rtti__nsMathTools_TPlaneTypeFunc, _nsMathTools_TPlaneTypeFunc });
+    funcs.push_back(_nsMathTools_TPlaneTypeFunc);
     
     TypeFunc _nsMathTools_TPoint2TypeFunc;
     _nsMathTools_TPoint2TypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -85,9 +85,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsMathTools::TPoint2>((nsMathTools::TPoint2*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TPoint2TypeFunc = globalTypeIdentifier->Type<nsMathTools::TPoint2>();
+    _nsMathTools_TPoint2TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TPoint2>();
     
-    m.insert({ rtti__nsMathTools_TPoint2TypeFunc, _nsMathTools_TPoint2TypeFunc });
+    funcs.push_back(_nsMathTools_TPoint2TypeFunc);
     
     TypeFunc _nsMathTools_TQuaternionTypeFunc;
     _nsMathTools_TQuaternionTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -97,9 +97,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsMathTools::TQuaternion>((nsMathTools::TQuaternion*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TQuaternionTypeFunc = globalTypeIdentifier->Type<nsMathTools::TQuaternion>();
+    _nsMathTools_TQuaternionTypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TQuaternion>();
     
-    m.insert({ rtti__nsMathTools_TQuaternionTypeFunc, _nsMathTools_TQuaternionTypeFunc });
+    funcs.push_back(_nsMathTools_TQuaternionTypeFunc);
     
     TypeFunc _nsMathTools_TVector2TypeFunc;
     _nsMathTools_TVector2TypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -109,9 +109,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsMathTools::TVector2>((nsMathTools::TVector2*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TVector2TypeFunc = globalTypeIdentifier->Type<nsMathTools::TVector2>();
+    _nsMathTools_TVector2TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TVector2>();
     
-    m.insert({ rtti__nsMathTools_TVector2TypeFunc, _nsMathTools_TVector2TypeFunc });
+    funcs.push_back(_nsMathTools_TVector2TypeFunc);
     
     TypeFunc _nsMathTools_TVector3TypeFunc;
     _nsMathTools_TVector3TypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -121,9 +121,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsMathTools::TVector3>((nsMathTools::TVector3*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TVector3TypeFunc = globalTypeIdentifier->Type<nsMathTools::TVector3>();
+    _nsMathTools_TVector3TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TVector3>();
     
-    m.insert({ rtti__nsMathTools_TVector3TypeFunc, _nsMathTools_TVector3TypeFunc });
+    funcs.push_back(_nsMathTools_TVector3TypeFunc);
     
     TypeFunc _nsMathTools_TVector4TypeFunc;
     _nsMathTools_TVector4TypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -133,9 +133,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsMathTools::TVector4>((nsMathTools::TVector4*) p, str, err);
     };
     
-    auto rtti__nsMathTools_TVector4TypeFunc = globalTypeIdentifier->Type<nsMathTools::TVector4>();
+    _nsMathTools_TVector4TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TVector4>();
     
-    m.insert({ rtti__nsMathTools_TVector4TypeFunc, _nsMathTools_TVector4TypeFunc });
+    funcs.push_back(_nsMathTools_TVector4TypeFunc);
     
     TypeFunc _nsTornadoEngine_TArchetypeFieldTypeFunc;
     _nsTornadoEngine_TArchetypeFieldTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -145,9 +145,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TArchetypeField>((nsTornadoEngine::TArchetypeField*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TArchetypeFieldTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TArchetypeField>();
+    _nsTornadoEngine_TArchetypeFieldTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TArchetypeField>();
     
-    m.insert({ rtti__nsTornadoEngine_TArchetypeFieldTypeFunc, _nsTornadoEngine_TArchetypeFieldTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TArchetypeFieldTypeFunc);
     
     TypeFunc _nsTornadoEngine_TComponentContentTypeFunc;
     _nsTornadoEngine_TComponentContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -157,9 +157,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TComponentContent>((nsTornadoEngine::TComponentContent*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TComponentContentTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TComponentContent>();
+    _nsTornadoEngine_TComponentContentTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TComponentContent>();
     
-    m.insert({ rtti__nsTornadoEngine_TComponentContentTypeFunc, _nsTornadoEngine_TComponentContentTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TComponentContentTypeFunc);
     
     TypeFunc _nsTornadoEngine_TConveyorConfigTypeFunc;
     _nsTornadoEngine_TConveyorConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -169,9 +169,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TConveyorConfig>((nsTornadoEngine::TConveyorConfig*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TConveyorConfigTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TConveyorConfig>();
+    _nsTornadoEngine_TConveyorConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TConveyorConfig>();
     
-    m.insert({ rtti__nsTornadoEngine_TConveyorConfigTypeFunc, _nsTornadoEngine_TConveyorConfigTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TConveyorConfigTypeFunc);
     
     TypeFunc _nsTornadoEngine_TEntityContentTypeFunc;
     _nsTornadoEngine_TEntityContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -181,9 +181,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TEntityContent>((nsTornadoEngine::TEntityContent*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TEntityContentTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TEntityContent>();
+    _nsTornadoEngine_TEntityContentTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TEntityContent>();
     
-    m.insert({ rtti__nsTornadoEngine_TEntityContentTypeFunc, _nsTornadoEngine_TEntityContentTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TEntityContentTypeFunc);
     
     TypeFunc _nsTornadoEngine_TFrameworkResourcesTypeFunc;
     _nsTornadoEngine_TFrameworkResourcesTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -193,9 +193,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TFrameworkResources>((nsTornadoEngine::TFrameworkResources*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TFrameworkResourcesTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TFrameworkResources>();
+    _nsTornadoEngine_TFrameworkResourcesTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TFrameworkResources>();
     
-    m.insert({ rtti__nsTornadoEngine_TFrameworkResourcesTypeFunc, _nsTornadoEngine_TFrameworkResourcesTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TFrameworkResourcesTypeFunc);
     
     TypeFunc _nsTornadoEngine_TPrefabInstanceTypeFunc;
     _nsTornadoEngine_TPrefabInstanceTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -205,9 +205,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TPrefabInstance>((nsTornadoEngine::TPrefabInstance*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TPrefabInstanceTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabInstance>();
+    _nsTornadoEngine_TPrefabInstanceTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabInstance>();
     
-    m.insert({ rtti__nsTornadoEngine_TPrefabInstanceTypeFunc, _nsTornadoEngine_TPrefabInstanceTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TPrefabInstanceTypeFunc);
     
     TypeFunc _nsTornadoEngine_TPrefabPatchTypeFunc;
     _nsTornadoEngine_TPrefabPatchTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -217,9 +217,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TPrefabPatch>((nsTornadoEngine::TPrefabPatch*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TPrefabPatchTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabPatch>();
+    _nsTornadoEngine_TPrefabPatchTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabPatch>();
     
-    m.insert({ rtti__nsTornadoEngine_TPrefabPatchTypeFunc, _nsTornadoEngine_TPrefabPatchTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TPrefabPatchTypeFunc);
     
     TypeFunc _nsTornadoEngine_TPrefabPatchOperationTypeFunc;
     _nsTornadoEngine_TPrefabPatchOperationTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -229,9 +229,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TPrefabPatchOperation>((nsTornadoEngine::TPrefabPatchOperation*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TPrefabPatchOperationTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabPatchOperation>();
+    _nsTornadoEngine_TPrefabPatchOperationTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabPatchOperation>();
     
-    m.insert({ rtti__nsTornadoEngine_TPrefabPatchOperationTypeFunc, _nsTornadoEngine_TPrefabPatchOperationTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TPrefabPatchOperationTypeFunc);
     
     TypeFunc _nsTornadoEngine_TPrefabResourceContentTypeFunc;
     _nsTornadoEngine_TPrefabResourceContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -241,9 +241,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TPrefabResourceContent>((nsTornadoEngine::TPrefabResourceContent*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TPrefabResourceContentTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabResourceContent>();
+    _nsTornadoEngine_TPrefabResourceContentTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TPrefabResourceContent>();
     
-    m.insert({ rtti__nsTornadoEngine_TPrefabResourceContentTypeFunc, _nsTornadoEngine_TPrefabResourceContentTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TPrefabResourceContentTypeFunc);
     
     TypeFunc _nsTornadoEngine_TProjectConfigTypeFunc;
     _nsTornadoEngine_TProjectConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -253,9 +253,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TProjectConfig>((nsTornadoEngine::TProjectConfig*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TProjectConfigTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TProjectConfig>();
+    _nsTornadoEngine_TProjectConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TProjectConfig>();
     
-    m.insert({ rtti__nsTornadoEngine_TProjectConfigTypeFunc, _nsTornadoEngine_TProjectConfigTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TProjectConfigTypeFunc);
     
     TypeFunc _nsTornadoEngine_TResourceContentMapTypeFunc;
     _nsTornadoEngine_TResourceContentMapTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -265,9 +265,9 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TResourceContentMap>((nsTornadoEngine::TResourceContentMap*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TResourceContentMapTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TResourceContentMap>();
+    _nsTornadoEngine_TResourceContentMapTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TResourceContentMap>();
     
-    m.insert({ rtti__nsTornadoEngine_TResourceContentMapTypeFunc, _nsTornadoEngine_TResourceContentMapTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TResourceContentMapTypeFunc);
     
     TypeFunc _nsTornadoEngine_TSceneResourceContentTypeFunc;
     _nsTornadoEngine_TSceneResourceContentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -277,18 +277,18 @@ void TTornadoEngineJsonSerializer::Init()
         return Deserialize<nsTornadoEngine::TSceneResourceContent>((nsTornadoEngine::TSceneResourceContent*) p, str, err);
     };
     
-    auto rtti__nsTornadoEngine_TSceneResourceContentTypeFunc = globalTypeIdentifier->Type<nsTornadoEngine::TSceneResourceContent>();
+    _nsTornadoEngine_TSceneResourceContentTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::TSceneResourceContent>();
     
-    m.insert({ rtti__nsTornadoEngine_TSceneResourceContentTypeFunc, _nsTornadoEngine_TSceneResourceContentTypeFunc });
+    funcs.push_back(_nsTornadoEngine_TSceneResourceContentTypeFunc);
     
     int max = 0;
-    for (auto& vt : m) {
-        max = std::max(vt.first, max);
+    for (auto& f : funcs) {
+        max = std::max(f.rtti, max);
     }
     
     mTypeFuncVector.resize(max + 1);
-    for (auto& vt : m) {
-        mTypeFuncVector[vt.first] = vt.second;
+    for (auto& f : funcs) {
+        mTypeFuncVector[f.rtti] = f;
     }
 }
 //---------------------------------------------------------------------------------------
@@ -567,12 +567,14 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TComponentContent
 {
     PUM::Push(obj, "typeName", p->typeName);
     PUM::Push(obj, "jsonBody", p->jsonBody);
+    PUM::Push(obj, "rtti", p->rtti);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TComponentContent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "typeName", p->typeName);
     POM::PopStr(obj, "jsonBody", p->jsonBody);
+    POM::PopNum(obj, "rtti", p->rtti);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TConveyorConfig* p, Jobj& obj)
@@ -657,21 +659,24 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TPrefabInstance
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabPatch* p, Jobj& obj)
 {
-    auto operations_c0 = PUM::AddObject(obj, "operations");
+    PUM::Value operations_a0(rapidjson::kArrayType);
     for(auto& operations_e0 : p->operations) {
-        auto operations_a0 = PUM::AddObject(operations_c0, PUM::ConvertToString(operations_e0.first).data());
-        _Serialize(&(operations_e0.second), operations_a0);
+        PUM::Value operations_a1(rapidjson::kObjectType);
+        auto operations_c1 = operations_a1.GetObject();
+        _Serialize(&operations_e0, operations_c1);
+        PUM::PushBack(operations_a0, operations_a1);
     }
+    PUM::Push(obj, "operations", operations_a0);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TPrefabPatch* p, const Jobj& obj)
 {
-    auto operations_a0 = POM::FindObject(obj, "operations");
+    auto operations_a0 = POM::FindArray(obj, "operations");
     for(auto& operations_e0 : operations_a0) {
-        auto operations_o1 = operations_e0.value.GetObject();
+        auto operations_o1 = operations_e0.GetObject();
         nsTornadoEngine::TPrefabPatchOperation operations_c1;
         _Deserialize(&operations_c1, operations_o1);
-        p->operations.insert({ (TPrefabPatchOperation::Operation)std::stod(operations_e0.name.GetString()), operations_c1 });
+        p->operations.push_back(operations_c1);
     }
 }
 //---------------------------------------------------------------------------------------
@@ -707,7 +712,6 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TPrefabPatchOpe
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabResourceContent* p, Jobj& obj)
 {
-    PUM::Push(obj, "guid", p->guid);
     PUM::Push(obj, "prefabParentGuid", p->prefabParentGuid);
     PUM::Value entities_a0(rapidjson::kArrayType);
     for(auto& entities_e0 : p->entities) {
@@ -723,7 +727,6 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabResourceCo
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TPrefabResourceContent* p, const Jobj& obj)
 {
-    POM::PopStr(obj, "guid", p->guid);
     POM::PopStr(obj, "prefabParentGuid", p->prefabParentGuid);
     auto entities_a0 = POM::FindArray(obj, "entities");
     for(auto& entities_e0 : entities_a0) {
@@ -783,7 +786,6 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TResourceConten
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TSceneResourceContent* p, Jobj& obj)
 {
-    PUM::Push(obj, "guid", p->guid);
     PUM::Push(obj, "groupedByRankEntityGuidHash", p->groupedByRankEntityGuidHash);
     PUM::Value entities_a0(rapidjson::kArrayType);
     for(auto& entities_e0 : p->entities) {
@@ -805,7 +807,6 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TSceneResourceCon
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TSceneResourceContent* p, const Jobj& obj)
 {
-    POM::PopStr(obj, "guid", p->guid);
     POM::PopStr(obj, "groupedByRankEntityGuidHash", p->groupedByRankEntityGuidHash);
     auto entities_a0 = POM::FindArray(obj, "entities");
     for(auto& entities_e0 : entities_a0) {

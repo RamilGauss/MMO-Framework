@@ -51,7 +51,7 @@ namespace nsTornadoEngine
         std::string mGuid;
 
         std::string mAbsPath;
-        std::atomic<Step> mStep = Step::INIT;
+        std::atomic<SubState> mSubState = SubState::INIT;
 
         std::shared_ptr<TSceneInstantiatingThread> mAsyncThread;
 

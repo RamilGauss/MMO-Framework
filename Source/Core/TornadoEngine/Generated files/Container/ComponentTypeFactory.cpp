@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_17 10:25:19.739
+// File has been generated at 2023_10_05 13:10:57.303
 	
 #include "ComponentTypeFactory.h"
 #include "SingletonManager.h"
@@ -499,6 +499,13 @@ void TComponentTypeFactory::Init()
     nsLogicWrapper_TPrefabReferenceComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabReferenceComponent>();
     
     datas.push_back(nsLogicWrapper_TPrefabReferenceComponent_Data);
+    
+    Data nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data;
+    nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent(); };
+    nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent*)p; };
+    nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
+    
+    datas.push_back(nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data);
     
     Data nsLogicWrapper_TSceneObjectReferenceComponent_Data;
     nsLogicWrapper_TSceneObjectReferenceComponent_Data.newFunc = [](){ return new nsLogicWrapper::TSceneObjectReferenceComponent(); };

@@ -37,13 +37,12 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    TSceneManager::TSceneManager() :
-        mGhostSceneInstance({})
+    TSceneManager::TSceneManager()
     {
         mAsyncCondition =
-            [](TSceneInstanceStatePtr pSc) {return pSc->GetSubStep() != TSceneInstanceState::SubStep::ASYNC_LOADING; };
+            [](TSceneInstanceStatePtr pSc) {return pSc->GetState() != TSceneInstanceState::State::ASYNC_INSTANTIATING; };
         mSyncCondition =
-            [](TSceneInstanceStatePtr pSc) {return pSc->GetSubStep() != TSceneInstanceState::SubStep::SYNC_LOADING; };
+            [](TSceneInstanceStatePtr pSc) {return pSc->GetState() != TSceneInstanceState::State::SYNC_INSTANTIATING; };
 
         mAsyncScenes.Setup(MAX_ASYNC_LOADING_SCENE_COUNT, mAsyncCondition);
         mSyncScenes.Setup(MAX_SYNC_LOADING_SCENE_COUNT, mSyncCondition);
@@ -69,14 +68,14 @@ namespace nsTornadoEngine
         return mLoadQuant;
     }
     //--------------------------------------------------------------------------------------------------------
-    const TSceneInstanceState& TSceneManager::GetSceneInstanceState(const std::string& sceneInstanceGuid)
+    const ISceneInstanceState* TSceneManager::GetSceneInstanceState(const std::string& sceneInstanceGuid)
     {
         auto fit = mSceneInstances.find(sceneInstanceGuid);
         if (fit == mSceneInstances.end()) {
-            return mGhostSceneInstance;
+            return nullptr;
         }
 
-        return *(fit->second.get());
+        return fit->second.get();
     }
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::Instantiate(const TInstantiateSceneParams& instantiateSceneParams)
@@ -108,7 +107,7 @@ namespace nsTornadoEngine
 
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::SaveAs(const std::string& sceneInstanceGuid, const std::string& guid)
+    void TSceneManager::Save(const std::string& sceneInstanceGuid, const std::string& guid)
     {
 
     }
@@ -219,20 +218,20 @@ namespace nsTornadoEngine
 
         while (true) {
 
-            switch (pSc->mStep) {
-                case TSceneInstanceState::Step::PREPARE_INSTANTIATING:
+            switch (pSc->mSubState) {
+                case TSceneInstanceState::SubState::PREPARE_INSTANTIATING:
                     PrepareInstantiating(pSc);
                     break;
-                case TSceneInstanceState::Step::ENTITY_INSTANTIATING:
+                case TSceneInstanceState::SubState::ENTITY_INSTANTIATING:
                     EntityInstantiating(pSc);
                     break;
-                case TSceneInstanceState::Step::PREFAB_INSTANTIATING:
+                case TSceneInstanceState::SubState::PREFAB_INSTANTIATING:
                     PrefabInstantiating(pSc);
                     break;
                 default:;
             }
 
-            if (pSc->IsLoadCompleted()) {
+            if (pSc->IsInstantiateCompleted()) {
                 break;
             }
 
@@ -258,7 +257,7 @@ namespace nsTornadoEngine
 
         pSc->mUniverseIndex = universeIndex;
 
-        pSc->mStep = TSceneInstanceState::Step::ENTITY_INSTANTIATING;
+        pSc->mSubState = TSceneInstanceState::SubState::ENTITY_INSTANTIATING;
     }
     //---------------------------------------------------------------------------------------
     void TSceneManager::EntityInstantiating(TSceneInstanceState* pSc)
@@ -288,9 +287,9 @@ namespace nsTornadoEngine
         if (pSc->mEntityProgress.IsCompleted()) {
 
             if (pSc->mSceneContent.prefabInstances.size()) {
-                pSc->mStep = TSceneInstanceState::Step::PREFAB_INSTANTIATING;
+                pSc->mSubState = TSceneInstanceState::SubState::PREFAB_INSTANTIATING;
             } else {
-                pSc->mStep = TSceneInstanceState::Step::STABLE;
+                pSc->mSubState = TSceneInstanceState::SubState::INSTANTIATED;
             }
         }
     }
@@ -331,7 +330,7 @@ namespace nsTornadoEngine
         pSc->mPrefabProgress.IncrementValue(partSize);
 
         if (pSc->mPrefabProgress.IsCompleted()) {
-            pSc->mStep = TSceneInstanceState::Step::STABLE;
+            pSc->mSubState = TSceneInstanceState::SubState::INSTANTIATED;
         }
     }
     //--------------------------------------------------------------------------------
@@ -343,23 +342,18 @@ namespace nsTornadoEngine
         mSyncScenes.TryDeactivate(deactivatedSyncScenes);
 
         for (auto& deactivatedSyncScene : deactivatedSyncScenes) {
-            if (deactivatedSyncScene->IsCancelled()) {
-                // TODO
-            } else {
+            auto pEntMng = mEntityManager;
+            auto eids = pEntMng->GetByHasCopy<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
 
-                auto pEntMng = mEntityManager;
-                auto eids = pEntMng->GetByHasCopy<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
+            for (auto& eid : eids) {
+                auto handler = pEntMng->ViewComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid)->handler;
 
-                for (auto& eid : eids) {
-                    auto handler = pEntMng->ViewComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid)->handler;
-
-                    auto tag = deactivatedSyncScene->mInstantiateSceneParams.tag;
-                    auto sceneInstanceGuid = deactivatedSyncScene->mInstantiateSceneParams.sceneInstanceGuid;
-                    handlerCallCollector->Add([handler, eid, sceneInstanceGuid, tag]()
-                    {
-                        handler->Handle(eid, sceneInstanceGuid, tag);
-                    });
-                }
+                auto tag = deactivatedSyncScene->mInstantiateSceneParams.tag;
+                auto sceneInstanceGuid = deactivatedSyncScene->mInstantiateSceneParams.sceneInstanceGuid;
+                handlerCallCollector->Add([handler, eid, sceneInstanceGuid, tag]()
+                {
+                    handler->Handle(eid, sceneInstanceGuid, tag);
+                });
             }
         }
     }

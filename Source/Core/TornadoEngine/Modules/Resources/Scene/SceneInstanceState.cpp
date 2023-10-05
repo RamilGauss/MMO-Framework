@@ -16,9 +16,8 @@ namespace nsTornadoEngine
         mInstantiateSceneParams = instantiateSceneParams;
         
         mFileBuffer.SetData(nullptr, FILE_PART_SIZE);
-        mSceneIstanceGuid = mInstantiateSceneParams.GetSceneInstanceGuid()
-        if (mSceneIstanceGuid.empty()) {
-            mSceneIstanceGuid = nsBase::TGuidGenerator::Generate();
+        if (mInstantiateSceneParams.sceneInstanceGuid.empty()) {
+            mInstantiateSceneParams.sceneInstanceGuid = nsBase::TGuidGenerator::Generate();
         }
 
         mFileProgress.SetStep(FILE_PART_SIZE);
@@ -29,47 +28,39 @@ namespace nsTornadoEngine
         mPrefabProgress.SetStep(PREFAB_INSTANTIATING_PART_SIZE);
     }
     //--------------------------------------------------------------------------------------------------
-    TSceneInstanceState::SubStep TSceneInstanceState::GetSubStep() const
+    ISceneInstanceState::State TSceneInstanceState::GetState() const
     {
-        TSceneInstanceState::SubStep subStep = SubStep::STABLE;
-        switch (mStep) {
-            case Step::INIT:
-            case Step::FILE_LOADING:
-            case Step::SCENE_DESERIALIZING:
-            case Step::PREPARE_TREE_ENTITY:
-            case Step::SORTING_ENTITIES_BY_RANK:
-                subStep = SubStep::ASYNC_LOADING;
+        TSceneInstanceState::State state = TSceneInstanceState::State::INSTANTIATED;
+        switch (mSubState) {
+            case SubState::INIT:
+            case SubState::FILE_LOADING:
+            case SubState::SCENE_DESERIALIZING:
+            case SubState::PREPARE_TREE_ENTITY:
+            case SubState::SORTING_ENTITIES_BY_RANK:
+                state = ISceneInstanceState::State::ASYNC_INSTANTIATING;
                 break;
-            case Step::PREPARE_INSTANTIATING:
-            case Step::ENTITY_INSTANTIATING:
-            case Step::PREFAB_INSTANTIATING:
-                subStep = SubStep::SYNC_LOADING;
+            case SubState::PREPARE_INSTANTIATING:
+            case SubState::ENTITY_INSTANTIATING:
+            case SubState::PREFAB_INSTANTIATING:
+                state = ISceneInstanceState::State::SYNC_INSTANTIATING;
                 break;
-            case Step::STABLE:
-                subStep = SubStep::STABLE;
-                break;
-            case Step::DESTROYING:
-                subStep = SubStep::DESTROYING;
+            case SubState::INSTANTIATED:
+                state = ISceneInstanceState::State::INSTANTIATED;
                 break;
         }
-        return subStep;
+        return state;
     }
     //--------------------------------------------------------------------------------------------------
-    float TSceneInstanceState::GetLoadingProgress() const
+    float TSceneInstanceState::GetInstantiatingProgress() const
     {
         return nsBase::TProgressValue::Accumulate(
             { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mComponentDeserializingProgress, mEntityProgress, mPrefabProgress }).GetProgress();
     }
     //--------------------------------------------------------------------------------------------------
-    bool TSceneInstanceState::IsLoadCompleted() const
+    bool TSceneInstanceState::IsInstantiateCompleted() const
     {
         return nsBase::TProgressValue::Accumulate(
             { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mComponentDeserializingProgress, mEntityProgress, mPrefabProgress }).IsCompleted();
-    }
-    //--------------------------------------------------------------------------------------------------
-    bool TSceneInstanceState::IsCancelled() const
-    {
-        return false;
     }
     //--------------------------------------------------------------------------------------------------
 }

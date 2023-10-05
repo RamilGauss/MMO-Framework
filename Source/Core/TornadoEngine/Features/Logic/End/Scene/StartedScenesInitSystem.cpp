@@ -21,6 +21,6 @@ void TStartedScenesInitSystem::Init()
     TInstantiateSceneParams instantiateSceneParams;
     for (auto& sceneGuid : startedScenes) {
         instantiateSceneParams.guid = sceneGuid;
-        Modules()->SceneMng()->InstantiateByGuid(instantiateSceneParams);
+        Modules()->SceneMng()->Instantiate(instantiateSceneParams);
     }
 }

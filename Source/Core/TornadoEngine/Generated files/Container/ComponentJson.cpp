@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_17 10:25:19.697
+// File has been generated at 2023_10_05 13:10:57.267
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -857,6 +857,18 @@ void TComponentJson::Init()
     
     funcs.push_back(_nsLogicWrapper_TPrefabReferenceComponentTypeFunc);
     
+    TypeFunc _nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc;
+    _nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>((nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent*) p, str);
+    };
+    _nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>((nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent*) p, str, err);
+    };
+    
+    _nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
+    
+    funcs.push_back(_nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc);
+    
     TypeFunc _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc;
     _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsLogicWrapper::TSceneObjectReferenceComponent>((nsLogicWrapper::TSceneObjectReferenceComponent*) p, str);
@@ -1699,6 +1711,16 @@ void TComponentJson::_Serialize(nsLogicWrapper::TPrefabReferenceComponent* p, Jo
 void TComponentJson::_Deserialize(nsLogicWrapper::TPrefabReferenceComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "prefabGuid", p->prefabGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, Jobj& obj)

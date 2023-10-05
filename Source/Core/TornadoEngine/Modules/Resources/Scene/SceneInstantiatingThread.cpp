@@ -41,23 +41,23 @@ namespace nsTornadoEngine
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::Work()
     {
-        switch (mScState->mStep) {
-            case TSceneInstanceState::Step::INIT:
+        switch (mScState->mSubState) {
+            case TSceneInstanceState::SubState::INIT:
                 Init();
                 break;
-            case TSceneInstanceState::Step::FILE_LOADING:
+            case TSceneInstanceState::SubState::FILE_LOADING:
                 FileLoading();
                 break;
-            case TSceneInstanceState::Step::SCENE_DESERIALIZING:
+            case TSceneInstanceState::SubState::SCENE_DESERIALIZING:
                 SceneDeserializing();
                 break;
-            case TSceneInstanceState::Step::PREPARE_TREE_ENTITY:
+            case TSceneInstanceState::SubState::PREPARE_TREE_ENTITY:
                 PrepareTreeEntity();
                 break;
-            case TSceneInstanceState::Step::SORTING_ENTITIES_BY_RANK:
+            case TSceneInstanceState::SubState::SORTING_ENTITIES_BY_RANK:
                 SortingEntitiesByRank();
                 break;
-            case TSceneInstanceState::Step::COMPONENT_DESERIALIZING:
+            case TSceneInstanceState::SubState::COMPONENT_DESERIALIZING:
                 ComponentDeserialising();
                 break;
             default:;
@@ -66,7 +66,7 @@ namespace nsTornadoEngine
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::Init()
     {
-        mScState->mFile.ReOpen((char*)mScState->mInstantiateSceneParams.GetAbsPath().c_str());
+        mScState->mFile.ReOpen((char*)mScState->mAbsPath.c_str());
 
         auto size = mScState->mFile.Size();
 
@@ -75,7 +75,7 @@ namespace nsTornadoEngine
 
         CalculateRoughProgressValues();
 
-        mScState->mStep = TSceneInstanceState::Step::FILE_LOADING;
+        mScState->mSubState = TSceneInstanceState::SubState::FILE_LOADING;
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::FileLoading()
@@ -89,7 +89,7 @@ namespace nsTornadoEngine
 
         if (mScState->mFileProgress.IsCompleted()) {
             mScState->mFile.Close();
-            mScState->mStep = TSceneInstanceState::Step::SCENE_DESERIALIZING;
+            mScState->mSubState = TSceneInstanceState::SubState::SCENE_DESERIALIZING;
         }
     }
     //---------------------------------------------------------------------------------------------------
@@ -108,9 +108,9 @@ namespace nsTornadoEngine
         std::string calculatedHash = TSceneHashCalculator::Calculate(entityGuids);
 
         if (calculatedHash != mScState->mSceneContent.groupedByRankEntityGuidHash) {
-            mScState->mStep = TSceneInstanceState::Step::PREPARE_TREE_ENTITY;
+            mScState->mSubState = TSceneInstanceState::SubState::PREPARE_TREE_ENTITY;
         } else {
-            mScState->mStep = TSceneInstanceState::Step::COMPONENT_DESERIALIZING;
+            mScState->mSubState = TSceneInstanceState::SubState::COMPONENT_DESERIALIZING;
         }
     }
     //---------------------------------------------------------------------------------------------------
@@ -170,7 +170,7 @@ namespace nsTornadoEngine
 
             mScState->mCurrentLayerEntIt = mScState->mLayers.back().begin();
 
-            mScState->mStep = TSceneInstanceState::Step::SORTING_ENTITIES_BY_RANK;
+            mScState->mSubState = TSceneInstanceState::SubState::SORTING_ENTITIES_BY_RANK;
         }
     }
     //---------------------------------------------------------------------------------------------------
@@ -226,7 +226,7 @@ namespace nsTornadoEngine
 
             mScState->mCurrentEntIt = mScState->mSceneContent.entities.begin();
 
-            mScState->mStep = TSceneInstanceState::Step::COMPONENT_DESERIALIZING;
+            mScState->mSubState = TSceneInstanceState::SubState::COMPONENT_DESERIALIZING;
         }
     }
     //---------------------------------------------------------------------------------------------------
@@ -261,7 +261,7 @@ namespace nsTornadoEngine
         mScState->mComponentDeserializingProgress.IncrementValue(partSize);
 
         if (mScState->mComponentDeserializingProgress.IsCompleted()) {
-            mScState->mStep = TSceneInstanceState::Step::PREPARE_INSTANTIATING;
+            mScState->mSubState = TSceneInstanceState::SubState::PREPARE_INSTANTIATING;
         }
     }
         //---------------------------------------------------------------------------------------------------

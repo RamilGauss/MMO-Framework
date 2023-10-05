@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_17 10:25:19.748
+// File has been generated at 2023_10_05 13:10:57.311
 	
 #include "ComponentEntMng.h"
 
@@ -702,6 +702,16 @@ void TComponentEntMng::Init()
     nsLogicWrapper_TPrefabReferenceComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabReferenceComponent>();
     
     datas.push_back(nsLogicWrapper_TPrefabReferenceComponent_Data);
+    
+    Data nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data;
+    nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent*)p)); };
+    nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid); };
+    nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid); };
+    nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid); };
+    nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(); };
+    nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
+    
+    datas.push_back(nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_Data);
     
     Data nsLogicWrapper_TSceneObjectReferenceComponent_Data;
     nsLogicWrapper_TSceneObjectReferenceComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TSceneObjectReferenceComponent*)p)); };

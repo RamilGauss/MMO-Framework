@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_17 10:25:19.804
+// File has been generated at 2023_10_05 13:10:57.337
 	
 #include "ComponentTypeInfo.h"
 
@@ -434,6 +434,12 @@ void TComponentTypeInfo::Init()
     mTypeNameList.push_back(nsLogicWrapper_TPrefabReferenceComponent_n);
     mRttiList.push_back(nsLogicWrapper_TPrefabReferenceComponent_i);
     mNameRttiMap.insert({ nsLogicWrapper_TPrefabReferenceComponent_n, nsLogicWrapper_TPrefabReferenceComponent_i });
+    
+    int nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
+    std::string nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_n = "nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent";
+    mTypeNameList.push_back(nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_n);
+    mRttiList.push_back(nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_i);
+    mNameRttiMap.insert({ nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_n, nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_i });
     
     int nsLogicWrapper_TSceneObjectReferenceComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TSceneObjectReferenceComponent>();
     std::string nsLogicWrapper_TSceneObjectReferenceComponent_n = "nsLogicWrapper::TSceneObjectReferenceComponent";

@@ -74,6 +74,7 @@
         "nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent",
         "nsLogicWrapper::TPrefabObjectReferenceComponent",
         "nsLogicWrapper::TPrefabReferenceComponent",
+        "nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent",
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
         "nsLogicWrapper::TSystemComponent",
