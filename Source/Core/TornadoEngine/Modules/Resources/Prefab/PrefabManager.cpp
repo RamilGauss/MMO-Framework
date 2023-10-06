@@ -9,16 +9,21 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    TGameObject TPrefabManager::InstantiateByGuid(TInstantiatePrefabParams instantiatePrefabParams)
+    TGameObject TPrefabManager::Instantiate(const TInstantiatePrefabParams& instantiatePrefabParams)
     {
         return {};
     }
     //---------------------------------------------------------------------------------------------------------
-    TGameObject TPrefabManager::InstantiateByAbsPath(const TInstantiatePrefabParams& instantiatePrefabParams)
+    void TPrefabManager::SetSceneManager(TSceneManager* pSceneMng)
+    {
+        mSceneMng = pSceneMng;
+    }
+    //---------------------------------------------------------------------------------------------------------
+    std::string TPrefabManager::Create(const std::string& absPath)
     {
         return {};
     }
-    //---------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------
     void TPrefabManager::Destroy(nsECSFramework::TEntityID anyEidInScene)
     {
 

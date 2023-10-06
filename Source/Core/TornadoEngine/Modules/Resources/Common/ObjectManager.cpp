@@ -29,6 +29,36 @@ namespace nsTornadoEngine
         mEntityManager = entMng;
     }
     //------------------------------------------------------------------------------------------------------
+    std::string TObjectManager::Create(const std::string& absPath)
+    {
+        return {};
+    }
+    //--------------------------------------------------------------------------------------------------------
+    void TObjectManager::Delete(const std::string& guid)
+    {
+
+    }
+    //--------------------------------------------------------------------------------------------------------
+    std::string TObjectManager::GetGuid(const std::string& absPath)
+    {
+        return {};
+    }
+    //--------------------------------------------------------------------------------------------------------
+    std::string TObjectManager::GetAbsPath(const std::string& guid)
+    {
+        return {};
+    }
+    //--------------------------------------------------------------------------------------------------------
+    void TObjectManager::Rename(const std::string& guid, const std::string& newAbsPath)
+    {
+        
+    }
+    //--------------------------------------------------------------------------------------------------------
+    void TObjectManager::Copy(const std::string& srcGuid, const std::string& dstGuid)
+    {
+        
+    }
+    //--------------------------------------------------------------------------------------------------------
     void TObjectManager::DestroyObject(const std::string& guid)
     {
 

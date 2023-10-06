@@ -53,11 +53,6 @@ namespace nsTornadoEngine
         return {};
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::Delete(const std::string& guid)
-    {
-
-    }
-    //--------------------------------------------------------------------------------------------------------
     void TSceneManager::SetLoadQuant(int ms)
     {
         mLoadQuant = ms;
@@ -110,11 +105,6 @@ namespace nsTornadoEngine
     void TSceneManager::Save(const std::string& sceneInstanceGuid, const std::string& guid)
     {
 
-    }
-    //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::Copy(const std::string& srcGuid, const std::string& dstGuid)
-    {
-        
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()

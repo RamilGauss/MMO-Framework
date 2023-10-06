@@ -19,11 +19,15 @@ namespace nsTornadoEngine
     {
         TSceneManager* mSceneMng = nullptr;
     public:
+        void SetSceneManager(TSceneManager* pSceneMng);
+
+        // Per one call
+        std::string Create(const std::string& absPath); // -> guid
+
         // Если SceneInstance не задан, то искать нужно по родителю
         // И наоборот, если не задан родитель, то нужен SceneInstance, что бы найти root.
 
-        TGameObject InstantiateByGuid(TInstantiatePrefabParams instantiatePrefabParams);
-        TGameObject InstantiateByAbsPath(const TInstantiatePrefabParams& instantiatePrefabParams);
+        TGameObject Instantiate(const TInstantiatePrefabParams& instantiatePrefabParams);
 
         // Уничтожить 
         void Destroy(nsECSFramework::TEntityID anyEidInScene);
