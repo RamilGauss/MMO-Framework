@@ -1,22 +1,5 @@
 {
-    "resources": {
-        "guidPathMap": {
-        }
-    },
-    "prefabs": {
-        "guidPathMap": {
-            "scene_prefab_test_original": "../Assets/Scenes/scene_prefab_test_original.prefab",
-            "scene_prefab_test_variant_add_entity": "../Assets/Scenes/scene_prefab_test_variant_add_entity.prefab",
-            "scene_prefab_test_variant_remove_entity": "../Assets/Scenes/scene_prefab_test_variant_remove_entity.prefab",
-            "scene_prefab_test_variant_add_component": "../Assets/Scenes/scene_prefab_test_variant_add_component.prefab",
-            "scene_prefab_test_variant_remove_component": "../Assets/Scenes/scene_prefab_test_variant_remove_component.prefab",
-            "scene_prefab_test_variant_update_component": "../Assets/Scenes/scene_prefab_test_variant_update_component.prefab"
-        }
-    },
-    "scenes": {
-        "guidPathMap": {
-            "scene_prefab_test.scene": "../Assets/Scenes/scene_prefab_test.scene",
-	    "window_test.scene": "../Assets/Scenes/test.scene"
-        }
-    }
+    "resourcesContentMapPath": "ResourcesContentMap.json",
+    "prefabsContentMapPath": "PrefabsContentMap.json",
+    "scenesContentMapPath": "ScenesContentMap.json"
 }

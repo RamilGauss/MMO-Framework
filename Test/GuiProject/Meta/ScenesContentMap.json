@@ -1,0 +1,6 @@
+{
+    "guidPathMap": {
+        "scene_prefab_test.scene": "../Assets/Scenes/scene_prefab_test.scene",
+        "window_test.scene": "../Assets/Scenes/test.scene"
+    }
+}

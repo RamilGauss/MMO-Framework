@@ -7,5 +7,5 @@
 	},
 	"binaryFilePath": "../../../../../Exe/GuiProject_d.dll",
 	"conveyorFilePath": "./Conveyor.json",
-	"resourcesFilePath": "../Assets/Resources.json"
+	"resourcesFilePath": "./Resources.json"
 }

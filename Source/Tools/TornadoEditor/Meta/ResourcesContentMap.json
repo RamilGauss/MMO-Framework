@@ -1,0 +1,14 @@
+{
+    "guidPathMap": {
+        "exit.png": "../Assets/Textures/exit.png",
+        "cpp.png": "../Assets/Textures/cpp.png",
+        "prefab.png": "../Assets/Textures/prefab.png",
+        "json.png": "../Assets/Textures/json.png",
+        "image.png": "../Assets/Textures/image.png",
+        "undefined.jpg": "../Assets/Textures/undefined.jpg",
+        "png.png": "../Assets/Textures/png.png",
+        "folder.png": "../Assets/Textures/folder.png",
+        "scene.png": "../Assets/Textures/scene.png",
+        "color.png": "../Assets/Textures/color.png"
+    }
+}

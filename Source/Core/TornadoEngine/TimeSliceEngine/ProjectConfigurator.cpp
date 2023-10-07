@@ -43,12 +43,12 @@ void TProjectConfigurator::Setup()
     auto sceneMng = Modules()->SceneMng();
 
     sceneMng->SetEntityManager(entMng);
-    sceneMng->SetContentMap(resources.scenes);
+    sceneMng->SetContentMap(resources.scenesContentMapPath);
 
     auto prefabMng = Modules()->PrefabMng();
 
     prefabMng->SetEntityManager(entMng);
-    prefabMng->SetContentMap(resources.prefabs);
+    prefabMng->SetContentMap(resources.prefabsContentMapPath);
 
     // Crossing
     sceneMng->SetPrefabManager(prefabMng);

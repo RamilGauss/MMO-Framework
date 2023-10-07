@@ -1,0 +1,6 @@
+{
+    "guidPathMap": {
+        "Bootstrapper.scene": "../Assets/Scenes/Bootstrapper.scene",
+        "Main.scene": "../Assets/Scenes/Main.scene"
+    }
+}

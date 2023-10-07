@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_05 13:10:12.983
+// File has been generated at 2023_10_07 17:07:10.741
 	
 #include "TornadoEngineJsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -623,22 +623,16 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TEntityContent*
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TFrameworkResources* p, Jobj& obj)
 {
-    auto resources_o = PUM::AddObject(obj, "resources");
-    _Serialize(&(p->resources), resources_o);
-    auto prefabs_o = PUM::AddObject(obj, "prefabs");
-    _Serialize(&(p->prefabs), prefabs_o);
-    auto scenes_o = PUM::AddObject(obj, "scenes");
-    _Serialize(&(p->scenes), scenes_o);
+    PUM::Push(obj, "resourcesContentMapPath", p->resourcesContentMapPath);
+    PUM::Push(obj, "prefabsContentMapPath", p->prefabsContentMapPath);
+    PUM::Push(obj, "scenesContentMapPath", p->scenesContentMapPath);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TFrameworkResources* p, const Jobj& obj)
 {
-    auto resources_o0 = POM::FindObject(obj, "resources");
-    _Deserialize(&(p->resources), resources_o0);
-    auto prefabs_o0 = POM::FindObject(obj, "prefabs");
-    _Deserialize(&(p->prefabs), prefabs_o0);
-    auto scenes_o0 = POM::FindObject(obj, "scenes");
-    _Deserialize(&(p->scenes), scenes_o0);
+    POM::PopStr(obj, "resourcesContentMapPath", p->resourcesContentMapPath);
+    POM::PopStr(obj, "prefabsContentMapPath", p->prefabsContentMapPath);
+    POM::PopStr(obj, "scenesContentMapPath", p->scenesContentMapPath);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabInstance* p, Jobj& obj)

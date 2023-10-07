@@ -1,0 +1,9 @@
+{
+    "guidPathMap": {
+        "0": "../Assets/Prefabs/FileHierarchyWindow.prefab",
+        "1": "../Assets/Prefabs/OpenProjectDialog.prefab",
+        "2": "../Assets/Prefabs/WarningDialog.prefab",
+        "3": "../Assets/Prefabs/FileNode.prefab",
+        "4": "../Assets/Prefabs/ObjectHierarchyWindow.prefab"
+    }
+}

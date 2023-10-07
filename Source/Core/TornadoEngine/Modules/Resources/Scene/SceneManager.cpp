@@ -314,7 +314,7 @@ namespace nsTornadoEngine
             instantiatePrefabParams.parentGuid = parentGuid;
             instantiatePrefabParams.sceneInstanceGuid = pSc->mInstantiateSceneParams.sceneInstanceGuid;
                  
-            mPrefabMng->InstantiateByGuid(instantiatePrefabParams);
+            mPrefabMng->Instantiate(instantiatePrefabParams);
         }
 
         pSc->mPrefabProgress.IncrementValue(partSize);

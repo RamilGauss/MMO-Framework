@@ -18,8 +18,8 @@ namespace nsTornadoEngine
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TFrameworkResources
     {
-        TResourceContentMap resources;
-        TResourceContentMap prefabs;
-        TResourceContentMap scenes;
+        std::string resourcesContentMapPath;
+        std::string prefabsContentMapPath;
+        std::string scenesContentMapPath;
     };
 }
