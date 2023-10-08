@@ -50,7 +50,12 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::Create(const std::string& absPath)
     {
-        return {};
+        auto guid = TResourceManager::Create(absPath);
+
+        TSceneResourceContent sceneResourceContent;
+        TResourceManager::Save(absPath, &sceneResourceContent);
+
+        return guid;
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::SetLoadQuant(int ms)

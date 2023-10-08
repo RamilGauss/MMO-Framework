@@ -34,19 +34,6 @@ std::string TProjectConfigContainer::GetResourcesAbsPath()
     return TPathOperations::CalculatePathBy(projectDirAbsPath, mProjectConfig.resourcesFilePath);
 }
 //---------------------------------------------------------------------
-std::string TProjectConfigContainer::GetResourcesAbsPath(const std::string& guid)
-{
-    auto fit = mResources.resources.guidPathMap.find(guid);
-    if (fit == mResources.resources.guidPathMap.end()) {
-        return "";
-    }
-
-    auto resourcesFilePath = GetResourcesAbsPath();
-    auto dirPath = TPathOperations::FileDirPath(resourcesFilePath);
-
-    return TPathOperations::CalculatePathBy(dirPath, fit->second);
-}
-//---------------------------------------------------------------------
 void TProjectConfigContainer::SetEntityManager(nsECSFramework::TEntityManager* pEntMng)
 {
     mScenePartAggregator->mComponents->mEntMng->SetEntityManager(pEntMng);

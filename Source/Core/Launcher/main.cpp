@@ -76,6 +76,9 @@ int main(int argc, char** argv)
     delete timeSliceEngine;
 
     projectConfigurator->UnloadProject();
+
+    delete projectConfigurator;
+
     return 0;
 }
 //-------------------------------------------------------------------------------

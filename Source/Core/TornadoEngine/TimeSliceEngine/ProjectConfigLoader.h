@@ -30,8 +30,6 @@ namespace nsTornadoEngine
         static bool LoadBinary();
         static bool LoadResources();
 
-        static void ConvertResourcesRelToAbs();
-
         template<typename ... Args>
         static void Log(const char* format, Args && ... args)
         {

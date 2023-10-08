@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_09_10 14:45:43.405
+// File has been generated at 2023_10_08 13:54:05.792
 	
 #include "ComponentJsonSerializerImpl.h"
 
@@ -25,25 +25,32 @@ TComponentJsonSerializerImpl::~TComponentJsonSerializerImpl()
 
 }
 //--------------------------------------------------------------------------------------------------
-void TComponentJsonSerializerImpl::Serialize(void* p, std::string & json, int rtti)
+void TComponentJsonSerializerImpl::Init()
 {
-    if (TComponentJson::Has(rtti)) {
-        TComponentJson::Serialize(p, json, rtti);
-        return;
+    TComponentJson::Init();
+    nsTornadoEngine::TComponentJson::Init();
     }
-    if (nsTornadoEngine::TComponentJson::Has(rtti)) {
-        nsTornadoEngine::TComponentJson::Serialize(p, json, rtti);
+    //--------------------------------------------------------------------------------------------------
+    void TComponentJsonSerializerImpl::Serialize(void* p, std::string & json, int rtti)
+    {
+        if (TComponentJson::Has(rtti)) {
+            TComponentJson::Serialize(p, json, rtti);
+            return;
+        }
+        if (nsTornadoEngine::TComponentJson::Has(rtti)) {
+            nsTornadoEngine::TComponentJson::Serialize(p, json, rtti);
+        }
     }
-}
-//--------------------------------------------------------------------------------------------------
-bool TComponentJsonSerializerImpl::Deserialize(void* p, const std::string & json, int rtti, std::string & err)
-{
-    if (TComponentJson::Has(rtti)) {
-        return TComponentJson::Deserialize(p, json, rtti, err);
+    //--------------------------------------------------------------------------------------------------
+    bool TComponentJsonSerializerImpl::Deserialize(void* p, const std::string & json, int rtti, std::string & err)
+    {
+        if (TComponentJson::Has(rtti)) {
+            return TComponentJson::Deserialize(p, json, rtti, err);
+        }
+        if (nsTornadoEngine::TComponentJson::Has(rtti)) {
+            return nsTornadoEngine::TComponentJson::Deserialize(p, json, rtti, err);
+        }
+        return false;
     }
-    if (nsTornadoEngine::TComponentJson::Has(rtti)) {
-        return nsTornadoEngine::TComponentJson::Deserialize(p, json, rtti, err);
-    }
-    return false;
-}
-//--------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------
+    

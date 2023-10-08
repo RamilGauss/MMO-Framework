@@ -36,8 +36,6 @@ bool TProjectConfigLoader::Load(TProjectConfigContainer* pcc)
         return false;
     }
 
-    ConvertResourcesRelToAbs();
-
     return true;
 }
 //----------------------------------------------------------------------
@@ -86,19 +84,5 @@ bool TProjectConfigLoader::LoadConveyor()
 bool TProjectConfigLoader::LoadResources()
 {
     return Load(mPcc->GetResourcesAbsPath(), &(mPcc->mResources));
-}
-//------------------------------------------------------------------------
-void TProjectConfigLoader::ConvertResourcesRelToAbs()
-{
-    auto resourcesAbsPath = mPcc->GetResourcesAbsPath();
-    auto resourcesFileAbsPath = TPathOperations::FileDirPath(resourcesAbsPath);
-
-    for (auto& guidPath : mPcc->mResources.scenes.guidPathMap) {
-        guidPath.second = TPathOperations::CalculatePathBy(resourcesFileAbsPath, guidPath.second);
-    }
-
-    for (auto& guidPath : mPcc->mResources.prefabs.guidPathMap) {
-        guidPath.second = TPathOperations::CalculatePathBy(resourcesFileAbsPath, guidPath.second);
-    }
 }
 //------------------------------------------------------------------------

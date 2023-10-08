@@ -110,7 +110,7 @@ namespace nsTornadoEngine
         float GetDestroyingProgress() const override;
         bool IsIDestroyCompleted() const override;
 
-        float GetSsavingProgress() const override;
+        float GetSavingProgress() const override;
         bool IsSaveCompleted() const override;
     };
 

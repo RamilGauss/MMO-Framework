@@ -1,8 +1,8 @@
 /*
 Project Component
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:45:38.764
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_10_08 13:54:00.658
 	
 #include "ComponentTypeInfo.h"
 
@@ -15,7 +15,7 @@ std::list<std::string> TComponentTypeInfo::mTypeNameList;
 std::list<int> TComponentTypeInfo::mRttiList;
 
 std::vector<std::string> TComponentTypeInfo::mNameVector;
-std::map<std::string, int> TComponentTypeInfo::mNameRttiMap;
+std::unordered_map<std::string, int> TComponentTypeInfo::mNameRttiMap;
 
 void TComponentTypeInfo::Init()
 {

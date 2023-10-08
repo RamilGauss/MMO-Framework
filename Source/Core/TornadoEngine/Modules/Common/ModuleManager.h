@@ -26,6 +26,7 @@ namespace nsTornadoEngine
     class TModuleManager
     {
         nsECSFramework::TEntityManager mEntMng;
+        TResourceManager mResourceMng;
         TSceneManager mSceneMng;
         TPrefabManager mPrefabMng;
         TStopAccessor* mStopAccessor = nullptr;

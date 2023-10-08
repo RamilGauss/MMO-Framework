@@ -68,6 +68,17 @@
                 },
                 "keyValueMap": {}
             },
+            "TypeFactoryGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "TComponentTypeFactory",
+                "fileName": "ComponentTypeFactory",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": ""
+                },
+                "keyValueMap": {}
+            },
             "TypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEditor",
@@ -75,7 +86,8 @@
                 "fileName": "ComponentTypeInfo",
                 "externalSources": {
                     "inFileList": [
-                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json"
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json",
+                        "./coreComponentTypeFactoryOut.json"
                     ],
                     "outFile": ""
                 },

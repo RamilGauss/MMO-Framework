@@ -72,7 +72,7 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
             err = "File not found";
         }
 
-        auto warningDialogObject = nsTornadoEngine::Modules()->PrefabMng()->InstantiateByGuid({ "2", sceneInstanceGuid });
+        auto warningDialogObject = nsTornadoEngine::Modules()->PrefabMng()->Instantiate({ "2", sceneInstanceGuid });
         auto warningDialogEid = warningDialogObject.GetEid();
 
         nsGuiWrapper::TTitleComponent titleComponent;
@@ -100,7 +100,7 @@ void TOpenProjectOkButtonClickHandler::Handle(nsECSFramework::TEntityID eid, con
     auto fileHierarchyWindowEid = nsECSFramework::SingleEntity<TFileHierarchyWindowTagComponent>(entMng);
 
     if (fileHierarchyWindowEid == nsECSFramework::NONE) {
-        prefabMng->InstantiateByGuid({ "0", sceneInstanceGuid });
+        prefabMng->Instantiate({ "0", sceneInstanceGuid });
     } else {
 
         // Destroy file hierarchy

@@ -1,5 +1,4 @@
 {
-    "engineVersion" :  "0.0.0.1",
     "modules": [
         "GraphicEngine",
         "Logic",

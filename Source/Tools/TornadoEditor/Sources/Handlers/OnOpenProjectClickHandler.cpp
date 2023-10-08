@@ -32,5 +32,5 @@ void TOnOpenProjectClickHandler::Handle(nsECSFramework::TEntityID eid, const nsG
     instantiatePrefabParams.guid = prefabRef->prefabGuid;
     instantiatePrefabParams.sceneInstanceGuid = sceneInstanceGuid->value;
 
-    prefabMng->InstantiateByGuid(instantiatePrefabParams);
+    prefabMng->Instantiate(instantiatePrefabParams);
 }

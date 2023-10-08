@@ -43,8 +43,6 @@ namespace nsTornadoEngine
         std::string GetConveyorAbsPath();
         std::string GetResourcesAbsPath();
         
-        std::string GetResourcesAbsPath(const std::string& guid);
-
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng);
     };
 

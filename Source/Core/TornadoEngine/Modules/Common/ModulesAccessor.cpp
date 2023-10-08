@@ -49,6 +49,11 @@ void TModulesAccessor::SetEntMng(nsECSFramework::TEntityManager* value)
     Modules()->entMng = value;
 }
 //--------------------------------------------------------------------------
+void TModulesAccessor::SetResourceMng(TResourceManager* value)
+{
+    Modules()->resourceMng = value;
+}
+//--------------------------------------------------------------------------
 void TModulesAccessor::SetSceneMng(TSceneManager* value)
 {
     Modules()->sceneMng = value;

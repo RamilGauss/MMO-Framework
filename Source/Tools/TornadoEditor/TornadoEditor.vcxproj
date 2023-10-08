@@ -217,6 +217,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\ComponentTypeFactory.cpp" />
     <ClCompile Include="Sources\Features\BootstrapperSystem.cpp" />
     <ClCompile Include="Sources\Features\FileHierarchyWindowInitSystem.cpp" />
     <ClCompile Include="Sources\Features\FileHierarchyWindowRefreshSystem.cpp" />
@@ -294,6 +296,8 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Tools\Tornad
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.h" />
+    <ClInclude Include="Meta\Generated files\Container\ComponentTypeFactory.h" />
     <ClInclude Include="Sources\Components\AbsoluteFilePathComponent.h" />
     <ClInclude Include="Sources\Components\AssetAbsoluteFilePathComponent.h" />
     <ClInclude Include="Sources\Components\EditorInfoTagComponent.h" />

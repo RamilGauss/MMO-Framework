@@ -87,7 +87,7 @@ void TOnMouseClickFileNodeHandler::Handle(nsECSFramework::TEntityID eid, const n
         instantiatePrefabParams.guid = "4";
         instantiatePrefabParams.sceneInstanceGuid = sceneInstanceGuid;
 
-        prefabMng->InstantiateByGuid(instantiatePrefabParams);
+        prefabMng->Instantiate(instantiatePrefabParams);
     } else {
 
         // Destroy file hierarchy

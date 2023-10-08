@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_09_10 14:45:43.405
+// File has been generated at 2023_10_08 13:54:05.792
 	
 #include "HandlerTypeFactoryImpl.h"
 
@@ -22,6 +22,11 @@ THandlerTypeFactoryImpl::THandlerTypeFactoryImpl()
 THandlerTypeFactoryImpl::~THandlerTypeFactoryImpl()
 {
 
+}
+//--------------------------------------------------------------------------------------------------
+void THandlerTypeFactoryImpl::Init()
+{
+    THandlerTypeFactory::Init();
 }
 //--------------------------------------------------------------------------------------------------
 void* THandlerTypeFactoryImpl::New(int rtti)

@@ -31,6 +31,7 @@ namespace nsTornadoEngine
     class ISoundEngineModule;
     class IDataBaseModule;
 
+    class TResourceManager;
     class TSceneManager;
     class TPrefabManager;
 
@@ -57,6 +58,7 @@ namespace nsTornadoEngine
 
         // Usage in projects
         nsECSFramework::TEntityManager* EntMng() const;
+        TResourceManager* ResourceMng() const;
         TSceneManager* SceneMng() const;
         TPrefabManager* PrefabMng() const;
 
@@ -82,6 +84,7 @@ namespace nsTornadoEngine
         IDataBaseModule* pDataBase = nullptr;
 
         nsECSFramework::TEntityManager* entMng = nullptr;
+        TResourceManager* resourceMng = nullptr;
         TSceneManager* sceneMng = nullptr;
         TPrefabManager* prefabMng = nullptr;
 

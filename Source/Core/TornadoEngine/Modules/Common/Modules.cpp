@@ -58,6 +58,11 @@ TEntityManager* TModules::EntMng() const
     return entMng;
 }
 //----------------------------------------------------------
+TResourceManager* TModules::ResourceMng() const
+{
+    return resourceMng;
+}
+//----------------------------------------------------------
 TSceneManager* TModules::SceneMng() const
 {
     return sceneMng;

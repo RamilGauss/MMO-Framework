@@ -38,6 +38,10 @@
             "dynamicCaster": {
                 "fileName": "ComponentDynamicCaster",
                 "typeName": "TComponentDynamicCaster"
+            },
+            "typeFactory": {
+                "fileName": "ComponentTypeFactory",
+                "typeName": "TComponentTypeFactory"
             }
         },
 
@@ -187,6 +191,16 @@
                 "parent": {
                     "fileName": "IDynamicCaster",
                     "typeName": "IDynamicCaster"
+                }
+            },
+            "typeFactoryImpl": {
+                "impl": {
+                    "fileName": "ComponentTypeFactoryImpl",
+                    "typeName": "TComponentTypeFactoryImpl"
+                },
+                "parent": {
+                    "fileName": "ITypeFactory",
+                    "typeName": "ITypeFactory"
                 }
             }
         },

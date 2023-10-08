@@ -36,7 +36,7 @@ namespace nsTornadoEngine
         virtual float GetDestroyingProgress() const = 0;
         virtual bool IsIDestroyCompleted() const = 0;
 
-        virtual float GetSsavingProgress() const = 0;
+        virtual float GetSavingProgress() const = 0;
         virtual bool IsSaveCompleted() const = 0;
     };
 }

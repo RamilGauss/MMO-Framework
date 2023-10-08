@@ -21,7 +21,12 @@ namespace nsTornadoEngine
     //---------------------------------------------------------------------------------------------------------
     std::string TPrefabManager::Create(const std::string& absPath)
     {
-        return {};
+        auto guid = TResourceManager::Create(absPath);
+
+        TPrefabResourceContent prefabResourceContent;
+        TResourceManager::Save(absPath, &prefabResourceContent);
+
+        return guid;
     }
     //--------------------------------------------------------------------------------------------------------
     void TPrefabManager::Destroy(nsECSFramework::TEntityID anyEidInScene)

@@ -549,6 +549,7 @@
     <ClCompile Include="Modules\Resources\Scene\SceneHashCalculator.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeFactory.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneCacheManager.cpp" />
+    <ClCompile Include="Modules\Resources\Common\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Resources\Common\FrameworkResources.h">
@@ -1254,6 +1255,8 @@
     <ClInclude Include="Generated files\Container\ComponentTypeFactory.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneCacheManager.h" />
     <ClInclude Include="Modules\Resources\Scene\ISceneInstanceState.h" />
+    <ClInclude Include="Modules\Resources\Common\ResourceManager.h" />
+    <ClInclude Include="Modules\Resources\Prefab\PrefabPatchOperation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

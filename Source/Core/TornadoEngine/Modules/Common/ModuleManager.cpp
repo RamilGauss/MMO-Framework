@@ -85,6 +85,7 @@ void TModuleManager::ApplyToModulesSingleton()
         }
     }
     TModulesAccessor::SetEntMng(&mEntMng);
+    TModulesAccessor::SetResourceMng(&mResourceMng);
     TModulesAccessor::SetSceneMng(&mSceneMng);
     TModulesAccessor::SetPrefabMng(&mPrefabMng);
     TModulesAccessor::SetStopAccessor(mStopAccessor);

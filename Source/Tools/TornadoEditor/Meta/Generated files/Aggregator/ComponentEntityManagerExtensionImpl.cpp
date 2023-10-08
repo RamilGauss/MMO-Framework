@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_09_10 14:45:43.405
+// File has been generated at 2023_10_08 13:54:05.792
 	
 #include "ComponentEntityManagerExtensionImpl.h"
 
@@ -25,62 +25,55 @@ TComponentEntityManagerExtensionImpl::~TComponentEntityManagerExtensionImpl()
 
 }
 //--------------------------------------------------------------------------------------------------
-void TComponentEntityManagerExtensionImpl::CreateComponent(nsECSFramework::TEntityID eid, int rtti, std::function<void(void*)> onAfterCreation)
+void TComponentEntityManagerExtensionImpl::Init()
+{
+    TComponentEntMng::Init();
+    nsTornadoEngine::TComponentEntMng::Init();
+}
+//--------------------------------------------------------------------------------------------------
+void TComponentEntityManagerExtensionImpl::SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p)
 {
     if (TComponentEntMng::Has(rtti)) {
-        TComponentEntMng::CreateComponent(mEntMng, eid, rtti, onAfterCreation);
+        TComponentEntMng::SetComponent(mEntMng, eid, rtti, p);
         return;
     }
     if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
-        nsTornadoEngine::TComponentEntMng::CreateComponent(mEntMng, eid, rtti, onAfterCreation);
+        nsTornadoEngine::TComponentEntMng::SetComponent(mEntMng, eid, rtti, p);
         return;
     }
+}
+//--------------------------------------------------------------------------------------------------
+const void* TComponentEntityManagerExtensionImpl::ViewComponent(nsECSFramework::TEntityID eid, int rtti)
+{
+    if (TComponentEntMng::Has(rtti)) {
+        return TComponentEntMng::ViewComponent(mEntMng, eid, rtti);
     }
-    //--------------------------------------------------------------------------------------------------
-    void TComponentEntityManagerExtensionImpl::SetComponent(nsECSFramework::TEntityID eid, int rtti, void* p)
-    {
-        if (TComponentEntMng::Has(rtti)) {
-            TComponentEntMng::SetComponent(mEntMng, eid, rtti, p);
-            return;
-        }
-        if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
-            nsTornadoEngine::TComponentEntMng::SetComponent(mEntMng, eid, rtti, p);
-            return;
-        }
+    if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
+        return nsTornadoEngine::TComponentEntMng::ViewComponent(mEntMng, eid, rtti);
     }
-    //--------------------------------------------------------------------------------------------------
-    const void* TComponentEntityManagerExtensionImpl::ViewComponent(nsECSFramework::TEntityID eid, int rtti)
-    {
-        if (TComponentEntMng::Has(rtti)) {
-            return TComponentEntMng::ViewComponent(mEntMng, eid, rtti);
-        }
-        if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
-            return nsTornadoEngine::TComponentEntMng::ViewComponent(mEntMng, eid, rtti);
-        }
-        return nullptr;
+    return nullptr;
+}
+//--------------------------------------------------------------------------------------------------
+bool TComponentEntityManagerExtensionImpl::HasComponent(nsECSFramework::TEntityID eid, int rtti)
+{
+    if (TComponentEntMng::Has(rtti)) {
+        return TComponentEntMng::HasComponent(mEntMng, eid, rtti);
     }
-    //--------------------------------------------------------------------------------------------------
-    bool TComponentEntityManagerExtensionImpl::HasComponent(nsECSFramework::TEntityID eid, int rtti)
-    {
-        if (TComponentEntMng::Has(rtti)) {
-            return TComponentEntMng::HasComponent(mEntMng, eid, rtti);
-        }
-        if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
-            return nsTornadoEngine::TComponentEntMng::HasComponent(mEntMng, eid, rtti);
-        }
-        return false;
+    if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
+        return nsTornadoEngine::TComponentEntMng::HasComponent(mEntMng, eid, rtti);
     }
-    //--------------------------------------------------------------------------------------------------
-    void TComponentEntityManagerExtensionImpl::RemoveComponent(nsECSFramework::TEntityID eid, int rtti)
-    {
-        if (TComponentEntMng::Has(rtti)) {
-            TComponentEntMng::RemoveComponent(mEntMng, eid, rtti);
-            return;
-        }
-        if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
-            nsTornadoEngine::TComponentEntMng::RemoveComponent(mEntMng, eid, rtti);
-            return;
-        }
+    return false;
+}
+//--------------------------------------------------------------------------------------------------
+void TComponentEntityManagerExtensionImpl::RemoveComponent(nsECSFramework::TEntityID eid, int rtti)
+{
+    if (TComponentEntMng::Has(rtti)) {
+        TComponentEntMng::RemoveComponent(mEntMng, eid, rtti);
+        return;
     }
-    //--------------------------------------------------------------------------------------------------
-    
+    if (nsTornadoEngine::TComponentEntMng::Has(rtti)) {
+        nsTornadoEngine::TComponentEntMng::RemoveComponent(mEntMng, eid, rtti);
+        return;
+    }
+}
+//--------------------------------------------------------------------------------------------------

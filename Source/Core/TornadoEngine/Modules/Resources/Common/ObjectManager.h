@@ -21,9 +21,11 @@ See for more information LICENSE.md.
 
 #include "EntityContent.h"
 
+#include "ResourceManager.h"
+
 namespace nsTornadoEngine
 {
-    class DllExport TObjectManager
+    class DllExport TObjectManager : public TResourceManager
     {
     protected:
         nsECSFramework::TEntityManager* mEntityManager = nullptr;
@@ -34,13 +36,6 @@ namespace nsTornadoEngine
 
         void SetContentMap(const std::string& contentMapPath);
         void SetEntityManager(nsECSFramework::TEntityManager* entMng);
-
-        // Per one call
-        void Delete(const std::string& guid);
-        std::string GetGuid(const std::string& absPath);
-        std::string GetAbsPath(const std::string& guid);
-        void Rename(const std::string& guid, const std::string& newAbsPath);
-        void Copy(const std::string& srcGuid, const std::string& dstGuid);
 
         // Каскадное уничтожение детей, только для редактирования префабов и сцен
         // доступ только в редакторе!

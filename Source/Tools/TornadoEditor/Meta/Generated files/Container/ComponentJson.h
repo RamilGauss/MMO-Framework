@@ -1,8 +1,8 @@
 /*
 Project Component
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:45:38.705
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_10_08 13:54:00.639
 	
 #pragma once
 
@@ -21,14 +21,15 @@ namespace nsTornadoEditor
     
         struct TypeFunc
         {
+            int rtti = 0;
             std::function<void(void*, std::string&)>  serializeFunc;
             std::function<bool(void*, const std::string&, std::string&)> deserializeFunc;
         };
     
         static std::vector<TypeFunc> mTypeFuncVector;
-    
-        static void Init();
     public:
+        static void Init();
+    
         template <typename Type>
         static void Serialize(Type* p, std::string& str);
         template <typename Type>

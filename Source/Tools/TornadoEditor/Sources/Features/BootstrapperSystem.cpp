@@ -18,7 +18,7 @@ void TBootstrapperSystem::Init()
     nsTornadoEngine::TInstantiateSceneParams instantiateSceneParams;
     instantiateSceneParams.guid = "Main.scene";
 
-    nsTornadoEngine::Modules()->SceneMng()->InstantiateByGuid(instantiateSceneParams);
+    nsTornadoEngine::Modules()->SceneMng()->Instantiate(instantiateSceneParams);
 
     auto editorEid = GetEntMng()->CreateEntity();
 

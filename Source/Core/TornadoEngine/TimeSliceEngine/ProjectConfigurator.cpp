@@ -39,7 +39,11 @@ void TProjectConfigurator::Setup()
     entMng->Setup(dllPathList);
 
     auto& resources = Project()->mResources;
-    
+
+    auto resourceMng = Modules()->ResourceMng();
+
+    resourceMng->SetContentMap(resources.resourcesContentMapPath);
+
     auto sceneMng = Modules()->SceneMng();
 
     sceneMng->SetEntityManager(entMng);

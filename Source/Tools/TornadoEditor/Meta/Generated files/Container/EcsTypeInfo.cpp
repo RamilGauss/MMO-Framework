@@ -1,8 +1,8 @@
 /*
 Project Ecs System
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:45:43.291
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_10_08 13:54:05.663
 	
 #include "EcsTypeInfo.h"
 
@@ -15,7 +15,7 @@ std::list<std::string> TEcsTypeInfo::mTypeNameList;
 std::list<int> TEcsTypeInfo::mRttiList;
 
 std::vector<std::string> TEcsTypeInfo::mNameVector;
-std::map<std::string, int> TEcsTypeInfo::mNameRttiMap;
+std::unordered_map<std::string, int> TEcsTypeInfo::mNameRttiMap;
 
 void TEcsTypeInfo::Init()
 {
@@ -39,35 +39,11 @@ void TEcsTypeInfo::Init()
     mRttiList.push_back(nsECSFramework_TBaseReactiveSystem_i);
     mNameRttiMap.insert({ nsECSFramework_TBaseReactiveSystem_n, nsECSFramework_TBaseReactiveSystem_i });
     
-    int nsECSFramework_TExecuteSystem_i = globalTypeIdentifier->Type<nsECSFramework::TExecuteSystem>();
-    std::string nsECSFramework_TExecuteSystem_n = "nsECSFramework::TExecuteSystem";
-    mTypeNameList.push_back(nsECSFramework_TExecuteSystem_n);
-    mRttiList.push_back(nsECSFramework_TExecuteSystem_i);
-    mNameRttiMap.insert({ nsECSFramework_TExecuteSystem_n, nsECSFramework_TExecuteSystem_i });
-    
     int nsECSFramework_TFeature_i = globalTypeIdentifier->Type<nsECSFramework::TFeature>();
     std::string nsECSFramework_TFeature_n = "nsECSFramework::TFeature";
     mTypeNameList.push_back(nsECSFramework_TFeature_n);
     mRttiList.push_back(nsECSFramework_TFeature_i);
     mNameRttiMap.insert({ nsECSFramework_TFeature_n, nsECSFramework_TFeature_i });
-    
-    int nsECSFramework_TInitSystem_i = globalTypeIdentifier->Type<nsECSFramework::TInitSystem>();
-    std::string nsECSFramework_TInitSystem_n = "nsECSFramework::TInitSystem";
-    mTypeNameList.push_back(nsECSFramework_TInitSystem_n);
-    mRttiList.push_back(nsECSFramework_TInitSystem_i);
-    mNameRttiMap.insert({ nsECSFramework_TInitSystem_n, nsECSFramework_TInitSystem_i });
-    
-    int nsECSFramework_TSystem_i = globalTypeIdentifier->Type<nsECSFramework::TSystem>();
-    std::string nsECSFramework_TSystem_n = "nsECSFramework::TSystem";
-    mTypeNameList.push_back(nsECSFramework_TSystem_n);
-    mRttiList.push_back(nsECSFramework_TSystem_i);
-    mNameRttiMap.insert({ nsECSFramework_TSystem_n, nsECSFramework_TSystem_i });
-    
-    int nsECSFramework_TTearDownSystem_i = globalTypeIdentifier->Type<nsECSFramework::TTearDownSystem>();
-    std::string nsECSFramework_TTearDownSystem_n = "nsECSFramework::TTearDownSystem";
-    mTypeNameList.push_back(nsECSFramework_TTearDownSystem_n);
-    mRttiList.push_back(nsECSFramework_TTearDownSystem_i);
-    mNameRttiMap.insert({ nsECSFramework_TTearDownSystem_n, nsECSFramework_TTearDownSystem_i });
     
     int nsTornadoEditor_TBootstrapperFeature_i = globalTypeIdentifier->Type<nsTornadoEditor::TBootstrapperFeature>();
     std::string nsTornadoEditor_TBootstrapperFeature_n = "nsTornadoEditor::TBootstrapperFeature";

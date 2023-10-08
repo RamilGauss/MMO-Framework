@@ -69,6 +69,8 @@
     <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.cpp" />
     <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.cpp" />
     <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.cpp" />
+    <ClCompile Include="Meta\Generated files\Container\ComponentTypeFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Meta\Launch.json" />
@@ -309,5 +311,7 @@
     <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsDynamicCasterImpl.h" />
     <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.h" />
     <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.h" />
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.h" />
+    <ClInclude Include="Meta\Generated files\Container\ComponentTypeFactory.h" />
   </ItemGroup>
 </Project>

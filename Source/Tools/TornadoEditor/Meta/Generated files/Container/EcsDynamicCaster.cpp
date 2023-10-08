@@ -1,8 +1,8 @@
 /*
 Project Ecs System
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_10 14:45:43.280
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_10_08 13:54:05.653
 	
 #include "EcsDynamicCaster.h"
 #include "SingletonManager.h"

@@ -7,7 +7,8 @@ See for more information LICENSE.md.
 
 #include "TextureMakerSystem.h"
 
-#include "ProjectConfigContainer.h"
+#include "Modules.h"
+#include "ResourceManager.h"
 
 #include "GraphicEngine/TextureFactory.h"
 
@@ -15,6 +16,6 @@ using namespace nsGraphicWrapper;
 
 void TTextureMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGraphicWrapper::TTextureFromFileComponent* pTextureComponent)
 {
-    auto resourceAbsPath = nsTornadoEngine::Project()->GetResourcesAbsPath(pTextureComponent->resourceGuid);
+    auto resourceAbsPath = nsTornadoEngine::Modules()->ResourceMng()->GetAbsPath(pTextureComponent->resourceGuid);
     pTextureComponent->value = nsGraphicEngine::TTextureFactory::Load(resourceAbsPath);
 }

@@ -43,9 +43,6 @@
                 "nsLogicWrapper::IObjectInstantiationCompletionHandler"
             ],
             [
-                "nsLogicWrapper::IPrefabInstantiationCompletionHandler"
-            ],
-            [
                 "nsLogicWrapper::ISceneInstantiationCompletionHandler"
             ]
         ],

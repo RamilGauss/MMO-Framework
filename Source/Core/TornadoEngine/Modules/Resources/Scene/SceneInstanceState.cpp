@@ -63,4 +63,24 @@ namespace nsTornadoEngine
             { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mComponentDeserializingProgress, mEntityProgress, mPrefabProgress }).IsCompleted();
     }
     //--------------------------------------------------------------------------------------------------
+    float TSceneInstanceState::GetDestroyingProgress() const
+    {
+        return 0.0f;
+    }
+    //--------------------------------------------------------------------------------------------------
+    bool TSceneInstanceState::IsIDestroyCompleted() const
+    {
+        return false;
+    }
+    //--------------------------------------------------------------------------------------------------
+    float TSceneInstanceState::GetSavingProgress() const
+    {
+        return 0.0f;
+    }
+    //--------------------------------------------------------------------------------------------------
+    bool TSceneInstanceState::IsSaveCompleted() const
+    {
+        return false;
+    }
+    //--------------------------------------------------------------------------------------------------
 }

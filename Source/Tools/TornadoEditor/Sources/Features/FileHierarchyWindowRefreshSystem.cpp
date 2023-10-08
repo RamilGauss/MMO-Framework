@@ -77,7 +77,7 @@ void TFileHierarchyWindowRefreshSystem::AddFileNodes(const nsTornadoEngine::TGam
 
     for (const auto& path : paths) {
 
-        auto go = prefabMng->InstantiateByGuid({ "3", sceneInstanceGuid, parentGuid});
+        auto go = prefabMng->Instantiate({ "3", sceneInstanceGuid, parentGuid});
 
         auto absFilePathStr = path.string();
 

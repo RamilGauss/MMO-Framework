@@ -361,6 +361,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\Implementations\SoundEngineModule.cpp" />
     <ClCompile Include="Modules\Gizmos\SystemViewer.cpp" />
     <ClCompile Include="Modules\Resources\Common\ObjectManager.cpp" />
+    <ClCompile Include="Modules\Resources\Common\ResourceManager.cpp" />
     <ClCompile Include="Modules\Resources\Prefab\PrefabManager.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneCacheManager.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneHashCalculator.cpp" />
@@ -402,9 +403,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Resources\Common\EntityContent.h" />
     <ClInclude Include="Modules\Resources\Common\GameObject.h" />
     <ClInclude Include="Modules\Resources\Common\ObjectManager.h" />
+    <ClInclude Include="Modules\Resources\Common\ResourceManager.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabManager.h" />
     <ClInclude Include="Modules\Resources\Prefab\InstantiatePrefabParams.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabPatch.h" />
+    <ClInclude Include="Modules\Resources\Prefab\PrefabPatchOperation.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabResourceContent.h" />
     <ClInclude Include="Modules\Resources\Scene\EntityMetaContent.h" />
     <ClInclude Include="Modules\Resources\Scene\ISceneInstanceState.h" />
