@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "ObjectInstantiationCompletionHandlerTerminatorSystem.h"
 #include "ProjectConfigContainer.h"
 #include "Logger.h"
-#include "TimeSliceEngine.h"
+#include "EngineLogger.h"
 #include "LogicModule.h"
 #include "Modules.h"
 
@@ -19,12 +19,10 @@ void TObjectInstantiationCompletionHandlerTerminatorSystem::Reactive(nsECSFramew
     auto copy = *pC;
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 
-    auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
-
     int rtti;
     auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pC->handlerTypeName, rtti);
     if (convertResult == false) {
-        logger->WriteF_time("Not converted typename \"%s\"", pC->handlerTypeName);
+        nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pC->handlerTypeName);
         return;
     }
 

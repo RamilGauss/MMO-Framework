@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "SystemMakerSystem.h"
 #include "ProjectConfigContainer.h"
 #include "Logger.h"
-#include "TimeSliceEngine.h"
+#include "EngineLogger.h"
 
 using namespace nsLogicWrapper;
 
@@ -33,12 +33,10 @@ void TSystemMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWr
 
     auto systemReflection = nsTornadoEngine::Project()->mScenePartAggregator->mSystems;
 
-    auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
-
     int rtti;
     auto convertResult = systemReflection->mTypeInfo->ConvertNameToType(pC->typeName, rtti);
     if (convertResult == false) {
-        logger->WriteF_time("Not converted typename \"%s\"", pC->typeName);
+        nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pC->typeName);
         return;
     }
 

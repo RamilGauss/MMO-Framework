@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "SystemTerminatorSystem.h"
 #include "ProjectConfigContainer.h"
 #include "Logger.h"
-#include "TimeSliceEngine.h"
+#include "EngineLogger.h"
 #include "LogicModule.h"
 #include "Modules.h"
 
@@ -21,12 +21,10 @@ void TSystemTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLo
 
     auto featureReflection = nsTornadoEngine::Project()->mScenePartAggregator->mSystems;
 
-    auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
-
     int rtti;
     auto convertResult = featureReflection->mTypeInfo->ConvertNameToType(pC->typeName, rtti);
     if (convertResult == false) {
-        logger->WriteF_time("Not converted typename \"%s\"", pC->typeName);
+        nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pC->typeName);
         return;
     }
 

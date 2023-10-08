@@ -33,8 +33,6 @@ namespace nsTornadoEngine
         std::list<ModuleType> mModuleTypes;
 
     public:
-        static const std::string NAME;
-
         TTimeSliceEngine();
 
         bool Work(const std::list<ModuleType>& moduleTypes);

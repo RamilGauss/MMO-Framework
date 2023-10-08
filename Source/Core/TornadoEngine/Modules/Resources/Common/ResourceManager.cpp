@@ -16,7 +16,7 @@ namespace nsTornadoEngine
     {
         mContentMapPath = contentMapPath;
 
-        Load(mContentMapPath, &mResourceContentMap);
+        TResourceManager::Load(mContentMapPath, &mResourceContentMap);
     }
     //------------------------------------------------------------------------------------
     std::string TResourceManager::Create(const std::string& absPath)
@@ -28,7 +28,7 @@ namespace nsTornadoEngine
 
         mResourceContentMap.guidPathMap.insert({ newGuid, relPath });
 
-        Save(mContentMapPath, &mResourceContentMap);
+        TResourceManager::Save(mContentMapPath, &mResourceContentMap);
 
         return newGuid;
     }
@@ -38,7 +38,7 @@ namespace nsTornadoEngine
         auto absPath = GetAbsPath(guid);
 
         mResourceContentMap.guidPathMap.erase(guid);
-        Save(mContentMapPath, &mResourceContentMap);
+        TResourceManager::Save(mContentMapPath, &mResourceContentMap);
 
         std::remove(absPath.c_str());
     }
@@ -78,7 +78,7 @@ namespace nsTornadoEngine
 
         fit->second = relPath;
 
-        Save(mContentMapPath, &mResourceContentMap);
+        TResourceManager::Save(mContentMapPath, &mResourceContentMap);
     }
     //------------------------------------------------------------------------------------
     void TResourceManager::Copy(const std::string& srcGuid, const std::string& dstGuid)

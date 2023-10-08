@@ -26,14 +26,12 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 
-const std::string TTimeSliceEngine::NAME = "TornadoEngine";
-
 TTimeSliceEngine::TTimeSliceEngine()
 {
     mModuleMng.reset(new TModuleManager(this));
 
     GetLogger()->Done();
-    GetLogger()->Register(NAME);
+    GetLogger()->Register(TEngineLogger::NAME);
 }
 //----------------------------------------------------------------------
 void TTimeSliceEngine::Done()

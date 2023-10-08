@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include "ProjectConfigContainer.h"
 #include "Logger.h"
 #include "TimeSliceEngine.h"
+#include "EngineLogger.h"
 
 using namespace nsGraphicWrapper;
 
@@ -17,12 +18,10 @@ void TDialogCloseEventHandlerMakerSystem::Reactive(nsECSFramework::TEntityID eid
 {
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 
-    auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
-
     int rtti;
     auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pDialogCloseEventHandlerComponent->handlerTypeName, rtti);
     if (convertResult == false) {
-        logger->WriteF_time("Not converted typename \"%s\"", pDialogCloseEventHandlerComponent->handlerTypeName);
+        nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pDialogCloseEventHandlerComponent->handlerTypeName);
         return;
     }
     pDialogCloseEventHandlerComponent->handler = (nsGuiWrapper::IDialogCloseEventHandler*) (handlerReflection->mTypeFactory->New(rtti));

@@ -29,28 +29,5 @@ namespace nsTornadoEngine
         static bool LoadConveyor();
         static bool LoadBinary();
         static bool LoadResources();
-
-        template<typename ... Args>
-        static void Log(const char* format, Args && ... args)
-        {
-            GetLogger(TTimeSliceEngine::NAME)->WriteF_time(format, std::forward<Args>(args)...);
-        }
-
-        template<typename T>
-        static bool Load(std::string absPath, T* p)
-        {
-            std::string jsonContent;
-            TTextFile::Load(absPath, jsonContent);
-            if (jsonContent.length() == 0) {
-                Log("%s no such file", absPath.c_str());
-                return false;
-            }
-            std::string err;
-            auto deserResult = TTornadoEngineJsonSerializer::Deserialize(p, jsonContent, err);
-            if (!deserResult) {
-                Log("%s %s", absPath.c_str(), err.c_str());
-            }
-            return deserResult;
-        }
     };
 }

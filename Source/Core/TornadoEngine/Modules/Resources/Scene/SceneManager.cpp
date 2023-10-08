@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "HiTimer.h"
 #include "TextFile.h"
 #include "Logger.h"
-#include "TimeSliceEngine.h"
+#include "EngineLogger.h"
 #include "TornadoEngineJsonSerializer.h"
 #include "ProjectConfigContainer.h"
 
@@ -83,7 +83,7 @@ namespace nsTornadoEngine
         // Convert to abs path
         auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
         if (fit == mResourceContentMap.guidPathMap.end()) {
-            GetLogger()->Get(TTimeSliceEngine::NAME)->WriteF_time("Guid \"%s\" not exist", instantiateSceneParams.guid.c_str());
+            nsTornadoEngine::TEngineLogger::Log("Guid \"%s\" not exist", instantiateSceneParams.guid.c_str());
             return "Not found";
         }
 

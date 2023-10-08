@@ -550,6 +550,7 @@
     <ClCompile Include="Generated files\Container\ComponentTypeFactory.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneCacheManager.cpp" />
     <ClCompile Include="Modules\Resources\Common\ResourceManager.cpp" />
+    <ClCompile Include="TimeSliceEngine\EngineLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Resources\Common\FrameworkResources.h">
@@ -1257,6 +1258,7 @@
     <ClInclude Include="Modules\Resources\Scene\ISceneInstanceState.h" />
     <ClInclude Include="Modules\Resources\Common\ResourceManager.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabPatchOperation.h" />
+    <ClInclude Include="TimeSliceEngine\EngineLogger.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

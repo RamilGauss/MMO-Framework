@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 #include "Modules.h"
 #include "ProjectConfigContainer.h"
 #include "Logger.h"
-#include "TimeSliceEngine.h"
+#include "EngineLogger.h"
 #include "PrefabOriginalGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
 #include "HandlerCallCollector.h"
@@ -167,12 +167,10 @@ namespace nsGraphicWrapper
     {
         auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 
-        auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
-
         int rtti;
         auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pHandlerComponent->handlerTypeName, rtti);
         if (convertResult == false) {
-            logger->WriteF_time("Not converted typename \"%s\"", pHandlerComponent->handlerTypeName);
+            nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pHandlerComponent->handlerTypeName);
             return;
         }
         handlerReflection->mTypeFactory->Delete(pHandlerComponent->handler, rtti);

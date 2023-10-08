@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "ProjectConfigContainer.h"
 #include "Logger.h"
-#include "TimeSliceEngine.h"
+#include "EngineLogger.h"
 
 using namespace nsLogicWrapper;
 
@@ -23,12 +23,11 @@ void TObjectInstantiationCompletionHandlerMakerSystem::Reactive(nsECSFramework::
     }
 
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
-    auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
 
     int rtti;
     auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pC->handlerTypeName, rtti);
     if (convertResult == false) {
-        logger->WriteF_time("Not converted typename \"%s\"", pC->handlerTypeName);
+        nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pC->handlerTypeName);
         return;
     }
     pC->handler = (nsLogicWrapper::IObjectInstantiationCompletionHandler*) (handlerReflection->mTypeFactory->New(rtti));

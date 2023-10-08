@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "Modules.h"
 #include "ProjectConfigContainer.h"
 #include "Logger.h"
-#include "TimeSliceEngine.h"
+#include "EngineLOgger.h"
 
 using namespace nsGraphicWrapper;
 
@@ -18,12 +18,10 @@ void TFrameMouseClickHandlerMakerSystem::Reactive(nsECSFramework::TEntityID eid,
 {
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 
-    auto logger = GetLogger()->Get(nsTornadoEngine::TTimeSliceEngine::NAME);
-
     int rtti;
     auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pFrameMouseClickHandlerComponent->handlerTypeName, rtti);
     if (convertResult == false) {
-        logger->WriteF_time("Not converted typename \"%s\"", pFrameMouseClickHandlerComponent->handlerTypeName);
+        nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pFrameMouseClickHandlerComponent->handlerTypeName);
         return;
     }
     pFrameMouseClickHandlerComponent->handler = (nsGuiWrapper::IFrameMouseClickHandler*) (handlerReflection->mTypeFactory->New(rtti));

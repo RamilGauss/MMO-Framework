@@ -37,8 +37,7 @@ namespace nsTornadoEngine
     void TObjectManager::DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities,
         std::list<TEntityContent>::const_iterator& entIt, int count)
     {
-        auto logger = GetLogger()->Get(TTimeSliceEngine::NAME);
-
+        //nsTornadoEngine::TEngineLogger::Log()
         //auto start = ht_GetUSCount();//###
 
         auto componentReflection = Project()->mScenePartAggregator->mComponents;

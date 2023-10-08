@@ -12,6 +12,9 @@ See for more information LICENSE.md.
 #include "TornadoEngineJsonSerializer.h"
 #include "PathOperations.h"
 
+#include "EngineLogger.h"
+#include "ResourceManager.h"
+
 using namespace nsTornadoEngine;
 using namespace nsBase;
 
@@ -47,21 +50,21 @@ bool TProjectConfigLoader::LoadBinary()
     mPcc->mLoader = loader;
 
     if (loader->Init(mPcc->GetBinaryAbsPath().c_str()) == false) {
-        Log("LoadDLL() FAIL init.\n");
+        TEngineLogger::Log("LoadDLL() FAIL init.\n");
         return false;
     }
     mPcc->mFreeScenePartAggregator = (FuncFreeScenePartReflectionAggregator) loader->Get(StrFreeScenePartReflectionAggregator);
     if (mPcc->mFreeScenePartAggregator == nullptr) {
-        Log("LoadDLL() FAIL load FuncFree.\n");
+        TEngineLogger::Log("LoadDLL() FAIL load FuncFree.\n");
         return false;
     }
     mPcc->mGetScenePartAggregator = (FuncGetScenePartReflectionAggregator) loader->Get(StrGetScenePartReflectionAggregator);
     if (mPcc->mGetScenePartAggregator == nullptr) {
-        Log("LoadDLL() FAIL load FuncGetdevTool.\n");
+        TEngineLogger::Log("LoadDLL() FAIL load FuncGetdevTool.\n");
         return false;
     }
     if (mPcc->mScenePartAggregator != nullptr) {
-        Log("LoadDLL() warning, object was loaded.\n");
+        TEngineLogger::Log("LoadDLL() warning, object was loaded.\n");
         return true;
     }
     mPcc->mScenePartAggregator = mPcc->mGetScenePartAggregator();
@@ -73,16 +76,16 @@ bool TProjectConfigLoader::LoadBinary()
 //----------------------------------------------------------------------
 bool TProjectConfigLoader::LoadProjectConfig()
 {
-    return Load(mPcc->projectAbsPath, &(mPcc->mProjectConfig));
+    return TResourceManager::Load(mPcc->projectAbsPath, &(mPcc->mProjectConfig));
 }
 //------------------------------------------------------------------------
 bool TProjectConfigLoader::LoadConveyor()
 {
-    return Load(mPcc->GetConveyorAbsPath(), &(mPcc->mConveyor));
+    return TResourceManager::Load(mPcc->GetConveyorAbsPath(), &(mPcc->mConveyor));
 }
 //------------------------------------------------------------------------
 bool TProjectConfigLoader::LoadResources()
 {
-    return Load(mPcc->GetResourcesAbsPath(), &(mPcc->mResources));
+    return TResourceManager::Load(mPcc->GetResourcesAbsPath(), &(mPcc->mResources));
 }
 //------------------------------------------------------------------------
