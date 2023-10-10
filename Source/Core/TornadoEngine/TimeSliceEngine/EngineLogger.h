@@ -20,9 +20,13 @@ namespace nsTornadoEngine
         static const std::string NAME;
 
         template<typename ... Args>
-        static void Log(const char* format, Args && ... args)
+        void Log(const char* format, Args && ... args)
         {
+            LogEvent();
+
             GetLogger(TEngineLogger::NAME)->WriteF_time(format, std::forward<Args>(args)...);
         }
+    protected:
+        virtual void LogEvent(const std::string& str) {}
     };
 }

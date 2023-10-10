@@ -23,6 +23,8 @@ namespace nsTornadoEngine
     class DllExport TProjectConfigContainer
     {
     public:
+        std::string mProjectName = "project.log";
+
         std::string projectAbsPath;
         std::string projectDirAbsPath;
 
@@ -44,9 +46,24 @@ namespace nsTornadoEngine
         std::string GetResourcesAbsPath();
         
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng);
+
+        template<typename ... Args>
+        void Log(const char* format, Args && ... args)
+        {
+            std::string text = fmt::format(format, std::forward<Args>(args)...);
+            
+            if (mLogEvent) {
+                mLogEvent(text);
+            }
+
+            GetLogger(mProjectName)->WriteF_time(text.c_str());
+        }
+
+        std::function<bool(const std::string&)> mLogEvent;
     };
 
     extern TProjectConfigContainer* Project();
+    extern void SetProject(TProjectConfigContainer* pProject);
 }
 
 

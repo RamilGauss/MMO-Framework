@@ -11,10 +11,18 @@ See for more information LICENSE.md.
 #include "SingletonManager.h"
 #include "PathOperations.h"
 
+static nsTornadoEngine::TProjectConfigContainer* g_ProjectPtr = nullptr;
+
 nsTornadoEngine::TProjectConfigContainer* nsTornadoEngine::Project()
 {
-    return SingletonManager()->Get<nsTornadoEngine::TProjectConfigContainer>();
+    return g_ProjectPtr;
 }
+//---------------------------------------------------------------------
+void SetProject(nsTornadoEngine::TProjectConfigContainer* pProject)
+{
+    g_ProjectPtr = pProject;
+}
+//---------------------------------------------------------------------
 
 using namespace nsTornadoEngine;
 using namespace nsBase;

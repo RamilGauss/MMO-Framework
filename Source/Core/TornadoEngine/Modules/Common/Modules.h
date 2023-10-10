@@ -70,6 +70,9 @@ namespace nsTornadoEngine
         TGizmo* Gizmo() const;
 
         TPropertyManager* PropertyMng() const;
+
+        // Core logger
+        TEngineLogger* Log() const;
     protected:
         friend class TModulesAccessor;
 

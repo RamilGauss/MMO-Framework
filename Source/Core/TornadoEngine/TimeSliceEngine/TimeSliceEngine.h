@@ -32,6 +32,8 @@ namespace nsTornadoEngine
         
         std::list<ModuleType> mModuleTypes;
 
+        TProjectConfigContainer mProjectConfigContainer
+
     public:
         TTimeSliceEngine();
 
