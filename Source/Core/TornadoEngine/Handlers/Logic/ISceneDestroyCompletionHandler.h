@@ -13,9 +13,9 @@ See for more information LICENSE.md.
 
 namespace nsLogicWrapper
 {
-    class DllExport IObjectInstantiationCompletionHandler : public nsTornadoEngine::IHandler
+    class DllExport ISceneDestroyCompletionHandler : public nsTornadoEngine::IHandler
     {
     public:
-        virtual void Handle(nsECSFramework::TEntityID eid) = 0;
+        virtual void Handle(nsECSFramework::TEntityID eid, const std::string& sceneIstanceGuid, const std::string& tag) = 0;
     };
 }
