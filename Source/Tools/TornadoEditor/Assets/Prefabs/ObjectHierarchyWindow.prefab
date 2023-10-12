@@ -19,10 +19,6 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
-                    "jsonBody": "{\"value\":\"ObjectHierarchyWindow\"}"
-                },
-                {
                     "typeName": "nsGuiWrapper::TPositionComponent",
                     "jsonBody": "{\"x\":402, \"y\":20}"
                 },

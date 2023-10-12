@@ -17,10 +17,6 @@
                     "jsonBody": "{\"value\":\"Bootstrapper scene\"}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"bootstrapper\"}"
-                },
-                {
                     "typeName": "nsCommonWrapper::TSceneRootComponent",
                     "jsonBody": "{}"
                 }
@@ -35,10 +31,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"bootstrapper_0\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"bootstrapper\"}"
                 },
                 {
                     "typeName": "nsLogicWrapper::TSystemComponent",

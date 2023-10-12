@@ -19,10 +19,6 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
-                    "jsonBody": "{\"value\":\"FileNode\"}"
-                },
-                {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"[Directory]\"}"
                 },

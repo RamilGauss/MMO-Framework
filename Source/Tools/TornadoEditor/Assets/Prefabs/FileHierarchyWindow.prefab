@@ -19,10 +19,6 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
-                    "jsonBody": "{\"value\":\"FileHierarchyWindow\"}"
-                },
-                {
                     "typeName": "nsGuiWrapper::TPositionComponent",
                     "jsonBody": "{\"x\":2, \"y\":20}"
                 },
@@ -61,10 +57,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"FileHierarchyWindow_0\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
-                    "jsonBody": "{\"value\":\"FileHierarchyWindow\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TPositionComponent",

@@ -19,10 +19,6 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
-                    "jsonBody": "{\"value\":\"WarningDialog\"}"
-                },
-                {
                     "typeName": "nsGuiWrapper::TPositionComponent",
                     "jsonBody": "{\"x\":200, \"y\":200}"
                 },
@@ -57,10 +53,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"WarningDialog_0\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TPrefabGuidComponent",
-                    "jsonBody": "{\"value\":\"WarningDialog\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TPositionComponent",

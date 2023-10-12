@@ -17,10 +17,6 @@
                     "jsonBody": "{\"value\":\"Main scene\"}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"first scene\"}"
-                },
-                {
                     "typeName": "nsCommonWrapper::TSceneRootComponent",
                     "jsonBody": "{}"
                 },
@@ -51,10 +47,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"main_0\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
@@ -89,10 +81,6 @@
                     "jsonBody": "{\"value\":\"main_1\"}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
-                },
-                {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"File\"}"
                 },
@@ -115,10 +103,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"main_2\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
@@ -151,10 +135,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"main_2\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
@@ -193,10 +173,6 @@
                     "jsonBody": "{\"value\":\"main_1\"}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
-                },
-                {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"View\"}"
                 },
@@ -219,10 +195,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"main_5\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
@@ -253,10 +225,6 @@
                     "jsonBody": "{\"value\":\"main_5\"}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
-                },
-                {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"Object hierarchy window\"}"
                 },
@@ -279,10 +247,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"main_5\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
@@ -309,10 +273,6 @@
                     "jsonBody": "{\"value\":\"main_1\"}"
                 },
                 {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
-                },
-                {
                     "typeName": "nsGuiWrapper::TTitleComponent",
                     "jsonBody": "{\"value\":\"Tools\"}"
                 },
@@ -335,10 +295,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"main_9\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
@@ -367,10 +323,6 @@
                 {
                     "typeName": "nsCommonWrapper::TParentGuidComponent",
                     "jsonBody": "{\"value\":\"main_9\"}"
-                },
-                {
-                    "typeName": "nsCommonWrapper::TSceneGuidComponent",
-                    "jsonBody": "{\"value\":\"main\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TTitleComponent",
