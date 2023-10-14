@@ -10,14 +10,17 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 
 #include "SystemMakerSystem.h"
-#include "ObjectInstantiationCompletionHandlerMakerSystem.h"
+#include "GlobalHandlerMakerSystem.h"
+#include "TargetHandlerMakerSystem.h"
 
 namespace nsLogicWrapper
 {
     class DllExport TLogicMakerFeature : public nsECSFramework::TFeature
     {
         TSystemMakerSystem mSystemMakerSystem;
-        TObjectInstantiationCompletionHandlerMakerSystem mObjectInstantiationCompletionHandlerMakerSystem;
+
+        TGlobalHandlerMakerSystem mGlobalHandlerMakerSystem;
+        TTargetHandlerMakerSystem mTargetHandlerMakerSystem;
     public:
         void InitConveyor() override;
     };

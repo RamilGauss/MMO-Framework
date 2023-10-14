@@ -23,16 +23,6 @@ void TGuiTerminatorFeature::InitConveyor()
 
     Add(&mMainWindowTerminatorSystem);
 
-    Add(&mButtonClickHandlerTerminatorSystem);
-    Add(&mMenuNodeClickHandlerTerminatorSystem);
-    Add(&mDialogCloseEventHandlerTerminatorSystem);
-    Add(&mWindowCloseEventHandlerTerminatorSystem);
-
-    Add(&mFrameKeyHandlerTerminatorSystem);
-    Add(&mFrameMouseClickHandlerTerminatorSystem);
-    Add(&mFrameMouseMoveHandlerTerminatorSystem);
-    Add(&mFrameMouseWheelHandlerTerminatorSystem);
-
     Add(&mTextureTerminatorSystem);
     Add(&mCameraTerminatorSystem);
 }

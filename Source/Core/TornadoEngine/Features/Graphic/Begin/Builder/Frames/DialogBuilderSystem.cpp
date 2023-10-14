@@ -48,14 +48,14 @@ void TDialogBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
             return;
         }
 
-        auto handlers = THandlerLinkHelper::FindHandlers<TDialogCloseEventHandlerComponent>(entMng, eid, pDialogComponent);
+        //auto handlers = THandlerLinkHelper::FindHandlers<TDialogCloseEventHandlerComponent>(entMng, eid, pDialogComponent);
 
-        for (auto& pHandler : handlers) {
-            handlerCallCollector->Add([pHandler, eid, pDialogComponent]()
-            {
-                pHandler->handler->Handle(eid, pDialogComponent);
-            });
-        }
+        //for (auto& pHandler : handlers) {
+        //    handlerCallCollector->Add([pHandler, eid, pDialogComponent]()
+        //    {
+        //        pHandler->handler->Handle(eid, pDialogComponent);
+        //    });
+        //}
     });
 
 

@@ -43,6 +43,7 @@ namespace nsTornadoEngine
     class THierarchyHelper;
     class TGizmo;
     class TPropertyManager;
+    class TEngineLogger;
 
     class DllExport TModules
     {
@@ -90,6 +91,7 @@ namespace nsTornadoEngine
         TResourceManager* resourceMng = nullptr;
         TSceneManager* sceneMng = nullptr;
         TPrefabManager* prefabMng = nullptr;
+        TEngineLogger* engineLogger = nullptr;
 
         TStopAccessor* stopAccessor = nullptr;
 

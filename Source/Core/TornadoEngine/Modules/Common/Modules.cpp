@@ -98,6 +98,11 @@ TPropertyManager* TModules::PropertyMng() const
     return propertyMng;
 }
 //----------------------------------------------------------
+TEngineLogger* TModules::Log() const
+{
+    return engineLogger;
+}
+//----------------------------------------------------------
 TModules::TModules()
 {
 

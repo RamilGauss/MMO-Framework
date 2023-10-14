@@ -12,15 +12,15 @@ See for more information LICENSE.md.
 #include "TypeDef.h"
 
 #include <ECS/include/IComponent.h>
-#include "IFrameMouseClickHandler.h"
 
-#include "HandlerTarget.h"
-
-namespace nsGuiWrapper
+namespace nsLogicWrapper
 {
-    struct DllExport TFrameMouseClickHandlerComponent : nsCommonWrapper::THandlerTarget, nsECSFramework::IComponent
+    struct DllExport TTargetHandlerComponent : nsECSFramework::IComponent
     {
+        std::string entityGuid;
+        std::string handlerTypeName;
+
 #pragma IGNORE_ATTRIBUTE
-        mutable IFrameMouseClickHandler* handler = nullptr;
+        mutable void* handler = nullptr;
     };
 }

@@ -5,28 +5,24 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ObjectInstantiationCompletionHandlerTerminatorSystem.h"
+#include "TargetHandlerMakerSystem.h"
+
 #include "ProjectConfigContainer.h"
+#include "Modules.h"
 #include "Logger.h"
 #include "EngineLogger.h"
-#include "LogicModule.h"
-#include "Modules.h"
 
 using namespace nsLogicWrapper;
 
-void TObjectInstantiationCompletionHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* pC)
+void TTargetHandlerMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TTargetHandlerComponent* pC)
 {
-    auto copy = *pC;
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 
     int rtti;
     auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pC->handlerTypeName, rtti);
     if (convertResult == false) {
-        nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pC->handlerTypeName);
+        nsTornadoEngine::Modules()->Log()->Log("Not converted typename \"%s\"", pC->handlerTypeName);
         return;
     }
-
-    handlerReflection->mTypeFactory->Delete(pC->handler, rtti);
-
-    pC->handler = nullptr;
+    pC->handler = handlerReflection->mTypeFactory->New(rtti);
 }

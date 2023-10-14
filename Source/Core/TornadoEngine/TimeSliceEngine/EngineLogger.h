@@ -9,6 +9,8 @@ See for more information LICENSE.md.
 
 #include <string>
 
+#include <fmt/core.h>
+
 #include "TypeDef.h"
 #include "Logger.h"
 
@@ -22,7 +24,7 @@ namespace nsTornadoEngine
         template<typename ... Args>
         void Log(const char* format, Args && ... args)
         {
-            LogEvent();
+            //LogEvent();
 
             GetLogger(TEngineLogger::NAME)->WriteF_time(format, std::forward<Args>(args)...);
         }

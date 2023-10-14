@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 #include "TitleComponent.h"
 
-#include "ButtonClickHandlerComponent.h"
+#include "IButtonClickHandler.h"
 
 #include "PrefabOriginalGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
@@ -37,12 +37,12 @@ void TButtonBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     pButtonComponent->value->mOnClickCB.Register(pButtonComponent->value, 
         [entMng, handlerCallCollector, eid, pButtonComponent](nsImGuiWidgets::TButton* pB)
     {
-        auto handlers = THandlerLinkHelper::FindHandlers<TButtonClickHandlerComponent>(entMng, eid, pButtonComponent);
-        for (auto& pHandler : handlers) {
-            handlerCallCollector->Add([pHandler, eid, pButtonComponent]()
-            {
-                pHandler->handler->Handle(eid, pButtonComponent);
-            });
-        }
+        //auto handlers = THandlerLinkHelper::FindHandlers<TButtonClickHandlerComponent>(entMng, eid, pButtonComponent);
+        //for (auto& pHandler : handlers) {
+        //    handlerCallCollector->Add([pHandler, eid, pButtonComponent]()
+        //    {
+        //        pHandler->handler->Handle(eid, pButtonComponent);
+        //    });
+        //}
     });
 }

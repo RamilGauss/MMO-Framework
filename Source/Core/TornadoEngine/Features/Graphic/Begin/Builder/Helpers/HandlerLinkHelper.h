@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 
 #include "SceneGuidComponent.h"
 #include "PrefabGuidComponent.h"
+#include "SceneInstanceGuidComponent.h"
 
 #include "GuidConstants.h"
 #include "Modules.h"
@@ -22,19 +23,15 @@ See for more information LICENSE.md.
 #include "SceneOriginalGuidComponent.h"
 #include "HandlerCallCollector.h"
 
-#include "FrameMouseMoveHandlerComponent.h"
-#include "FrameMouseWheelHandlerComponent.h"
-#include "FrameMouseClickHandlerComponent.h"
-#include "FrameKeyHandlerComponent.h"
+#include "TargetHandlerComponent.h"
 
 namespace nsGraphicWrapper
 {
     class DllExport THandlerLinkHelper
     {
     public:
-        template<typename HandlerType, typename GuiType>
-        static std::list<const HandlerType*> FindHandlers(nsECSFramework::TEntityManager* entMng,
-            nsECSFramework::TEntityID eid, GuiType* pGui);
+        static std::list<void*> FindTargetHandlers(nsECSFramework::TEntityManager* entMng,
+            nsECSFramework::TEntityID eid, const std::string& handlerTypeName);
 
         template<typename GuiType>
         static void RegisterMouseKey(nsECSFramework::TEntityManager* entMng,
@@ -45,65 +42,13 @@ namespace nsGraphicWrapper
             nsECSFramework::TEntityID eid, HandlerType* pHandlerComponent);
     };
 
-    template<typename HandlerType, typename GuiType>
-    std::list<const HandlerType*> THandlerLinkHelper::FindHandlers(nsECSFramework::TEntityManager* entMng,
-        nsECSFramework::TEntityID eid, GuiType* pGui)
-    {
-        std::list<const HandlerType*> handlers;
-
-        auto handlerEids = entMng->GetByHasCopy<HandlerType>();
-        if (handlerEids.size() == 0) {
-            return handlers;
-        }
-
-        auto isPrefabInstance = entMng->HasComponent<nsCommonWrapper::TPrefabOriginalGuidComponent>(eid);
-        auto isSceneInstance = entMng->HasComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid);
-
-        // Handler setup
-        if (isSceneInstance) {
-            auto pSceneOriginalGuid = entMng->ViewComponent<nsCommonWrapper::TSceneOriginalGuidComponent>(eid);
-            for (auto& handlerEid : handlerEids) {
-                auto handlerComponent = entMng->ViewComponent<HandlerType>(handlerEid);
-                if (handlerComponent->partOfGuid != nsTornadoEngine::TGuidConstants::THIS_SCENE) {
-                    continue;
-                }
-                if (handlerComponent->entityGuid != pSceneOriginalGuid->value) {
-                    continue;
-                }
-
-                handlers.push_back(handlerComponent);
-            }
-        }
-        if (isPrefabInstance) {
-            auto pPrefabGuid = entMng->ViewComponent<nsCommonWrapper::TPrefabGuidComponent>(eid);
-            if (pPrefabGuid == nullptr) {
-                return handlers;
-            }
-
-            auto pPrefabOriginalGuid = entMng->ViewComponent<nsCommonWrapper::TPrefabOriginalGuidComponent>(eid);
-            for (auto& handlerEid : handlerEids) {
-                auto handlerComponent = entMng->ViewComponent<HandlerType>(handlerEid);
-                if (handlerComponent->partOfGuid != pPrefabGuid->value) {
-                    continue;
-                }
-                if (handlerComponent->entityGuid != pPrefabOriginalGuid->value) {
-                    continue;
-                }
-
-                handlers.push_back(handlerComponent);
-            }
-        }
-
-        return handlers;
-    }
-
     template<typename GuiType>
     void THandlerLinkHelper::RegisterMouseKey(nsECSFramework::TEntityManager* entMng,
         nsECSFramework::TEntityID eid, GuiType* pGui)
     {
         auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
 
-        pGui->value->mOnMouseClickCB.Register(pGui->value,
+        /*pGui->value->mOnMouseClickCB.Register(pGui->value,
             [entMng, handlerCallCollector, eid, pGui](nsGraphicEngine::TMouseButtonEvent mouseEvent)
         {
             auto handlers = THandlerLinkHelper::FindHandlers<nsGuiWrapper::TFrameMouseClickHandlerComponent>(entMng, eid, pGui);
@@ -157,7 +102,7 @@ namespace nsGraphicWrapper
                     }
                 });
             }
-        });
+        });*/
     }
 
 

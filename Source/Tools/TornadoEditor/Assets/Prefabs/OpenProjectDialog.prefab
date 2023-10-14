@@ -35,8 +35,8 @@
                     "jsonBody": "{\"value\":\"Open project dialog\"}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TDialogCloseEventHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"partOfGuid\":\"OpenProjectDialog\", \"entityGuid\":\"OpenProjectDialog_0\"}"
+                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"entityGuid\":\"OpenProjectDialog_0\"}"
                 }
             ]
         },
@@ -143,8 +143,8 @@
                     "jsonBody": "{\"value\":\"OK\"}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectOkButtonClickHandler\", \"partOfGuid\" : \"THIS_SCENE\", \"entityGuid\" : \"OpenProjectDialog_3\"}"
+                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectOkButtonClickHandler\", \"entityGuid\" : \"OpenProjectDialog_3\"}"
                 }
             ]
         },
@@ -211,8 +211,8 @@
                     "jsonBody": "{\"value\":\"Cancel\"}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TButtonClickHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectCancelButtonClickHandler\", \"partOfGuid\" : \"THIS_SCENE\", \"entityGuid\" : \"OpenProjectDialog_4\"}"
+                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectCancelButtonClickHandler\", \"entityGuid\" : \"OpenProjectDialog_4\"}"
                 }
             ]
         }

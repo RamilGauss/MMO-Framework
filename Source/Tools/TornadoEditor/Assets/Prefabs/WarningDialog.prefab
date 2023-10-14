@@ -35,8 +35,8 @@
                     "jsonBody": "{\"value\":\"\"}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TDialogCloseEventHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"partOfGuid\":\"WarningDialog\", \"entityGuid\":\"WarningDialog_0\"}"
+                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"entityGuid\":\"WarningDialog_0\"}"
                 }
             ]
         },

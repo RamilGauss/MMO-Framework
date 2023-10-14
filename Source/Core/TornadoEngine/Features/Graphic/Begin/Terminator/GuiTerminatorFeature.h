@@ -21,16 +21,6 @@ See for more information LICENSE.md.
 
 #include "MainWindowTerminatorSystem.h"
 
-#include "ButtonClickHandlerTerminatorSystem.h"
-#include "MenuNodeClickHandlerTerminatorSystem.h"
-#include "DialogCloseEventHandlerTerminatorSystem.h"
-#include "WindowCloseEventHandlerTerminatorSystem.h"
-
-#include "FrameKeyHandlerTerminatorSystem.h"
-#include "FrameMouseClickHandlerTerminatorSystem.h"
-#include "FrameMouseMoveHandlerTerminatorSystem.h"
-#include "FrameMouseWheelHandlerTerminatorSystem.h"
-
 #include "TextureTerminatorSystem.h"
 #include "CameraTerminatorSystem.h"
 
@@ -49,16 +39,6 @@ namespace nsGraphicWrapper
         TTreeViewTerminatorSystem mTreeViewTerminatorSystem;
 
         TMainWindowTerminatorSystem mMainWindowTerminatorSystem;
-
-        TButtonClickHandlerTerminatorSystem mButtonClickHandlerTerminatorSystem;
-        TMenuNodeClickHandlerTerminatorSystem mMenuNodeClickHandlerTerminatorSystem;
-        TDialogCloseEventHandlerTerminatorSystem mDialogCloseEventHandlerTerminatorSystem;
-        TWindowCloseEventHandlerTerminatorSystem mWindowCloseEventHandlerTerminatorSystem;
-
-        TFrameKeyHandlerTerminatorSystem        mFrameKeyHandlerTerminatorSystem;
-        TFrameMouseClickHandlerTerminatorSystem mFrameMouseClickHandlerTerminatorSystem;
-        TFrameMouseMoveHandlerTerminatorSystem  mFrameMouseMoveHandlerTerminatorSystem;
-        TFrameMouseWheelHandlerTerminatorSystem mFrameMouseWheelHandlerTerminatorSystem;
 
         TTextureTerminatorSystem mTextureTerminatorSystem;
         TCameraTerminatorSystem mCameraTerminatorSystem;

@@ -89,3 +89,8 @@ void TModulesAccessor::SetPropertyMng(TPropertyManager* value)
     Modules()->propertyMng = value;
 }
 //--------------------------------------------------------------------------
+void TModulesAccessor::SetEngineLogger(TEngineLogger* value)
+{
+    Modules()->engineLogger = value;
+}
+//--------------------------------------------------------------------------

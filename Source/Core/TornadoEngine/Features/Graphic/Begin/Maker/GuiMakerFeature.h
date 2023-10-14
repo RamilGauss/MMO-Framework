@@ -15,21 +15,11 @@ See for more information LICENSE.md.
 #include "InputTextMakerSystem.h"
 #include "WindowMakerSystem.h"
 #include "DialogMakerSystem.h"
-#include "ButtonClickHandlerMakerSystem.h"
-#include "MenuNodeClickHandlerMakerSystem.h"
 
 #include "TreeNodeMakerSystem.h"
 #include "TreeViewMakerSystem.h"
 
 #include "MainWindowMakerSystem.h"
-
-#include "DialogCloseEventHandlerMakerSystem.h"
-#include "WindowCloseEventHandlerMakerSystem.h"
-
-#include "FrameMouseClickHandlerMakerSystem.h"
-#include "FrameMouseMoveHandlerMakerSystem.h"
-#include "FrameMouseWheelHandlerMakerSystem.h"
-#include "FrameKeyHandlerMakerSystem.h"
 
 #include "TextureMakerSystem.h"
 
@@ -51,17 +41,6 @@ namespace nsGraphicWrapper
 
         TMainWindowMakerSystem mMainWindowMakerSystem;
         
-        TButtonClickHandlerMakerSystem mButtonClickHandlerMakerSystem;
-        TMenuNodeClickHandlerMakerSystem mMenuNodeClickHandlerMakerSystem;
-        TDialogCloseEventHandlerMakerSystem mDialogCloseEventHandlerMakerSystem;
-        TWindowCloseEventHandlerMakerSystem mWindowCloseEventHandlerMakerSystem;
-
-        TFrameMouseClickHandlerMakerSystem mFrameMouseClickHandlerMakerSystem;
-        TFrameMouseMoveHandlerMakerSystem  mFrameMouseMoveHandlerMakerSystem;
-        TFrameMouseWheelHandlerMakerSystem mFrameMouseWheelHandlerMakerSystem;
-
-        TFrameKeyHandlerMakerSystem mFrameKeyHandlerMakerSystem;
-
         TTextureMakerSystem mTextureMakerSystem;
 
         TCameraMakerSystem mCameraMakerSystem;

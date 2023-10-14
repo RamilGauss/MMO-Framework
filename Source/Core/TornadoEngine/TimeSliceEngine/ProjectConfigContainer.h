@@ -8,6 +8,9 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
+
+#include <fmt/core.h>
+
 #include "ILoaderDLL.h"
 
 #include "ProjectConfig.h"
@@ -17,6 +20,8 @@ See for more information LICENSE.md.
 #include "FrameworkResources.h"
 
 #include "ResourceContentMap.h"
+
+#include "Logger.h"
 
 namespace nsTornadoEngine
 {

@@ -13,8 +13,6 @@ See for more information LICENSE.md.
 
 #include "TitleComponent.h"
 
-#include "ButtonClickHandlerComponent.h"
-
 #include "PrefabOriginalGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
 

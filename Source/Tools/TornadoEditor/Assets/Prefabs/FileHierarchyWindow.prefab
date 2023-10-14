@@ -71,8 +71,8 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TFrameMouseClickHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnMouseClickFileNodeHandler\", \"partOfGuid\":\"FileHierarchyWindow\", \"entityGuid\":\"FileHierarchyWindow_1\"}"
+                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnMouseClickFileNodeHandler\", \"entityGuid\":\"FileHierarchyWindow_1\"}"
                 }
             ]
         }
