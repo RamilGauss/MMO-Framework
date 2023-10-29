@@ -21,7 +21,7 @@ namespace nsCodeGeneratorImplementation
             "public:",
             fmt::format("    static void {}();", s_Init),
             "",
-            fmt::format("    static const std::list<std::string>* {}();", s_Get),
+            fmt::format("    static const nsCppParser::TTypeInfo* {}(int {});", s_Get, s_rtti),
         };
 
     public:

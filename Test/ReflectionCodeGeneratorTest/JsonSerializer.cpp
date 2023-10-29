@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGeneratorTest
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 18:25:37.931
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_10_29 16:17:58.526
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -27,7 +27,7 @@ void TJsonSerializer::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    std::map<int, TypeFunc> m;
+    std::list<TypeFunc> funcs;
     
     TypeFunc _nsSimpleComponents_TNameComponentTypeFunc;
     _nsSimpleComponents_TNameComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -37,9 +37,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsSimpleComponents::TNameComponent>((nsSimpleComponents::TNameComponent*) p, str, err);
     };
     
-    auto rtti__nsSimpleComponents_TNameComponentTypeFunc = globalTypeIdentifier->Type<nsSimpleComponents::TNameComponent>();
+    _nsSimpleComponents_TNameComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsSimpleComponents::TNameComponent>();
     
-    m.insert({ rtti__nsSimpleComponents_TNameComponentTypeFunc, _nsSimpleComponents_TNameComponentTypeFunc });
+    funcs.push_back(_nsSimpleComponents_TNameComponentTypeFunc);
     
     TypeFunc _nsSimpleComponents_TSimpleComponentTypeFunc;
     _nsSimpleComponents_TSimpleComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -49,9 +49,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsSimpleComponents::TSimpleComponent>((nsSimpleComponents::TSimpleComponent*) p, str, err);
     };
     
-    auto rtti__nsSimpleComponents_TSimpleComponentTypeFunc = globalTypeIdentifier->Type<nsSimpleComponents::TSimpleComponent>();
+    _nsSimpleComponents_TSimpleComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsSimpleComponents::TSimpleComponent>();
     
-    m.insert({ rtti__nsSimpleComponents_TSimpleComponentTypeFunc, _nsSimpleComponents_TSimpleComponentTypeFunc });
+    funcs.push_back(_nsSimpleComponents_TSimpleComponentTypeFunc);
     
     TypeFunc _nsSimpleComponents_TSizeComponentTypeFunc;
     _nsSimpleComponents_TSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -61,9 +61,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsSimpleComponents::TSizeComponent>((nsSimpleComponents::TSizeComponent*) p, str, err);
     };
     
-    auto rtti__nsSimpleComponents_TSizeComponentTypeFunc = globalTypeIdentifier->Type<nsSimpleComponents::TSizeComponent>();
+    _nsSimpleComponents_TSizeComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsSimpleComponents::TSizeComponent>();
     
-    m.insert({ rtti__nsSimpleComponents_TSizeComponentTypeFunc, _nsSimpleComponents_TSizeComponentTypeFunc });
+    funcs.push_back(_nsSimpleComponents_TSizeComponentTypeFunc);
     
     TypeFunc _nsSimpleComponents_TValueComponentTypeFunc;
     _nsSimpleComponents_TValueComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -73,18 +73,18 @@ void TJsonSerializer::Init()
         return Deserialize<nsSimpleComponents::TValueComponent>((nsSimpleComponents::TValueComponent*) p, str, err);
     };
     
-    auto rtti__nsSimpleComponents_TValueComponentTypeFunc = globalTypeIdentifier->Type<nsSimpleComponents::TValueComponent>();
+    _nsSimpleComponents_TValueComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsSimpleComponents::TValueComponent>();
     
-    m.insert({ rtti__nsSimpleComponents_TValueComponentTypeFunc, _nsSimpleComponents_TValueComponentTypeFunc });
+    funcs.push_back(_nsSimpleComponents_TValueComponentTypeFunc);
     
     int max = 0;
-    for (auto& vt : m) {
-        max = std::max(vt.first, max);
+    for (auto& f : funcs) {
+        max = std::max(f.rtti, max);
     }
     
     mTypeFuncVector.resize(max + 1);
-    for (auto& vt : m) {
-        mTypeFuncVector[vt.first] = vt.second;
+    for (auto& f : funcs) {
+        mTypeFuncVector[f.rtti] = f;
     }
 }
 //---------------------------------------------------------------------------------------

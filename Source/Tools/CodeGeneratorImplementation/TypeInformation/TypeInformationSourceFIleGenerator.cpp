@@ -34,17 +34,8 @@ void TTypeInformationSourceFileGenerator::Work()
     AddEmptyLine();
 
     std::string str;
-    //str = fmt::format("std::list<std::string> {}::{};", mSerializer->className, s_mTypeNameList);
-    //Add(str);
-    //str = fmt::format("std::list<int> {}::{};", mSerializer->className, s_mRttiList);
-    //Add(str);
-
-    //AddEmptyLine();
-
-    //str = fmt::format("std::vector<std::string> {}::{};", mSerializer->className, s_mNameVector);
-    //Add(str);
-    //str = fmt::format("std::unordered_map<std::string, int> {}::{};", mSerializer->className, s_mNameRttiMap);
-    //Add(str);
+    str = fmt::format("std::vector<std::shared_ptr<nsCppParser::TTypeInfo>> {}::{};", mSerializer->className, s_mTypeInfoVector),
+    Add(str);
 
     AddEmptyLine();
 
@@ -154,7 +145,7 @@ void TTypeInformationSourceFileGenerator::AddMethodDeinitions()
 
     auto str = fmt::format("{}();", s_Init);
     Add(str);
-    str = fmt::format("return &{}[{}];", s_mTypeInfoVector, s_rtti);
+    str = fmt::format("return {}[{}].get();", s_mTypeInfoVector, s_rtti);
     Add(str);
 
     DecrementTabs();

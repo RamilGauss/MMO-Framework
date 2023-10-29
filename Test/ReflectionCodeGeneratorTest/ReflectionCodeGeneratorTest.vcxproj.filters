@@ -87,7 +87,9 @@
     <ClInclude Include="JsonSerializer.h">
       <Filter>GeneratedFiles</Filter>
     </ClInclude>
-    <ClInclude Include="RunTimeTypeInformationSerializer.h" />
+    <ClInclude Include="RunTimeTypeInformationSerializer.h">
+      <Filter>GeneratedFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json">

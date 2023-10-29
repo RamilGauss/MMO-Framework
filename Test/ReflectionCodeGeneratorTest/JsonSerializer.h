@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGeneratorTest
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 18:25:37.930
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_10_29 16:17:58.525
 	
 #pragma once
 
@@ -21,14 +21,15 @@ namespace nsTest
     
         struct TypeFunc
         {
+            int rtti = 0;
             std::function<void(void*, std::string&)>  serializeFunc;
             std::function<bool(void*, const std::string&, std::string&)> deserializeFunc;
         };
     
         static std::vector<TypeFunc> mTypeFuncVector;
-    
-        static void Init();
     public:
+        static void Init();
+    
         template <typename Type>
         static void Serialize(Type* p, std::string& str);
         template <typename Type>
