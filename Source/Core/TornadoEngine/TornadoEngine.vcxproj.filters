@@ -675,7 +675,7 @@
     <ClInclude Include="Handlers\Gui\IButtonClickHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\Common\IHandler.h">
+    <ClInclude Include="Handlers\Common\IGlobalHandler.h">
       <Filter>Handlers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\Begin\Maker\GuiMakerFeature.h">
@@ -755,9 +755,6 @@
     </ClInclude>
     <ClInclude Include="Handlers\Gui\IWindowCloseEventHandler.h">
       <Filter>Handlers\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Share\HandlerTarget.h">
-      <Filter>Components\Common</Filter>
     </ClInclude>
     <ClInclude Include="Handlers\Gui\IMenuNodeClickHandler.h">
       <Filter>Handlers\Gui</Filter>
@@ -1138,6 +1135,8 @@
     <ClInclude Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.h" />
     <ClInclude Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Logic\End\Terminator\TargetHandlerTerminatorSystem.h" />
+    <ClInclude Include="Handlers\Common\ITargetHandler.h" />
+    <ClInclude Include="ReflectionAggregators\IRunTimeTypeInformation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

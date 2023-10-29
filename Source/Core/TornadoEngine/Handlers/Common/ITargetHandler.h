@@ -9,17 +9,11 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include "Parser/Sources/TypeInfo.h"
-
 namespace nsTornadoEngine
 {
-    class DllExport ITypeInformation
+    class DllExport ITargetHandler
     {
-    public:
-        virtual ~ITypeInformation() {}
-
-        virtual void Init() = 0;
-
-        virtual std::shared_ptr<nsCppParser::TTypeInfo> GetType(int rtti) = 0;
+        // Example for use Handle:
+        // virtual void Handle(Args ... ) = 0;
     };
 }

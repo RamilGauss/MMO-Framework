@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeDef.h"
-#include "ITypeInformation.h"
+#include "IRunTimeTypeInformation.h"
 
 namespace nsTornadoEngine
 {
@@ -18,9 +18,9 @@ namespace nsTornadoEngine
 
         void Init()
         {
-            mTypeInfo->Init();
+            mRunTimeTypeInfo->Init();
         }
 
-        ITypeInformation* mTypeInfo = nullptr;
+        IRunTimeTypeInformation* mRunTimeTypeInfo = nullptr;
     };
 }

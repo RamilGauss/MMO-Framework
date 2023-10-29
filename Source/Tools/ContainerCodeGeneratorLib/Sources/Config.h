@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <list>
+#include <set>
 #include <string>
 
 #include "TypeDef.h"
@@ -183,7 +184,7 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TProjectContainerConfig
     {
-        std::string baseHandlerTypeName;
+        std::set<std::string> baseHandlerTypeNames;
 
         std::string absCorePath;
         std::string relCoreConfigPath;

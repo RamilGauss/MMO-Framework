@@ -31,14 +31,14 @@ namespace nsContainerCodeGenerator::nsProject::nsHandler
 
         THandlerListComponent handlerListComponent;
 
-        auto baseHandlerTypeName = configComponent->value.baseHandlerTypeName;
+        auto baseHandlerTypeNames = configComponent->value.baseHandlerTypeNames;
 
         for (auto& type : typeListComponent->value) {
 
             auto fit = std::find_if(type.mInheritanceVec.begin(), type.mInheritanceVec.end(),
-                [&baseHandlerTypeName](const nsCppParser::TInheritanceInfo& inheritanceInfo)
+                [&baseHandlerTypeNames](const nsCppParser::TInheritanceInfo& inheritanceInfo) -> bool
             {
-                return (inheritanceInfo.mOriginalName == baseHandlerTypeName);
+                return (baseHandlerTypeNames.contains(inheritanceInfo.mOriginalName));
             });
 
             if (fit == type.mInheritanceVec.end()) {

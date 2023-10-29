@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include "ITypeFactory.h"
 #include "ITypeInformation.h"
+#include "IRunTimeTypeInformation.h"
 
 namespace nsTornadoEngine
 {
@@ -19,9 +20,11 @@ namespace nsTornadoEngine
         void Init()
         {
             mTypeInfo->Init();
+            mRunTimeTypeInfo->Init();
             mTypeFactory->Init();
         }
 
+        IRunTimeTypeInformation* mRunTimeTypeInfo = nullptr;
         ITypeInformation* mTypeInfo = nullptr;
         ITypeFactory* mTypeFactory = nullptr;
     };

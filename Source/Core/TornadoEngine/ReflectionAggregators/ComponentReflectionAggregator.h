@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include "IBinaryMarshaller.h"
 #include "IImGuiSerializer.h"
 #include "IEcsComponentExtension.h"
-#include "ITypeInformation.h"
+#include "IRunTimeTypeInformation.h"
 #include "ITypeFactory.h"
 #include "IDynamicCaster.h"
 
@@ -23,7 +23,7 @@ namespace nsTornadoEngine
 
         void Init()
         {
-            mTypeInfo->Init();
+            mRunTimeTypeInfo->Init();
             mJson->Init();
             //mBin->Init();
             //mImGui->Init();
@@ -32,7 +32,7 @@ namespace nsTornadoEngine
             mTypeFactory->Init();
         }
 
-        ITypeInformation* mTypeInfo = nullptr;
+        IRunTimeTypeInformation* mRunTimeTypeInfo = nullptr;
         IJsonSerializer* mJson = nullptr;
         IBinaryMarshaller* mBin = nullptr;
         IImGuiSerializer* mImGui = nullptr;

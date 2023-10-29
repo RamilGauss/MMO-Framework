@@ -2,7 +2,7 @@
 Project Component
 */
 // ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_08 13:54:00.641
+// File has been generated at 2023_10_29 11:16:44.811
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"

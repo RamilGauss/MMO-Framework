@@ -2,7 +2,7 @@
 Project Handler
 */
 // ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_08 13:49:44.817
+// File has been generated at 2023_10_29 11:17:14.639
 	
 #include "HandlerTypeInfo.h"
 
@@ -26,6 +26,12 @@ void THandlerTypeInfo::Init()
     isNeedInit = false;
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
+    
+    int nsGuiProject_TScenePrefabTestComponent_i = globalTypeIdentifier->Type<nsGuiProject::TScenePrefabTestComponent>();
+    std::string nsGuiProject_TScenePrefabTestComponent_n = "nsGuiProject::TScenePrefabTestComponent";
+    mTypeNameList.push_back(nsGuiProject_TScenePrefabTestComponent_n);
+    mRttiList.push_back(nsGuiProject_TScenePrefabTestComponent_i);
+    mNameRttiMap.insert({ nsGuiProject_TScenePrefabTestComponent_n, nsGuiProject_TScenePrefabTestComponent_i });
     
     int max = 0;
     for (auto& nameRtti : mNameRttiMap) {

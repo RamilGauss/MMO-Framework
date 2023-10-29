@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_09_15 18:38:35.551
+// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
+// File has been generated at 2023_10_29 11:03:16.960
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -630,7 +630,11 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectConfig* p, 
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectContainerConfig* p, Jobj& obj)
 {
-    PUM::Push(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
+    PUM::Value baseHandlerTypeNames_a0(rapidjson::kArrayType);
+    for(auto& baseHandlerTypeNames_e0 : p->baseHandlerTypeNames) {
+        PUM::PushBack(baseHandlerTypeNames_a0, baseHandlerTypeNames_e0);
+    }
+    PUM::Push(obj, "baseHandlerTypeNames", baseHandlerTypeNames_a0);
     PUM::Push(obj, "absCorePath", p->absCorePath);
     PUM::Push(obj, "relCoreConfigPath", p->relCoreConfigPath);
     auto projectConfig_o = PUM::AddObject(obj, "projectConfig");
@@ -641,7 +645,16 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectContainerConf
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectContainerConfig* p, const Jobj& obj)
 {
-    POM::PopStr(obj, "baseHandlerTypeName", p->baseHandlerTypeName);
+    if (POM::IsArray(obj, "baseHandlerTypeNames")) {
+        auto baseHandlerTypeNames_a0 = POM::FindArray(obj, "baseHandlerTypeNames");
+        for(auto& baseHandlerTypeNames_e0 : baseHandlerTypeNames_a0) {
+            p->baseHandlerTypeNames.insert(baseHandlerTypeNames_e0.GetString());
+        }
+    } else {
+        std::string baseHandlerTypeNames_t0;
+        POM::PopStr(obj, "baseHandlerTypeNames", baseHandlerTypeNames_t0);
+        p->baseHandlerTypeNames.insert(baseHandlerTypeNames_t0);
+    }
     POM::PopStr(obj, "absCorePath", p->absCorePath);
     POM::PopStr(obj, "relCoreConfigPath", p->relCoreConfigPath);
     auto projectConfig_o0 = POM::FindObject(obj, "projectConfig");

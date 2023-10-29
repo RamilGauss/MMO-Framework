@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ITypeInformation.h"
+#include "IRunTimeTypeInformation.h"
 #include "IDynamicCaster.h"
 
 namespace nsTornadoEngine
@@ -18,11 +18,11 @@ namespace nsTornadoEngine
 
         void Init()
         {
-            mTypeInfo->Init();
+            mRunTimeTypeInfo->Init();
             mDynamicCaster->Init();
         }
 
-        ITypeInformation* mTypeInfo = nullptr;
+        IRunTimeTypeInformation* mRunTimeTypeInfo = nullptr;
         IDynamicCaster* mDynamicCaster = nullptr;
     };
 }
