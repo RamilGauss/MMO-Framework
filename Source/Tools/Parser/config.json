@@ -21,7 +21,7 @@
         "directory": "./Sources/Generated files",
         "includeListParams": {
             "includeListFileName": "IncludeList",
-            "dirToInclude": []
+            "dirToInclude": ["."]
         },
         "header": "\tParser",
         "typeCustomizerMap": {},

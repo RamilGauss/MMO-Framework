@@ -11,6 +11,8 @@ See for more information LICENSE.md.
 #include "fmt/core.h"
 #include "BL_Debug.h"
 
+#include "Parser/Sources/Generated files/JsonSerializer.h"
+
 using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;
 
@@ -73,7 +75,10 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
     AddEmptyLine();
 
-   /* auto& forGenerate = mTypeNameDbPtr->GetForGenerate();
+    str = fmt::format("std::map<std::string, std::string> m;");
+    Add(str);
+
+    auto& forGenerate = mTypeNameDbPtr->GetForGenerate();
     for (auto& type : forGenerate) {
         auto pTypeInfo = mTypeManager->Get(type.GetFullType());
 
@@ -84,15 +89,43 @@ void TTypeInformationSourceFileGenerator::AddInit()
         auto t = pTypeInfo->GetTypeNameWithNameSpace();
 
         auto rtti = fmt::format("{}_i", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
-        auto typeName = fmt::format("{}_n", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
 
+        std::string jsonContent;
+        nsCppParser::TJsonSerializer::Serialize(pTypeInfo, jsonContent);
 
-        str = fmt::format("int {} = {}->Type<{}>();", rtti, globalTypeIdentifier, t);
+        auto jc = fmt::format("{}_jc", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
+
+        str = fmt::format("std::string {} = \"{}\";", jc, jsonContent);
         Add(str);
 
+        auto err = fmt::format("{}_err", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
 
-        str = fmt::format("{}.insert({{ {}, {} }});", s_mNameRttiMap, typeName, rtti);
+        str = fmt::format("std::string {};", err);
         Add(str);
+
+        auto shared_Type = fmt::format("{}_p_type", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
+
+        str = fmt::format("std::shared_ptr<nsCppParser::TTypeInfo*> {} = std::make_shared<nsCppParser::TTypeInfo>();", shared_Type);
+        Add(str);
+
+        str = fmt::format("nsCppParser::TJsonSerializer::Deserialize({}, {}, {});", shared_Type, jc, err);
+        Add(str);
+
+        //str = fmt::format("m.insert({{ {}, {} }});", );
+        //Add(str);
+
+        //str = fmt::format("m.insert({{ {}, {} }});", );
+        //Add(str);
+
+
+
+
+        //str = fmt::format("int {} = {}->Type<{}>();", rtti, globalTypeIdentifier, t);
+        //Add(str);
+
+
+        //str = fmt::format("{}.insert({{ {}, {} }});", s_mNameRttiMap, typeName, rtti);
+        //Add(str);
 
         AddEmptyLine();
     }
@@ -100,7 +133,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
     str = fmt::format("int max = 0;");
     Add(str);
 
-    str = fmt::format("for (auto& nameRtti : {}) {{", s_mNameRttiMap);
+    /*str = fmt::format("for (auto& nameRtti : m) {{", s_mNameRttiMap);
     Add(str);
 
     IncrementTabs();
