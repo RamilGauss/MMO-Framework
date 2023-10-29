@@ -40,6 +40,13 @@
                 "fileName": "TypeInformationSerializer",
                 "className": "TTypeInformationSerializer",
                 "keyValueMap": {}
+            },
+            "RunTimeTypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsRunTimeTypeInformation",
+                "fileName": "RunTimeTypeInformationSerializer",
+                "className": "TRunTimeTypeInformationSerializer",
+                "keyValueMap": {}
             }
         }
     }

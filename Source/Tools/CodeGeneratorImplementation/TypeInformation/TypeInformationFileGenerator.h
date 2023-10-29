@@ -18,17 +18,9 @@ namespace nsCodeGeneratorImplementation
         const std::string s_rtti = "rtti";
         const std::string s_typeName = "typeName";
         
-        const std::string s_mTypeNameList = "mTypeNameList";
-        const std::string s_mRttiList = "mRttiList";
-        const std::string s_mNameVector = "mNameVector";
-        const std::string s_mNameRttiMap = "mNameRttiMap";
+        const std::string s_mTypeInfoVector = "mTypeInoVector";
 
         const std::string s_Init = "Init";
-        const std::string s_GetTypeNameList = "GetTypeNameList";
-        const std::string s_GetRttiList = "GetRttiList";
-
-        const std::string s_ConvertTypeToName = "ConvertRttiToName";
-        const std::string s_ConvertNameToType = "ConvertNameToRtti";
+        const std::string s_Get = "Get";
     };
 }
-

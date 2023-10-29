@@ -1,13 +1,13 @@
 /*
 	ReflectionCodeGeneratorTest
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_05_28 18:25:37.794
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_10_29 15:33:35.864
 	
 #pragma once
 
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <list>
 #include <vector>
 
@@ -18,19 +18,11 @@ namespace nsTypeInformation
 {
     class DllExport TTypeInformationSerializer
     {
-        static std::list<std::string> mTypeNameList;
-        static std::list<int> mRttiList;
-    
-        static std::vector<std::string> mNameVector;
-        static std::map<std::string, int> mNameRttiMap;
-    
-        static void Init();
+        static std::vector<std::shared_ptr<nsCppParser::TTypeInfo>> mTypeNameVector;
     
     public:
-        static const std::list<std::string>* GetTypeNameList();
-        static const std::list<int>* GetRttiList();
+        static void Init();
     
-        static const std::string* ConvertRttiToName(int rtti);
-        static bool ConvertNameToRtti(const std::string& typeName, int& rtti);
+        static const std::list<std::string>* Get();
     };
 }

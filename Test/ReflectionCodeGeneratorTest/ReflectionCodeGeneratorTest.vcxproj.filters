@@ -49,9 +49,9 @@
     <ClCompile Include="JsonSerializer.cpp">
       <Filter>GeneratedFiles</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
+    <ClCompile Include="RunTimeTypeInformationSerializer.cpp">
+      <Filter>GeneratedFiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataSources\AllTypes.h">
@@ -87,6 +87,7 @@
     <ClInclude Include="JsonSerializer.h">
       <Filter>GeneratedFiles</Filter>
     </ClInclude>
+    <ClInclude Include="RunTimeTypeInformationSerializer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json">

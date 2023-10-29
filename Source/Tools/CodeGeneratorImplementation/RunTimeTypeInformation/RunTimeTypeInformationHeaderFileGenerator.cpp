@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TypeInformationHeaderFileGenerator.h"
+#include "RunTimeTypeInformationHeaderFileGenerator.h"
 #include <set>
 
 using namespace nsCodeGeneratorImplementation;
 
-void TTypeInformationHeaderFileGenerator::Work()
+void TRunTimeTypeInformationHeaderFileGenerator::Work()
 {
     AddHeader(mConfig->targetForCodeGeneration.header);
     AddTimeHeader();
@@ -24,7 +24,6 @@ void TTypeInformationHeaderFileGenerator::Work()
 
     AddEmptyLine();
     AddInclude("TypeDef.h");
-    AddInclude("Parser/Sources/TypeInfo.h");
 
     AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
     AddEmptyLine();

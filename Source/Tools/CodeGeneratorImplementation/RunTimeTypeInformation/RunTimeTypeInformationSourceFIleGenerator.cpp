@@ -7,14 +7,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeInformationSourceFileGenerator.h"
+#include "RunTimeTypeInformationSourceFileGenerator.h"
 #include "fmt/core.h"
 #include "BL_Debug.h"
 
 using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;
 
-void TTypeInformationSourceFileGenerator::Work()
+void TRunTimeTypeInformationSourceFileGenerator::Work()
 {
     AddHeader(mConfig->targetForCodeGeneration.header);
     AddTimeHeader();
@@ -34,31 +34,31 @@ void TTypeInformationSourceFileGenerator::Work()
     AddEmptyLine();
 
     std::string str;
-    //str = fmt::format("std::list<std::string> {}::{};", mSerializer->className, s_mTypeNameList);
-    //Add(str);
-    //str = fmt::format("std::list<int> {}::{};", mSerializer->className, s_mRttiList);
-    //Add(str);
+    str = fmt::format("std::list<std::string> {}::{};", mSerializer->className, s_mTypeNameList);
+    Add(str);
+    str = fmt::format("std::list<int> {}::{};", mSerializer->className, s_mRttiList);
+    Add(str);
 
-    //AddEmptyLine();
+    AddEmptyLine();
 
-    //str = fmt::format("std::vector<std::string> {}::{};", mSerializer->className, s_mNameVector);
-    //Add(str);
-    //str = fmt::format("std::unordered_map<std::string, int> {}::{};", mSerializer->className, s_mNameRttiMap);
-    //Add(str);
+    str = fmt::format("std::vector<std::string> {}::{};", mSerializer->className, s_mNameVector);
+    Add(str);
+    str = fmt::format("std::unordered_map<std::string, int> {}::{};", mSerializer->className, s_mNameRttiMap);
+    Add(str);
 
     AddEmptyLine();
 
     AddImplementations();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TTypeInformationSourceFileGenerator::AddImplementations()
+void TRunTimeTypeInformationSourceFileGenerator::AddImplementations()
 {
     AddInit();
 
     AddMethodDeinitions();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TTypeInformationSourceFileGenerator::AddInit()
+void TRunTimeTypeInformationSourceFileGenerator::AddInit()
 {
     std::list<std::string> paramList;
     AddMethodImplementationBegin(s_Void, mSerializer->className, s_Init, paramList);
@@ -82,7 +82,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
     AddEmptyLine();
 
-   /* auto& forGenerate = mTypeNameDbPtr->GetForGenerate();
+    auto& forGenerate = mTypeNameDbPtr->GetForGenerate();
     for (auto& type : forGenerate) {
         auto pTypeInfo = mTypeManager->Get(type.GetFullType());
 
@@ -98,7 +98,14 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
         str = fmt::format("int {} = {}->Type<{}>();", rtti, globalTypeIdentifier, t);
         Add(str);
+        str = fmt::format("std::string {} = \"{}\";", typeName, t);
+        Add(str);
 
+        str = fmt::format("{}.push_back({});", s_mTypeNameList, typeName);
+        Add(str);
+
+        str = fmt::format("{}.push_back({});", s_mRttiList, rtti);
+        Add(str);
 
         str = fmt::format("{}.insert({{ {}, {} }});", s_mNameRttiMap, typeName, rtti);
         Add(str);
@@ -129,7 +136,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
     IncrementTabs();
 
     str = fmt::format("{}[nameRtti.second] = nameRtti.first;", s_mNameVector);
-    Add(str);*/
+    Add(str);
 
     DecrementTabs();
     AddRightBrace();
@@ -139,27 +146,97 @@ void TTypeInformationSourceFileGenerator::AddInit()
     AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------
-void TTypeInformationSourceFileGenerator::AddMethodDeinitions()
+void TRunTimeTypeInformationSourceFileGenerator::AddMethodDeinitions()
 {
-    std::list<std::string> paramList =
-    {
-        fmt::format("int {}", s_rtti),
-    };
+    std::list<std::string> paramList;
+    std::string ret = "const std::list<std::string>*";
 
-    std::string ret = "const nsCppParser::TTypeInfo*";
-
-    AddMethodImplementationBegin(ret, mSerializer->className, s_Get, paramList);
+    AddMethodImplementationBegin(ret, mSerializer->className, s_GetTypeNameList, paramList);
     AddLeftBrace();
     IncrementTabs();
 
     auto str = fmt::format("{}();", s_Init);
     Add(str);
-    str = fmt::format("return &{}[{}];", s_mTypeInfoVector, s_rtti);
+    str = fmt::format("return &{};", s_mTypeNameList);
     Add(str);
 
     DecrementTabs();
     AddRightBrace();
     AddCommentedLongLine();
     //=============================================================
+    paramList = 
+    {
+    };
+    ret = "const std::list<int>*";
+
+    AddMethodImplementationBegin(ret, mSerializer->className, s_GetRttiList, paramList);
+    AddLeftBrace();
+    IncrementTabs();
+
+    str = fmt::format("{}();", s_Init);
+    Add(str);
+    str = fmt::format("return &{};", s_mRttiList);
+    Add(str);
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    //=============================================================
+    paramList =
+    {
+        fmt::format("int {}", s_rtti),
+    };
+    ret = "const std::string*";
+
+    AddMethodImplementationBegin(ret, mSerializer->className, s_ConvertTypeToName, paramList);
+    AddLeftBrace();
+    IncrementTabs();
+
+    str = fmt::format("{}();", s_Init);
+    Add(str);
+    AddEmptyLine();
+    str = fmt::format("if (rtti < 0 || rtti >= {}.size()) {{", s_mNameVector);
+    Add(str);
+    Add("    return nullptr;");
+    AddRightBrace();
+    str = fmt::format("auto pStr = &({}[{}]);", s_mNameVector, s_rtti);
+    Add(str);
+    Add("if (pStr->size() == 0) {");
+    Add("    return nullptr;");
+    AddRightBrace();
+    Add("return pStr;");
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
+    //=============================================================
+    paramList =
+    {
+        fmt::format("const std::string& {}", s_typeName),
+        fmt::format("int& {}", s_rtti)
+    };
+    ret = s_Bool;
+
+    AddMethodImplementationBegin(ret, mSerializer->className, s_ConvertNameToType, paramList);
+    AddLeftBrace();
+    IncrementTabs();
+
+    str = fmt::format("{}();", s_Init);
+    Add(str);
+    str = fmt::format("auto fit = {}.find({});", s_mNameRttiMap, s_typeName);
+    Add(str);
+    str = fmt::format("if (fit == {}.end()) {{", s_mNameRttiMap);
+    Add(str);
+    IncrementTabs();
+    Add("return false;");
+    DecrementTabs();
+    AddRightBrace();
+
+    Add(fmt::format("{} = fit->second;", s_rtti));
+    Add("return true;");
+
+    DecrementTabs();
+    AddRightBrace();
+    AddCommentedLongLine();
 }
 //-----------------------------------------------------------------------------------------------------------

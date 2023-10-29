@@ -19,6 +19,7 @@ See for more information LICENSE.md.
 #include "CodeGeneratorImplementation/EcsComponentExtension/EcsComponentExtensionGenerator.h"
 #include "CodeGeneratorImplementation/TypeFactory/TypeFactoryGenerator.h"
 #include "CodeGeneratorImplementation/TypeInformation/TypeInformationGenerator.h"
+#include "CodeGeneratorImplementation/RunTimeTypeInformation/RunTimeTypeInformationGenerator.h"
 
 using namespace nsReflectionCodeGenerator;
 using namespace nsCodeGeneratorImplementation;
@@ -33,6 +34,7 @@ TTypeFactoryGenerator g_ReflectionGenerator;
 TEcsComponentExtensionGenerator g_EcsComponentExtensionGenerator;
 TDynamicCasterGenerator g_DynamicCasterGenerator;
 TTypeInformationGenerator g_TypeInfoGenerator;
+TRunTimeTypeInformationGenerator g_RunTimeTypeInfoGenerator;
 
 //---------------------------------------------------------------------------------------
 int main(int argc, char* argv[])
@@ -53,6 +55,7 @@ int main(int argc, char* argv[])
     g_Rcg.AddGenerator(&g_EcsComponentExtensionGenerator);
     g_Rcg.AddGenerator(&g_DynamicCasterGenerator);
     g_Rcg.AddGenerator(&g_TypeInfoGenerator);
+    g_Rcg.AddGenerator(&g_RunTimeTypeInfoGenerator);
 
     g_Rcg.SetIncludeListGenerator(&g_IncludeListGenerator);
 

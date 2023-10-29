@@ -16,20 +16,12 @@ namespace nsCodeGeneratorImplementation
     {
         const std::list<std::string> s_Decl =
         {
-            fmt::format("    static std::list<std::string> {};", s_mTypeNameList),
-            fmt::format("    static std::list<int> {};", s_mRttiList),
-            "",
-            fmt::format("    static std::vector<std::string> {};", s_mNameVector),
-            fmt::format("    static std::unordered_map<std::string, int> {};", s_mNameRttiMap),
+            fmt::format("    static std::vector<std::shared_ptr<nsCppParser::TTypeInfo>> {};", s_mTypeInfoVector),
             "",
             "public:",
             fmt::format("    static void {}();", s_Init),
             "",
-            fmt::format("    static const std::list<std::string>* {}();", s_GetTypeNameList),
-            fmt::format("    static const std::list<int>* {}();", s_GetRttiList),
-            "",
-            fmt::format("    static const std::string* {}(int {});", s_ConvertTypeToName, s_rtti),
-            fmt::format("    static bool {}(const std::string& {}, int& {});", s_ConvertNameToType, s_typeName, s_rtti),
+            fmt::format("    static const std::list<std::string>* {}();", s_Get),
         };
 
     public:

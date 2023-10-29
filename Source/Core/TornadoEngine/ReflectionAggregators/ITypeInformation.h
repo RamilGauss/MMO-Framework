@@ -20,6 +20,6 @@ namespace nsTornadoEngine
 
         virtual void Init() = 0;
 
-        virtual std::shared_ptr<nsCppParser::TTypeInfo> GetType(int rtti) = 0;
+        virtual const nsCppParser::TTypeInfo* Get(int rtti) = 0;
     };
 }

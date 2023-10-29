@@ -1,240 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<ItemGroup Label="ProjectConfigurations">
-<ProjectConfiguration Include="Debug|Win32">
-<Configuration>Debug</Configuration>
-<Platform>Win32</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Release|Win32">
-<Configuration>Release</Configuration>
-<Platform>Win32</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Debug|x64">
-<Configuration>Debug</Configuration>
-<Platform>x64</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Release|x64">
-<Configuration>Release</Configuration>
-<Platform>x64</Platform>
-</ProjectConfiguration>
-</ItemGroup>
-<ItemGroup>
-<ClCompile Include="Binary\BinaryMarshallerFileGenerator.cpp"/>
-<ClCompile Include="Binary\BinaryMarshallerGenerator.cpp"/>
-<ClCompile Include="Binary\BinaryMarshallerHeaderFileGenerator.cpp"/>
-<ClCompile Include="Binary\BinaryMarshallerSourceFileGenerator.cpp"/>
-<ClCompile Include="Constants.cpp"/>
-<ClCompile Include="DynamicCaster\DynamicCasterFileGenerator.cpp"/>
-<ClCompile Include="DynamicCaster\DynamicCasterGenerator.cpp"/>
-<ClCompile Include="DynamicCaster\DynamicCasterHeaderFileGenerator.cpp"/>
-<ClCompile Include="DynamicCaster\DynamicCasterSourceFIleGenerator.cpp"/>
-<ClCompile Include="EcsComponentExtension\EcsComponentExtensionFileGenerator.cpp"/>
-<ClCompile Include="EcsComponentExtension\EcsComponentExtensionGenerator.cpp"/>
-<ClCompile Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.cpp"/>
-<ClCompile Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.cpp"/>
-<ClCompile Include="GeneratorList.cpp"/>
-<ClCompile Include="IncludeList\IncludeListFileGenerator.cpp"/>
-<ClCompile Include="IncludeList\IncludeListGenerator.cpp"/>
-<ClCompile Include="Json\JsonSerializerFileGenerator.cpp"/>
-<ClCompile Include="Json\JsonSerializerGenerator.cpp"/>
-<ClCompile Include="Json\JsonSerializerHeaderFileGenerator.cpp"/>
-<ClCompile Include="Json\JsonSerializerSourceFileGenerator.cpp"/>
-<ClCompile Include="TypeFactory\TypeFactoryFileGenerator.cpp"/>
-<ClCompile Include="TypeFactory\TypeFactoryGenerator.cpp"/>
-<ClCompile Include="TypeFactory\TypeFactoryHeaderFileGenerator.cpp"/>
-<ClCompile Include="TypeFactory\TypeFactorySourceFIleGenerator.cpp"/>
-<ClCompile Include="TypeInformation\TypeInformationFileGenerator.cpp"/>
-<ClCompile Include="TypeInformation\TypeInformationGenerator.cpp"/>
-<ClCompile Include="TypeInformation\TypeInformationHeaderFileGenerator.cpp"/>
-<ClCompile Include="TypeInformation\TypeInformationSourceFIleGenerator.cpp"/>
-</ItemGroup>
-<ItemGroup>
-<ClInclude Include="Binary\BinaryMarshallerFileGenerator.h"/>
-<ClInclude Include="Binary\BinaryMarshallerGenerator.h"/>
-<ClInclude Include="Binary\BinaryMarshallerHeaderFileGenerator.h"/>
-<ClInclude Include="Binary\BinaryMarshallerSourceFileGenerator.h"/>
-<ClInclude Include="Constants.h"/>
-<ClInclude Include="DynamicCaster\DynamicCasterFileGenerator.h"/>
-<ClInclude Include="DynamicCaster\DynamicCasterGenerator.h"/>
-<ClInclude Include="DynamicCaster\DynamicCasterHeaderFileGenerator.h"/>
-<ClInclude Include="DynamicCaster\DynamicCasterSourceFIleGenerator.h"/>
-<ClInclude Include="EcsComponentExtension\EcsComponentExtensionFileGenerator.h"/>
-<ClInclude Include="EcsComponentExtension\EcsComponentExtensionGenerator.h"/>
-<ClInclude Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.h"/>
-<ClInclude Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.h"/>
-<ClInclude Include="GeneratorList.h"/>
-<ClInclude Include="IncludeList\IncludeListFileGenerator.h"/>
-<ClInclude Include="IncludeList\IncludeListGenerator.h"/>
-<ClInclude Include="Json\JsonSerializerFileGenerator.h"/>
-<ClInclude Include="Json\JsonSerializerGenerator.h"/>
-<ClInclude Include="Json\JsonSerializerHeaderFileGenerator.h"/>
-<ClInclude Include="Json\JsonSerializerSourceFileGenerator.h"/>
-<ClInclude Include="TypeFactory\TypeFactoryFileGenerator.h"/>
-<ClInclude Include="TypeFactory\TypeFactoryGenerator.h"/>
-<ClInclude Include="TypeFactory\TypeFactoryHeaderFileGenerator.h"/>
-<ClInclude Include="TypeFactory\TypeFactorySourceFIleGenerator.h"/>
-<ClInclude Include="TypeInformation\TypeInformationFileGenerator.h"/>
-<ClInclude Include="TypeInformation\TypeInformationGenerator.h"/>
-<ClInclude Include="TypeInformation\TypeInformationHeaderFileGenerator.h"/>
-<ClInclude Include="TypeInformation\TypeInformationSourceFIleGenerator.h"/>
-</ItemGroup>
-<PropertyGroup Label="Globals">
-<VCProjectVersion>16.0</VCProjectVersion>
-<Keyword>Win32Proj</Keyword>
-<ProjectGuid>{fe5c234a-5db1-4aae-8a57-96935fa67ea5}</ProjectGuid>
-<RootNamespace>CodeGeneratorImplementation</RootNamespace>
-<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-</PropertyGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<UseDebugLibraries>true</UseDebugLibraries>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<UseDebugLibraries>false</UseDebugLibraries>
-<PlatformToolset>v143</PlatformToolset>
-<WholeProgramOptimization>true</WholeProgramOptimization>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<UseDebugLibraries>true</UseDebugLibraries>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<UseDebugLibraries>false</UseDebugLibraries>
-<PlatformToolset>v143</PlatformToolset>
-<WholeProgramOptimization>true</WholeProgramOptimization>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
-<ImportGroup Label="ExtensionSettings">
-</ImportGroup>
-<ImportGroup Label="Shared">
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<PropertyGroup Label="UserMacros"/>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-<LinkIncremental>true</LinkIncremental>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-<LinkIncremental>false</LinkIncremental>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-<LinkIncremental>true</LinkIncremental>
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<TargetName>$(ProjectName)_d</TargetName>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-<LinkIncremental>false</LinkIncremental>
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-</PropertyGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-<ClCompile>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
-<SDLCheck>true</SDLCheck>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;CODEGENERATORIMPLEMENTATION_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<ConformanceMode>true</ConformanceMode>
-<PrecompiledHeader>Use</PrecompiledHeader>
-<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<EnableUAC>false</EnableUAC>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-<ClCompile>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
-<FunctionLevelLinking>true</FunctionLevelLinking>
-<IntrinsicFunctions>true</IntrinsicFunctions>
-<SDLCheck>true</SDLCheck>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;CODEGENERATORIMPLEMENTATION_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<ConformanceMode>true</ConformanceMode>
-<PrecompiledHeader>Use</PrecompiledHeader>
-<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
-<EnableCOMDATFolding>true</EnableCOMDATFolding>
-<OptimizeReferences>true</OptimizeReferences>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<EnableUAC>false</EnableUAC>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-<ClCompile>
-<WarningLevel>Level3</WarningLevel>
-<SDLCheck>true</SDLCheck>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<ConformanceMode>true</ConformanceMode>
-<PrecompiledHeader>NotUsing</PrecompiledHeader>
-<PrecompiledHeaderFile>
-</PrecompiledHeaderFile>
-<LanguageStandard>stdcpp20</LanguageStandard>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\;.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PrecompiledHeaderOutputFile/>
-<DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
-<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-<AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-</ClCompile>
-<Link>
-<SubSystem>Windows</SubSystem>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<EnableUAC>false</EnableUAC>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;Parser_d.lib;ReflectionCodeGeneratorLib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-<ClCompile>
-<WarningLevel>Level3</WarningLevel>
-<FunctionLevelLinking>true</FunctionLevelLinking>
-<IntrinsicFunctions>true</IntrinsicFunctions>
-<SDLCheck>true</SDLCheck>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<ConformanceMode>true</ConformanceMode>
-<PrecompiledHeader>NotUsing</PrecompiledHeader>
-<PrecompiledHeaderFile>
-</PrecompiledHeaderFile>
-<LanguageStandard>stdcpp20</LanguageStandard>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\;.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PrecompiledHeaderOutputFile/>
-<DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
-<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-</ClCompile>
-<Link>
-<SubSystem>Windows</SubSystem>
-<EnableCOMDATFolding>true</EnableCOMDATFolding>
-<OptimizeReferences>true</OptimizeReferences>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<EnableUAC>false</EnableUAC>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<AdditionalDependencies>$(CONAN_LIBS);Base.lib;Parser.lib;ReflectionCodeGeneratorLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-</Link>
-</ItemDefinitionGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
-<ImportGroup Label="ExtensionTargets">
-</ImportGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Binary\BinaryMarshallerFileGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerHeaderFileGenerator.cpp" />
+    <ClCompile Include="Binary\BinaryMarshallerSourceFileGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterFileGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterHeaderFileGenerator.cpp" />
+    <ClCompile Include="DynamicCaster\DynamicCasterSourceFIleGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionFileGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.cpp" />
+    <ClCompile Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.cpp" />
+    <ClCompile Include="IncludeList\IncludeListFileGenerator.cpp" />
+    <ClCompile Include="IncludeList\IncludeListGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerFileGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerHeaderFileGenerator.cpp" />
+    <ClCompile Include="Json\JsonSerializerSourceFileGenerator.cpp" />
+    <ClCompile Include="RunTimeTypeInformation\RunTimeTypeInformationFileGenerator.cpp" />
+    <ClCompile Include="RunTimeTypeInformation\RunTimeTypeInformationGenerator.cpp" />
+    <ClCompile Include="RunTimeTypeInformation\RunTimeTypeInformationHeaderFileGenerator.cpp" />
+    <ClCompile Include="RunTimeTypeInformation\RunTimeTypeInformationSourceFIleGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactoryFileGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactoryGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactoryHeaderFileGenerator.cpp" />
+    <ClCompile Include="TypeFactory\TypeFactorySourceFIleGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationFileGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationHeaderFileGenerator.cpp" />
+    <ClCompile Include="TypeInformation\TypeInformationSourceFIleGenerator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Binary\BinaryMarshallerFileGenerator.h" />
+    <ClInclude Include="Binary\BinaryMarshallerGenerator.h" />
+    <ClInclude Include="Binary\BinaryMarshallerHeaderFileGenerator.h" />
+    <ClInclude Include="Binary\BinaryMarshallerSourceFileGenerator.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="DynamicCaster\DynamicCasterFileGenerator.h" />
+    <ClInclude Include="DynamicCaster\DynamicCasterGenerator.h" />
+    <ClInclude Include="DynamicCaster\DynamicCasterHeaderFileGenerator.h" />
+    <ClInclude Include="DynamicCaster\DynamicCasterSourceFIleGenerator.h" />
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionFileGenerator.h" />
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionGenerator.h" />
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionHeaderFileGenerator.h" />
+    <ClInclude Include="EcsComponentExtension\EcsComponentExtensionSourceFIleGenerator.h" />
+    <ClInclude Include="GeneratorList.h" />
+    <ClInclude Include="IncludeList\IncludeListFileGenerator.h" />
+    <ClInclude Include="IncludeList\IncludeListGenerator.h" />
+    <ClInclude Include="Json\JsonSerializerFileGenerator.h" />
+    <ClInclude Include="Json\JsonSerializerGenerator.h" />
+    <ClInclude Include="Json\JsonSerializerHeaderFileGenerator.h" />
+    <ClInclude Include="Json\JsonSerializerSourceFileGenerator.h" />
+    <ClInclude Include="RunTimeTypeInformation\RunTimeTypeInformationFileGenerator.h" />
+    <ClInclude Include="RunTimeTypeInformation\RunTimeTypeInformationGenerator.h" />
+    <ClInclude Include="RunTimeTypeInformation\RunTimeTypeInformationHeaderFileGenerator.h" />
+    <ClInclude Include="RunTimeTypeInformation\RunTimeTypeInformationSourceFIleGenerator.h" />
+    <ClInclude Include="TypeFactory\TypeFactoryFileGenerator.h" />
+    <ClInclude Include="TypeFactory\TypeFactoryGenerator.h" />
+    <ClInclude Include="TypeFactory\TypeFactoryHeaderFileGenerator.h" />
+    <ClInclude Include="TypeFactory\TypeFactorySourceFIleGenerator.h" />
+    <ClInclude Include="TypeInformation\TypeInformationFileGenerator.h" />
+    <ClInclude Include="TypeInformation\TypeInformationGenerator.h" />
+    <ClInclude Include="TypeInformation\TypeInformationHeaderFileGenerator.h" />
+    <ClInclude Include="TypeInformation\TypeInformationSourceFIleGenerator.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{fe5c234a-5db1-4aae-8a57-96935fa67ea5}</ProjectGuid>
+    <RootNamespace>CodeGeneratorImplementation</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;CODEGENERATORIMPLEMENTATION_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;CODEGENERATORIMPLEMENTATION_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\;.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderOutputFile />
+      <DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;Parser_d.lib;ReflectionCodeGeneratorLib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;FMT_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\;.\Binary;.\DynamicCaster;.\EcsComponentExtension;.\ImGui;.\IncludeList;.\Json;.\TypeFactory;.\TypeInformation;$(SolutionDir)Source\Tools;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderOutputFile />
+      <DisableSpecificWarnings>4251;4068</DisableSpecificWarnings>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CONAN_LIBS);Base.lib;Parser.lib;ReflectionCodeGeneratorLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>

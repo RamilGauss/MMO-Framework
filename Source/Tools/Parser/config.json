@@ -1,0 +1,43 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "./Sources"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "attribute": "REFLECTION_ATTRIBUTE",
+        "extensions": [
+            ".h",
+            ".hpp",
+            ".hh",
+            ".hxx",
+            ".h++"
+        ],
+        "inheritances": [],
+        "memberIgnore": ""
+    },
+    "targetForCodeGeneration": {
+        "directory": "./Sources/Generated files",
+        "includeListParams": {
+            "includeListFileName": "IncludeList",
+            "dirToInclude": []
+        },
+        "header": "\tParser",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "JsonSerializerGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsCppParser",
+                "fileName": "JsonSerializer",
+                "className": "TJsonSerializer",
+                "keyValueMap": {},
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "./Sources/Generated files/JsonOutFile.json"
+                }
+            }
+        }
+    }
+}

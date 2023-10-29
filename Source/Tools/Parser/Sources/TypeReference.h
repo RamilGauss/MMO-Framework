@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 
 namespace nsCppParser
 {
+#pragma REFLECTION_ATTRIBUTE
     struct TTypeReference
     {
         // namespace bb{

@@ -1,0 +1,19 @@
+{
+    "fileName": "JsonSerializer",
+    "nameSpaceName": "nsCppParser",
+    "typeName": "TJsonSerializer",
+    "customizedTypes": [
+        "nsCppParser::AccessLevel",
+        "nsCppParser::AccessMethod",
+        "nsCppParser::DeclarationType",
+        "nsCppParser::MethodCategoryType",
+        "nsCppParser::TInheritanceInfo",
+        "nsCppParser::TMemberExtendedTypeInfo",
+        "nsCppParser::TMemberInfo",
+        "nsCppParser::TTypeInfo",
+        "nsCppParser::TTypeReference",
+        "nsCppParser::TemplateArgument",
+        "nsCppParser::TypeCategory",
+        "nsCppParser::VariableCategory"
+    ]
+}

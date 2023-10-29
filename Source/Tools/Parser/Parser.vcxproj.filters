@@ -21,6 +21,9 @@
     <Filter Include="Tokenize">
       <UniqueIdentifier>{4c4705df-1039-476e-b234-2d535318bcec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generated files">
+      <UniqueIdentifier>{4f35773b-de62-4582-be97-881e9e737345}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Parser.cpp">
@@ -85,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="Sources\TypeReference.cpp">
       <Filter>Infos</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Generated files\JsonSerializer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,8 +229,11 @@
     <ClInclude Include="Sources\CommentRemover.h">
       <Filter>Splitters</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="$(SolutionDir)\conanfile.txt" />
+    <ClInclude Include="Sources\Generated files\JsonSerializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Generated files\IncludeList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 
 namespace nsCppParser
 {
+#pragma REFLECTION_ATTRIBUTE
     struct DllExport TInheritanceInfo : public TTypeReference
     {
         AccessLevel mInheritanceAccessLevel = AccessLevel::PRIVATE;

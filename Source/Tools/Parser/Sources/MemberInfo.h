@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 
 namespace nsCppParser
 {
+#pragma REFLECTION_ATTRIBUTE
     struct DllExport TMemberInfo
     {
         std::set<std::string> mPragmaTextSet;// #pragma TEXT

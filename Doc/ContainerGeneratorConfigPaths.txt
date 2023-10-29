@@ -6,3 +6,8 @@ project $(SolutionDir)\Test\GuiProject\Meta\ProjectContainerConfig.json
 $(SolutionDir)Source\Core\TornadoEngine\Configs\ReflectionConfig.json
 
 $(SolutionDir)\Source\Tools\ContainerCodeGeneratorLib\config.json
+
+$(SolutionDir)\Source\Tools\Parser\config.json
+
+
+$(SolutionDir)\Test\ReflectionCodeGeneratorTest\data.json

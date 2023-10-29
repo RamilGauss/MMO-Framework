@@ -57,8 +57,10 @@
     <ClCompile Include="TypeInformation\TypeInformationGenerator.cpp" />
     <ClCompile Include="TypeInformation\TypeInformationHeaderFileGenerator.cpp" />
     <ClCompile Include="TypeInformation\TypeInformationSourceFIleGenerator.cpp" />
-    <ClCompile Include="Constants.cpp" />
-    <ClCompile Include="GeneratorList.cpp" />
+    <ClCompile Include="RunTimeTypeInformation\RunTimeTypeInformationFileGenerator.cpp" />
+    <ClCompile Include="RunTimeTypeInformation\RunTimeTypeInformationGenerator.cpp" />
+    <ClCompile Include="RunTimeTypeInformation\RunTimeTypeInformationHeaderFileGenerator.cpp" />
+    <ClCompile Include="RunTimeTypeInformation\RunTimeTypeInformationSourceFIleGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Binary\BinaryMarshallerFileGenerator.h">
@@ -145,8 +147,17 @@
     <ClInclude Include="Constants.h">
       <Filter>Generators</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="$(SolutionDir)\conanfile.txt" />
+    <ClInclude Include="RunTimeTypeInformation\RunTimeTypeInformationFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="RunTimeTypeInformation\RunTimeTypeInformationGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="RunTimeTypeInformation\RunTimeTypeInformationHeaderFileGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="RunTimeTypeInformation\RunTimeTypeInformationSourceFIleGenerator.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

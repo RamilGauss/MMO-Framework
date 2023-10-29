@@ -157,7 +157,7 @@ bool TReflectionCodeGenerator::GetTypeList(TStringList& fileList, TTypeInfoPtrLi
         fs::path filePath(fileAbsPath);
         auto filename = filePath.filename().string();
 
-        auto isOpen = lff.ReOpen((char*) fileAbsPath.c_str());
+        auto isOpen = lff.ReOpen((char*)fileAbsPath.c_str());
         if (isOpen == false) {
             continue;
         }
@@ -251,7 +251,7 @@ void TReflectionCodeGenerator::LoadExternalSources()
 
             auto absPath = TPathOperations::CalculatePathBy(mSetupConfig.mAbsPathDirJson, inFile);
 
-            auto isOpen = lff.ReOpen((char*) absPath.c_str());
+            auto isOpen = lff.ReOpen((char*)absPath.c_str());
             if (isOpen == false) {
                 continue;
             }
@@ -277,7 +277,7 @@ void TReflectionCodeGenerator::SolveTypeNameExternalSources()
     for (auto& genInfo : mGenerators) {
         for (auto& extSrc : genInfo.extSrcVector) {
             for (auto& typeName : extSrc.customizedTypes) {
-                genInfo.typeNameExtSrcMap.insert({typeName, &extSrc});
+                genInfo.typeNameExtSrcMap.insert({ typeName, &extSrc });
             }
         }
     }
@@ -285,10 +285,21 @@ void TReflectionCodeGenerator::SolveTypeNameExternalSources()
 //---------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::AddDependencies(ITargetCodeGenerator* generator, TTypeInfo* type, std::set<std::string>& dependenciesTypeNameSetOut)
 {
+    // Get deps
     std::set<std::string> dependenciesTypeNameSet;
     generator->GetDependencies(type, dependenciesTypeNameSet);
-    dependenciesTypeNameSetOut.insert(dependenciesTypeNameSet.begin(), dependenciesTypeNameSet.end());
+
+    // Filter by new
+    std::set<std::string> newDependenciesTypeNameSet;
     for (auto& dep : dependenciesTypeNameSet) {
+        if (dependenciesTypeNameSetOut.contains(dep) == false) {
+            dependenciesTypeNameSetOut.insert(dep);
+            newDependenciesTypeNameSet.insert(dep);
+        }
+    }
+
+    // Continue searching of new deps
+    for (auto& dep : newDependenciesTypeNameSet) {
 
         auto depType = mTypeManager->Get(dep);
         if (depType != nullptr) {
@@ -464,14 +475,14 @@ void TReflectionCodeGenerator::ConvertStringToTypeCategory(std::map<std::string,
         for (auto& typeCategory : typeCategories) {
 
             std::string name(magic_enum::enum_name<TypeCategory>(typeCategory));
-            nameToTypeCategoryMap.insert({name, typeCategory});
+            nameToTypeCategoryMap.insert({ name, typeCategory });
         }
     }
 
     typeCustomizerMap.clear();
     for (auto& typeCustomizer : strTypeCustomizerMap) {
         auto& type = nameToTypeCategoryMap[typeCustomizer.second];
-        typeCustomizerMap.insert({typeCustomizer.first, type});
+        typeCustomizerMap.insert({ typeCustomizer.first, type });
     }
 }
 //---------------------------------------------------------------------------------------
@@ -485,7 +496,7 @@ void TReflectionCodeGenerator::CorrectMemberInfoInAllTypes()
         withinClassTypeNameList.push_back(type->GetNameSpace());
         withinClassTypeNameList.push_back(type->GetTypeNameWithNameSpace());
 
-        auto& pubMem = type->mMembers[(int) AccessLevel::PUBLIC];
+        auto& pubMem = type->mMembers[(int)AccessLevel::PUBLIC];
         for (auto& member : pubMem) {
             TMemberExtendedTypeInfo* pMemberExtendedInfo = nullptr;
             if (member->mPragmaTextSet.find(mConfig->filter.memberIgnore) != member->mPragmaTextSet.end()) {
