@@ -52,6 +52,9 @@
     <ClCompile Include="RunTimeTypeInformationSerializer.cpp">
       <Filter>GeneratedFiles</Filter>
     </ClCompile>
+    <ClCompile Include="TypeInfoTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataSources\AllTypes.h">

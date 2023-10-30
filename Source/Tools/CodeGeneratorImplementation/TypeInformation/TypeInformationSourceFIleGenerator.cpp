@@ -26,18 +26,19 @@ void TTypeInformationSourceFileGenerator::Work()
 
     AddInclude("SingletonManager.h");
     AddInclude("RunTimeTypeIndex.h");
+    AddInclude("Parser/Sources/Generated files/JsonSerializer.h");
 
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;
-    if ( namespaceName.length() )
+    if (namespaceName.length())
         AddUsingNamespace(namespaceName);
 
     AddEmptyLine();
 
     std::string str;
     str = fmt::format("std::vector<std::shared_ptr<nsCppParser::TTypeInfo>> {}::{};", mSerializer->className, s_mTypeInfoVector),
-    Add(str);
+        Add(str);
 
     AddEmptyLine();
 
@@ -75,7 +76,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
     AddEmptyLine();
 
-    str = fmt::format("std::map<std::string, std::string> m;");
+    str = fmt::format("std::map<int, std::shared_ptr<nsCppParser::TTypeInfo>> m;");
     Add(str);
 
     auto& forGenerate = mTypeNameDbPtr->GetForGenerate();
@@ -90,8 +91,31 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
         auto rtti = fmt::format("{}_i", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
 
+        str = fmt::format("int {} = {}->Type<{}>();", rtti, globalTypeIdentifier, t);
+        Add(str);
+
+        std::string rawJsonContent;
+        nsCppParser::TJsonSerializer::Serialize(pTypeInfo, rawJsonContent);
+
         std::string jsonContent;
-        nsCppParser::TJsonSerializer::Serialize(pTypeInfo, jsonContent);
+        for (auto& c : rawJsonContent) {
+            switch (c) {
+                case  '\\':
+                    jsonContent += '\\\\';
+                    jsonContent += c;
+                    break;
+                case  '\"':
+                    jsonContent += '\\';
+                    jsonContent += c;
+                    break;
+                case  '\n':
+                    jsonContent += '\"';
+                    jsonContent += c;
+                    jsonContent += '\"';
+                    break;
+                default:jsonContent += c;;
+            }
+        }
 
         auto jc = fmt::format("{}_jc", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
 
@@ -105,55 +129,37 @@ void TTypeInformationSourceFileGenerator::AddInit()
 
         auto shared_Type = fmt::format("{}_p_type", pTypeInfo->GetTypeNameWithNameSpaceAsVar());
 
-        str = fmt::format("std::shared_ptr<nsCppParser::TTypeInfo*> {} = std::make_shared<nsCppParser::TTypeInfo>();", shared_Type);
+        str = fmt::format("std::shared_ptr<nsCppParser::TTypeInfo> {} = std::make_shared<nsCppParser::TTypeInfo>();", shared_Type);
         Add(str);
 
-        str = fmt::format("nsCppParser::TJsonSerializer::Deserialize({}, {}, {});", shared_Type, jc, err);
+        str = fmt::format("nsCppParser::TJsonSerializer::Deserialize({}.get(), {}, {});", shared_Type, jc, err);
         Add(str);
 
-        //str = fmt::format("m.insert({{ {}, {} }});", );
-        //Add(str);
-
-        //str = fmt::format("m.insert({{ {}, {} }});", );
-        //Add(str);
-
-
-
-
-        //str = fmt::format("int {} = {}->Type<{}>();", rtti, globalTypeIdentifier, t);
-        //Add(str);
-
-
-        //str = fmt::format("{}.insert({{ {}, {} }});", s_mNameRttiMap, typeName, rtti);
-        //Add(str);
+        str = fmt::format("m.insert({{ {}, {} }});", rtti, shared_Type);
+        Add(str);
 
         AddEmptyLine();
     }
 
-    str = fmt::format("int max = 0;");
-    Add(str);
-
-    /*str = fmt::format("for (auto& nameRtti : m) {{", s_mNameRttiMap);
-    Add(str);
+    Add("int max = 0;");
+    Add("for (auto& rttiType : m) {");
 
     IncrementTabs();
 
-    str = fmt::format("max = std::max(max, nameRtti.second);", s_mNameRttiMap);
-    Add(str);
+    Add("max = std::max(max, rttiType.first);");
 
     DecrementTabs();
     AddRightBrace();
 
-    str = fmt::format("{}.resize(max + 1);", s_mNameVector);
+    str = fmt::format("{}.resize(max + 1);", s_mTypeInfoVector);
     Add(str);
 
-    str = fmt::format("for (auto& nameRtti : {}) {{", s_mNameRttiMap);
-    Add(str);
+    Add("for (auto& rttiType : m) {");
 
     IncrementTabs();
 
-    str = fmt::format("{}[nameRtti.second] = nameRtti.first;", s_mNameVector);
-    Add(str);*/
+    str = fmt::format("{}[rttiType.first] = rttiType.second;", s_mTypeInfoVector);
+    Add(str);
 
     DecrementTabs();
     AddRightBrace();

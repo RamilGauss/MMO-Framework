@@ -37,7 +37,7 @@
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,
         "implementations": {
-            "EcsSystemExtension": {
+            "DynamicCaster": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTest",
                 "fileName": "EcsSystemExtension",

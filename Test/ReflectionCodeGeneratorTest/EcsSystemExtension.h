@@ -1,14 +1,17 @@
 /*
 	ReflectionCodeGeneratorTest
 */
-// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_09_18 22:21:05.444
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_10_30 17:46:21.296
 	
 #pragma once
 
 #include <string>
 #include <vector>
+#include <map>
+#include <set>
 #include <functional>
+
 #include "TypeDef.h"
 #include "EcsSystemExtensionIncludeList.h"
 
@@ -17,15 +20,18 @@ namespace nsTest
     class DllExport TEcsSystemExtension
     {
     public:
-        static nsECSFramework::TSystem* DynamicCast(void* p, int rtti);
+        static void Init();
+        static const std::map<int, std::set<int>>& GetRttiCombinations();// rtti <---> rtti-es
+        static void* Cast(int srcRtti, void* p, int dstRtti);
     private:
         struct Data
         {
-            std::function<nsECSFramework::TSystem* (void*)> castFunc;
+            int rtti = 0;
+            std::function<void*(void*)> castFunc = nullptr;
         };
     
-        static std::vector<Data> mDataVector;
+        static std::vector<std::vector<Data>> mDataVector;
+        static std::map<int, std::set<int>> mRttiCombinations;
     
-        static void Init();
     };
 }

@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGeneratorTest
 */
-// ReflectionCodeGenerator version 2.3.0, build 57 [Json, Binary, ImGui, EcsComponentExtension, EcsSystemExtension, Reflection, TypeInformation]
-// File has been generated at 2022_09_18 22:21:05.444
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_10_30 17:46:21.296
 	
 #include "EcsSystemExtension.h"
 #include "SingletonManager.h"
@@ -10,58 +10,68 @@
 
 using namespace nsTest;
 
-std::vector<TEcsSystemExtension::Data> TEcsSystemExtension::mDataVector;
+std::vector<std::vector<TEcsSystemExtension::Data>> TEcsSystemExtension::mDataVector;
+std::map<int, std::set<int>> TEcsSystemExtension::mRttiCombinations;
+
+template <typename FromType, typename ToType>
+ToType* SmartCast(void* p)
+{
+    if constexpr (std::is_base_of<ToType, FromType>::value) {
+        return dynamic_cast<ToType*>(static_cast<FromType*>(p));
+    }
+    if constexpr (std::is_polymorphic<FromType>() && std::is_polymorphic<ToType>()) {
+        return dynamic_cast<ToType*>(static_cast<FromType*>(p));
+    }
+    return reinterpret_cast<ToType*>(static_cast<FromType*>(p));
+}
+
 void TEcsSystemExtension::Init()
 {
     static bool isNeedInit = true;
-    if ( !isNeedInit )
-    {
+    if ( !isNeedInit ) {
         return;
     }
     isNeedInit = false;
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    std::map<int, Data> m;
+    std::map<int, std::map<int, Data>> m;
     
-    Data ExecuteSystem_Data;
-    ExecuteSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<ExecuteSystem*>(p)); };
-    auto rtti_ExecuteSystem_Data = globalTypeIdentifier->Type<ExecuteSystem>();
-    
-    m.insert({ rtti_ExecuteSystem_Data, ExecuteSystem_Data });
-    
-    Data Feature_Data;
-    Feature_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<Feature*>(p)); };
-    auto rtti_Feature_Data = globalTypeIdentifier->Type<Feature>();
-    
-    m.insert({ rtti_Feature_Data, Feature_Data });
-    
-    Data InitSystem_Data;
-    InitSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<InitSystem*>(p)); };
-    auto rtti_InitSystem_Data = globalTypeIdentifier->Type<InitSystem>();
-    
-    m.insert({ rtti_InitSystem_Data, InitSystem_Data });
-    
-    Data TearDownSystem_Data;
-    TearDownSystem_Data.castFunc = [](void* p){ return dynamic_cast<nsECSFramework::TSystem*>(static_cast<TearDownSystem*>(p)); };
-    auto rtti_TearDownSystem_Data = globalTypeIdentifier->Type<TearDownSystem>();
-    
-    m.insert({ rtti_TearDownSystem_Data, TearDownSystem_Data });
-    
-    int max = 0;
+    int srcMax = 0;
     for (auto& vt : m) {
-        max = std::max(vt.first, max);
+        srcMax = std::max(vt.first, srcMax);
     }
     
-    mDataVector.resize(max + 1);
+    mDataVector.resize(srcMax + 1);
     for (auto& vt : m) {
-        mDataVector[vt.first] = vt.second;
+        std::vector<Data> vecData;
+        int dstMax = 0;
+        for (auto& vtDst : vt.second) {
+            dstMax = std::max(vtDst.first, dstMax);
+        }
+        
+        vecData.resize(dstMax + 1);
+        std::set<int> rttis;
+        for (auto& vtDst : vt.second) {
+            vecData[vtDst.first] = vtDst.second;
+            rttis.insert(vtDst.first);
+        }
+        
+        mRttiCombinations.insert({ vt.first, rttis });
+        
+        mDataVector[vt.first] = vecData;
     }
 }
 //---------------------------------------------------------------------------------------
-nsECSFramework::TSystem* TEcsSystemExtension::DynamicCast(void* p, int rtti)
+void* TEcsSystemExtension::Cast(int srcRtti, void* p, int dstRtti)
 {
     Init();
-    return mDataVector[rtti].castFunc(p);
+    return mDataVector[dstRtti][srcRtti].castFunc(p);
+}
+//---------------------------------------------------------------------------------------
+const std::map<int, std::set<int>>& TEcsSystemExtension::GetRttiCombinations()
+{
+    Init();
+    return mRttiCombinations;
 }
 //---------------------------------------------------------------------------------------

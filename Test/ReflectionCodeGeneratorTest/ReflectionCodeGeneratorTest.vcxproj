@@ -179,6 +179,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator_d.exe "$(SolutionDir)Test\ReflectionCo
     <ClCompile Include="RunTimeTypeInformationSerializer.cpp" />
     <ClCompile Include="TypeFactorySerializer.cpp" />
     <ClCompile Include="TypeInformationSerializer.cpp" />
+    <ClCompile Include="TypeInfoTest.cpp" />
     <ClCompile Include="TypeManagerTest.cpp" />
     <ClCompile Include="TypeNameDataBaseTest.cpp" />
   </ItemGroup>
