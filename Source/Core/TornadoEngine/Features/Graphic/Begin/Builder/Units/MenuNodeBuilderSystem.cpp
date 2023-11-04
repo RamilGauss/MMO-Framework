@@ -14,8 +14,6 @@ See for more information LICENSE.md.
 #include "TitleComponent.h"
 #include "TextureFromFileComponent.h"
 
-#include "MenuNodeClickHandlerComponent.h"
-
 #include "PrefabOriginalGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
 
@@ -51,16 +49,16 @@ void TMenuNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
     }
 
 
-    auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
-    pMenuNodeComponent->value->mOnLeftClickCB.Register(pMenuNodeComponent->value,
-        [entMng, handlerCallCollector, eid, pMenuNodeComponent](nsImGuiWidgets::TNode* pB)
-    {
-        auto handlers = THandlerLinkHelper::FindHandlers<TMenuNodeClickHandlerComponent>(entMng, eid, pMenuNodeComponent);
-        for (auto& pHandler : handlers) {
-            handlerCallCollector->Add([pHandler, eid, pMenuNodeComponent]()
-            {
-                pHandler->handler->Handle(eid, pMenuNodeComponent);
-            });
-        }
-    });
+    //auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
+    //pMenuNodeComponent->value->mOnLeftClickCB.Register(pMenuNodeComponent->value,
+    //    [entMng, handlerCallCollector, eid, pMenuNodeComponent](nsImGuiWidgets::TNode* pB)
+    //{
+    //    auto handlers = THandlerLinkHelper::FindHandlers<TMenuNodeClickHandlerComponent>(entMng, eid, pMenuNodeComponent);
+    //    for (auto& pHandler : handlers) {
+    //        handlerCallCollector->Add([pHandler, eid, pMenuNodeComponent]()
+    //        {
+    //            pHandler->handler->Handle(eid, pMenuNodeComponent);
+    //        });
+    //    }
+    //});
 }

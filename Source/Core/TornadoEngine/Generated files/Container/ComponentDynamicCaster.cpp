@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_08 13:02:26.473
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_04 19:35:23.618
 	
 #include "ComponentDynamicCaster.h"
 #include "SingletonManager.h"
@@ -49,60 +49,6 @@ void TComponentDynamicCaster::Init()
     
     m.insert({ nsCommonWrapper_TGlobalMatrixComponent_rtti, nsCommonWrapper_TGlobalMatrixComponent_Map });
     
-    std::map<int, Data> nsCommonWrapper_THandlerTarget_Map;
-    
-    Data nsCommonWrapper_THandlerTarget_nsGuiWrapper_TButtonClickHandlerComponent_Data;
-    nsCommonWrapper_THandlerTarget_nsGuiWrapper_TButtonClickHandlerComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TButtonClickHandlerComponent, nsCommonWrapper::THandlerTarget>(p); };
-    auto nsCommonWrapper_THandlerTarget_nsGuiWrapper_TButtonClickHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
-    
-    nsCommonWrapper_THandlerTarget_Map.insert({ nsCommonWrapper_THandlerTarget_nsGuiWrapper_TButtonClickHandlerComponent_rtti, nsCommonWrapper_THandlerTarget_nsGuiWrapper_TButtonClickHandlerComponent_Data });
-    
-    Data nsCommonWrapper_THandlerTarget_nsGuiWrapper_TDialogCloseEventHandlerComponent_Data;
-    nsCommonWrapper_THandlerTarget_nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TDialogCloseEventHandlerComponent, nsCommonWrapper::THandlerTarget>(p); };
-    auto nsCommonWrapper_THandlerTarget_nsGuiWrapper_TDialogCloseEventHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
-    
-    nsCommonWrapper_THandlerTarget_Map.insert({ nsCommonWrapper_THandlerTarget_nsGuiWrapper_TDialogCloseEventHandlerComponent_rtti, nsCommonWrapper_THandlerTarget_nsGuiWrapper_TDialogCloseEventHandlerComponent_Data });
-    
-    Data nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameKeyHandlerComponent_Data;
-    nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameKeyHandlerComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TFrameKeyHandlerComponent, nsCommonWrapper::THandlerTarget>(p); };
-    auto nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameKeyHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameKeyHandlerComponent>();
-    
-    nsCommonWrapper_THandlerTarget_Map.insert({ nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameKeyHandlerComponent_rtti, nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameKeyHandlerComponent_Data });
-    
-    Data nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseClickHandlerComponent_Data;
-    nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TFrameMouseClickHandlerComponent, nsCommonWrapper::THandlerTarget>(p); };
-    auto nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseClickHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseClickHandlerComponent>();
-    
-    nsCommonWrapper_THandlerTarget_Map.insert({ nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseClickHandlerComponent_rtti, nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseClickHandlerComponent_Data });
-    
-    Data nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data;
-    nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TFrameMouseMoveHandlerComponent, nsCommonWrapper::THandlerTarget>(p); };
-    auto nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseMoveHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseMoveHandlerComponent>();
-    
-    nsCommonWrapper_THandlerTarget_Map.insert({ nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseMoveHandlerComponent_rtti, nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data });
-    
-    Data nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data;
-    nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TFrameMouseWheelHandlerComponent, nsCommonWrapper::THandlerTarget>(p); };
-    auto nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseWheelHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseWheelHandlerComponent>();
-    
-    nsCommonWrapper_THandlerTarget_Map.insert({ nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseWheelHandlerComponent_rtti, nsCommonWrapper_THandlerTarget_nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data });
-    
-    Data nsCommonWrapper_THandlerTarget_nsGuiWrapper_TMenuNodeClickHandlerComponent_Data;
-    nsCommonWrapper_THandlerTarget_nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TMenuNodeClickHandlerComponent, nsCommonWrapper::THandlerTarget>(p); };
-    auto nsCommonWrapper_THandlerTarget_nsGuiWrapper_TMenuNodeClickHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
-    
-    nsCommonWrapper_THandlerTarget_Map.insert({ nsCommonWrapper_THandlerTarget_nsGuiWrapper_TMenuNodeClickHandlerComponent_rtti, nsCommonWrapper_THandlerTarget_nsGuiWrapper_TMenuNodeClickHandlerComponent_Data });
-    
-    Data nsCommonWrapper_THandlerTarget_nsGuiWrapper_TWindowCloseEventHandlerComponent_Data;
-    nsCommonWrapper_THandlerTarget_nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TWindowCloseEventHandlerComponent, nsCommonWrapper::THandlerTarget>(p); };
-    auto nsCommonWrapper_THandlerTarget_nsGuiWrapper_TWindowCloseEventHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
-    
-    nsCommonWrapper_THandlerTarget_Map.insert({ nsCommonWrapper_THandlerTarget_nsGuiWrapper_TWindowCloseEventHandlerComponent_rtti, nsCommonWrapper_THandlerTarget_nsGuiWrapper_TWindowCloseEventHandlerComponent_Data });
-    
-    auto nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    m.insert({ nsCommonWrapper_THandlerTarget_rtti, nsCommonWrapper_THandlerTarget_Map });
-    
     std::map<int, Data> nsGraphicWrapper_TTextureFromFileComponent_Map;
     
     Data nsGraphicWrapper_TTextureFromFileComponent_nsTornadoEngine_IPropertyOf_Data;
@@ -127,18 +73,6 @@ void TComponentDynamicCaster::Init()
     
     m.insert({ nsGuiWrapper_TAnchorsComponent_rtti, nsGuiWrapper_TAnchorsComponent_Map });
     
-    std::map<int, Data> nsGuiWrapper_TButtonClickHandlerComponent_Map;
-    
-    Data nsGuiWrapper_TButtonClickHandlerComponent_nsCommonWrapper_THandlerTarget_Data;
-    nsGuiWrapper_TButtonClickHandlerComponent_nsCommonWrapper_THandlerTarget_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::THandlerTarget, nsGuiWrapper::TButtonClickHandlerComponent>(p); };
-    auto nsGuiWrapper_TButtonClickHandlerComponent_nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    nsGuiWrapper_TButtonClickHandlerComponent_Map.insert({ nsGuiWrapper_TButtonClickHandlerComponent_nsCommonWrapper_THandlerTarget_rtti, nsGuiWrapper_TButtonClickHandlerComponent_nsCommonWrapper_THandlerTarget_Data });
-    
-    auto nsGuiWrapper_TButtonClickHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
-    
-    m.insert({ nsGuiWrapper_TButtonClickHandlerComponent_rtti, nsGuiWrapper_TButtonClickHandlerComponent_Map });
-    
     std::map<int, Data> nsGuiWrapper_TColorComponent_Map;
     
     Data nsGuiWrapper_TColorComponent_nsTornadoEngine_IPropertyOf_Data;
@@ -151,18 +85,6 @@ void TComponentDynamicCaster::Init()
     
     m.insert({ nsGuiWrapper_TColorComponent_rtti, nsGuiWrapper_TColorComponent_Map });
     
-    std::map<int, Data> nsGuiWrapper_TDialogCloseEventHandlerComponent_Map;
-    
-    Data nsGuiWrapper_TDialogCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_Data;
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::THandlerTarget, nsGuiWrapper::TDialogCloseEventHandlerComponent>(p); };
-    auto nsGuiWrapper_TDialogCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Map.insert({ nsGuiWrapper_TDialogCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_rtti, nsGuiWrapper_TDialogCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_Data });
-    
-    auto nsGuiWrapper_TDialogCloseEventHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
-    
-    m.insert({ nsGuiWrapper_TDialogCloseEventHandlerComponent_rtti, nsGuiWrapper_TDialogCloseEventHandlerComponent_Map });
-    
     std::map<int, Data> nsGuiWrapper_TFocusComponent_Map;
     
     Data nsGuiWrapper_TFocusComponent_nsTornadoEngine_IPropertyOf_Data;
@@ -174,54 +96,6 @@ void TComponentDynamicCaster::Init()
     auto nsGuiWrapper_TFocusComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFocusComponent>();
     
     m.insert({ nsGuiWrapper_TFocusComponent_rtti, nsGuiWrapper_TFocusComponent_Map });
-    
-    std::map<int, Data> nsGuiWrapper_TFrameKeyHandlerComponent_Map;
-    
-    Data nsGuiWrapper_TFrameKeyHandlerComponent_nsCommonWrapper_THandlerTarget_Data;
-    nsGuiWrapper_TFrameKeyHandlerComponent_nsCommonWrapper_THandlerTarget_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::THandlerTarget, nsGuiWrapper::TFrameKeyHandlerComponent>(p); };
-    auto nsGuiWrapper_TFrameKeyHandlerComponent_nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    nsGuiWrapper_TFrameKeyHandlerComponent_Map.insert({ nsGuiWrapper_TFrameKeyHandlerComponent_nsCommonWrapper_THandlerTarget_rtti, nsGuiWrapper_TFrameKeyHandlerComponent_nsCommonWrapper_THandlerTarget_Data });
-    
-    auto nsGuiWrapper_TFrameKeyHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameKeyHandlerComponent>();
-    
-    m.insert({ nsGuiWrapper_TFrameKeyHandlerComponent_rtti, nsGuiWrapper_TFrameKeyHandlerComponent_Map });
-    
-    std::map<int, Data> nsGuiWrapper_TFrameMouseClickHandlerComponent_Map;
-    
-    Data nsGuiWrapper_TFrameMouseClickHandlerComponent_nsCommonWrapper_THandlerTarget_Data;
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_nsCommonWrapper_THandlerTarget_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::THandlerTarget, nsGuiWrapper::TFrameMouseClickHandlerComponent>(p); };
-    auto nsGuiWrapper_TFrameMouseClickHandlerComponent_nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Map.insert({ nsGuiWrapper_TFrameMouseClickHandlerComponent_nsCommonWrapper_THandlerTarget_rtti, nsGuiWrapper_TFrameMouseClickHandlerComponent_nsCommonWrapper_THandlerTarget_Data });
-    
-    auto nsGuiWrapper_TFrameMouseClickHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseClickHandlerComponent>();
-    
-    m.insert({ nsGuiWrapper_TFrameMouseClickHandlerComponent_rtti, nsGuiWrapper_TFrameMouseClickHandlerComponent_Map });
-    
-    std::map<int, Data> nsGuiWrapper_TFrameMouseMoveHandlerComponent_Map;
-    
-    Data nsGuiWrapper_TFrameMouseMoveHandlerComponent_nsCommonWrapper_THandlerTarget_Data;
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_nsCommonWrapper_THandlerTarget_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::THandlerTarget, nsGuiWrapper::TFrameMouseMoveHandlerComponent>(p); };
-    auto nsGuiWrapper_TFrameMouseMoveHandlerComponent_nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Map.insert({ nsGuiWrapper_TFrameMouseMoveHandlerComponent_nsCommonWrapper_THandlerTarget_rtti, nsGuiWrapper_TFrameMouseMoveHandlerComponent_nsCommonWrapper_THandlerTarget_Data });
-    
-    auto nsGuiWrapper_TFrameMouseMoveHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseMoveHandlerComponent>();
-    
-    m.insert({ nsGuiWrapper_TFrameMouseMoveHandlerComponent_rtti, nsGuiWrapper_TFrameMouseMoveHandlerComponent_Map });
-    
-    std::map<int, Data> nsGuiWrapper_TFrameMouseWheelHandlerComponent_Map;
-    
-    Data nsGuiWrapper_TFrameMouseWheelHandlerComponent_nsCommonWrapper_THandlerTarget_Data;
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_nsCommonWrapper_THandlerTarget_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::THandlerTarget, nsGuiWrapper::TFrameMouseWheelHandlerComponent>(p); };
-    auto nsGuiWrapper_TFrameMouseWheelHandlerComponent_nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Map.insert({ nsGuiWrapper_TFrameMouseWheelHandlerComponent_nsCommonWrapper_THandlerTarget_rtti, nsGuiWrapper_TFrameMouseWheelHandlerComponent_nsCommonWrapper_THandlerTarget_Data });
-    
-    auto nsGuiWrapper_TFrameMouseWheelHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseWheelHandlerComponent>();
-    
-    m.insert({ nsGuiWrapper_TFrameMouseWheelHandlerComponent_rtti, nsGuiWrapper_TFrameMouseWheelHandlerComponent_Map });
     
     std::map<int, Data> nsGuiWrapper_TGridComponent_Map;
     
@@ -282,18 +156,6 @@ void TComponentDynamicCaster::Init()
     auto nsGuiWrapper_TMaxSizeComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMaxSizeComponent>();
     
     m.insert({ nsGuiWrapper_TMaxSizeComponent_rtti, nsGuiWrapper_TMaxSizeComponent_Map });
-    
-    std::map<int, Data> nsGuiWrapper_TMenuNodeClickHandlerComponent_Map;
-    
-    Data nsGuiWrapper_TMenuNodeClickHandlerComponent_nsCommonWrapper_THandlerTarget_Data;
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_nsCommonWrapper_THandlerTarget_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::THandlerTarget, nsGuiWrapper::TMenuNodeClickHandlerComponent>(p); };
-    auto nsGuiWrapper_TMenuNodeClickHandlerComponent_nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Map.insert({ nsGuiWrapper_TMenuNodeClickHandlerComponent_nsCommonWrapper_THandlerTarget_rtti, nsGuiWrapper_TMenuNodeClickHandlerComponent_nsCommonWrapper_THandlerTarget_Data });
-    
-    auto nsGuiWrapper_TMenuNodeClickHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
-    
-    m.insert({ nsGuiWrapper_TMenuNodeClickHandlerComponent_rtti, nsGuiWrapper_TMenuNodeClickHandlerComponent_Map });
     
     std::map<int, Data> nsGuiWrapper_TMinDistanceToParentComponent_Map;
     
@@ -450,18 +312,6 @@ void TComponentDynamicCaster::Init()
     auto nsGuiWrapper_TVisibilityComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TVisibilityComponent>();
     
     m.insert({ nsGuiWrapper_TVisibilityComponent_rtti, nsGuiWrapper_TVisibilityComponent_Map });
-    
-    std::map<int, Data> nsGuiWrapper_TWindowCloseEventHandlerComponent_Map;
-    
-    Data nsGuiWrapper_TWindowCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_Data;
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_Data.castFunc = [](void* p){ return SmartCast<nsCommonWrapper::THandlerTarget, nsGuiWrapper::TWindowCloseEventHandlerComponent>(p); };
-    auto nsGuiWrapper_TWindowCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Map.insert({ nsGuiWrapper_TWindowCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_rtti, nsGuiWrapper_TWindowCloseEventHandlerComponent_nsCommonWrapper_THandlerTarget_Data });
-    
-    auto nsGuiWrapper_TWindowCloseEventHandlerComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
-    
-    m.insert({ nsGuiWrapper_TWindowCloseEventHandlerComponent_rtti, nsGuiWrapper_TWindowCloseEventHandlerComponent_Map });
     
     std::map<int, Data> nsTornadoEngine_IPropertyOf_Map;
     

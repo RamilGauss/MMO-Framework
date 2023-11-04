@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_08 13:02:26.449
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_04 19:35:23.600
 	
 #include "ComponentTypeFactory.h"
 #include "SingletonManager.h"
@@ -213,13 +213,6 @@ void TComponentTypeFactory::Init()
     
     datas.push_back(nsGuiWrapper_TAnchorsComponent_Data);
     
-    Data nsGuiWrapper_TButtonClickHandlerComponent_Data;
-    nsGuiWrapper_TButtonClickHandlerComponent_Data.newFunc = [](){ return new nsGuiWrapper::TButtonClickHandlerComponent(); };
-    nsGuiWrapper_TButtonClickHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TButtonClickHandlerComponent*)p; };
-    nsGuiWrapper_TButtonClickHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TButtonClickHandlerComponent_Data);
-    
     Data nsGuiWrapper_TButtonComponent_Data;
     nsGuiWrapper_TButtonComponent_Data.newFunc = [](){ return new nsGuiWrapper::TButtonComponent(); };
     nsGuiWrapper_TButtonComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TButtonComponent*)p; };
@@ -233,13 +226,6 @@ void TComponentTypeFactory::Init()
     nsGuiWrapper_TColorComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TColorComponent>();
     
     datas.push_back(nsGuiWrapper_TColorComponent_Data);
-    
-    Data nsGuiWrapper_TDialogCloseEventHandlerComponent_Data;
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.newFunc = [](){ return new nsGuiWrapper::TDialogCloseEventHandlerComponent(); };
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TDialogCloseEventHandlerComponent*)p; };
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TDialogCloseEventHandlerComponent_Data);
     
     Data nsGuiWrapper_TDialogComponent_Data;
     nsGuiWrapper_TDialogComponent_Data.newFunc = [](){ return new nsGuiWrapper::TDialogComponent(); };
@@ -261,34 +247,6 @@ void TComponentTypeFactory::Init()
     nsGuiWrapper_TFrameComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameComponent>();
     
     datas.push_back(nsGuiWrapper_TFrameComponent_Data);
-    
-    Data nsGuiWrapper_TFrameKeyHandlerComponent_Data;
-    nsGuiWrapper_TFrameKeyHandlerComponent_Data.newFunc = [](){ return new nsGuiWrapper::TFrameKeyHandlerComponent(); };
-    nsGuiWrapper_TFrameKeyHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TFrameKeyHandlerComponent*)p; };
-    nsGuiWrapper_TFrameKeyHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameKeyHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TFrameKeyHandlerComponent_Data);
-    
-    Data nsGuiWrapper_TFrameMouseClickHandlerComponent_Data;
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.newFunc = [](){ return new nsGuiWrapper::TFrameMouseClickHandlerComponent(); };
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TFrameMouseClickHandlerComponent*)p; };
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseClickHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TFrameMouseClickHandlerComponent_Data);
-    
-    Data nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data;
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.newFunc = [](){ return new nsGuiWrapper::TFrameMouseMoveHandlerComponent(); };
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TFrameMouseMoveHandlerComponent*)p; };
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseMoveHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data);
-    
-    Data nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data;
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.newFunc = [](){ return new nsGuiWrapper::TFrameMouseWheelHandlerComponent(); };
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TFrameMouseWheelHandlerComponent*)p; };
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseWheelHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data);
     
     Data nsGuiWrapper_TGridComponent_Data;
     nsGuiWrapper_TGridComponent_Data.newFunc = [](){ return new nsGuiWrapper::TGridComponent(); };
@@ -345,13 +303,6 @@ void TComponentTypeFactory::Init()
     nsGuiWrapper_TMaxSizeComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMaxSizeComponent>();
     
     datas.push_back(nsGuiWrapper_TMaxSizeComponent_Data);
-    
-    Data nsGuiWrapper_TMenuNodeClickHandlerComponent_Data;
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.newFunc = [](){ return new nsGuiWrapper::TMenuNodeClickHandlerComponent(); };
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TMenuNodeClickHandlerComponent*)p; };
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TMenuNodeClickHandlerComponent_Data);
     
     Data nsGuiWrapper_TMenuNodeComponent_Data;
     nsGuiWrapper_TMenuNodeComponent_Data.newFunc = [](){ return new nsGuiWrapper::TMenuNodeComponent(); };
@@ -465,19 +416,19 @@ void TComponentTypeFactory::Init()
     
     datas.push_back(nsGuiWrapper_TVisibilityComponent_Data);
     
-    Data nsGuiWrapper_TWindowCloseEventHandlerComponent_Data;
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.newFunc = [](){ return new nsGuiWrapper::TWindowCloseEventHandlerComponent(); };
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TWindowCloseEventHandlerComponent*)p; };
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TWindowCloseEventHandlerComponent_Data);
-    
     Data nsGuiWrapper_TWindowComponent_Data;
     nsGuiWrapper_TWindowComponent_Data.newFunc = [](){ return new nsGuiWrapper::TWindowComponent(); };
     nsGuiWrapper_TWindowComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TWindowComponent*)p; };
     nsGuiWrapper_TWindowComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowComponent>();
     
     datas.push_back(nsGuiWrapper_TWindowComponent_Data);
+    
+    Data nsLogicWrapper_TGlobalHandlerComponent_Data;
+    nsLogicWrapper_TGlobalHandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::TGlobalHandlerComponent(); };
+    nsLogicWrapper_TGlobalHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsLogicWrapper::TGlobalHandlerComponent*)p; };
+    nsLogicWrapper_TGlobalHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TGlobalHandlerComponent>();
+    
+    datas.push_back(nsLogicWrapper_TGlobalHandlerComponent_Data);
     
     Data nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data;
     nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent(); };
@@ -527,6 +478,13 @@ void TComponentTypeFactory::Init()
     nsLogicWrapper_TSystemComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
     
     datas.push_back(nsLogicWrapper_TSystemComponent_Data);
+    
+    Data nsLogicWrapper_TTargetHandlerComponent_Data;
+    nsLogicWrapper_TTargetHandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::TTargetHandlerComponent(); };
+    nsLogicWrapper_TTargetHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsLogicWrapper::TTargetHandlerComponent*)p; };
+    nsLogicWrapper_TTargetHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TTargetHandlerComponent>();
+    
+    datas.push_back(nsLogicWrapper_TTargetHandlerComponent_Data);
     
     int max = 0;
     for (auto& d : datas) {

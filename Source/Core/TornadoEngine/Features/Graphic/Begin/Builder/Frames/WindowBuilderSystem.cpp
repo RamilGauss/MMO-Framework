@@ -18,8 +18,8 @@ See for more information LICENSE.md.
 
 #include "UnitBuilderHelper.h"
 #include "HandlerLinkHelper.h"
-#include "HandlerCallCollector.h"
-#include "UniverseIndexComponent.h"
+//#include "HandlerCallCollector.h"
+//#include "UniverseIndexComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;
@@ -39,23 +39,23 @@ void TWindowBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     TUnitBuilderHelper::SetupSize(entMng, eid, pWindowComponent->value);
     TUnitBuilderHelper::SetupPosition(entMng, eid, pWindowComponent->value);
 
-    auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
-    pWindowComponent->value->mOnShowCB.Register(pWindowComponent->value,
-        [entMng, handlerCallCollector, eid, pWindowComponent](bool isShown)
-    {
-        if (isShown) {
-            return;
-        }
+    //auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
+    //pWindowComponent->value->mOnShowCB.Register(pWindowComponent->value,
+    //    [entMng, handlerCallCollector, eid, pWindowComponent](bool isShown)
+    //{
+    //    if (isShown) {
+    //        return;
+    //    }
 
-        auto handlers = THandlerLinkHelper::FindHandlers<TWindowCloseEventHandlerComponent>(entMng, eid, pWindowComponent);
+    //    auto handlers = THandlerLinkHelper::FindHandlers<TWindowCloseEventHandlerComponent>(entMng, eid, pWindowComponent);
 
-        for (auto& pHandler : handlers) {
-            handlerCallCollector->Add([pHandler, eid, pWindowComponent]()
-            {
-                pHandler->handler->Handle(eid, pWindowComponent);
-            });
-        }
-    });
+    //    for (auto& pHandler : handlers) {
+    //        handlerCallCollector->Add([pHandler, eid, pWindowComponent]()
+    //        {
+    //            pHandler->handler->Handle(eid, pWindowComponent);
+    //        });
+    //    }
+    //});
 
     THandlerLinkHelper::RegisterMouseKey(entMng, eid, pWindowComponent);
 

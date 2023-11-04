@@ -20,7 +20,7 @@ void TGlobalHandlerTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, con
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 
     int rtti;
-    auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pC->handlerTypeName, rtti);
+    auto convertResult = handlerReflection->mRtti->ConvertNameToType(pC->handlerTypeName, rtti);
     if (convertResult == false) {
         nsTornadoEngine::Modules()->Log()->Log("Not converted typename \"%s\"", pC->handlerTypeName);
         return;

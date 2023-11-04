@@ -1,7 +1,7 @@
 {
-    "fileName": "ComponentTypeInfo",
+    "fileName": "ComponentRtti",
     "nameSpaceName": "nsTornadoEngine",
-    "typeName": "TComponentTypeInfo",
+    "typeName": "TComponentRtti",
     "customizedTypes": [
         "nsCommonWrapper::TGlobalMatrixComponent",
         "nsCommonWrapper::TGuidComponent",
@@ -30,17 +30,11 @@
         "nsGraphicWrapper::TTextureFromFileComponent",
         "nsGraphicWrapper::TUniverseCameraComponent",
         "nsGuiWrapper::TAnchorsComponent",
-        "nsGuiWrapper::TButtonClickHandlerComponent",
         "nsGuiWrapper::TButtonComponent",
         "nsGuiWrapper::TColorComponent",
-        "nsGuiWrapper::TDialogCloseEventHandlerComponent",
         "nsGuiWrapper::TDialogComponent",
         "nsGuiWrapper::TFocusComponent",
         "nsGuiWrapper::TFrameComponent",
-        "nsGuiWrapper::TFrameKeyHandlerComponent",
-        "nsGuiWrapper::TFrameMouseClickHandlerComponent",
-        "nsGuiWrapper::TFrameMouseMoveHandlerComponent",
-        "nsGuiWrapper::TFrameMouseWheelHandlerComponent",
         "nsGuiWrapper::TGridComponent",
         "nsGuiWrapper::THorizontalAlignComponent",
         "nsGuiWrapper::TInputTextComponent",
@@ -49,7 +43,6 @@
         "nsGuiWrapper::TLabelValueComponent",
         "nsGuiWrapper::TMainWindowComponent",
         "nsGuiWrapper::TMaxSizeComponent",
-        "nsGuiWrapper::TMenuNodeClickHandlerComponent",
         "nsGuiWrapper::TMenuNodeComponent",
         "nsGuiWrapper::TMinDistanceToParentComponent",
         "nsGuiWrapper::TMinSizeComponent",
@@ -66,14 +59,15 @@
         "nsGuiWrapper::TTreeViewComponent",
         "nsGuiWrapper::TVerticalAlignComponent",
         "nsGuiWrapper::TVisibilityComponent",
-        "nsGuiWrapper::TWindowCloseEventHandlerComponent",
         "nsGuiWrapper::TWindowComponent",
+        "nsLogicWrapper::TGlobalHandlerComponent",
         "nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent",
         "nsLogicWrapper::TPrefabObjectReferenceComponent",
         "nsLogicWrapper::TPrefabReferenceComponent",
         "nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent",
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
-        "nsLogicWrapper::TSystemComponent"
+        "nsLogicWrapper::TSystemComponent",
+        "nsLogicWrapper::TTargetHandlerComponent"
     ]
 }

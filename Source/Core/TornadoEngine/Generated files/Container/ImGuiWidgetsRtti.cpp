@@ -1,23 +1,23 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_08 13:02:27.692
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_04 19:35:24.887
 	
-#include "ImGuiWidgetsTypeInfo.h"
+#include "ImGuiWidgetsRtti.h"
 
 #include "SingletonManager.h"
 #include "RunTimeTypeIndex.h"
 
 using namespace nsTornadoEngine;
 
-std::list<std::string> TImGuiWidgetsTypeInfo::mTypeNameList;
-std::list<int> TImGuiWidgetsTypeInfo::mRttiList;
+std::list<std::string> TImGuiWidgetsRtti::mTypeNameList;
+std::list<int> TImGuiWidgetsRtti::mRttiList;
 
-std::vector<std::string> TImGuiWidgetsTypeInfo::mNameVector;
-std::unordered_map<std::string, int> TImGuiWidgetsTypeInfo::mNameRttiMap;
+std::vector<std::string> TImGuiWidgetsRtti::mNameVector;
+std::unordered_map<std::string, int> TImGuiWidgetsRtti::mNameRttiMap;
 
-void TImGuiWidgetsTypeInfo::Init()
+void TImGuiWidgetsRtti::Init()
 {
     static bool isNeedInit = true;
     if (!isNeedInit) {
@@ -445,19 +445,19 @@ void TImGuiWidgetsTypeInfo::Init()
     }
 }
 //---------------------------------------------------------------------------------------
-const std::list<std::string>* TImGuiWidgetsTypeInfo::GetTypeNameList()
+const std::list<std::string>* TImGuiWidgetsRtti::GetTypeNameList()
 {
     Init();
     return &mTypeNameList;
 }
 //---------------------------------------------------------------------------------------
-const std::list<int>* TImGuiWidgetsTypeInfo::GetRttiList()
+const std::list<int>* TImGuiWidgetsRtti::GetRttiList()
 {
     Init();
     return &mRttiList;
 }
 //---------------------------------------------------------------------------------------
-const std::string* TImGuiWidgetsTypeInfo::ConvertRttiToName(int rtti)
+const std::string* TImGuiWidgetsRtti::ConvertRttiToName(int rtti)
 {
     Init();
     
@@ -471,7 +471,7 @@ const std::string* TImGuiWidgetsTypeInfo::ConvertRttiToName(int rtti)
     return pStr;
 }
 //---------------------------------------------------------------------------------------
-bool TImGuiWidgetsTypeInfo::ConvertNameToRtti(const std::string& typeName, int& rtti)
+bool TImGuiWidgetsRtti::ConvertNameToRtti(const std::string& typeName, int& rtti)
 {
     Init();
     auto fit = mNameRttiMap.find(typeName);

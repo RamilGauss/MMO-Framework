@@ -76,11 +76,11 @@
             "TypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
-                "className": "TComponentTypeInfo",
-                "fileName": "ComponentTypeInfo",
+                "className": "TComponentRtti",
+                "fileName": "ComponentRtti",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "coreComponentTypeInfoOut.json"
+                    "outFile": "coreComponentRttiOut.json"
                 },
                 "keyValueMap": {}
             }

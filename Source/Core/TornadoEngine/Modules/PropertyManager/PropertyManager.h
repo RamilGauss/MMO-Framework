@@ -70,14 +70,14 @@ namespace nsTornadoEngine
                 mRelativeProperties.componentType.FindByKey(componentProperty, typeProperty);
 
                 int srcRtti;
-                componentReflection->mTypeInfo->ConvertNameToType(componentProperty, srcRtti);
+                componentReflection->mRtti->ConvertNameToType(componentProperty, srcRtti);
 
                 void* pC = (void*)componentReflection->mEntMng->ViewComponent(eid, srcRtti);
 
                 auto propertyOf = (nsTornadoEngine::IPropertyOf*)componentReflection->mDynamicCaster->Cast(srcRtti, pC, propertyOfRtti);
 
                 int targetRtti;
-                imGuiWidgetsReflection->mTypeInfo->ConvertNameToType(typeProperty, targetRtti);
+                imGuiWidgetsReflection->mRtti->ConvertNameToType(typeProperty, targetRtti);
                 auto targetPtr = imGuiWidgetsReflection->mDynamicCaster->Cast(typeRtti, pObject, targetRtti);
 
                 propertyOf->SetOwner(targetPtr);

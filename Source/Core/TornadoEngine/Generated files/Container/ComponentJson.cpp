@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_08 13:02:26.412
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_04 19:35:23.576
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -52,18 +52,6 @@ void TComponentJson::Init()
     _nsCommonWrapper_TGuidComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::TGuidComponent>();
     
     funcs.push_back(_nsCommonWrapper_TGuidComponentTypeFunc);
-    
-    TypeFunc _nsCommonWrapper_THandlerTargetTypeFunc;
-    _nsCommonWrapper_THandlerTargetTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsCommonWrapper::THandlerTarget>((nsCommonWrapper::THandlerTarget*) p, str);
-    };
-    _nsCommonWrapper_THandlerTargetTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsCommonWrapper::THandlerTarget>((nsCommonWrapper::THandlerTarget*) p, str, err);
-    };
-    
-    _nsCommonWrapper_THandlerTargetTypeFunc.rtti = globalTypeIdentifier->Type<nsCommonWrapper::THandlerTarget>();
-    
-    funcs.push_back(_nsCommonWrapper_THandlerTargetTypeFunc);
     
     TypeFunc _nsCommonWrapper_TNameComponentTypeFunc;
     _nsCommonWrapper_TNameComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -365,18 +353,6 @@ void TComponentJson::Init()
     
     funcs.push_back(_nsGuiWrapper_TAnchorsComponentTypeFunc);
     
-    TypeFunc _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc;
-    _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TButtonClickHandlerComponent>((nsGuiWrapper::TButtonClickHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TButtonClickHandlerComponent>((nsGuiWrapper::TButtonClickHandlerComponent*) p, str, err);
-    };
-    
-    _nsGuiWrapper_TButtonClickHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
-    
-    funcs.push_back(_nsGuiWrapper_TButtonClickHandlerComponentTypeFunc);
-    
     TypeFunc _nsGuiWrapper_TButtonComponentTypeFunc;
     _nsGuiWrapper_TButtonComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TButtonComponent>((nsGuiWrapper::TButtonComponent*) p, str);
@@ -400,18 +376,6 @@ void TComponentJson::Init()
     _nsGuiWrapper_TColorComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TColorComponent>();
     
     funcs.push_back(_nsGuiWrapper_TColorComponentTypeFunc);
-    
-    TypeFunc _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc;
-    _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TDialogCloseEventHandlerComponent>((nsGuiWrapper::TDialogCloseEventHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TDialogCloseEventHandlerComponent>((nsGuiWrapper::TDialogCloseEventHandlerComponent*) p, str, err);
-    };
-    
-    _nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
-    
-    funcs.push_back(_nsGuiWrapper_TDialogCloseEventHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TDialogComponentTypeFunc;
     _nsGuiWrapper_TDialogComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -448,54 +412,6 @@ void TComponentJson::Init()
     _nsGuiWrapper_TFrameComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameComponent>();
     
     funcs.push_back(_nsGuiWrapper_TFrameComponentTypeFunc);
-    
-    TypeFunc _nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc;
-    _nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TFrameKeyHandlerComponent>((nsGuiWrapper::TFrameKeyHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TFrameKeyHandlerComponent>((nsGuiWrapper::TFrameKeyHandlerComponent*) p, str, err);
-    };
-    
-    _nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameKeyHandlerComponent>();
-    
-    funcs.push_back(_nsGuiWrapper_TFrameKeyHandlerComponentTypeFunc);
-    
-    TypeFunc _nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc;
-    _nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TFrameMouseClickHandlerComponent>((nsGuiWrapper::TFrameMouseClickHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TFrameMouseClickHandlerComponent>((nsGuiWrapper::TFrameMouseClickHandlerComponent*) p, str, err);
-    };
-    
-    _nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseClickHandlerComponent>();
-    
-    funcs.push_back(_nsGuiWrapper_TFrameMouseClickHandlerComponentTypeFunc);
-    
-    TypeFunc _nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc;
-    _nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TFrameMouseMoveHandlerComponent>((nsGuiWrapper::TFrameMouseMoveHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TFrameMouseMoveHandlerComponent>((nsGuiWrapper::TFrameMouseMoveHandlerComponent*) p, str, err);
-    };
-    
-    _nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseMoveHandlerComponent>();
-    
-    funcs.push_back(_nsGuiWrapper_TFrameMouseMoveHandlerComponentTypeFunc);
-    
-    TypeFunc _nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc;
-    _nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TFrameMouseWheelHandlerComponent>((nsGuiWrapper::TFrameMouseWheelHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TFrameMouseWheelHandlerComponent>((nsGuiWrapper::TFrameMouseWheelHandlerComponent*) p, str, err);
-    };
-    
-    _nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseWheelHandlerComponent>();
-    
-    funcs.push_back(_nsGuiWrapper_TFrameMouseWheelHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TGridComponentTypeFunc;
     _nsGuiWrapper_TGridComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -592,18 +508,6 @@ void TComponentJson::Init()
     _nsGuiWrapper_TMaxSizeComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMaxSizeComponent>();
     
     funcs.push_back(_nsGuiWrapper_TMaxSizeComponentTypeFunc);
-    
-    TypeFunc _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc;
-    _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TMenuNodeClickHandlerComponent>((nsGuiWrapper::TMenuNodeClickHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TMenuNodeClickHandlerComponent>((nsGuiWrapper::TMenuNodeClickHandlerComponent*) p, str, err);
-    };
-    
-    _nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
-    
-    funcs.push_back(_nsGuiWrapper_TMenuNodeClickHandlerComponentTypeFunc);
     
     TypeFunc _nsGuiWrapper_TMenuNodeComponentTypeFunc;
     _nsGuiWrapper_TMenuNodeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -797,18 +701,6 @@ void TComponentJson::Init()
     
     funcs.push_back(_nsGuiWrapper_TVisibilityComponentTypeFunc);
     
-    TypeFunc _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc;
-    _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsGuiWrapper::TWindowCloseEventHandlerComponent>((nsGuiWrapper::TWindowCloseEventHandlerComponent*) p, str);
-    };
-    _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsGuiWrapper::TWindowCloseEventHandlerComponent>((nsGuiWrapper::TWindowCloseEventHandlerComponent*) p, str, err);
-    };
-    
-    _nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
-    
-    funcs.push_back(_nsGuiWrapper_TWindowCloseEventHandlerComponentTypeFunc);
-    
     TypeFunc _nsGuiWrapper_TWindowComponentTypeFunc;
     _nsGuiWrapper_TWindowComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TWindowComponent>((nsGuiWrapper::TWindowComponent*) p, str);
@@ -820,6 +712,18 @@ void TComponentJson::Init()
     _nsGuiWrapper_TWindowComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowComponent>();
     
     funcs.push_back(_nsGuiWrapper_TWindowComponentTypeFunc);
+    
+    TypeFunc _nsLogicWrapper_TGlobalHandlerComponentTypeFunc;
+    _nsLogicWrapper_TGlobalHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TGlobalHandlerComponent>((nsLogicWrapper::TGlobalHandlerComponent*) p, str);
+    };
+    _nsLogicWrapper_TGlobalHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TGlobalHandlerComponent>((nsLogicWrapper::TGlobalHandlerComponent*) p, str, err);
+    };
+    
+    _nsLogicWrapper_TGlobalHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TGlobalHandlerComponent>();
+    
+    funcs.push_back(_nsLogicWrapper_TGlobalHandlerComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc;
     _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -905,6 +809,18 @@ void TComponentJson::Init()
     
     funcs.push_back(_nsLogicWrapper_TSystemComponentTypeFunc);
     
+    TypeFunc _nsLogicWrapper_TTargetHandlerComponentTypeFunc;
+    _nsLogicWrapper_TTargetHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TTargetHandlerComponent>((nsLogicWrapper::TTargetHandlerComponent*) p, str);
+    };
+    _nsLogicWrapper_TTargetHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TTargetHandlerComponent>((nsLogicWrapper::TTargetHandlerComponent*) p, str, err);
+    };
+    
+    _nsLogicWrapper_TTargetHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TTargetHandlerComponent>();
+    
+    funcs.push_back(_nsLogicWrapper_TTargetHandlerComponentTypeFunc);
+    
     TypeFunc _nsMathTools_TMatrix16TypeFunc;
     _nsMathTools_TMatrix16TypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsMathTools::TMatrix16>((nsMathTools::TMatrix16*) p, str);
@@ -969,20 +885,6 @@ void TComponentJson::_Serialize(nsCommonWrapper::TGuidComponent* p, Jobj& obj)
 void TComponentJson::_Deserialize(nsCommonWrapper::TGuidComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "value", p->value);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsCommonWrapper::THandlerTarget* p, Jobj& obj)
-{
-    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
-    PUM::Push(obj, "partOfGuid", p->partOfGuid);
-    PUM::Push(obj, "entityGuid", p->entityGuid);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsCommonWrapper::THandlerTarget* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
-    POM::PopStr(obj, "partOfGuid", p->partOfGuid);
-    POM::PopStr(obj, "entityGuid", p->entityGuid);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsCommonWrapper::TNameComponent* p, Jobj& obj)
@@ -1237,16 +1139,6 @@ void TComponentJson::_Deserialize(nsGuiWrapper::TAnchorsComponent* p, const Jobj
     POM::PopNum(obj, "bottomOffset", p->bottomOffset);
 }
 //---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsGuiWrapper::TButtonClickHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsGuiWrapper::TButtonClickHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsGuiWrapper::TButtonComponent* p, Jobj& obj)
 {
 }
@@ -1269,16 +1161,6 @@ void TComponentJson::_Deserialize(nsGuiWrapper::TColorComponent* p, const Jobj& 
     POM::PopNum(obj, "g", p->g);
     POM::PopNum(obj, "b", p->b);
     POM::PopNum(obj, "a", p->a);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsGuiWrapper::TDialogCloseEventHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsGuiWrapper::TDialogCloseEventHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsGuiWrapper::TDialogComponent* p, Jobj& obj)
@@ -1305,46 +1187,6 @@ void TComponentJson::_Serialize(nsGuiWrapper::TFrameComponent* p, Jobj& obj)
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Deserialize(nsGuiWrapper::TFrameComponent* p, const Jobj& obj)
 {
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsGuiWrapper::TFrameKeyHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsGuiWrapper::TFrameKeyHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsGuiWrapper::TFrameMouseClickHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsGuiWrapper::TFrameMouseClickHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsGuiWrapper::TFrameMouseMoveHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsGuiWrapper::TFrameMouseMoveHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsGuiWrapper::TFrameMouseWheelHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsGuiWrapper::TFrameMouseWheelHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsGuiWrapper::TGridComponent* p, Jobj& obj)
@@ -1424,16 +1266,6 @@ void TComponentJson::_Deserialize(nsGuiWrapper::TMaxSizeComponent* p, const Jobj
 {
     POM::PopNum(obj, "x", p->x);
     POM::PopNum(obj, "y", p->y);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsGuiWrapper::TMenuNodeClickHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsGuiWrapper::TMenuNodeClickHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsGuiWrapper::TMenuNodeComponent* p, Jobj& obj)
@@ -1617,16 +1449,6 @@ void TComponentJson::_Deserialize(nsGuiWrapper::TVisibilityComponent* p, const J
     POM::PopBool(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsGuiWrapper::TWindowCloseEventHandlerComponent* p, Jobj& obj)
-{
-    _Serialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsGuiWrapper::TWindowCloseEventHandlerComponent* p, const Jobj& obj)
-{
-    _Deserialize((nsCommonWrapper::THandlerTarget*)p, obj);// Inheritances
-}
-//---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsGuiWrapper::TWindowComponent* p, Jobj& obj)
 {
 }
@@ -1679,6 +1501,16 @@ void TComponentJson::_DeserializeEnum(std::string& str, nsGuiWrapper::TVerticalA
     m.insert({"LEFT", nsGuiWrapper::TVerticalAlignComponent::Type::LEFT});
     m.insert({"RIGHT", nsGuiWrapper::TVerticalAlignComponent::Type::RIGHT});
     *p = m[str];
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsLogicWrapper::TGlobalHandlerComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsLogicWrapper::TGlobalHandlerComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* p, Jobj& obj)
@@ -1751,6 +1583,18 @@ void TComponentJson::_Serialize(nsLogicWrapper::TSystemComponent* p, Jobj& obj)
 void TComponentJson::_Deserialize(nsLogicWrapper::TSystemComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "typeName", p->typeName);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsLogicWrapper::TTargetHandlerComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "entityGuid", p->entityGuid);
+    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsLogicWrapper::TTargetHandlerComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "entityGuid", p->entityGuid);
+    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsMathTools::TMatrix16* p, Jobj& obj)

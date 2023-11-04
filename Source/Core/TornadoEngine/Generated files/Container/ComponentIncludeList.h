@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_08 13:02:26.499
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_04 19:35:23.640
 	
 #pragma once
 
@@ -16,14 +16,6 @@ Core Component
 #include "TextureFromCameraComponent.h"
 #include "TextureFromFileComponent.h"
 #include "UniverseCameraComponent.h"
-#include "ButtonClickHandlerComponent.h"
-#include "DialogCloseEventHandlerComponent.h"
-#include "FrameKeyHandlerComponent.h"
-#include "FrameMouseClickHandlerComponent.h"
-#include "FrameMouseMoveHandlerComponent.h"
-#include "FrameMouseWheelHandlerComponent.h"
-#include "MenuNodeClickHandlerComponent.h"
-#include "WindowCloseEventHandlerComponent.h"
 #include "AnchorsComponent.h"
 #include "ColorComponent.h"
 #include "FocusComponent.h"
@@ -55,6 +47,8 @@ Core Component
 #include "TreeNodeComponent.h"
 #include "TreeViewComponent.h"
 #include "WindowComponent.h"
+#include "GlobalHandlerComponent.h"
+#include "TargetHandlerComponent.h"
 #include "ObjectInstantiationCompletionHandlerComponent.h"
 #include "PrefabObjectReferenceComponent.h"
 #include "PrefabReferenceComponent.h"
@@ -78,6 +72,5 @@ Core Component
 #include "UniverseGuidComponent.h"
 #include "UniverseIndexComponent.h"
 #include "GlobalMatrixComponent.h"
-#include "HandlerTarget.h"
 #include "IPropertyOf.h"
 #include "MathStructs.h"

@@ -113,7 +113,7 @@ namespace nsGraphicWrapper
         auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 
         int rtti;
-        auto convertResult = handlerReflection->mTypeInfo->ConvertNameToType(pHandlerComponent->handlerTypeName, rtti);
+        auto convertResult = handlerReflection->mRtti->ConvertNameToType(pHandlerComponent->handlerTypeName, rtti);
         if (convertResult == false) {
             nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pHandlerComponent->handlerTypeName);
             return;

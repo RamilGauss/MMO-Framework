@@ -7,6 +7,7 @@ See for more information LICENSE.md.
 
 #include "SystemMakerSystem.h"
 #include "ProjectConfigContainer.h"
+#include "Modules.h"
 #include "Logger.h"
 #include "EngineLogger.h"
 
@@ -34,9 +35,9 @@ void TSystemMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWr
     auto systemReflection = nsTornadoEngine::Project()->mScenePartAggregator->mSystems;
 
     int rtti;
-    auto convertResult = systemReflection->mTypeInfo->ConvertNameToType(pC->typeName, rtti);
+    auto convertResult = systemReflection->mRtti->ConvertNameToType(pC->typeName, rtti);
     if (convertResult == false) {
-        nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pC->typeName);
+        nsTornadoEngine::Modules()->Log()->Log("Not converted typename \"%s\"", pC->typeName);
         return;
     }
 

@@ -19,10 +19,8 @@ See for more information LICENSE.md.
 #include "PrefabOriginalGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"
 
-#include "DialogCloseEventHandlerComponent.h"
 #include "HandlerLinkHelper.h"
 #include "UnitBuilderHelper.h"
-#include "FrameMouseClickHandlerComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

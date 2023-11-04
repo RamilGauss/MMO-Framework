@@ -34,14 +34,14 @@
                 },
                 "keyValueMap": {}
             },
-            "TypeInformationGenerator": {
+            "RunTimeTypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
-                "className": "TImGuiWidgetsTypeInfo",
-                "fileName": "ImGuiWidgetsTypeInfo",
+                "className": "TImGuiWidgetsRtti",
+                "fileName": "ImGuiWidgetsRtti",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "coreImGuiWidgetsTypeInfoOut.json"
+                    "outFile": "coreImGuiWidgetsRttiOut.json"
                 },
                 "keyValueMap": {}
             }

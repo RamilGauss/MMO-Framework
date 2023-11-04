@@ -22,9 +22,9 @@ void TSystemTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLo
     auto featureReflection = nsTornadoEngine::Project()->mScenePartAggregator->mSystems;
 
     int rtti;
-    auto convertResult = featureReflection->mTypeInfo->ConvertNameToType(pC->typeName, rtti);
+    auto convertResult = featureReflection->mRtti->ConvertNameToType(pC->typeName, rtti);
     if (convertResult == false) {
-        nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pC->typeName);
+        nsTornadoEngine::Modules()->Log()->Log("Not converted typename \"%s\"", pC->typeName);
         return;
     }
 

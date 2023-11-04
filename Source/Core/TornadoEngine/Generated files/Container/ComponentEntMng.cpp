@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_08 13:02:26.458
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_04 19:35:23.608
 	
 #include "ComponentEntMng.h"
 
@@ -293,16 +293,6 @@ void TComponentEntMng::Init()
     
     datas.push_back(nsGuiWrapper_TAnchorsComponent_Data);
     
-    Data nsGuiWrapper_TButtonClickHandlerComponent_Data;
-    nsGuiWrapper_TButtonClickHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TButtonClickHandlerComponent*)p)); };
-    nsGuiWrapper_TButtonClickHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TButtonClickHandlerComponent>(eid); };
-    nsGuiWrapper_TButtonClickHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TButtonClickHandlerComponent>(eid); };
-    nsGuiWrapper_TButtonClickHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TButtonClickHandlerComponent>(eid); };
-    nsGuiWrapper_TButtonClickHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TButtonClickHandlerComponent>(); };
-    nsGuiWrapper_TButtonClickHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TButtonClickHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TButtonClickHandlerComponent_Data);
-    
     Data nsGuiWrapper_TButtonComponent_Data;
     nsGuiWrapper_TButtonComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TButtonComponent*)p)); };
     nsGuiWrapper_TButtonComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TButtonComponent>(eid); };
@@ -322,16 +312,6 @@ void TComponentEntMng::Init()
     nsGuiWrapper_TColorComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TColorComponent>();
     
     datas.push_back(nsGuiWrapper_TColorComponent_Data);
-    
-    Data nsGuiWrapper_TDialogCloseEventHandlerComponent_Data;
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TDialogCloseEventHandlerComponent*)p)); };
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid); };
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid); };
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TDialogCloseEventHandlerComponent>(eid); };
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TDialogCloseEventHandlerComponent>(); };
-    nsGuiWrapper_TDialogCloseEventHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TDialogCloseEventHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TDialogCloseEventHandlerComponent_Data);
     
     Data nsGuiWrapper_TDialogComponent_Data;
     nsGuiWrapper_TDialogComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TDialogComponent*)p)); };
@@ -362,46 +342,6 @@ void TComponentEntMng::Init()
     nsGuiWrapper_TFrameComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameComponent>();
     
     datas.push_back(nsGuiWrapper_TFrameComponent_Data);
-    
-    Data nsGuiWrapper_TFrameKeyHandlerComponent_Data;
-    nsGuiWrapper_TFrameKeyHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameKeyHandlerComponent*)p)); };
-    nsGuiWrapper_TFrameKeyHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameKeyHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameKeyHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TFrameKeyHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameKeyHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TFrameKeyHandlerComponent>(); };
-    nsGuiWrapper_TFrameKeyHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameKeyHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TFrameKeyHandlerComponent_Data);
-    
-    Data nsGuiWrapper_TFrameMouseClickHandlerComponent_Data;
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameMouseClickHandlerComponent*)p)); };
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TFrameMouseClickHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TFrameMouseClickHandlerComponent>(); };
-    nsGuiWrapper_TFrameMouseClickHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseClickHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TFrameMouseClickHandlerComponent_Data);
-    
-    Data nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data;
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameMouseMoveHandlerComponent*)p)); };
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TFrameMouseMoveHandlerComponent>(); };
-    nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseMoveHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TFrameMouseMoveHandlerComponent_Data);
-    
-    Data nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data;
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TFrameMouseWheelHandlerComponent*)p)); };
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(eid); };
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TFrameMouseWheelHandlerComponent>(); };
-    nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TFrameMouseWheelHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TFrameMouseWheelHandlerComponent_Data);
     
     Data nsGuiWrapper_TGridComponent_Data;
     nsGuiWrapper_TGridComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TGridComponent*)p)); };
@@ -482,16 +422,6 @@ void TComponentEntMng::Init()
     nsGuiWrapper_TMaxSizeComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMaxSizeComponent>();
     
     datas.push_back(nsGuiWrapper_TMaxSizeComponent_Data);
-    
-    Data nsGuiWrapper_TMenuNodeClickHandlerComponent_Data;
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TMenuNodeClickHandlerComponent*)p)); };
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid); };
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid); };
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TMenuNodeClickHandlerComponent>(eid); };
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TMenuNodeClickHandlerComponent>(); };
-    nsGuiWrapper_TMenuNodeClickHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TMenuNodeClickHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TMenuNodeClickHandlerComponent_Data);
     
     Data nsGuiWrapper_TMenuNodeComponent_Data;
     nsGuiWrapper_TMenuNodeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TMenuNodeComponent*)p)); };
@@ -653,16 +583,6 @@ void TComponentEntMng::Init()
     
     datas.push_back(nsGuiWrapper_TVisibilityComponent_Data);
     
-    Data nsGuiWrapper_TWindowCloseEventHandlerComponent_Data;
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TWindowCloseEventHandlerComponent*)p)); };
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid); };
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid); };
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TWindowCloseEventHandlerComponent>(eid); };
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TWindowCloseEventHandlerComponent>(); };
-    nsGuiWrapper_TWindowCloseEventHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowCloseEventHandlerComponent>();
-    
-    datas.push_back(nsGuiWrapper_TWindowCloseEventHandlerComponent_Data);
-    
     Data nsGuiWrapper_TWindowComponent_Data;
     nsGuiWrapper_TWindowComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TWindowComponent*)p)); };
     nsGuiWrapper_TWindowComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TWindowComponent>(eid); };
@@ -672,6 +592,16 @@ void TComponentEntMng::Init()
     nsGuiWrapper_TWindowComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TWindowComponent>();
     
     datas.push_back(nsGuiWrapper_TWindowComponent_Data);
+    
+    Data nsLogicWrapper_TGlobalHandlerComponent_Data;
+    nsLogicWrapper_TGlobalHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TGlobalHandlerComponent*)p)); };
+    nsLogicWrapper_TGlobalHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TGlobalHandlerComponent>(eid); };
+    nsLogicWrapper_TGlobalHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TGlobalHandlerComponent>(eid); };
+    nsLogicWrapper_TGlobalHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TGlobalHandlerComponent>(eid); };
+    nsLogicWrapper_TGlobalHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TGlobalHandlerComponent>(); };
+    nsLogicWrapper_TGlobalHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TGlobalHandlerComponent>();
+    
+    datas.push_back(nsLogicWrapper_TGlobalHandlerComponent_Data);
     
     Data nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data;
     nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*)p)); };
@@ -742,6 +672,16 @@ void TComponentEntMng::Init()
     nsLogicWrapper_TSystemComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
     
     datas.push_back(nsLogicWrapper_TSystemComponent_Data);
+    
+    Data nsLogicWrapper_TTargetHandlerComponent_Data;
+    nsLogicWrapper_TTargetHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TTargetHandlerComponent*)p)); };
+    nsLogicWrapper_TTargetHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TTargetHandlerComponent>(eid); };
+    nsLogicWrapper_TTargetHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TTargetHandlerComponent>(eid); };
+    nsLogicWrapper_TTargetHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TTargetHandlerComponent>(eid); };
+    nsLogicWrapper_TTargetHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TTargetHandlerComponent>(); };
+    nsLogicWrapper_TTargetHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TTargetHandlerComponent>();
+    
+    datas.push_back(nsLogicWrapper_TTargetHandlerComponent_Data);
     
     int max = 0;
     for (auto& d : datas) {

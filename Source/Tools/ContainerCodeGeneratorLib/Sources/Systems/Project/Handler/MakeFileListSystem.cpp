@@ -18,6 +18,7 @@ See for more information LICENSE.md.
 #include "Constants.h"
 
 #include "Components/CoreConfigComponent.h"
+#include "Components/ProjectConfigComponent.h"
 #include "Components/FileListComponent.h"
 
 namespace nsContainerCodeGenerator::nsProject::nsHandler
@@ -26,12 +27,18 @@ namespace nsContainerCodeGenerator::nsProject::nsHandler
     {
         auto eid = nsECSFramework::SingleEntity<TCoreConfigComponent>(mEntMng);
 
-        auto configComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
+        auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
 
         // Search in core sources!
-        auto targetDir = configComponent->value.coreConfig.parseDirectory;
+        auto targetDir = coreConfigComponent->value.coreConfig.parseDirectory;
 
         TFileListComponent fileListComponent;
+
+        nsBase::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
+
+        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+
+        targetDir = projectConfigComponent->value.projectConfig.parseDirectory;
 
         nsBase::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
 

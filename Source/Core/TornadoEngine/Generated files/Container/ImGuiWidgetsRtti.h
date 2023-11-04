@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_08 13:02:26.487
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_04 19:35:24.887
 	
 #pragma once
 
@@ -12,11 +12,11 @@ Core Component
 #include <vector>
 
 #include "TypeDef.h"
-#include "ComponentIncludeList.h"
+#include "ImGuiWidgetsIncludeList.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TComponentTypeInfo
+    class DllExport TImGuiWidgetsRtti
     {
         static std::list<std::string> mTypeNameList;
         static std::list<int> mRttiList;

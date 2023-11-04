@@ -1,7 +1,7 @@
 {
-    "fileName": "ImGuiWidgetsTypeInfo",
+    "fileName": "ImGuiWidgetsRtti",
     "nameSpaceName": "nsTornadoEngine",
-    "typeName": "TImGuiWidgetsTypeInfo",
+    "typeName": "TImGuiWidgetsRtti",
     "customizedTypes": [
         "nsImGuiWidgets::TAnchors",
         "nsImGuiWidgets::TAnchors::TAnchor",

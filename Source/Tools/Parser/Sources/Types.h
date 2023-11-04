@@ -9,6 +9,10 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
+#ifdef CONST
+#undef CONST
+#endif
+
 namespace nsCppParser
 {
 #pragma REFLECTION_ATTRIBUTE

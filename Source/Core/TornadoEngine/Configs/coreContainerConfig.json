@@ -11,10 +11,10 @@
 
         "componentConfig": {
             "includeListFileName": "ComponentIncludeList",
-            "inheritanceFilter": "nsECSFramework::IComponent",
-            "typeInfo": {
-                "fileName": "ComponentTypeInfo",
-                "typeName": "TComponentTypeInfo"
+            "inheritances": "nsECSFramework::IComponent",
+            "rtti": {
+                "fileName": "ComponentRtti",
+                "typeName": "TComponentRtti"
             },
             "json": {
                 "fileName": "ComponentJson",
@@ -44,9 +44,9 @@
         "imGuiWidgetsConfig": {
             "includeListFileName": "ImGuiWidgetsIncludeList",
             "imGuiWidgetsDirectory": "../../../Modules/ImGuiWidgets",
-            "typeInfo": {
-                "fileName": "ImGuiWidgetsTypeInfo",
-                "typeName": "TImGuiWidgetsTypeInfo"
+            "rtti": {
+                "fileName": "ImGuiWidgetsRtti",
+                "typeName": "TImGuiWidgetsRtti"
             },
             "dynamicCaster": {
                 "fileName": "ImGuiWidgetsDynamicCaster",

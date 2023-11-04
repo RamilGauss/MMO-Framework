@@ -148,7 +148,7 @@ namespace nsContainerCodeGenerator
         std::string parseDirectory;
 
         TComponentConfig componentConfig;
-        THandlerConfig handlerConfig;
+        THandlerConfig handlerConfig;// только для проекта, потому что в ядре только декларация классов, наследующихся от интерфейсов
         TSystemConfig systemConfig;
         TEcsSystemConfig ecsSystemConfig;
     };

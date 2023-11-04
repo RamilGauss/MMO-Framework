@@ -15,9 +15,9 @@
         "componentConfig": {
             "includeListFileName": "ComponentIncludeList",
             "inheritanceFilter": "nsECSFramework::IComponent",
-            "typeInfo": {
-                "fileName": "ComponentTypeInfo",
-                "typeName": "TComponentTypeInfo"
+            "rtti": {
+                "fileName": "ComponentRtti",
+                "typeName": "TComponentRtti"
             },
             "json": {
                 "fileName": "ComponentJson",
@@ -51,6 +51,10 @@
                 "fileName": "HandlerTypeInfo",
                 "typeName": "THandlerTypeInfo"
             },
+            "rtti": {
+                "fileName": "HandlerRtti",
+                "typeName": "THandlerRtti"
+            },
             "typeFactory": {
                 "fileName": "HandlerTypeFactory",
                 "typeName": "THandlerTypeFactory"
@@ -73,9 +77,9 @@
                 "nsECSFramework::TOnUpdateInstantReactiveSystem",
                 "nsECSFramework::TOnRemoveInstantReactiveSystem"
             ],
-            "typeInfo": {
-                "fileName": "EcsTypeInfo",
-                "typeName": "TEcsTypeInfo"
+            "rtti": {
+                "fileName": "EcsRtti",
+                "typeName": "TEcsRtti"
             },
             "dynamicCaster": {
                 "fileName": "EcsDynamicCaster",
