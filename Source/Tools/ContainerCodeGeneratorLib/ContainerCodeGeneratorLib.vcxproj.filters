@@ -120,7 +120,7 @@
     <ClInclude Include="Sources\Systems\Aggregator\Component\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\Component\Rtti\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorHeaderSystem.h">
@@ -132,7 +132,7 @@
     <ClInclude Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\Rtti\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorHeaderSystem.h">
@@ -141,7 +141,7 @@
     <ClInclude Include="Sources\Systems\Aggregator\System\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\System\Rtti\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorHeaderSystem.h">
@@ -159,7 +159,7 @@
     <ClInclude Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\Component\Rtti\GenerateAggregatorCppSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorCppSystem.h">
@@ -171,7 +171,7 @@
     <ClInclude Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorCppSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\Rtti\GenerateAggregatorCppSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorCppSystem.h">
@@ -180,7 +180,7 @@
     <ClInclude Include="Sources\Systems\Aggregator\System\GenerateAggregatorCppSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\System\Rtti\GenerateAggregatorCppSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorCppSystem.h">
@@ -216,13 +216,13 @@
     <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\Rtti\GenerateAggregatorCppSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\Rtti\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\CoreContainerCodeGenerator.h">
@@ -274,6 +274,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorHeaderSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -356,7 +362,7 @@
     <ClCompile Include="Sources\Systems\Aggregator\Component\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Component\Rtti\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorHeaderSystem.cpp">
@@ -368,7 +374,7 @@
     <ClCompile Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\Rtti\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
@@ -377,7 +383,7 @@
     <ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\System\Rtti\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
@@ -395,7 +401,7 @@
     <ClCompile Include="Sources\Systems\Aggregator\Component\GenerateAggregatorCppSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Component\Rtti\GenerateAggregatorCppSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\Component\Json\GenerateAggregatorCppSystem.cpp">
@@ -407,7 +413,7 @@
     <ClCompile Include="Sources\Systems\Aggregator\Handler\GenerateAggregatorCppSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\Rtti\GenerateAggregatorCppSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeFactory\GenerateAggregatorCppSystem.cpp">
@@ -416,7 +422,7 @@
     <ClCompile Include="Sources\Systems\Aggregator\System\GenerateAggregatorCppSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\System\Rtti\GenerateAggregatorCppSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\System\TypeFactory\GenerateAggregatorCppSystem.cpp">
@@ -452,13 +458,13 @@
     <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\Rtti\GenerateAggregatorCppSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\Rtti\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\CoreContainerCodeGenerator.cpp">
@@ -504,6 +510,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Systems\Aggregator\Component\TypeFactory\GenerateAggregatorHeaderSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

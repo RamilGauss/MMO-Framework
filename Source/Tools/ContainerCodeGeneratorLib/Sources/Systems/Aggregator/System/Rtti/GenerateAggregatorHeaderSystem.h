@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include <ECS/include/ExecuteSystem.h>
 
-namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsTypeInfo
+namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsRtti
 {
-    class DllExport TGenerateAggregatorCppSystem : public nsECSFramework::TExecuteSystem
+    class DllExport TGenerateAggregatorHeaderSystem : public nsECSFramework::TExecuteSystem
     {
     public:
         void Execute() override;

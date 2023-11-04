@@ -63,17 +63,17 @@ namespace nsContainerCodeGenerator::nsCore::nsImGuiWidgets
         conf.targetForCodeGeneration.directory = ".";
         conf.targetForCodeGeneration.header = "Core Component";
 
-        // TypeInformation
-        nsReflectionCodeGenerator::TSerializer typeInfo;
-        typeInfo.className = configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.typeName;
-        typeInfo.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        typeInfo.fileName = configComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.fileName;
-        typeInfo.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+        // rtti
+        nsReflectionCodeGenerator::TSerializer rtti;
+        rtti.className = configComponent->value.coreConfig.imGuiWidgetsConfig.rtti.typeName;
+        rtti.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        rtti.fileName = configComponent->value.coreConfig.imGuiWidgetsConfig.rtti.fileName;
+        rtti.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
-        typeInfo.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
-        typeInfo.externalSources->outFile = TConstants::CORE_IMGUI_WIDGETS_TYPE_INFO_OUT;
+        rtti.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        rtti.externalSources->outFile = TConstants::CORE_IMGUI_WIDGETS_RTTI_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, typeInfo });
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
 
         // DynamicCaster
         nsReflectionCodeGenerator::TSerializer dynamicCaster;

@@ -38,9 +38,9 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TComponentConfig : TIncludeListFileName
     {
-        std::string inheritanceFilter;
+        std::string inheritances;
 
-        TGeneratedClass typeInfo;
+        TGeneratedClass rtti;
         TGeneratedClass json;
         TGeneratedClass binary;
         TGeneratedClass imGui;
@@ -54,13 +54,14 @@ namespace nsContainerCodeGenerator
     {
         std::string imGuiWidgetsDirectory;
 
-        TGeneratedClass typeInfo;
+        TGeneratedClass rtti;
         TGeneratedClass dynamicCaster;
     };
 
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport THandlerConfig : TIncludeListFileName
     {
+        TGeneratedClass rtti;
         TGeneratedClass typeInfo;
         TGeneratedClass typeFactory;
     };
@@ -68,16 +69,16 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TEcsSystemConfig : TIncludeListFileName
     {
-        std::list<std::string> inheritances;
+        std::set<std::string> inheritances;
 
-        TGeneratedClass typeInfo;
+        TGeneratedClass rtti;
         TGeneratedClass dynamicCaster;
     };
 
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TSystemConfig : TIncludeListFileName
     {
-        std::list<std::string> inheritances;
+        std::set<std::string> inheritances;
 
         TGeneratedClass typeFactory;
     };
@@ -92,7 +93,7 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TComponentAggregator : TAggregatorClass
     {
-        TAggregatorClass typeInfoImpl;
+        TAggregatorClass rttiImpl;
         TAggregatorClass jsonImpl;
         TAggregatorClass binaryImpl;
         TAggregatorClass imGuiImpl;
@@ -104,13 +105,14 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TImGuiWidgetsAggregator : TAggregatorClass
     {
-        TAggregatorClass typeInfoImpl;
+        TAggregatorClass rttiImpl;
         TAggregatorClass dynamicCasterImpl;
     };
 
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport THandlerAggregator : TAggregatorClass
     {
+        TAggregatorClass rttiImpl;
         TAggregatorClass typeInfoImpl;
         TAggregatorClass typeFactoryImpl;
     };
@@ -118,7 +120,7 @@ namespace nsContainerCodeGenerator
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TSystemAggregator : TAggregatorClass
     {
-        TAggregatorClass typeInfoImpl;
+        TAggregatorClass rttiImpl;
         TAggregatorClass typeFactoryImpl;
         TAggregatorClass dynamicCasterImpl;
     };

@@ -23,7 +23,7 @@ namespace nsTornadoEngine
 
         void Init()
         {
-            mRunTimeTypeInfo->Init();
+            mRtti->Init();
             mJson->Init();
             //mBin->Init();
             //mImGui->Init();
@@ -32,7 +32,7 @@ namespace nsTornadoEngine
             mTypeFactory->Init();
         }
 
-        IRunTimeTypeInformation* mRunTimeTypeInfo = nullptr;
+        IRunTimeTypeInformation* mRtti = nullptr;
         IJsonSerializer* mJson = nullptr;
         IBinaryMarshaller* mBin = nullptr;
         IImGuiSerializer* mImGui = nullptr;

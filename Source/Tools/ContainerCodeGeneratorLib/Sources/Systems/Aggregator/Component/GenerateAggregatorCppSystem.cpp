@@ -30,7 +30,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
             {0, ""},
             {0, "#include \"{{ JSON_FILE_NAME }}.h\""},
             {0, "#include \"{{ ENT_MNG_FILE_NAME }}.h\""},
-            {0, "#include \"{{ TYPE_INFO_FILE_NAME }}.h\""},
+            {0, "#include \"{{ RTTI_FILE_NAME }}.h\""},
             {0, "#include \"{{ DYNAMIC_CASTER_FILE_NAME }}.h\""},
             {0, "#include \"{{ TYPE_FACTORY_FILE_NAME }}.h\""},
             {0, ""},
@@ -40,7 +40,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
             {0, "{"},
             {1, "mJson = new {{ JSON_TYPE_NAME }}();"},
             {0, "mEntMng = new {{ ENT_MNG_TYPE_NAME }}();"},
-            {0, "mTypeInfo = new {{ TYPE_INFO_TYPE_NAME }}();"},
+            {0, "mRtti = new {{ RTTI_TYPE_NAME }}();"},
             {0, "mDynamicCaster = new {{ DYNAMIC_CASTER_TYPE_NAME }}();"},
             {0, "mTypeFactory = new {{ TYPE_FACTORY_TYPE_NAME }}();"},
             {-1,"}"},
@@ -49,7 +49,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
             {0, "{"},
             {1, "delete mJson;"},
             {0, "delete mEntMng;"},
-            {0, "delete mTypeInfo;"},
+            {0, "delete mRtti;"},
             {0, "delete mDynamicCaster;"},
             {0, "delete mTypeFactory;"},
             {-1,"}"},
@@ -72,7 +72,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.impl.fileName;
         data["JSON_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.jsonImpl.impl.fileName;
         data["DYNAMIC_CASTER_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.fileName;
-        data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeInfoImpl.impl.fileName;
+        data["RTTI_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.rttiImpl.impl.fileName;
         data["ENT_MNG_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.entMngImpl.impl.fileName;
         data["TYPE_FACTORY_FILE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeFactoryImpl.impl.fileName;
 
@@ -81,7 +81,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent
         data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.impl.typeName;
         data["JSON_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.jsonImpl.impl.typeName;
         data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.dynamicCasterImpl.impl.typeName;
-        data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeInfoImpl.impl.typeName;
+        data["RTTI_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.rttiImpl.impl.typeName;
         data["ENT_MNG_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.entMngImpl.impl.typeName;
         data["TYPE_FACTORY_TYPE_NAME"] = projectConfigComponent->value.aggregator.componentImpl.typeFactoryImpl.impl.typeName;
 

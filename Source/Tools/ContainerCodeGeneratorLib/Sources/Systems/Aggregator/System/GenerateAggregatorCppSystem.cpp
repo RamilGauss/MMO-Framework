@@ -30,7 +30,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem
             { 0, "" },
             { 0, "#include \"{{ TYPE_FACTORY_FILE_NAME }}.h\"" },
             { 0, "#include \"{{ DYNAMIC_CASTER_FILE_NAME }}.h\"" },
-            { 0, "#include \"{{ TYPE_INFO_FILE_NAME }}.h\"" },
+            { 0, "#include \"{{ RTTI_FILE_NAME }}.h\"" },
             { 0, "" },
             { 0, "using namespace {{ PROJECT_NAMESPACE }};" },
             { 0, "" },
@@ -38,14 +38,14 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem
             { 0, "{" },
             { 1, "mTypeFactory = new {{ TYPE_FACTORY_TYPE_NAME }}();" },
             { 0, "mDynamicCaster = new {{ DYNAMIC_CASTER_TYPE_NAME }}();" },
-            { 0, "mTypeInfo = new {{ TYPE_INFO_TYPE_NAME }}();" },
+            { 0, "mRtti = new {{ RTTI_TYPE_NAME }}();" },
             { -1,"}" },
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()" },
             { 0, "{" },
             { 1, "delete mTypeFactory;" },
             { 0, "delete mDynamicCaster;" },
-            { 0, "delete mTypeInfo;" },
+            { 0, "delete mRtti;" },
             { -1,"}" },
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "" },
@@ -66,12 +66,12 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem
         data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.impl.fileName;
         data["TYPE_FACTORY_FILE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.typeFactoryImpl.impl.fileName;
         data["DYNAMIC_CASTER_FILE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.dynamicCasterImpl.impl.fileName;
-        data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.typeInfoImpl.impl.fileName;
+        data["RTTI_FILE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.rttiImpl.impl.fileName;
         data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
         data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.impl.typeName;
         data["TYPE_FACTORY_TYPE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.typeFactoryImpl.impl.typeName;
         data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.dynamicCasterImpl.impl.typeName;
-        data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.typeInfoImpl.impl.typeName;
+        data["RTTI_TYPE_NAME"] = projectConfigComponent->value.aggregator.systemImpl.rttiImpl.impl.typeName;
 
         try {
             txtGen.Apply(data);

@@ -18,9 +18,9 @@ namespace nsTornadoEngine
 
         void Init()
         {
-            mRunTimeTypeInfo->Init();
+            mRtti->Init();
         }
 
-        IRunTimeTypeInformation* mRunTimeTypeInfo = nullptr;
+        IRunTimeTypeInformation* mRtti = nullptr;
     };
 }

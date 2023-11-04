@@ -77,13 +77,13 @@ namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
         conf.targetForCodeGeneration.header = "Project Ecs System";
 
         // TypeInformation
-        nsReflectionCodeGenerator::TSerializer typeInfo;
-        typeInfo.className = projectConfigComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName;
-        typeInfo.exportDeclaration = projectConfigComponent->value.projectConfig.exportDeclaration;
-        typeInfo.fileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.typeInfo.fileName;
-        typeInfo.nameSpaceName = projectConfigComponent->value.projectConfig.nameSpace;
+        nsReflectionCodeGenerator::TSerializer rtti;
+        rtti.className = projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.typeName;
+        rtti.exportDeclaration = projectConfigComponent->value.projectConfig.exportDeclaration;
+        rtti.fileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.fileName;
+        rtti.nameSpaceName = projectConfigComponent->value.projectConfig.nameSpace;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, typeInfo });
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, rtti });
 
         // DynamicCaster
         nsReflectionCodeGenerator::TSerializer dynamicCaster;

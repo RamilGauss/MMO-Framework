@@ -21,7 +21,7 @@ See for more information LICENSE.md.
 #include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
-namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsTypeInfo
+namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsRtti
 {
     void TGenerateAggregatorHeaderSystem::Execute()
     {
@@ -58,7 +58,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsTypeInfo
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = projectConfigComponent->value.aggregator.componentImpl.typeInfoImpl;
+        auto& impl = projectConfigComponent->value.aggregator.handlerImpl.rttiImpl;
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,

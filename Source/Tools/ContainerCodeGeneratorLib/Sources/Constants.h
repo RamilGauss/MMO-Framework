@@ -21,7 +21,7 @@ namespace nsContainerCodeGenerator
 
         // Core configs out
         constexpr static char CORE_COMPONENT_JSON_OUT[]           = "coreComponentJsonOut.json";
-        constexpr static char CORE_COMPONENT_TYPE_INFO_OUT[]      = "coreComponentTypeInfoOut.json";
+        constexpr static char CORE_COMPONENT_RTTI_OUT[]           = "coreComponentRttiOut.json";
         constexpr static char CORE_COMPONENT_ECS_OUT[]            = "coreComponentEcsOut.json";
         constexpr static char CORE_COMPONENT_BINARY_OUT[]         = "coreComponentBinaryOut.json";
         constexpr static char CORE_COMPONENT_IMGUI_OUT[]          = "coreComponentImGuiOut.json";
@@ -30,7 +30,7 @@ namespace nsContainerCodeGenerator
 
         constexpr static char CORE_IMGUI_WIDGETS_CONFIG[] = "coreImGuiWidgetsConfig.json";
 
-        constexpr static char CORE_IMGUI_WIDGETS_TYPE_INFO_OUT[] = "coreImGuiWidgetsTypeInfoOut.json";
+        constexpr static char CORE_IMGUI_WIDGETS_RTTI_OUT[] = "coreImGuiWidgetsRttiOut.json";
         constexpr static char CORE_IMGUI_WIDGETS_DYNAMIC_CASTER_OUT[] = "coreImGuiWidgetsDynamicCasterOut.json";
 
         //-----------------------------------------------------------------------------------------------------

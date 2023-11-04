@@ -30,19 +30,21 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler
             { 0, "#include \"{{ IMPL_FILE_NAME }}.h\"" },
             { 0, "" },
             { 0, "#include \"{{ TYPE_FACTORY_FILE_NAME }}.h\"" },
-            { 0, "#include \"{{ TYPE_INFO_FILE_NAME }}.h\"" },
+            { 0, "#include \"{{ RTTI_FILE_NAME }}.h\"" },
             { 0, "" },
             { 0, "using namespace {{ PROJECT_NAMESPACE }};" },
             { 0, "" },
             { 0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()" },
             { 0, "{" },
             { 1, "mTypeFactory = new {{ TYPE_FACTORY_TYPE_NAME }}();" },
+            { 0, "mRtti = new {{ RTTI_TYPE_NAME }}();" },
             { 0, "mTypeInfo = new {{ TYPE_INFO_TYPE_NAME }}();" },
             { -1, "}" },
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()" },
             { 0, "{" },
             { 1, "delete mTypeFactory;" },
+            { 0, "delete mRtti;" },
             { 0, "delete mTypeInfo;" },
             { -1, "}" },
             { 0, "//--------------------------------------------------------------------------------------------------" },
@@ -63,10 +65,13 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler
 
         data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.impl.fileName;
         data["TYPE_FACTORY_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.fileName;
+        data["RTTI_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.rttiImpl.impl.fileName;
         data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.fileName;
+
         data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
         data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.impl.typeName;
         data["TYPE_FACTORY_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.typeName;
+        data["RTTI_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.rttiImpl.impl.typeName;
         data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.typeName;
 
         try {

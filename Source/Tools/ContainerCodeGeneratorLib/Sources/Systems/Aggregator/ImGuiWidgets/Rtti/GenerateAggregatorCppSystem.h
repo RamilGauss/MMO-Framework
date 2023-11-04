@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/ExecuteSystem.h>
 
-namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
+namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsRtti
 {
     class DllExport TGenerateAggregatorCppSystem : public nsECSFramework::TExecuteSystem
     {

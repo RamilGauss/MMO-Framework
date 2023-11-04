@@ -1,8 +1,8 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_29 11:03:16.960
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_04 13:21:43.692
 	
 #include "JsonSerializer.h"
 #include "JsonPopMaster.h"
@@ -336,8 +336,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TAggregatorClass* p
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TComponentAggregator* p, Jobj& obj)
 {
     _Serialize((nsContainerCodeGenerator::TAggregatorClass*)p, obj);// Inheritances
-    auto typeInfoImpl_o = PUM::AddObject(obj, "typeInfoImpl");
-    _Serialize(&(p->typeInfoImpl), typeInfoImpl_o);
+    auto rttiImpl_o = PUM::AddObject(obj, "rttiImpl");
+    _Serialize(&(p->rttiImpl), rttiImpl_o);
     auto jsonImpl_o = PUM::AddObject(obj, "jsonImpl");
     _Serialize(&(p->jsonImpl), jsonImpl_o);
     auto binaryImpl_o = PUM::AddObject(obj, "binaryImpl");
@@ -355,8 +355,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TComponentAggregator*
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TComponentAggregator* p, const Jobj& obj)
 {
     _Deserialize((nsContainerCodeGenerator::TAggregatorClass*)p, obj);// Inheritances
-    auto typeInfoImpl_o0 = POM::FindObject(obj, "typeInfoImpl");
-    _Deserialize(&(p->typeInfoImpl), typeInfoImpl_o0);
+    auto rttiImpl_o0 = POM::FindObject(obj, "rttiImpl");
+    _Deserialize(&(p->rttiImpl), rttiImpl_o0);
     auto jsonImpl_o0 = POM::FindObject(obj, "jsonImpl");
     _Deserialize(&(p->jsonImpl), jsonImpl_o0);
     auto binaryImpl_o0 = POM::FindObject(obj, "binaryImpl");
@@ -374,9 +374,9 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TComponentAggregato
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TComponentConfig* p, Jobj& obj)
 {
     _Serialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
-    PUM::Push(obj, "inheritanceFilter", p->inheritanceFilter);
-    auto typeInfo_o = PUM::AddObject(obj, "typeInfo");
-    _Serialize(&(p->typeInfo), typeInfo_o);
+    PUM::Push(obj, "inheritances", p->inheritances);
+    auto rtti_o = PUM::AddObject(obj, "rtti");
+    _Serialize(&(p->rtti), rtti_o);
     auto json_o = PUM::AddObject(obj, "json");
     _Serialize(&(p->json), json_o);
     auto binary_o = PUM::AddObject(obj, "binary");
@@ -394,9 +394,9 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TComponentConfig* p, 
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TComponentConfig* p, const Jobj& obj)
 {
     _Deserialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
-    POM::PopStr(obj, "inheritanceFilter", p->inheritanceFilter);
-    auto typeInfo_o0 = POM::FindObject(obj, "typeInfo");
-    _Deserialize(&(p->typeInfo), typeInfo_o0);
+    POM::PopStr(obj, "inheritances", p->inheritances);
+    auto rtti_o0 = POM::FindObject(obj, "rtti");
+    _Deserialize(&(p->rtti), rtti_o0);
     auto json_o0 = POM::FindObject(obj, "json");
     _Deserialize(&(p->json), json_o0);
     auto binary_o0 = POM::FindObject(obj, "binary");
@@ -461,8 +461,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TEcsSystemConfig* p, 
         PUM::PushBack(inheritances_a0, inheritances_e0);
     }
     PUM::Push(obj, "inheritances", inheritances_a0);
-    auto typeInfo_o = PUM::AddObject(obj, "typeInfo");
-    _Serialize(&(p->typeInfo), typeInfo_o);
+    auto rtti_o = PUM::AddObject(obj, "rtti");
+    _Serialize(&(p->rtti), rtti_o);
     auto dynamicCaster_o = PUM::AddObject(obj, "dynamicCaster");
     _Serialize(&(p->dynamicCaster), dynamicCaster_o);
 }
@@ -473,15 +473,15 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TEcsSystemConfig* p
     if (POM::IsArray(obj, "inheritances")) {
         auto inheritances_a0 = POM::FindArray(obj, "inheritances");
         for(auto& inheritances_e0 : inheritances_a0) {
-            p->inheritances.push_back(inheritances_e0.GetString());
+            p->inheritances.insert(inheritances_e0.GetString());
         }
     } else {
         std::string inheritances_t0;
         POM::PopStr(obj, "inheritances", inheritances_t0);
-        p->inheritances.push_back(inheritances_t0);
+        p->inheritances.insert(inheritances_t0);
     }
-    auto typeInfo_o0 = POM::FindObject(obj, "typeInfo");
-    _Deserialize(&(p->typeInfo), typeInfo_o0);
+    auto rtti_o0 = POM::FindObject(obj, "rtti");
+    _Deserialize(&(p->rtti), rtti_o0);
     auto dynamicCaster_o0 = POM::FindObject(obj, "dynamicCaster");
     _Deserialize(&(p->dynamicCaster), dynamicCaster_o0);
 }
@@ -501,6 +501,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TGeneratedClass* p,
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::THandlerAggregator* p, Jobj& obj)
 {
     _Serialize((nsContainerCodeGenerator::TAggregatorClass*)p, obj);// Inheritances
+    auto rttiImpl_o = PUM::AddObject(obj, "rttiImpl");
+    _Serialize(&(p->rttiImpl), rttiImpl_o);
     auto typeInfoImpl_o = PUM::AddObject(obj, "typeInfoImpl");
     _Serialize(&(p->typeInfoImpl), typeInfoImpl_o);
     auto typeFactoryImpl_o = PUM::AddObject(obj, "typeFactoryImpl");
@@ -510,6 +512,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::THandlerAggregator* p
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::THandlerAggregator* p, const Jobj& obj)
 {
     _Deserialize((nsContainerCodeGenerator::TAggregatorClass*)p, obj);// Inheritances
+    auto rttiImpl_o0 = POM::FindObject(obj, "rttiImpl");
+    _Deserialize(&(p->rttiImpl), rttiImpl_o0);
     auto typeInfoImpl_o0 = POM::FindObject(obj, "typeInfoImpl");
     _Deserialize(&(p->typeInfoImpl), typeInfoImpl_o0);
     auto typeFactoryImpl_o0 = POM::FindObject(obj, "typeFactoryImpl");
@@ -519,6 +523,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::THandlerAggregator*
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::THandlerConfig* p, Jobj& obj)
 {
     _Serialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
+    auto rtti_o = PUM::AddObject(obj, "rtti");
+    _Serialize(&(p->rtti), rtti_o);
     auto typeInfo_o = PUM::AddObject(obj, "typeInfo");
     _Serialize(&(p->typeInfo), typeInfo_o);
     auto typeFactory_o = PUM::AddObject(obj, "typeFactory");
@@ -528,6 +534,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::THandlerConfig* p, Jo
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::THandlerConfig* p, const Jobj& obj)
 {
     _Deserialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
+    auto rtti_o0 = POM::FindObject(obj, "rtti");
+    _Deserialize(&(p->rtti), rtti_o0);
     auto typeInfo_o0 = POM::FindObject(obj, "typeInfo");
     _Deserialize(&(p->typeInfo), typeInfo_o0);
     auto typeFactory_o0 = POM::FindObject(obj, "typeFactory");
@@ -537,8 +545,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::THandlerConfig* p, 
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TImGuiWidgetsAggregator* p, Jobj& obj)
 {
     _Serialize((nsContainerCodeGenerator::TAggregatorClass*)p, obj);// Inheritances
-    auto typeInfoImpl_o = PUM::AddObject(obj, "typeInfoImpl");
-    _Serialize(&(p->typeInfoImpl), typeInfoImpl_o);
+    auto rttiImpl_o = PUM::AddObject(obj, "rttiImpl");
+    _Serialize(&(p->rttiImpl), rttiImpl_o);
     auto dynamicCasterImpl_o = PUM::AddObject(obj, "dynamicCasterImpl");
     _Serialize(&(p->dynamicCasterImpl), dynamicCasterImpl_o);
 }
@@ -546,8 +554,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TImGuiWidgetsAggregat
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TImGuiWidgetsAggregator* p, const Jobj& obj)
 {
     _Deserialize((nsContainerCodeGenerator::TAggregatorClass*)p, obj);// Inheritances
-    auto typeInfoImpl_o0 = POM::FindObject(obj, "typeInfoImpl");
-    _Deserialize(&(p->typeInfoImpl), typeInfoImpl_o0);
+    auto rttiImpl_o0 = POM::FindObject(obj, "rttiImpl");
+    _Deserialize(&(p->rttiImpl), rttiImpl_o0);
     auto dynamicCasterImpl_o0 = POM::FindObject(obj, "dynamicCasterImpl");
     _Deserialize(&(p->dynamicCasterImpl), dynamicCasterImpl_o0);
 }
@@ -556,8 +564,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TImGuiWidgetsConfig* 
 {
     _Serialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
     PUM::Push(obj, "imGuiWidgetsDirectory", p->imGuiWidgetsDirectory);
-    auto typeInfo_o = PUM::AddObject(obj, "typeInfo");
-    _Serialize(&(p->typeInfo), typeInfo_o);
+    auto rtti_o = PUM::AddObject(obj, "rtti");
+    _Serialize(&(p->rtti), rtti_o);
     auto dynamicCaster_o = PUM::AddObject(obj, "dynamicCaster");
     _Serialize(&(p->dynamicCaster), dynamicCaster_o);
 }
@@ -566,8 +574,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TImGuiWidgetsConfig
 {
     _Deserialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
     POM::PopStr(obj, "imGuiWidgetsDirectory", p->imGuiWidgetsDirectory);
-    auto typeInfo_o0 = POM::FindObject(obj, "typeInfo");
-    _Deserialize(&(p->typeInfo), typeInfo_o0);
+    auto rtti_o0 = POM::FindObject(obj, "rtti");
+    _Deserialize(&(p->rtti), rtti_o0);
     auto dynamicCaster_o0 = POM::FindObject(obj, "dynamicCaster");
     _Deserialize(&(p->dynamicCaster), dynamicCaster_o0);
 }
@@ -666,8 +674,8 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectContainerCo
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TSystemAggregator* p, Jobj& obj)
 {
     _Serialize((nsContainerCodeGenerator::TAggregatorClass*)p, obj);// Inheritances
-    auto typeInfoImpl_o = PUM::AddObject(obj, "typeInfoImpl");
-    _Serialize(&(p->typeInfoImpl), typeInfoImpl_o);
+    auto rttiImpl_o = PUM::AddObject(obj, "rttiImpl");
+    _Serialize(&(p->rttiImpl), rttiImpl_o);
     auto typeFactoryImpl_o = PUM::AddObject(obj, "typeFactoryImpl");
     _Serialize(&(p->typeFactoryImpl), typeFactoryImpl_o);
     auto dynamicCasterImpl_o = PUM::AddObject(obj, "dynamicCasterImpl");
@@ -677,8 +685,8 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TSystemAggregator* p,
 void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TSystemAggregator* p, const Jobj& obj)
 {
     _Deserialize((nsContainerCodeGenerator::TAggregatorClass*)p, obj);// Inheritances
-    auto typeInfoImpl_o0 = POM::FindObject(obj, "typeInfoImpl");
-    _Deserialize(&(p->typeInfoImpl), typeInfoImpl_o0);
+    auto rttiImpl_o0 = POM::FindObject(obj, "rttiImpl");
+    _Deserialize(&(p->rttiImpl), rttiImpl_o0);
     auto typeFactoryImpl_o0 = POM::FindObject(obj, "typeFactoryImpl");
     _Deserialize(&(p->typeFactoryImpl), typeFactoryImpl_o0);
     auto dynamicCasterImpl_o0 = POM::FindObject(obj, "dynamicCasterImpl");
@@ -703,12 +711,12 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TSystemConfig* p, c
     if (POM::IsArray(obj, "inheritances")) {
         auto inheritances_a0 = POM::FindArray(obj, "inheritances");
         for(auto& inheritances_e0 : inheritances_a0) {
-            p->inheritances.push_back(inheritances_e0.GetString());
+            p->inheritances.insert(inheritances_e0.GetString());
         }
     } else {
         std::string inheritances_t0;
         POM::PopStr(obj, "inheritances", inheritances_t0);
-        p->inheritances.push_back(inheritances_t0);
+        p->inheritances.insert(inheritances_t0);
     }
     auto typeFactory_o0 = POM::FindObject(obj, "typeFactory");
     _Deserialize(&(p->typeFactory), typeFactory_o0);

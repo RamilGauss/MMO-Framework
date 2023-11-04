@@ -30,19 +30,19 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets
             {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
             {0, "#include \"{{ DYNAMIC_CASTER_FILE_NAME }}.h\""},
-            {0, "#include \"{{ TYPE_INFO_FILE_NAME }}.h\""},
+            {0, "#include \"{{ RTTI_FILE_NAME }}.h\""},
             {0, ""},
             {0, "using namespace {{ PROJECT_NAMESPACE }};"},
             {0, ""},
             {0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()"},
             {0, "{"},
-            {1, "mTypeInfo = new {{ TYPE_INFO_TYPE_NAME }}();"},
+            {1, "mRtti = new {{ RTTI_TYPE_NAME }}();"},
             {0, "mDynamicCaster = new {{ DYNAMIC_CASTER_TYPE_NAME }}();"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, "{{ IMPL_TYPE_NAME }}::~{{ IMPL_TYPE_NAME }}()"},
             {0, "{"},
-            {1, "delete mTypeInfo;"},
+            {1, "delete mRtti;"},
             {0, "delete mDynamicCaster;"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
@@ -66,11 +66,11 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets
         
         data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName;
         data["DYNAMIC_CASTER_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.fileName;
-        data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl.impl.fileName;
+        data["RTTI_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.rttiImpl.impl.fileName;
         
         data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.typeName;
         data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.typeName;
-        data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl.impl.typeName;
+        data["RTTI_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.rttiImpl.impl.typeName;
 
         try {
             txtGen.Apply(data);

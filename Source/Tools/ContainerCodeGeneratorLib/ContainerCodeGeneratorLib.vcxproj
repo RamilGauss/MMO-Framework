@@ -102,11 +102,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\Component\Rtti\GenerateAggregatorCppSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\Component\Rtti\GenerateAggregatorHeaderSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -130,14 +130,16 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\Rtti\GenerateAggregatorCppSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\Rtti\GenerateAggregatorHeaderSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.h" />
+    <ClInclude Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.h" />
     <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.h">
       <SubType>
       </SubType>
@@ -154,11 +156,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\Rtti\GenerateAggregatorCppSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\ImGuiWidgets\Rtti\GenerateAggregatorHeaderSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -186,11 +188,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\System\Rtti\GenerateAggregatorCppSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.h">
+    <ClInclude Include="Sources\Systems\Aggregator\System\Rtti\GenerateAggregatorHeaderSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -346,11 +348,11 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorCppSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Component\Rtti\GenerateAggregatorCppSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Component\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Component\Rtti\GenerateAggregatorHeaderSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -374,14 +376,16 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\Rtti\GenerateAggregatorCppSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\Rtti\GenerateAggregatorHeaderSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorCppSystem.cpp" />
+    <ClCompile Include="Sources\Systems\Aggregator\Handler\TypeInfo\GenerateAggregatorHeaderSystem.cpp" />
     <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\DynamicCaster\GenerateAggregatorCppSystem.cpp">
       <SubType>
       </SubType>
@@ -398,11 +402,11 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorCppSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\Rtti\GenerateAggregatorCppSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\ImGuiWidgets\Rtti\GenerateAggregatorHeaderSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -430,11 +434,11 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorCppSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\System\Rtti\GenerateAggregatorCppSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\Aggregator\System\TypeInfo\GenerateAggregatorHeaderSystem.cpp">
+    <ClCompile Include="Sources\Systems\Aggregator\System\Rtti\GenerateAggregatorHeaderSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>

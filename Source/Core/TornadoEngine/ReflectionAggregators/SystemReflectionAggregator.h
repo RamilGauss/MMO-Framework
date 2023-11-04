@@ -19,12 +19,12 @@ namespace nsTornadoEngine
 
         void Init()
         {
-            mRunTimeTypeInfo->Init();
+            mRtti->Init();
             mTypeFactory->Init();
             mDynamicCaster->Init();
         }
 
-        IRunTimeTypeInformation* mRunTimeTypeInfo = nullptr;
+        IRunTimeTypeInformation* mRtti = nullptr;
         ITypeFactory* mTypeFactory = nullptr;
         IDynamicCaster* mDynamicCaster = nullptr;
     };

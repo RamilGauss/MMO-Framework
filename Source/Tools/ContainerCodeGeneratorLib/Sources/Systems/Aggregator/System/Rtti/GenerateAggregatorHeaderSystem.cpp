@@ -9,8 +9,6 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
-#include <filesystem>
-
 #include <TextGenerator.h>
 #include <PathOperations.h>
 
@@ -23,7 +21,7 @@ See for more information LICENSE.md.
 #include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
-namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
+namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsRtti
 {
     void TGenerateAggregatorHeaderSystem::Execute()
     {
@@ -60,7 +58,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl;
+        auto& impl = projectConfigComponent->value.aggregator.systemImpl.rttiImpl;
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,

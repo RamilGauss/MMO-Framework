@@ -20,11 +20,11 @@ namespace nsTornadoEngine
         void Init()
         {
             mTypeInfo->Init();
-            mRunTimeTypeInfo->Init();
+            mRtti->Init();
             mTypeFactory->Init();
         }
 
-        IRunTimeTypeInformation* mRunTimeTypeInfo = nullptr;
+        IRunTimeTypeInformation* mRtti = nullptr;
         ITypeInformation* mTypeInfo = nullptr;
         ITypeFactory* mTypeFactory = nullptr;
     };

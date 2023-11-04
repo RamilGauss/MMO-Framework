@@ -41,7 +41,7 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
         reflectionConfigComponent.absFileName =
             nsBase::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
 
-        conf.filter.inheritances.push_back({ componentConfig.inheritanceFilter });
+        conf.filter.inheritances.push_back({ componentConfig.inheritances });
 
         conf.targetForParsing.recursive = true;
 
@@ -78,16 +78,16 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::JSON, json });
 
         // TypeInformation
-        nsReflectionCodeGenerator::TSerializer typeInfo;
-        typeInfo.className = configComponent->value.coreConfig.componentConfig.typeInfo.typeName;
-        typeInfo.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        typeInfo.fileName = configComponent->value.coreConfig.componentConfig.typeInfo.fileName;
-        typeInfo.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+        nsReflectionCodeGenerator::TSerializer rtti;
+        rtti.className = configComponent->value.coreConfig.componentConfig.rtti.typeName;
+        rtti.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        rtti.fileName = configComponent->value.coreConfig.componentConfig.rtti.fileName;
+        rtti.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
-        typeInfo.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
-        typeInfo.externalSources->outFile = TConstants::CORE_COMPONENT_TYPE_INFO_OUT;
+        rtti.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        rtti.externalSources->outFile = TConstants::CORE_COMPONENT_RTTI_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, typeInfo });
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, rtti });
 
         // EcsExtensions
         nsReflectionCodeGenerator::TSerializer entMng;

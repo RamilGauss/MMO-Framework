@@ -22,8 +22,8 @@ namespace nsContainerCodeGenerator::nsAggregator
         Add(&mGenerateComponentAggregatorHeaderSystem);
         Add(&mGenerateComponentAggregatorCppSystem);
 
-        Add(&mGenerateComponentTypeInfoAggregatorHeaderSystem);
-        Add(&mGenerateComponentTypeInfoAggregatorCppSystem);
+        Add(&mGenerateComponentRttiAggregatorHeaderSystem);
+        Add(&mGenerateComponentRttiAggregatorCppSystem);
 
         Add(&mGenerateComponentJsonAggregatorHeaderSystem);
         Add(&mGenerateComponentJsonAggregatorCppSystem);
@@ -41,6 +41,9 @@ namespace nsContainerCodeGenerator::nsAggregator
         Add(&mGenerateHandlerAggregatorHeaderSystem);
         Add(&mGenerateHandlerAggregatorCppSystem);
 
+        Add(&mGenerateHandlerRttiAggregatorHeaderSystem);
+        Add(&mGenerateHandlerRttiAggregatorCppSystem);
+
         Add(&mGenerateHandlerTypeInfoAggregatorHeaderSystem);
         Add(&mGenerateHandlerTypeInfoAggregatorCppSystem);
 
@@ -51,8 +54,8 @@ namespace nsContainerCodeGenerator::nsAggregator
         Add(&mGenerateSystemAggregatorHeaderSystem);
         Add(&mGenerateSystemAggregatorCppSystem);
 
-        Add(&mGenerateSystemTypeInfoAggregatorHeaderSystem);
-        Add(&mGenerateSystemTypeInfoAggregatorCppSystem);
+        Add(&mGenerateSystemRttiAggregatorHeaderSystem);
+        Add(&mGenerateSystemRttiAggregatorCppSystem);
 
         Add(&mGenerateSystemTypeFactoryAggregatorHeaderSystem);
         Add(&mGenerateSystemTypeFactoryAggregatorCppSystem);
@@ -64,8 +67,8 @@ namespace nsContainerCodeGenerator::nsAggregator
         Add(&mGenerateImGuiWidgetsAggregatorHeaderSystem);
         Add(&mGenerateImGuiWidgetsAggregatorCppSystem);
 
-        Add(&mGenerateImGuiWidgetsTypeInfoAggregatorHeaderSystem);
-        Add(&mGenerateImGuiWidgetsTypeInfoAggregatorCppSystem);
+        Add(&mGenerateImGuiWidgetsRttiAggregatorHeaderSystem);
+        Add(&mGenerateImGuiWidgetsRttiAggregatorCppSystem);
 
         Add(&mGenerateImGuiWidgetsDynamicCasterAggregatorHeaderSystem);
         Add(&mGenerateImGuiWidgetsDynamicCasterAggregatorCppSystem);

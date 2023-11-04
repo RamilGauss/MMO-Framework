@@ -23,7 +23,7 @@ See for more information LICENSE.md.
 #include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
-namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
+namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsRtti
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
@@ -31,16 +31,23 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
         {
             {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
-            {0, "#include \"{{ CORE_TYPE_INFO_FILE_NAME }}.h\""},
+            {0, "#include \"{{ PROJECT_RTTI_FILE_NAME }}.h\""},
+            {0, "#include \"{{ CORE_RTTI_FILE_NAME }}.h\""},
             {0, ""},
             {0, "using namespace {{ PROJECT_NAMESPACE }};"},
             {0, ""},
             {0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()"},
             {0, "{"},
-            {1, "auto typeNameList = {{ CORE_NAMESPACE }}::{{ CORE_TYPE_INFO_TYPE_NAME }}::GetTypeNameList();"},
+            {1, "auto typeNameList = {{ PROJECT_RTTI_TYPE_NAME }}::GetTypeNameList();"},
             {0, "mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());"},
-            {0, ""},
-            {0, "auto rttiList = {{ CORE_NAMESPACE }}::{{ CORE_TYPE_INFO_TYPE_NAME }}::GetRttiList();"},
+            {-1,""},
+            {1, "typeNameList = {{ CORE_NAMESPACE }}::{{ CORE_RTTI_TYPE_NAME }}::GetTypeNameList();"},
+            {0, "mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());"},
+            {-1,""},
+            {1, "auto rttiList = {{ PROJECT_RTTI_TYPE_NAME }}::GetRttiList();"},
+            {0, "mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());"},
+            {-1,""},
+            {1, "rttiList = {{ CORE_NAMESPACE }}::{{ CORE_RTTI_TYPE_NAME }}::GetRttiList();"},
             {0, "mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
@@ -51,7 +58,8 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, "void {{ IMPL_TYPE_NAME }}::Init()"},
             {0, "{"},
-            {1, "{{ CORE_NAMESPACE }}::{{ CORE_TYPE_INFO_TYPE_NAME }}::Init();"},
+            {1, "{{ PROJECT_RTTI_TYPE_NAME }}::Init();"},
+            {0, "{{ CORE_NAMESPACE }}::{{ CORE_RTTI_TYPE_NAME }}::Init();"},
             {-1, "}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, "const std::list<std::string>* {{ IMPL_TYPE_NAME }}::GetTypeNameList()"},
@@ -64,9 +72,14 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
             {1, "return &mRttiList;"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
-            {0, "bool {{ IMPL_TYPE_NAME }}::ConvertTypeToName(int rtti, std::string & typeName)"},
+            {0, "bool {{ IMPL_TYPE_NAME }}::ConvertTypeToName(int rtti, std::string& typeName)"},
             {0, "{"},
-            {1, "auto pTypeName = {{ CORE_NAMESPACE }}::{{ CORE_TYPE_INFO_TYPE_NAME }}::ConvertRttiToName(rtti);"},
+            {1, "auto pTypeName = {{ PROJECT_RTTI_TYPE_NAME }}::ConvertRttiToName(rtti);"},
+            {0, "if (pTypeName != nullptr) {"},
+            {1, "typeName = *pTypeName;"},
+            {0, "return true;"},
+            {-1,"}"},
+            {0, "pTypeName = {{ CORE_NAMESPACE }}::{{ CORE_RTTI_TYPE_NAME }}::ConvertRttiToName(rtti);"},
             {0, "if (pTypeName != nullptr) {"},
             {1, "typeName = *pTypeName;"},
             {0, "return true;"},
@@ -74,10 +87,14 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
             {0, "return false;"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
-            {0, "bool {{ IMPL_TYPE_NAME }}::ConvertNameToType(const std::string & typeName, int& rtti)"},
+            {0, "bool {{ IMPL_TYPE_NAME }}::ConvertNameToType(const std::string& typeName, int& rtti)"},
             {0, "{"},
-            {1, "return {{ CORE_NAMESPACE }}::{{ CORE_TYPE_INFO_TYPE_NAME }}::ConvertNameToRtti(typeName, rtti);"},
-            {-1, "}"},
+            {1, "auto result = {{ PROJECT_RTTI_TYPE_NAME }}::ConvertNameToRtti(typeName, rtti);"},
+            {0, "if (result) {"},
+            {1, "return true;"},
+            {-1,"}"},
+            {0, "return {{ CORE_NAMESPACE }}::{{ CORE_RTTI_TYPE_NAME }}::ConvertNameToRtti(typeName, rtti);"},
+            {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, ""},
         };
@@ -87,7 +104,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.typeInfoImpl;
+        auto& impl = projectConfigComponent->value.aggregator.componentImpl.rttiImpl;
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
@@ -99,8 +116,17 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
         std::string relToCoreSources;
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
 
+        absBase = projectConfigComponent->value.projectConfig.relPathToSources;
+        abs = projectConfigComponent->value.projectConfig.targetDirectory;
+
+        std::string relToProjectSources;
+        nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
+
+        std::filesystem::path pathRelToProjectSources(relToProjectSources);
+        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.componentConfig.rtti.fileName;
+
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
-        pathRelToCoreSources /= coreConfigComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.fileName;
+        pathRelToCoreSources /= coreConfigComponent->value.coreConfig.componentConfig.rtti.fileName;
 
         nsBase::TTextGenerator txtGen(lines);
 
@@ -111,8 +137,10 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsTypeInfo
         data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
         data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
 
-        data["CORE_TYPE_INFO_FILE_NAME"] = pathRelToCoreSources.string();
-        data["CORE_TYPE_INFO_TYPE_NAME"] = coreConfigComponent->value.coreConfig.imGuiWidgetsConfig.typeInfo.typeName;
+        data["CORE_RTTI_FILE_NAME"] = pathRelToCoreSources.string();
+        data["PROJECT_RTTI_FILE_NAME"] = pathRelToProjectSources.string();
+        data["CORE_RTTI_TYPE_NAME"] = coreConfigComponent->value.coreConfig.componentConfig.rtti.typeName;
+        data["PROJECT_RTTI_TYPE_NAME"] = projectConfigComponent->value.projectConfig.componentConfig.rtti.typeName;
 
         try {
             txtGen.Apply(data);

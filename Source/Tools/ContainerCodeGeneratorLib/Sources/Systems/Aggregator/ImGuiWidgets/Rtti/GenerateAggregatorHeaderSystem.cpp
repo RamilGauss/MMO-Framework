@@ -9,6 +9,8 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
+#include <filesystem>
+
 #include <TextGenerator.h>
 #include <PathOperations.h>
 
@@ -21,7 +23,7 @@ See for more information LICENSE.md.
 #include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
-namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsTypeInfo
+namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsRtti
 {
     void TGenerateAggregatorHeaderSystem::Execute()
     {
@@ -38,8 +40,16 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsTypeInfo
             {1, "{{ IMPL_TYPE_NAME }}();"},
             {0, "virtual ~{{ IMPL_TYPE_NAME }}();"},
             {0, ""},
+            {0, "const std::list<std::string>* GetTypeNameList() override;"},
+            {0, "const std::list<int>* GetRunTimeTypeIndexList() override;"},
+            {0, ""},
             {0, "void Init() override;"},
-            {0, "const nsCppParser::TTypeInfo* Get(int rtti) override;"},
+            {0, "bool ConvertTypeToName(int rtti, std::string& typeName) override;"},
+            {0, "bool ConvertNameToType(const std::string& typeName, int& rtti) override;"},
+            {0, ""},
+            {-1,"private:"},
+            {1, "std::list<std::string> mTypeNameList;"},
+            {0, "std::list<int> mRttiList;"},
             {-1,"};"},
             {-1,"}"},
             {0, ""},
@@ -50,7 +60,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsTypeInfo
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = projectConfigComponent->value.aggregator.handlerImpl.typeInfoImpl;
+        auto& impl = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.rttiImpl;
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,

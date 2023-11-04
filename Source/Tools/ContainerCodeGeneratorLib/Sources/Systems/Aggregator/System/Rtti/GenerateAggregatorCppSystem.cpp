@@ -23,7 +23,7 @@ See for more information LICENSE.md.
 #include "Components/ProjectConfigComponent.h"
 #include "Components/GeneratedFilesComponent.h"
 
-namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
+namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsRtti
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
@@ -31,16 +31,16 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
         {
             { 0, "#include \"{{ IMPL_FILE_NAME }}.h\"" },
             { 0, "" },
-            { 0, "#include \"{{ PROJECT_TYPE_INFO_FILE_NAME }}.h\"" },
+            { 0, "#include \"{{ PROJECT_RTTI_FILE_NAME }}.h\"" },
             { 0, "" },
             { 0, "using namespace {{ PROJECT_NAMESPACE }};" },
             { 0, "" },
             { 0, "{{ IMPL_TYPE_NAME }}::{{ IMPL_TYPE_NAME }}()" },
             { 0, "{" },
-            { 1, "auto typeNameList = {{ PROJECT_TYPE_INFO_TYPE_NAME }}::GetTypeNameList();" },
+            { 1, "auto typeNameList = {{ PROJECT_RTTI_TYPE_NAME }}::GetTypeNameList();" },
             { 0, "mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());" },
             { -1,"" },
-            { 1, "auto rttiList = {{ PROJECT_TYPE_INFO_TYPE_NAME }}::GetRttiList();" },
+            { 1, "auto rttiList = {{ PROJECT_RTTI_TYPE_NAME }}::GetRttiList();" },
             { 0, "mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());" },
             { -1,"}" },
             { 0, "//--------------------------------------------------------------------------------------------------" },
@@ -51,7 +51,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "void {{ IMPL_TYPE_NAME }}::Init()" },
             { 0, "{" },
-            { 1, "{{ PROJECT_TYPE_INFO_TYPE_NAME }}::Init();" },
+            { 1, "{{ PROJECT_RTTI_TYPE_NAME }}::Init();" },
             { -1, "}" },
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "const std::list<std::string>* {{ IMPL_TYPE_NAME }}::GetTypeNameList()" },
@@ -66,7 +66,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "bool {{ IMPL_TYPE_NAME }}::ConvertTypeToName(int rtti, std::string& typeName)" },
             { 0, "{" },
-            { 1, "auto pTypeName = {{ PROJECT_TYPE_INFO_TYPE_NAME }}::ConvertRttiToName(rtti);" },
+            { 1, "auto pTypeName = {{ PROJECT_RTTI_TYPE_NAME }}::ConvertRttiToName(rtti);" },
             { 0, "if (pTypeName != nullptr) {" },
             { 1, "typeName = *pTypeName;" },
             { 0, "return true;" },
@@ -76,7 +76,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "bool {{ IMPL_TYPE_NAME }}::ConvertNameToType(const std::string& typeName, int& rtti)" },
             { 0, "{" },
-            { 1, "return {{ PROJECT_TYPE_INFO_TYPE_NAME }}::ConvertNameToRtti(typeName, rtti);" },
+            { 1, "return {{ PROJECT_RTTI_TYPE_NAME }}::ConvertNameToRtti(typeName, rtti);" },
             { -1,"}" },
             { 0, "//--------------------------------------------------------------------------------------------------" },
             { 0, "" },
@@ -87,7 +87,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = projectConfigComponent->value.aggregator.systemImpl.typeInfoImpl;
+        auto& impl = projectConfigComponent->value.aggregator.systemImpl.rttiImpl;
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
@@ -100,7 +100,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.ecsSystemConfig.typeInfo.fileName;
+        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.fileName;
 
         nsBase::TTextGenerator txtGen(lines);
 
@@ -110,8 +110,8 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeInfo
         data["IMPL_TYPE_NAME"] = impl.impl.typeName;
         data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
 
-        data["PROJECT_TYPE_INFO_FILE_NAME"] = pathRelToProjectSources.string();
-        data["PROJECT_TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.projectConfig.ecsSystemConfig.typeInfo.typeName;
+        data["PROJECT_RTTI_FILE_NAME"] = pathRelToProjectSources.string();
+        data["PROJECT_RTTI_TYPE_NAME"] = projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.typeName;
 
         try {
             txtGen.Apply(data);
