@@ -144,7 +144,7 @@
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;ImGuiWidgets_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;ImGuiWidgets_d.lib;GraphicEngine_d.lib;PhysicEngine_d.lib;NetTransport_d.lib;MMOEngine_d.lib;Parser_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -321,10 +321,10 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Generated files\Container\ComponentDynamicCaster.cpp" />
     <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentRtti.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeFactory.cpp" />
-    <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
     <ClCompile Include="Generated files\Container\ImGuiWidgetsDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Container\ImGuiWidgetsTypeInfo.cpp" />
+    <ClCompile Include="Generated files\Container\ImGuiWidgetsRtti.cpp" />
     <ClCompile Include="Generated files\TornadoEngineJsonSerializer.cpp" />
     <ClCompile Include="Modules\Gizmos\EntityViewer.cpp" />
     <ClCompile Include="Modules\Gizmos\Gizmo.cpp" />
@@ -390,9 +390,11 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     </ClInclude>
     <ClInclude Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.h" />
     <ClInclude Include="Features\Logic\End\Terminator\TargetHandlerTerminatorSystem.h" />
+    <ClInclude Include="Generated files\Container\ComponentRtti.h" />
     <ClInclude Include="Generated files\Container\ComponentTypeFactory.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsIncludeList.h" />
+    <ClInclude Include="Generated files\Container\ImGuiWidgetsRtti.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsTypeInfo.h" />
     <ClInclude Include="Handlers\Common\ITargetHandler.h" />
     <ClInclude Include="Handlers\Logic\ISceneDestroyCompletionHandler.h" />
@@ -660,10 +662,12 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <None Include="Generated files\Container\coreComponentDynamicCasterOut.json" />
     <None Include="Generated files\Container\coreComponentEcsOut.json" />
     <None Include="Generated files\Container\coreComponentJsonOut.json" />
+    <None Include="Generated files\Container\coreComponentRttiOut.json" />
     <None Include="Generated files\Container\coreComponentTypeFactoryOut.json" />
     <None Include="Generated files\Container\coreComponentTypeInfoOut.json" />
     <None Include="Generated files\Container\coreImGuiWidgetsConfig.json" />
     <None Include="Generated files\Container\coreImGuiWidgetsDynamicCasterOut.json" />
+    <None Include="Generated files\Container\coreImGuiWidgetsRttiOut.json" />
     <None Include="Generated files\Container\coreImGuiWidgetsTypeInfoOut.json" />
     <None Include="Generated files\ecsConfig.json" />
     <None Include="Generated files\featureConfig.json" />

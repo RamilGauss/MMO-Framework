@@ -33,7 +33,4 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="$(SolutionDir)\conanfile.txt" />
-  </ItemGroup>
 </Project>

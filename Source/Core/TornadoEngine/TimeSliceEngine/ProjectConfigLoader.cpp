@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 
 #include "EngineLogger.h"
 #include "ResourceManager.h"
+#include "Modules.h"
 
 using namespace nsTornadoEngine;
 using namespace nsBase;
@@ -50,21 +51,21 @@ bool TProjectConfigLoader::LoadBinary()
     mPcc->mLoader = loader;
 
     if (loader->Init(mPcc->GetBinaryAbsPath().c_str()) == false) {
-        TEngineLogger::Log("LoadDLL() FAIL init.\n");
+        Modules()->Log()->Log("LoadDLL() FAIL init.\n");
         return false;
     }
     mPcc->mFreeScenePartAggregator = (FuncFreeScenePartReflectionAggregator) loader->Get(StrFreeScenePartReflectionAggregator);
     if (mPcc->mFreeScenePartAggregator == nullptr) {
-        TEngineLogger::Log("LoadDLL() FAIL load FuncFree.\n");
+        Modules()->Log()->Log("LoadDLL() FAIL load FuncFree.\n");
         return false;
     }
     mPcc->mGetScenePartAggregator = (FuncGetScenePartReflectionAggregator) loader->Get(StrGetScenePartReflectionAggregator);
     if (mPcc->mGetScenePartAggregator == nullptr) {
-        TEngineLogger::Log("LoadDLL() FAIL load FuncGetdevTool.\n");
+        Modules()->Log()->Log("LoadDLL() FAIL load FuncGetdevTool.\n");
         return false;
     }
     if (mPcc->mScenePartAggregator != nullptr) {
-        TEngineLogger::Log("LoadDLL() warning, object was loaded.\n");
+        Modules()->Log()->Log("LoadDLL() warning, object was loaded.\n");
         return true;
     }
     mPcc->mScenePartAggregator = mPcc->mGetScenePartAggregator();

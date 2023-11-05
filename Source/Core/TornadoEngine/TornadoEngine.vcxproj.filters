@@ -477,10 +477,8 @@
     <ClCompile Include="Share\ImGuiSerializeTask.cpp" />
     <ClCompile Include="Generated files\Container\ComponentEntMng.cpp" />
     <ClCompile Include="Generated files\Container\ComponentJson.cpp" />
-    <ClCompile Include="Generated files\Container\ComponentTypeInfo.cpp" />
     <ClCompile Include="Generated files\Container\ComponentDynamicCaster.cpp" />
     <ClCompile Include="Generated files\Container\ImGuiWidgetsDynamicCaster.cpp" />
-    <ClCompile Include="Generated files\Container\ImGuiWidgetsTypeInfo.cpp" />
     <ClCompile Include="Modules\PropertyManager\PropertyManager.cpp" />
     <ClCompile Include="Modules\PropertyManager\PropertyManagerConfigs.cpp" />
     <ClCompile Include="Modules\PropertyManager\ImGuiWidgetsArchetypes.cpp" />
@@ -502,6 +500,8 @@
     <ClCompile Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Logic\End\Terminator\TargetHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Helpers\HandlerLinkHelper.cpp" />
+    <ClCompile Include="Generated files\Container\ComponentRtti.cpp" />
+    <ClCompile Include="Generated files\Container\ImGuiWidgetsRtti.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Resources\Common\FrameworkResources.h">
@@ -1137,6 +1137,8 @@
     <ClInclude Include="Features\Logic\End\Terminator\TargetHandlerTerminatorSystem.h" />
     <ClInclude Include="Handlers\Common\ITargetHandler.h" />
     <ClInclude Include="ReflectionAggregators\IRunTimeTypeInformation.h" />
+    <ClInclude Include="Generated files\Container\ComponentRtti.h" />
+    <ClInclude Include="Generated files\Container\ImGuiWidgetsRtti.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />
@@ -1152,5 +1154,7 @@
     <None Include="Generated files\Container\coreImGuiWidgetsDynamicCasterOut.json" />
     <None Include="Generated files\Container\coreImGuiWidgetsTypeInfoOut.json" />
     <None Include="Generated files\Container\coreComponentTypeFactoryOut.json" />
+    <None Include="Generated files\Container\coreImGuiWidgetsRttiOut.json" />
+    <None Include="Generated files\Container\coreComponentRttiOut.json" />
   </ItemGroup>
 </Project>

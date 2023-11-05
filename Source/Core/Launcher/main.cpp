@@ -14,6 +14,8 @@ See for more information LICENSE.md.
 #include <map>
 #include <locale.h>
 
+#include <fmt/core.h>
+
 #include "BL_Debug.h"
 #include "TimeSliceEngine.h"
 #include "ShareMisc.h"
@@ -23,7 +25,6 @@ See for more information LICENSE.md.
 #include "PathOperations.h"
 #include "ProjectConfigurator.h"
 
-#include <fmt/core.h>
 
 using namespace nsTornadoEngine;
 using namespace nsBase;

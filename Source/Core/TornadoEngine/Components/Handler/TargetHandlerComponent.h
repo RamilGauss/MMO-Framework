@@ -17,6 +17,21 @@ namespace nsLogicWrapper
 {
     struct DllExport TTargetHandlerComponent : nsECSFramework::IComponent
     {
+        enum class From
+        {
+            ALL, CHILDS
+        };
+
+        From from = From::ALL;
+
+        // Use if ALL
+        enum class Filter
+        {
+            EVERYWHERE, THIS_UNVIVERSE, THIS_SCENE
+        };
+
+        Filter filter = Filter::EVERYWHERE;
+
         std::string entityGuid;
         std::string handlerTypeName;
 

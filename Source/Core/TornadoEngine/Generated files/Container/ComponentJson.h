@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_04 19:35:23.572
+// File has been generated at 2023_11_05 17:20:05.280
 	
 #pragma once
 
@@ -243,6 +243,12 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsLogicWrapper::TTargetHandlerComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TTargetHandlerComponent* p, const Jobj& obj);
+        
+        static std::string _SerializeEnum(nsLogicWrapper::TTargetHandlerComponent::Filter* p);
+        static void _DeserializeEnum(std::string& str, nsLogicWrapper::TTargetHandlerComponent::Filter* p);
+        
+        static std::string _SerializeEnum(nsLogicWrapper::TTargetHandlerComponent::From* p);
+        static void _DeserializeEnum(std::string& str, nsLogicWrapper::TTargetHandlerComponent::From* p);
         
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);

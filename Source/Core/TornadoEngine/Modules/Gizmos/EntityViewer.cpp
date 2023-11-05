@@ -41,7 +41,7 @@ void TEntityViewer::Init()
 
     mIsNeedInited = false;
 
-    auto& componentNames = *(Project()->mScenePartAggregator->mComponents->mTypeInfo->GetTypeNameList());
+    auto& componentNames = *(Project()->mScenePartAggregator->mComponents->mRtti->GetTypeNameList());
     for (auto& fullComponentName : componentNames) {
 
         TComponentType componentType;
@@ -51,7 +51,7 @@ void TEntityViewer::Init()
         std::transform(componentType.lowCaseComponentName.begin(), componentType.lowCaseComponentName.end(),
             componentType.lowCaseComponentName.begin(), [](unsigned char c) { return std::tolower(c); });
 
-        Project()->mScenePartAggregator->mComponents->mTypeInfo->ConvertNameToType(fullComponentName, componentType.rtti);
+        Project()->mScenePartAggregator->mComponents->mRtti->ConvertNameToType(fullComponentName, componentType.rtti);
 
         mComponentTypes.insert({ fullComponentName, componentType });
     }
@@ -322,7 +322,7 @@ void TEntityViewer::UpdatelModel()
             for (auto& cid : componentIndexes) {
 
                 std::string fullComponentName;
-                Project()->mScenePartAggregator->mComponents->mTypeInfo->ConvertTypeToName(cid, fullComponentName);
+                Project()->mScenePartAggregator->mComponents->mRtti->ConvertTypeToName(cid, fullComponentName);
 
                 std::string ns;
                 std::string componentName = fullComponentName;

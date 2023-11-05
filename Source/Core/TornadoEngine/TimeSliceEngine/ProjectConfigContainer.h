@@ -14,7 +14,6 @@ See for more information LICENSE.md.
 #include "ILoaderDLL.h"
 
 #include "ProjectConfig.h"
-#include "ScenePartReflectionAggregator.h"
 #include "DeveloperTool_DLL.h"
 #include "ConveyorConfig.h"
 #include "FrameworkResources.h"
@@ -25,6 +24,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
+    class TScenePartReflectionAggregator;
     class DllExport TProjectConfigContainer
     {
     public:

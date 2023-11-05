@@ -34,9 +34,9 @@ namespace nsTornadoEngine
         mParentGuidComponentRtti = globalTypeIdentifier->Type<nsCommonWrapper::TParentGuidComponent>();
         mSceneRootComponentRtti = globalTypeIdentifier->Type<nsCommonWrapper::TSceneRootComponent>();
 
-        componentReflection->mTypeInfo->ConvertTypeToName(mGuidComponentRtti, mGuidComponentTypeName);
-        componentReflection->mTypeInfo->ConvertTypeToName(mParentGuidComponentRtti, mParentGuidComponentTypeName);
-        componentReflection->mTypeInfo->ConvertTypeToName(mSceneRootComponentRtti, mSceneRootComponentTypeName);
+        componentReflection->mRtti->ConvertTypeToName(mGuidComponentRtti, mGuidComponentTypeName);
+        componentReflection->mRtti->ConvertTypeToName(mParentGuidComponentRtti, mParentGuidComponentTypeName);
+        componentReflection->mRtti->ConvertTypeToName(mSceneRootComponentRtti, mSceneRootComponentTypeName);
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::Work()
@@ -237,7 +237,7 @@ namespace nsTornadoEngine
         auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
         for (auto& component : mScState->mCurrentEntIt->components) {
             // Add component by rtti
-            auto convertResult = componentReflection->mTypeInfo->ConvertNameToType(component.typeName, component.rtti);
+            auto convertResult = componentReflection->mRtti->ConvertNameToType(component.typeName, component.rtti);
             if (convertResult == false) {
                 continue;
             }

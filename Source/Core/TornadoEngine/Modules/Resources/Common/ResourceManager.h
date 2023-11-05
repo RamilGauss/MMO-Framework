@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include "ResourceContentMap.h"
 #include "TornadoEngineJsonSerializer.h"
 #include "EngineLogger.h"
+#include "Modules.h"
 
 namespace nsTornadoEngine
 {
@@ -48,13 +49,13 @@ namespace nsTornadoEngine
         std::string jsonContent;
         TTextFile::Load(absPath, jsonContent);
         if (jsonContent.length() == 0) {
-            TEngineLogger::Log("%s no such file", absPath.c_str());
+            Modules()->Log()->Log("%s no such file", absPath.c_str());
             return false;
         }
         std::string err;
         auto deserResult = TTornadoEngineJsonSerializer::Deserialize(p, jsonContent, err);
         if (!deserResult) {
-            TEngineLogger::Log("%s %s", absPath.c_str(), err.c_str());
+            Modules()->Log()->Log("%s %s", absPath.c_str(), err.c_str());
         }
         return deserResult;
     }

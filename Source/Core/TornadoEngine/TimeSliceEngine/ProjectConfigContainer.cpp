@@ -11,6 +11,8 @@ See for more information LICENSE.md.
 #include "SingletonManager.h"
 #include "PathOperations.h"
 
+#include "ScenePartReflectionAggregator.h"
+
 static nsTornadoEngine::TProjectConfigContainer* g_ProjectPtr = nullptr;
 
 nsTornadoEngine::TProjectConfigContainer* nsTornadoEngine::Project()

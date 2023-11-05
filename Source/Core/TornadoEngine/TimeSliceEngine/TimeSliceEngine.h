@@ -18,6 +18,7 @@ See for more information LICENSE.md.
 #include "StopAccessor.h"
 #include "CallbackPool.h"
 #include "ModuleType.h"
+#include "ProjectConfigContainer.h"
 
 namespace nsTornadoEngine
 {
@@ -32,7 +33,7 @@ namespace nsTornadoEngine
         
         std::list<ModuleType> mModuleTypes;
 
-        TProjectConfigContainer mProjectConfigContainer
+        TProjectConfigContainer mProjectConfigContainer;
 
     public:
         TTimeSliceEngine();

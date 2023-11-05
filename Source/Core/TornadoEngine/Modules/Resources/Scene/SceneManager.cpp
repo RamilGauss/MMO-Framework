@@ -83,7 +83,7 @@ namespace nsTornadoEngine
         // Convert to abs path
         auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
         if (fit == mResourceContentMap.guidPathMap.end()) {
-            nsTornadoEngine::TEngineLogger::Log("Guid \"%s\" not exist", instantiateSceneParams.guid.c_str());
+            nsTornadoEngine::Modules()->Log()->Log("Guid \"%s\" not exist", instantiateSceneParams.guid.c_str());
             return "Not found";
         }
 

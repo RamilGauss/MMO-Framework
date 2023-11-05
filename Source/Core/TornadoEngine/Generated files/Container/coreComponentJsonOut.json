@@ -71,6 +71,8 @@
         "nsLogicWrapper::TSceneReferenceComponent",
         "nsLogicWrapper::TSystemComponent",
         "nsLogicWrapper::TTargetHandlerComponent",
+        "nsLogicWrapper::TTargetHandlerComponent::Filter",
+        "nsLogicWrapper::TTargetHandlerComponent::From",
         "nsMathTools::TMatrix16"
     ]
 }
