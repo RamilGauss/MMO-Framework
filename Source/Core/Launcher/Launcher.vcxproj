@@ -122,7 +122,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\;$(SolutionDir)/Source/Base/include;$(SolutionDir)/Source/Core/TornadoEngine/TimeSliceEngine;$(SolutionDir)/Source/Core/TornadoEngine/ReflectionAggregators;$(SolutionDir)/Source/Core/TornadoEngine/Share;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\;$(SolutionDir)/Source/Base/include;$(SolutionDir)/Source/Core/TornadoEngine/TimeSliceEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

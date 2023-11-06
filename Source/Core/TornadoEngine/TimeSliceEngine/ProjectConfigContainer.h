@@ -8,23 +8,28 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
+#include <functional>
 
 #include <fmt/core.h>
 
 #include "ILoaderDLL.h"
+#include "Logger.h"
 
-#include "ProjectConfig.h"
 #include "DeveloperTool_DLL.h"
+#include "ProjectConfig.h"
 #include "ConveyorConfig.h"
+
 #include "FrameworkResources.h"
 
-#include "ResourceContentMap.h"
-
-#include "Logger.h"
+namespace nsECSFramework
+{
+    class TEntityManager;
+}
 
 namespace nsTornadoEngine
 {
-    class TScenePartReflectionAggregator;
+    struct TScenePartReflectionAggregator;
+
     class DllExport TProjectConfigContainer
     {
     public:

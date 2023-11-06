@@ -1,5 +1,5 @@
 {
-    "baseHandlerTypeNames": [ "nsTornadoEngine::IGlobalHandler", "nsTornadoEngine::ITargetHandler" ],
+    "baseHandlerTypeNames": [ "nsTornadoEngine::IHandler" ],
 
     "absCorePath": "c:/MMOFramework/Source/Core",
     "relCoreConfigPath": "./TornadoEngine/Configs/coreContainerConfig.json",
@@ -14,7 +14,7 @@
 
         "componentConfig": {
             "includeListFileName": "ComponentIncludeList",
-            "inheritanceFilter": "nsECSFramework::IComponent",
+            "inheritances": "nsECSFramework::IComponent",
             "rtti": {
                 "fileName": "ComponentRtti",
                 "typeName": "TComponentRtti"
@@ -137,14 +137,14 @@
                 "typeName": "TComponentReflectionAggregator"
             },
 
-            "typeInfoImpl": {
+            "rttiImpl": {
                 "impl": {
-                    "fileName": "ComponentTypeInfoImpl",
-                    "typeName": "TComponentTypeInfoImpl"
+                    "fileName": "ComponentRttiImpl",
+                    "typeName": "TComponentRttiImpl"
                 },
                 "parent": {
-                    "fileName": "ITypeInformation",
-                    "typeName": "ITypeInformation"
+                    "fileName": "IRunTimeTypeInformation",
+                    "typeName": "IRunTimeTypeInformation"
                 }
             },
             "jsonImpl": {
@@ -228,6 +228,16 @@
                     "typeName": "ITypeInformation"
                 }
             },
+            "rttiImpl": {
+                "impl": {
+                    "fileName": "HandlerRttiImpl",
+                    "typeName": "THandlerRttiImpl"
+                },
+                "parent": {
+                    "fileName": "IRunTimeTypeInformation",
+                    "typeName": "IRunTimeTypeInformation"
+                }
+            },
             "typeFactoryImpl": {
                 "impl": {
                     "fileName": "HandlerTypeFactoryImpl",
@@ -249,14 +259,14 @@
                 "typeName": "TSystemReflectionAggregator"
             },
 
-            "typeInfoImpl": {
+            "rttiImpl": {
                 "impl": {
-                    "fileName": "SystemTypeInformationImpl",
-                    "typeName": "TSystemTypeInformationImpl"
+                    "fileName": "SystemRttiImpl",
+                    "typeName": "TSystemRttiImpl"
                 },
                 "parent": {
-                    "fileName": "ITypeInformation",
-                    "typeName": "ITypeInformation"
+                    "fileName": "IRunTimeTypeInformation",
+                    "typeName": "IRunTimeTypeInformation"
                 }
             },
             "typeFactoryImpl": {
@@ -290,14 +300,14 @@
                 "typeName": "TImGuiWidgetsReflectionAggregator"
             },
 
-            "typeInfoImpl": {
+            "rttiImpl": {
                 "impl": {
-                    "fileName": "ImGuiWidgetsTypeInfoImpl",
-                    "typeName": "TImGuiWidgetsTypeInfoImpl"
+                    "fileName": "ImGuiWidgetsRttiImpl",
+                    "typeName": "TImGuiWidgetsRttiImpl"
                 },
                 "parent": {
-                    "fileName": "ITypeInformation",
-                    "typeName": "ITypeInformation"
+                    "fileName": "IRunTimeTypeInformation",
+                    "typeName": "IRunTimeTypeInformation"
                 }
             },
             "dynamicCasterImpl": {

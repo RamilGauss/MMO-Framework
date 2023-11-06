@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_05 17:20:05.280
+// File has been generated at 2023_11_06 15:14:03.892
 	
 #pragma once
 
@@ -217,8 +217,8 @@ namespace nsTornadoEngine
         static std::string _SerializeEnum(nsGuiWrapper::TVerticalAlignComponent::Type* p);
         static void _DeserializeEnum(std::string& str, nsGuiWrapper::TVerticalAlignComponent::Type* p);
         
-        static void _Serialize(nsLogicWrapper::TGlobalHandlerComponent* p, Jobj& obj);
-        static void _Deserialize(nsLogicWrapper::TGlobalHandlerComponent* p, const Jobj& obj);
+        static void _Serialize(nsLogicWrapper::THandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsLogicWrapper::THandlerComponent* p, const Jobj& obj);
         
         static void _Serialize(nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* p, const Jobj& obj);
@@ -241,14 +241,8 @@ namespace nsTornadoEngine
         static void _Serialize(nsLogicWrapper::TSystemComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TSystemComponent* p, const Jobj& obj);
         
-        static void _Serialize(nsLogicWrapper::TTargetHandlerComponent* p, Jobj& obj);
-        static void _Deserialize(nsLogicWrapper::TTargetHandlerComponent* p, const Jobj& obj);
-        
-        static std::string _SerializeEnum(nsLogicWrapper::TTargetHandlerComponent::Filter* p);
-        static void _DeserializeEnum(std::string& str, nsLogicWrapper::TTargetHandlerComponent::Filter* p);
-        
-        static std::string _SerializeEnum(nsLogicWrapper::TTargetHandlerComponent::From* p);
-        static void _DeserializeEnum(std::string& str, nsLogicWrapper::TTargetHandlerComponent::From* p);
+        static std::string _SerializeEnum(nsLogicWrapper::THandlerComponent::Filter* p);
+        static void _DeserializeEnum(std::string& str, nsLogicWrapper::THandlerComponent::Filter* p);
         
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);

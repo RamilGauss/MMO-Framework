@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
+#include <list>
 #include <set>
 
 #include "TypeDef.h"

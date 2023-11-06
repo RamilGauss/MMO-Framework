@@ -30,6 +30,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler
             { 0, "#include \"{{ IMPL_FILE_NAME }}.h\"" },
             { 0, "" },
             { 0, "#include \"{{ TYPE_FACTORY_FILE_NAME }}.h\"" },
+            { 0, "#include \"{{ TYPE_INFO_FILE_NAME }}.h\"" },
             { 0, "#include \"{{ RTTI_FILE_NAME }}.h\"" },
             { 0, "" },
             { 0, "using namespace {{ PROJECT_NAMESPACE }};" },

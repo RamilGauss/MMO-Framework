@@ -6,13 +6,13 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_10_29 11:17:15.671
+// File has been generated at 2023_11_06 17:11:52.315
 	
 #include "ComponentReflectionAggregatorImpl.h"
 
 #include "ComponentJsonSerializerImpl.h"
 #include "ComponentEntityManagerExtensionImpl.h"
-#include "ComponentTypeInfoImpl.h"
+#include "ComponentRttiImpl.h"
 #include "ComponentDynamicCasterImpl.h"
 #include "ComponentTypeFactoryImpl.h"
 
@@ -22,7 +22,7 @@ TComponentReflectionAggregatorImpl::TComponentReflectionAggregatorImpl()
 {
     mJson = new TComponentJsonSerializerImpl();
     mEntMng = new TComponentEntityManagerExtensionImpl();
-    mTypeInfo = new TComponentTypeInfoImpl();
+    mRtti = new TComponentRttiImpl();
     mDynamicCaster = new TComponentDynamicCasterImpl();
     mTypeFactory = new TComponentTypeFactoryImpl();
 }
@@ -31,7 +31,7 @@ TComponentReflectionAggregatorImpl::~TComponentReflectionAggregatorImpl()
 {
     delete mJson;
     delete mEntMng;
-    delete mTypeInfo;
+    delete mRtti;
     delete mDynamicCaster;
     delete mTypeFactory;
 }

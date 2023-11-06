@@ -24,9 +24,6 @@
     <ClCompile Include="Meta\Generated files\Container\ComponentJson.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Meta\Generated files\Container\ComponentTypeInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Meta\Generated files\Container\HandlerTypeFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
     <ClCompile Include="Meta\Generated files\Aggregator\ComponentReflectionAggregatorImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Meta\Generated files\Aggregator\ComponentTypeInfoImpl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Meta\Generated files\Aggregator\DefMainFunc_DeveloperDLL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,9 +63,6 @@
     <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Meta\Generated files\Aggregator\ScenePartReflectionAggregatorImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,19 +75,34 @@
     <ClCompile Include="Meta\Generated files\Aggregator\SystemTypeFactoryImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Meta\Generated files\Aggregator\SystemTypeInformationImpl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Meta\Generated files\Container\EcsDynamicCaster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Meta\Generated files\Container\EcsTypeInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Meta\Generated files\Container\ComponentTypeFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ComponentRttiImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\HandlerRttiImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\ImGuiWidgetsRttiImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Aggregator\SystemRttiImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\ComponentRtti.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\EcsRtti.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Meta\Generated files\Container\HandlerRtti.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -111,9 +117,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Meta\Generated files\Container\ComponentJson.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Meta\Generated files\Container\ComponentTypeInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Meta\Generated files\Container\HandlerIncludeList.h">
@@ -143,9 +146,6 @@
     <ClInclude Include="Meta\Generated files\Aggregator\ComponentReflectionAggregatorImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Meta\Generated files\Aggregator\ComponentTypeInfoImpl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Meta\Generated files\Aggregator\HandlerReflectionAggregatorImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -161,9 +161,6 @@
     <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsReflectionAggregatorImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsTypeInfoImpl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Meta\Generated files\Aggregator\ScenePartReflectionAggregatorImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -176,16 +173,10 @@
     <ClInclude Include="Meta\Generated files\Aggregator\SystemTypeFactoryImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Meta\Generated files\Aggregator\SystemTypeInformationImpl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Meta\Generated files\Container\EcsDynamicCaster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Meta\Generated files\Container\EcsSystemIncludeList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Meta\Generated files\Container\EcsTypeInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Components\ScenePrefabTestComponent.h">
@@ -197,5 +188,32 @@
     <ClInclude Include="Meta\Generated files\Aggregator\ComponentTypeFactoryImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ComponentRttiImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\HandlerRttiImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\ImGuiWidgetsRttiImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Aggregator\SystemRttiImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\ComponentRtti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\EcsRtti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Meta\Generated files\Container\HandlerRtti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Meta\Generated files\Container\projectComponentConfig.json" />
+    <None Include="Meta\Generated files\Container\projectEcsSystemConfig.json" />
+    <None Include="Meta\Generated files\Container\projectHandlerConfig.json" />
+    <None Include="Meta\Generated files\Container\projectSystemConfig.json" />
   </ItemGroup>
 </Project>

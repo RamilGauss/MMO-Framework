@@ -1,8 +1,8 @@
 /*
 Project Handler
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_29 11:16:50.217
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_06 16:43:43.369
 	
 #pragma once
 
@@ -12,25 +12,18 @@ Project Handler
 #include <vector>
 
 #include "TypeDef.h"
+#include "Parser/Sources/TypeInfo.h"
 #include "HandlerIncludeList.h"
 
 namespace nsTornadoEditor
 {
     class DllExport THandlerTypeInfo
     {
-        static std::list<std::string> mTypeNameList;
-        static std::list<int> mRttiList;
-    
-        static std::vector<std::string> mNameVector;
-        static std::unordered_map<std::string, int> mNameRttiMap;
+        static std::vector<std::shared_ptr<nsCppParser::TTypeInfo>> mTypeInoVector;
     
     public:
         static void Init();
     
-        static const std::list<std::string>* GetTypeNameList();
-        static const std::list<int>* GetRttiList();
-    
-        static const std::string* ConvertRttiToName(int rtti);
-        static bool ConvertNameToRtti(const std::string& typeName, int& rtti);
+        static const nsCppParser::TTypeInfo* Get(int rtti);
     };
 }

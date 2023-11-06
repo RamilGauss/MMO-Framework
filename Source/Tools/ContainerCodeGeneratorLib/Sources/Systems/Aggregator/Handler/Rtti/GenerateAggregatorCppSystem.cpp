@@ -87,7 +87,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsRtti
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = projectConfigComponent->value.aggregator.handlerImpl.typeInfoImpl;
+        auto& impl = projectConfigComponent->value.aggregator.handlerImpl.rttiImpl;
 
         TGeneratedFile generatedFile;
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
@@ -106,7 +106,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsRtti
         nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.handlerConfig.typeInfo.fileName;
+        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.handlerConfig.rtti.fileName;
 
         nsBase::TTextGenerator txtGen(lines);
 

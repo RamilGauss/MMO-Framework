@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_05 17:20:05.361
+// File has been generated at 2023_11_06 15:14:03.968
 	
 #pragma once
 
@@ -12,18 +12,25 @@ Core Component
 #include <vector>
 
 #include "TypeDef.h"
-#include "Parser/Sources/TypeInfo.h"
 #include "ComponentIncludeList.h"
 
 namespace nsTornadoEngine
 {
     class DllExport TComponentRtti
     {
-        static std::vector<std::shared_ptr<nsCppParser::TTypeInfo>> mTypeInoVector;
+        static std::list<std::string> mTypeNameList;
+        static std::list<int> mRttiList;
+    
+        static std::vector<std::string> mNameVector;
+        static std::unordered_map<std::string, int> mNameRttiMap;
     
     public:
         static void Init();
     
-        static const nsCppParser::TTypeInfo* Get(int rtti);
+        static const std::list<std::string>* GetTypeNameList();
+        static const std::list<int>* GetRttiList();
+    
+        static const std::string* ConvertRttiToName(int rtti);
+        static bool ConvertNameToRtti(const std::string& typeName, int& rtti);
     };
 }

@@ -83,7 +83,7 @@ namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
         rtti.fileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.fileName;
         rtti.nameSpaceName = projectConfigComponent->value.projectConfig.nameSpace;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, rtti });
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
 
         // DynamicCaster
         nsReflectionCodeGenerator::TSerializer dynamicCaster;

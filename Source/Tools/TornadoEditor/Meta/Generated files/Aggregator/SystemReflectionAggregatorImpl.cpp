@@ -6,13 +6,13 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_10_29 11:16:51.887
+// File has been generated at 2023_11_06 16:43:44.858
 	
 #include "SystemReflectionAggregatorImpl.h"
 
 #include "SystemTypeFactoryImpl.h"
 #include "SystemDynamicCasterImpl.h"
-#include "SystemTypeInformationImpl.h"
+#include "SystemRttiImpl.h"
 
 using namespace nsTornadoEditor;
 
@@ -20,13 +20,13 @@ TSystemReflectionAggregatorImpl::TSystemReflectionAggregatorImpl()
 {
     mTypeFactory = new TSystemTypeFactoryImpl();
     mDynamicCaster = new TSystemDynamicCasterImpl();
-    mTypeInfo = new TSystemTypeInformationImpl();
+    mRtti = new TSystemRttiImpl();
 }
 //--------------------------------------------------------------------------------------------------
 TSystemReflectionAggregatorImpl::~TSystemReflectionAggregatorImpl()
 {
     delete mTypeFactory;
     delete mDynamicCaster;
-    delete mTypeInfo;
+    delete mRtti;
 }
 //--------------------------------------------------------------------------------------------------

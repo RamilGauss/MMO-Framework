@@ -495,16 +495,14 @@
     <ClCompile Include="Modules\Resources\Scene\SceneCacheManager.cpp" />
     <ClCompile Include="Modules\Resources\Common\ResourceManager.cpp" />
     <ClCompile Include="TimeSliceEngine\EngineLogger.cpp" />
-    <ClCompile Include="Features\Logic\End\Maker\TargetHandlerMakerSystem.cpp" />
-    <ClCompile Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.cpp" />
-    <ClCompile Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.cpp" />
-    <ClCompile Include="Features\Logic\End\Terminator\TargetHandlerTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Maker\HandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Terminator\HandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Helpers\HandlerLinkHelper.cpp" />
     <ClCompile Include="Generated files\Container\ComponentRtti.cpp" />
     <ClCompile Include="Generated files\Container\ImGuiWidgetsRtti.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Modules\Resources\Common\FrameworkResources.h">
+    <ClInclude Include="TimeSliceEngine\FrameworkResources.h">
       <Filter>Share</Filter>
     </ClInclude>
     <ClInclude Include="Share\MathTools.h">
@@ -675,7 +673,7 @@
     <ClInclude Include="Handlers\Gui\IButtonClickHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\Common\IGlobalHandler.h">
+    <ClInclude Include="Handlers\Common\IHandler.h">
       <Filter>Handlers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\Begin\Maker\GuiMakerFeature.h">
@@ -1129,13 +1127,9 @@
     <ClInclude Include="Components\Logic\SceneInstantiationCompletionHandlerComponent.h" />
     <ClInclude Include="Handlers\Logic\ISceneDestroyCompletionHandler.h" />
     <ClInclude Include="Handlers\Logic\ISceneSaveCompletionHandler.h" />
-    <ClInclude Include="Components\Handler\GlobalHandlerComponent.h" />
-    <ClInclude Include="Components\Handler\TargetHandlerComponent.h" />
-    <ClInclude Include="Features\Logic\End\Maker\TargetHandlerMakerSystem.h" />
-    <ClInclude Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.h" />
-    <ClInclude Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.h" />
-    <ClInclude Include="Features\Logic\End\Terminator\TargetHandlerTerminatorSystem.h" />
-    <ClInclude Include="Handlers\Common\ITargetHandler.h" />
+    <ClInclude Include="Components\Handler\HandlerComponent.h" />
+    <ClInclude Include="Features\Logic\End\Maker\HandlerMakerSystem.h" />
+    <ClInclude Include="Features\Logic\End\Terminator\HandlerTerminatorSystem.h" />
     <ClInclude Include="ReflectionAggregators\IRunTimeTypeInformation.h" />
     <ClInclude Include="Generated files\Container\ComponentRtti.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsRtti.h" />

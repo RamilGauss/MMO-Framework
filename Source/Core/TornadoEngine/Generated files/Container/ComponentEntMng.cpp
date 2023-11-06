@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_05 17:20:05.336
+// File has been generated at 2023_11_06 15:14:03.944
 	
 #include "ComponentEntMng.h"
 
@@ -593,15 +593,15 @@ void TComponentEntMng::Init()
     
     datas.push_back(nsGuiWrapper_TWindowComponent_Data);
     
-    Data nsLogicWrapper_TGlobalHandlerComponent_Data;
-    nsLogicWrapper_TGlobalHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TGlobalHandlerComponent*)p)); };
-    nsLogicWrapper_TGlobalHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TGlobalHandlerComponent>(eid); };
-    nsLogicWrapper_TGlobalHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TGlobalHandlerComponent>(eid); };
-    nsLogicWrapper_TGlobalHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TGlobalHandlerComponent>(eid); };
-    nsLogicWrapper_TGlobalHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TGlobalHandlerComponent>(); };
-    nsLogicWrapper_TGlobalHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TGlobalHandlerComponent>();
+    Data nsLogicWrapper_THandlerComponent_Data;
+    nsLogicWrapper_THandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::THandlerComponent*)p)); };
+    nsLogicWrapper_THandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::THandlerComponent>(eid); };
+    nsLogicWrapper_THandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::THandlerComponent>(eid); };
+    nsLogicWrapper_THandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::THandlerComponent>(eid); };
+    nsLogicWrapper_THandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::THandlerComponent>(); };
+    nsLogicWrapper_THandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::THandlerComponent>();
     
-    datas.push_back(nsLogicWrapper_TGlobalHandlerComponent_Data);
+    datas.push_back(nsLogicWrapper_THandlerComponent_Data);
     
     Data nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data;
     nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*)p)); };
@@ -672,16 +672,6 @@ void TComponentEntMng::Init()
     nsLogicWrapper_TSystemComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
     
     datas.push_back(nsLogicWrapper_TSystemComponent_Data);
-    
-    Data nsLogicWrapper_TTargetHandlerComponent_Data;
-    nsLogicWrapper_TTargetHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TTargetHandlerComponent*)p)); };
-    nsLogicWrapper_TTargetHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TTargetHandlerComponent>(eid); };
-    nsLogicWrapper_TTargetHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TTargetHandlerComponent>(eid); };
-    nsLogicWrapper_TTargetHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TTargetHandlerComponent>(eid); };
-    nsLogicWrapper_TTargetHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TTargetHandlerComponent>(); };
-    nsLogicWrapper_TTargetHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TTargetHandlerComponent>();
-    
-    datas.push_back(nsLogicWrapper_TTargetHandlerComponent_Data);
     
     int max = 0;
     for (auto& d : datas) {

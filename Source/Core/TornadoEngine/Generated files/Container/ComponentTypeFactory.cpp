@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_05 17:20:05.328
+// File has been generated at 2023_11_06 15:14:03.935
 	
 #include "ComponentTypeFactory.h"
 #include "SingletonManager.h"
@@ -423,12 +423,12 @@ void TComponentTypeFactory::Init()
     
     datas.push_back(nsGuiWrapper_TWindowComponent_Data);
     
-    Data nsLogicWrapper_TGlobalHandlerComponent_Data;
-    nsLogicWrapper_TGlobalHandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::TGlobalHandlerComponent(); };
-    nsLogicWrapper_TGlobalHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsLogicWrapper::TGlobalHandlerComponent*)p; };
-    nsLogicWrapper_TGlobalHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TGlobalHandlerComponent>();
+    Data nsLogicWrapper_THandlerComponent_Data;
+    nsLogicWrapper_THandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::THandlerComponent(); };
+    nsLogicWrapper_THandlerComponent_Data.deleteFunc = [](void* p){ delete (nsLogicWrapper::THandlerComponent*)p; };
+    nsLogicWrapper_THandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::THandlerComponent>();
     
-    datas.push_back(nsLogicWrapper_TGlobalHandlerComponent_Data);
+    datas.push_back(nsLogicWrapper_THandlerComponent_Data);
     
     Data nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data;
     nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent(); };
@@ -478,13 +478,6 @@ void TComponentTypeFactory::Init()
     nsLogicWrapper_TSystemComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
     
     datas.push_back(nsLogicWrapper_TSystemComponent_Data);
-    
-    Data nsLogicWrapper_TTargetHandlerComponent_Data;
-    nsLogicWrapper_TTargetHandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::TTargetHandlerComponent(); };
-    nsLogicWrapper_TTargetHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsLogicWrapper::TTargetHandlerComponent*)p; };
-    nsLogicWrapper_TTargetHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TTargetHandlerComponent>();
-    
-    datas.push_back(nsLogicWrapper_TTargetHandlerComponent_Data);
     
     int max = 0;
     for (auto& d : datas) {

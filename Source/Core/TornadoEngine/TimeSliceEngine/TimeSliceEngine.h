@@ -7,18 +7,19 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
 
 #include <list>
 #include <memory>
 #include <string>
 
-#include "ProjectConfig.h"
-#include "CallBackRegistrator.h"
-#include "StopAccessor.h"
+#include "TypeDef.h"
 #include "CallbackPool.h"
-#include "ModuleType.h"
+
+#include "ProjectConfig.h"
 #include "ProjectConfigContainer.h"
+
+#include "StopAccessor.h"
+#include "ModuleType.h"
 
 namespace nsTornadoEngine
 {

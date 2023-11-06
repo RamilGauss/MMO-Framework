@@ -23,7 +23,8 @@ See for more information LICENSE.md.
 #include "SceneOriginalGuidComponent.h"
 #include "HandlerCallCollector.h"
 
-#include "TargetHandlerComponent.h"
+#include "HandlerComponent.h"
+#include "ScenePartReflectionAggregator.h"
 
 namespace nsGraphicWrapper
 {

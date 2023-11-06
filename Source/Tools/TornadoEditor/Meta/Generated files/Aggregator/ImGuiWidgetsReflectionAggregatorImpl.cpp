@@ -6,24 +6,24 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_10_29 11:16:51.887
+// File has been generated at 2023_11_06 16:43:44.858
 	
 #include "ImGuiWidgetsReflectionAggregatorImpl.h"
 
 #include "ImGuiWidgetsDynamicCasterImpl.h"
-#include "ImGuiWidgetsTypeInfoImpl.h"
+#include "ImGuiWidgetsRttiImpl.h"
 
 using namespace nsTornadoEditor;
 
 TImGuiWidgetsReflectionAggregatorImpl::TImGuiWidgetsReflectionAggregatorImpl()
 {
-    mTypeInfo = new TImGuiWidgetsTypeInfoImpl();
+    mRtti = new TImGuiWidgetsRttiImpl();
     mDynamicCaster = new TImGuiWidgetsDynamicCasterImpl();
 }
 //--------------------------------------------------------------------------------------------------
 TImGuiWidgetsReflectionAggregatorImpl::~TImGuiWidgetsReflectionAggregatorImpl()
 {
-    delete mTypeInfo;
+    delete mRtti;
     delete mDynamicCaster;
 }
 //--------------------------------------------------------------------------------------------------

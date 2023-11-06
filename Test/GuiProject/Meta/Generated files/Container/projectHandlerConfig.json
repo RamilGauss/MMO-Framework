@@ -14,7 +14,44 @@
             ".hxx"
         ],
         "attribute": "",
-        "inheritances": [],
+        "inheritances": [
+            [
+                "nsGuiWrapper::IButtonClickHandler"
+            ],
+            [
+                "nsGuiWrapper::IDialogCloseEventHandler"
+            ],
+            [
+                "nsGuiWrapper::IFrameKeyHandler"
+            ],
+            [
+                "nsGuiWrapper::IFrameMouseClickHandler"
+            ],
+            [
+                "nsGuiWrapper::IFrameMouseMoveHandler"
+            ],
+            [
+                "nsGuiWrapper::IFrameMouseWheelHandler"
+            ],
+            [
+                "nsGuiWrapper::IMenuNodeClickHandler"
+            ],
+            [
+                "nsGuiWrapper::IWindowCloseEventHandler"
+            ],
+            [
+                "nsLogicWrapper::IObjectInstantiationCompletionHandler"
+            ],
+            [
+                "nsLogicWrapper::ISceneDestroyCompletionHandler"
+            ],
+            [
+                "nsLogicWrapper::ISceneInstantiationCompletionHandler"
+            ],
+            [
+                "nsLogicWrapper::ISceneSaveCompletionHandler"
+            ]
+        ],
         "memberIgnore": "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {
@@ -23,6 +60,14 @@
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,
         "implementations": {
+            "RunTimeTypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "THandlerRtti",
+                "fileName": "HandlerRtti",
+                "externalSources": null,
+                "keyValueMap": {}
+            },
             "TypeFactoryGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEditor",

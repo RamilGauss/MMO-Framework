@@ -68,6 +68,20 @@
                 },
                 "keyValueMap": {}
             },
+            "RunTimeTypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "TComponentRtti",
+                "fileName": "ComponentRtti",
+                "externalSources": {
+                    "inFileList": [
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentRttiOut.json",
+                        "./coreComponentTypeFactoryOut.json"
+                    ],
+                    "outFile": ""
+                },
+                "keyValueMap": {}
+            },
             "TypeFactoryGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEditor",
@@ -75,20 +89,6 @@
                 "fileName": "ComponentTypeFactory",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": ""
-                },
-                "keyValueMap": {}
-            },
-            "TypeInformationGenerator": {
-                "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
-                "className": "TComponentTypeInfo",
-                "fileName": "ComponentTypeInfo",
-                "externalSources": {
-                    "inFileList": [
-                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\Generated files\\Container\\coreComponentTypeInfoOut.json",
-                        "./coreComponentTypeFactoryOut.json"
-                    ],
                     "outFile": ""
                 },
                 "keyValueMap": {}

@@ -12,6 +12,8 @@ See for more information LICENSE.md.
 #include "LogicModule.h"
 #include "Modules.h"
 
+#include "ScenePartReflectionAggregator.h"
+
 using namespace nsLogicWrapper;
 
 void TSystemTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TSystemComponent* pC)

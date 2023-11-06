@@ -60,11 +60,11 @@
                 "externalSources": null,
                 "keyValueMap": {}
             },
-            "TypeInformationGenerator": {
+            "RunTimeTypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEditor",
-                "className": "TEcsTypeInfo",
-                "fileName": "EcsTypeInfo",
+                "className": "TEcsRtti",
+                "fileName": "EcsRtti",
                 "externalSources": null,
                 "keyValueMap": {}
             }

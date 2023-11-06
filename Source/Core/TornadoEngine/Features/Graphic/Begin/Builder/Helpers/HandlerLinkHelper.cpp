@@ -24,12 +24,12 @@ namespace nsGraphicWrapper
 
         std::list<void*> handlers;
 
-        nsLogicWrapper::TTargetHandlerComponent targetHandlerComponent;
+        nsLogicWrapper::THandlerComponent targetHandlerComponent;
 
         targetHandlerComponent.handlerTypeName = handlerTypeName;
         targetHandlerComponent.entityGuid = originalGuid;
 
-        auto handlerEids = entMng->GetByValueCopy<nsLogicWrapper::TTargetHandlerComponent>(targetHandlerComponent);
+        auto handlerEids = entMng->GetByValueCopy<nsLogicWrapper::THandlerComponent>(targetHandlerComponent);
         if (handlerEids.size() == 0) {
             return handlers;
         }
@@ -42,7 +42,7 @@ namespace nsGraphicWrapper
                 continue;
             }
 
-            auto p = entMng->ViewComponent<nsLogicWrapper::TTargetHandlerComponent>(handlerEid)->handler;
+            auto p = entMng->ViewComponent<nsLogicWrapper::THandlerComponent>(handlerEid)->handler;
             handlers.push_back(p);
         }
 

@@ -17,12 +17,13 @@ See for more information LICENSE.md.
 #include <fmt/core.h>
 
 #include "BL_Debug.h"
-#include "TimeSliceEngine.h"
 #include "ShareMisc.h"
 #include "ConverterLocale.h"
 #include "ContainerTypes.h"
 #include "FileOperation.h"
 #include "PathOperations.h"
+
+#include "TimeSliceEngine.h"
 #include "ProjectConfigurator.h"
 
 

@@ -16,6 +16,7 @@ See for more information LICENSE.md.
 #include "TextFile.h"
 #include "ProjectConfigContainer.h"
 #include "UniverseGuidComponent.h"
+#include "ScenePartReflectionAggregator.h"
 
 namespace nsTornadoEngine
 {

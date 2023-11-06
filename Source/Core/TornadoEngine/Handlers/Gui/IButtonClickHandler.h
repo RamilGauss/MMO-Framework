@@ -7,14 +7,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ITargetHandler.h"
+#include "IHandler.h"
 
 #include <ECS/include/Config.h>
 #include "ButtonComponent.h"
 
 namespace nsGuiWrapper
 {
-    class DllExport IButtonClickHandler : public nsTornadoEngine::ITargetHandler
+    class DllExport IButtonClickHandler : public nsTornadoEngine::IHandler
     {
     public:
         virtual void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TButtonComponent* pC) = 0;

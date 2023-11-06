@@ -22,6 +22,8 @@ See for more information LICENSE.md.
 #include "Archetype.h"
 #include "RelativeProperties.h"
 
+#include "ScenePartReflectionAggregator.h"
+
 namespace nsTornadoEngine
 {
     class DllExport TPropertyManager

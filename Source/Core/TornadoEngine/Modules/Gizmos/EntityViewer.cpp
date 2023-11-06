@@ -7,16 +7,18 @@ See for more information LICENSE.md.
 
 #include "EntityViewer.h"
 
-#include "ProjectConfigContainer.h"
 
 #include "SingletonManager.h"
 #include "ECS/include/EntityManagerMaster.h"
 #include "ECS/include/EntityManager.h"
 
+#include "GraphicEngine/imgui/imgui_internal.h"
+
 #include "GuidComponent.h"
 #include "NameComponent.h"
 
-#include "GraphicEngine/imgui/imgui_internal.h"
+#include "ProjectConfigContainer.h"
+#include "ScenePartReflectionAggregator.h"
 
 using namespace nsTornadoEngine;
 

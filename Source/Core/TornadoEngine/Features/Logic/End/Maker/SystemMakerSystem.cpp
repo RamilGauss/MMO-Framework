@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include "Modules.h"
 #include "Logger.h"
 #include "EngineLogger.h"
+#include "ScenePartReflectionAggregator.h"
 
 using namespace nsLogicWrapper;
 

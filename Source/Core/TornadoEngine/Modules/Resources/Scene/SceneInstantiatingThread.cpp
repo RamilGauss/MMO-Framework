@@ -19,6 +19,7 @@ See for more information LICENSE.md.
 #include "GuidComponent.h"
 #include "ParentGuidComponent.h"
 #include "SceneRootComponent.h"
+#include "ScenePartReflectionAggregator.h"
 
 namespace nsTornadoEngine
 {

@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_10_29 11:17:15.671
+// File has been generated at 2023_11_06 17:11:52.315
 	
 #include "HandlerTypeInformationImpl.h"
 
@@ -16,11 +16,7 @@ using namespace nsTornadoEditor;
 
 THandlerTypeInformationImpl::THandlerTypeInformationImpl()
 {
-    auto typeNameList = THandlerTypeInfo::GetTypeNameList();
-    mTypeNameList.insert(mTypeNameList.end(), typeNameList->begin(), typeNameList->end());
-    
-    auto rttiList = THandlerTypeInfo::GetRttiList();
-    mRttiList.insert(mRttiList.end(), rttiList->begin(), rttiList->end());
+
 }
 //--------------------------------------------------------------------------------------------------
 THandlerTypeInformationImpl::~THandlerTypeInformationImpl()
@@ -33,28 +29,8 @@ void THandlerTypeInformationImpl::Init()
     THandlerTypeInfo::Init();
 }
 //--------------------------------------------------------------------------------------------------
-const std::list<std::string>* THandlerTypeInformationImpl::GetTypeNameList()
+const nsCppParser::TTypeInfo* THandlerTypeInformationImpl::Get(int rtti)
 {
-    return &mTypeNameList;
-}
-//--------------------------------------------------------------------------------------------------
-const std::list<int>* THandlerTypeInformationImpl::GetRunTimeTypeIndexList()
-{
-    return &mRttiList;
-}
-//--------------------------------------------------------------------------------------------------
-bool THandlerTypeInformationImpl::ConvertTypeToName(int rtti, std::string & typeName)
-{
-    auto pTypeName = THandlerTypeInfo::ConvertRttiToName(rtti);
-    if (pTypeName != nullptr) {
-        typeName = *pTypeName;
-        return true;
-    }
-    return false;
-}
-//--------------------------------------------------------------------------------------------------
-bool THandlerTypeInformationImpl::ConvertNameToType(const std::string & typeName, int& rtti)
-{
-    return THandlerTypeInfo::ConvertNameToRtti(typeName, rtti);;
+    return THandlerTypeInfo::Get(rtti);
 }
 //--------------------------------------------------------------------------------------------------

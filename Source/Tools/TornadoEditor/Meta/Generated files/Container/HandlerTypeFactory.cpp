@@ -1,8 +1,8 @@
 /*
 Project Handler
 */
-// ReflectionCodeGenerator version 2.4.2, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2023_10_29 11:16:50.213
+// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2023_11_06 16:43:43.365
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -24,34 +24,6 @@ void THandlerTypeFactory::Init()
     
     std::list<Data> datas;
     
-    Data nsTornadoEditor_TAbsoluteFilePathComponent_Data;
-    nsTornadoEditor_TAbsoluteFilePathComponent_Data.newFunc = [](){ return new nsTornadoEditor::TAbsoluteFilePathComponent(); };
-    nsTornadoEditor_TAbsoluteFilePathComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TAbsoluteFilePathComponent*)p; };
-    nsTornadoEditor_TAbsoluteFilePathComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TAbsoluteFilePathComponent>();
-    
-    datas.push_back(nsTornadoEditor_TAbsoluteFilePathComponent_Data);
-    
-    Data nsTornadoEditor_TAssetAbsoluteFilePathComponent_Data;
-    nsTornadoEditor_TAssetAbsoluteFilePathComponent_Data.newFunc = [](){ return new nsTornadoEditor::TAssetAbsoluteFilePathComponent(); };
-    nsTornadoEditor_TAssetAbsoluteFilePathComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TAssetAbsoluteFilePathComponent*)p; };
-    nsTornadoEditor_TAssetAbsoluteFilePathComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TAssetAbsoluteFilePathComponent>();
-    
-    datas.push_back(nsTornadoEditor_TAssetAbsoluteFilePathComponent_Data);
-    
-    Data nsTornadoEditor_TBootstrapperFeature_Data;
-    nsTornadoEditor_TBootstrapperFeature_Data.newFunc = [](){ return new nsTornadoEditor::TBootstrapperFeature(); };
-    nsTornadoEditor_TBootstrapperFeature_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TBootstrapperFeature*)p; };
-    nsTornadoEditor_TBootstrapperFeature_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TBootstrapperFeature>();
-    
-    datas.push_back(nsTornadoEditor_TBootstrapperFeature_Data);
-    
-    Data nsTornadoEditor_TBootstrapperSystem_Data;
-    nsTornadoEditor_TBootstrapperSystem_Data.newFunc = [](){ return new nsTornadoEditor::TBootstrapperSystem(); };
-    nsTornadoEditor_TBootstrapperSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TBootstrapperSystem*)p; };
-    nsTornadoEditor_TBootstrapperSystem_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TBootstrapperSystem>();
-    
-    datas.push_back(nsTornadoEditor_TBootstrapperSystem_Data);
-    
     Data nsTornadoEditor_TCurrentPathToInputTextHandler_Data;
     nsTornadoEditor_TCurrentPathToInputTextHandler_Data.newFunc = [](){ return new nsTornadoEditor::TCurrentPathToInputTextHandler(); };
     nsTornadoEditor_TCurrentPathToInputTextHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TCurrentPathToInputTextHandler*)p; };
@@ -65,111 +37,6 @@ void THandlerTypeFactory::Init()
     nsTornadoEditor_TDialogButtonClickHandler_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TDialogButtonClickHandler>();
     
     datas.push_back(nsTornadoEditor_TDialogButtonClickHandler_Data);
-    
-    Data nsTornadoEditor_TEditorInfoTagComponent_Data;
-    nsTornadoEditor_TEditorInfoTagComponent_Data.newFunc = [](){ return new nsTornadoEditor::TEditorInfoTagComponent(); };
-    nsTornadoEditor_TEditorInfoTagComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TEditorInfoTagComponent*)p; };
-    nsTornadoEditor_TEditorInfoTagComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TEditorInfoTagComponent>();
-    
-    datas.push_back(nsTornadoEditor_TEditorInfoTagComponent_Data);
-    
-    Data nsTornadoEditor_TFileHierarchyWindowInitSystem_Data;
-    nsTornadoEditor_TFileHierarchyWindowInitSystem_Data.newFunc = [](){ return new nsTornadoEditor::TFileHierarchyWindowInitSystem(); };
-    nsTornadoEditor_TFileHierarchyWindowInitSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TFileHierarchyWindowInitSystem*)p; };
-    nsTornadoEditor_TFileHierarchyWindowInitSystem_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowInitSystem>();
-    
-    datas.push_back(nsTornadoEditor_TFileHierarchyWindowInitSystem_Data);
-    
-    Data nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data;
-    nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data.newFunc = [](){ return new nsTornadoEditor::TFileHierarchyWindowRefreshSystem(); };
-    nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TFileHierarchyWindowRefreshSystem*)p; };
-    nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowRefreshSystem>();
-    
-    datas.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshSystem_Data);
-    
-    Data nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_Data;
-    nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_Data.newFunc = [](){ return new nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent(); };
-    nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent*)p; };
-    nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowRefreshTagComponent>();
-    
-    datas.push_back(nsTornadoEditor_TFileHierarchyWindowRefreshTagComponent_Data);
-    
-    Data nsTornadoEditor_TFileHierarchyWindowTagComponent_Data;
-    nsTornadoEditor_TFileHierarchyWindowTagComponent_Data.newFunc = [](){ return new nsTornadoEditor::TFileHierarchyWindowTagComponent(); };
-    nsTornadoEditor_TFileHierarchyWindowTagComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TFileHierarchyWindowTagComponent*)p; };
-    nsTornadoEditor_TFileHierarchyWindowTagComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TFileHierarchyWindowTagComponent>();
-    
-    datas.push_back(nsTornadoEditor_TFileHierarchyWindowTagComponent_Data);
-    
-    Data nsTornadoEditor_TFilePathNodeComponent_Data;
-    nsTornadoEditor_TFilePathNodeComponent_Data.newFunc = [](){ return new nsTornadoEditor::TFilePathNodeComponent(); };
-    nsTornadoEditor_TFilePathNodeComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TFilePathNodeComponent*)p; };
-    nsTornadoEditor_TFilePathNodeComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TFilePathNodeComponent>();
-    
-    datas.push_back(nsTornadoEditor_TFilePathNodeComponent_Data);
-    
-    Data nsTornadoEditor_TInitWindowsFeature_Data;
-    nsTornadoEditor_TInitWindowsFeature_Data.newFunc = [](){ return new nsTornadoEditor::TInitWindowsFeature(); };
-    nsTornadoEditor_TInitWindowsFeature_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TInitWindowsFeature*)p; };
-    nsTornadoEditor_TInitWindowsFeature_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TInitWindowsFeature>();
-    
-    datas.push_back(nsTornadoEditor_TInitWindowsFeature_Data);
-    
-    Data nsTornadoEditor_TInspectorWindowTagComponent_Data;
-    nsTornadoEditor_TInspectorWindowTagComponent_Data.newFunc = [](){ return new nsTornadoEditor::TInspectorWindowTagComponent(); };
-    nsTornadoEditor_TInspectorWindowTagComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TInspectorWindowTagComponent*)p; };
-    nsTornadoEditor_TInspectorWindowTagComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TInspectorWindowTagComponent>();
-    
-    datas.push_back(nsTornadoEditor_TInspectorWindowTagComponent_Data);
-    
-    Data nsTornadoEditor_TMainFeature_Data;
-    nsTornadoEditor_TMainFeature_Data.newFunc = [](){ return new nsTornadoEditor::TMainFeature(); };
-    nsTornadoEditor_TMainFeature_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TMainFeature*)p; };
-    nsTornadoEditor_TMainFeature_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TMainFeature>();
-    
-    datas.push_back(nsTornadoEditor_TMainFeature_Data);
-    
-    Data nsTornadoEditor_TMainWindowPrefabGuidComponent_Data;
-    nsTornadoEditor_TMainWindowPrefabGuidComponent_Data.newFunc = [](){ return new nsTornadoEditor::TMainWindowPrefabGuidComponent(); };
-    nsTornadoEditor_TMainWindowPrefabGuidComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TMainWindowPrefabGuidComponent*)p; };
-    nsTornadoEditor_TMainWindowPrefabGuidComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TMainWindowPrefabGuidComponent>();
-    
-    datas.push_back(nsTornadoEditor_TMainWindowPrefabGuidComponent_Data);
-    
-    Data nsTornadoEditor_TMainWindowTagComponent_Data;
-    nsTornadoEditor_TMainWindowTagComponent_Data.newFunc = [](){ return new nsTornadoEditor::TMainWindowTagComponent(); };
-    nsTornadoEditor_TMainWindowTagComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TMainWindowTagComponent*)p; };
-    nsTornadoEditor_TMainWindowTagComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TMainWindowTagComponent>();
-    
-    datas.push_back(nsTornadoEditor_TMainWindowTagComponent_Data);
-    
-    Data nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data;
-    nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data.newFunc = [](){ return new nsTornadoEditor::TObjectHierarchyWindowInitSystem(); };
-    nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TObjectHierarchyWindowInitSystem*)p; };
-    nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowInitSystem>();
-    
-    datas.push_back(nsTornadoEditor_TObjectHierarchyWindowInitSystem_Data);
-    
-    Data nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_Data;
-    nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_Data.newFunc = [](){ return new nsTornadoEditor::TObjectHierarchyWindowRefreshSystem(); };
-    nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TObjectHierarchyWindowRefreshSystem*)p; };
-    nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowRefreshSystem>();
-    
-    datas.push_back(nsTornadoEditor_TObjectHierarchyWindowRefreshSystem_Data);
-    
-    Data nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_Data;
-    nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_Data.newFunc = [](){ return new nsTornadoEditor::TObjectHierarchyWindowRefreshTagComponent(); };
-    nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TObjectHierarchyWindowRefreshTagComponent*)p; };
-    nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowRefreshTagComponent>();
-    
-    datas.push_back(nsTornadoEditor_TObjectHierarchyWindowRefreshTagComponent_Data);
-    
-    Data nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data;
-    nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data.newFunc = [](){ return new nsTornadoEditor::TObjectHierarchyWindowTagComponent(); };
-    nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TObjectHierarchyWindowTagComponent*)p; };
-    nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TObjectHierarchyWindowTagComponent>();
-    
-    datas.push_back(nsTornadoEditor_TObjectHierarchyWindowTagComponent_Data);
     
     Data nsTornadoEditor_TOnCloseDialogHandler_Data;
     nsTornadoEditor_TOnCloseDialogHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnCloseDialogHandler(); };
@@ -240,13 +107,6 @@ void THandlerTypeFactory::Init()
     nsTornadoEditor_TOpenProjectOkButtonClickHandler_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TOpenProjectOkButtonClickHandler>();
     
     datas.push_back(nsTornadoEditor_TOpenProjectOkButtonClickHandler_Data);
-    
-    Data nsTornadoEditor_TProjectConfigComponent_Data;
-    nsTornadoEditor_TProjectConfigComponent_Data.newFunc = [](){ return new nsTornadoEditor::TProjectConfigComponent(); };
-    nsTornadoEditor_TProjectConfigComponent_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TProjectConfigComponent*)p; };
-    nsTornadoEditor_TProjectConfigComponent_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TProjectConfigComponent>();
-    
-    datas.push_back(nsTornadoEditor_TProjectConfigComponent_Data);
     
     int max = 0;
     for (auto& d : datas) {

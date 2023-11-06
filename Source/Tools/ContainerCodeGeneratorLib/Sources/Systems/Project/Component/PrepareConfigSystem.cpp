@@ -83,7 +83,7 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::JSON, json });
 
-        // TypeInformation
+        // Rtti
         nsReflectionCodeGenerator::TSerializer rtti;
         rtti.className = projectConfigComponent->value.projectConfig.componentConfig.rtti.typeName;
         rtti.exportDeclaration = projectConfigComponent->value.projectConfig.exportDeclaration;

@@ -60,7 +60,7 @@
         "nsGuiWrapper::TVerticalAlignComponent",
         "nsGuiWrapper::TVisibilityComponent",
         "nsGuiWrapper::TWindowComponent",
-        "nsLogicWrapper::TGlobalHandlerComponent",
+        "nsLogicWrapper::THandlerComponent",
         "nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent",
         "nsLogicWrapper::TPrefabObjectReferenceComponent",
         "nsLogicWrapper::TPrefabReferenceComponent",
@@ -68,7 +68,6 @@
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
         "nsLogicWrapper::TSystemComponent",
-        "nsLogicWrapper::TTargetHandlerComponent",
         "nsTornadoEngine::IPropertyOf"
     ]
 }

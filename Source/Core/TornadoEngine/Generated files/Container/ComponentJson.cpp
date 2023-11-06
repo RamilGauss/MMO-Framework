@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_05 17:20:05.287
+// File has been generated at 2023_11_06 15:14:03.899
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -713,17 +713,17 @@ void TComponentJson::Init()
     
     funcs.push_back(_nsGuiWrapper_TWindowComponentTypeFunc);
     
-    TypeFunc _nsLogicWrapper_TGlobalHandlerComponentTypeFunc;
-    _nsLogicWrapper_TGlobalHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsLogicWrapper::TGlobalHandlerComponent>((nsLogicWrapper::TGlobalHandlerComponent*) p, str);
+    TypeFunc _nsLogicWrapper_THandlerComponentTypeFunc;
+    _nsLogicWrapper_THandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::THandlerComponent>((nsLogicWrapper::THandlerComponent*) p, str);
     };
-    _nsLogicWrapper_TGlobalHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsLogicWrapper::TGlobalHandlerComponent>((nsLogicWrapper::TGlobalHandlerComponent*) p, str, err);
+    _nsLogicWrapper_THandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::THandlerComponent>((nsLogicWrapper::THandlerComponent*) p, str, err);
     };
     
-    _nsLogicWrapper_TGlobalHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TGlobalHandlerComponent>();
+    _nsLogicWrapper_THandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::THandlerComponent>();
     
-    funcs.push_back(_nsLogicWrapper_TGlobalHandlerComponentTypeFunc);
+    funcs.push_back(_nsLogicWrapper_THandlerComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc;
     _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -808,18 +808,6 @@ void TComponentJson::Init()
     _nsLogicWrapper_TSystemComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSystemComponent>();
     
     funcs.push_back(_nsLogicWrapper_TSystemComponentTypeFunc);
-    
-    TypeFunc _nsLogicWrapper_TTargetHandlerComponentTypeFunc;
-    _nsLogicWrapper_TTargetHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsLogicWrapper::TTargetHandlerComponent>((nsLogicWrapper::TTargetHandlerComponent*) p, str);
-    };
-    _nsLogicWrapper_TTargetHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsLogicWrapper::TTargetHandlerComponent>((nsLogicWrapper::TTargetHandlerComponent*) p, str, err);
-    };
-    
-    _nsLogicWrapper_TTargetHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TTargetHandlerComponent>();
-    
-    funcs.push_back(_nsLogicWrapper_TTargetHandlerComponentTypeFunc);
     
     TypeFunc _nsMathTools_TMatrix16TypeFunc;
     _nsMathTools_TMatrix16TypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -1503,13 +1491,20 @@ void TComponentJson::_DeserializeEnum(std::string& str, nsGuiWrapper::TVerticalA
     *p = m[str];
 }
 //---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsLogicWrapper::TGlobalHandlerComponent* p, Jobj& obj)
+void TComponentJson::_Serialize(nsLogicWrapper::THandlerComponent* p, Jobj& obj)
 {
+    auto filter_c0 = _SerializeEnum(&(p->filter));
+    PUM::Push(obj, "filter", filter_c0);
+    PUM::Push(obj, "entityGuid", p->entityGuid);
     PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsLogicWrapper::TGlobalHandlerComponent* p, const Jobj& obj)
+void TComponentJson::_Deserialize(nsLogicWrapper::THandlerComponent* p, const Jobj& obj)
 {
+    std::string filter_c0;
+    POM::PopStr(obj, "filter", filter_c0);
+    _DeserializeEnum(filter_c0, &(p->filter));
+    POM::PopStr(obj, "entityGuid", p->entityGuid);
     POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
@@ -1585,68 +1580,35 @@ void TComponentJson::_Deserialize(nsLogicWrapper::TSystemComponent* p, const Job
     POM::PopStr(obj, "typeName", p->typeName);
 }
 //---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsLogicWrapper::TTargetHandlerComponent* p, Jobj& obj)
-{
-    auto from_c0 = _SerializeEnum(&(p->from));
-    PUM::Push(obj, "from", from_c0);
-    auto filter_c0 = _SerializeEnum(&(p->filter));
-    PUM::Push(obj, "filter", filter_c0);
-    PUM::Push(obj, "entityGuid", p->entityGuid);
-    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsLogicWrapper::TTargetHandlerComponent* p, const Jobj& obj)
-{
-    std::string from_c0;
-    POM::PopStr(obj, "from", from_c0);
-    _DeserializeEnum(from_c0, &(p->from));
-    std::string filter_c0;
-    POM::PopStr(obj, "filter", filter_c0);
-    _DeserializeEnum(filter_c0, &(p->filter));
-    POM::PopStr(obj, "entityGuid", p->entityGuid);
-    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
-}
-//---------------------------------------------------------------------------------------
-std::string TComponentJson::_SerializeEnum(nsLogicWrapper::TTargetHandlerComponent::Filter* p)
+std::string TComponentJson::_SerializeEnum(nsLogicWrapper::THandlerComponent::Filter* p)
 {
     switch (*p) {
-        case nsLogicWrapper::TTargetHandlerComponent::Filter::EVERYWHERE:
+        case nsLogicWrapper::THandlerComponent::Filter::EVERYWHERE:
             return "EVERYWHERE";
-        case nsLogicWrapper::TTargetHandlerComponent::Filter::THIS_SCENE:
+        case nsLogicWrapper::THandlerComponent::Filter::ONLY_CHILDS:
+            return "ONLY_CHILDS";
+        case nsLogicWrapper::THandlerComponent::Filter::SELF:
+            return "SELF";
+        case nsLogicWrapper::THandlerComponent::Filter::SELF_AND_CHILDS:
+            return "SELF_AND_CHILDS";
+        case nsLogicWrapper::THandlerComponent::Filter::THIS_SCENE:
             return "THIS_SCENE";
-        case nsLogicWrapper::TTargetHandlerComponent::Filter::THIS_UNVIVERSE:
+        case nsLogicWrapper::THandlerComponent::Filter::THIS_UNVIVERSE:
             return "THIS_UNVIVERSE";
         default:;
     }
     return "";
 }
 //---------------------------------------------------------------------------------------
-void TComponentJson::_DeserializeEnum(std::string& str, nsLogicWrapper::TTargetHandlerComponent::Filter* p)
+void TComponentJson::_DeserializeEnum(std::string& str, nsLogicWrapper::THandlerComponent::Filter* p)
 {
-    std::map<std::string, nsLogicWrapper::TTargetHandlerComponent::Filter> m;
-    m.insert({"EVERYWHERE", nsLogicWrapper::TTargetHandlerComponent::Filter::EVERYWHERE});
-    m.insert({"THIS_SCENE", nsLogicWrapper::TTargetHandlerComponent::Filter::THIS_SCENE});
-    m.insert({"THIS_UNVIVERSE", nsLogicWrapper::TTargetHandlerComponent::Filter::THIS_UNVIVERSE});
-    *p = m[str];
-}
-//---------------------------------------------------------------------------------------
-std::string TComponentJson::_SerializeEnum(nsLogicWrapper::TTargetHandlerComponent::From* p)
-{
-    switch (*p) {
-        case nsLogicWrapper::TTargetHandlerComponent::From::ALL:
-            return "ALL";
-        case nsLogicWrapper::TTargetHandlerComponent::From::CHILDS:
-            return "CHILDS";
-        default:;
-    }
-    return "";
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_DeserializeEnum(std::string& str, nsLogicWrapper::TTargetHandlerComponent::From* p)
-{
-    std::map<std::string, nsLogicWrapper::TTargetHandlerComponent::From> m;
-    m.insert({"ALL", nsLogicWrapper::TTargetHandlerComponent::From::ALL});
-    m.insert({"CHILDS", nsLogicWrapper::TTargetHandlerComponent::From::CHILDS});
+    std::map<std::string, nsLogicWrapper::THandlerComponent::Filter> m;
+    m.insert({"EVERYWHERE", nsLogicWrapper::THandlerComponent::Filter::EVERYWHERE});
+    m.insert({"ONLY_CHILDS", nsLogicWrapper::THandlerComponent::Filter::ONLY_CHILDS});
+    m.insert({"SELF", nsLogicWrapper::THandlerComponent::Filter::SELF});
+    m.insert({"SELF_AND_CHILDS", nsLogicWrapper::THandlerComponent::Filter::SELF_AND_CHILDS});
+    m.insert({"THIS_SCENE", nsLogicWrapper::THandlerComponent::Filter::THIS_SCENE});
+    m.insert({"THIS_UNVIVERSE", nsLogicWrapper::THandlerComponent::Filter::THIS_UNVIVERSE});
     *p = m[str];
 }
 //---------------------------------------------------------------------------------------

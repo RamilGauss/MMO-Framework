@@ -87,7 +87,7 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
         rtti.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
         rtti.externalSources->outFile = TConstants::CORE_COMPONENT_RTTI_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, rtti });
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
 
         // EcsExtensions
         nsReflectionCodeGenerator::TSerializer entMng;

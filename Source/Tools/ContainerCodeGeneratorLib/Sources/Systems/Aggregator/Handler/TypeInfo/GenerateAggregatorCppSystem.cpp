@@ -52,7 +52,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler::nsTypeInfo
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, "const nsCppParser::TTypeInfo* {{ IMPL_TYPE_NAME }}::Get(int rtti)"},
             {0, "{"},
-            {1, "return {{ CORE_TYPE_INFO_TYPE_NAME }}::Get(rtti);"},
+            {1, "return {{ PROJECT_TYPE_INFO_TYPE_NAME }}::Get(rtti);"},
             {-1,"}"},
             {0, "//--------------------------------------------------------------------------------------------------"},
             {0, ""},

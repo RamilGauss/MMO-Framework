@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2023_10_29 11:16:51.886
+// File has been generated at 2023_11_06 16:43:44.858
 	
 #pragma once
 
@@ -19,15 +19,7 @@ namespace nsTornadoEditor
         THandlerTypeInformationImpl();
         virtual ~THandlerTypeInformationImpl();
         
-        const std::list<std::string>* GetTypeNameList() override;
-        const std::list<int>* GetRunTimeTypeIndexList() override;
-        
         void Init() override;
-        bool ConvertTypeToName(int rtti, std::string& typeName) override;
-        bool ConvertNameToType(const std::string& typeName, int& rtti) override;
-        
-    private:
-        std::list<std::string> mTypeNameList;
-        std::list<int> mRttiList;
+        const nsCppParser::TTypeInfo* Get(int rtti) override;
     };
 }

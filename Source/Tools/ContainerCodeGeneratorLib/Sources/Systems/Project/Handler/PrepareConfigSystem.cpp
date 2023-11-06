@@ -78,6 +78,15 @@ namespace nsContainerCodeGenerator::nsProject::nsHandler
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, typeInfo });
 
+        // rtti
+        nsReflectionCodeGenerator::TSerializer rtti;
+        rtti.className = configComponent->value.projectConfig.handlerConfig.rtti.typeName;
+        rtti.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
+        rtti.fileName = configComponent->value.projectConfig.handlerConfig.rtti.fileName;
+        rtti.nameSpaceName = configComponent->value.projectConfig.nameSpace;
+
+        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
+
         // TypeFactory
         nsReflectionCodeGenerator::TSerializer typeFactory;
         typeFactory.className = configComponent->value.projectConfig.handlerConfig.typeFactory.typeName;

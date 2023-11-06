@@ -9,7 +9,10 @@ See for more information LICENSE.md.
 
 #include "TypeDef.h"
 
-#include "ScenePartReflectionAggregator.h"
+namespace nsTornadoEngine
+{
+    struct TScenePartReflectionAggregator;
+}
 
 #define StrGetScenePartReflectionAggregator  "GetScenePartReflectionAggregator"
 #define StrFreeScenePartReflectionAggregator "FreeScenePartReflectionAggregator"

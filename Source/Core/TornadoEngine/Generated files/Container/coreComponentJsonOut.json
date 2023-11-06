@@ -62,7 +62,8 @@
         "nsGuiWrapper::TVerticalAlignComponent::Type",
         "nsGuiWrapper::TVisibilityComponent",
         "nsGuiWrapper::TWindowComponent",
-        "nsLogicWrapper::TGlobalHandlerComponent",
+        "nsLogicWrapper::THandlerComponent",
+        "nsLogicWrapper::THandlerComponent::Filter",
         "nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent",
         "nsLogicWrapper::TPrefabObjectReferenceComponent",
         "nsLogicWrapper::TPrefabReferenceComponent",
@@ -70,9 +71,6 @@
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
         "nsLogicWrapper::TSystemComponent",
-        "nsLogicWrapper::TTargetHandlerComponent",
-        "nsLogicWrapper::TTargetHandlerComponent::Filter",
-        "nsLogicWrapper::TTargetHandlerComponent::From",
         "nsMathTools::TMatrix16"
     ]
 }

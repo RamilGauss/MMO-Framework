@@ -62,6 +62,17 @@
                 },
                 "keyValueMap": {}
             },
+            "RunTimeTypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEngine",
+                "className": "TComponentRtti",
+                "fileName": "ComponentRtti",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "coreComponentRttiOut.json"
+                },
+                "keyValueMap": {}
+            },
             "TypeFactoryGenerator": {
                 "exportDeclaration": "DllExport",
                 "nameSpaceName": "nsTornadoEngine",
@@ -70,17 +81,6 @@
                 "externalSources": {
                     "inFileList": [],
                     "outFile": "coreComponentTypeFactoryOut.json"
-                },
-                "keyValueMap": {}
-            },
-            "TypeInformationGenerator": {
-                "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEngine",
-                "className": "TComponentRtti",
-                "fileName": "ComponentRtti",
-                "externalSources": {
-                    "inFileList": [],
-                    "outFile": "coreComponentRttiOut.json"
                 },
                 "keyValueMap": {}
             }
