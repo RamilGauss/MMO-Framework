@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <string>
+
 #include "IHandler.h"
 
 #include <ECS/include/Config.h>

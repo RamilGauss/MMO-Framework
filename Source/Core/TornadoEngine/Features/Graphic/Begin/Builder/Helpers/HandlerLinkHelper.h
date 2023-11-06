@@ -31,7 +31,7 @@ namespace nsGraphicWrapper
     class DllExport THandlerLinkHelper
     {
     public:
-        static std::list<void*> FindTargetHandlers(nsECSFramework::TEntityManager* entMng,
+        static std::list<void*> FindHandlers(nsECSFramework::TEntityManager* entMng,
             nsECSFramework::TEntityID eid, const std::string& handlerTypeName);
 
         template<typename GuiType>

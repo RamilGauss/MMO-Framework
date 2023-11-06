@@ -31,5 +31,15 @@ namespace nsLogicWrapper
 
 #pragma IGNORE_ATTRIBUTE
         mutable void* handler = nullptr;
+
+        bool IsLess(const IComponent* pOther) const override
+        {
+            return handlerTypeName < ((THandlerComponent*)pOther)->handlerTypeName;
+        }
+
+        bool IsEqual(const IComponent* pOther) const override
+        {
+            return handlerTypeName == ((THandlerComponent*)pOther)->handlerTypeName;
+        }
     };
 }
