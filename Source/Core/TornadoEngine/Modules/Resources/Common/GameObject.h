@@ -32,6 +32,8 @@ namespace nsTornadoEngine
         [[nodiscard]]
         TGameObject GetParent();
 
+        bool IsParent(const TGameObject& go, bool recursive = true);
+
         void GetChilds(std::list<TGameObject>& gos);
         void GetChilds(nsECSFramework::TEntityList& eids);
 
@@ -61,6 +63,8 @@ namespace nsTornadoEngine
 
         void RemoveChilds();
         void RemoveChild(const TGameObject& child);
+
+        bool operator == (const TGameObject& go);
 
     public:
         void SetEntityManager(nsECSFramework::TEntityManager* entMng);

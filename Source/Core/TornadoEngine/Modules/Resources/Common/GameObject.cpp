@@ -16,22 +16,52 @@ namespace nsTornadoEngine
     //------------------------------------------------------------------------------------------------------------------------------------
     TGameObject::TGameObject(nsECSFramework::TEntityID eid, nsECSFramework::TEntityManager* entMng)
     {
-
+        mEid = eid;
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     nsECSFramework::TEntityID TGameObject::GetEid() const
     {
-        return {};
+        return mEid;
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------
+    bool TGameObject::IsParent(const TGameObject& go, bool recursive)
+    {
+        auto parent = GetParent();
+        while (true) {
+            if (parent.IsEmpty()) {
+                break;
+            }
+            if (parent == go) {
+                return true;
+            }
+            if (recursive == false) {
+                break;
+            }
+
+            parent = parent.GetParent();
+        }
+        return false;
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     bool TGameObject::IsEmpty() const
     {
-        return false;
+        return (mEid == nsEcsFramework::NONE);
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     TGameObject TGameObject::GetParent()
-    {
-        return {};
+    {   
+        auto parentGuid = GetComponent<nsCommonWrapper::TParentGuidComponent>().value;
+
+        if (parentGuid == TGuidContants::NONE) {
+            return {};
+        }
+
+        nsCommonWrapper::TGuidComponent guidComponent;
+        guidComponent.value = parentGuid;
+
+        auto parentEid = mEntMng->GetByUnique(guidComponent);
+
+        return TGameObject(parentEid, mEntMng);
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     void TGameObject::GetChilds(std::list<TGameObject>& gos)
@@ -107,6 +137,12 @@ namespace nsTornadoEngine
     nsECSFramework::TEntityManager* TGameObject::GetEntityManager() const
     {
         return mEntMng;
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------
+    bool TGameObject::operator == (const TGameObject& go)
+    {
+        return ((mEntMng == go.GetEntityManager()) && 
+                (mEid == go.GetEid()));
     }
     //------------------------------------------------------------------------------------------------------------------------------------
 }
