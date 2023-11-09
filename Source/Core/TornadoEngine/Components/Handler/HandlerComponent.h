@@ -42,4 +42,50 @@ namespace nsLogicWrapper
             return handlerTypeName == ((THandlerComponent*)pOther)->handlerTypeName;
         }
     };
+
+    // ????
+    struct DllExport TThisSceneHandlerComponent : nsECSFramework::IComponent
+    {
+        std::string entityGuid = nsTornadoEngine::TGuidConstants::NONE;
+        std::string handlerTypeName;
+
+#pragma IGNORE_ATTRIBUTE
+        mutable void* handler = nullptr;
+
+        bool IsLess(const IComponent* pOther) const override
+        {
+            return handlerTypeName < ((THandlerComponent*)pOther)->handlerTypeName;
+        }
+
+        bool IsEqual(const IComponent* pOther) const override
+        {
+            return handlerTypeName == ((THandlerComponent*)pOther)->handlerTypeName;
+        }
+    };
+
+    struct DllExport TLocalHandlerComponent : nsECSFramework::IComponent
+    {
+        enum class Filter
+        {
+            SELF_AND_CHILDS, ONLY_CHILDS, SELF
+        };
+
+        Filter filter = Filter::SELF_AND_CHILDS;
+
+        std::string entityGuid;
+        std::string handlerTypeName;
+
+#pragma IGNORE_ATTRIBUTE
+        mutable void* handler = nullptr;
+
+        bool IsLess(const IComponent* pOther) const override
+        {
+            return handlerTypeName < ((THandlerComponent*)pOther)->handlerTypeName;
+        }
+
+        bool IsEqual(const IComponent* pOther) const override
+        {
+            return handlerTypeName == ((THandlerComponent*)pOther)->handlerTypeName;
+        }
+    };
 }

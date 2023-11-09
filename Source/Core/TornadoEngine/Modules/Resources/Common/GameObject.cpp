@@ -6,6 +6,9 @@ See for more information LICENSE.md.
 */
 
 #include "GameObject.h"
+#include "GuidConstants.h"
+#include "ParentGuidComponent.h"
+#include "GuidComponent.h"
 
 namespace nsTornadoEngine
 {
@@ -45,14 +48,14 @@ namespace nsTornadoEngine
     //------------------------------------------------------------------------------------------------------------------------------------
     bool TGameObject::IsEmpty() const
     {
-        return (mEid == nsEcsFramework::NONE);
+        return (mEid == nsECSFramework::NONE);
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     TGameObject TGameObject::GetParent()
     {   
         auto parentGuid = GetComponent<nsCommonWrapper::TParentGuidComponent>().value;
 
-        if (parentGuid == TGuidContants::NONE) {
+        if (parentGuid == TGuidConstants::NONE) {
             return {};
         }
 
