@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_06 15:14:03.979
+// File has been generated at 2023_11_12 12:28:55.802
 	
 #pragma once
 
@@ -47,11 +47,10 @@ Core Component
 #include "TreeNodeComponent.h"
 #include "TreeViewComponent.h"
 #include "WindowComponent.h"
-#include "HandlerComponent.h"
-#include "ObjectInstantiationCompletionHandlerComponent.h"
+#include "GlobalHandlerComponent.h"
+#include "LocalHandlerComponent.h"
 #include "PrefabObjectReferenceComponent.h"
 #include "PrefabReferenceComponent.h"
-#include "SceneInstantiationCompletionHandlerComponent.h"
 #include "SceneObjectReferenceComponent.h"
 #include "SceneReferenceComponent.h"
 #include "SystemComponent.h"

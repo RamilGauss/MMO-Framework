@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_06 15:14:03.968
+// File has been generated at 2023_11_12 12:28:55.791
 	
 #include "ComponentRtti.h"
 
@@ -369,17 +369,17 @@ void TComponentRtti::Init()
     mRttiList.push_back(nsGuiWrapper_TWindowComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TWindowComponent_n, nsGuiWrapper_TWindowComponent_i });
     
-    int nsLogicWrapper_THandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::THandlerComponent>();
-    std::string nsLogicWrapper_THandlerComponent_n = "nsLogicWrapper::THandlerComponent";
-    mTypeNameList.push_back(nsLogicWrapper_THandlerComponent_n);
-    mRttiList.push_back(nsLogicWrapper_THandlerComponent_i);
-    mNameRttiMap.insert({ nsLogicWrapper_THandlerComponent_n, nsLogicWrapper_THandlerComponent_i });
+    int nsLogicWrapper_TGlobalHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TGlobalHandlerComponent>();
+    std::string nsLogicWrapper_TGlobalHandlerComponent_n = "nsLogicWrapper::TGlobalHandlerComponent";
+    mTypeNameList.push_back(nsLogicWrapper_TGlobalHandlerComponent_n);
+    mRttiList.push_back(nsLogicWrapper_TGlobalHandlerComponent_i);
+    mNameRttiMap.insert({ nsLogicWrapper_TGlobalHandlerComponent_n, nsLogicWrapper_TGlobalHandlerComponent_i });
     
-    int nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>();
-    std::string nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_n = "nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent";
-    mTypeNameList.push_back(nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_n);
-    mRttiList.push_back(nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_i);
-    mNameRttiMap.insert({ nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_n, nsLogicWrapper_TObjectInstantiationCompletionHandlerComponent_i });
+    int nsLogicWrapper_TLocalHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TLocalHandlerComponent>();
+    std::string nsLogicWrapper_TLocalHandlerComponent_n = "nsLogicWrapper::TLocalHandlerComponent";
+    mTypeNameList.push_back(nsLogicWrapper_TLocalHandlerComponent_n);
+    mRttiList.push_back(nsLogicWrapper_TLocalHandlerComponent_i);
+    mNameRttiMap.insert({ nsLogicWrapper_TLocalHandlerComponent_n, nsLogicWrapper_TLocalHandlerComponent_i });
     
     int nsLogicWrapper_TPrefabObjectReferenceComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabObjectReferenceComponent>();
     std::string nsLogicWrapper_TPrefabObjectReferenceComponent_n = "nsLogicWrapper::TPrefabObjectReferenceComponent";
@@ -392,12 +392,6 @@ void TComponentRtti::Init()
     mTypeNameList.push_back(nsLogicWrapper_TPrefabReferenceComponent_n);
     mRttiList.push_back(nsLogicWrapper_TPrefabReferenceComponent_i);
     mNameRttiMap.insert({ nsLogicWrapper_TPrefabReferenceComponent_n, nsLogicWrapper_TPrefabReferenceComponent_i });
-    
-    int nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
-    std::string nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_n = "nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent";
-    mTypeNameList.push_back(nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_n);
-    mRttiList.push_back(nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_i);
-    mNameRttiMap.insert({ nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_n, nsLogicWrapper_TSceneInstantiationCompletionHandlerComponent_i });
     
     int nsLogicWrapper_TSceneObjectReferenceComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TSceneObjectReferenceComponent>();
     std::string nsLogicWrapper_TSceneObjectReferenceComponent_n = "nsLogicWrapper::TSceneObjectReferenceComponent";

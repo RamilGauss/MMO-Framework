@@ -23,7 +23,6 @@ See for more information LICENSE.md.
 #include "SceneOriginalGuidComponent.h"
 #include "HandlerCallCollector.h"
 
-#include "HandlerComponent.h"
 #include "ScenePartReflectionAggregator.h"
 
 namespace nsGraphicWrapper
@@ -31,7 +30,10 @@ namespace nsGraphicWrapper
     class DllExport THandlerLinkHelper
     {
     public:
-        static std::list<void*> FindHandlers(nsECSFramework::TEntityManager* entMng,
+        static std::list<void*> FindLocalHandlers(nsECSFramework::TEntityManager* entMng,
+            nsECSFramework::TEntityID eid, const std::string& handlerTypeName);
+
+        static std::list<void*> FindGlobalHandlers(nsECSFramework::TEntityManager* entMng,
             nsECSFramework::TEntityID eid, const std::string& handlerTypeName);
 
         template<typename GuiType>
@@ -42,7 +44,7 @@ namespace nsGraphicWrapper
         static void UnlinkGui(nsECSFramework::TEntityManager* entMng,
             nsECSFramework::TEntityID eid, HandlerType* pHandlerComponent);
     };
-
+    //------------------------------------------------------------------------------------------------------
     template<typename GuiType>
     void THandlerLinkHelper::RegisterMouseKey(nsECSFramework::TEntityManager* entMng,
         nsECSFramework::TEntityID eid, GuiType* pGui)
@@ -105,8 +107,7 @@ namespace nsGraphicWrapper
             }
         });*/
     }
-
-
+    //------------------------------------------------------------------------------------------------------
     template<typename HandlerType>
     void THandlerLinkHelper::UnlinkGui(nsECSFramework::TEntityManager* entMng,
         nsECSFramework::TEntityID eid, HandlerType* pHandlerComponent)
@@ -121,4 +122,5 @@ namespace nsGraphicWrapper
         }
         handlerReflection->mTypeFactory->Delete(pHandlerComponent->handler, rtti);
     }
+    //------------------------------------------------------------------------------------------------------
 }

@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    class DllExport IHandler 
+    class DllExport IGlobalHandler
     {
         // Example for use Handle:
         // virtual void Handle(Args ... ) = 0;

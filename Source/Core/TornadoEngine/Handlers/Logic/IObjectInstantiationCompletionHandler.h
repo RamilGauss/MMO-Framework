@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IHandler.h"
+#include "ILocalHandler.h"
 
 #include <ECS/include/Config.h>
 
 namespace nsLogicWrapper
 {
-    class DllExport IObjectInstantiationCompletionHandler : public nsTornadoEngine::IHandler
+    class DllExport IObjectInstantiationCompletionHandler : public nsTornadoEngine::ILocalHandler
     {
     public:
         virtual void Handle(nsECSFramework::TEntityID eid) = 0;

@@ -13,12 +13,12 @@ See for more information LICENSE.md.
 #include "Logger.h"
 #include "EngineLogger.h"
 
-#include "HandlerMakerSystem.h"
+#include "GlobalHandlerMakerSystem.h"
 #include "ScenePartReflectionAggregator.h"
 
 using namespace nsLogicWrapper;
 
-void THandlerMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::THandlerComponent* pC)
+void TGlobalHandlerMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWrapper::TGlobalHandlerComponent* pC)
 {
     auto handlerReflection = nsTornadoEngine::Project()->mScenePartAggregator->mHandlers;
 

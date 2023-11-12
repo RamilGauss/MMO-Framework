@@ -2,7 +2,7 @@
 Project Handler
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_06 16:43:43.375
+// File has been generated at 2023_11_12 12:58:30.686
 	
 #include "HandlerRtti.h"
 
@@ -38,18 +38,6 @@ void THandlerRtti::Init()
     mTypeNameList.push_back(nsTornadoEditor_TDialogButtonClickHandler_n);
     mRttiList.push_back(nsTornadoEditor_TDialogButtonClickHandler_i);
     mNameRttiMap.insert({ nsTornadoEditor_TDialogButtonClickHandler_n, nsTornadoEditor_TDialogButtonClickHandler_i });
-    
-    int nsTornadoEditor_TOnCloseDialogHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseDialogHandler>();
-    std::string nsTornadoEditor_TOnCloseDialogHandler_n = "nsTornadoEditor::TOnCloseDialogHandler";
-    mTypeNameList.push_back(nsTornadoEditor_TOnCloseDialogHandler_n);
-    mRttiList.push_back(nsTornadoEditor_TOnCloseDialogHandler_i);
-    mNameRttiMap.insert({ nsTornadoEditor_TOnCloseDialogHandler_n, nsTornadoEditor_TOnCloseDialogHandler_i });
-    
-    int nsTornadoEditor_TOnCloseWindowHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseWindowHandler>();
-    std::string nsTornadoEditor_TOnCloseWindowHandler_n = "nsTornadoEditor::TOnCloseWindowHandler";
-    mTypeNameList.push_back(nsTornadoEditor_TOnCloseWindowHandler_n);
-    mRttiList.push_back(nsTornadoEditor_TOnCloseWindowHandler_i);
-    mNameRttiMap.insert({ nsTornadoEditor_TOnCloseWindowHandler_n, nsTornadoEditor_TOnCloseWindowHandler_i });
     
     int nsTornadoEditor_TOnExitClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnExitClickHandler>();
     std::string nsTornadoEditor_TOnExitClickHandler_n = "nsTornadoEditor::TOnExitClickHandler";

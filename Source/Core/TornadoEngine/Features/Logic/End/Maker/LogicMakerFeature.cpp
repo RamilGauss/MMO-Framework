@@ -12,5 +12,6 @@ using namespace nsLogicWrapper;
 void TLogicMakerFeature::InitConveyor()
 {
     Add(&mSystemMakerSystem);
-    Add(&mHandlerMakerSystem);
+    Add(&mGlobalHandlerMakerSystem);
+    Add(&mLocalHandlerMakerSystem);
 }

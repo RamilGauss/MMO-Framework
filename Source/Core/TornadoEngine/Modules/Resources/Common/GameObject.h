@@ -56,6 +56,9 @@ namespace nsTornadoEngine
         void GetChildsByNameRecursively(const std::string& name, std::list<TGameObject>& gos);
 
         template <typename Component>
+        const Component* ViewComponent();
+
+        template <typename Component>
         Component GetComponent();
 
         template <typename Component>
@@ -64,12 +67,18 @@ namespace nsTornadoEngine
         void RemoveChilds();
         void RemoveChild(const TGameObject& child);
 
-        bool operator == (const TGameObject& go);
+        bool operator == (const TGameObject& go) const;
 
     public:
         void SetEntityManager(nsECSFramework::TEntityManager* entMng);
         nsECSFramework::TEntityManager* GetEntityManager() const;
     };
+    //--------------------------------------------------------------------------------------------------
+    template <typename Component>
+    const Component* TGameObject::ViewComponent()
+    {
+        return mEntMng->ViewComponent<Component>(mEid);
+    }
     //--------------------------------------------------------------------------------------------------
     template <typename Component>
     Component TGameObject::GetComponent()

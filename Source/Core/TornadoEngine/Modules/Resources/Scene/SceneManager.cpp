@@ -33,7 +33,6 @@ See for more information LICENSE.md.
 
 #include "UniverseIndexComponent.h"
 #include "UniverseGuidComponent.h"
-#include "SceneInstantiationCompletionHandlerComponent.h"
 
 namespace nsTornadoEngine
 {
@@ -343,24 +342,24 @@ namespace nsTornadoEngine
     {
         auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
 
-        std::list<TSceneInstanceStatePtr> deactivatedSyncScenes;
-        mSyncScenes.TryDeactivate(deactivatedSyncScenes);
+        //std::list<TSceneInstanceStatePtr> deactivatedSyncScenes;
+        //mSyncScenes.TryDeactivate(deactivatedSyncScenes);
 
-        for (auto& deactivatedSyncScene : deactivatedSyncScenes) {
-            auto pEntMng = mEntityManager;
-            auto eids = pEntMng->GetByHasCopy<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
+        //for (auto& deactivatedSyncScene : deactivatedSyncScenes) {
+        //    auto pEntMng = mEntityManager;
+        //    auto eids = pEntMng->GetByHasCopy<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
 
-            for (auto& eid : eids) {
-                auto handler = pEntMng->ViewComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid)->handler;
+        //    for (auto& eid : eids) {
+        //        auto handler = pEntMng->ViewComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid)->handler;
 
-                auto tag = deactivatedSyncScene->mInstantiateSceneParams.tag;
-                auto sceneInstanceGuid = deactivatedSyncScene->mInstantiateSceneParams.sceneInstanceGuid;
-                handlerCallCollector->Add([handler, eid, sceneInstanceGuid, tag]()
-                {
-                    handler->Handle(eid, sceneInstanceGuid, tag);
-                });
-            }
-        }
+        //        auto tag = deactivatedSyncScene->mInstantiateSceneParams.tag;
+        //        auto sceneInstanceGuid = deactivatedSyncScene->mInstantiateSceneParams.sceneInstanceGuid;
+        //        handlerCallCollector->Add([handler, eid, sceneInstanceGuid, tag]()
+        //        {
+        //            handler->Handle(eid, sceneInstanceGuid, tag);
+        //        });
+        //    }
+        //}
     }
     //--------------------------------------------------------------------------------
     void TSceneManager::TryActivateSyncScenes()

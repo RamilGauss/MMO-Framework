@@ -2,7 +2,7 @@
 Project Handler
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_06 16:43:43.365
+// File has been generated at 2023_11_12 12:58:30.679
 	
 #include "HandlerTypeFactory.h"
 #include "SingletonManager.h"
@@ -37,20 +37,6 @@ void THandlerTypeFactory::Init()
     nsTornadoEditor_TDialogButtonClickHandler_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TDialogButtonClickHandler>();
     
     datas.push_back(nsTornadoEditor_TDialogButtonClickHandler_Data);
-    
-    Data nsTornadoEditor_TOnCloseDialogHandler_Data;
-    nsTornadoEditor_TOnCloseDialogHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnCloseDialogHandler(); };
-    nsTornadoEditor_TOnCloseDialogHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnCloseDialogHandler*)p; };
-    nsTornadoEditor_TOnCloseDialogHandler_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseDialogHandler>();
-    
-    datas.push_back(nsTornadoEditor_TOnCloseDialogHandler_Data);
-    
-    Data nsTornadoEditor_TOnCloseWindowHandler_Data;
-    nsTornadoEditor_TOnCloseWindowHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnCloseWindowHandler(); };
-    nsTornadoEditor_TOnCloseWindowHandler_Data.deleteFunc = [](void* p){ delete (nsTornadoEditor::TOnCloseWindowHandler*)p; };
-    nsTornadoEditor_TOnCloseWindowHandler_Data.rtti = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseWindowHandler>();
-    
-    datas.push_back(nsTornadoEditor_TOnCloseWindowHandler_Data);
     
     Data nsTornadoEditor_TOnExitClickHandler_Data;
     nsTornadoEditor_TOnExitClickHandler_Data.newFunc = [](){ return new nsTornadoEditor::TOnExitClickHandler(); };

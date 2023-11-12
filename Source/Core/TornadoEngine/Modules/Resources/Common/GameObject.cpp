@@ -142,7 +142,7 @@ namespace nsTornadoEngine
         return mEntMng;
     }
     //------------------------------------------------------------------------------------------------------------------------------------
-    bool TGameObject::operator == (const TGameObject& go)
+    bool TGameObject::operator == (const TGameObject& go) const
     {
         return ((mEntMng == go.GetEntityManager()) && 
                 (mEid == go.GetEid()));

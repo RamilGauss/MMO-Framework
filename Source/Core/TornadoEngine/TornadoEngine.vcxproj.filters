@@ -414,9 +414,6 @@
     <ClCompile Include="Features\Graphic\End\UpdateFromModule\GuiUpdaterFromModuleFeature.cpp">
       <Filter>Features\Graphic\UpdaterFromModule</Filter>
     </ClCompile>
-    <ClCompile Include="Features\Logic\End\Builder\ObjectInstantiationCompletionHandlerBuilderSystem.cpp">
-      <Filter>Features\Logic\Builder</Filter>
-    </ClCompile>
     <ClCompile Include="Features\Graphic\Begin\Maker\Graphic\TextureMakerSystem.cpp">
       <Filter>Features\Graphic\Maker\Graphic</Filter>
     </ClCompile>
@@ -495,11 +492,13 @@
     <ClCompile Include="Modules\Resources\Scene\SceneCacheManager.cpp" />
     <ClCompile Include="Modules\Resources\Common\ResourceManager.cpp" />
     <ClCompile Include="TimeSliceEngine\EngineLogger.cpp" />
-    <ClCompile Include="Features\Logic\End\Maker\HandlerMakerSystem.cpp" />
-    <ClCompile Include="Features\Logic\End\Terminator\HandlerTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Maker\LocalHandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Terminator\LocalHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Helpers\HandlerLinkHelper.cpp" />
     <ClCompile Include="Generated files\Container\ComponentRtti.cpp" />
     <ClCompile Include="Generated files\Container\ImGuiWidgetsRtti.cpp" />
+    <ClCompile Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TimeSliceEngine\FrameworkResources.h">
@@ -673,7 +672,7 @@
     <ClInclude Include="Handlers\Gui\IButtonClickHandler.h">
       <Filter>Handlers\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Handlers\Common\IHandler.h">
+    <ClInclude Include="Handlers\Common\ILocalHandler.h">
       <Filter>Handlers\Common</Filter>
     </ClInclude>
     <ClInclude Include="Features\Graphic\Begin\Maker\GuiMakerFeature.h">
@@ -910,9 +909,6 @@
     <ClInclude Include="Components\Gui\Widgets\WindowComponent.h">
       <Filter>Components\Gui\Widgets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Logic\ObjectInstantiationCompletionHandlerComponent.h">
-      <Filter>Components\Logic\Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Logic\SystemComponent.h">
       <Filter>Components\Logic\Units</Filter>
     </ClInclude>
@@ -975,9 +971,6 @@
     </ClInclude>
     <ClInclude Include="Features\Graphic\End\UpdateFromModule\GuiUpdaterFromModuleFeature.h">
       <Filter>Features\Graphic\UpdaterFromModule</Filter>
-    </ClInclude>
-    <ClInclude Include="Features\Logic\End\Builder\ObjectInstantiationCompletionHandlerBuilderSystem.h">
-      <Filter>Features\Logic\Builder</Filter>
     </ClInclude>
     <ClInclude Include="Components\Graphic\TextureFromFileComponent.h">
       <Filter>Components\Graphic</Filter>
@@ -1124,15 +1117,18 @@
     <ClInclude Include="Modules\Resources\Common\ResourceManager.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabPatchOperation.h" />
     <ClInclude Include="TimeSliceEngine\EngineLogger.h" />
-    <ClInclude Include="Components\Logic\SceneInstantiationCompletionHandlerComponent.h" />
     <ClInclude Include="Handlers\Logic\ISceneDestroyCompletionHandler.h" />
     <ClInclude Include="Handlers\Logic\ISceneSaveCompletionHandler.h" />
-    <ClInclude Include="Components\Handler\HandlerComponent.h" />
-    <ClInclude Include="Features\Logic\End\Maker\HandlerMakerSystem.h" />
-    <ClInclude Include="Features\Logic\End\Terminator\HandlerTerminatorSystem.h" />
+    <ClInclude Include="Components\Handler\LocalHandlerComponent.h" />
+    <ClInclude Include="Features\Logic\End\Maker\LocalHandlerMakerSystem.h" />
+    <ClInclude Include="Features\Logic\End\Terminator\LocalHandlerTerminatorSystem.h" />
     <ClInclude Include="ReflectionAggregators\IRunTimeTypeInformation.h" />
     <ClInclude Include="Generated files\Container\ComponentRtti.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsRtti.h" />
+    <ClInclude Include="Components\Handler\GlobalHandlerComponent.h" />
+    <ClInclude Include="Handlers\Common\IGlobalHandler.h" />
+    <ClInclude Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.h" />
+    <ClInclude Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

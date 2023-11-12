@@ -1,5 +1,5 @@
 {
-    "baseHandlerTypeNames": [ "nsTornadoEngine::IHandler" ],
+    "baseHandlerTypeNames": [ "nsTornadoEngine::IGlobalHandler", "nsTornadoEngine::ILocalHandler" ],
 
     "absCorePath": "c:/MMOFramework/Source/Core",
     "relCoreConfigPath": "./TornadoEngine/Configs/coreContainerConfig.json",

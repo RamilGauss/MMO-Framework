@@ -7,14 +7,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IHandler.h"
+#include "ILocalHandler.h"
 
 #include <ECS/include/Config.h>
 #include <GraphicEngine/Events.h>
 
 namespace nsGuiWrapper
 {
-    class DllExport IFrameMouseClickHandler : public nsTornadoEngine::IHandler
+    class DllExport IFrameMouseClickHandler : public nsTornadoEngine::ILocalHandler
     {
     public:
         virtual void Handle(nsECSFramework::TEntityID eid, nsGraphicEngine::TMouseButtonEvent event) = 0;

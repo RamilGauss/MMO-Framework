@@ -12,5 +12,4 @@ using namespace nsLogicWrapper;
 void TLogicBuilderFeature::InitConveyor()
 {
     Add(&mSystemBuilderSystem);
-    Add(&mObjectInstantiationCompletionHandlerBuilderSystem);
 }

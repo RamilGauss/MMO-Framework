@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IHandler.h"
+#include "ILocalHandler.h"
 
 #include <ECS/include/Config.h>
 
@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 
 namespace nsGuiWrapper
 {
-    class DllExport IMenuNodeClickHandler : public nsTornadoEngine::IHandler
+    class DllExport IMenuNodeClickHandler : public nsTornadoEngine::ILocalHandler
     {
     public:
         virtual void Handle(nsECSFramework::TEntityID eid, const nsGuiWrapper::TMenuNodeComponent* pC) = 0;

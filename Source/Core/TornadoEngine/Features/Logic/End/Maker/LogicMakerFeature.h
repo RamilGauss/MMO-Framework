@@ -10,7 +10,8 @@ See for more information LICENSE.md.
 #include <ECS/include/Feature.h>
 
 #include "SystemMakerSystem.h"
-#include "HandlerMakerSystem.h"
+#include "GlobalHandlerMakerSystem.h"
+#include "LocalHandlerMakerSystem.h"
 
 namespace nsLogicWrapper
 {
@@ -18,7 +19,8 @@ namespace nsLogicWrapper
     {
         TSystemMakerSystem mSystemMakerSystem;
 
-        THandlerMakerSystem mHandlerMakerSystem;
+        TGlobalHandlerMakerSystem mGlobalHandlerMakerSystem;
+        TLocalHandlerMakerSystem mLocalHandlerMakerSystem;
     public:
         void InitConveyor() override;
     };

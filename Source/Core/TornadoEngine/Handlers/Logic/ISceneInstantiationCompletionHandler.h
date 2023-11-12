@@ -6,16 +6,16 @@ See for more information LICENSE.md.
 */
 
 #pragma once
-
+I
 #include <string>
 
-#include "IHandler.h"
+#include "IGlobalHandler.h"
 
 #include <ECS/include/Config.h>
 
 namespace nsLogicWrapper
 {
-    class DllExport ISceneInstantiationCompletionHandler : public nsTornadoEngine::IHandler
+    class DllExport ISceneInstantiationCompletionHandler : public nsTornadoEngine::IGlobalHandler
     {
     public:
         virtual void Handle(nsECSFramework::TEntityID eid, const std::string& sceneIstanceGuid, const std::string& tag) = 0;

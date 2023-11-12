@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_06 15:14:03.892
+// File has been generated at 2023_11_12 12:28:55.707
 	
 #pragma once
 
@@ -217,20 +217,17 @@ namespace nsTornadoEngine
         static std::string _SerializeEnum(nsGuiWrapper::TVerticalAlignComponent::Type* p);
         static void _DeserializeEnum(std::string& str, nsGuiWrapper::TVerticalAlignComponent::Type* p);
         
-        static void _Serialize(nsLogicWrapper::THandlerComponent* p, Jobj& obj);
-        static void _Deserialize(nsLogicWrapper::THandlerComponent* p, const Jobj& obj);
+        static void _Serialize(nsLogicWrapper::TGlobalHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsLogicWrapper::TGlobalHandlerComponent* p, const Jobj& obj);
         
-        static void _Serialize(nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* p, Jobj& obj);
-        static void _Deserialize(nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* p, const Jobj& obj);
+        static void _Serialize(nsLogicWrapper::TLocalHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsLogicWrapper::TLocalHandlerComponent* p, const Jobj& obj);
         
         static void _Serialize(nsLogicWrapper::TPrefabObjectReferenceComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TPrefabObjectReferenceComponent* p, const Jobj& obj);
         
         static void _Serialize(nsLogicWrapper::TPrefabReferenceComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TPrefabReferenceComponent* p, const Jobj& obj);
-        
-        static void _Serialize(nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent* p, Jobj& obj);
-        static void _Deserialize(nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent* p, const Jobj& obj);
         
         static void _Serialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, const Jobj& obj);
@@ -241,8 +238,11 @@ namespace nsTornadoEngine
         static void _Serialize(nsLogicWrapper::TSystemComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TSystemComponent* p, const Jobj& obj);
         
-        static std::string _SerializeEnum(nsLogicWrapper::THandlerComponent::Filter* p);
-        static void _DeserializeEnum(std::string& str, nsLogicWrapper::THandlerComponent::Filter* p);
+        static std::string _SerializeEnum(nsLogicWrapper::TGlobalHandlerComponent::Filter* p);
+        static void _DeserializeEnum(std::string& str, nsLogicWrapper::TGlobalHandlerComponent::Filter* p);
+        
+        static std::string _SerializeEnum(nsLogicWrapper::TLocalHandlerComponent::Filter* p);
+        static void _DeserializeEnum(std::string& str, nsLogicWrapper::TLocalHandlerComponent::Filter* p);
         
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);

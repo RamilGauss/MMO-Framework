@@ -2,7 +2,7 @@
 Project Handler
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_06 16:43:43.369
+// File has been generated at 2023_11_12 12:58:30.681
 	
 #include "HandlerTypeInfo.h"
 
@@ -84,66 +84,6 @@ void THandlerTypeInfo::Init()
     std::shared_ptr<nsCppParser::TTypeInfo> nsTornadoEditor_TDialogButtonClickHandler_p_type = std::make_shared<nsCppParser::TTypeInfo>();
     nsCppParser::TJsonSerializer::Deserialize(nsTornadoEditor_TDialogButtonClickHandler_p_type.get(), nsTornadoEditor_TDialogButtonClickHandler_jc, nsTornadoEditor_TDialogButtonClickHandler_err);
     m.insert({ nsTornadoEditor_TDialogButtonClickHandler_i, nsTornadoEditor_TDialogButtonClickHandler_p_type });
-    
-    int nsTornadoEditor_TOnCloseDialogHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseDialogHandler>();
-    std::string nsTornadoEditor_TOnCloseDialogHandler_jc = "{"
-"    \"mFileName\": \"OnCloseDialogHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OnCloseDialogHandler.h\","
-"    \"mPragmaTextSet\": [],"
-"    \"mType\": \"CLASS\","
-"    \"mEnumKeys\": [],"
-"    \"mInheritanceVec\": ["
-"        {"
-"            \"mOriginalName\": \"nsGuiWrapper::IDialogCloseEventHandler\","
-"            \"mOriginalTypeName\": \"nsGuiWrapper::IDialogCloseEventHandler\","
-"            \"mOriginalNameSpace\": \"nsGuiWrapper\","
-"            \"mShortTypeName\": \"IDialogCloseEventHandler\","
-"            \"mNameSpace\": \"nsTornadoEditor\","
-"            \"mLongTypeName\": \"nsTornadoEditor::nsGuiWrapper::IDialogCloseEventHandler\","
-"            \"originalTemplates\": [],"
-"            \"mInheritanceAccessLevel\": \"PUBLIC\""
-"        }"
-"    ],"
-"    \"mName\": \"TOnCloseDialogHandler\","
-"    \"mNamespaceVec\": ["
-"        \"nsTornadoEditor\""
-"    ],"
-"    \"mTemplateArgs\": []"
-"}";
-    std::string nsTornadoEditor_TOnCloseDialogHandler_err;
-    std::shared_ptr<nsCppParser::TTypeInfo> nsTornadoEditor_TOnCloseDialogHandler_p_type = std::make_shared<nsCppParser::TTypeInfo>();
-    nsCppParser::TJsonSerializer::Deserialize(nsTornadoEditor_TOnCloseDialogHandler_p_type.get(), nsTornadoEditor_TOnCloseDialogHandler_jc, nsTornadoEditor_TOnCloseDialogHandler_err);
-    m.insert({ nsTornadoEditor_TOnCloseDialogHandler_i, nsTornadoEditor_TOnCloseDialogHandler_p_type });
-    
-    int nsTornadoEditor_TOnCloseWindowHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnCloseWindowHandler>();
-    std::string nsTornadoEditor_TOnCloseWindowHandler_jc = "{"
-"    \"mFileName\": \"OnCloseWindowHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OnCloseWindowHandler.h\","
-"    \"mPragmaTextSet\": [],"
-"    \"mType\": \"CLASS\","
-"    \"mEnumKeys\": [],"
-"    \"mInheritanceVec\": ["
-"        {"
-"            \"mOriginalName\": \"nsGuiWrapper::IWindowCloseEventHandler\","
-"            \"mOriginalTypeName\": \"nsGuiWrapper::IWindowCloseEventHandler\","
-"            \"mOriginalNameSpace\": \"nsGuiWrapper\","
-"            \"mShortTypeName\": \"IWindowCloseEventHandler\","
-"            \"mNameSpace\": \"nsTornadoEditor\","
-"            \"mLongTypeName\": \"nsTornadoEditor::nsGuiWrapper::IWindowCloseEventHandler\","
-"            \"originalTemplates\": [],"
-"            \"mInheritanceAccessLevel\": \"PUBLIC\""
-"        }"
-"    ],"
-"    \"mName\": \"TOnCloseWindowHandler\","
-"    \"mNamespaceVec\": ["
-"        \"nsTornadoEditor\""
-"    ],"
-"    \"mTemplateArgs\": []"
-"}";
-    std::string nsTornadoEditor_TOnCloseWindowHandler_err;
-    std::shared_ptr<nsCppParser::TTypeInfo> nsTornadoEditor_TOnCloseWindowHandler_p_type = std::make_shared<nsCppParser::TTypeInfo>();
-    nsCppParser::TJsonSerializer::Deserialize(nsTornadoEditor_TOnCloseWindowHandler_p_type.get(), nsTornadoEditor_TOnCloseWindowHandler_jc, nsTornadoEditor_TOnCloseWindowHandler_err);
-    m.insert({ nsTornadoEditor_TOnCloseWindowHandler_i, nsTornadoEditor_TOnCloseWindowHandler_p_type });
     
     int nsTornadoEditor_TOnExitClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnExitClickHandler>();
     std::string nsTornadoEditor_TOnExitClickHandler_jc = "{"

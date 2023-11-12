@@ -276,13 +276,14 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Features\Graphic\Begin\Builder\Units\MenuNodeBuilderSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Maker\Units\MenuNodeMakerSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Terminator\Units\MenuNodeTerminatorSystem.cpp" />
-    <ClCompile Include="Features\Logic\End\Builder\ObjectInstantiationCompletionHandlerBuilderSystem.cpp" />
-    <ClCompile Include="Features\Logic\End\Maker\HandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Maker\LocalHandlerMakerSystem.cpp" />
     <ClCompile Include="Features\Logic\End\Scene\SceneInstantiatingSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Features\Logic\End\Terminator\HandlerTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.cpp" />
+    <ClCompile Include="Features\Logic\End\Terminator\LocalHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\GraphicContext\OnAddUniverseContextSystem.cpp" />
     <ClCompile Include="Features\Graphic\End\GraphicContext\OnRemoveUniverseContextSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\UpdateToModule\PositionUpdaterSystem.cpp" />
@@ -370,21 +371,24 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Components\Handler\HandlerComponent.h" />
-    <ClInclude Include="Components\Logic\SceneInstantiationCompletionHandlerComponent.h" />
+    <ClInclude Include="Components\Handler\GlobalHandlerComponent.h" />
+    <ClInclude Include="Components\Handler\LocalHandlerComponent.h" />
     <ClInclude Include="Components\Meta\GuidComponent.h" />
-    <ClInclude Include="Features\Logic\End\Maker\HandlerMakerSystem.h" />
+    <ClInclude Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.h" />
+    <ClInclude Include="Features\Logic\End\Maker\LocalHandlerMakerSystem.h" />
     <ClInclude Include="Features\Logic\End\Scene\SceneInstantiatingSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Features\Logic\End\Terminator\HandlerTerminatorSystem.h" />
+    <ClInclude Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.h" />
+    <ClInclude Include="Features\Logic\End\Terminator\LocalHandlerTerminatorSystem.h" />
     <ClInclude Include="Generated files\Container\ComponentRtti.h" />
     <ClInclude Include="Generated files\Container\ComponentTypeFactory.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsDynamicCaster.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsIncludeList.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsRtti.h" />
     <ClInclude Include="Generated files\Container\ImGuiWidgetsTypeInfo.h" />
+    <ClInclude Include="Handlers\Common\IGlobalHandler.h" />
     <ClInclude Include="Handlers\Logic\ISceneDestroyCompletionHandler.h" />
     <ClInclude Include="Handlers\Logic\ISceneSaveCompletionHandler.h" />
     <ClInclude Include="Modules\PropertyManager\ArchetypeField.h" />
@@ -470,7 +474,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Components\Gui\Properties\VisibilityComponent.h" />
     <ClInclude Include="Components\Gui\Widgets\WindowComponent.h" />
     <ClInclude Include="Components\Logic\SystemComponent.h" />
-    <ClInclude Include="Components\Logic\ObjectInstantiationCompletionHandlerComponent.h" />
     <ClInclude Include="Components\Logic\PrefabObjectReferenceComponent.h" />
     <ClInclude Include="Components\Logic\PrefabReferenceComponent.h" />
     <ClInclude Include="Components\Logic\SceneObjectReferenceComponent.h" />
@@ -531,7 +534,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Features\Graphic\Begin\Builder\Units\MenuNodeBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Maker\Units\MenuNodeMakerSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\Terminator\Units\MenuNodeTerminatorSystem.h" />
-    <ClInclude Include="Features\Logic\End\Builder\ObjectInstantiationCompletionHandlerBuilderSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\GraphicContext\OnAddUniverseContextSystem.h" />
     <ClInclude Include="Features\Graphic\End\GraphicContext\OnRemoveUniverseContextSystem.h" />
     <ClInclude Include="Features\Graphic\Begin\UpdateToModule\PositionUpdaterSystem.h" />
@@ -575,7 +577,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Handlers\Gui\IFrameMouseClickHandler.h" />
     <ClInclude Include="Handlers\Gui\IFrameMouseMoveHandler.h" />
     <ClInclude Include="Handlers\Gui\IFrameMouseWheelHandler.h" />
-    <ClInclude Include="Handlers\Common\IHandler.h" />
+    <ClInclude Include="Handlers\Common\ILocalHandler.h" />
     <ClInclude Include="Handlers\Gui\IMenuNodeClickHandler.h" />
     <ClInclude Include="Handlers\Logic\IObjectInstantiationCompletionHandler.h" />
     <ClInclude Include="Handlers\Gui\IWindowCloseEventHandler.h" />

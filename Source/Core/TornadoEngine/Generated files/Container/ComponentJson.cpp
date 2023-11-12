@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_06 15:14:03.899
+// File has been generated at 2023_11_12 12:28:55.715
 	
 #include "ComponentJson.h"
 #include "JsonPopMaster.h"
@@ -713,29 +713,29 @@ void TComponentJson::Init()
     
     funcs.push_back(_nsGuiWrapper_TWindowComponentTypeFunc);
     
-    TypeFunc _nsLogicWrapper_THandlerComponentTypeFunc;
-    _nsLogicWrapper_THandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsLogicWrapper::THandlerComponent>((nsLogicWrapper::THandlerComponent*) p, str);
+    TypeFunc _nsLogicWrapper_TGlobalHandlerComponentTypeFunc;
+    _nsLogicWrapper_TGlobalHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TGlobalHandlerComponent>((nsLogicWrapper::TGlobalHandlerComponent*) p, str);
     };
-    _nsLogicWrapper_THandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsLogicWrapper::THandlerComponent>((nsLogicWrapper::THandlerComponent*) p, str, err);
-    };
-    
-    _nsLogicWrapper_THandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::THandlerComponent>();
-    
-    funcs.push_back(_nsLogicWrapper_THandlerComponentTypeFunc);
-    
-    TypeFunc _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc;
-    _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>((nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*) p, str);
-    };
-    _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>((nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent*) p, str, err);
+    _nsLogicWrapper_TGlobalHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TGlobalHandlerComponent>((nsLogicWrapper::TGlobalHandlerComponent*) p, str, err);
     };
     
-    _nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent>();
+    _nsLogicWrapper_TGlobalHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TGlobalHandlerComponent>();
     
-    funcs.push_back(_nsLogicWrapper_TObjectInstantiationCompletionHandlerComponentTypeFunc);
+    funcs.push_back(_nsLogicWrapper_TGlobalHandlerComponentTypeFunc);
+    
+    TypeFunc _nsLogicWrapper_TLocalHandlerComponentTypeFunc;
+    _nsLogicWrapper_TLocalHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TLocalHandlerComponent>((nsLogicWrapper::TLocalHandlerComponent*) p, str);
+    };
+    _nsLogicWrapper_TLocalHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TLocalHandlerComponent>((nsLogicWrapper::TLocalHandlerComponent*) p, str, err);
+    };
+    
+    _nsLogicWrapper_TLocalHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TLocalHandlerComponent>();
+    
+    funcs.push_back(_nsLogicWrapper_TLocalHandlerComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc;
     _nsLogicWrapper_TPrefabObjectReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -760,18 +760,6 @@ void TComponentJson::Init()
     _nsLogicWrapper_TPrefabReferenceComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabReferenceComponent>();
     
     funcs.push_back(_nsLogicWrapper_TPrefabReferenceComponentTypeFunc);
-    
-    TypeFunc _nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc;
-    _nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
-    Serialize<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>((nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent*) p, str);
-    };
-    _nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
-        return Deserialize<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>((nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent*) p, str, err);
-    };
-    
-    _nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
-    
-    funcs.push_back(_nsLogicWrapper_TSceneInstantiationCompletionHandlerComponentTypeFunc);
     
     TypeFunc _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc;
     _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -1491,7 +1479,22 @@ void TComponentJson::_DeserializeEnum(std::string& str, nsGuiWrapper::TVerticalA
     *p = m[str];
 }
 //---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsLogicWrapper::THandlerComponent* p, Jobj& obj)
+void TComponentJson::_Serialize(nsLogicWrapper::TGlobalHandlerComponent* p, Jobj& obj)
+{
+    auto filter_c0 = _SerializeEnum(&(p->filter));
+    PUM::Push(obj, "filter", filter_c0);
+    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsLogicWrapper::TGlobalHandlerComponent* p, const Jobj& obj)
+{
+    std::string filter_c0;
+    POM::PopStr(obj, "filter", filter_c0);
+    _DeserializeEnum(filter_c0, &(p->filter));
+    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsLogicWrapper::TLocalHandlerComponent* p, Jobj& obj)
 {
     auto filter_c0 = _SerializeEnum(&(p->filter));
     PUM::Push(obj, "filter", filter_c0);
@@ -1499,22 +1502,12 @@ void TComponentJson::_Serialize(nsLogicWrapper::THandlerComponent* p, Jobj& obj)
     PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsLogicWrapper::THandlerComponent* p, const Jobj& obj)
+void TComponentJson::_Deserialize(nsLogicWrapper::TLocalHandlerComponent* p, const Jobj& obj)
 {
     std::string filter_c0;
     POM::PopStr(obj, "filter", filter_c0);
     _DeserializeEnum(filter_c0, &(p->filter));
     POM::PopStr(obj, "entityGuid", p->entityGuid);
-    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* p, Jobj& obj)
-{
-    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsLogicWrapper::TObjectInstantiationCompletionHandlerComponent* p, const Jobj& obj)
-{
     POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
@@ -1538,16 +1531,6 @@ void TComponentJson::_Serialize(nsLogicWrapper::TPrefabReferenceComponent* p, Jo
 void TComponentJson::_Deserialize(nsLogicWrapper::TPrefabReferenceComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "prefabGuid", p->prefabGuid);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Serialize(nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent* p, Jobj& obj)
-{
-    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
-}
-//---------------------------------------------------------------------------------------
-void TComponentJson::_Deserialize(nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent* p, const Jobj& obj)
-{
-    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, Jobj& obj)
@@ -1580,35 +1563,49 @@ void TComponentJson::_Deserialize(nsLogicWrapper::TSystemComponent* p, const Job
     POM::PopStr(obj, "typeName", p->typeName);
 }
 //---------------------------------------------------------------------------------------
-std::string TComponentJson::_SerializeEnum(nsLogicWrapper::THandlerComponent::Filter* p)
+std::string TComponentJson::_SerializeEnum(nsLogicWrapper::TGlobalHandlerComponent::Filter* p)
 {
     switch (*p) {
-        case nsLogicWrapper::THandlerComponent::Filter::EVERYWHERE:
+        case nsLogicWrapper::TGlobalHandlerComponent::Filter::EVERYWHERE:
             return "EVERYWHERE";
-        case nsLogicWrapper::THandlerComponent::Filter::ONLY_CHILDS:
-            return "ONLY_CHILDS";
-        case nsLogicWrapper::THandlerComponent::Filter::SELF:
-            return "SELF";
-        case nsLogicWrapper::THandlerComponent::Filter::SELF_AND_CHILDS:
-            return "SELF_AND_CHILDS";
-        case nsLogicWrapper::THandlerComponent::Filter::THIS_SCENE:
+        case nsLogicWrapper::TGlobalHandlerComponent::Filter::THIS_SCENE:
             return "THIS_SCENE";
-        case nsLogicWrapper::THandlerComponent::Filter::THIS_UNVIVERSE:
+        case nsLogicWrapper::TGlobalHandlerComponent::Filter::THIS_UNVIVERSE:
             return "THIS_UNVIVERSE";
         default:;
     }
     return "";
 }
 //---------------------------------------------------------------------------------------
-void TComponentJson::_DeserializeEnum(std::string& str, nsLogicWrapper::THandlerComponent::Filter* p)
+void TComponentJson::_DeserializeEnum(std::string& str, nsLogicWrapper::TGlobalHandlerComponent::Filter* p)
 {
-    std::map<std::string, nsLogicWrapper::THandlerComponent::Filter> m;
-    m.insert({"EVERYWHERE", nsLogicWrapper::THandlerComponent::Filter::EVERYWHERE});
-    m.insert({"ONLY_CHILDS", nsLogicWrapper::THandlerComponent::Filter::ONLY_CHILDS});
-    m.insert({"SELF", nsLogicWrapper::THandlerComponent::Filter::SELF});
-    m.insert({"SELF_AND_CHILDS", nsLogicWrapper::THandlerComponent::Filter::SELF_AND_CHILDS});
-    m.insert({"THIS_SCENE", nsLogicWrapper::THandlerComponent::Filter::THIS_SCENE});
-    m.insert({"THIS_UNVIVERSE", nsLogicWrapper::THandlerComponent::Filter::THIS_UNVIVERSE});
+    std::map<std::string, nsLogicWrapper::TGlobalHandlerComponent::Filter> m;
+    m.insert({"EVERYWHERE", nsLogicWrapper::TGlobalHandlerComponent::Filter::EVERYWHERE});
+    m.insert({"THIS_SCENE", nsLogicWrapper::TGlobalHandlerComponent::Filter::THIS_SCENE});
+    m.insert({"THIS_UNVIVERSE", nsLogicWrapper::TGlobalHandlerComponent::Filter::THIS_UNVIVERSE});
+    *p = m[str];
+}
+//---------------------------------------------------------------------------------------
+std::string TComponentJson::_SerializeEnum(nsLogicWrapper::TLocalHandlerComponent::Filter* p)
+{
+    switch (*p) {
+        case nsLogicWrapper::TLocalHandlerComponent::Filter::ONLY_CHILDS:
+            return "ONLY_CHILDS";
+        case nsLogicWrapper::TLocalHandlerComponent::Filter::SELF:
+            return "SELF";
+        case nsLogicWrapper::TLocalHandlerComponent::Filter::SELF_AND_CHILDS:
+            return "SELF_AND_CHILDS";
+        default:;
+    }
+    return "";
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_DeserializeEnum(std::string& str, nsLogicWrapper::TLocalHandlerComponent::Filter* p)
+{
+    std::map<std::string, nsLogicWrapper::TLocalHandlerComponent::Filter> m;
+    m.insert({"ONLY_CHILDS", nsLogicWrapper::TLocalHandlerComponent::Filter::ONLY_CHILDS});
+    m.insert({"SELF", nsLogicWrapper::TLocalHandlerComponent::Filter::SELF});
+    m.insert({"SELF_AND_CHILDS", nsLogicWrapper::TLocalHandlerComponent::Filter::SELF_AND_CHILDS});
     *p = m[str];
 }
 //---------------------------------------------------------------------------------------
