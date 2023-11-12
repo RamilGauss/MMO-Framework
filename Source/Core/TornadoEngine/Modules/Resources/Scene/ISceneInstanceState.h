@@ -15,6 +15,7 @@ namespace nsTornadoEngine
     {
         enum class State
         {
+            INIT,
             ASYNC_INSTANTIATING,
             SYNC_INSTANTIATING,
             
