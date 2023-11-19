@@ -418,6 +418,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Resources\Scene\InstantiateSceneParams.h" />
     <ClInclude Include="Modules\Resources\Scene\PrefabInstance.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneResourceContent.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneState.h" />
     <ClInclude Include="ReflectionAggregators\ImGuiWidgetsReflectionAggregator.h" />
     <ClInclude Include="Components\Meta\NameComponent.h" />
     <ClInclude Include="Components\Meta\NeedDestroyObjectTagComponent.h" />

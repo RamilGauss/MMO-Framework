@@ -56,14 +56,18 @@ namespace nsTornadoEngine
         std::string Instantiate(const TInstantiateSceneParams& instantiateSceneParams);// -> sceneInstanceGuid
         void Destroy(const std::string& sceneInstanceGuid);
 
+        // SaveAs нужно реализовывать в коде редактора. Ядро не должно знать об этом функционале.
+        // Extended functions
         // Sync + Async
-        void Save(const std::string& sceneInstanceGuid, const std::string& guid = "");
+        void Save(const std::string& sceneInstanceGuid);
 
         // For Engine usage
         void SetLoadQuant(int ms);
         int GetLoadQuant() const;
+
         void SetPrefabManager(TPrefabManager* pPrefabMng);
         void SetSceneCacheManager(TSceneCacheManager* pSceneCachebMng);
+
         void Work();
     private:
         void IncrementReferenceCounter(TUniverseManager::IndexType index);

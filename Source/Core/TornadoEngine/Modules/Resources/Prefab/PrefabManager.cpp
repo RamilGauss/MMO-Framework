@@ -39,7 +39,7 @@ namespace nsTornadoEngine
 
     }
     //---------------------------------------------------------------------------------------------------------
-    void TPrefabManager::Save(const std::string& prefabGuid)
+    void TPrefabManager::Save(const std::string& instancePrefabGuid)
     {
 
     }

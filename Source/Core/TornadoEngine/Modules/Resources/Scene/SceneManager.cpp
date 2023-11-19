@@ -106,19 +106,12 @@ namespace nsTornadoEngine
 
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::Save(const std::string& sceneInstanceGuid, const std::string& guid)
+    void TSceneManager::Save(const std::string& sceneInstanceGuid)
     {
         auto pSceneInstanceState = (TSceneInstanceState*)GetSceneInstanceState(sceneInstanceGuid);
         if (pSceneInstanceState == nullptr) {
             return;
         }
-
-        auto dstGuid = guid;
-        if (dstGuid.empty()) {
-            dstGuid = pSceneInstanceState->mInstantiateSceneParams.guid;
-        }
-
-
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()

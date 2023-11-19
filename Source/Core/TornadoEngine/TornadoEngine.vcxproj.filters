@@ -1129,6 +1129,7 @@
     <ClInclude Include="Handlers\Common\IGlobalHandler.h" />
     <ClInclude Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.h" />
     <ClInclude Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

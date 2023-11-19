@@ -15,21 +15,18 @@ namespace nsTornadoEngine
     {
         enum class State
         {
-            INIT,
-            ASYNC_INSTANTIATING,
-            SYNC_INSTANTIATING,
-            
+            INSTANTIATING,
             INSTANTIATED,
-
-            ASYNC_DESTROYING,
-            SYNC_DESTROYING,
-
-            DESTROYED,
-
             SAVING,
+            DESTROYING,
+            DESTROYED,
         };
 
         virtual State GetState() const = 0;
+
+        virtual float GetProgress() const = 0;
+
+
 
         virtual float GetInstantiatingProgress() const = 0;
         virtual bool IsInstantiateCompleted() const = 0;
