@@ -251,6 +251,18 @@
     <ClInclude Include="include\ProgressValue.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ZoneManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Zone.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Process.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IContext.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
