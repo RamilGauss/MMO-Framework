@@ -1,20 +1,35 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information LICENSE.md.
+*/
+
 #pragma once
+
+#include <memory>
 
 #include "TypeDef.h"
 
-#include "Zone.h"
-#include "IContext.h"
-
 namespace nsZones
 {
+    class IContext;
+    class TZoneManager;
+
     class DllExport TProcess
     {
     protected:
-        TZoneManager mZoneMng;
+        std::shared_ptr<TZoneManager> mZoneMng;
+
+        std::list<IContext*> mAciveCtx;
+
+        std::list<IContext*> mWaitingCtx;
 
     public:
-        void AddZone(TZone* pZone);
+        TProcess();
 
+        void AddZone(TZone* pZone);
         void Begin(IContext* pCtx);
+        void Work();
     };
 }

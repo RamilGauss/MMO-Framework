@@ -222,6 +222,7 @@
     <ClInclude Include="include\ContainerPtrArrObj.h" />
     <ClInclude Include="include\ContainerRise.h" />
     <ClInclude Include="include\ContainerTypes.h" />
+    <ClInclude Include="include\ContextZone.h" />
     <ClInclude Include="include\IContext.h" />
     <ClInclude Include="include\ConverterLocale.h" />
     <ClInclude Include="include\CRC8.h" />
@@ -328,6 +329,7 @@
     <ClCompile Include="src\BinaryPopMaster.cpp" />
     <ClCompile Include="src\BinaryPushMaster.cpp" />
     <ClCompile Include="src\PathOperations.cpp" />
+    <ClCompile Include="src\Process.cpp" />
     <ClCompile Include="src\ProgressValue.cpp" />
     <ClCompile Include="src\ResolverSelf_IP_v4.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp14</LanguageStandard>
@@ -348,6 +350,8 @@
     <ClCompile Include="src\TextFile.cpp" />
     <ClCompile Include="src\TextGenerator.cpp" />
     <ClCompile Include="src\ThreadBoost.cpp" />
+    <ClCompile Include="src\Zone.cpp" />
+    <ClCompile Include="src\ZoneManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
