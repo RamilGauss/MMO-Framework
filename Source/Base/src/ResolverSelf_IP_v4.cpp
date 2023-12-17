@@ -5,11 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+
 #include "ResolverSelf_IP_v4.h"
-#include "SingletonManager.h"
+
 #include <stdio.h>
 #include <boost/asio.hpp>
-#include <string.h>
+
+#include "SingletonManager.h"
 
 #ifndef WIN32
 #include <sys/types.h>

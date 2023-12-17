@@ -7,6 +7,10 @@ See for more information LICENSE.md.
 
 #include "BinaryMarshallerSourceFileGenerator.h"
 
+#include <fmt/core.h>
+#include <fmt/format.h>
+#include <fmt/compile.h>
+
 using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;
 
@@ -911,10 +915,10 @@ std::string TBinaryMarshallerSourceFileGenerator::GetIsElementNotNull(std::vecto
     if (extArr[depth - 1].mCategory == TypeCategory::MAP) {
         auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[1].mAccessMethod);
         auto keyName = fmt::format("{}.{}", elementName, s_Second);
-        getAddress = fmt::vformat(templateForGetAddress, fmt::make_format_args(keyName));
+        getAddress = fmt::format(fmt::runtime(templateForGetAddress), keyName);
     } else {
         auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[0].mAccessMethod);
-        getAddress = fmt::vformat(templateForGetAddress, fmt::make_format_args(elementName));
+        getAddress = fmt::format(fmt::runtime(templateForGetAddress), elementName);
     }
     return fmt::format("{} != {}", getAddress, s_Nullptr);
 }
@@ -925,7 +929,7 @@ void TBinaryMarshallerSourceFileGenerator::AddPushSerializeValue(std::vector<TMe
     auto elementName = ElementName(name, depth - 1);
     auto keyName = fmt::format("{}.{}", elementName, s_Second);
 
-    auto getAddress = fmt::vformat(templateForGetAddress, fmt::make_format_args(keyName));
+    auto getAddress = fmt::format(fmt::runtime(templateForGetAddress), keyName);
 
     auto pushExpression = fmt::format("{}( {} );", s_Serialize, getAddress);
     Add(pushExpression);
@@ -935,7 +939,7 @@ void TBinaryMarshallerSourceFileGenerator::AddPushSerializeElement(std::vector<T
 {
     auto templateForGetAddress = GetTemplateForGetAddress(extArr[depth - 1].mTemplateChildArr[0].mAccessMethod);
     auto elementName = ElementName(name, depth - 1);
-    auto getAddress = fmt::vformat(templateForGetAddress, fmt::make_format_args(elementName));
+    auto getAddress = fmt::format(fmt::runtime(templateForGetAddress), elementName);
 
     auto pushExpression = fmt::format("{}( {} );", s_Serialize, getAddress);
     Add(pushExpression);

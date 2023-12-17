@@ -103,6 +103,7 @@ namespace nsTornadoEngine
         TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams);
 
         State GetState() const override;
+        float GetProgress() const override { return 0; };
 
         float GetInstantiatingProgress() const override;
         bool IsInstantiateCompleted() const override;

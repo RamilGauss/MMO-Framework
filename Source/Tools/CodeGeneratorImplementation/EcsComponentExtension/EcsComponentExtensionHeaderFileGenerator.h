@@ -8,6 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "EcsComponentExtensionFileGenerator.h"
+
+#include <format>
 #include "fmt/core.h"
 
 namespace nsCodeGeneratorImplementation
@@ -16,36 +18,36 @@ namespace nsCodeGeneratorImplementation
     {
         const std::list<std::string> s_Decl =
         {
-fmt::format("    struct {}", s_Data),
+std::format("    struct {}", s_Data),
             "    {",
             "        int rtti = 0;",
-fmt::format("        std::function<void({}::{}* {}, {}::{} {}, void* p)> {};",
+std::format("        std::function<void({}::{}* {}, {}::{} {}, void* p)> {};",
                 s_nsECSFramework, s_TEntityManager, s_pEntMng, s_nsECSFramework, s_TEntityID, s_eid, s_setFunc),
-fmt::format("        std::function<const void*({}::{}* {}, {}::{} {})> {};",
+std::format("        std::function<const void*({}::{}* {}, {}::{} {})> {};",
                 s_nsECSFramework, s_TEntityManager, s_pEntMng, s_nsECSFramework, s_TEntityID, s_eid, s_viewFunc),
-fmt::format("        std::function<bool({}::{}* {}, {}::{} {})> hasFunc;", 
+std::format("        std::function<bool({}::{}* {}, {}::{} {})> hasFunc;",
                 s_nsECSFramework, s_TEntityManager, s_pEntMng, s_nsECSFramework, s_TEntityID, s_eid, s_hasFunc),
-fmt::format("        std::function<void({}::{}* {}, {}::{} {})> {};", 
+std::format("        std::function<void({}::{}* {}, {}::{} {})> {};",
                 s_nsECSFramework, s_TEntityManager, s_pEntMng, s_nsECSFramework, s_TEntityID, s_eid, s_removeFunc),
-fmt::format("        std::function<nsECSFramework::TEntityList({}::{}* {})> {};",
+std::format("        std::function<nsECSFramework::TEntityList({}::{}* {})> {};",
                 s_nsECSFramework, s_TEntityManager, s_pEntMng, s_getByHasFunc),
             "    };",
             "",
-fmt::format("    static std::vector<{}> {};", s_Data, s_mRttiVector),
+std::format("    static std::vector<{}> {};", s_Data, s_mRttiVector),
             "",
             "public:",
-fmt::format("    static void {}();", s_Init),
-fmt::format("    static bool {}(int {});", s_Has, s_rtti),
-fmt::format("    static void {}({}::{}* {},", s_SetComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
-fmt::format("        {}::{} {}, int {}, void* p);", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
-fmt::format("    static const void* {}({}::{}* {},", s_ViewComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
-fmt::format("        {}::{} {}, int {});", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
-fmt::format("    static bool {}({}::{}* {},", s_HasComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
-fmt::format("        {}::{} {}, int {});", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
-fmt::format("    static void {}({}::{}* {},", s_RemoveComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
-fmt::format("        {}::{} {}, int {});", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
-fmt::format("    static nsECSFramework::TEntityList {}({}::{}* {},", s_GetByHas, s_nsECSFramework, s_TEntityManager, s_pEntMng),
-fmt::format("        int {});", s_rtti),
+std::format("    static void {}();", s_Init),
+std::format("    static bool {}(int {});", s_Has, s_rtti),
+std::format("    static void {}({}::{}* {},", s_SetComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
+std::format("        {}::{} {}, int {}, void* p);", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
+std::format("    static const void* {}({}::{}* {},", s_ViewComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
+std::format("        {}::{} {}, int {});", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
+std::format("    static bool {}({}::{}* {},", s_HasComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
+std::format("        {}::{} {}, int {});", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
+std::format("    static void {}({}::{}* {},", s_RemoveComponent, s_nsECSFramework, s_TEntityManager, s_pEntMng),
+std::format("        {}::{} {}, int {});", s_nsECSFramework, s_TEntityID, s_eid, s_rtti),
+std::format("    static nsECSFramework::TEntityList {}({}::{}* {},", s_GetByHas, s_nsECSFramework, s_TEntityManager, s_pEntMng),
+std::format("        int {});", s_rtti),
         };
 
     public:

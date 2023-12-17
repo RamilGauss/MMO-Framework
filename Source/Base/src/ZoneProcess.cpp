@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Process.h"
+#include "ZoneProcess.h"
 
 #include "ZoneManager.h"
 #include "Zone.h"
@@ -13,24 +13,34 @@ See for more information LICENSE.md.
 
 namespace nsZones
 {
-    TProcess::TProcess()
+    TZoneProcess::TZoneProcess()
     {
         mZoneMng.reset(new TZoneManager());
     }
     //------------------------------------------------------------------------------
-    void TProcess::AddZone(TZone* pZone)
+    TZoneProcess::~TZoneProcess()
     {
 
     }
     //------------------------------------------------------------------------------
-    void TProcess::Begin(IContext* pCtx)
+    void TZoneProcess::AddZone(TZone* pZone)
     {
 
     }
     //------------------------------------------------------------------------------
-    void TProcess::Work()
+    void TZoneProcess::Begin(IContext* pCtx)
     {
 
+    }
+    //------------------------------------------------------------------------------
+    void TZoneProcess::SetMaxActiveCount(int value)
+    {
+        mMaxActiveCount = value;
+    }
+    //------------------------------------------------------------------------------
+    int TZoneProcess::GetMaxActiveCount() const
+    {
+        return mMaxActiveCount;
     }
     //------------------------------------------------------------------------------
 }

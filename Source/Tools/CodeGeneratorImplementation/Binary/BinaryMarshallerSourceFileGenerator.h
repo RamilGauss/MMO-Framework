@@ -8,7 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "BinaryMarshallerFileGenerator.h"
-#include "fmt/core.h"
+
+#include <format>
 
 namespace nsCodeGeneratorImplementation
 {
@@ -16,7 +17,7 @@ namespace nsCodeGeneratorImplementation
     {
         const std::string s_BinaryMaster = "TBinaryMaster";
         const std::string s_SizeType = "SizeType";
-        const std::string s_BinaryMaster_SizeType = fmt::format("{}{}{}", s_BinaryMaster, s_CC, s_SizeType);
+        const std::string s_BinaryMaster_SizeType = std::format("{}{}{}", s_BinaryMaster, s_CC, s_SizeType);
 
         const std::list<std::string> GetBinaryImplementation();
 

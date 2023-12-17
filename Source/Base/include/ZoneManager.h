@@ -21,12 +21,7 @@ namespace nsZones
     public:
         void AddZone(TZone* pZone);
 
-        void Work()
-        {
-            for (auto& pZone : mZones) {
-                pZone->Work();
-            }
-        }
+        void Work();
 
         void BeginProcess();
     };

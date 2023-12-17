@@ -14,19 +14,19 @@ See for more information LICENSE.md.
 namespace nsZones
 {
     class TZoneManager;
-    class TProcess;
+    class TZoneProcess;
     class IContext;
 
     class DllExport TZone
     {
         TZoneManager* mZoneMng = nullptr;
 
-        std::list<TProcess*> mProcesses;
+        std::list<TZoneProcess*> mProcesses;
 
         std::list<IContext*> mContexts;
 
     public:
-        void AddProcess(TProcess* pProcess);
+        void AddProcess(TZoneProcess* pProcess);
         void AddContext(IContext* pCtx);
         void RemoveContext(IContext* pCtx);
         void Work();

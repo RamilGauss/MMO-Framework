@@ -8,15 +8,17 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <memory>
+#include <list>
 
 #include "TypeDef.h"
 
 namespace nsZones
 {
     class IContext;
+    class TZone;
     class TZoneManager;
 
-    class DllExport TProcess
+    class DllExport TZoneProcess
     {
     protected:
         std::shared_ptr<TZoneManager> mZoneMng;
@@ -25,11 +27,18 @@ namespace nsZones
 
         std::list<IContext*> mWaitingCtx;
 
+        int mMaxActiveCount = 1;
+
     public:
-        TProcess();
+        TZoneProcess();
+        virtual ~TZoneProcess();
 
         void AddZone(TZone* pZone);
         void Begin(IContext* pCtx);
-        void Work();
+        
+        virtual void Work() = 0;
+
+        void SetMaxActiveCount(int value);
+        int GetMaxActiveCount() const;
     };
 }

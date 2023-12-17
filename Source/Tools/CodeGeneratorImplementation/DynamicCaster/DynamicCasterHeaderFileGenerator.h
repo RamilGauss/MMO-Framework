@@ -8,7 +8,9 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "DynamicCasterFileGenerator.h"
-#include "fmt/core.h"
+
+#include <format>
+#include <fmt/core.h>
 
 namespace nsCodeGeneratorImplementation
 {
@@ -17,18 +19,18 @@ namespace nsCodeGeneratorImplementation
         const std::list<std::string> s_Decl =
         {
             "public:",
-fmt::format("    static void {}();", s_Init),
-fmt::format("    static const std::map<int, std::set<int>>& {}();// rtti <---> rtti-es", s_GetRttiCombinations),
-fmt::format("    static void* {}(int {}, void* p, int {});", s_Cast, s_SrcRtti, s_DstRtti),
+std::format("    static void {}();", s_Init),
+std::format("    static const std::map<int, std::set<int>>& {}();// rtti <---> rtti-es", s_GetRttiCombinations),
+std::format("    static void* {}(int {}, void* p, int {});", s_Cast, s_SrcRtti, s_DstRtti),
             "private:",
-fmt::format("    struct {}", s_Data),
+std::format("    struct {}", s_Data),
             "    {",
             "        int rtti = 0;",
-fmt::format("        std::function<void*(void*)> {} = nullptr;", s_castFunc),
+std::format("        std::function<void*(void*)> {} = nullptr;", s_castFunc),
             "    };",
             "",
-fmt::format("    static std::vector<std::vector<{}>> {};", s_Data, s_mDataVector),
-fmt::format("    static std::map<int, std::set<int>> {};", s_mRttiCombinations),
+std::format("    static std::vector<std::vector<{}>> {};", s_Data, s_mDataVector),
+std::format("    static std::map<int, std::set<int>> {};", s_mRttiCombinations),
             "",
         };
 

@@ -49,7 +49,7 @@ namespace nsTornadoEngine
 
         TScenePartReflectionAggregator* mScenePartAggregator = nullptr;
 
-        ILoaderDLL* mLoader = nullptr;
+        std::shared_ptr<ILoaderDLL> mLoader = nullptr;
 
         std::string GetBinaryAbsPath();
         std::string GetConveyorAbsPath();

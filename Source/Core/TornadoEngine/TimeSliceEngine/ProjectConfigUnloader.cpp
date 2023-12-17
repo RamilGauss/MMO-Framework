@@ -9,7 +9,6 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "ProjectConfigUnloader.h"
-#include "MakerLoaderDLL.h"
 
 using namespace nsTornadoEngine;
 
@@ -19,9 +18,7 @@ bool TProjectConfigUnloader::Unload(TProjectConfigContainer* pcc)
         pcc->mFreeScenePartAggregator(pcc->mScenePartAggregator);
     }
     if (pcc->mLoader) {
-        TMakerLoaderDLL maker;
-        maker.Delete(pcc->mLoader);
-        pcc->mLoader = nullptr;
+        pcc->mLoader.reset();
     }
 
     return true;

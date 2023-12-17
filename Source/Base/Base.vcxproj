@@ -252,9 +252,7 @@
     <ClInclude Include="include\LockFreeDef.h" />
     <ClInclude Include="include\LockFreeFifo.h" />
     <ClInclude Include="include\Logger.h" />
-    <ClInclude Include="include\MacroMaker.h" />
-    <ClInclude Include="include\MacroMaker_Prepare.h" />
-    <ClInclude Include="include\MakerLoaderDLL.h" />
+    <ClInclude Include="include\LoaderDLLFactory.h" />
     <ClInclude Include="include\MapCallBack.h" />
     <ClInclude Include="include\Marshaller.h" />
     <ClInclude Include="include\MD5.h" />
@@ -267,7 +265,7 @@
     <ClInclude Include="include\BinaryPopMaster.h" />
     <ClInclude Include="include\BinaryPushMaster.h" />
     <ClInclude Include="include\PathOperations.h" />
-    <ClInclude Include="include\Process.h" />
+    <ClInclude Include="include\ZoneProcess.h" />
     <ClInclude Include="include\ProgressValue.h" />
     <ClInclude Include="include\ResolverSelf_IP_v4.h" />
     <ClInclude Include="include\ReversedContainerRise.h" />
@@ -296,6 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GuidGenerator.cpp" />
+    <ClCompile Include="src\LoaderDLLFactory.cpp" />
     <ClCompile Include="src\LockFreeFifo.cpp" />
     <ClCompile Include="src\AllocatorPool.cpp" />
     <ClCompile Include="src\ArrContainer.cpp" />
@@ -320,7 +319,6 @@
     <ClCompile Include="src\LoaderDLL_Win32.cpp" />
     <ClCompile Include="src\LoadFromFile.cpp" />
     <ClCompile Include="src\Logger.cpp" />
-    <ClCompile Include="src\MakerLoaderDLL.cpp" />
     <ClCompile Include="src\MapCallBack.cpp" />
     <ClCompile Include="src\MD5.cpp" />
     <ClCompile Include="src\MemoryDumper.cpp" />
@@ -329,7 +327,7 @@
     <ClCompile Include="src\BinaryPopMaster.cpp" />
     <ClCompile Include="src\BinaryPushMaster.cpp" />
     <ClCompile Include="src\PathOperations.cpp" />
-    <ClCompile Include="src\Process.cpp" />
+    <ClCompile Include="src\ZoneProcess.cpp" />
     <ClCompile Include="src\ProgressValue.cpp" />
     <ClCompile Include="src\ResolverSelf_IP_v4.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp14</LanguageStandard>

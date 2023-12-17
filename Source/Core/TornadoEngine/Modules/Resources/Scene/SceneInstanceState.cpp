@@ -31,23 +31,23 @@ namespace nsTornadoEngine
     ISceneInstanceState::State TSceneInstanceState::GetState() const
     {
         TSceneInstanceState::State state = TSceneInstanceState::State::INSTANTIATED;
-        switch (mSubState) {
-            case SubState::INIT:
-            case SubState::FILE_LOADING:
-            case SubState::SCENE_DESERIALIZING:
-            case SubState::PREPARE_TREE_ENTITY:
-            case SubState::SORTING_ENTITIES_BY_RANK:
-                state = ISceneInstanceState::State::ASYNC_INSTANTIATING;
-                break;
-            case SubState::PREPARE_INSTANTIATING:
-            case SubState::ENTITY_INSTANTIATING:
-            case SubState::PREFAB_INSTANTIATING:
-                state = ISceneInstanceState::State::SYNC_INSTANTIATING;
-                break;
-            case SubState::INSTANTIATED:
-                state = ISceneInstanceState::State::INSTANTIATED;
-                break;
-        }
+        //switch (mSubState) {
+        //    case SubState::INIT:
+        //    case SubState::FILE_LOADING:
+        //    case SubState::SCENE_DESERIALIZING:
+        //    case SubState::PREPARE_TREE_ENTITY:
+        //    case SubState::SORTING_ENTITIES_BY_RANK:
+        //        state = ISceneInstanceState::State::ASYNC_INSTANTIATING;
+        //        break;
+        //    case SubState::PREPARE_INSTANTIATING:
+        //    case SubState::ENTITY_INSTANTIATING:
+        //    case SubState::PREFAB_INSTANTIATING:
+        //        state = ISceneInstanceState::State::SYNC_INSTANTIATING;
+        //        break;
+        //    case SubState::INSTANTIATED:
+        //        state = ISceneInstanceState::State::INSTANTIATED;
+        //        break;
+        //}
         return state;
     }
     //--------------------------------------------------------------------------------------------------

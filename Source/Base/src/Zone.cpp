@@ -8,12 +8,12 @@ See for more information LICENSE.md.
 #include "Zone.h"
 
 #include "ZoneManager.h"
-#include "Process.h"
+#include "ZoneProcess.h"
 #include "IContext.h"
 
 namespace nsZones
 {
-    void TZone::AddProcess(TProcess* pProcess)
+    void TZone::AddProcess(TZoneProcess* pProcess)
     {
         mProcesses.push_back(pProcess);
     }

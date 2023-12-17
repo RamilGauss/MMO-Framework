@@ -107,12 +107,6 @@
     <ClInclude Include="include\Logger.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MacroMaker.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\MacroMaker_Prepare.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\MapCallBack.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -221,9 +215,6 @@
     <ClInclude Include="include\BiMap.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MakerLoaderDLL.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\CallbackPool.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -257,13 +248,16 @@
     <ClInclude Include="include\Zone.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Process.h">
+    <ClInclude Include="include\ZoneProcess.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\IContext.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ContextZone.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoaderDLLFactory.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -329,9 +323,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Logger.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MakerLoaderDLL.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\MapCallBack.cpp">
@@ -424,10 +415,13 @@
     <ClCompile Include="src\Zone.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Process.cpp">
+    <ClCompile Include="src\ZoneProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ZoneManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoaderDLLFactory.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

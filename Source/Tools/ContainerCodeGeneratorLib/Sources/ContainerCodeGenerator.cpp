@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "ContainerCodeGenerator.h"
 
-#include <fmt/core.h>
 #include <fmt/color.h>
+#include <fmt/core.h>
 
 #include <magic_enum.hpp>
 

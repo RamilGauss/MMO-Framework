@@ -1,6 +1,6 @@
 {
     "packages": [
-        { "name": "fmt",        "version": "9.1.0",        "options" : [ "shared=True" ]},
+        { "name": "fmt",        "version": "10.1.1",       "options" : [ "shared=True" ]},
         { "name": "openssl",    "version": "1.1.1t",       "options" : [ "shared=True" ]},
         { "name": "gtest",      "version": "1.13.0",       "options" : [ "shared=True" ]},
         { "name": "sdl",        "version": "2.26.1",       "options" : [ "shared=True" ]},

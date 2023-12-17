@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 
 #include "ProjectConfigLoader.h"
-#include "MakerLoaderDLL.h"
+#include "LoaderDLLFactory.h"
 #include "TextFile.h"
 #include "TornadoEngineJsonSerializer.h"
 #include "PathOperations.h"
@@ -45,21 +45,18 @@ bool TProjectConfigLoader::Load(TProjectConfigContainer* pcc)
 //----------------------------------------------------------------------
 bool TProjectConfigLoader::LoadBinary()
 {
-    TMakerLoaderDLL maker;
-    auto loader = maker.New();
+    mPcc->mLoader = MakeLoaderDLL();
 
-    mPcc->mLoader = loader;
-
-    if (loader->Init(mPcc->GetBinaryAbsPath().c_str()) == false) {
+    if (mPcc->mLoader->Init(mPcc->GetBinaryAbsPath().c_str()) == false) {
         Modules()->Log()->Log("LoadDLL() FAIL init.\n");
         return false;
     }
-    mPcc->mFreeScenePartAggregator = (FuncFreeScenePartReflectionAggregator) loader->Get(StrFreeScenePartReflectionAggregator);
+    mPcc->mFreeScenePartAggregator = (FuncFreeScenePartReflectionAggregator) mPcc->mLoader->Get(StrFreeScenePartReflectionAggregator);
     if (mPcc->mFreeScenePartAggregator == nullptr) {
         Modules()->Log()->Log("LoadDLL() FAIL load FuncFree.\n");
         return false;
     }
-    mPcc->mGetScenePartAggregator = (FuncGetScenePartReflectionAggregator) loader->Get(StrGetScenePartReflectionAggregator);
+    mPcc->mGetScenePartAggregator = (FuncGetScenePartReflectionAggregator) mPcc->mLoader->Get(StrGetScenePartReflectionAggregator);
     if (mPcc->mGetScenePartAggregator == nullptr) {
         Modules()->Log()->Log("LoadDLL() FAIL load FuncGetdevTool.\n");
         return false;

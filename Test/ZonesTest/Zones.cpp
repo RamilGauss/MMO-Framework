@@ -8,6 +8,14 @@ See for more information LICENSE.md.
 #include "gtest/gtest.h"
 
 #include "ZoneManager.h"
+#include "Zone.h"
+#include "ZoneProcess.h"
+
+class A_process : public nsZones::TZoneProcess
+{
+public:
+    void Work() override {}
+};
 
 TEST(Json, Complex)
 {
@@ -19,7 +27,7 @@ TEST(Json, Complex)
     zoneMgr.AddZone(&a);
     zoneMgr.AddZone(&b);
 
-    nsZones::TProcess process;
+    A_process a_process;
 
-    a.AddProcess(&process);
+    a.AddProcess(&a_process);
 }

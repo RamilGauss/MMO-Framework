@@ -6,7 +6,10 @@ See for more information LICENSE.md.
 */
 
 #include "IFileGenerator.h"
-#include "fmt/core.h"
+#include <fmt/core.h>
+#include <fmt/format.h>
+#include <fmt/compile.h>
+
 #include "HiTimer.h"
 
 using namespace nsReflectionCodeGenerator;
@@ -33,7 +36,7 @@ void IFileGenerator::AddTimeHeader()
 {
     auto s = s_TimeHeader;
 
-    s = fmt::vformat(s, fmt::make_format_args(TProgramInfo::Get(), ht_GetTimeStr()));
+    s = fmt::format(fmt::runtime(s), TProgramInfo::Get(), ht_GetTimeStr());
 
     Add(s);
 }

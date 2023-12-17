@@ -8,7 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "TypeFactoryFileGenerator.h"
-#include "fmt/core.h"
+#include <format>
+#include <fmt/core.h>
 
 namespace nsCodeGeneratorImplementation
 {
@@ -17,20 +18,20 @@ namespace nsCodeGeneratorImplementation
         const std::list<std::string> s_Decl =
         {
             "public:",
-fmt::format("    static void* {}(int {});", s_New, s_rtti),
-fmt::format("    static void {}(void* p, int {});", s_Delete, s_rtti),
-fmt::format("    static bool {}(int {});", s_Has, s_rtti),
+std::format("    static void* {}(int {});", s_New, s_rtti),
+std::format("    static void {}(void* p, int {});", s_Delete, s_rtti),
+std::format("    static bool {}(int {});", s_Has, s_rtti),
             "",
-fmt::format("    static void {}();", s_Init),
+std::format("    static void {}();", s_Init),
             "private:",
-fmt::format("    struct {}", s_Data),
+std::format("    struct {}", s_Data),
             "    {",
             "        int rtti = 0;",
-fmt::format("        std::function<void* ()> {};", s_newFunc),
-fmt::format("        std::function<void (void*)> {};", s_deleteFunc),
+std::format("        std::function<void* ()> {};", s_newFunc),
+std::format("        std::function<void (void*)> {};", s_deleteFunc),
             "    };",
             "",
-fmt::format("    static std::vector<{}> {};", s_Data, s_mDataVector),
+std::format("    static std::vector<{}> {};", s_Data, s_mDataVector),
         };
 
     public:
