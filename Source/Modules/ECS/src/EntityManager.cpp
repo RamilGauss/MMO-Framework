@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #define SHOW_STAT
 
 #include "EntityManager.h"
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 #include "Entity.h"
 
 #include "EntityManagerMaster.h"

@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "gtest/gtest.h"
 
 #include "Complex.hpp"
-#include "JsonSerializer.h"
+#include "Base/Common/JsonSerializer.h"
 
 TEST(Json, Complex)
 {

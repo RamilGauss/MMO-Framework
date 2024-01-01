@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "StateTimeWait.h"
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 
 void TStateTimeWait::AddOrUpdateState(State state, unsigned int waitTime, unsigned int errorCode)
 {

@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <limits>
 #include "imgui.h"
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 namespace nsImGuiWidgets
 {

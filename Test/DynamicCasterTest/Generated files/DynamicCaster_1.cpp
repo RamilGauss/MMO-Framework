@@ -5,8 +5,8 @@
 // File has been generated at 2023_05_28 18:22:21.415
 	
 #include "DynamicCaster_1.h"
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsDynamicCasterTest;
 

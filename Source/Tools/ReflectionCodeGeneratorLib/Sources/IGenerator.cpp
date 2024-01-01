@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "IGenerator.h"
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 #include "ConfigContainer.h"
 
 using namespace nsReflectionCodeGenerator;

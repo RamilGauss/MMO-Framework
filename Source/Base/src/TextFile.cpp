@@ -4,7 +4,7 @@ Author: Gudakov Ramil Sergeevich a.k.a. Gauss
 Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
-#include "TextFile.h"
+#include "Base/Common/TextFile.h"
 
 
 TTextFile::TTextFile(const std::string& path)

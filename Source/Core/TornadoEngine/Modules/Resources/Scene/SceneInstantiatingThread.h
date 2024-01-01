@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ThreadBoost.h"
+#include "Base/Common/ThreadBoost.h"
 
 namespace nsTornadoEngine
 {

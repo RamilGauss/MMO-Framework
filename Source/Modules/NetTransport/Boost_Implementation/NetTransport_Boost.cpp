@@ -10,9 +10,9 @@ See for more information LICENSE.md.
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/placeholders.hpp>
 
-#include "HiTimer.h"
-#include "ResolverSelf_IP_v4.h"
-#include "Logger.h"
+#include "Base/Common/HiTimer.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
+#include "Base/Common/Logger.h"
 #include <memory>
 
 

@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include <map>
 #include <array>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 namespace nsGraphicEngine
 {

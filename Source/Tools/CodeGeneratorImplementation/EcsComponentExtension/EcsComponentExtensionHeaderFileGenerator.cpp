@@ -23,7 +23,7 @@ void TEcsComponentExtensionHeaderFileGenerator::Work()
     AddStandartInclude("string");
     AddStandartInclude("map");
     AddStandartInclude("functional");
-    AddInclude("TypeDef.h");
+    AddInclude("Base/Common/TypeDef.h");
 
     auto fit = mSerializer->keyValueMap.find(TConstants::s_EntityManagerHeaderPath);
     std::string entityManagerHeaderPath = "EntityManager.h";

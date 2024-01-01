@@ -9,7 +9,7 @@
 #include <string>
 #include <map>
 #include <functional>
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "EntityManager.h"
 #include "EcsComponentExtensionIncludeList.h"
 

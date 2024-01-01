@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 #include <functional>
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "IncludeList.h"
 
 namespace nsTypeFactory

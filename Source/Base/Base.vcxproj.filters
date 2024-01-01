@@ -9,255 +9,261 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="include\Common">
+      <UniqueIdentifier>{84d70af6-47fd-48bc-aa42-adb87e1a3cf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Zones">
+      <UniqueIdentifier>{65241db8-4a63-4f32-87d1-05828ce00824}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AllocatorPool.h">
+    <ClInclude Include="include\Base\Common\AllocatorPool.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ArrContainer.h">
+    <ClInclude Include="include\Base\Common\ArrContainer.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\BL_Debug.h">
+    <ClInclude Include="include\Base\Common\BL_Debug.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\BreakPacket.h">
+    <ClInclude Include="include\Base\Common\BreakPacket.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\CallBackRegistrator.h">
+    <ClInclude Include="include\Base\Common\CallBackRegistrator.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\CmdParam.h">
+    <ClInclude Include="include\Base\Common\CmdParam.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ContainerArrObj.h">
+    <ClInclude Include="include\Base\Common\ContainerArrObj.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ContainerPtrArrObj.h">
+    <ClInclude Include="include\Base\Common\ContainerPtrArrObj.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ContainerRise.h">
+    <ClInclude Include="include\Base\Common\ContainerRise.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ContainerTypes.h">
+    <ClInclude Include="include\Base\Common\ContainerTypes.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ConverterLocale.h">
+    <ClInclude Include="include\Base\Common\ConverterLocale.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\CRC8.h">
+    <ClInclude Include="include\Base\Common\CRC8.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\CryptoAES_Impl.h">
+    <ClInclude Include="include\Base\Common\CryptoAES_Impl.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\CryptoRSA_Impl.h">
+    <ClInclude Include="include\Base\Common\CryptoRSA_Impl.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\DataExchange2Thread.h">
+    <ClInclude Include="include\Base\Common\DataExchange2Thread.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\DataExchange2ThreadElement.h">
+    <ClInclude Include="include\Base\Common\DataExchange2ThreadElement.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\DescCallBack.h">
+    <ClInclude Include="include\Base\Common\DescCallBack.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\DescEvent.h">
+    <ClInclude Include="include\Base\Common\DescEvent.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\DstEvent.h">
+    <ClInclude Include="include\Base\Common\DstEvent.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\FastUpperBound.h">
+    <ClInclude Include="include\Base\Common\FastUpperBound.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\FileOperation.h">
+    <ClInclude Include="include\Base\Common\FileOperation.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\HiTimer.h">
+    <ClInclude Include="include\Base\Common\HiTimer.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\IContainer.h">
+    <ClInclude Include="include\Base\Common\IContainer.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ILoaderDLL.h">
+    <ClInclude Include="include\Base\Common\ILoaderDLL.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\InfoFile.h">
+    <ClInclude Include="include\Base\Common\InfoFile.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\InputByCmd.h">
+    <ClInclude Include="include\Base\Common\InputByCmd.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ListPtr.h">
+    <ClInclude Include="include\Base\Common\ListPtr.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoaderDLL_Unix.h">
+    <ClInclude Include="include\Base\Common\LoaderDLL_Unix.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoaderDLL_Win32.h">
+    <ClInclude Include="include\Base\Common\LoaderDLL_Win32.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoadFromFile.h">
+    <ClInclude Include="include\Base\Common\LoadFromFile.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\LockFreeDef.h">
+    <ClInclude Include="include\Base\Common\LockFreeDef.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Logger.h">
+    <ClInclude Include="include\Base\Common\Logger.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MapCallBack.h">
+    <ClInclude Include="include\Base\Common\MapCallBack.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Marshaller.h">
+    <ClInclude Include="include\Base\Common\Marshaller.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MD5.h">
+    <ClInclude Include="include\Base\Common\MD5.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MemoryPool.h">
+    <ClInclude Include="include\Base\Common\MemoryPool.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Mutex.h">
+    <ClInclude Include="include\Base\Common\Mutex.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Only_N_Object.h">
+    <ClInclude Include="include\Base\Common\Only_N_Object.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ResolverSelf_IP_v4.h">
+    <ClInclude Include="include\Base\Common\ResolverSelf_IP_v4.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ReversedContainerRise.h">
+    <ClInclude Include="include\Base\Common\ReversedContainerRise.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SaveToFile.h">
+    <ClInclude Include="include\Base\Common\SaveToFile.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SetOrderElement.h">
+    <ClInclude Include="include\Base\Common\SetOrderElement.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SHA256.h">
+    <ClInclude Include="include\Base\Common\SHA256.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ShareMisc.h">
+    <ClInclude Include="include\Base\Common\ShareMisc.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SrcEvent.h">
+    <ClInclude Include="include\Base\Common\SrcEvent.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SrcEvent_ex.h">
+    <ClInclude Include="include\Base\Common\SrcEvent_ex.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\StatisticsValue.h">
+    <ClInclude Include="include\Base\Common\StatisticsValue.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ThreadBoost.h">
+    <ClInclude Include="include\Base\Common\ThreadBoost.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\TypeDef.h">
+    <ClInclude Include="include\Base\Common\TypeDef.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\VectorRise.h">
+    <ClInclude Include="include\Base\Common\VectorRise.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SortedThinningRestoreOrder.h">
+    <ClInclude Include="include\Base\Common\SortedThinningRestoreOrder.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SingletonManager.h">
+    <ClInclude Include="include\Base\Common\SingletonManager.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ExecuteInstructionEngine.h">
+    <ClInclude Include="include\Base\Common\ExecuteInstructionEngine.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\BinaryPushMaster.h">
+    <ClInclude Include="include\Base\Common\BinaryPushMaster.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\BinaryPopMaster.h">
+    <ClInclude Include="include\Base\Common\BinaryPopMaster.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\JsonPopMaster.h">
+    <ClInclude Include="include\Base\Common\JsonPopMaster.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\JsonPushMaster.h">
+    <ClInclude Include="include\Base\Common\JsonPushMaster.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\TextFile.h">
+    <ClInclude Include="include\Base\Common\TextFile.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\JsonMaster.h">
+    <ClInclude Include="include\Base\Common\JsonMaster.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\BinaryMaster.h">
+    <ClInclude Include="include\Base\Common\BinaryMaster.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MemoryObjectPoolAllocator.h">
+    <ClInclude Include="include\Base\Common\MemoryObjectPoolAllocator.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MemoryObjectPool.h">
+    <ClInclude Include="include\Base\Common\MemoryObjectPool.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SortedVecWithKeyMap.h">
+    <ClInclude Include="include\Base\Common\SortedVecWithKeyMap.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SortedVector.h">
+    <ClInclude Include="include\Base\Common\SortedVector.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\RunTimeTypeIndex.h">
+    <ClInclude Include="include\Base\Common\RunTimeTypeIndex.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ColanderVector.h">
+    <ClInclude Include="include\Base\Common\ColanderVector.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\PathOperations.h">
+    <ClInclude Include="include\Base\Common\PathOperations.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\BiMap.h">
+    <ClInclude Include="include\Base\Common\BiMap.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\CallbackPool.h">
+    <ClInclude Include="include\Base\Common\CallbackPool.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\StopWatch.h">
+    <ClInclude Include="include\Base\Common\StopWatch.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\StringExtensions.h">
+    <ClInclude Include="include\Base\Common\StringExtensions.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\TextGenerator.h">
+    <ClInclude Include="include\Base\Common\TextGenerator.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\LockFreeFifo.h">
+    <ClInclude Include="include\Base\Common\LockFreeFifo.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\TypeName.h">
+    <ClInclude Include="include\Base\Common\TypeName.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\GuidGenerator.h">
+    <ClInclude Include="include\Base\Common\GuidGenerator.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\MemoryDumper.h">
+    <ClInclude Include="include\Base\Common\MemoryDumper.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ProgressValue.h">
+    <ClInclude Include="include\Base\Common\ProgressValue.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ZoneManager.h">
+    <ClInclude Include="include\Base\Zones\ZoneManager.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Zone.h">
+    <ClInclude Include="include\Base\Zones\Zone.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ZoneProcess.h">
+    <ClInclude Include="include\Base\Zones\ZoneProcess.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\IContext.h">
+    <ClInclude Include="include\Base\Zones\IContext.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ContextZone.h">
+    <ClInclude Include="include\Base\Zones\ContextZone.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\LoaderDLLFactory.h">
+    <ClInclude Include="include\Base\Common\LoaderDLLFactory.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

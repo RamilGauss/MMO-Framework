@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "StringExtensions.h"
+#include "Base/Common/StringExtensions.h"
 
 
 void TStringExtensions::TrimRight(std::string& str, const std::string& symbols)

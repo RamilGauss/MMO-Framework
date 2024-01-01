@@ -12,8 +12,8 @@ See for more information LICENSE.md.
 #include "Events.h"
 #include "ControlScenario.h"
 #include "Components.h"
-#include "Logger.h"
-#include "SaveToFile.h"
+#include "Base/Common/Logger.h"
+#include "Base/Common/SaveToFile.h"
 
 #include "ScenarioFlow.h"
 #include "ScenarioLoginClient.h"

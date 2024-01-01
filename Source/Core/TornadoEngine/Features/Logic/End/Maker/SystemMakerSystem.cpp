@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "SystemMakerSystem.h"
 #include "ProjectConfigContainer.h"
 #include "Modules.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "EngineLogger.h"
 #include "ScenePartReflectionAggregator.h"
 

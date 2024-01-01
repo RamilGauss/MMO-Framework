@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "SetOrderElement.h"
+#include "Base/Common/SetOrderElement.h"
 #include "ECS/include/EntityManager.h"
 #include "BaseLogic.h"
 #include "EnumMMO.h"

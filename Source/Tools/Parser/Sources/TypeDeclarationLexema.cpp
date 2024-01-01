@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "TypeDeclarationLexema.h"
 
-#include "StringExtensions.h"
+#include "Base/Common/StringExtensions.h"
 
 #include "ILexema.h"
 #include "Types.h"

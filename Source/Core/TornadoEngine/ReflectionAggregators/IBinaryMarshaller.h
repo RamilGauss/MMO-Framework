@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "TypeDef.h"
-#include "ContainerRise.h"
+#include "Base/Common/TypeDef.h"
+#include "Base/Common/ContainerRise.h"
 
 namespace nsTornadoEngine
 {

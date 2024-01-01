@@ -11,7 +11,7 @@ Project Handler
 #include <list>
 #include <vector>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "Parser/Sources/TypeInfo.h"
 #include "HandlerIncludeList.h"
 

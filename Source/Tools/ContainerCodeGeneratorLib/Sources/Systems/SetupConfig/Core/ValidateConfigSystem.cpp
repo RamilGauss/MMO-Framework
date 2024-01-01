@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "ValidateConfigSystem.h"
 
-#include <PathOperations.h>
+#include "Base/Common/PathOperations.h"
 #include <ECS/include/Helper.h>
 
 #include "Constants.h"

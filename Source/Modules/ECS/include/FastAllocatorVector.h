@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <list>
 #include <functional>
-#include "VectorRise.h"
+#include "Base/Common/VectorRise.h"
 
 namespace nsECSFramework
 {

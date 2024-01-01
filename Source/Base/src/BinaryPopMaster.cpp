@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BinaryPopMaster.h"
+#include "Base/Common/BinaryPopMaster.h"
 
 void TBinaryPopMaster::SetBuffer(TContainerRise* pC, int offset)
 {

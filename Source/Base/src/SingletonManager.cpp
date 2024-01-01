@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 
 TSingletonManager g_SingletonManager;
 

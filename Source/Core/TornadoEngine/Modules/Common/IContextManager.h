@@ -12,9 +12,9 @@ See for more information LICENSE.md.
 #include <list>
 #include <string>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "IContext.h"
-#include "ColanderVector.h"
+#include "Base/Common/ColanderVector.h"
 
 namespace nsTornadoEngine
 {

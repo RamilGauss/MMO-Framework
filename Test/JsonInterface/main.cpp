@@ -9,9 +9,9 @@
 #include "rapidjson/stringbuffer.h"
 #include "rapidjson/prettywriter.h"
 
-#include "JsonPopMaster.h"
-#include "JsonPushMaster.h"
-#include "HiTimer.h"
+#include "Base/Common/JsonPopMaster.h"
+#include "Base/Common/JsonPushMaster.h"
+#include "Base/Common/HiTimer.h"
 
 int main(int argc, char** argv)
 {

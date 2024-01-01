@@ -5,16 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 #include "TestClass.h"
 #include <conio.h>
 #include "Marshaller.h"
 #include "Reflection.h"
-#include "MemoryPool.h"
-#include "MemoryObjectPoolAllocator.h"
+#include "Base/Common/MemoryPool.h"
+#include "Base/Common/MemoryObjectPoolAllocator.h"
 #include "lz4.h"
 #include "BinaryMarshaller.h"
-#include "JsonSerializer.h"
+#include "Base/Common/JsonSerializer.h"
 
 #ifdef _DEBUG
 const int cnt = 1000;

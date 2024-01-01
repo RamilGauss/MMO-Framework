@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 
 #include "ProjectConfigLoader.h"
-#include "LoaderDLLFactory.h"
-#include "TextFile.h"
+#include "Base/Common/LoaderDLLFactory.h"
+#include "Base/Common/TextFile.h"
 #include "TornadoEngineJsonSerializer.h"
-#include "PathOperations.h"
+#include "Base/Common/PathOperations.h"
 
 #include "EngineLogger.h"
 #include "ResourceManager.h"

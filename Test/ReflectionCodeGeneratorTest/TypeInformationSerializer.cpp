@@ -6,8 +6,8 @@
 	
 #include "TypeInformationSerializer.h"
 
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 #include "Parser/Sources/Generated files/JsonSerializer.h"
 
 using namespace nsTypeInformation;

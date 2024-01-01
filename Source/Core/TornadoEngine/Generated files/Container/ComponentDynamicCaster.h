@@ -12,7 +12,7 @@ Core Component
 #include <set>
 #include <functional>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "ComponentIncludeList.h"
 
 namespace nsTornadoEngine

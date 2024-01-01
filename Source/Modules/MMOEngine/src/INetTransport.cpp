@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "INetTransport.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "EnumMMO.h"
 
 namespace nsMMOEngine

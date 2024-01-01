@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 #include <functional>
-#include "JsonMaster.h"
+#include "Base/Common/JsonMaster.h"
 #include "IncludeList.h"
 
 namespace nsJson

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <iostream>
 
-#include "LoadFromFile.h"
+#include "Base/Common/LoadFromFile.h"
 #include "Parser/Sources/Parser.h"
 
 class TFileParser

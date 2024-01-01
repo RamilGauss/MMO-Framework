@@ -10,10 +10,10 @@ See for more information LICENSE.md.
 
 #include "NetWorkThread.h"
 
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 #include "INetControl.h"
-#include "BL_Debug.h"
-#include "Logger.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/Logger.h"
 
 TNetWorkThread::TNetWorkThread()
 {

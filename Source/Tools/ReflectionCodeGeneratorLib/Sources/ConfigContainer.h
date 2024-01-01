@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 #include "Config.h"
 
 namespace nsReflectionCodeGenerator

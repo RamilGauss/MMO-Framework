@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include <boost/wave/cpplexer/cpp_lex_token.hpp>    // token class
 #include <boost/wave/cpplexer/cpp_lex_iterator.hpp> // lexer class
 
-#include "LoadFromFile.h"
-#include "SingletonManager.h"
+#include "Base/Common/LoadFromFile.h"
+#include "Base/Common/SingletonManager.h"
 #include "TokenInfo.h"
 
 using namespace boost::wave;

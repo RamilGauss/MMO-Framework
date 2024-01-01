@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
-#include <TextGenerator.h>
-#include <PathOperations.h>
+#include "Base/Common/TextGenerator.h"
+#include "Base/Common/PathOperations.h"
 
 #include <ECS/include/Helper.h>
 

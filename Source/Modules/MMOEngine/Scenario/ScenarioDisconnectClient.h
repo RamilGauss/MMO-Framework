@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "IScenario.h"
 #include "ContextScDisconnectClient.h"
 #include "MakerScenario.h"
-#include "CallBackRegistrator.h"
+#include "Base/Common/CallBackRegistrator.h"
 #include "ScenarioBaseHeader.h"
 
 #pragma pack(push, 1)

@@ -7,12 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "SrcEvent.h"
-
 #include "DescRecvSession.h"
-#include "CallBackRegistrator.h"
 
-#include "MapCallBack.h"
+#include "Base/Common/SrcEvent.h"
+#include "Base/Common/CallBackRegistrator.h"
+#include "Base/Common/MapCallBack.h"
 
 namespace nsMMOEngine
 {

@@ -20,12 +20,12 @@ void TBinaryMarshallerHeaderFileGenerator::Work()
     AddEmptyLine();
 
     AddStandartInclude("functional");
-    AddInclude("ContainerRise.h");
-    AddInclude("TypeDef.h");
-    AddInclude("BinaryPushMaster.h");
-    AddInclude("BinaryPopMaster.h");
-    AddInclude("MemoryObjectPoolAllocator.h");
-    AddInclude("BL_Debug.h");
+    AddInclude("Base/Common/ContainerRise.h");
+    AddInclude("Base/Common/TypeDef.h");
+    AddInclude("Base/Common/BinaryPushMaster.h");
+    AddInclude("Base/Common/BinaryPopMaster.h");
+    AddInclude("Base/Common/MemoryObjectPoolAllocator.h");
+    AddInclude("Base/Common/BL_Debug.h");
     AddInclude("lz4.h");
 
     AddEmptyLine();

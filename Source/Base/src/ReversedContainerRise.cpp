@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #include <stddef.h>
 #include <memory.h>
 
-#include "ReversedContainerRise.h"
-#include "BL_Debug.h"
+#include "Base/Common/ReversedContainerRise.h"
+#include "Base/Common/BL_Debug.h"
 
 TReversedContainerRise::TReversedContainerRise()
 {

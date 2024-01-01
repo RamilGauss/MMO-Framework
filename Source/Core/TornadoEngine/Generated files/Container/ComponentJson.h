@@ -9,7 +9,7 @@ Core Component
 #include <vector>
 #include <string>
 #include <functional>
-#include "JsonMaster.h"
+#include "Base/Common/JsonMaster.h"
 #include "ComponentIncludeList.h"
 
 namespace nsTornadoEngine

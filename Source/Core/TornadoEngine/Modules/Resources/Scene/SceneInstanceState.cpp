@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "SceneInstanceState.h"
 
-#include "GuidGenerator.h"
+#include "Base/Common/GuidGenerator.h"
 
 namespace nsTornadoEngine
 {

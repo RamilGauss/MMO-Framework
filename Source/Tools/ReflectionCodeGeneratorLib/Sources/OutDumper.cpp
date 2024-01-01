@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "OutDumper.h"
-#include "SaveToFile.h"
 #include "JsonSerializer.h"
+#include "Base/Common/SaveToFile.h"
 
 using namespace nsReflectionCodeGenerator;
 

@@ -11,22 +11,22 @@ See for more information LICENSE.md.
 #include <stdio.h>
 #include <thread>
 
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "CommonParam.h"
 #include "NetTransport/MakerNetTransport.h"
 #include "MMOEngine/include/Slave.h"
 #include "MMOEngine/include/Master.h"
 #include "MMOEngine/include/SuperServer.h"
-#include "HiTimer.h"
-#include "ResolverSelf_IP_v4.h"
-#include "Logger.h"
+#include "Base/Common/HiTimer.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
+#include "Base/Common/Logger.h"
 #include "HandlerMMO_Slave.h"
 #include "HandlerMMO_Master.h"
 #include "HandlerMMO_SuperServer.h"
 #include "ReversedContainerRise.h"
 #include "InputCmdTestMMO_Server.h"
 #include "ClusterMonitorServerHandler.h"
-#include "SrcEvent_ex.h"
+#include "Base/Common/SrcEvent_ex.h"
 
 #define COUNT_SLAVE 3
 

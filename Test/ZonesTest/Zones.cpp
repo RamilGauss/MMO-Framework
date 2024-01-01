@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #include "gtest/gtest.h"
 
-#include "ZoneManager.h"
-#include "Zone.h"
-#include "ZoneProcess.h"
+#include "Base/Zones/ZoneManager.h"
+#include "Base/Zones/Zone.h"
+#include "Base/Zones/ZoneProcess.h"
 
-class A_process : public nsZones::TZoneProcess
+class A_process : public nsBase::nsZones::TZoneProcess
 {
 public:
     void Work() override {}
@@ -19,10 +19,10 @@ public:
 
 TEST(Json, Complex)
 {
-    nsZones::TZoneManager zoneMgr;
+    nsBase::nsZones::TZoneManager zoneMgr;
 
-    nsZones::TZone a;
-    nsZones::TZone b;
+    nsBase::nsZones::TZone a;
+    nsBase::nsZones::TZone b;
 
     zoneMgr.AddZone(&a);
     zoneMgr.AddZone(&b);

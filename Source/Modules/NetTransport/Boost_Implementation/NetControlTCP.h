@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 #include "INetControl.h"
 #include "NetDeviceTCP.h"
-#include "Mutex.h"
+#include "Base/Common/Mutex.h"
 #include "HistoryPacketTCP.h"
 
 class TNetControlTCP : public INetControl

@@ -11,12 +11,12 @@ See for more information LICENSE.md.
 #include <boost/bind.hpp>
 
 #include "NetControlTCP.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "HistoryPacketTCP.h"
 #include "HeaderTCP.h"
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 #include "NetTransport_Boost.h"
 #include "MMOEngine/include/EnumMMO.h"
 

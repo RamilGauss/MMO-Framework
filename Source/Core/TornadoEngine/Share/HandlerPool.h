@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include <list>
 #include <functional>
 
-#include "TypeDef.h"
-#include "BL_Debug.h"
+#include "Base/Common/TypeDef.h"
+#include "Base/Common/BL_Debug.h"
 
 #include <ECS/include/Config.h>
 

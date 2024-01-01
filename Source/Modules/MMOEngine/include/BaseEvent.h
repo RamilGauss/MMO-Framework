@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base.h"
-#include "ContainerTypes.h"
+#include "Base/Common/ContainerTypes.h"
 #include "EnumMMO.h"
 
 namespace nsMMOEngine

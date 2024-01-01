@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "Modules.h"
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 
 nsTornadoEngine::TModules* nsTornadoEngine::Modules()
 {

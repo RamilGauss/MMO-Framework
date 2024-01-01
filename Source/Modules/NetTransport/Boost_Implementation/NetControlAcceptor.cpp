@@ -11,9 +11,9 @@ See for more information LICENSE.md.
 #include <boost/system/error_code.hpp>
 #include <boost/bind.hpp>
 
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "NetTransport_Boost.h"
 #include "NetControlTCP.h"
 #include "MMOEngine/include/EnumMMO.h"

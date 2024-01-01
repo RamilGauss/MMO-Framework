@@ -10,9 +10,9 @@ See for more information LICENSE.md.
 #include "MMOEngine/include/Slave.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
-#include "ResolverSelf_IP_v4.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
 #include "HandlerMMO_Slave.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 
 const float SLAVE_LOAD_PER_CLIENT = 1.0f;
 

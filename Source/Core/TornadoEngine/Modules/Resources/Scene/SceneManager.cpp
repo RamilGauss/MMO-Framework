@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "SceneManager.h"
 
-#include "HiTimer.h"
-#include "TextFile.h"
-#include "Logger.h"
+#include "Base/Common/HiTimer.h"
+#include "Base/Common/TextFile.h"
+#include "Base/Common/Logger.h"
 #include "EngineLogger.h"
 #include "TornadoEngineJsonSerializer.h"
 #include "ProjectConfigContainer.h"
@@ -29,7 +29,7 @@ See for more information LICENSE.md.
 #include "SceneRootComponent.h"
 #include "SceneGuidComponent.h"
 
-#include "GuidGenerator.h"
+#include "Base/Common/GuidGenerator.h"
 
 #include "UniverseIndexComponent.h"
 #include "UniverseGuidComponent.h"

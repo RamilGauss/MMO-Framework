@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "ContextScSendToClient.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "SessionManager.h"
 
 using namespace nsMMOEngine;

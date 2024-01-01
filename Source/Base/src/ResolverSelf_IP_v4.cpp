@@ -6,12 +6,12 @@ See for more information LICENSE.md.
 */
 
 
-#include "ResolverSelf_IP_v4.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
 
 #include <stdio.h>
 #include <boost/asio.hpp>
 
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 
 #ifndef WIN32
 #include <sys/types.h>

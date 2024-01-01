@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CRC8.h"
+#include "Base/Common/CRC8.h"
 
 TCRC8::TCRC8()
 {

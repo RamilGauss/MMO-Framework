@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DstEvent.h"
+#include "Base/Common/DstEvent.h"
 #include "MMOEngine/include/BaseEvent.h"
 #include "MMOEngine/include/Client.h"
 #include <unordered_set>

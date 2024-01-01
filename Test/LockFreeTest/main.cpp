@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 #include <boost/lockfree/spsc_queue.hpp>
 
 #include "LockFreeFifo.h"
-#include "DataExchange2Thread.h"
-#include "HiTimer.h"
+#include "Base/Common/DataExchange2Thread.h"
+#include "Base/Common/HiTimer.h"
 
 const uint32_t IN_COUNT = 512 * 1024 * 1024;
 

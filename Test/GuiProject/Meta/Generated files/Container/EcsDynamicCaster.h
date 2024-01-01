@@ -2,7 +2,7 @@
 Project Ecs System
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_12 13:46:49.421
+// File has been generated at 2024_01_01 18:53:47.377
 	
 #pragma once
 
@@ -12,7 +12,7 @@ Project Ecs System
 #include <set>
 #include <functional>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "EcsSystemIncludeList.h"
 
 namespace nsTornadoEditor

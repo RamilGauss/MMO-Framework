@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "ContextScLoginClient.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "EnumMMO.h"
 
 using namespace nsMMOEngine;

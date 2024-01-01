@@ -7,21 +7,21 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "Entity.h"
 #include <list>
 #include <vector>
 #include <type_traits>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include "IComponent.h"
 #include "Config.h"
-#include "VectorRise.h"
-#include "MemoryObjectPool.h"
-#include "CallBackRegistrator.h"
-#include "RunTimeTypeIndex.h"
-#include "ColanderVector.h"
+#include "Base/Common/VectorRise.h"
+#include "Base/Common/MemoryObjectPool.h"
+#include "Base/Common/CallBackRegistrator.h"
+#include "Base/Common/RunTimeTypeIndex.h"
+#include "Base/Common/ColanderVector.h"
 
 namespace nsECSFramework
 {

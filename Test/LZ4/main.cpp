@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include <chrono>
 #include <stdio.h>
 #include <string.h>
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 
 #ifdef _DEBUG
 #define TEST_COUNT 3000

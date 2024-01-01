@@ -5,8 +5,8 @@
 // File has been generated at 2023_10_30 17:46:21.296
 	
 #include "EcsSystemExtension.h"
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsTest;
 

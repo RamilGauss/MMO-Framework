@@ -5,10 +5,10 @@ Core Component
 // File has been generated at 2023_11_12 12:28:55.715
 	
 #include "ComponentJson.h"
-#include "JsonPopMaster.h"
-#include "JsonPushMaster.h"
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/JsonPopMaster.h"
+#include "Base/Common/JsonPushMaster.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsTornadoEngine;
 

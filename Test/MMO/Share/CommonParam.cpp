@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "CommonParam.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "MMOEngine/include/EnumMMO.h"
 
 void InitLogger( const char* loggerName )

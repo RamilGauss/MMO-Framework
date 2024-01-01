@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "ComponentContainer.h"
 #include "Config.h"
-#include "BL_Debug.h"
-#include "ColanderVector.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/ColanderVector.h"
 #include "IComponent.h"
 
 namespace nsECSFramework

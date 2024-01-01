@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include <list>
 #include <unordered_map>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 namespace nsTornadoEngine
 {

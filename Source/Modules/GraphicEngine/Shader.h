@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 #include <sstream>
 #include <iostream>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include <glm/glm.hpp>
 

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include "ECS/include/IComponent.h"
 #include <GraphicEngine/Texture.h>

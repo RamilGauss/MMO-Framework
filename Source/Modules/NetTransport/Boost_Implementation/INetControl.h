@@ -9,10 +9,10 @@ See for more information LICENSE.md.
 
 #include <list>
 
-#include "Mutex.h"
+#include "Base/Common/Mutex.h"
 
-#include "BreakPacket.h"
-#include "CallBackRegistrator.h"
+#include "Base/Common/BreakPacket.h"
+#include "Base/Common/CallBackRegistrator.h"
 #include "MMOEngine/include/INetTransport.h"
 
 class TNetTransport_Boost;

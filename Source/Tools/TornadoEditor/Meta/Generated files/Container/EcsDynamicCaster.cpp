@@ -5,8 +5,8 @@ Project Ecs System
 // File has been generated at 2023_11_12 12:58:31.841
 	
 #include "EcsDynamicCaster.h"
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsTornadoEditor;
 

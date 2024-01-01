@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include "Master.h"
 #include "ControlScenario.h"
-#include "BL_Debug.h"
-#include "Logger.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/Logger.h"
 
 #include "ManagerContextMoreDownClientConnection.h"
 #include "ManagerContextDownConnection_Slave.h"
@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 #include "ManagerLoginingClientsOnSlave.h"
 #include "ManagerGroupClient.h"
 #include "ManagerRecommutation.h"
-#include "SetOrderElement.h"
+#include "Base/Common/SetOrderElement.h"
 #include "StatisticaClientInGroup.h"
 
 #include "Events.h"

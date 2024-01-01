@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 // и тут же отреагировать
 
 #include "ScenarioDisconnectClient.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "SessionManager.h"
 
 using namespace std;

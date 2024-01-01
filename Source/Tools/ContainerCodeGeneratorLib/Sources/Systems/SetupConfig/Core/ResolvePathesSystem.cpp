@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <ECS/include/ExecuteSystem.h>
 #include <ECS/include/Helper.h>
 
-#include "PathOperations.h"
+#include "Base/Common/PathOperations.h"
 
 #include "Components/CoreConfigComponent.h"
 #include "Components/PathsComponent.h"

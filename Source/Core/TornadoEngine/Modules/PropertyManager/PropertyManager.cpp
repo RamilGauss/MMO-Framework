@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "PropertyManager.h"
-#include <TextFile.h>
+#include "Base/Common/TextFile.h"
 
 #include "PropertyManagerConfigs.h"
 

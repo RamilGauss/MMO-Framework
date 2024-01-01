@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #include <map>
 #include <string>
 
-#include "Only_N_Object.h"
-#include "Mutex.h"
+#include "Base/Common/Only_N_Object.h"
+#include "Base/Common/Mutex.h"
 
 typedef std::map<std::string, int> TMapStrInt;
 typedef std::map<void*, std::string> TMapPtrStr;

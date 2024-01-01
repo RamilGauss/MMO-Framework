@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include <filesystem>
 #include <boost/filesystem.hpp>
 
-#include "PathOperations.h"
+#include "Base/Common/PathOperations.h"
 
 using namespace nsBase;
 

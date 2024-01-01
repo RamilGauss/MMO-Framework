@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DstEvent.h"
+#include "Base/Common/DstEvent.h"
 #include "MMOEngine/include/Slave.h"
 #include "Packets.h"
 #include "BaseTransport.h"

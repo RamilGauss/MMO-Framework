@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ShareMisc.h"
-#include "BL_Debug.h"
-#include "FileOperation.h"
+#include "Base/Common/ShareMisc.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/FileOperation.h"
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <algorithm>
 //###
 #include <boost/dll/runtime_symbol_info.hpp>
-#include "BreakPacket.h"
+#include "Base/Common/BreakPacket.h"
 //###
 #ifdef WIN32
 #include <windows.h>

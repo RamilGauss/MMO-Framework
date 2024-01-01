@@ -6,12 +6,12 @@
 #pragma once
 
 #include <functional>
-#include "ContainerRise.h"
-#include "TypeDef.h"
-#include "BinaryPushMaster.h"
-#include "BinaryPopMaster.h"
-#include "MemoryObjectPoolAllocator.h"
-#include "BL_Debug.h"
+#include "Base/Common/ContainerRise.h"
+#include "Base/Common/TypeDef.h"
+#include "Base/Common/BinaryPushMaster.h"
+#include "Base/Common/BinaryPopMaster.h"
+#include "Base/Common/MemoryObjectPoolAllocator.h"
+#include "Base/Common/BL_Debug.h"
 #include "lz4.h"
 
 #include "IncludeList.h"

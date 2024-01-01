@@ -6,13 +6,13 @@ See for more information LICENSE.md.
 */
 
 #include "NetDeviceAcceptor.h"
-#include "BL_Debug.h"
-#include "HiTimer.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/HiTimer.h"
 
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "MMOEngine/include/INetTransport.h"
 #include "MMOEngine/include/EnumMMO.h"
-#include "ResolverSelf_IP_v4.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
 #include "NetControlTCP.h"
 
 using namespace boost::asio;

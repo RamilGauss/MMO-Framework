@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 #include "ReflectionCodeGeneratorLib/Sources/TypeManager.h"
 
 using namespace nsReflectionCodeGenerator;

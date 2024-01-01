@@ -6,9 +6,9 @@ See for more information LICENSE.md.
 */
 
 #pragma once
-#include "ShareMisc.h"
+#include "Base/Common/ShareMisc.h"
 #include "INetTransport.h"
-#include "ContainerTypes.h"
+#include "Base/Common/ContainerTypes.h"
 
 namespace nsMMOEngine
 {

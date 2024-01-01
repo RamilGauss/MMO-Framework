@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include "ReceiverTransport.h"
 #include "IMakerTransport.h"
 #include "INetTransport.h"
-#include "BL_Debug.h"
-#include "Logger.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/Logger.h"
 #include "EnumMMO.h"
 
 using namespace nsMMOEngine;

@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include <map>
 #include <vector>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 namespace nsTornadoEngine
 {

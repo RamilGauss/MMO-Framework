@@ -6,9 +6,9 @@ See for more information LICENSE.md.
 */
 
 #pragma once
-#include "DataExchange2Thread.h"
-#include "ShareMisc.h"
-#include "ContainerTypes.h"
+#include "Base/Common/DataExchange2Thread.h"
+#include "Base/Common/ShareMisc.h"
+#include "Base/Common/ContainerTypes.h"
 #include "MMOEngine/include/INetTransport.h"
 #include "Packets.h"
 

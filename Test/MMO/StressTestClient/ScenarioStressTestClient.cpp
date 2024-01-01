@@ -10,13 +10,13 @@ See for more information LICENSE.md.
 #include <vector>
 #include <string.h>
 
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 //#include "Client.h"
 #include "CommonParam.h"
 #include "InputCmdTestMMO_Client.h"
-#include "HiTimer.h"
-#include "ResolverSelf_IP_v4.h"
-#include "Logger.h"
+#include "Base/Common/HiTimer.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
+#include "Base/Common/Logger.h"
 #include "HandlerMMO_Client.h"
 //#include "MakerXML.h"
 //#include "IXML.h"

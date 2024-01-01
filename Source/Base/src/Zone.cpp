@@ -5,13 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Zone.h"
+#include "Base/Zones/Zone.h"
 
-#include "ZoneManager.h"
-#include "ZoneProcess.h"
-#include "IContext.h"
+#include "Base/Zones/ZoneManager.h"
+#include "Base/Zones/ZoneProcess.h"
+#include "Base/Zones/IContext.h"
 
-namespace nsZones
+namespace nsBase::nsZones
 {
     void TZone::AddProcess(TZoneProcess* pProcess)
     {

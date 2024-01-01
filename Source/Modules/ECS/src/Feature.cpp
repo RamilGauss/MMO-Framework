@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "Feature.h"
 
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 
 using namespace nsECSFramework;
 

@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ThreadBoost.h"
+#include "Base/Common/ThreadBoost.h"
 
 #include <boost/thread/thread.hpp>
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 
 TThreadBoost::TThreadBoost()
 {

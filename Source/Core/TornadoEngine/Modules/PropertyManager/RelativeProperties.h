@@ -8,9 +8,9 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
-#include <BiMap.h>
+#include "Base/Common/BiMap.h"
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 namespace nsTornadoEngine
 {

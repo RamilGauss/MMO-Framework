@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "LogicWrapperModule.h"
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 
 using namespace nsTornadoEngine;
 

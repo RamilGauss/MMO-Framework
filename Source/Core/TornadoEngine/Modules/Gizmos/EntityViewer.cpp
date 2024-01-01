@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "EntityViewer.h"
 
 
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 #include "ECS/include/EntityManagerMaster.h"
 #include "ECS/include/EntityManager.h"
 

@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "TypeReference.h"
-#include "StringExtensions.h"
+#include "Base/Common/StringExtensions.h"
 
 namespace nsCppParser
 {

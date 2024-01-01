@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include <set>
 #include <list>
 
-#include "ShareMisc.h"
+#include "Base/Common/ShareMisc.h"
 #include <functional>
 
 namespace nsMMOEngine

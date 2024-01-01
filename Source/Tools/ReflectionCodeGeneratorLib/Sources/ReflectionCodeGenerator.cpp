@@ -10,11 +10,12 @@ See for more information LICENSE.md.
 #include <fmt/core.h>
 #include <fmt/color.h>
 
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/PathOperations.h"
+#include "Base/Common/LoadFromFile.h"
+#include "Base/Common/SaveToFile.h"
+
 #include "JsonSerializer.h"
-#include "PathOperations.h"
-#include "LoadFromFile.h"
-#include "SaveToFile.h"
 
 namespace fs = std::filesystem;
 

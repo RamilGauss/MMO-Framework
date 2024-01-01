@@ -12,8 +12,8 @@ See for more information LICENSE.md.
 #include <map>
 #include <vector>
 
-#include <TypeDef.h>
-#include <TypeName.h>
+#include "Base/Common/TypeDef.h"
+#include "Base/Common/TypeName.h"
 
 #include <ECS/include/EntityManager.h>
 #include <IPropertyOf.h>

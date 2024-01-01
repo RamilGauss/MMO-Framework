@@ -9,15 +9,15 @@ See for more information LICENSE.md.
 
 #include <map>
 
-#include "ShareMisc.h"
+#include "Base/Common/ShareMisc.h"
 #include "Session.h"
-#include "Mutex.h"
+#include "Base/Common/Mutex.h"
 #include "SessionNavigator.h"
-#include "CallBackRegistrator.h"
+#include "Base/Common/CallBackRegistrator.h"
 #include "DescRecvSession.h"
 #include "TransportManager.h"
 #include "Structs.h"
-#include "DataExchange2Thread.h"
+#include "Base/Common/DataExchange2Thread.h"
 #include "TransportEvents.h"
 
 namespace nsMMOEngine

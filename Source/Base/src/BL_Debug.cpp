@@ -5,17 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-//#include <stdio.h>
 #include <string>
-#include "ContainerTypes.h"
-#include "ConverterLocale.h"
+#include "Base/Common/ContainerTypes.h"
+#include "Base/Common/ConverterLocale.h"
 
 //------------------------------------------------------------------------------
 #if defined(_WIN32)//-----------------------------------------------------------
 //------------------------------------------------------------------------------
 #include <windows.h>
 #include <shlwapi.h>
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 bool BL_MessageBug_Utf8(const char* sMsgUtf8)
 {
@@ -64,7 +63,7 @@ void BL_MessageBug(const char* lpszFileName, int nLine)
 #else //defined(_WIN32)//-------------------------------------------------------
 //------------------------------------------------------------------------------
 
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 //------------------------------------------------------------------------------
 bool BL_MessageBug(const char* lpszMsg)

@@ -12,12 +12,12 @@ See for more information LICENSE.md.
 #include <fmt/core.h>
 
 #include "Requirements.h"
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 #include "Config.h"
 #include "JsonSerializer.h"
-#include "LoadFromFile.h"
-#include "TextFile.h"
-#include "PathOperations.h"
+#include "Base/Common/LoadFromFile.h"
+#include "Base/Common/TextFile.h"
+#include "Base/Common/PathOperations.h"
 
 namespace fs = std::filesystem;
 using namespace nsReflectionCodeGenerator;

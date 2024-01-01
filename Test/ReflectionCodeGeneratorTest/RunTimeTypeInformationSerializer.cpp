@@ -6,8 +6,8 @@
 	
 #include "RunTimeTypeInformationSerializer.h"
 
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsRunTimeTypeInformation;
 

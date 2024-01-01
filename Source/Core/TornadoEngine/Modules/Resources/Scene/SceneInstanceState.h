@@ -13,8 +13,8 @@ See for more information LICENSE.md.
 #include <unordered_map>
 #include <map>
 
-#include "LoadFromFile.h"
-#include "ProgressValue.h"
+#include "Base/Common/LoadFromFile.h"
+#include "Base/Common/ProgressValue.h"
 
 #include "SceneInstantiatingThread.h"
 #include "InstantiateSceneParams.h"

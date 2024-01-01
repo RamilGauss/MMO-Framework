@@ -22,7 +22,7 @@ void TTypeFactoryHeaderFileGenerator::Work()
     AddStandartInclude("vector");
     AddStandartInclude("functional");
 
-    AddInclude("TypeDef.h");
+    AddInclude("Base/Common/TypeDef.h");
 
     AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
     AddEmptyLine();

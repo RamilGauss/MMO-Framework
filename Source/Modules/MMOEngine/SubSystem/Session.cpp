@@ -6,11 +6,11 @@ See for more information LICENSE.md.
 */
 
 #include "Session.h"
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 
 #include <time.h>
-#include "ContainerTypes.h"
-#include "BL_Debug.h"
+#include "Base/Common/ContainerTypes.h"
+#include "Base/Common/BL_Debug.h"
 
 using namespace nsMMOEngine;
 

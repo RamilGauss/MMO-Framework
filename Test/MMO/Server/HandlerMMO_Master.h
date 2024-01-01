@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "HandlerMMO.h"
 #include <list>
-#include "SHA256.h"
+#include "Base/Common/SHA256.h"
 
 class THandlerMMO_Master : public THandlerMMO
 {

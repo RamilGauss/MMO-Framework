@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "InputByCmd.h"
+#include "Base/Common/InputByCmd.h"
 
 void TInputByCmd::Add(std::string& sKey, ParseFunc func)
 {

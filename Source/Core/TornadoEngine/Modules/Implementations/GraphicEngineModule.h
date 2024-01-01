@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "CallBackRegistrator.h"
+#include "Base/Common/CallBackRegistrator.h"
 #include "IGraphicEngineModule.h"
 
 #include "BeginGraphicFeature.h"

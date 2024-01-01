@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "MMOEngine/include/IMakerTransport.h"
 
 class DllExport TMakerNetTransport : public nsMMOEngine::IMakerTransport

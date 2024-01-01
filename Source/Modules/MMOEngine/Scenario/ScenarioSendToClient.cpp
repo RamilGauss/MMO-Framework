@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "ScenarioSendToClient.h"
 #include "SessionManager.h"
 #include "Events.h"
-#include "SrcEvent_ex.h"
+#include "Base/Common/SrcEvent_ex.h"
 
 using namespace nsMMOEngine;
 

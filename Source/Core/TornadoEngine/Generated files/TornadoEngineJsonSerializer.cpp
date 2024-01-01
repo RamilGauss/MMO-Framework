@@ -5,10 +5,10 @@
 // File has been generated at 2023_11_06 13:01:14.403
 	
 #include "TornadoEngineJsonSerializer.h"
-#include "JsonPopMaster.h"
-#include "JsonPushMaster.h"
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/JsonPopMaster.h"
+#include "Base/Common/JsonPushMaster.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsTornadoEngine;
 

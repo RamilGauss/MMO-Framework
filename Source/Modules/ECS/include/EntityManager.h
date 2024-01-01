@@ -16,17 +16,17 @@ See for more information LICENSE.md.
 #include <boost/dll/import_class.hpp>
 #include <boost/dll/shared_library.hpp>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
-#include "RunTimeTypeIndex.h"
-#include "SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
+#include "Base/Common/SingletonManager.h"
 
 #include "Entity.h"
 #include "Config.h"
-#include "VectorRise.h"
-#include "MemoryObjectPool.h"
-#include "CallBackPool.h"
-#include "ColanderVector.h"
+#include "Base/Common/VectorRise.h"
+#include "Base/Common/MemoryObjectPool.h"
+#include "Base/Common/CallBackPool.h"
+#include "Base/Common/ColanderVector.h"
 #include "ComplexType.h"
 #include "HelpStructs.h"
 #include "FastAllocatorForeachVector.h"

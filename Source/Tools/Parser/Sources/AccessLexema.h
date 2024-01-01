@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include "ILexema.h"
 #include "Types.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 namespace nsCppParser
 {

@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "ProjectConfigContainer.h"
-#include "SingletonManager.h"
-#include "PathOperations.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/PathOperations.h"
 
 #include "ScenePartReflectionAggregator.h"
 

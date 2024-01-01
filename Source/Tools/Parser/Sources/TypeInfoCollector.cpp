@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "TypeInfoCollector.h"
 #include "BlockLexemaEntity.h"
 #include "LineLexemaEntity.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 #include "EmptyLexema.h"
 #include "NamespaceLexema.h"

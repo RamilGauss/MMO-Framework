@@ -6,10 +6,10 @@ See for more information LICENSE.md.
 */
 
 #include "NetControlUDP.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
-#include "Logger.h"
-#include "HiTimer.h"
+#include "Base/Common/Logger.h"
+#include "Base/Common/HiTimer.h"
 
 #include <boost/asio/placeholders.hpp>
 #include <boost/asio/buffer.hpp>

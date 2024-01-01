@@ -10,11 +10,11 @@ See for more information LICENSE.md.
 #include "fmt/core.h"
 
 #include "TimeSliceEngine.h"
-#include "BL_Debug.h"
-#include "ShareMisc.h"
-#include "HiTimer.h"
-#include "Logger.h"
-#include "FileOperation.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/ShareMisc.h"
+#include "Base/Common/HiTimer.h"
+#include "Base/Common/Logger.h"
+#include "Base/Common/FileOperation.h"
 
 #include "Modules.h"
 #include "IModule.h"

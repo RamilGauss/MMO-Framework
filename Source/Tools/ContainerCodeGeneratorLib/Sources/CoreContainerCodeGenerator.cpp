@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 #include <magic_enum.hpp>
 
-#include "LoadFromFile.h"
+#include "Base/Common/LoadFromFile.h"
 
 #include "MessageException.h"
 

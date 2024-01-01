@@ -6,9 +6,9 @@ See for more information LICENSE.md.
 */
 
 #include "ManagerRecommutation.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "EnumMMO.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 
 using namespace nsMMOEngine;
 using namespace std;

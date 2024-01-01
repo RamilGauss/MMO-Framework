@@ -12,7 +12,7 @@
 #include <set>
 #include <functional>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "DynamicCast_0_IncludeList.h"
 
 namespace nsDynamicCasterTest

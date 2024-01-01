@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include <map>
 
-#include "ContainerRise.h"
-#include "ShareMisc.h"
-#include "BreakPacket.h"
+#include "Base/Common/ContainerRise.h"
+#include "Base/Common/ShareMisc.h"
+#include "Base/Common/BreakPacket.h"
 
 class DllExport THistoryPacketTCP
 {

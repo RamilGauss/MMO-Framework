@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 #include <memory.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 namespace nsMathTools
 {

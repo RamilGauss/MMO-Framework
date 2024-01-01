@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <map>
-#include "Bimap.h"
+#include "Base/Common/BiMap.h"
 #include "DelegateManagerContextSc.h"
 
 namespace nsMMOEngine

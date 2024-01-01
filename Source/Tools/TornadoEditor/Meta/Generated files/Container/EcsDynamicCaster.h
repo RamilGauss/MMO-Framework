@@ -12,7 +12,7 @@ Project Ecs System
 #include <set>
 #include <functional>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "EcsSystemIncludeList.h"
 
 namespace nsTornadoEditor

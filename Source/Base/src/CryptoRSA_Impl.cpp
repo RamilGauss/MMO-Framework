@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CryptoRSA_Impl.h"
+#include "Base/Common/CryptoRSA_Impl.h"
 
 #include <openssl/rsa.h>
 #include <openssl/pem.h>
 #include <openssl/evp.h>
 
 #include <algorithm>
-#include "BL_Debug.h"
-#include "Mutex.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/Mutex.h"
 
 namespace nsCryptoRSA_Impl
 {

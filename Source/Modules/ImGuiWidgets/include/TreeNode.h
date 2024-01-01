@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include <functional>
 
 #include "imgui.h"
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include "Node.h"
 #include "InputText.h"

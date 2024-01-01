@@ -5,8 +5,8 @@ Core Component
 // File has been generated at 2023_11_12 12:28:56.600
 	
 #include "ImGuiWidgetsDynamicCaster.h"
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsTornadoEngine;
 

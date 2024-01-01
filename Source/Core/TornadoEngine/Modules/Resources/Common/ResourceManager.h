@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "TypeDef.h"
-#include "TextFile.h"
+#include "Base/Common/TypeDef.h"
+#include "Base/Common/TextFile.h"
 
 #include "ResourceContentMap.h"
 #include "TornadoEngineJsonSerializer.h"

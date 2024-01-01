@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ZoneManager.h"
+#include "Base/Zones/ZoneManager.h"
 
-#include "Zone.h"
+#include "Base/Zones/Zone.h"
 
-namespace nsZones
+namespace nsBase::nsZones
 {
     void TZoneManager::AddZone(TZone* pZone)
     {

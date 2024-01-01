@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "PhysicEngine_Bullet.h"
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 
 struct TWorld
 {

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "DynamicCasterSourceFileGenerator.h"
 #include "fmt/core.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 using namespace nsCodeGeneratorImplementation;
 using namespace nsReflectionCodeGenerator;
@@ -20,8 +20,8 @@ void TDynamicCasterSourceFileGenerator::Work()
     AddTimeHeader();
 
     AddInclude(mSerializer->fileName + ".h");
-    AddInclude("SingletonManager.h");
-    AddInclude("RunTimeTypeIndex.h");
+    AddInclude("Base/Common/SingletonManager.h");
+    AddInclude("Base/Common/RunTimeTypeIndex.h");
 
     AddEmptyLine();
 

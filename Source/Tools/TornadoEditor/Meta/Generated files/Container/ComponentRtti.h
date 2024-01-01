@@ -11,7 +11,7 @@ Project Component
 #include <list>
 #include <vector>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "ComponentIncludeList.h"
 
 namespace nsTornadoEditor

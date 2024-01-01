@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include <ECS/include/EntityManager.h>
 
 #include "SceneGuidComponent.h"
@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 #include "GuidConstants.h"
 #include "Modules.h"
 #include "ProjectConfigContainer.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "EngineLogger.h"
 #include "PrefabOriginalGuidComponent.h"
 #include "SceneOriginalGuidComponent.h"

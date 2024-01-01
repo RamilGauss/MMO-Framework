@@ -8,10 +8,10 @@ See for more information LICENSE.md.
 #include <conio.h>
 
 #include "EntityManager.h"
-#include "VectorRise.h"
-#include "HiTimer.h"
+#include "Base/Common/VectorRise.h"
+#include "Base/Common/HiTimer.h"
 #include "ExecuteSystem.h"
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 
 #include <fmt/core.h>
 #include <entt/entt.hpp>

@@ -22,7 +22,7 @@ void TJsonSerializerHeaderFileGenerator::Work()
     AddStandartInclude("vector");
     AddStandartInclude("string");
     AddStandartInclude("functional");
-    AddInclude("JsonMaster.h");
+    AddInclude("Base/Common/JsonMaster.h");
     AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
     AddEmptyLine();
 

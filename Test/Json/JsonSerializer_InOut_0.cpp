@@ -5,10 +5,10 @@
 // File has been generated at 2023_05_28 18:22:45.120
 	
 #include "JsonSerializer_InOut_0.h"
-#include "JsonPopMaster.h"
-#include "JsonPushMaster.h"
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/JsonPopMaster.h"
+#include "Base/Common/JsonPushMaster.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsJson_InOut_0;
 

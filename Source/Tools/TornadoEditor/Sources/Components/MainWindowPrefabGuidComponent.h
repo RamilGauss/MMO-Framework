@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include <ECS/include/IComponent.h>
 

@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "ICodeGenerator.h"
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 #include "ConfigContainer.h"
 #include <filesystem>
 #include "fmt/core.h"

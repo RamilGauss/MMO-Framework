@@ -6,9 +6,9 @@ See for more information LICENSE.md.
 */
 
 #include "GraphicEngineModule.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "ProjectConfigContainer.h"
-#include "PathOperations.h"
+#include "Base/Common/PathOperations.h"
 #include "Modules.h"
 #include "ImGuiWidgets/include/Widget.h"
 

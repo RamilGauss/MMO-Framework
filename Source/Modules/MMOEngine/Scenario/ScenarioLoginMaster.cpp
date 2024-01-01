@@ -6,11 +6,11 @@ See for more information LICENSE.md.
 */
 
 #include "ScenarioLoginMaster.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "SessionManager.h"
 #include "Events.h"
 #include "EnumMMO.h"
-#include "SrcEvent_ex.h"
+#include "Base/Common/SrcEvent_ex.h"
 
 using namespace nsMMOEngine;
 

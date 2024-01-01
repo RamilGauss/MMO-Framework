@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <vector>
 #include <memory>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "ITokenEntity.h"
 #include "TokenInfo.h"
 

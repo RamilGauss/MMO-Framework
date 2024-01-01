@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include <list>
 #include <string>
 
-#include "TypeDef.h"
-#include "StatisticsValue.h"
+#include "Base/Common/TypeDef.h"
+#include "Base/Common/StatisticsValue.h"
 
 #include "GraphicEngine/IRenderable.h"
 #include "GraphicEngine/imgui/imgui.h"

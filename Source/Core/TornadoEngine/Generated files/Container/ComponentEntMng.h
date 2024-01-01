@@ -9,7 +9,7 @@ Core Component
 #include <string>
 #include <map>
 #include <functional>
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include <ECS/include/EntityManager.h>
 #include "ComponentIncludeList.h"
 

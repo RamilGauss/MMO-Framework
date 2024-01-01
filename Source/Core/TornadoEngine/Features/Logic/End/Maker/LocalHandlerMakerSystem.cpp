@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 
 #include "ProjectConfigContainer.h"
 #include "Modules.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "EngineLogger.h"
 
 #include "LocalHandlerMakerSystem.h"

@@ -5,14 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include "Base/Common/Logger.h"
+
 #include "ScenarioLoginClient.h"
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 #include "SessionManager.h"
-#include "Logger.h"
 #include "Base.h"
 #include "Events.h"
 #include "EnumMMO.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;

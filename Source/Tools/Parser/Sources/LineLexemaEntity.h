@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <vector>
 #include <memory>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "ILexemaEntity.h"
 #include "ILexema.h"
 

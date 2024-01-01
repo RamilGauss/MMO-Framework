@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "gtest/gtest.h"
 
 #include "SimpleEnum.h"
-#include "JsonSerializer.h"
+#include "Base/Common/JsonSerializer.h"
 
 TEST(Json, SimpleEnum)
 {

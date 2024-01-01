@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CryptoAES_Impl.h"
+#include "Base/Common/CryptoAES_Impl.h"
 
 #include <openssl/pem.h>
 #include <openssl/aes.h>
 #include <openssl/evp.h>
 #include <openssl/md5.h>
 #include <openssl/rand.h>
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "openssl/ossl_typ.h"
 
 namespace nsCryptoAES_Impl

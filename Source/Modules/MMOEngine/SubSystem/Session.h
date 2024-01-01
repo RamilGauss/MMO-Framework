@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "BreakPacket.h"
+#include "Base/Common/BreakPacket.h"
 #include "INetTransport.h"
-#include "CryptoAES_Impl.h"
-#include "SHA256.h"
-#include "CRC8.h"
+#include "Base/Common/CryptoAES_Impl.h"
+#include "Base/Common/SHA256.h"
+#include "Base/Common/CRC8.h"
 
 namespace nsMMOEngine
 {

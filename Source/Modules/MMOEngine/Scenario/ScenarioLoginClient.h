@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include "IScenario.h"
 #include "ContextScLoginClient.h"
 #include "MakerScenario.h"
-#include "ShareMisc.h"
-#include "CallBackRegistrator.h"
+#include "Base/Common/ShareMisc.h"
+#include "Base/Common/CallBackRegistrator.h"
 
 #include "ScLoginClient_ClientImpl.h"
 #include "ScLoginClient_MasterImpl.h"

@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include "IScenario.h"
 #include "DescRecvSession.h"
 #include "BaseScRecommutationClient_Struct.h"
-#include "DescCallBack.h"
-#include "MapCallBack.h"
+#include "Base/Common/DescCallBack.h"
+#include "Base/Common/MapCallBack.h"
 
 namespace nsMMOEngine
 {

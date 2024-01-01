@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "IScenarioContext.h"
-#include "BreakPacket.h"
-#include "ShareMisc.h"
+#include "Base/Common/BreakPacket.h"
+#include "Base/Common/ShareMisc.h"
 
 namespace nsMMOEngine
 {

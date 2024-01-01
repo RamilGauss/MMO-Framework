@@ -6,14 +6,14 @@ See for more information LICENSE.md.
 */
 
 #include "ScenarioLoginSlave.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "SessionManager.h"
-#include "Logger.h"
-#include "HiTimer.h"
+#include "Base/Common/Logger.h"
+#include "Base/Common/HiTimer.h"
 #include "Events.h"
 #include "EnumMMO.h"
 
-#include "SrcEvent_ex.h"
+#include "Base/Common/SrcEvent_ex.h"
 
 using namespace nsMMOEngine;
 

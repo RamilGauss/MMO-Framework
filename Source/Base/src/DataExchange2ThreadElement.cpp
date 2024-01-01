@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "DataExchange2ThreadElement.h"
+#include "Base/Common/DataExchange2ThreadElement.h"
 
 namespace DataExchange2Thread
 {

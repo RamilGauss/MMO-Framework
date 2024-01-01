@@ -12,8 +12,8 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
-#include "ILoaderDLL.h"
-#include "Logger.h"
+#include "Base/Common/ILoaderDLL.h"
+#include "Base/Common/Logger.h"
 
 #include "DeveloperTool_DLL.h"
 #include "ProjectConfig.h"

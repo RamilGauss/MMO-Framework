@@ -12,8 +12,8 @@ See for more information LICENSE.md.
 #include <memory>
 #include <string>
 
-#include "TypeDef.h"
-#include "CallbackPool.h"
+#include "Base/Common/TypeDef.h"
+#include "Base/Common/CallbackPool.h"
 
 #include "ProjectConfig.h"
 #include "ProjectConfigContainer.h"

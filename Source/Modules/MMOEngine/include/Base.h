@@ -7,15 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include <list>
 #include <memory>
 
 #include "Structs.h"
-#include "SrcEvent.h"
+#include "Base/Common/SrcEvent.h"
 #include "IMakerTransport.h"
-#include "DataExchange2Thread.h"
+#include "Base/Common/DataExchange2Thread.h"
 #include "EnumMMO.h"
 
 namespace nsECSFramework

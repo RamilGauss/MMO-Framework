@@ -5,8 +5,8 @@ Project Handler
 // File has been generated at 2023_11_12 12:58:30.679
 	
 #include "HandlerTypeFactory.h"
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsTornadoEditor;
 

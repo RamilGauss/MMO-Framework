@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SortedVecWithKeyMap.h"
-#include "BL_Debug.h"
+#include "Base/Common/SortedVecWithKeyMap.h"
+#include "Base/Common/BL_Debug.h"
 
 #include <algorithm>
 #include <search.h>
-#include "FastUpperBound.h"
+#include "Base/Common/FastUpperBound.h"
 
 using namespace std;
 

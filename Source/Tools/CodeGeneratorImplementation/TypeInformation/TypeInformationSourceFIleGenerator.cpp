@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "TypeInformationSourceFileGenerator.h"
 #include "fmt/core.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 #include "Parser/Sources/Generated files/JsonSerializer.h"
 
@@ -24,8 +24,8 @@ void TTypeInformationSourceFileGenerator::Work()
     AddInclude(mSerializer->fileName + ".h");
     AddEmptyLine();
 
-    AddInclude("SingletonManager.h");
-    AddInclude("RunTimeTypeIndex.h");
+    AddInclude("Base/Common/SingletonManager.h");
+    AddInclude("Base/Common/RunTimeTypeIndex.h");
     AddInclude("Parser/Sources/Generated files/JsonSerializer.h");
 
     AddEmptyLine();

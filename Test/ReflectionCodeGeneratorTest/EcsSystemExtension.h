@@ -12,7 +12,7 @@
 #include <set>
 #include <functional>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "EcsSystemExtensionIncludeList.h"
 
 namespace nsTest

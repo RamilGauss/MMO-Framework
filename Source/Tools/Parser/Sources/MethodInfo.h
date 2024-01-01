@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include <string>
 #include <set>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include "Types.h"
 #include "TypeReference.h"

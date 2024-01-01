@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "SystemTerminatorSystem.h"
 #include "ProjectConfigContainer.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "EngineLogger.h"
 #include "LogicModule.h"
 #include "Modules.h"

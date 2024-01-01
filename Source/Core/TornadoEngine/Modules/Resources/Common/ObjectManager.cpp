@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 #include "ObjectManager.h"
 
-#include "HiTimer.h"//###
+#include "Base/Common/HiTimer.h"//###
 
 #include "Modules.h"
 #include "TornadoEngineJsonSerializer.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "TimeSliceEngine.h"
-#include "TextFile.h"
+#include "Base/Common/TextFile.h"
 #include "ProjectConfigContainer.h"
 #include "UniverseGuidComponent.h"
 #include "ScenePartReflectionAggregator.h"

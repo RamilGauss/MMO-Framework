@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "LoaderDLLFactory.h"
+#include "Base/Common/LoaderDLLFactory.h"
 
-#include "LoaderDLL_Win32.h"
-#include "LoaderDLL_Unix.h"
+#include "Base/Common/LoaderDLL_Win32.h"
+#include "Base/Common/LoaderDLL_Unix.h"
 
 std::shared_ptr<ILoaderDLL> MakeLoaderDLL()
 {

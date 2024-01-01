@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "IScenario.h"
 #include "ContextScFlow.h"
 #include "MakerScenario.h"
-#include "SrcEvent_ex.h"
+#include "Base/Common/SrcEvent_ex.h"
 #include "ScenarioBaseHeader.h"
 
 #pragma pack(push, 1)

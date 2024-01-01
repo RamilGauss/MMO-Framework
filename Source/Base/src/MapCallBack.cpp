@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "MapCallBack.h"
-#include "BL_Debug.h"
+#include "Base/Common/MapCallBack.h"
+#include "Base/Common/BL_Debug.h"
 
 TDescCallBack* TMapCallBack::FindDesc(int type)
 {

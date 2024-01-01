@@ -9,16 +9,16 @@ See for more information LICENSE.md.
 #include <iostream>
 
 #include <boost/asio/ip/impl/address_v4.ipp>
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include <string.h>
 #include "InputCmdClientTransport.h"
-#include "HiTimer.h"
-#include "ResolverSelf_IP_v4.h"
-#include "Logger.h"
-#include "ShareMisc.h"
+#include "Base/Common/HiTimer.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
+#include "Base/Common/Logger.h"
+#include "Base/Common/ShareMisc.h"
 #include "NetTransport/MakerNetTransport.h"
 #include "MMOEngine/include/INetTransport.h"
-#include "DataExchange2Thread.h"
+#include "Base/Common/DataExchange2Thread.h"
 
 #include "Packets.h"
 

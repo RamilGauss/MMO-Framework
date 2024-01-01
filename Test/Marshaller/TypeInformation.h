@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 namespace nsTypeInformation
 {

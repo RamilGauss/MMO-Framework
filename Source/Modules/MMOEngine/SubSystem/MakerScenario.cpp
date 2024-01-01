@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "IScenario.h"
 
 #include <stddef.h>
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 #include "ScenarioDisconnectClient.h"
 #include "ScenarioFlow.h"

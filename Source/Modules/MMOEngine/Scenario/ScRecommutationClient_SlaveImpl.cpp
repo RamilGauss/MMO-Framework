@@ -6,12 +6,12 @@ See for more information LICENSE.md.
 */
 
 #include "ScRecommutationClient_SlaveImpl.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "SessionManager.h"
 #include "BaseScRecommutationClient_Struct.h"
 #include "ContextScRecommutationClient.h"
 #include "Events.h"
-#include "SrcEvent_ex.h"
+#include "Base/Common/SrcEvent_ex.h"
 #include "DescRequestConnectForRecipient.h"
 
 using namespace nsMMOEngine;

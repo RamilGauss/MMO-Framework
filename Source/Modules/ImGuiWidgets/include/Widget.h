@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "imgui.h"
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include "GraphicEngine/IRenderable.h"
 #include "GraphicEngine/KeyMouseEventContainer.h"

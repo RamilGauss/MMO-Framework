@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "ResourceManager.h"
 
-#include "PathOperations.h"
-#include "GuidGenerator.h"
+#include "Base/Common/PathOperations.h"
+#include "Base/Common/GuidGenerator.h"
 
 namespace nsTornadoEngine
 {

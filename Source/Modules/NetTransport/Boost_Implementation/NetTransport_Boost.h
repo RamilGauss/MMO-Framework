@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "MMOEngine/include/INetTransport.h"
-#include "Mutex.h"
+#include "Base/Common/Mutex.h"
 #include "NetWorkThread.h"
 
 #include "NetControlTCP.h"

@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <list>
-#include "CallBackRegistrator.h"
+#include "Base/Common/CallBackRegistrator.h"
 
 namespace nsMMOEngine
 {

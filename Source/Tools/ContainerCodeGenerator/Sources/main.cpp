@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include <locale.h>
 
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "ContainerCodeGeneratorLib/Sources/CoreContainerCodeGenerator.h"
 #include "ContainerCodeGeneratorLib/Sources/ProjectContainerCodeGenerator.h"
 

@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #ifdef WIN32
 
 #include <stddef.h>
-#include "BL_Debug.h"
-#include "LoaderDLL_Win32.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/LoaderDLL_Win32.h"
 
 #pragma warning(disable:4800)
 

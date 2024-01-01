@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "ScContextManager.h"
 #include "IScenario.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "IScenarioContext.h"
 
 

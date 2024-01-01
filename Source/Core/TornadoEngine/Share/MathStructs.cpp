@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 
 #include "MathStructs.h"
 #include "MathTools.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 using namespace nsMathTools;
 

@@ -9,13 +9,13 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include <ECS/include/EntityManager.h>
 
 #include "ResourceContentMap.h"
 #include "GuidConstants.h"
 
-#include "GuidGenerator.h"
+#include "Base/Common/GuidGenerator.h"
 #include "ParentGuidComponent.h"
 #include "GuidComponent.h"
 

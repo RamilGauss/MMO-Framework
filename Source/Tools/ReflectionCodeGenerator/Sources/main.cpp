@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 #include "ReflectionCodeGeneratorLib/Sources/ReflectionCodeGenerator.h"
 

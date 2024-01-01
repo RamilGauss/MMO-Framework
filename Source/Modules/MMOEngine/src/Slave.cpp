@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "Slave.h"
 
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "ControlScenario.h"
 #include "SessionManager.h"
 #include "Events.h"

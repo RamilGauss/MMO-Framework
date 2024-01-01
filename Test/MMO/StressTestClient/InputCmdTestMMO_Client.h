@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <boost/asio/ip/impl/address_v4.ipp>
-#include "ResolverSelf_IP_v4.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
 #include "InputByCmd.h"
 
 class TInputCmdTestMMO_Client : public TInputByCmd

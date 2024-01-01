@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "SessionNavigator.h"
 #include "Session.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "Base.h"
 
 using namespace std;

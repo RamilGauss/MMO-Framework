@@ -23,7 +23,7 @@ See for more information LICENSE.md.
 #include "ITargetCodeGenerator.h"
 #include "IIncludeListGenerator.h"
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include "Parser/Sources/Parser.h"
 

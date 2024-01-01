@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "ManagerGroupClient.h"
 
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "EnumMMO.h"
 #include <list>
 

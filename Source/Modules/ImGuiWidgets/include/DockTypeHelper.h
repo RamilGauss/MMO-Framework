@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <imgui.h>
 #include <imgui_internal.h>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 #include "DockNode.h"
 

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "ScRecommutationClient_ClientImpl.h"
 #include "ContextScRecommutationClient.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "SessionManager.h"
 #include "Events.h"
 

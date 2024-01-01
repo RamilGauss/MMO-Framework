@@ -9,7 +9,7 @@ Project Handler
 #include <string>
 #include <vector>
 #include <functional>
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "HandlerIncludeList.h"
 
 namespace nsTornadoEditor

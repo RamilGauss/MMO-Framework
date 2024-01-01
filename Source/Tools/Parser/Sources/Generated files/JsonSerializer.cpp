@@ -5,10 +5,10 @@
 // File has been generated at 2023_10_29 17:34:32.253
 	
 #include "JsonSerializer.h"
-#include "JsonPopMaster.h"
-#include "JsonPushMaster.h"
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/JsonPopMaster.h"
+#include "Base/Common/JsonPushMaster.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsCppParser;
 

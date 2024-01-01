@@ -6,7 +6,8 @@ See for more information LICENSE.md.
 */
 
 #include <boost/pool/pool.hpp>
-#include "AllocatorPool.h"
+
+#include "Base/Common/AllocatorPool.h"
 
 #define USE_BOOST_MEMORY_POOL
 

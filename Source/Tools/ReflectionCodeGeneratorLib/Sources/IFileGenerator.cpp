@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <fmt/format.h>
 #include <fmt/compile.h>
 
-#include "HiTimer.h"
+#include "Base/Common/HiTimer.h"
 
 using namespace nsReflectionCodeGenerator;
 using namespace nsCppParser;

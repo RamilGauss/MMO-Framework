@@ -12,8 +12,8 @@ See for more information LICENSE.md.
 #include "MMOEngine/include/EnumMMO.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
-#include "ResolverSelf_IP_v4.h"
-#include "Logger.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
+#include "Base/Common/Logger.h"
 
 THandlerMMO_Client::THandlerMMO_Client() : THandlerMMO(nullptr, eClient)
 {}

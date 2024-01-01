@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 #include <functional>
 
 #include "LinkToList.h"
-#include "MemoryObjectPool.h"
-#include "SingletonManager.h"
+#include "Base/Common/MemoryObjectPool.h"
+#include "Base/Common/SingletonManager.h"
 
 namespace nsECSFramework
 {

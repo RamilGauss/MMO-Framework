@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "StopWatch.h"
-#include "HiTimer.h"
+#include "Base/Common/StopWatch.h"
+#include "Base/Common/HiTimer.h"
 
 namespace nsBase
 {

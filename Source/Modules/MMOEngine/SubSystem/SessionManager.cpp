@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "SessionManager.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "Base.h"
 
 using namespace std;

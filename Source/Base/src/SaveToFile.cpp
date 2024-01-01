@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SaveToFile.h"
+#include "Base/Common/SaveToFile.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -15,8 +15,8 @@ See for more information LICENSE.md.
 #include <sys/timeb.h>
 #include <algorithm>
 
-#include "BL_Debug.h"
-#include "HiTimer.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/HiTimer.h"
 
 using namespace std;
 

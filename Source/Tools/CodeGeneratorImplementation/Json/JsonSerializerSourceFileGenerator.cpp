@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "JsonSerializerSourceFileGenerator.h"
 #include <boost/algorithm/string/replace.hpp>
 #include "fmt/core.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;
@@ -21,11 +21,11 @@ void TJsonSerializerSourceFileGenerator::Work()
     AddTimeHeader();
 
     AddInclude(mSerializer->fileName + ".h");
-    AddInclude("JsonPopMaster.h");
-    AddInclude("JsonPushMaster.h");
+    AddInclude("Base/Common/JsonPopMaster.h");
+    AddInclude("Base/Common/JsonPushMaster.h");
 
-    AddInclude("SingletonManager.h");
-    AddInclude("RunTimeTypeIndex.h");
+    AddInclude("Base/Common/SingletonManager.h");
+    AddInclude("Base/Common/RunTimeTypeIndex.h");
 
     AddIncludeForExternalSources();
 

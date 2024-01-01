@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "SceneHashCalculator.h"
-#include "MD5.h"
+#include "Base/Common/MD5.h"
 
 namespace nsTornadoEngine
 {

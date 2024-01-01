@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "ProjectConfigContainer.h"
 
 namespace nsTornadoEngine

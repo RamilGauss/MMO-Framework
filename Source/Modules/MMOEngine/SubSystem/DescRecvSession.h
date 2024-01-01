@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "INetTransport.h"
-#include "ContainerTypes.h"
-#include "HiTimer.h"
+#include "Base/Common/ContainerTypes.h"
+#include "Base/Common/HiTimer.h"
 #include "EnumMMO.h"
 
 namespace nsMMOEngine

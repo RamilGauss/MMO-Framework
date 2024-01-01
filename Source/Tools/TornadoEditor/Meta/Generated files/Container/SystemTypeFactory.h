@@ -9,7 +9,7 @@ Project System
 #include <string>
 #include <vector>
 #include <functional>
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "SystemIncludeList.h"
 
 namespace nsTornadoEditor

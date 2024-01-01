@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Dumper.h"
-#include "SaveToFile.h"
+#include "Base/Common/SaveToFile.h"
 
 using namespace nsReflectionCodeGenerator;
 

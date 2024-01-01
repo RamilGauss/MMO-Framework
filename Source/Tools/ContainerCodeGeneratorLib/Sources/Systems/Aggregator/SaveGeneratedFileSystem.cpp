@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
-#include <HiTimer.h>
-#include <TextFile.h>
+#include "Base/Common/HiTimer.h"
+#include "Base/Common/TextFile.h"
 
 #include <ECS/include/Helper.h>
 

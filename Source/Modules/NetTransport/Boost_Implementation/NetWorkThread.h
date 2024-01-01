@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <boost/asio/io_service.hpp>
-#include "ThreadBoost.h"
+#include "Base/Common/ThreadBoost.h"
 
 class TNetWorkThread : public TThreadBoost
 {

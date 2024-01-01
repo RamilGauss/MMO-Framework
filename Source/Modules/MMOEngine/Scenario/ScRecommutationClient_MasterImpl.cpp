@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "ScRecommutationClient_MasterImpl.h"
 #include "ContextScRecommutationClient.h"
 #include "SessionManager.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "DescRequestConnectForRecipient.h"
 
 using namespace nsMMOEngine;

@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "GraphicEngine/Events.h"
 
 #include "Frame.h"
-#include "CallbackPool.h"
+#include "Base/Common/CallbackPool.h"
 
 namespace nsImGuiWidgets
 {

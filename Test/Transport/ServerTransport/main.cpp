@@ -8,11 +8,11 @@ See for more information LICENSE.md.
 #include <string.h>
 #include <errno.h>
 #include <boost/asio/ip/impl/address_v4.ipp>
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 #include "InputCmdServerTransport.h"
-#include "HiTimer.h"
-#include "Logger.h"
-#include "ShareMisc.h"
+#include "Base/Common/HiTimer.h"
+#include "Base/Common/Logger.h"
+#include "Base/Common/ShareMisc.h"
 #include "NetTransport/MakerNetTransport.h"
 #include "MMOEngine/include/INetTransport.h"
 

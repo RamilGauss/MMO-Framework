@@ -6,8 +6,8 @@ Project Ecs System
 	
 #include "EcsRtti.h"
 
-#include "SingletonManager.h"
-#include "RunTimeTypeIndex.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/RunTimeTypeIndex.h"
 
 using namespace nsTornadoEditor;
 

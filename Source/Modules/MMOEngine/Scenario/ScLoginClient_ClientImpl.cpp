@@ -9,11 +9,11 @@ See for more information LICENSE.md.
 #include "ContextScLoginClient.h"
 #include "SessionManager.h"
 #include "Base.h"
-#include "Logger.h"
+#include "Base/Common/Logger.h"
 #include "Events.h"
 #include "EnumMMO.h"
-#include "SrcEvent_ex.h"
-#include "MD5.h"
+#include "Base/Common/SrcEvent_ex.h"
+#include "Base/Common/MD5.h"
 #include "IScenario.h"
 
 using namespace nsMMOEngine;

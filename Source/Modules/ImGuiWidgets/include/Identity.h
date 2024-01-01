@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <imgui.h>
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 namespace nsImGuiWidgets
 {

@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include <memory>
 #include <string>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "ILexemaEntity.h"
 
 namespace nsCppParser

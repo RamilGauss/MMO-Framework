@@ -25,7 +25,7 @@ void TDynamicCasterHeaderFileGenerator::Work()
     AddStandartInclude("functional");
     AddEmptyLine();
 
-    AddInclude("TypeDef.h");
+    AddInclude("Base/Common/TypeDef.h");
 
     AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
     AddEmptyLine();

@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 #include "ISoundEngineModule.h"
 #include "IDataBaseModule.h"
 
-#include "GuidGenerator.h"
+#include "Base/Common/GuidGenerator.h"
 
 using namespace nsTornadoEngine;
 

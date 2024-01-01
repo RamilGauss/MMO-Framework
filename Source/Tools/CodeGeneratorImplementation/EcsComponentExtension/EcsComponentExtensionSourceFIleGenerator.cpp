@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "EcsComponentExtensionSourceFileGenerator.h"
 #include "fmt/core.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 using namespace nsCodeGeneratorImplementation;
 

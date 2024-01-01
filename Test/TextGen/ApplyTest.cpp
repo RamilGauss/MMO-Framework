@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include <inja/inja.hpp>
 
-#include <TextGenerator.h>
+#include "Base/Common/TextGenerator.h"
 
 
 TEST(TextGenerator, Apply_0)

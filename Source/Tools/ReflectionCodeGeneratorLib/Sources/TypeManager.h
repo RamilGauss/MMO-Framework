@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <map>
-#include "SingletonManager.h"
+#include "Base/Common/SingletonManager.h"
 #include "Parser/Sources/TypeInfo.h"
 
 namespace nsReflectionCodeGenerator

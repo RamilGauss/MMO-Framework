@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "IComponent.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 using namespace nsECSFramework;
 

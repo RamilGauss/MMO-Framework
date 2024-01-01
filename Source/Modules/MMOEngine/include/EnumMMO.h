@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 static const char* STR_NAME_MMO_ENGINE = "MMOEngine";
 static const char* STR_NAME_NET_TRANSPORT = "NetTransport";

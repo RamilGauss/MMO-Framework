@@ -12,11 +12,11 @@ See for more information LICENSE.md.
 #include "MMOEngine/include/Events.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
-#include "ResolverSelf_IP_v4.h"
+#include "Base/Common/ResolverSelf_IP_v4.h"
 #include <iostream>
 #include <iomanip>
-#include "BL_Debug.h"
-#include "Logger.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/Logger.h"
 
 static THandlerMMO::TMapUIntPtr g_ID_MMO_HandlerPtr;
 

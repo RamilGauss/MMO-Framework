@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "JsonPushMaster.h"
+#include "Base/Common/JsonPushMaster.h"
 
 TJsonPushMaster::Document::AllocatorType& TJsonPushMaster::Allocator()
 {

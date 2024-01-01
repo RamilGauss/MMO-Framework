@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #ifndef WIN32
 
 #include <stddef.h>
-#include "BL_Debug.h"
-#include "LoaderDLL_Unix.h"
+#include "Base/Common/BL_Debug.h"
+#include "Base/Common/LoaderDLL_Unix.h"
 
 #include <dlfcn.h>
 

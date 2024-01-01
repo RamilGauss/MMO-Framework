@@ -15,9 +15,9 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 
 #include "Config.h"
-#include "LoadFromFile.h"
-#include "TextFile.h"
-#include "PathOperations.h"
+#include "Base/Common/LoadFromFile.h"
+#include "Base/Common/TextFile.h"
+#include "Base/Common/PathOperations.h"
 
 #include "Generated files/JsonSerializer.h"
 

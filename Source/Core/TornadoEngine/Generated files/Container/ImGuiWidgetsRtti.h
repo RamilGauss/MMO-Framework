@@ -11,7 +11,7 @@ Core Component
 #include <list>
 #include <vector>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 #include "ImGuiWidgetsIncludeList.h"
 
 namespace nsTornadoEngine

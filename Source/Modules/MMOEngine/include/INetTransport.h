@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "CallbackPool.h"
-#include "ShareMisc.h"
-#include "BreakPacket.h"
+#include "Base/Common/CallbackPool.h"
+#include "Base/Common/ShareMisc.h"
+#include "Base/Common/BreakPacket.h"
 
 namespace nsMMOEngine
 {

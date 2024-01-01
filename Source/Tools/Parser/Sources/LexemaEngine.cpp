@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 
 #include "LexemaEngine.h"
 #include "LexemaFactory.h"
-#include "BL_Debug.h"
+#include "Base/Common/BL_Debug.h"
 
 #include "fmt/core.h"
 

@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 #include <list>
 
-#include "TypeDef.h"
+#include "Base/Common/TypeDef.h"
 
 namespace nsCppParser
 {

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ShareMisc.h"
+#include "Base/Common/ShareMisc.h"
 
 class INetDevice
 {

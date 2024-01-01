@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "ReceiverTransport.h"
 #include "SessionManager.h"
 #include "INetTransport.h"
-#include "CallBackRegistrator.h"
+#include "Base/Common/CallBackRegistrator.h"
 
 using namespace nsMMOEngine;
 
