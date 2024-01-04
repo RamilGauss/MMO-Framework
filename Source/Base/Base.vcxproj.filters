@@ -430,5 +430,11 @@
     <ClCompile Include="src\LoaderDLLFactory.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\IContext.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ContextZone.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

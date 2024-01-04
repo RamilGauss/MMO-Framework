@@ -293,7 +293,9 @@
     <ClInclude Include="include\Base\Zones\ZoneManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ContextZone.cpp" />
     <ClCompile Include="src\GuidGenerator.cpp" />
+    <ClCompile Include="src\IContext.cpp" />
     <ClCompile Include="src\LoaderDLLFactory.cpp" />
     <ClCompile Include="src\LockFreeFifo.cpp" />
     <ClCompile Include="src\AllocatorPool.cpp" />

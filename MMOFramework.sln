@@ -239,6 +239,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TornadoEngine", "Test\TornadoEngine\TornadoEngine.vcxproj", "{E5478C31-F21B-4E25-AAD9-1856859C05E6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZonesTest", "Test\ZonesTest\ZonesTest.vcxproj", "{108D71C4-6CBC-42CD-B767-AF8E12AD99C7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4FE15A87-875C-41AB-B100-317EAA0A9E5A} = {4FE15A87-875C-41AB-B100-317EAA0A9E5A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -813,8 +816,8 @@ Global
 		{108D71C4-6CBC-42CD-B767-AF8E12AD99C7} = {A7F864D1-F952-48A5-A706-4EE17786221A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {AC50DE98-6D74-4F5C-AD65-5C494B288AB0}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

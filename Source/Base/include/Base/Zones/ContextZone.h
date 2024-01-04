@@ -1,13 +1,22 @@
+/*
+Author: Gudakov Ramil Sergeevich a.k.a. Gauss
+Гудаков Рамиль Сергеевич
+Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
+See for more information LICENSE.md.
+*/
+
 #pragma once
 
 #include <list>
+#include <string>
 
 #include "Base/Common/TypeDef.h"
 
 namespace nsBase::nsZones
 {
     class TZone;
-    class IContext;
+    struct IContext;
+    class TProcess;
 
     class DllExport TContextZone
     {
@@ -17,7 +26,6 @@ namespace nsBase::nsZones
     public:
         TContextZone(IContext* pCtx, TZone* pZone);
 
-        void BeginProcess(TProcess* pProcess);
-
+        bool StartProcess(const std::string& processName);
     };
 }

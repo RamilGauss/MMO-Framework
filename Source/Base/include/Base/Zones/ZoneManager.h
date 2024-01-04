@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 namespace nsBase::nsZones
 {
     class TZone;
+    struct IContext;
     class DllExport TZoneManager
     {
         std::list<TZone*> mZones;
@@ -23,6 +24,6 @@ namespace nsBase::nsZones
 
         void Work();
 
-        void BeginProcess();
+        void MoveContext(IContext* pCtx, TZone* from, TZone* to);
     };
 }

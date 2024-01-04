@@ -11,36 +11,110 @@ See for more information LICENSE.md.
 #include "Base/Zones/Zone.h"
 #include "Base/Zones/IContext.h"
 
+#include "Base/Common/BL_Debug.h"
+
 namespace nsBase::nsZones
 {
-    TZoneProcess::TZoneProcess()
+    TProcess::TProcess()
     {
         mZoneMng.reset(new TZoneManager());
     }
     //------------------------------------------------------------------------------
-    TZoneProcess::~TZoneProcess()
+    void TProcess::Setup(const std::string& name, TZone* fromZone, TZone* toZone, int maxActiveCount)
+    {
+        mName = name;
+        mFromZone = fromZone;
+        mToZone = toZone;
+        mMaxActiveCount = maxActiveCount;
+
+        mFromZone->AddProcess(this);
+    }
+    //------------------------------------------------------------------------------
+    TProcess::~TProcess()
     {
 
     }
     //------------------------------------------------------------------------------
-    void TZoneProcess::AddZone(TZone* pZone)
+    std::string TProcess::GetName() const
     {
+        return mName;
+    }
+    //------------------------------------------------------------------------------
+    void TProcess::Start(IContext* pCtx)
+    {
+        pCtx->SetActiveProcess(this);
 
-    }
-    //------------------------------------------------------------------------------
-    void TZoneProcess::Begin(IContext* pCtx)
-    {
+        mWaitingCtx.push_back(pCtx);
 
+        TryActivate();
     }
     //------------------------------------------------------------------------------
-    void TZoneProcess::SetMaxActiveCount(int value)
+    void TProcess::Stop(IContext* pCtx)
     {
-        mMaxActiveCount = value;
+        pCtx->SetActiveProcess(nullptr);
+
+        mWaitingCtx.remove(pCtx);
+        mAciveCtx.remove(pCtx);
+
+        mStopEvent.Notify(this, pCtx);
+
+        TryActivate();
     }
     //------------------------------------------------------------------------------
-    int TZoneProcess::GetMaxActiveCount() const
+    void TProcess::Finish(IContext* pCtx)
+    {
+        if (!IsActive(pCtx)) {
+            BL_FIX_BUG();
+        }
+
+        mAciveCtx.remove(pCtx);
+
+        pCtx->SetActiveProcess(nullptr);
+        mFinishEvent.Notify(this, mToZone, pCtx);
+
+
+        TryActivate();
+    }
+    //------------------------------------------------------------------------------
+    int TProcess::GetMaxActiveCount() const
     {
         return mMaxActiveCount;
+    }
+    //------------------------------------------------------------------------------
+    TZone* TProcess::GetFromZone() const
+    {
+        return mFromZone;
+    }
+    //------------------------------------------------------------------------------
+    TZone* TProcess::GetToZone() const
+    {
+        return mToZone;
+    }
+    //------------------------------------------------------------------------------
+    bool TProcess::IsActive(IContext* pCtx) const
+    {
+        auto fit = std::find(mAciveCtx.begin(), mAciveCtx.end(), pCtx);
+        return fit != mAciveCtx.end();
+    }
+    //------------------------------------------------------------------------------
+    void TProcess::TryActivate()
+    {
+        if (mAciveCtx.size() >= GetMaxActiveCount() || mWaitingCtx.empty())
+            return;
+
+        auto pCtx = mWaitingCtx.front();
+        mWaitingCtx.pop_front();
+
+        mAciveCtx.push_back(pCtx);
+    }
+    //------------------------------------------------------------------------------
+    void TProcess::Work()
+    {
+        auto activeCtx = mAciveCtx;
+
+        Work(activeCtx);
+
+        TryActivate();
     }
     //------------------------------------------------------------------------------
 }

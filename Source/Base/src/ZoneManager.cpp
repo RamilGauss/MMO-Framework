@@ -13,7 +13,7 @@ namespace nsBase::nsZones
 {
     void TZoneManager::AddZone(TZone* pZone)
     {
-
+        mZones.push_back(pZone);
     }
     //------------------------------------------------------------------------------
     void TZoneManager::Work()
@@ -23,9 +23,11 @@ namespace nsBase::nsZones
         }
     }
     //------------------------------------------------------------------------------
-    void TZoneManager::BeginProcess()
+    void TZoneManager::MoveContext(IContext* pCtx, TZone* from, TZone* to)
     {
+        from->RemoveContext(pCtx);
 
+        to->AddContext(pCtx);
     }
     //------------------------------------------------------------------------------
 }

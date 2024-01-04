@@ -8,27 +8,43 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <list>
+#include <string>
 
 #include "Base/Common/TypeDef.h"
 
 namespace nsBase::nsZones
 {
     class TZoneManager;
-    class TZoneProcess;
-    class IContext;
+    class TProcess;
+    struct IContext;
 
     class DllExport TZone
     {
         TZoneManager* mZoneMng = nullptr;
 
-        std::list<TZoneProcess*> mProcesses;
+        std::list<TProcess*> mProcesses;
 
         std::list<IContext*> mContexts;
 
+        std::string mName;// For debugging
+
     public:
-        void AddProcess(TZoneProcess* pProcess);
+        TZone(const std::string& name);
+
+        const std::string& GetName() const;
+
+        void AddProcess(TProcess* pProcess);
+        TProcess* GetProcess(const std::string& processName);
+        
         void AddContext(IContext* pCtx);
         void RemoveContext(IContext* pCtx);
+
         void Work();
+
+    protected:
+
+    private:
+        void OnStopProcess(TProcess* pProcess, IContext* pCtx);
+        void OnFinishProcess(TProcess* pProcess, TZone* pZone, IContext* pCtx);
     };
 }

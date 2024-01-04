@@ -10,24 +10,48 @@ See for more information LICENSE.md.
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
 #include "Base/Zones/ZoneProcess.h"
+#include "Base/Zones/IContext.h"
+#include "Base/Zones/ContextZone.h"
 
-class A_process : public nsBase::nsZones::TZoneProcess
+namespace nsBase::nsZones::nsTests
 {
-public:
-    void Work() override {}
-};
+    struct Ctx : IContext
+    {
+    };
 
-TEST(Json, Complex)
+    class A_process : public TProcess
+    {
+    public:
+        void Work(std::list<IContext*>& aciveCtx) override
+        {
+            for (auto pCtx : aciveCtx) {
+                Finish(pCtx);
+            }
+        }
+    };
+}
+
+using namespace nsBase::nsZones::nsTests;
+
+TEST(Zones, Simple_Ok)
 {
     nsBase::nsZones::TZoneManager zoneMgr;
 
-    nsBase::nsZones::TZone a;
-    nsBase::nsZones::TZone b;
+    nsBase::nsZones::TZone a("A");
+    nsBase::nsZones::TZone b("B");
 
     zoneMgr.AddZone(&a);
     zoneMgr.AddZone(&b);
 
     A_process a_process;
+    a_process.Setup("A_Process", &a, &b);
 
-    a.AddProcess(&a_process);
+    Ctx ctx;
+    a.AddContext(&ctx);
+
+    ctx.GetContextZone().StartProcess("A_Process");
+
+    zoneMgr.Work();
+
+    ASSERT_TRUE(ctx.GetOwnerZone() == &b);
 }
