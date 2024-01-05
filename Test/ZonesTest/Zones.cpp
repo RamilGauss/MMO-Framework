@@ -15,11 +15,11 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones::nsTests
 {
-    struct Ctx : IContext
+    struct TCtx : IContext
     {
     };
 
-    class SimpleProcess : public TProcess
+    class TSimpleProcess : public TProcess
     {
     public:
         void Work(std::list<IContext*>& aciveCtx) override
@@ -30,22 +30,20 @@ namespace nsBase::nsZones::nsTests
         }
     };
 
-    class ComplexProcess : public TProcess
+    class TComplexProcess : public TProcess
     {
         nsBase::nsZones::TZone mA;
         nsBase::nsZones::TZone mB;
 
-        SimpleProcess mA_to_b;
+        TSimpleProcess mA_to_b;
     public:
-        ComplexProcess() : mA("A"), mB("B")
+        TComplexProcess() : mA("A"), mB("B")
         {
         }
 
         void Work(std::list<IContext*>& aciveCtx) override
         {
-            for (auto pCtx : aciveCtx) {
-                Finish(pCtx);
-            }
+
         }
     protected:
         void SetupEvent()
@@ -54,6 +52,8 @@ namespace nsBase::nsZones::nsTests
             mZoneMng->AddZone(&mB);
 
             mA_to_b.Setup("a->b", &mA, &mB);
+
+            mA_to_b.mFinishEvent.Register(this, &TComplexProcess::OnFinishEvent);
         }
         void StartEvent(IContext* pCtx) override
         {
@@ -63,6 +63,11 @@ namespace nsBase::nsZones::nsTests
         void StopEvent(IContext* pCtx) override
         {
             pCtx->GetContextZone(GetNextRank()).StopProcess();
+        }
+
+        void OnFinishEvent(TProcess* pProcess, TZone* pZone, IContext* pCtx)
+        {
+            Finish(pCtx);
         }
 
     };
@@ -80,10 +85,10 @@ TEST(Zones, Simple_Ok)
     zoneMgr.AddZone(&a);
     zoneMgr.AddZone(&b);
 
-    SimpleProcess a_process;
+    TSimpleProcess a_process;
     a_process.Setup("A_Process", &a, &b);
 
-    Ctx ctx;
+    TCtx ctx;
     a.AddContext(&ctx);
 
     ctx.GetContextZone().StartProcess("A_Process");
@@ -105,12 +110,12 @@ TEST(Zones, Displacement_Process_Ok)
     zoneMgr.AddZone(&b);
     zoneMgr.AddZone(&c);
 
-    SimpleProcess a_to_b;
+    TSimpleProcess a_to_b;
     a_to_b.Setup("a->b", &a, &b);
-    SimpleProcess a_to_c;
+    TSimpleProcess a_to_c;
     a_to_c.Setup("a->c", &a, &c);
 
-    Ctx ctx;
+    TCtx ctx;
     a.AddContext(&ctx);
 
     ctx.GetContextZone().StartProcess("a->b");
@@ -131,10 +136,10 @@ TEST(Zones, Finish_ComplexProcess_Ok)
     zoneMgr.AddZone(&a);
     zoneMgr.AddZone(&b);
 
-    ComplexProcess a_to_b;
+    TComplexProcess a_to_b;
     a_to_b.Setup("a->b", &a, &b);
 
-    Ctx ctx;
+    TCtx ctx;
     a.AddContext(&ctx);
 
     ctx.GetContextZone().StartProcess("a->b");
@@ -154,10 +159,10 @@ TEST(Zones, Stop_ComplexProcess_Ok)
     zoneMgr.AddZone(&a);
     zoneMgr.AddZone(&b);
 
-    ComplexProcess a_to_b;
+    TComplexProcess a_to_b;
     a_to_b.Setup("a->b", &a, &b);
 
-    Ctx ctx;
+    TCtx ctx;
     a.AddContext(&ctx);
 
     ctx.GetContextZone().StartProcess("a->b");
