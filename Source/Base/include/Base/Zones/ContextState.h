@@ -18,14 +18,16 @@ namespace nsBase::nsZones
     struct IContext;
     class TProcess;
 
-    class DllExport TContextZone
+    class DllExport TContextState
     {
         IContext* mCtx = nullptr;
         TZone* mZone = nullptr;
+        TProcess* mActiveProcess = nullptr;
 
     public:
-        TContextZone(IContext* pCtx, TZone* pZone);
+        TContextState(IContext* pCtx, TZone* pZone, TProcess* pProcess);
 
         bool StartProcess(const std::string& processName);
+        void StopProcess();
     };
 }

@@ -222,7 +222,7 @@
     <ClInclude Include="include\Base\Common\ContainerPtrArrObj.h" />
     <ClInclude Include="include\Base\Common\ContainerRise.h" />
     <ClInclude Include="include\Base\Common\ContainerTypes.h" />
-    <ClInclude Include="include\Base\Zones\ContextZone.h" />
+    <ClInclude Include="include\Base\Zones\ContextState.h" />
     <ClInclude Include="include\Base\Zones\IContext.h" />
     <ClInclude Include="include\Base\Common\ConverterLocale.h" />
     <ClInclude Include="include\Base\Common\CRC8.h" />
@@ -265,6 +265,7 @@
     <ClInclude Include="include\Base\Common\BinaryPopMaster.h" />
     <ClInclude Include="include\Base\Common\BinaryPushMaster.h" />
     <ClInclude Include="include\Base\Common\PathOperations.h" />
+    <ClInclude Include="include\Base\Zones\Rank.h" />
     <ClInclude Include="include\Base\Zones\ZoneProcess.h" />
     <ClInclude Include="include\Base\Common\ProgressValue.h" />
     <ClInclude Include="include\Base\Common\ResolverSelf_IP_v4.h" />
@@ -293,7 +294,7 @@
     <ClInclude Include="include\Base\Zones\ZoneManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ContextZone.cpp" />
+    <ClCompile Include="src\ContextState.cpp" />
     <ClCompile Include="src\GuidGenerator.cpp" />
     <ClCompile Include="src\IContext.cpp" />
     <ClCompile Include="src\LoaderDLLFactory.cpp" />
@@ -329,6 +330,7 @@
     <ClCompile Include="src\BinaryPopMaster.cpp" />
     <ClCompile Include="src\BinaryPushMaster.cpp" />
     <ClCompile Include="src\PathOperations.cpp" />
+    <ClCompile Include="src\Rank.cpp" />
     <ClCompile Include="src\ZoneProcess.cpp" />
     <ClCompile Include="src\ProgressValue.cpp" />
     <ClCompile Include="src\ResolverSelf_IP_v4.cpp">

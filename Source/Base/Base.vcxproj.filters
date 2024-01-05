@@ -260,10 +260,13 @@
     <ClInclude Include="include\Base\Zones\IContext.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\ContextZone.h">
+    <ClInclude Include="include\Base\Zones\ContextState.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\LoaderDLLFactory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Base\Zones\Rank.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -433,7 +436,10 @@
     <ClCompile Include="src\IContext.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ContextZone.cpp">
+    <ClCompile Include="src\ContextState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rank.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -12,13 +12,15 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
+#include "Base/Zones/Rank.h"
+
 namespace nsBase::nsZones
 {
     class TZoneManager;
     class TProcess;
     struct IContext;
 
-    class DllExport TZone
+    class DllExport TZone : public TRank
     {
         TZoneManager* mZoneMng = nullptr;
 

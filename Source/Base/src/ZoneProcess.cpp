@@ -28,6 +28,10 @@ namespace nsBase::nsZones
         mMaxActiveCount = maxActiveCount;
 
         mFromZone->AddProcess(this);
+
+        mZoneMng->SetRank(GetNextRank());
+
+        SetupEvent();
     }
     //------------------------------------------------------------------------------
     TProcess::~TProcess()
@@ -42,7 +46,13 @@ namespace nsBase::nsZones
     //------------------------------------------------------------------------------
     void TProcess::Start(IContext* pCtx)
     {
-        pCtx->SetActiveProcess(this);
+        auto activeProcess = pCtx->GetActiveProcess(GetRank());
+        if (activeProcess)
+            activeProcess->Stop(pCtx);
+
+        pCtx->SetActiveProcess(GetRank(), this);
+
+        StartEvent(pCtx);
 
         mWaitingCtx.push_back(pCtx);
 
@@ -51,10 +61,12 @@ namespace nsBase::nsZones
     //------------------------------------------------------------------------------
     void TProcess::Stop(IContext* pCtx)
     {
-        pCtx->SetActiveProcess(nullptr);
-
         mWaitingCtx.remove(pCtx);
         mAciveCtx.remove(pCtx);
+
+        pCtx->SetActiveProcess(GetRank(), nullptr);
+
+        StopEvent(pCtx);
 
         mStopEvent.Notify(this, pCtx);
 
@@ -69,9 +81,9 @@ namespace nsBase::nsZones
 
         mAciveCtx.remove(pCtx);
 
-        pCtx->SetActiveProcess(nullptr);
-        mFinishEvent.Notify(this, mToZone, pCtx);
+        pCtx->SetActiveProcess(GetRank(), nullptr);
 
+        mFinishEvent.Notify(this, mToZone, pCtx);
 
         TryActivate();
     }
@@ -110,11 +122,28 @@ namespace nsBase::nsZones
     //------------------------------------------------------------------------------
     void TProcess::Work()
     {
+        mZoneMng->Work();
+
         auto activeCtx = mAciveCtx;
 
         Work(activeCtx);
 
         TryActivate();
+    }
+    //------------------------------------------------------------------------------
+    void TProcess::SetupEvent()
+    {
+
+    }
+    //------------------------------------------------------------------------------
+    void TProcess::StartEvent(IContext* pCtx)
+    {
+
+    }
+    //------------------------------------------------------------------------------
+    void TProcess::StopEvent(IContext* pCtx)
+    {
+
     }
     //------------------------------------------------------------------------------
 }

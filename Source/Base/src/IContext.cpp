@@ -6,33 +6,49 @@ See for more information LICENSE.md.
 */
 
 #include "Base/Zones/IContext.h"
-#include "Base/Zones/ContextZone.h"
+#include "Base/Zones/ContextState.h"
 
 namespace nsBase::nsZones
 {
-    void IContext::SetActiveProcess(TProcess* pProcess)
+    void IContext::SetActiveProcess(uint32_t rank, TProcess* pProcess)
     {
-        mActiveProcess = pProcess;
+        if (mActiveProcesses.size() <= rank) {
+            mActiveProcesses.resize(rank + 1);
+        }
+
+        mActiveProcesses[rank] = pProcess;
     }
     //-----------------------------------------------------------------------------
-    void IContext::SetOwnerZone(TZone* pZone)
+    void IContext::SetOwnerZone(uint32_t rank, TZone* pZone)
     {
-        mOwnerZone = pZone;
+        if (mOwnerZones.size() <= rank) {
+            mOwnerZones.resize(rank + 1);
+        }
+
+        mOwnerZones[rank] = pZone;
     }
     //-----------------------------------------------------------------------------
-    TProcess* IContext::GetActiveProcess() const
+    TProcess* IContext::GetActiveProcess(uint32_t rank) const
     {
-        return mActiveProcess;
+        if (mActiveProcesses.size() <= rank) {
+            return nullptr;
+        }
+
+        return mActiveProcesses[rank];
     }
     //-----------------------------------------------------------------------------
-    TZone* IContext::GetOwnerZone() const
+    TZone* IContext::GetOwnerZone(uint32_t rank) const
     {
-        return mOwnerZone;
+        if (mOwnerZones.size() <= rank) {
+            return nullptr;
+        }
+
+        return mOwnerZones[rank];
     }
     //-----------------------------------------------------------------------------
-    TContextZone IContext::GetContextZone()
+    TContextState IContext::GetContextZone(uint32_t rank)
     {
-        return TContextZone(this, mOwnerZone);
+        return TContextState(this, GetOwnerZone(rank), GetActiveProcess(rank));
     }
     //-----------------------------------------------------------------------------
 }

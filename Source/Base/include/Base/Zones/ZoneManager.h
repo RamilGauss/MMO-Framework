@@ -11,11 +11,13 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
+#include "Base/Zones/Rank.h"
+
 namespace nsBase::nsZones
 {
     class TZone;
     struct IContext;
-    class DllExport TZoneManager
+    class DllExport TZoneManager : public TRank
     {
         std::list<TZone*> mZones;
 

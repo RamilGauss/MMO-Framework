@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <vector>
+
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/ProgressValue.h"
 
@@ -14,21 +16,20 @@ namespace nsBase::nsZones
 {
     class TProcess;
     class TZone;
-    class TContextZone;
+    class TContextState;
 
     struct DllExport IContext
     {
-        TProgressValue mProgress;
+        void SetActiveProcess(uint32_t rank, TProcess* pProcess);
+        void SetOwnerZone(uint32_t rank, TZone* pZone);
 
-        void SetActiveProcess(TProcess* pProcess);
-        void SetOwnerZone(TZone* pZone);
+        TProcess* GetActiveProcess(uint32_t rank = 0) const;
+        TZone* GetOwnerZone(uint32_t rank = 0) const;
 
-        TProcess* GetActiveProcess() const;
-        TZone* GetOwnerZone() const;
-        TContextZone GetContextZone();
+        TContextState GetContextZone(uint32_t rank = 0);
 
     private:
-        TProcess* mActiveProcess = nullptr;
-        TZone* mOwnerZone = nullptr;
+        std::vector<TProcess*> mActiveProcesses;
+        std::vector<TZone*> mOwnerZones;
     };
 }

@@ -14,6 +14,7 @@ namespace nsBase::nsZones
     void TZoneManager::AddZone(TZone* pZone)
     {
         mZones.push_back(pZone);
+        pZone->SetRank(GetRank());
     }
     //------------------------------------------------------------------------------
     void TZoneManager::Work()

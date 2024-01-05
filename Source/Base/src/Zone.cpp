@@ -45,7 +45,7 @@ namespace nsBase::nsZones
     void TZone::AddContext(IContext* pCtx)
     {
         mContexts.push_back(pCtx);
-        pCtx->SetOwnerZone(this);
+        pCtx->SetOwnerZone(GetRank(), this);
     }
     //------------------------------------------------------------------------------
     void TZone::RemoveContext(IContext* pCtx)
