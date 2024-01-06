@@ -13,13 +13,13 @@ See for more information LICENSE.md.
 
 using namespace std;
 
-string SUB_NET( "sub_net" );
+string SUB_NET("sub_net");
 
 TInputCmdServerTransport::TInputCmdServerTransport()
 {
-  mVecDefKey.push_back( SUB_NET );
+    mVecDefKey.push_back(SUB_NET);
 
-  mCmdParam.SetDefKey( mVecDefKey );
+    mCmdParam.SetDefKey(mVecDefKey);
 }
 //-------------------------------------------------------------------------------
 TInputCmdServerTransport::~TInputCmdServerTransport()
@@ -27,29 +27,28 @@ TInputCmdServerTransport::~TInputCmdServerTransport()
 
 }
 //-------------------------------------------------------------------------------
-bool TInputCmdServerTransport::SetArg( int argc, char** argv )
+bool TInputCmdServerTransport::SetArg(int argc, char** argv)
 {
-  vector<string> vecArgv;
-  for ( int i = 1; i < argc; i++ )
-    vecArgv.push_back( argv[i] );
-  return SetArg( vecArgv );
+    vector<string> vecArgv;
+    for (int i = 1; i < argc; i++)
+        vecArgv.push_back(argv[i]);
+    return SetArg(vecArgv);
 }
 //-------------------------------------------------------------------------------
-bool TInputCmdServerTransport::SetArg( vector<string>& vecArgv )
+bool TInputCmdServerTransport::SetArg(vector<string>& vecArgv)
 {
-  mCmdParam.SetArg( vecArgv );
+    mCmdParam.SetArg(vecArgv);
 
-  if ( mCmdParam.GetCountValueByKey( SUB_NET ) == 1 )
-  {
-    string sSubNet;
-    mCmdParam.GetByKey( SUB_NET, 0, sSubNet );
-    mInput.sub_net = boost::lexical_cast<int>( sSubNet.data() );
-  }
-  return true;
+    if (mCmdParam.GetCountValueByKey(SUB_NET) == 1) {
+        string sSubNet;
+        mCmdParam.GetByKey(SUB_NET, 0, sSubNet);
+        mInput.sub_net = boost::lexical_cast<int>(sSubNet.data());
+    }
+    return true;
 }
 //-------------------------------------------------------------------------------
-void TInputCmdServerTransport::Get( TInputCmdServerTransport::TInput& v_out )
+void TInputCmdServerTransport::Get(TInputCmdServerTransport::TInput& v_out)
 {
-  v_out = mInput;
+    v_out = mInput;
 }
 //-------------------------------------------------------------------------------
