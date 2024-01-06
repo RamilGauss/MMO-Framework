@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #include "gtest/gtest.h"
 
+#include <array>
+
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
 #include "Base/Zones/ZoneProcess.h"
@@ -167,12 +169,12 @@ TEST(Zones, Simple_Ok)
     zoneMgr.AddZone(&b);
 
     TSimpleProcess a_process;
-    a_process.Setup("A_Process", &a, &b);
+    a_process.Setup("a->b", &a, &b);
 
     TCtx ctx;
     a.AddContext(&ctx);
 
-    ctx.GetContextZone().StartProcess("A_Process");
+    ctx.GetContextZone().StartProcess("a->b");
 
     zoneMgr.Work();
 
@@ -279,4 +281,37 @@ TEST(Zones, Finish_TripleComplexProcess_Ok)
     zoneMgr.Work();
 
     ASSERT_TRUE(ctx.GetOwnerZone() == &b);
+}
+
+TEST(Zones, Simple_LargeQueue_Ok)
+{
+    TZoneManager zoneMgr;
+
+    TZone a("A");
+    TZone b("B");
+
+    zoneMgr.AddZone(&a);
+    zoneMgr.AddZone(&b);
+
+    TSimpleProcess a_process;
+    a_process.Setup("a->b", &a, &b);
+
+    const int CTX_COUNT = 10;
+
+    std::array<TCtx, CTX_COUNT> ctxs;
+    for (auto& ctx : ctxs) {
+        a.AddContext(&ctx);
+        ctx.GetContextZone().StartProcess("a->b");
+    }
+
+    for (int i = 0; i < CTX_COUNT - 1; i++) {
+        zoneMgr.Work();
+        ASSERT_TRUE(a_process.GetActiveContextCount() == 1);
+    }
+
+    zoneMgr.Work();
+
+    for (auto& ctx : ctxs) {
+        ASSERT_TRUE(ctx.GetOwnerZone() == &b);
+    }
 }

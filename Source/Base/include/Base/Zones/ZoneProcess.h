@@ -58,6 +58,8 @@ namespace nsBase::nsZones
         TZone* GetFromZone() const;
         TZone* GetToZone() const;
 
+        uint32_t GetActiveContextCount() const;
+
         // Events
         using ProcessStopEvent = TCallbackPool<TProcess*, IContext*>;
         using ProcessFinishEvent = TCallbackPool<TProcess*, TZone*, IContext*>;

@@ -131,6 +131,11 @@ namespace nsBase::nsZones
         TryActivate();
     }
     //------------------------------------------------------------------------------
+    uint32_t TProcess::GetActiveContextCount() const
+    {
+        return mAciveCtx.size();
+    }
+    //------------------------------------------------------------------------------
     void TProcess::SetupEvent()
     {
 
