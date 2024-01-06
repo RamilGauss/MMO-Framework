@@ -29,6 +29,8 @@ namespace nsBase::nsZones
 
         pProcess->mStopEvent.Register(this, &TZone::OnStopProcess);
         pProcess->mFinishEvent.Register(this, &TZone::OnFinishProcess);
+
+        pProcess->SetRank(GetRank());
     }
     //------------------------------------------------------------------------------
     TProcess* TZone::GetProcess(const std::string& processName)
@@ -45,12 +47,13 @@ namespace nsBase::nsZones
     void TZone::AddContext(IContext* pCtx)
     {
         mContexts.push_back(pCtx);
-        pCtx->SetOwnerZone(GetRank(), this);
+        pCtx->PushOwnerZone(this);
     }
     //------------------------------------------------------------------------------
     void TZone::RemoveContext(IContext* pCtx)
     {
         mContexts.remove(pCtx);
+        pCtx->PopOwnerZone();
     }
     //------------------------------------------------------------------------------
     void TZone::Work()

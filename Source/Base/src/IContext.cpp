@@ -10,22 +10,29 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    void IContext::SetActiveProcess(uint32_t rank, TProcess* pProcess)
+    void IContext::PushActiveProcess(TProcess* pProcess)
     {
-        if (mActiveProcesses.size() <= rank) {
-            mActiveProcesses.resize(rank + 1);
-        }
-
-        mActiveProcesses[rank] = pProcess;
+        mActiveProcesses.push_back(pProcess);
     }
     //-----------------------------------------------------------------------------
-    void IContext::SetOwnerZone(uint32_t rank, TZone* pZone)
+    void IContext::PopActiveProcess()
     {
-        if (mOwnerZones.size() <= rank) {
-            mOwnerZones.resize(rank + 1);
-        }
-
-        mOwnerZones[rank] = pZone;
+        mActiveProcesses.pop_back();
+    }
+    //-----------------------------------------------------------------------------
+    void IContext::PushOwnerZone(TZone* pZone)
+    {
+        mOwnerZones.push_back(pZone);
+    }
+    //-----------------------------------------------------------------------------
+    void IContext::PopOwnerZone()
+    {
+        mOwnerZones.pop_back();
+    }
+    //-----------------------------------------------------------------------------
+    uint32_t IContext::GetRankCount() const
+    {
+        return mActiveProcesses.size();
     }
     //-----------------------------------------------------------------------------
     TProcess* IContext::GetActiveProcess(uint32_t rank) const

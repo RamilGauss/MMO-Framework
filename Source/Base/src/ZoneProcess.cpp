@@ -50,8 +50,8 @@ namespace nsBase::nsZones
         if (activeProcess)
             activeProcess->Stop(pCtx);
 
-        pCtx->SetActiveProcess(GetRank(), this);
-
+        // 1. Push, 2. StartEvent
+        pCtx->PushActiveProcess(this);
         StartEvent(pCtx);
 
         mWaitingCtx.push_back(pCtx);
@@ -64,9 +64,9 @@ namespace nsBase::nsZones
         mWaitingCtx.remove(pCtx);
         mAciveCtx.remove(pCtx);
 
-        pCtx->SetActiveProcess(GetRank(), nullptr);
-
+        // 1. StopEvent, 2. Pop
         StopEvent(pCtx);
+        pCtx->PopActiveProcess();
 
         mStopEvent.Notify(this, pCtx);
 
@@ -81,7 +81,7 @@ namespace nsBase::nsZones
 
         mAciveCtx.remove(pCtx);
 
-        pCtx->SetActiveProcess(GetRank(), nullptr);
+        pCtx->PopActiveProcess();
 
         mFinishEvent.Notify(this, mToZone, pCtx);
 
@@ -144,6 +144,25 @@ namespace nsBase::nsZones
     void TProcess::StopEvent(IContext* pCtx)
     {
 
+    }
+    //------------------------------------------------------------------------------
+    uint64_t TProcess::GetTotalCount(IContext* pCtx) const
+    {
+        return 1;
+    }
+    //------------------------------------------------------------------------------
+    uint64_t TProcess::GetProgressCount(IContext* pCtx) const
+    {
+        return 0;
+    }
+    //------------------------------------------------------------------------------
+    float TProcess::GetProgressValue(IContext* pCtx) const
+    {
+        if (GetTotalCount(pCtx) == 0) {
+            return 1.0f;
+        }
+
+        return (GetProgressCount(pCtx) * 1.0f / GetTotalCount(pCtx));
     }
     //------------------------------------------------------------------------------
 }

@@ -7,6 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <type_traits>
 #include <memory>
 #include <list>
 #include <string>
@@ -60,15 +61,25 @@ namespace nsBase::nsZones
         // Events
         using ProcessStopEvent = TCallbackPool<TProcess*, IContext*>;
         using ProcessFinishEvent = TCallbackPool<TProcess*, TZone*, IContext*>;
+        using ProcessErrorEvent = TCallbackPool<TProcess*, IContext*>;
 
         ProcessStopEvent mStopEvent;
         ProcessFinishEvent mFinishEvent;
+        ProcessErrorEvent mErrorEvent;
+
+        virtual uint64_t GetTotalCount(IContext* pCtx) const;
+        virtual uint64_t GetProgressCount(IContext* pCtx) const;
+
+        float GetProgressValue(IContext* pCtx) const;
 
     protected:
-        template <typename T>
-        T* Ctx(IContext* pCtx) const
+        template <typename ToType>
+        ToType* Ctx(IContext* pCtx) const
         {
-            return dynamic_cast<T*>(pCtx);
+            if constexpr (std::is_polymorphic<ToType>()) {
+                return dynamic_cast<ToType*>(pCtx);
+            }
+            return reinterpret_cast<ToType*>(pCtx);
         }
 
         void Finish(IContext* pCtx);

@@ -20,11 +20,16 @@ namespace nsBase::nsZones
 
     struct DllExport IContext
     {
-        void SetActiveProcess(uint32_t rank, TProcess* pProcess);
-        void SetOwnerZone(uint32_t rank, TZone* pZone);
+        void PushActiveProcess(TProcess* pProcess);
+        void PopActiveProcess();
+
+        void PushOwnerZone(TZone* pZone);
+        void PopOwnerZone();
 
         TProcess* GetActiveProcess(uint32_t rank = 0) const;
         TZone* GetOwnerZone(uint32_t rank = 0) const;
+
+        uint32_t GetRankCount() const;
 
         TContextState GetContextZone(uint32_t rank = 0);
 
