@@ -5,17 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#ifndef HandlerMMO_ClientH
-#define HandlerMMO_ClientH
+#pragma once
 
 #include "HandlerMMO.h"
 
 class THandlerMMO_Client : public THandlerMMO
 {
 public:
-    THandlerMMO_Client();
+    THandlerMMO_Client(nsMMOEngine::TBase* pBase);
 protected:
-    virtual void HandleFromMMOEngine(nsEvent::TEvent* pEvent);
+    void HandleFromMMOEngine(nsEvent::TEvent* pEvent) override;
 };
-
-#endif

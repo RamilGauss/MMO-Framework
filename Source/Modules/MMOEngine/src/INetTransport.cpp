@@ -13,7 +13,7 @@ namespace nsMMOEngine
 {
     INetTransport::INetTransport()
     {
-        GetLogger()->Register(STR_NAME_NET_TRANSPORT);
+        nsBase::nsCommon::GetLogger()->Register(STR_NAME_NET_TRANSPORT);
     }
     //---------------------------------------------------------------------------
     INetTransport::~INetTransport()

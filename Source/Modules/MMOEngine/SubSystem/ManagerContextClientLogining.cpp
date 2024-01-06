@@ -28,7 +28,7 @@ bool TManagerContextClientLogining::FindSessionByClientKey(unsigned int clientKe
 {
     auto fit = mMapSessionKey.right.find(clientKey);
     if (fit == mMapSessionKey.right.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextClientLogining::FindSessionByClientKey(clientKey=%u) not found.\n", clientKey);
         return false;
     }
@@ -40,7 +40,7 @@ bool TManagerContextClientLogining::FindClientKeyBySession(unsigned int sessionI
 {
     auto fit = mMapSessionKey.left.find(sessionID);
     if (fit == mMapSessionKey.left.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextClientLogining::FindClientKeyBySession(session=%u) not found.\n", sessionID);
         return false;
     }
@@ -52,7 +52,7 @@ TContainerContextSc* TManagerContextClientLogining::FindContextBySession(unsigne
 {
     TMapUintPtrIt fit = mMapSessionContext.find(sessionID);
     if (fit == mMapSessionContext.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextClientLogining::FindContextBySession(session=%u) not found.\n", sessionID);
         return nullptr;
     }

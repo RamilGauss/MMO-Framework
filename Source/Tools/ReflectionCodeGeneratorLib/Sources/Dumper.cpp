@@ -14,7 +14,7 @@ using namespace nsReflectionCodeGenerator;
 
 void TDumper::Save(const std::string& absFileName, std::list<std::string>& content)
 {
-    TSaveToFile stf;
+    nsBase::nsCommon::TSaveToFile stf;
     auto isOpen = stf.ReOpen((char*) absFileName.c_str());
     if (isOpen == false) {
         return;

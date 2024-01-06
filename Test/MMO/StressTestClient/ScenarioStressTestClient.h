@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #define ScenarioStressTestClientH
 
 #include "InputCmdTestMMO_Client.h"
-#include "MakerNetTransport.h"
+#include "NetTransport/MakerNetTransport.h"
 #include "BehaviourClient.h"
 #include <vector>
 

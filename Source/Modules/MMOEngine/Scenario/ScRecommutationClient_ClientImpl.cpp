@@ -74,7 +74,7 @@ void TScRecommutationClient_ClientImpl::BeginClient(TDescRecvSession* pDesc)
     // начало сценария
     if (Begin() == false) {
         // генерация ошибки
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScRecommutationClient_ClientImpl::BeginClient() scenario is not active.\n");
         BL_FIX_BUG();
         return;

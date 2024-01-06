@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "CommonParam.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "InputByCmd.h"
+#include "Base/Common/InputByCmd.h"
 
 class TInputCmdTestMMO_Client : public TInputByCmd
 {

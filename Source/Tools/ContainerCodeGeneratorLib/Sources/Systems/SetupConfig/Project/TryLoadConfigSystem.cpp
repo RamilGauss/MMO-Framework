@@ -30,7 +30,7 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
         auto pathsComponent = nsECSFramework::SingleComponent<TPathsComponent>(mEntMng);
 
         std::string str;
-        TTextFile::Load(pathsComponent->absPathJsonFile, str);
+        nsBase::nsCommon::TTextFile::Load(pathsComponent->absPathJsonFile, str);
         if (str.length() == 0) {
             auto msg = fmt::format("Not loaded file \"{}\"\n", pathsComponent->absPathJsonFile);
             throw MSG_EXCEPTION(msg);

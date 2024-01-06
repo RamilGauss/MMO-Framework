@@ -148,7 +148,7 @@ bool TReflectionCodeGenerator::GetTypeList(TStringList& fileList, TTypeInfoPtrLi
     typeList.clear();
 
     TParser parser;
-    TLoadFromFile lff;
+    nsBase::nsCommon::TLoadFromFile lff;
     TContainer data;
 
     parser.SetupTypes(mConfig->targetForCodeGeneration.typeCustomizerMap,
@@ -239,7 +239,7 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
 void TReflectionCodeGenerator::LoadExternalSources()
 {
     TContainer data;
-    TLoadFromFile lff;
+    nsBase::nsCommon::TLoadFromFile lff;
 
     for (auto& genInfo : mGenerators) {
 

@@ -17,11 +17,11 @@ namespace nsFarType
 {
     struct X
     {
-        TSaveToFile stf;
-        TSaveToFile* pstf;
-        std::shared_ptr<TSaveToFile> shstf;
+        nsBase::nsCommon::TSaveToFile stf;
+        nsBase::nsCommon::TSaveToFile* pstf;
+        std::shared_ptr<nsBase::nsCommon::TSaveToFile> shstf;
 
-        std::list<TSaveToFile> stf_l;
-        std::map<int, TSaveToFile> stf_m;
+        std::list<nsBase::nsCommon::TSaveToFile> stf_l;
+        std::map<int, nsBase::nsCommon::TSaveToFile> stf_m;
     };
 }

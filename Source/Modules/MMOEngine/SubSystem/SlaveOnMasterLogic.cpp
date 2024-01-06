@@ -99,7 +99,7 @@ void TSlaveOnMasterLogic::NeedContextLoginSlave(unsigned int sessionID)
     auto slaveEntity = mEntMng->GetByUnique(slaveSessionIdentityComponent);
     if (slaveEntity != nsECSFramework::NONE) {
         // внутренняя ошибка
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TSlaveOnMasterLogic::NeedContextLoginSlave() against try authorized.\n");
         return;
     }
@@ -120,7 +120,7 @@ void TSlaveOnMasterLogic::NeedContextLoginSlave(unsigned int sessionID)
     //if ( pC )
     //{
     //  // внутренняя ошибка
-    //  GetLogger( STR_NAME_MMO_ENGINE )->
+    //  nsBase::nsCommon::GetLogger( STR_NAME_MMO_ENGINE )->
     //    WriteF_time( "TMaster::NeedContextLoginSlave() against try authorized.\n" );
     //  return;
     //}

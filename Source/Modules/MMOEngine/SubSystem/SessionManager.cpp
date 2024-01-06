@@ -35,7 +35,7 @@ void TSessionManager::SetMakerTransport(IMakerTransport* pMakerTransport)
 bool TSessionManager::Start(TDescOpen* pDesc, int count)
 {
     if (flgStart) {
-        GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TSessionManager::Start() restart.\n");
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TSessionManager::Start() restart.\n");
         BL_FIX_BUG();
         return false;
     }
@@ -57,7 +57,7 @@ bool TSessionManager::StartTransport(unsigned short port, unsigned char subNet)
     if (resOpen == false) {
         char s[100];
         sprintf(s, "TSessionManager::Start() open port %u FAIL.\n", port);
-        GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time(s);
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time(s);
         BL_MessageBug(s);
         return false;
     }
@@ -142,7 +142,7 @@ void TSessionManager::ConnectAsync(TIP_Port& ip_port, const std::string& login, 
         pSession = NewSession(mIP_PortUp, pTransport, true/*connect to*/);
     } else {
         unlockConnectUp();
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TSessionManager::Send(%s) sending to IP with exist session.\n", ip_port.ToString());
         BL_FIX_BUG();
         return mConnectResult(INVALID_HANDLE_SESSION);
@@ -392,7 +392,7 @@ void TSessionManager::RecvIDconfirmation(TDescRecvSession& descRecvSession, TSes
 //-------------------------------------------------------------------------
 void TSessionManager::FixHack(const char* sMsg)
 {
-    GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("Try hack: %s.\n", sMsg);
+    nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("Try hack: %s.\n", sMsg);
 }
 //-------------------------------------------------------------------------
 void TSessionManager::BeginWaitConnectUp()

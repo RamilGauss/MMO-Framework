@@ -25,7 +25,7 @@ namespace nsContainerCodeGenerator::nsAggregator
 {
     void TGenerateDllCppFileSystem::Execute()
     {
-        std::list<nsBase::TLine> lines =
+        std::list<nsBase::nsCommon::TLine> lines =
         {
             {0, "#include \"{{ DLL_HEADER_FILE_NAME }}\""},
             {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
@@ -54,7 +54,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             projectConfigComponent->value.aggregator.dllCppFileName);
 
-        nsBase::TTextGenerator txtGen(lines);
+        nsBase::nsCommon::TTextGenerator txtGen(lines);
 
         inja::json data;
 

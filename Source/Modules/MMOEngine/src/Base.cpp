@@ -40,7 +40,7 @@ TBase::TBase() :
 {
     mEntMng->Setup();// magic reflection
 
-    GetLogger()->Register(STR_NAME_MMO_ENGINE);
+    nsBase::nsCommon::GetLogger()->Register(STR_NAME_MMO_ENGINE);
 
     SetupScForContext(mContainerUp.get());
     // задать контекст по-умолчанию
@@ -59,7 +59,7 @@ TBase::~TBase()
 void TBase::Init(IMakerTransport* pMakerTransport)
 {
     if (pMakerTransport == nullptr) {
-        GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TBase::Init() pMakerTransport==NULL.\n");
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TBase::Init() pMakerTransport==NULL.\n");
         BL_FIX_BUG();
         return;
     }

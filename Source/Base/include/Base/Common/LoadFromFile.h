@@ -17,15 +17,18 @@ See for more information LICENSE.md.
   Загрузка из файла
 */
 
-class DllExport TLoadFromFile : public InfoFile
+namespace nsBase::nsCommon
 {
-public:
-    TLoadFromFile(char* path = nullptr);
-    virtual ~TLoadFromFile();
+    class DllExport TLoadFromFile : public TInfoFile
+    {
+    public:
+        TLoadFromFile(char* path = nullptr);
+        virtual ~TLoadFromFile();
 
-    virtual bool ReOpen(char* path, bool append = false);
+        virtual bool ReOpen(char* path, bool append = false);
 
-    unsigned int Size();
-    unsigned int Read(void* buffer, unsigned int size, unsigned int offset = 0);
-    int ReadSmall(TContainer& c);
-};
+        unsigned int Size();
+        unsigned int Read(void* buffer, unsigned int size, unsigned int offset = 0);
+        int ReadSmall(TContainer& c);
+    };
+}

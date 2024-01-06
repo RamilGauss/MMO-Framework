@@ -28,7 +28,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsDynamicCaste
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
-        std::list<nsBase::TLine> lines =
+        std::list<nsBase::nsCommon::TLine> lines =
         {
             {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
@@ -89,7 +89,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsDynamicCaste
         std::filesystem::path pathRelToProjectSources(relToCoreSources);
         pathRelToProjectSources /= coreConfigComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.fileName;
 
-        nsBase::TTextGenerator txtGen(lines);
+        nsBase::nsCommon::TTextGenerator txtGen(lines);
 
         inja::json data;
 

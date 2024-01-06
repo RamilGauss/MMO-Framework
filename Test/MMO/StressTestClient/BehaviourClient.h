@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #define BehaviourClientH
 
 #include "HandlerMMO_Client.h"
-#include "Client.h"
+#include "MMOEngine/include/Client.h"
 #include "InputCmdTestMMO_Client.h"
 
 class TMakerNetTransport;
@@ -33,7 +33,7 @@ class TBehaviourClient
 
     THandlerMMO_Client mHandler;
 
-    boost::scoped_ptr<nsMMOEngine::TClient> mClient;
+    nsMMOEngine::TClient mClient;
 
     TInputCmdTestMMO_Client::TInput mInputArg;
 public:

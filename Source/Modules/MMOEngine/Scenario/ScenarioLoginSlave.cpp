@@ -27,7 +27,7 @@ void TScenarioLoginSlave::ConnectToMaster(TIP_Port& ip_port, const std::string& 
     if (Begin() == false) {
         // верхнее соединение занято выполнением другого сценария - такого не должно быть
         // генерация ошибки
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScenarioLoginSlave::ConnectToMaster() scenario is not active.\n");
         BL_FIX_BUG();
         return;
@@ -90,7 +90,7 @@ void TScenarioLoginSlave::RecvFromSlave(TDescRecvSession* pDesc)
         End();
         // верхнее соединение занято выполнением другого сценария - такого не должно быть
         // внутренняя ошибка
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScenarioLoginSlave::RecvFromSlave() scenario is not active.\n");
         BL_FIX_BUG();
         return;

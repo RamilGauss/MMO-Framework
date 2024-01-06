@@ -27,7 +27,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsDynamicCaster
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
-        std::list<nsBase::TLine> lines =
+        std::list<nsBase::nsCommon::TLine> lines =
         {
             { 0, "#include \"{{ IMPL_FILE_NAME }}.h\"" },
             { 0, "" },
@@ -110,7 +110,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsDynamicCaster
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
         pathRelToProjectSources /= projectConfigComponent->value.projectConfig.componentConfig.dynamicCaster.fileName;
 
-        nsBase::TTextGenerator txtGen(lines);
+        nsBase::nsCommon::TTextGenerator txtGen(lines);
 
         inja::json data;
 

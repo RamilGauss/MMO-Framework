@@ -109,7 +109,7 @@ bool TSetupConfig::TryLoadConfig()
 {
     auto mConfig = mConfigContainer->Config();
     std::string str;
-    TTextFile::Load(mAbsPathJsonFile, str);
+    nsBase::nsCommon::TTextFile::Load(mAbsPathJsonFile, str);
     if (str.length() == 0) {
         return false;
     }

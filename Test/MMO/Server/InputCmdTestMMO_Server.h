@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "InputByCmd.h"
+#include "Base/Common/InputByCmd.h"
 
 class TInputCmdTestMMO_Server : public TInputByCmd
 {

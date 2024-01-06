@@ -103,7 +103,7 @@ void TSuperServer::NeedContextLoginMaster(unsigned int sessionID)
     TContainerContextSc* pC = mMngContextMaster->FindContextBySession(sessionID);
     if (pC) {
         // внутренняя ошибка
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TSuperServer::LoginMaster() against try authorized.\n");
         return;
     }

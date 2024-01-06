@@ -19,9 +19,9 @@ class DllExport TInputByCmd
 {
 protected:
     TCmdParam mCmdParam;
-private:
     typedef std::vector<std::string> TVectorStr;
     TVectorStr mVecDefKey;
+private:
 
     using ParseFunc = std::function<void(std::string&)>;
 

@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 class TFileParser
 {
     nsCppParser::TParser g_Parser;
-    TLoadFromFile g_loader;
+    nsBase::nsCommon::TLoadFromFile g_loader;
 public:
     const nsCppParser::TParserResultContainer* Parse(const char* path);
 };

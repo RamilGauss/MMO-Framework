@@ -65,7 +65,7 @@ namespace nsTornadoEngine
         TContainer mFileBuffer;
         std::string mFileContent;
 
-        TLoadFromFile mFile;
+        nsBase::nsCommon::TLoadFromFile mFile;
 
         TSceneResourceContent mSceneContent;
 

@@ -21,69 +21,72 @@ See for more information LICENSE.md.
   Буферизация при отсутствии открытого файла.
 */
 
-class DllExport TSaveToFile : public InfoFile
+namespace nsBase::nsCommon
 {
-    bool flgPrintf;
-    bool flgEnable;
-    bool flgBuffer;
+    class DllExport TSaveToFile : public TInfoFile
+    {
+        bool flgPrintf;
+        bool flgEnable;
+        bool flgBuffer;
 
-    using TListContainer = TListPtr<TContainer>;
+        using TListContainer = TListPtr<TContainer>;
 
-    TListContainer mListBuffer;
+        TListContainer mListBuffer;
 
-    const size_t MAX_NUMBER_FOR_BUFFERIZATION = 5000;
+        const size_t MAX_NUMBER_FOR_BUFFERIZATION = 5000;
 
-public:
-    TSaveToFile(char* path = nullptr);
-    virtual ~TSaveToFile();
+    public:
+        TSaveToFile(char* path = nullptr);
+        virtual ~TSaveToFile();
 
-    // в случае append==false - стирает содержимое файла
-    virtual bool ReOpen(char* path, bool append = false);
+        // в случае append==false - стирает содержимое файла
+        virtual bool ReOpen(char* path, bool append = false);
 
-    void Write(void* buffer, int size);
-    // форматированная строка, по типу printf(...)
+        void Write(void* buffer, int size);
+        // форматированная строка, по типу printf(...)
+        template<typename ... Args>
+        void WriteF(const char* format, Args && ... args);
+        template<typename ... Args>
+        void WriteF_time(const char* format, Args && ... args);
+
+        void SetPrintf(bool val);
+        bool GetPrintf();
+        void SetEnable(bool val);
+        bool GetEnable();
+        void SetBufferization(bool val);
+        bool GetBufferization();
+    protected:
+        void Write_Time();
+
+        void ClearBuffer();
+        void FlushBuffer();
+        void FlushInBuffer(char* buffer, int size);
+    };
+    //--------------------------------------------------------------------------------
     template<typename ... Args>
-    void WriteF(const char* format, Args && ... args);
+    void TSaveToFile::WriteF(const char* format, Args && ... args)
+    {
+        if (flgEnable == false) {
+            return;
+        }
+
+        char s[10000];
+        sprintf(s, format, std::forward<Args>(args)...);
+        if (flgPrintf) {
+            printf(s);
+        }
+        Write(s, strlen(s));
+    }
+    //--------------------------------------------------------------------------------
     template<typename ... Args>
-    void WriteF_time(const char* format, Args && ... args);
+    void TSaveToFile::WriteF_time(const char* format, Args && ... args)
+    {
+        if (flgEnable == false) {
+            return;
+        }
 
-    void SetPrintf(bool val);
-    bool GetPrintf();
-    void SetEnable(bool val);
-    bool GetEnable();
-    void SetBufferization(bool val);
-    bool GetBufferization();
-protected:
-    void Write_Time();
-
-    void ClearBuffer();
-    void FlushBuffer();
-    void FlushInBuffer(char* buffer, int size);
-};
-//--------------------------------------------------------------------------------
-template<typename ... Args>
-void TSaveToFile::WriteF(const char* format, Args && ... args)
-{
-    if (flgEnable == false) {
-        return;
+        Write_Time();
+        WriteF(format, std::forward<Args>(args)...);
     }
-
-    char s[10000];
-    sprintf(s, format, std::forward<Args>(args)...);
-    if (flgPrintf) {
-        printf(s);
-    }
-    Write(s, strlen(s));
+    //--------------------------------------------------------------------------------
 }
-//--------------------------------------------------------------------------------
-template<typename ... Args>
-void TSaveToFile::WriteF_time(const char* format, Args && ... args)
-{
-    if (flgEnable == false) {
-        return;
-    }
-
-    Write_Time();
-    WriteF(format, std::forward<Args>(args)...);
-}
-//--------------------------------------------------------------------------------

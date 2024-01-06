@@ -30,7 +30,7 @@ void TScenarioLoginMaster::ConnectToSuperServer(TIP_Port& ip_port, const std::st
         End();
         // верхнее соединение занято выполнением другого сценария - такого не должно быть
         // внутренняя ошибка
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScenarioLoginMaster::ConnectToSuperServer() scenario is not active.\n");
         BL_FIX_BUG();
         return;
@@ -93,7 +93,7 @@ void TScenarioLoginMaster::RecvFromMaster(TDescRecvSession* pDesc)
         End();
         // верхнее соединение занято выполнением другого сценария - такого не должно быть
         // внутренняя ошибка
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScenarioLoginMaster::RecvFromMaster() scenario is not active.\n");
         BL_FIX_BUG();
         return;

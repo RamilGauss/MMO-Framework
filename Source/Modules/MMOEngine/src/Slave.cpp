@@ -201,7 +201,7 @@ void TSlave::EndRcm(IScenario* pSc)
         return;
     }
     if (pContext->IsRecipient() == false) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TSlave::EndRcm() Undef state.\n");
         BL_FIX_BUG();
         return;

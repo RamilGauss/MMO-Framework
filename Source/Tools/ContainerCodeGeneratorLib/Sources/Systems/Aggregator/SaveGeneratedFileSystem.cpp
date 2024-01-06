@@ -29,7 +29,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         }
 
         for (auto& gen : generatedFilesComponent->value) {
-            TTextFile::Save(gen.absPath, gen.content);
+            nsBase::nsCommon::TTextFile::Save(gen.absPath, gen.content);
         }
     }
 }

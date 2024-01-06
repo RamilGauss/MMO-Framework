@@ -27,6 +27,6 @@ namespace nsContainerCodeGenerator::nsCommon
         std::string content;
         nsJson::TJsonSerializer::Serialize(&reflectionConfigComponent->value, content);
 
-        TTextFile::Save(reflectionConfigComponent->absFileName, content);
+        nsBase::nsCommon::TTextFile::Save(reflectionConfigComponent->absFileName, content);
     }
 }

@@ -245,7 +245,7 @@ void TScLoginClient_MasterImpl::TryLoginC2M(TDescRecvSession* pDesc)
     //-------------------------------------------------------------
     if (Begin() == false) {
         // генерация ошибки
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScLoginClient_MasterImpl::TryLoginC2M() scenario is not active.\n");
         BL_FIX_BUG();
         return;

@@ -99,7 +99,7 @@ void TClientOnMasterLogic::NeedContextLoginClientBySessionAfterAuthorised(unsign
     auto clientEntity = mEntMng->GetByUnique(clientSessionIdentityComponent);
     if (clientEntity == nsECSFramework::NONE) {
         // внутренняя ошибка
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TMaster::NeedContextLoginClientBySessionAfterAuthorised() context not found.\n");
         mBase->mControlSc->mLoginClient->SetContext(nullptr);
         return;
@@ -176,7 +176,7 @@ void TClientOnMasterLogic::NeedContextLoginClientBySession(unsigned int sessionI
     auto clientEntity = mEntMng->GetByUnique(clientSessionIdentityComponent);
     if (clientEntity != nsECSFramework::NONE) {
         // внутренняя ошибка
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TMaster::NeedContextLoginClientBySession() against try authorized.\n");
         mBase->mControlSc->mLoginClient->SetContext(nullptr);
         return;
@@ -289,7 +289,7 @@ bool TClientOnMasterLogic::TryAddClient(unsigned int clientKey, unsigned int& sl
     unsigned char load_procent = 0;
     if (FindMinimumLoad(slaveSessionId, load_procent) == false) {
         // генерация ошибки
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TMaster::SetResultLogin() count slave = 0.\n");
         BL_FIX_BUG();
         return false;

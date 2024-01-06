@@ -12,22 +12,25 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-class DllExport InfoFile
+namespace nsBase::nsCommon
 {
-protected:
-    std::string sPath;
-    FILE* pFile;
-public:
+    class DllExport TInfoFile
+    {
+    protected:
+        std::string sPath;
+        FILE* pFile;
+    public:
 
-    InfoFile();
-    virtual ~InfoFile();
+        TInfoFile();
+        virtual ~TInfoFile();
 
-    static bool IsExist(char* path);
+        static bool IsExist(char* path);
 
-    virtual bool ReOpen(char* path, bool append = false) = 0;
-    virtual bool IsOpen();
-    virtual void Close();
+        virtual bool ReOpen(char* path, bool append = false) = 0;
+        virtual bool IsOpen();
+        virtual void Close();
 
-    void GetName(std::string& path_name);
-    void GetPath(std::string& path_name);
-};
+        void GetName(std::string& path_name);
+        void GetPath(std::string& path_name);
+    };
+}

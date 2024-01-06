@@ -37,7 +37,7 @@ namespace nsContainerCodeGenerator::nsProject::nsHandler
             auto fileName = path.filename().string();
 
             std::string content;
-            TTextFile::Load(absFilePath, content);
+            nsBase::nsCommon::TTextFile::Load(absFilePath, content);
 
             parser.Parse(content, fileName, absFilePath);
 

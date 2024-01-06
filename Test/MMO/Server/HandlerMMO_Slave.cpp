@@ -126,7 +126,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
     }
 
     if (pBE->mType == nsMMOEngine::eError) {
-        GetLogger(ServerLog)->WriteF("MMOEngine S (0x%p): %s.\t", pSlave, sEvent.data());
+        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("MMOEngine S (0x%p): %s.\t", pSlave, sEvent.data());
         PrintCC(ServerLog);
     }
 }

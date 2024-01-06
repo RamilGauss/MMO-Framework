@@ -72,7 +72,7 @@ namespace nsTornadoEngine
             }
             auto guidComponent = *pGuidComponent;
 
-            auto newGuid = nsBase::TGuidGenerator::Generate();
+            auto newGuid = nsBase::nsCommon::TGuidGenerator::Generate();
 
             nsCommonWrapper::TParentGuidComponent parentGuidComponent;
             parentGuidComponent.value = guidComponent.value;

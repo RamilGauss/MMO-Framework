@@ -15,7 +15,7 @@ using namespace nsReflectionCodeGenerator;
 
 void TOutDumper::Save(TExternalSource& extSrc, const std::string& fileAbsPath)
 {
-    TSaveToFile stf;
+    nsBase::nsCommon::TSaveToFile stf;
     auto isOpen = stf.ReOpen((char*) fileAbsPath.c_str());
     if (isOpen == false) {
         return;

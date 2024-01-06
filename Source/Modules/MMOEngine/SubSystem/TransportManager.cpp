@@ -17,71 +17,68 @@ See for more information LICENSE.md.
 using namespace nsMMOEngine;
 using namespace std;
 
-TTransportManager::TTransportManager( TSessionManager* pMS )
+TTransportManager::TTransportManager(TSessionManager* pMS)
 {
-  mMakerTransport = nullptr;
-  mMngSession = pMS;
+    mMakerTransport = nullptr;
+    mMngSession = pMS;
 }
 //------------------------------------------------------------------------------------
 TTransportManager::~TTransportManager()
 {
-  Done();
+    Done();
 }
 //------------------------------------------------------------------------------------
-void TTransportManager::SetTransport( IMakerTransport* pMT )
+void TTransportManager::SetTransport(IMakerTransport* pMT)
 {
-  mMakerTransport = pMT;
+    mMakerTransport = pMT;
 }
 //------------------------------------------------------------------------------------
-INetTransport* TTransportManager::FindBySubNet( unsigned char v )
+INetTransport* TTransportManager::FindBySubNet(unsigned char v)
 {
-  TMapUcharPtrIt fit = mMapSubNetTransport.find( v );
-  if( fit == mMapSubNetTransport.end() )
-  {
-    GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TTransportManager::FindBySubNet(%u) not found.\n", v );
-    BL_FIX_BUG();
-    return nullptr;
-  }
-  return fit->second;
+    TMapUcharPtrIt fit = mMapSubNetTransport.find(v);
+    if (fit == mMapSubNetTransport.end()) {
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
+            WriteF_time("TTransportManager::FindBySubNet(%u) not found.\n", v);
+        BL_FIX_BUG();
+        return nullptr;
+    }
+    return fit->second;
 }
 //------------------------------------------------------------------------------------
-INetTransport* TTransportManager::FindByReciver( TReceiverTransport* pRT )
+INetTransport* TTransportManager::FindByReciver(TReceiverTransport* pRT)
 {
-  TMapPtrPtrIt fit = mMapReciverTransport.find( pRT );
-  if( fit == mMapReciverTransport.end() )
-  {
-    GetLogger( STR_NAME_MMO_ENGINE )->
-      WriteF_time( "TTransportManager::FindByReciver(0x%p) not found.\n", pRT );
-    BL_FIX_BUG();
-    return nullptr;
-  }
-  return fit->second;
+    TMapPtrPtrIt fit = mMapReciverTransport.find(pRT);
+    if (fit == mMapReciverTransport.end()) {
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
+            WriteF_time("TTransportManager::FindByReciver(0x%p) not found.\n", pRT);
+        BL_FIX_BUG();
+        return nullptr;
+    }
+    return fit->second;
 }
 //------------------------------------------------------------------------------------
-INetTransport* TTransportManager::Add( unsigned char subNet )
+INetTransport* TTransportManager::Add(unsigned char subNet)
 {
-  BL_ASSERT( mMakerTransport );
-  INetTransport* pTransport = mMakerTransport->New();
-  TReceiverTransport* pRT = new TReceiverTransport( pTransport, mMngSession );
+    BL_ASSERT(mMakerTransport);
+    INetTransport* pTransport = mMakerTransport->New();
+    TReceiverTransport* pRT = new TReceiverTransport(pTransport, mMngSession);
 
-  mMapSubNetTransport.insert( TMapUcharPtr::value_type( subNet, pTransport ) );
-  mMapReciverTransport.insert( TMapPtrPtr::value_type( pRT, pTransport ) );
+    mMapSubNetTransport.insert(TMapUcharPtr::value_type(subNet, pTransport));
+    mMapReciverTransport.insert(TMapPtrPtr::value_type(pRT, pTransport));
 
-  return pTransport;
+    return pTransport;
 }
 //------------------------------------------------------------------------------------
 void TTransportManager::Done()
 {
-  for( auto& it : mMapReciverTransport )
-  {
-    it.second->Stop();// stop transport
-    mMakerTransport->Delete( it.second );// transport
+    for (auto& it : mMapReciverTransport) {
+        it.second->Stop();// stop transport
+        mMakerTransport->Delete(it.second);// transport
 
-    delete it.first;// receiver
-  }
+        delete it.first;// receiver
+    }
 
-  mMapSubNetTransport.clear();
-  mMapReciverTransport.clear();
+    mMapSubNetTransport.clear();
+    mMapReciverTransport.clear();
 }
 //------------------------------------------------------------------------------------

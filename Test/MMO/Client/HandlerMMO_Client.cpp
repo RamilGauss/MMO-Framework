@@ -42,7 +42,7 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
         {
             nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
             sEvent = nsMMOEngine::GetStrError(pEr->code);
-            GetLogger(ClientLog)->WriteF("MMOEngine: %s.\t\n", sEvent.data());
+            nsBase::nsCommon::GetLogger(ClientLog)->WriteF("MMOEngine: %s.\t\n", sEvent.data());
         }
         break;
         case nsMMOEngine::eRecvFromUp:
@@ -73,7 +73,7 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
             } else
                 sEvent += " Reject ";
             sEvent.append(pRes->c.GetPtr(), pRes->c.GetSize());
-            GetLogger(ClientLog)->WriteF("MMOEngine: %s\t\n", sEvent.data());
+            nsBase::nsCommon::GetLogger(ClientLog)->WriteF("MMOEngine: %s\t\n", sEvent.data());
         }
         break;
         case nsMMOEngine::eEnterInQueue:
@@ -82,7 +82,7 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
             auto pEnterEvent = (nsMMOEngine::TEnterInQueueEvent*)pBE;
             //pClient->LeaveQueue();
             auto numInQueue = pEnterEvent->numInQueue;
-            GetLogger(ClientLog)->WriteF("MMOEngine: %s, num = %d.\t\n", sEvent.data(), numInQueue);
+            nsBase::nsCommon::GetLogger(ClientLog)->WriteF("MMOEngine: %s, num = %d.\t\n", sEvent.data(), numInQueue);
         }
         break;
         case nsMMOEngine::eLeaveQueue:
@@ -92,7 +92,7 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
     }
 
     if (pBE->mType == nsMMOEngine::eError)
-        GetLogger(ClientLog)->WriteF("MMOEngine: %s.\t\n", sEvent.data());
+        nsBase::nsCommon::GetLogger(ClientLog)->WriteF("MMOEngine: %s.\t\n", sEvent.data());
 }
 //---------------------------------------------------------------------------------------------
 void THandlerMMO_Client::WorkInherit()

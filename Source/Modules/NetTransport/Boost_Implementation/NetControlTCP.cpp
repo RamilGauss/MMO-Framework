@@ -72,7 +72,7 @@ void TNetControlTCP::Close()
 void TNetControlTCP::RecvEvent(const boost::system::error_code& error, size_t bytes_transferred)
 {
     if (error || bytes_transferred <= 0) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("RecvEvent TCP disconnect error=%s.\n", error.message().data());
 
         DeleteSelf();
@@ -104,7 +104,7 @@ void TNetControlTCP::RecvEvent(const boost::system::error_code& error, size_t by
 void TNetControlTCP::SendEvent(const boost::system::error_code& error, size_t bytes_transferred)
 {
     if (error) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("SendEvent TCP error=%s.\n", error.message().data());
     }
 }
@@ -115,7 +115,7 @@ void TNetControlTCP::ConnectEvent(const boost::system::error_code& error)
     flgWaitConnect = false;
 
     if (error.failed()) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("ConnectEvent TCP error=%s.\n", error.message().data());
     }
 }
@@ -128,7 +128,7 @@ void TNetControlTCP::ReadyRecv()
                 boost::asio::placeholders::error,
                 boost::asio::placeholders::bytes_transferred));
     } catch (std::exception& e) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("ReadyRecv TCP error=%s.\n", e.what());
     }
 }
@@ -150,7 +150,7 @@ l_repeat:
     boost::system::error_code ec;
     int resSend = mDevice.GetSocket()->send(boost::asio::buffer(data, size), flags, ec);
     if (ec) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("RequestSend TCP error=%s.\n", ec.message().data());
         return;
     }
@@ -172,7 +172,7 @@ void TNetControlTCP::RequestConnect(TIP_Port& ip_port)
         flgWaitConnect = false;
         flgResConnect = true;
     } catch (std::exception& e) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("RequestConnect TCP error=%s, ip_port=%s.\n", e.what(), ip_port.ToString());
 
         flgWaitConnect = false;

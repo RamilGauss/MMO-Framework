@@ -100,7 +100,7 @@ void TScRecommutationClient_SlaveImpl::BeginDonor(TDescRecvSession* pDesc)
     THeaderBeginDonor* pHeader = (THeaderBeginDonor*)pDesc->data;
     NeedContextByClientKeyForSlave(pHeader->clientKey, true);
     if (Context() == nullptr) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScRecommutationClient_SlaveImpl::BeginDonor() Context()==NULL.\n");
         BL_FIX_BUG();
         return;
@@ -111,7 +111,7 @@ void TScRecommutationClient_SlaveImpl::BeginDonor(TDescRecvSession* pDesc)
     // начало сценария
     if (Begin() == false) {
         // генерация ошибки
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScRecommutationClient_SlaveImpl::BeginDonor() scenario is not active.\n");
         BL_FIX_BUG();
         return;
@@ -132,7 +132,7 @@ void TScRecommutationClient_SlaveImpl::InfoRecipientToDonor(TDescRecvSession* pD
     THeaderInfoRecipientToDonor* pHeader = (THeaderInfoRecipientToDonor*)pDesc->data;
     NeedContextByClientKeyForSlave(pHeader->clientKey, true);
     if (Context() == nullptr) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScRecommutationClient_SlaveImpl::InfoRecipientToDonor() Context()==NULL.\n");
         BL_FIX_BUG();
         return;
@@ -155,7 +155,7 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient(TDescRecvSession* pDesc)
     THeaderBeginRecipient* pHeader = (THeaderBeginRecipient*)pDesc->data;
     NeedContextByClientKeyForSlave(pHeader->clientKey, false);
     if (Context() == nullptr) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScRecommutationClient_SlaveImpl::BeginRecipient() Context()==NULL.\n");
         BL_FIX_BUG();
         return;
@@ -168,7 +168,7 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient(TDescRecvSession* pDesc)
     // начало сценария
     if (Begin() == false) {
         // генерация ошибки
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScRecommutationClient_SlaveImpl::BeginRecipient() scenario is not active.\n");
         BL_FIX_BUG();
         return;
@@ -241,7 +241,7 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
     if (Context() == nullptr) {
         auto clientKey = pHeader->clientKey;
 
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScRecommutationClient_SlaveImpl::RequestConnect not found session=0x%X, key=%u",
                 pDesc->sessionID, clientKey);
         return;

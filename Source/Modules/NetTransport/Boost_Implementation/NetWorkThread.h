@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <boost/asio/io_service.hpp>
 #include "Base/Common/ThreadBoost.h"
 
-class TNetWorkThread : public TThreadBoost
+class TNetWorkThread : public nsBase::nsCommon::TThreadBoost
 {
     boost::asio::io_context mIO_Context;
 

@@ -39,7 +39,7 @@ bool TOpenProjectOkButtonClickHandler::LoadProjectConfig(const std::string& absP
     nsTornadoEngine::TProjectConfig& projectConfig, std::string& err)
 {
     std::string jsonContent;
-    TTextFile::Load(absPath, jsonContent);
+    nsBase::nsCommon::TTextFile::Load(absPath, jsonContent);
     if (jsonContent.length() == 0) {
         return false;
     }

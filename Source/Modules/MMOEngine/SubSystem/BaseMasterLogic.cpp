@@ -136,7 +136,7 @@ unsigned char TBaseMasterLogic::GetLimitLoadProcentByKey(unsigned int clientKey)
     auto clientEntity = mEntMng->GetByUnique(clientIdentity);
     if (clientEntity == nsECSFramework::NONE) {
         // генерация ошибки
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("GetLimitLoadProcentByKey() not found client.\n");
         BL_FIX_BUG();
     }

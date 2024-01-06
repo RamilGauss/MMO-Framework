@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/GuidGenerator.h"
 
-namespace nsBase
+namespace nsBase::nsCommon
 {
     TTextGenerator::TTextGenerator(const std::list<TLine>& lines)
     {
@@ -24,7 +24,7 @@ namespace nsBase
     //--------------------------------------------------------------------------------------------------
     bool TTextGenerator::Apply(const inja::json& data, const std::list<TFormatFuncDeclaration>& formatFuncDeclarations)
     {
-        std::string STAMP = nsBase::TGuidGenerator::Generate();
+        std::string STAMP = TGuidGenerator::Generate();
 
         inja::Environment env;
 

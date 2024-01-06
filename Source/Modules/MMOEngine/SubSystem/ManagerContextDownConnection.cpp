@@ -28,7 +28,7 @@ TContainerContextSc* TManagerContextDownConnection::FindContextBySession(unsigne
 {
     TMapUintPtrIt fit = mMapSessionContext.find(sessionID);
     if (fit == mMapSessionContext.end()) {
-        //GetLogger( STR_NAME_MMO_ENGINE )->
+        //nsBase::nsCommon::GetLogger( STR_NAME_MMO_ENGINE )->
         //  WriteF_time( "TManagerContextDownConnection::FindContextBySession(sessionID=%u) not found.\n", sessionID );
         return nullptr;
     }

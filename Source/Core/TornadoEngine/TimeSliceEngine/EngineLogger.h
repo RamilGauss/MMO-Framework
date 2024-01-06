@@ -26,7 +26,7 @@ namespace nsTornadoEngine
         {
             //LogEvent();
 
-            GetLogger(TEngineLogger::NAME)->WriteF_time(format, std::forward<Args>(args)...);
+            nsBase::nsCommon::GetLogger(TEngineLogger::NAME)->WriteF_time(format, std::forward<Args>(args)...);
         }
     protected:
         virtual void LogEvent(const std::string& str) {}

@@ -183,7 +183,7 @@ bool TMaster::GetDescDown( int index, void* pDesc, int& sizeDesc )
 {
   if ( sizeDesc < sizeof( TDescDownMaster ) )
   {
-    GetLogger( STR_NAME_MMO_ENGINE )->
+    nsBase::nsCommon::GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TMaster::GetDescDown() size of buffer less then size of structure.\n" );
     return false;
   }
@@ -440,7 +440,7 @@ void TMaster::NeedContextLoginSlave( unsigned int sessionID )
   if ( pC )
   {
     // внутренняя ошибка
-    GetLogger( STR_NAME_MMO_ENGINE )->
+    nsBase::nsCommon::GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TMaster::NeedContextLoginSlave() against try authorized.\n" );
     return;
   }
@@ -483,7 +483,7 @@ void TMaster::NeedContextLoginClientBySessionAfterAuthorised( unsigned int sessi
   if ( pC == nullptr )
   {
     // внутренняя ошибка
-    GetLogger( STR_NAME_MMO_ENGINE )->
+    nsBase::nsCommon::GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TMaster::NeedContextLoginClientBySessionAfterAuthorised() context not found.\n" );
     mControlSc->mLoginClient->SetContext( nullptr );
     return;
@@ -509,7 +509,7 @@ void TMaster::NeedContextLoginClientBySession( unsigned int sessionID )
   if ( pC )
   {
     // внутренняя ошибка
-    GetLogger( STR_NAME_MMO_ENGINE )->
+    nsBase::nsCommon::GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TMaster::NeedContextLoginClientBySession() against try authorized.\n" );
     mControlSc->mLoginClient->SetContext( nullptr );
     return;
@@ -715,7 +715,7 @@ bool TMaster::TryAddClient( unsigned int clientKey, unsigned int& slaveSessionID
   if ( mMngContextSlave->FindMinimumLoad( slaveSessionID, load_procent ) == false )
   {
     // генерация ошибки
-    GetLogger( STR_NAME_MMO_ENGINE )->
+    nsBase::nsCommon::GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TMaster::SetResultLogin() count slave = 0.\n" );
     BL_FIX_BUG();
     return false;
@@ -976,7 +976,7 @@ void TMaster::NeedSlaveSessionDonorRcm( IScenario* pSc )
     pContext->SetSessionDonor( donorSessionID );
   else
   {
-    GetLogger( STR_NAME_MMO_ENGINE )->
+    nsBase::nsCommon::GetLogger( STR_NAME_MMO_ENGINE )->
       WriteF_time( "TMaster::NeedSlaveSessionDonor() key = %u not found donor.\n", key );
     BL_FIX_BUG();
   }

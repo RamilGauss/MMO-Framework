@@ -66,7 +66,7 @@ namespace nsTornadoEngine
                 mLogEvent(text);
             }
 
-            GetLogger(mProjectName)->WriteF_time(text.c_str());
+            nsBase::nsCommon::GetLogger(mProjectName)->WriteF_time(text.c_str());
         }
 
         std::function<bool(const std::string&)> mLogEvent;

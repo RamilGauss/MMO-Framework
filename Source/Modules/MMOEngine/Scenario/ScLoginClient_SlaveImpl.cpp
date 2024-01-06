@@ -100,7 +100,7 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S(TDescRecvSession* pDesc)
 
     if (Context() == nullptr) {
         // генерация ошибки
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScLoginClient_SlaveImpl::SetIsExistClientID() id client is not exist.\n");
         BL_FIX_BUG();
         return;
@@ -134,7 +134,7 @@ void TScLoginClient_SlaveImpl::InfoClientM2S(TDescRecvSession* pDesc)
         Context()->SetWasBegin();
         if (Begin() == false) {
             // генерация ошибки
-            GetLogger(STR_NAME_MMO_ENGINE)->
+            nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
                 WriteF_time("TScLoginClient_SlaveImpl::InfoClientM2S() scenario is not active.\n");
             BL_FIX_BUG();
             return;

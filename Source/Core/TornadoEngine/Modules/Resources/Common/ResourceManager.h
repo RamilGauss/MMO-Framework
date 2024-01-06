@@ -47,7 +47,7 @@ namespace nsTornadoEngine
     bool TResourceManager::Load(const std::string& absPath, T* p)
     {
         std::string jsonContent;
-        TTextFile::Load(absPath, jsonContent);
+        nsBase::nsCommon::TTextFile::Load(absPath, jsonContent);
         if (jsonContent.length() == 0) {
             Modules()->Log()->Log("%s no such file", absPath.c_str());
             return false;
@@ -65,7 +65,7 @@ namespace nsTornadoEngine
     {
         std::string jsonContent;
         TTornadoEngineJsonSerializer::Serialize(p, jsonContent);
-        TTextFile::Save(absPath, jsonContent);
+        nsBase::nsCommon::TTextFile::Save(absPath, jsonContent);
     }
     //---------------------------------------------------------------------------------------
 }

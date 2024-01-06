@@ -117,7 +117,7 @@ void THistoryPacketTCP::CheckSize(TResult& res)
 {
     // проверка корректности предполагаемого размера пакета
     if (mSizePacket > eMaxSize) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("THistoryPacketTCP::SearchSize expect very large size of packet.\n");
         // сдвиг на 1 байт и поиск дальше, но фактически обмен нарушен
         // канал скоро умрет, админ, проверяя логи, забанит "хака".

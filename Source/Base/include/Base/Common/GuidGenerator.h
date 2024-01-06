@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
-
 #include <string>
 
-namespace nsBase
+#include "Base/Common/TypeDef.h"
+
+namespace nsBase::nsCommon
 {
     class DllExport TGuidGenerator
     {

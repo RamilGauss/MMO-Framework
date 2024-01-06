@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 #include "Base/Common/DataExchange2Thread.h"
 #include "Base/Common/ThreadBoost.h"
 
-class DllExport TExecuteInstructionEngine : public TThreadBoost
+class DllExport TExecuteInstructionEngine : public nsBase::nsCommon::TThreadBoost
 {
     std::mutex mMutex;
     std::condition_variable mCondVar;

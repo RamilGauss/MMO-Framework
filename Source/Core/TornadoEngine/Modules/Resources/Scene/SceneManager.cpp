@@ -89,7 +89,7 @@ namespace nsTornadoEngine
         TSceneInstanceStatePtr sceneInstanceState = std::make_shared<TSceneInstanceState>(instantiateSceneParams);
 
         if (sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid.empty()) {
-            sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid = nsBase::TGuidGenerator::Generate();
+            sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid = nsBase::nsCommon::TGuidGenerator::Generate();
         }
 
         sceneInstanceState->mAbsPath = fit->second;

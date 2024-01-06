@@ -27,7 +27,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
-        std::list<nsBase::TLine> lines =
+        std::list<nsBase::nsCommon::TLine> lines =
         {
             {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
@@ -129,7 +129,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsEntMng
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
         pathRelToCoreSources /= coreConfigComponent->value.coreConfig.componentConfig.entMng.fileName;
 
-        nsBase::TTextGenerator txtGen(lines);
+        nsBase::nsCommon::TTextGenerator txtGen(lines);
 
         inja::json data;
 

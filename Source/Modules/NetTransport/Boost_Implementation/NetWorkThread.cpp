@@ -30,13 +30,13 @@ void TNetWorkThread::Work()
     boost::system::error_code ec;
     mIO_Context.run_one(ec);
     if (ec) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->WriteF_time("TNetWorkThread::Engine FAIL %d\n", ec.value());
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->WriteF_time("TNetWorkThread::Engine FAIL %d\n", ec.value());
     }
 }
 //----------------------------------------------------------------------------------
 void TNetWorkThread::Stop()
 {
     mIO_Context.stop();
-    TThreadBoost::Stop();
+    nsBase::nsCommon::TThreadBoost::Stop();
 }
 //----------------------------------------------------------------------------------

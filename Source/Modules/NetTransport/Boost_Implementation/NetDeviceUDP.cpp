@@ -46,7 +46,7 @@ bool TNetDeviceUDP::Open(unsigned short port, unsigned char numNetWork)
         mIP_Port.Set(ipv4_address_Local.to_ulong(), port);
         res = true;
     } catch (std::exception& e) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("Open UDP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what());
     }
     return res;
@@ -60,7 +60,7 @@ void TNetDeviceUDP::Close()
     try {
         mSocket.close();
     } catch (std::exception& e) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("Close UDP FAIL: %s.\n", e.what());
     }
 }

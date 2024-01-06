@@ -49,7 +49,7 @@ bool TNetDeviceTCP::Open(unsigned short port, unsigned char numNetWork)
 
         res = true;
     } catch (std::exception& e) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("Open TCP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what());
     }
     return res;
@@ -63,7 +63,7 @@ void TNetDeviceTCP::Close()
     try {
         mSocket.close();
     } catch (std::exception& e) {
-        GetLogger(STR_NAME_NET_TRANSPORT)->
+        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
             WriteF_time("Close TCP FAIL: %s.\n", e.what());
     }
 }

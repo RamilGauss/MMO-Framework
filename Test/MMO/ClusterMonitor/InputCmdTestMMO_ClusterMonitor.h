@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "InputByCmd.h"
+#include "Base/Common/InputByCmd.h"
 #include "CommonParam.h"
 
 class TInputCmdTestMMO_ClusterMonitor : public TInputByCmd

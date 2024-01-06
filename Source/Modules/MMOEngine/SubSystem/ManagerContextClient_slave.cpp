@@ -39,7 +39,7 @@ TContainerContextSc* TManagerContextClient_slave::FindContextByKey(unsigned int 
 {
     TMapUintPtrIt fit = mMapKeyContext.find(id);
     if (fit == mMapKeyContext.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextClient_slave::FindContextByKey(key=%u) not found.\n", id);
         return nullptr;
     }
@@ -57,7 +57,7 @@ TContainerContextSc* TManagerContextClient_slave::FindContextBySession(unsigned 
 bool TManagerContextClient_slave::GetSessionByIndex(int index, unsigned int& sessionID)
 {
     if (index >= GetCountSession() || index < 0) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextClient_slave::GetSessionByIndex() index=%d is out of band c=%d.\n",
                 index, GetCountSession());
         return false;
@@ -108,7 +108,7 @@ void TManagerContextClient_slave::AddSessionByKey(unsigned int id, unsigned int 
 
     TMapUintUintIt fit = mMapKeySession.find(id);
     if (fit == mMapKeySession.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextClient_slave::SetSessionByKey(key=%u) not found.\n", id);
         BL_FIX_BUG();
         return;
@@ -156,7 +156,7 @@ bool TManagerContextClient_slave::FindInMapUintUint(TMapUintUint& map, unsigned 
 {
     TMapUintUintIt fit = map.find(key);
     if (fit == map.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextClient_slave::FindInMapUintUint(key=%u) not found.\n", key);
         return false;
     }

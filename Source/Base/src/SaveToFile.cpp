@@ -20,123 +20,126 @@ See for more information LICENSE.md.
 
 using namespace std;
 
-TSaveToFile::TSaveToFile(char* path)
+namespace nsBase::nsCommon
 {
-    ReOpen(path);
+    TSaveToFile::TSaveToFile(char* path)
+    {
+        ReOpen(path);
 
-    flgPrintf = false;
-    flgEnable = true;
-    flgBuffer = true;
-}
-//---------------------------------------------------------------
-TSaveToFile::~TSaveToFile()
-{
-    ClearBuffer();
-}
-//---------------------------------------------------------------
-bool TSaveToFile::ReOpen(char* path, bool append)
-{
-    Close();
-
-    if (path != nullptr) {
-        sPath = path;
+        flgPrintf = false;
+        flgEnable = true;
+        flgBuffer = true;
     }
+    //---------------------------------------------------------------
+    TSaveToFile::~TSaveToFile()
+    {
+        ClearBuffer();
+    }
+    //---------------------------------------------------------------
+    bool TSaveToFile::ReOpen(char* path, bool append)
+    {
+        Close();
 
-    if (sPath.length() == 0) {
+        if (path != nullptr) {
+            sPath = path;
+        }
+
+        if (sPath.length() == 0) {
+            return false;
+        }
+
+        const char* sMode = (append) ? "ab" : "wb";
+        pFile = fopen(sPath.data(), sMode);
+        if (pFile != nullptr) {
+            FlushBuffer();
+            return true;
+        }
+
+        char sErr[1000];
+        sprintf(sErr, "fopen Error: %s path=\"%s\"", strerror(errno), path);
+        BL_MessageBug(sErr);
+
         return false;
     }
+    //---------------------------------------------------------------
+    void TSaveToFile::Write(void* buffer, int size)
+    {
+        if (flgEnable == false) {
+            return;
+        }
 
-    const char* sMode = (append) ? "ab" : "wb";
-    pFile = fopen(sPath.data(), sMode);
-    if (pFile != nullptr) {
-        FlushBuffer();
-        return true;
-    }
-
-    char sErr[1000];
-    sprintf(sErr, "fopen Error: %s path=\"%s\"", strerror(errno), path);
-    BL_MessageBug(sErr);
-
-    return false;
-}
-//---------------------------------------------------------------
-void TSaveToFile::Write(void* buffer, int size)
-{
-    if (flgEnable == false) {
-        return;
-    }
-
-    if (pFile) {
-        fwrite(buffer, size, 1, pFile);
-        fflush(pFile);
-    } else {
-        if (flgBuffer) {
-            FlushInBuffer((char*) buffer, size);
+        if (pFile) {
+            fwrite(buffer, size, 1, pFile);
+            fflush(pFile);
+        } else {
+            if (flgBuffer) {
+                FlushInBuffer((char*)buffer, size);
+            }
         }
     }
-}
-//---------------------------------------------------------------
-void TSaveToFile::Write_Time()
-{
-    auto str_time = ht_GetTimeStr();
-    Write((char*) str_time.data(), str_time.length());
-}
-//---------------------------------------------------------------
-void TSaveToFile::FlushBuffer()
-{
-    TListContainer::T::iterator bit = mListBuffer->begin();
-    TListContainer::T::iterator eit = mListBuffer->end();
-    while (bit != eit) {
-        TContainer* v = *bit;
-        Write(v->GetPtr(), v->GetSize());
-        delete v;
-        bit++;
+    //---------------------------------------------------------------
+    void TSaveToFile::Write_Time()
+    {
+        auto str_time = ht_GetTimeStr();
+        Write((char*)str_time.data(), str_time.length());
     }
-    mListBuffer->clear();
-}
-//---------------------------------------------------------------
-void TSaveToFile::ClearBuffer()
-{
-    mListBuffer.Clear();
-}
-//---------------------------------------------------------------
-void TSaveToFile::FlushInBuffer(char* buffer, int size)
-{
-    TContainer* v = new TContainer;
-    v->SetDataByCount(buffer, size);
+    //---------------------------------------------------------------
+    void TSaveToFile::FlushBuffer()
+    {
+        TListContainer::T::iterator bit = mListBuffer->begin();
+        TListContainer::T::iterator eit = mListBuffer->end();
+        while (bit != eit) {
+            TContainer* v = *bit;
+            Write(v->GetPtr(), v->GetSize());
+            delete v;
+            bit++;
+        }
+        mListBuffer->clear();
+    }
+    //---------------------------------------------------------------
+    void TSaveToFile::ClearBuffer()
+    {
+        mListBuffer.Clear();
+    }
+    //---------------------------------------------------------------
+    void TSaveToFile::FlushInBuffer(char* buffer, int size)
+    {
+        TContainer* v = new TContainer;
+        v->SetDataByCount(buffer, size);
 
-    mListBuffer->push_back(v);
+        mListBuffer->push_back(v);
 
-    BL_ASSERT(mListBuffer->size() <= MAX_NUMBER_FOR_BUFFERIZATION);
+        BL_ASSERT(mListBuffer->size() <= MAX_NUMBER_FOR_BUFFERIZATION);
+    }
+    //---------------------------------------------------------------
+    void TSaveToFile::SetPrintf(bool val)
+    {
+        flgPrintf = val;
+    }// все что записывается - дублируется в вывод на консоль
+    //---------------------------------------------------------------
+    bool TSaveToFile::GetPrintf()
+    {
+        return flgPrintf;
+    }     // но только для форматированной строки
+    //---------------------------------------------------------------
+    void TSaveToFile::SetEnable(bool val)
+    {
+        flgEnable = val;
+    }// отмена применения в Write, WriteF, WriteF_time
+    //---------------------------------------------------------------
+    bool TSaveToFile::GetEnable()
+    {
+        return flgEnable;
+    }
+    //---------------------------------------------------------------
+    void TSaveToFile::SetBufferization(bool val)
+    {
+        flgBuffer = val;
+    }// буферизация, без открытого файла все складируется в памяти
+    //---------------------------------------------------------------
+    bool TSaveToFile::GetBufferization()
+    {
+        return flgBuffer;
+    }
+    //---------------------------------------------------------------
 }
-//---------------------------------------------------------------
-void TSaveToFile::SetPrintf(bool val)
-{
-    flgPrintf = val;
-}// все что записывается - дублируется в вывод на консоль
-//---------------------------------------------------------------
-bool TSaveToFile::GetPrintf()
-{
-    return flgPrintf;
-}     // но только для форматированной строки
-//---------------------------------------------------------------
-void TSaveToFile::SetEnable(bool val)
-{
-    flgEnable = val;
-}// отмена применения в Write, WriteF, WriteF_time
-//---------------------------------------------------------------
-bool TSaveToFile::GetEnable()
-{
-    return flgEnable;
-}
-//---------------------------------------------------------------
-void TSaveToFile::SetBufferization(bool val)
-{
-    flgBuffer = val;
-}// буферизация, без открытого файла все складируется в памяти
-//---------------------------------------------------------------
-bool TSaveToFile::GetBufferization()
-{
-    return flgBuffer;
-}
-//---------------------------------------------------------------

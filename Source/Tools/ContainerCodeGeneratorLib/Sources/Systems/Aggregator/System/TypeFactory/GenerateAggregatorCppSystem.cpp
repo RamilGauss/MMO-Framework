@@ -27,7 +27,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeFactory
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
-        std::list<nsBase::TLine> lines =
+        std::list<nsBase::nsCommon::TLine> lines =
         {
             {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
@@ -96,7 +96,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeFactory
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
         pathRelToProjectSources /= projectConfigComponent->value.projectConfig.systemConfig.typeFactory.fileName;
 
-        nsBase::TTextGenerator txtGen(lines);
+        nsBase::nsCommon::TTextGenerator txtGen(lines);
 
         inja::json data;
 

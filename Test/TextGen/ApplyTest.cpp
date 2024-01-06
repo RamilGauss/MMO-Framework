@@ -16,18 +16,18 @@ See for more information LICENSE.md.
 
 TEST(TextGenerator, Apply_0)
 {
-    std::list<nsBase::TLine> lines =
+    std::list<nsBase::nsCommon::TLine> lines =
     {
         {0, "for (int j = 0 ;j < 10 ;j++) {"},
         {1, "{{ Serialize(1) }}"},
         {-1, "}"},
     };
 
-    nsBase::TTextGenerator textGenerator(lines);
+    nsBase::nsCommon::TTextGenerator textGenerator(lines);
 
     inja::json data;
 
-    nsBase::TFormatFuncDeclaration func;
+    nsBase::nsCommon::TFormatFuncDeclaration func;
     func.name = "Serialize";
     func.argCount = 1;
     func.func = [](inja::Arguments& args)

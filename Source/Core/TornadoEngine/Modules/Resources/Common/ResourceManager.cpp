@@ -24,7 +24,7 @@ namespace nsTornadoEngine
         std::string relPath;
         bool convertRes = nsBase::TPathOperations::GetRelativePath(mContentMapPath, absPath, relPath);
 
-        auto newGuid = nsBase::TGuidGenerator::Generate();
+        auto newGuid = nsBase::nsCommon::TGuidGenerator::Generate();
 
         mResourceContentMap.guidPathMap.insert({ newGuid, relPath });
 
@@ -92,8 +92,8 @@ namespace nsTornadoEngine
 
         std::string content;
 
-        TTextFile::Load(srcAbsPath, content);
-        TTextFile::Save(dstAbsPath, content);
+        nsBase::nsCommon::TTextFile::Load(srcAbsPath, content);
+        nsBase::nsCommon::TTextFile::Save(dstAbsPath, content);
     }
     //------------------------------------------------------------------------------------
 }

@@ -62,7 +62,7 @@ void TScLoginClient_ClientImpl::TryLogin(TIP_Port& ip_port, const std::string& l
 {
     if (Begin() == false) {
         // генерация ошибки
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TScenarioLoginClient::TryLogin() scenario is not active.\n");
         BL_FIX_BUG();
         return;

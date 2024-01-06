@@ -11,33 +11,38 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-class DllExport TThreadBoost
+namespace nsBase::nsCommon
 {
-    std::atomic_bool flgActive;
-    std::atomic_bool flgNeedStop;
-
-    std::atomic_uint32_t mTimeStart;
-    enum
+    class DllExport TThreadBoost
     {
-        eWaitFeedBack = 1, // ждать пока активизируется двигатель, мс
+        std::atomic_bool flgActive;
+        std::atomic_bool flgNeedStop;
+
+        std::atomic_uint32_t mTimeStart;
+        enum
+        {
+            eWaitFeedBack = 1, // ждать пока активизируется двигатель, мс
+        };
+
+    public:
+        TThreadBoost();
+        virtual ~TThreadBoost();
+
+        virtual bool IsActive();
+        virtual void Start();
+        virtual void Stop();
+
+        virtual unsigned int GetTimeLastStart();
+        virtual unsigned int GetTimeWork();
+    protected:
+        void Engine();
+    protected:
+        virtual void Work() = 0;
+        virtual void StartEvent()
+        {
+        }
+        virtual void StopEvent()
+        {
+        }
     };
-
-public:
-    TThreadBoost();
-    virtual ~TThreadBoost();
-
-    virtual bool IsActive();
-    virtual void Start();
-    virtual void Stop();
-
-    virtual unsigned int GetTimeLastStart();
-    virtual unsigned int GetTimeWork();
-protected:
-    void Engine();
-protected:
-    virtual void Work() = 0;
-    virtual void StartEvent()
-    {}
-    virtual void StopEvent()
-    {}
-};
+}

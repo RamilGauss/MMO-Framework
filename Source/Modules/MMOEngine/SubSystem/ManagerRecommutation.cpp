@@ -89,7 +89,7 @@ bool TManagerRecommutation::GetClientKeyByIndex(unsigned int sessionID, int inde
 void TManagerRecommutation::AddClientKey(unsigned int key, unsigned int id_session_donor, unsigned int id_session_recipient)
 {
     if (id_session_donor == id_session_recipient) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerRecommutation::AddClientKey(key=%u) donor==recipient.\n", key);
         BL_FIX_BUG();
         return;
@@ -98,7 +98,7 @@ void TManagerRecommutation::AddClientKey(unsigned int key, unsigned int id_sessi
     TMapUintPairIt fit = mMapClientKey_Slaves.find(key);
     if (fit != mMapClientKey_Slaves.end()) {
         // запись уже есть, значит, ее не удалили
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerRecommutation::AddClientKey(key=%u) is exist.\n", key);
         BL_FIX_BUG();
         return;
@@ -116,7 +116,7 @@ void TManagerRecommutation::DeleteByClientKey(unsigned int key)
     unsigned int donor, recipient;
     // ищем Донора и Реципиента, связанных с Клиентом
     if (FindSessionByClientKey(key, donor, recipient) == false) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerRecommutation::DeleteByClientKey(key=%u) not found Slave.\n", key);
         BL_FIX_BUG();
         return;
@@ -150,7 +150,7 @@ void TManagerRecommutation::DeleteClientKeyBySession(unsigned int key, unsigned 
 {
     TMapUintSetIt fit = mMapSlave_SetClient.find(sessionID);
     if (fit == mMapSlave_SetClient.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerRecommutation::DeleteInSessionMapByClientKey(sessionID=%u) not found.\n", sessionID);
         BL_FIX_BUG();
         return;

@@ -29,7 +29,7 @@ bool TManagerContextMoreDownClientConnection::FindSessionByClientKey(unsigned in
 {
     TMapUintUintIt fit = mMapKeySession.find(clientKey);
     if (fit == mMapKeySession.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextMoreDownClientConnection::FindSessionByClientKey(key=%u) not found.\n", clientKey);
         return false;
     }
@@ -41,7 +41,7 @@ TContainerContextSc* TManagerContextMoreDownClientConnection::FindContextByClien
 {
     TMapUintPtrIt fit = mMapKeyContext.find(clientKey);
     if (fit == mMapKeyContext.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextMoreDownClientConnection::FindContextByClientKey(key=%u) not found.\n", clientKey);
         return nullptr;
     }
@@ -88,7 +88,7 @@ bool TManagerContextMoreDownClientConnection::SetSessionByClientKey(unsigned int
 {
     TMapUintUintIt fit = mMapKeySession.find(clientKey);
     if (fit == mMapKeySession.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerContextMoreDownClientConnection::SetSessionByClientKey(key=%u) not found.\n", clientKey);
         return false;
     }

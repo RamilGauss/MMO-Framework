@@ -29,7 +29,7 @@ bool TManagerGroupClient::FindSessionByID(unsigned int groupID,
 {
     TMapUintUintIt fit = mMapID_SlaveSession.find(groupID);
     if (fit == mMapID_SlaveSession.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerGroupClient::FindSessionByID(groupID=%u) not found.\n", groupID);
         return false;
     }
@@ -41,7 +41,7 @@ bool TManagerGroupClient::FindIDByClientKey(unsigned int clientKey, unsigned int
 {
     TMapUintUintIt fit = mMapClientKey_ID.find(clientKey);
     if (fit == mMapClientKey_ID.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerGroupClient::FindIDByClientKey(clientKey=%u) not found.\n", clientKey);
         return false;
     }
@@ -116,7 +116,7 @@ bool TManagerGroupClient::SetSessionByID(unsigned int groupID, unsigned int sess
 {
     TMapUintUintIt fit = mMapID_SlaveSession.find(groupID);
     if (fit == mMapID_SlaveSession.end()) {
-        GetLogger(STR_NAME_MMO_ENGINE)->
+        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
             WriteF_time("TManagerGroupClient::SetSessionByID(groupID=%u) not found.\n", groupID);
         return false;
     }

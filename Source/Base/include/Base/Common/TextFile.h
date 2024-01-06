@@ -8,21 +8,25 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
+
 #include "Base/Common/LoadFromFile.h"
 #include "Base/Common/SaveToFile.h"
 
-class DllExport TTextFile
+namespace nsBase::nsCommon
 {
-    std::string mPath;
+    class DllExport TTextFile
+    {
+        std::string mPath;
 
-    TLoadFromFile mLoader;
-    TSaveToFile mSaver;
-public:
-    TTextFile(const std::string& path);
+        TLoadFromFile mLoader;
+        TSaveToFile mSaver;
+    public:
+        TTextFile(const std::string& path);
 
-    void Load(std::string& str);
-    void Save(std::string& str, bool append = false);
+        void Load(std::string& str);
+        void Save(std::string& str, bool append = false);
 
-    static void Load(const std::string& path, std::string& str);
-    static void Save(const std::string& path, std::string& str, bool append = false);
-};
+        static void Load(const std::string& path, std::string& str);
+        static void Save(const std::string& path, std::string& str, bool append = false);
+    };
+}

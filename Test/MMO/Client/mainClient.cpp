@@ -85,7 +85,7 @@ void StartClients(int argc, char** argv)
     printf("\n");
 
     auto createClientTime = ht_GetMSCount() - start;
-    GetLogger(ClientLog)->WriteF("createClientTime = %d ms\n", createClientTime);
+    nsBase::nsCommon::GetLogger(ClientLog)->WriteF("createClientTime = %d ms\n", createClientTime);
 
     const char* sLocalHost = cmi.mInput.server_ip.data();
     unsigned int masterIP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
@@ -115,7 +115,7 @@ void StartClients(int argc, char** argv)
         indexClientOnLogin = cnt;
 
         if (cmi.mInput.count == indexClientOnLogin && flgNeedPrintEndLogin) {
-            GetLogger(ClientLog)->WriteF("End login ----------------------------------------------------\n");
+            nsBase::nsCommon::GetLogger(ClientLog)->WriteF("End login ----------------------------------------------------\n");
             flgNeedPrintEndLogin = false;
         }
 
@@ -131,14 +131,14 @@ void StartClients(int argc, char** argv)
             auto speed_ms = delta * 1.0f / iCycle;
             if (handler.mPingCounter > 0) {
                 float meanPing = handler.mPingSumma * 1.0f / handler.mPingCounter;
-                GetLogger(ClientLog)->WriteF("time of cycle = %f ms, mean ping(worth) = %f(%u/%u), indexClientOnLogin = %d\n",
+                nsBase::nsCommon::GetLogger(ClientLog)->WriteF("time of cycle = %f ms, mean ping(worth) = %f(%u/%u), indexClientOnLogin = %d\n",
                     speed_ms, meanPing, handler.mWorthPing, handler.mBestPing, indexClientOnLogin);
                 handler.mWorthPing = 0;
                 handler.mBestPing = 0xFFFFFFFF;
                 handler.mPingSumma = 0;
                 handler.mPingCounter = 0;
             } else
-                GetLogger(ClientLog)->WriteF("time of cycle = %f ms\n", speed_ms);
+                nsBase::nsCommon::GetLogger(ClientLog)->WriteF("time of cycle = %f ms\n", speed_ms);
 
             iCycle = 0;
         }

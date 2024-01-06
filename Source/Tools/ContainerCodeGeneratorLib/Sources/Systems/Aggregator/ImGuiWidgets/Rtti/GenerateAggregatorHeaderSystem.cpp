@@ -27,7 +27,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsRtti
 {
     void TGenerateAggregatorHeaderSystem::Execute()
     {
-        std::list<nsBase::TLine> lines =
+        std::list<nsBase::nsCommon::TLine> lines =
         {
             {0, "#pragma once"},
             {0, ""},
@@ -66,7 +66,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsRtti
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".h");
 
-        nsBase::TTextGenerator txtGen(lines);
+        nsBase::nsCommon::TTextGenerator txtGen(lines);
 
         inja::json data;
 

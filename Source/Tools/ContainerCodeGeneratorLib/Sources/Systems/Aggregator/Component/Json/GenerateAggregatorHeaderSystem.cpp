@@ -25,7 +25,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
 {
     void TGenerateAggregatorHeaderSystem::Execute()
     {
-        std::list<nsBase::TLine> lines =
+        std::list<nsBase::nsCommon::TLine> lines =
         {
             {0, "#pragma once"},
             {0, ""},
@@ -57,7 +57,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
         generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".h");
 
-        nsBase::TTextGenerator txtGen(lines);
+        nsBase::nsCommon::TTextGenerator txtGen(lines);
 
         inja::json data;
 

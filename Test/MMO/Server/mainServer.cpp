@@ -23,7 +23,7 @@ See for more information LICENSE.md.
 #include "HandlerMMO_Slave.h"
 #include "HandlerMMO_Master.h"
 #include "HandlerMMO_SuperServer.h"
-#include "ReversedContainerRise.h"
+#include "Base/Common/ReversedContainerRise.h"
 #include "InputCmdTestMMO_Server.h"
 #include "ClusterMonitorServerHandler.h"
 #include "Base/Common/SrcEvent_ex.h"
@@ -71,19 +71,19 @@ void StartServer(int argc, char** argv)
     InitLogger(ServerLog);
     {
         int countIP_v4 = resolver.GetCount();
-        GetLogger(ServerLog)->WriteF("ip count = %d\n", countIP_v4);
+        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("ip count = %d\n", countIP_v4);
         for (int i = 0; i < countIP_v4; i++) {
             if (resolver.Get(sLocalHost, i) == false) {
                 continue;
             }
-            GetLogger(ServerLog)->WriteF("ip = %s\n", sLocalHost.data());
+            nsBase::nsCommon::GetLogger(ServerLog)->WriteF("ip = %s\n", sLocalHost.data());
         }
     }
 
     if (resolver.Get(sLocalHost, cmi.mInput.subnet)) {
-        GetLogger(ServerLog)->WriteF("use ip = %s\n", sLocalHost.data());
+        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("use ip = %s\n", sLocalHost.data());
     } else {
-        GetLogger(ServerLog)->WriteF("FAIL subnet = %u\n", cmi.mInput.subnet);
+        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("FAIL subnet = %u\n", cmi.mInput.subnet);
         return;
     }
 
@@ -183,7 +183,7 @@ void StartServer(int argc, char** argv)
         auto delta = ht_GetMSCount() - start;
         if (delta >= limitDeltaTime) {
             auto speed_ms = delta * 1.0f / iCycle;
-            GetLogger(ServerLog)->WriteF("time of cycle = %f ms\n", speed_ms);
+            nsBase::nsCommon::GetLogger(ServerLog)->WriteF("time of cycle = %f ms\n", speed_ms);
             iCycle = 0;
         }
     }

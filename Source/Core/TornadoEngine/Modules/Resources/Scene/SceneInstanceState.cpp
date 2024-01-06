@@ -17,7 +17,7 @@ namespace nsTornadoEngine
         
         mFileBuffer.SetData(nullptr, FILE_PART_SIZE);
         if (mInstantiateSceneParams.sceneInstanceGuid.empty()) {
-            mInstantiateSceneParams.sceneInstanceGuid = nsBase::TGuidGenerator::Generate();
+            mInstantiateSceneParams.sceneInstanceGuid = nsBase::nsCommon::TGuidGenerator::Generate();
         }
 
         mFileProgress.SetStep(FILE_PART_SIZE);

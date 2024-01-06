@@ -13,7 +13,7 @@ namespace nsTornadoEngine
 {
     struct TSceneInstanceState;
 
-    class DllExport TSceneInstantiatingThread : public TThreadBoost
+    class DllExport TSceneInstantiatingThread : public nsBase::nsCommon::TThreadBoost
     {
         TSceneInstanceState* mScState = nullptr;
 

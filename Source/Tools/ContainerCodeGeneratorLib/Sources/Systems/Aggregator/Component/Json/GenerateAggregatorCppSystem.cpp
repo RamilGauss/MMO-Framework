@@ -27,7 +27,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
 {
     void TGenerateAggregatorCppSystem::Execute()
     {
-        std::list<nsBase::TLine> lines =
+        std::list<nsBase::nsCommon::TLine> lines =
         {
             {0, "#include \"{{ IMPL_FILE_NAME }}.h\""},
             {0, ""},
@@ -106,7 +106,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsJson
         std::filesystem::path pathRelToCoreSources(relToCoreSources);
         pathRelToCoreSources /= coreConfigComponent->value.coreConfig.componentConfig.json.fileName;
 
-        nsBase::TTextGenerator txtGen(lines);
+        nsBase::nsCommon::TTextGenerator txtGen(lines);
 
         inja::json data;
 

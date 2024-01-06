@@ -125,9 +125,9 @@ int main(int argc, char** argv)
 
     inputCmd.Get(g_InputArg);
 
-    GetLogger()->Register("TestTransport");
-    GetLogger()->Init("TestTransport");
-    GetLogger()->SetPrintf(false);
+    nsBase::nsCommon::GetLogger()->Register("TestTransport");
+    nsBase::nsCommon::GetLogger()->Init("TestTransport");
+    nsBase::nsCommon::GetLogger()->SetPrintf(false);
 
     TMakerNetTransport makerTransport;
 
