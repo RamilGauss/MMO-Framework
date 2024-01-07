@@ -31,7 +31,7 @@ namespace nsBase::nsZones
 
         uint32_t GetRankCount() const;
 
-        TContextState GetContextZone(uint32_t rank = 0);
+        TContextState GetContextState(uint32_t rank = 0);
 
     private:
         std::vector<TProcess*> mActiveProcesses;

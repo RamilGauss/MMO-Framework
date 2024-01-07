@@ -21,7 +21,7 @@
         "directory": "../Generated files",
         "includeListParams": {
             "includeListFileName": "ReflectionIncludeList",
-            "dirToInclude": []
+            "dirToInclude": ["../"]
         },
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {},

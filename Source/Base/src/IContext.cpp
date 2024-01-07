@@ -53,7 +53,7 @@ namespace nsBase::nsZones
         return mOwnerZones[rank];
     }
     //-----------------------------------------------------------------------------
-    TContextState IContext::GetContextZone(uint32_t rank)
+    TContextState IContext::GetContextState(uint32_t rank)
     {
         return TContextState(this, GetOwnerZone(rank), GetActiveProcess(rank));
     }

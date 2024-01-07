@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_12 12:28:55.791
+// File has been generated at 2024_01_07 18:19:35.143
 	
 #include "ComponentRtti.h"
 

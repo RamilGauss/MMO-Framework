@@ -49,7 +49,9 @@ void TIncludeListFileGenerator::AddIncludes()
                     auto dirName = dirPath.filename();
                     auto relativePath = fs::relative(absFileName, dirFile.first);
 
-                    dirName += fs::path::preferred_separator;
+                    if (dirName.generic_string().size()) {
+                        dirName += fs::path::preferred_separator;
+                    }
                     dirName += relativePath;
                     fileName = dirName.generic_string();
 

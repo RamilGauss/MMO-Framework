@@ -2,21 +2,21 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_06 13:01:14.419
+// File has been generated at 2024_01_07 18:18:28.308
 	
 #pragma once
 
-#include "ArchetypeField.h"
-#include "ComponentContent.h"
-#include "EntityContent.h"
-#include "ResourceContentMap.h"
-#include "PrefabPatch.h"
-#include "PrefabPatchOperation.h"
-#include "PrefabResourceContent.h"
-#include "PrefabInstance.h"
-#include "SceneResourceContent.h"
-#include "MathStructs.h"
-#include "ConveyorConfig.h"
-#include "FrameworkResources.h"
-#include "ModuleType.h"
-#include "ProjectConfig.h"
+#include "Modules/PropertyManager/ArchetypeField.h"
+#include "Modules/Resources/Common/ComponentContent.h"
+#include "Modules/Resources/Common/EntityContent.h"
+#include "Modules/Resources/Common/ResourceContentMap.h"
+#include "Modules/Resources/Prefab/PrefabPatch.h"
+#include "Modules/Resources/Prefab/PrefabPatchOperation.h"
+#include "Modules/Resources/Prefab/PrefabResourceContent.h"
+#include "Modules/Resources/Scene/PrefabInstance.h"
+#include "Modules/Resources/Scene/SceneResourceContent.h"
+#include "Share/MathStructs.h"
+#include "TimeSliceEngine/ConveyorConfig.h"
+#include "TimeSliceEngine/FrameworkResources.h"
+#include "TimeSliceEngine/ModuleType.h"
+#include "TimeSliceEngine/ProjectConfig.h"

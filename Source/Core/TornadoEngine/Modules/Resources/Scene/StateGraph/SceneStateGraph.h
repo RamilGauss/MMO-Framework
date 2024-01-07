@@ -31,19 +31,23 @@ namespace nsTornadoEngine
 
         nsBase::nsZones::TZone mInitZone;
         nsBase::nsZones::TZone mInstantiatedZone;
-        nsBase::nsZones::TZone mSavedZone;
         nsBase::nsZones::TZone mDestroyedZone;
         nsBase::nsZones::TZone mDeadZone;
 
-        std::list<std::shared_ptr<nsBase::nsZones::TProcess*>> mProcesses;
+        using SharedPtrProcess = std::shared_ptr<nsBase::nsZones::TProcess>;
+
+        std::list<SharedPtrProcess> mProcesses;
 
     public:
         enum class Process
         {
             INSTANTIATE,
+            CANCEL_INSTANTIATE,
             DESTROY,
             SAVE,
         };
+
+        TSceneStateGraph();
 
         void Init();
 
@@ -54,5 +58,16 @@ namespace nsTornadoEngine
 
         // Mainly for the progress value
         nsBase::nsZones::TProcess* GetProcess(TSceneContext* pCtx) const;
+    private:
+        template <typename Process>
+        void AddProcess(const std::string& name, nsBase::nsZones::TZone* fromZone, 
+            nsBase::nsZones::TZone* toZone, int maxActiveCount = 1)
+        {
+            auto p = std::make_shared<Process>();
+            fromZone->AddProcess(p.get());
+            mProcesses.push_back(p);
+
+            p->Setup(name, fromZone, toZone, maxActiveCount);
+        }
     };
 }

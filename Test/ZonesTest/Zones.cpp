@@ -78,11 +78,11 @@ namespace nsBase::nsZones::nsTests
         void StartEvent(IContext* pCtx) override
         {
             mA.AddContext(pCtx);
-            pCtx->GetContextZone(GetNextRank()).StartProcess("a->b");
+            pCtx->GetContextState(GetNextRank()).StartProcess("a->b");
         }
         void StopEvent(IContext* pCtx) override
         {
-            pCtx->GetContextZone(GetNextRank()).StopProcess();
+            pCtx->GetContextState(GetNextRank()).StopProcess();
         }
 
         void OnFinishEvent(TProcess* pProcess, TZone* pZone, IContext* pCtx)
@@ -135,17 +135,17 @@ namespace nsBase::nsZones::nsTests
         void StartEvent(IContext* pCtx) override
         {
             mA.AddContext(pCtx);
-            pCtx->GetContextZone(GetNextRank()).StartProcess("a->b");
+            pCtx->GetContextState(GetNextRank()).StartProcess("a->b");
         }
         void StopEvent(IContext* pCtx) override
         {
-            pCtx->GetContextZone(GetNextRank()).StopProcess();
+            pCtx->GetContextState(GetNextRank()).StopProcess();
         }
 
         void OnFinishEvent(TProcess* pProcess, TZone* pZone, IContext* pCtx)
         {
             if (pProcess == &mA_to_b) {
-                pCtx->GetContextZone(GetNextRank()).StartProcess("b->c");
+                pCtx->GetContextState(GetNextRank()).StartProcess("b->c");
             } else {
                 pZone->RemoveContext(pCtx);
                 Finish(pCtx);
@@ -174,7 +174,7 @@ TEST(Zones, Simple_Ok)
     TCtx ctx;
     a.AddContext(&ctx);
 
-    ctx.GetContextZone().StartProcess("a->b");
+    ctx.GetContextState().StartProcess("a->b");
 
     zoneMgr.Work();
 
@@ -201,8 +201,8 @@ TEST(Zones, Displacement_Process_Ok)
     TCtx ctx;
     a.AddContext(&ctx);
 
-    ctx.GetContextZone().StartProcess("a->b");
-    ctx.GetContextZone().StartProcess("a->c");
+    ctx.GetContextState().StartProcess("a->b");
+    ctx.GetContextState().StartProcess("a->c");
 
     zoneMgr.Work();
 
@@ -225,7 +225,7 @@ TEST(Zones, Finish_ComplexProcess_Ok)
     TCtx ctx;
     a.AddContext(&ctx);
 
-    ctx.GetContextZone().StartProcess("a->b");
+    ctx.GetContextState().StartProcess("a->b");
 
     zoneMgr.Work();
 
@@ -248,8 +248,8 @@ TEST(Zones, Stop_ComplexProcess_Ok)
     TCtx ctx;
     a.AddContext(&ctx);
 
-    ctx.GetContextZone().StartProcess("a->b");
-    ctx.GetContextZone().StopProcess();
+    ctx.GetContextState().StartProcess("a->b");
+    ctx.GetContextState().StopProcess();
 
     zoneMgr.Work();
 
@@ -273,7 +273,7 @@ TEST(Zones, Finish_TripleComplexProcess_Ok)
     TCtx ctx;
     a.AddContext(&ctx);
 
-    ctx.GetContextZone().StartProcess("a->b");
+    ctx.GetContextState().StartProcess("a->b");
 
     // a->b
     zoneMgr.Work();
@@ -301,7 +301,7 @@ TEST(Zones, Simple_LargeQueue_Ok)
     std::array<TCtx, CTX_COUNT> ctxs;
     for (auto& ctx : ctxs) {
         a.AddContext(&ctx);
-        ctx.GetContextZone().StartProcess("a->b");
+        ctx.GetContextState().StartProcess("a->b");
     }
 
     for (int i = 0; i < CTX_COUNT - 1; i++) {
