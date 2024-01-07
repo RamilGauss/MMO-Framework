@@ -12,6 +12,8 @@ See for more information LICENSE.md.
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/TextFile.h"
 #include "Base/Common/Logger.h"
+#include "Base/Common/GuidGenerator.h"
+
 #include "EngineLogger.h"
 #include "TornadoEngineJsonSerializer.h"
 #include "ProjectConfigContainer.h"
@@ -28,9 +30,6 @@ See for more information LICENSE.md.
 #include "NeedDestroyObjectTagComponent.h"
 #include "SceneRootComponent.h"
 #include "SceneGuidComponent.h"
-
-#include "Base/Common/GuidGenerator.h"
-
 #include "UniverseIndexComponent.h"
 #include "UniverseGuidComponent.h"
 

@@ -499,6 +499,7 @@
     <ClCompile Include="Generated files\Container\ImGuiWidgetsRtti.cpp" />
     <ClCompile Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.cpp" />
     <ClCompile Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\StateGraph\SceneStateGraph.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TimeSliceEngine\FrameworkResources.h">
@@ -1130,6 +1131,8 @@
     <ClInclude Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.h" />
     <ClInclude Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneState.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\SceneStateGraph.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\SceneContext.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />
