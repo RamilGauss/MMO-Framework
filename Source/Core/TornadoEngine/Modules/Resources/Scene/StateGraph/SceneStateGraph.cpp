@@ -57,6 +57,11 @@ namespace nsTornadoEngine
         AddProcess<TDestroyProcess>(GetName(Process::DESTROY), &mInstantiatedZone, &mDestroyedZone);
     }
     //---------------------------------------------------------------------------------
+    bool TSceneStateGraph::Work()
+    {
+        return mZoneMng.Work();
+    }
+    //---------------------------------------------------------------------------------
     void TSceneStateGraph::StartProcess(Process process, TSceneContext* pCtx)
     {
         pCtx->GetContextState().StartProcess(GetName(process));

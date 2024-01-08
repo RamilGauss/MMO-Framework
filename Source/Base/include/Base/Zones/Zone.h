@@ -41,7 +41,7 @@ namespace nsBase::nsZones
         void AddContext(IContext* pCtx);
         void RemoveContext(IContext* pCtx);
 
-        void Work();
+        bool Work();
 
     protected:
 

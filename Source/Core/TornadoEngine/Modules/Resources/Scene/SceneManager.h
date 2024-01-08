@@ -15,6 +15,8 @@ See for more information LICENSE.md.
 #include "SceneInstanceState.h"
 #include "SceneList.h"
 
+#include "Modules/Resources/Scene/StateGraph/SceneStateGraph.h"
+
 namespace nsTornadoEngine
 {
     class TSceneCacheManager;
@@ -44,6 +46,8 @@ namespace nsTornadoEngine
 
         std::function<bool(TSceneInstanceStatePtr)> mAsyncCondition;
         std::function<bool(TSceneInstanceStatePtr)> mSyncCondition;
+
+        TSceneStateGraph mSceneStateGraph;
     public:
         TSceneManager();
 

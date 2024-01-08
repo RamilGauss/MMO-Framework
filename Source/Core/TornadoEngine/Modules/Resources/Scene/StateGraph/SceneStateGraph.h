@@ -51,6 +51,9 @@ namespace nsTornadoEngine
 
         void Init();
 
+        // If the mthod spent a quant, then the method returns true, else returns false.
+        bool Work();
+
         void StartProcess(Process process, TSceneContext* pCtx);
         void StopProcess(TSceneContext* pCtx);
 

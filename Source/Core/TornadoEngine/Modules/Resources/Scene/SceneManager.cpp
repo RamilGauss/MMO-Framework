@@ -115,62 +115,15 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()
     {
-        // Async
-        std::list<TSceneInstanceStatePtr> asyncDeactivatedScenes;
-        mAsyncScenes.TryDeactivate(asyncDeactivatedScenes);
-
-        for (auto& scene : asyncDeactivatedScenes) {
-            scene->mAsyncThread->Stop();
-
-            mSyncScenes.AddToWait(scene);
-        }
-
-        std::list<TSceneInstanceStatePtr> asyncActivatedScenes;
-        mAsyncScenes.TryActivate(asyncActivatedScenes);
-
-        for (auto& scene : asyncActivatedScenes) {
-            AsyncWork(scene.get());
-        }
-
-        // Sync
-        {
-            std::list<TSceneInstanceStatePtr> activatedSyncScenes;
-            mSyncScenes.TryActivate(activatedSyncScenes);
-        }
-
-
+        int maxDuration = GetLoadQuant();
         auto start = ht_GetMSCount();
         while (true) {
 
-            auto activeScenes = mSyncScenes.GetActive();
-
-            if (activeScenes.empty()) {
+            if (not mSceneStateGraph.Work())
                 break;
-            }
 
-            int maxDuration = GetLoadQuant();
-
-            for (auto& scene : activeScenes) {
-
-                SyncWork(scene.get(), maxDuration);
-
-                TryDeactivateSyncScenes();
-
-                TryActivateSyncScenes();
-
-                auto now = ht_GetMSCount();
-                auto dt = now - start;
-
-                maxDuration = GetLoadQuant() - dt;
-
-                if (maxDuration <= 0) {
-                    break;
-                }
-            }
-
-            if (maxDuration <= 0) {
+            if (ht_GetMSCount() - start >= maxDuration)
                 break;
-            }
         }
     }
     //--------------------------------------------------------------------------------------------------------
@@ -305,7 +258,7 @@ namespace nsTornadoEngine
 
             auto sceneOriginalGuidEntities = mEntityManager->GetByValueCopy(sceneOriginalGuidComponent);
             for (auto eid : sceneOriginalGuidEntities) {
-                
+
                 auto sceneInstanceGuid = mEntityManager->ViewComponent<TSceneInstanceGuidComponent>(eid)->value;
                 if (sceneInstanceGuid == pSc->mInstantiateSceneParams.sceneInstanceGuid) {
                     parentGuid = sceneInstanceGuid;
@@ -319,7 +272,7 @@ namespace nsTornadoEngine
             instantiatePrefabParams.rootMatrix = pSc->mPrefabIt->localMatrix;
             instantiatePrefabParams.parentGuid = parentGuid;
             instantiatePrefabParams.sceneInstanceGuid = pSc->mInstantiateSceneParams.sceneInstanceGuid;
-                 
+
             mPrefabMng->Instantiate(instantiatePrefabParams);
         }
 

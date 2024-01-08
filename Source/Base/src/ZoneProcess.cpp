@@ -120,15 +120,20 @@ namespace nsBase::nsZones
         mAciveCtx.push_back(pCtx);
     }
     //------------------------------------------------------------------------------
-    void TProcess::Work()
+    bool TProcess::Work()
     {
         mZoneMng->Work();
 
         auto activeCtx = mAciveCtx;
 
+        // Даже если ZoneMng потратил время, то значит есть активные задачи.
+        bool wasSpent = (activeCtx.size() > 0);
+
         Work(activeCtx);
 
         TryActivate();
+
+        return wasSpent;
     }
     //------------------------------------------------------------------------------
     uint32_t TProcess::GetActiveContextCount() const

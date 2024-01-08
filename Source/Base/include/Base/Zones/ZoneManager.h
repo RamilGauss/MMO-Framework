@@ -24,7 +24,7 @@ namespace nsBase::nsZones
     public:
         void AddZone(TZone* pZone);
 
-        void Work();
+        bool Work();
 
         void MoveContext(IContext* pCtx, TZone* from, TZone* to);
     };

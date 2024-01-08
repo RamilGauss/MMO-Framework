@@ -17,11 +17,14 @@ namespace nsBase::nsZones
         pZone->SetRank(GetRank());
     }
     //------------------------------------------------------------------------------
-    void TZoneManager::Work()
+    bool TZoneManager::Work()
     {
+        bool wasSpent = false;
         for (auto& pZone : mZones) {
-            pZone->Work();
+            wasSpent |= pZone->Work();
         }
+
+        return wasSpent;
     }
     //------------------------------------------------------------------------------
     void TZoneManager::MoveContext(IContext* pCtx, TZone* from, TZone* to)

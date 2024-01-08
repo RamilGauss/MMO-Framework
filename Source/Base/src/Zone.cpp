@@ -56,11 +56,14 @@ namespace nsBase::nsZones
         pCtx->PopOwnerZone();
     }
     //------------------------------------------------------------------------------
-    void TZone::Work()
+    bool TZone::Work()
     {
+        bool wasSpent = false;
         for (auto process : mProcesses) {
-            process->Work();
+            wasSpent |= process->Work();
         }
+
+        return wasSpent;
     }
     //------------------------------------------------------------------------------
     void TZone::OnStopProcess(TProcess* pProcess, IContext* pCtx)

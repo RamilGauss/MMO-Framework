@@ -50,7 +50,7 @@ namespace nsBase::nsZones
         void Start(IContext* pCtx);
         void Stop(IContext* pCtx);
         
-        void Work();
+        bool Work();
 
         std::string GetName() const;
 
