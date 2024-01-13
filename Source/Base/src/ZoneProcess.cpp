@@ -20,14 +20,11 @@ namespace nsBase::nsZones
         mZoneMng.reset(new TZoneManager());
     }
     //------------------------------------------------------------------------------
-    void TProcess::Setup(const std::string& name, TZone* fromZone, TZone* toZone, int maxActiveCount)
+    void TProcess::Setup(const std::string& name, TZone* finishZone, int maxActiveCount)
     {
         mName = name;
-        mFromZone = fromZone;
-        mToZone = toZone;
+        mFinishZone = finishZone;
         mMaxActiveCount = maxActiveCount;
-
-        mFromZone->AddProcess(this);
 
         mZoneMng->SetRank(GetNextRank());
 
@@ -83,7 +80,7 @@ namespace nsBase::nsZones
 
         pCtx->PopActiveProcess();
 
-        mFinishEvent.Notify(this, mToZone, pCtx);
+        mFinishEvent.Notify(this, mFinishZone, pCtx);
 
         TryActivate();
     }
@@ -93,14 +90,9 @@ namespace nsBase::nsZones
         return mMaxActiveCount;
     }
     //------------------------------------------------------------------------------
-    TZone* TProcess::GetFromZone() const
+    TZone* TProcess::GetFinishZone() const
     {
-        return mFromZone;
-    }
-    //------------------------------------------------------------------------------
-    TZone* TProcess::GetToZone() const
-    {
-        return mToZone;
+        return mFinishZone;
     }
     //------------------------------------------------------------------------------
     bool TProcess::IsActive(IContext* pCtx) const

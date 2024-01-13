@@ -13,6 +13,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 
 #include "Base/Zones/Rank.h"
+#include "Base/Zones/Types.h"
 
 namespace nsBase::nsZones
 {
@@ -24,7 +25,7 @@ namespace nsBase::nsZones
     {
         TZoneManager* mZoneMng = nullptr;
 
-        std::list<TProcess*> mProcesses;
+        std::list<SharedPtrProcess> mProcesses;
 
         std::list<IContext*> mContexts;
 
@@ -35,7 +36,7 @@ namespace nsBase::nsZones
 
         const std::string& GetName() const;
 
-        void AddProcess(TProcess* pProcess);
+        void AddProcess(SharedPtrProcess pProcess);
         TProcess* GetProcess(const std::string& processName);
         
         void AddContext(IContext* pCtx);

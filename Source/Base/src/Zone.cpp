@@ -23,7 +23,7 @@ namespace nsBase::nsZones
         return mName;
     }
     //------------------------------------------------------------------------------
-    void TZone::AddProcess(TProcess* pProcess)
+    void TZone::AddProcess(SharedPtrProcess pProcess)
     {
         mProcesses.push_back(pProcess);
 
@@ -36,12 +36,12 @@ namespace nsBase::nsZones
     TProcess* TZone::GetProcess(const std::string& processName)
     {
         auto fit = std::find_if(mProcesses.begin(), mProcesses.end(), 
-            [&processName](TProcess* p) {return p->GetName() == processName; });
+            [&processName](SharedPtrProcess p) {return p->GetName() == processName; });
 
         if (fit == std::end(mProcesses))
             return nullptr;
 
-        return *fit;
+        return fit->get();
     }
     //------------------------------------------------------------------------------
     void TZone::AddContext(IContext* pCtx)

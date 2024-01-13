@@ -8,10 +8,12 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <list>
+#include <string>
 
 #include "Base/Common/TypeDef.h"
 
 #include "Base/Zones/Rank.h"
+#include "Base/Zones/Types.h"
 
 namespace nsBase::nsZones
 {
@@ -19,10 +21,12 @@ namespace nsBase::nsZones
     struct IContext;
     class DllExport TZoneManager : public TRank
     {
-        std::list<TZone*> mZones;
+        std::list<SharedPtrZone> mZones;
 
     public:
-        void AddZone(TZone* pZone);
+        void AddZone(SharedPtrZone pZone);
+
+        TZone* GetZone(const std::string& zoneName);
 
         bool Work();
 

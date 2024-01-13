@@ -269,6 +269,9 @@
     <ClInclude Include="include\Base\Zones\Rank.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Base\Zones\Types.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">

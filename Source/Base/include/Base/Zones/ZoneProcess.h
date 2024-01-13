@@ -36,8 +36,7 @@ namespace nsBase::nsZones
 
         int mMaxActiveCount = 1;
 
-        TZone* mFromZone = nullptr;
-        TZone* mToZone = nullptr;
+        TZone* mFinishZone = nullptr;
 
         std::string mName;
 
@@ -45,7 +44,7 @@ namespace nsBase::nsZones
         TProcess();
         virtual ~TProcess();
 
-        void Setup(const std::string& name, TZone* fromZone, TZone* toZone, int maxActiveCount = 1);
+        void Setup(const std::string& name, TZone* finishZone, int maxActiveCount = 1);
 
         void Start(IContext* pCtx);
         void Stop(IContext* pCtx);
@@ -55,8 +54,7 @@ namespace nsBase::nsZones
         std::string GetName() const;
 
         int GetMaxActiveCount() const;
-        TZone* GetFromZone() const;
-        TZone* GetToZone() const;
+        TZone* GetFinishZone() const;
 
         uint32_t GetActiveContextCount() const;
 

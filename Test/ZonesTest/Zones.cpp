@@ -44,12 +44,8 @@ namespace nsBase::nsZones::nsTests
 
     class TComplexProcess : public TProcess
     {
-        TZone mA;
-        TZone mB;
-
-        TSimpleProcess mA_to_b;
     public:
-        TComplexProcess() : mA("A"), mB("B")
+        TComplexProcess()
         {
         }
 
@@ -59,25 +55,27 @@ namespace nsBase::nsZones::nsTests
         }
         uint64_t GetTotalCount(IContext* pCtx) const override
         {
-            return mA_to_b.GetTotalCount(pCtx);
+            return 0;// mA_to_b.GetTotalCount(pCtx);
         }
         uint64_t GetProgressCount(IContext* pCtx) const override
         {
-            return mA_to_b.GetProgressCount(pCtx);
+            return 0;//mA_to_b.GetProgressCount(pCtx);
         }
     protected:
         void SetupEvent()
         {
-            mZoneMng->AddZone(&mA);
-            mZoneMng->AddZone(&mB);
+            mZoneMng->AddZone(std::make_shared<TZone>("A"));
+            mZoneMng->AddZone(std::make_shared<TZone>("B"));
 
-            mA_to_b.Setup("a->b", &mA, &mB);
+            auto a_to_b = std::make_shared<TSimpleProcess>();
+            a_to_b->Setup("a->b", mZoneMng->GetZone("B"));
+            mZoneMng->GetZone("A")->AddProcess(a_to_b);
 
-            mA_to_b.mFinishEvent.Register(this, &TComplexProcess::OnFinishEvent);
+            a_to_b->mFinishEvent.Register(this, &TComplexProcess::OnFinishEvent);
         }
         void StartEvent(IContext* pCtx) override
         {
-            mA.AddContext(pCtx);
+            mZoneMng->GetZone("A")->AddContext(pCtx);
             pCtx->GetContextState(GetNextRank()).StartProcess("a->b");
         }
         void StopEvent(IContext* pCtx) override
@@ -95,14 +93,11 @@ namespace nsBase::nsZones::nsTests
 
     class TTripleComplexProcess : public TProcess
     {
-        TZone mA;
-        TZone mB;
-        TZone mC;
+        SharedPtrProcess mA_to_b;
+        SharedPtrProcess mB_to_c;
 
-        TSimpleProcess mA_to_b;
-        TSimpleProcess mB_to_c;
     public:
-        TTripleComplexProcess() : mA("A"), mB("B"), mC("C")
+        TTripleComplexProcess()
         {
         }
 
@@ -113,28 +108,34 @@ namespace nsBase::nsZones::nsTests
 
         uint64_t GetTotalCount(IContext* pCtx) const override
         {
-            return mA_to_b.GetTotalCount(pCtx) + mB_to_c.GetTotalCount(pCtx);
+            return 0;// mA_to_b.GetTotalCount(pCtx) + mB_to_c.GetTotalCount(pCtx);
         }
         uint64_t GetProgressCount(IContext* pCtx) const override
         {
-            return mA_to_b.GetProgressCount(pCtx) + mB_to_c.GetProgressCount(pCtx);
+            return 0;//mA_to_b.GetProgressCount(pCtx) + mB_to_c.GetProgressCount(pCtx);
         }
     protected:
         void SetupEvent()
         {
-            mZoneMng->AddZone(&mA);
-            mZoneMng->AddZone(&mB);
-            mZoneMng->AddZone(&mC);
+            mZoneMng->AddZone(std::make_shared<TZone>("A"));
+            mZoneMng->AddZone(std::make_shared<TZone>("B"));
+            mZoneMng->AddZone(std::make_shared<TZone>("C"));
 
-            mA_to_b.Setup("a->b", &mA, &mB);
-            mB_to_c.Setup("b->c", &mB, &mC);
+            mA_to_b = std::make_shared<TSimpleProcess>();
+            mB_to_c = std::make_shared<TSimpleProcess>();
 
-            mA_to_b.mFinishEvent.Register(this, &TTripleComplexProcess::OnFinishEvent);
-            mB_to_c.mFinishEvent.Register(this, &TTripleComplexProcess::OnFinishEvent);
+            mA_to_b->Setup("a->b", mZoneMng->GetZone("B"));
+            mB_to_c->Setup("b->c", mZoneMng->GetZone("C"));
+
+            mZoneMng->GetZone("A")->AddProcess(mA_to_b);
+            mZoneMng->GetZone("B")->AddProcess(mB_to_c);
+
+            mA_to_b->mFinishEvent.Register(this, &TTripleComplexProcess::OnFinishEvent);
+            mB_to_c->mFinishEvent.Register(this, &TTripleComplexProcess::OnFinishEvent);
         }
         void StartEvent(IContext* pCtx) override
         {
-            mA.AddContext(pCtx);
+            mZoneMng->GetZone("A")->AddContext(pCtx);
             pCtx->GetContextState(GetNextRank()).StartProcess("a->b");
         }
         void StopEvent(IContext* pCtx) override
@@ -144,7 +145,7 @@ namespace nsBase::nsZones::nsTests
 
         void OnFinishEvent(TProcess* pProcess, TZone* pZone, IContext* pCtx)
         {
-            if (pProcess == &mA_to_b) {
+            if (pZone->GetName() == "B") {
                 pCtx->GetContextState(GetNextRank()).StartProcess("b->c");
             } else {
                 pZone->RemoveContext(pCtx);
@@ -162,91 +163,99 @@ TEST(Zones, Simple_Ok)
 {
     TZoneManager zoneMgr;
 
-    TZone a("A");
-    TZone b("B");
+    auto a = std::make_shared<TZone>("A");
+    auto b = std::make_shared<TZone>("B");
 
-    zoneMgr.AddZone(&a);
-    zoneMgr.AddZone(&b);
+    zoneMgr.AddZone(a);
+    zoneMgr.AddZone(b);
 
-    TSimpleProcess a_process;
-    a_process.Setup("a->b", &a, &b);
+    auto a_process = std::make_shared<TSimpleProcess>();
+    a_process->Setup("a->b", b.get());
+    a->AddProcess(a_process);
 
     TCtx ctx;
-    a.AddContext(&ctx);
+    a->AddContext(&ctx);
 
     ctx.GetContextState().StartProcess("a->b");
 
     zoneMgr.Work();
 
-    ASSERT_TRUE(ctx.GetOwnerZone() == &b);
+    ASSERT_TRUE(ctx.GetOwnerZone() == b.get());
 }
 
 TEST(Zones, Displacement_Process_Ok)
 {
     TZoneManager zoneMgr;
 
-    TZone a("A");
-    TZone b("B");
-    TZone c("C");
+    auto a = std::make_shared<TZone>("A");
+    auto b = std::make_shared<TZone>("B");
+    auto c = std::make_shared<TZone>("C");
 
-    zoneMgr.AddZone(&a);
-    zoneMgr.AddZone(&b);
-    zoneMgr.AddZone(&c);
+    zoneMgr.AddZone(a);
+    zoneMgr.AddZone(b);
+    zoneMgr.AddZone(c);
 
-    TSimpleProcess a_to_b;
-    a_to_b.Setup("a->b", &a, &b);
-    TSimpleProcess a_to_c;
-    a_to_c.Setup("a->c", &a, &c);
+    auto a_to_b = std::make_shared<TSimpleProcess>();
+    auto a_to_c = std::make_shared<TSimpleProcess>();
+    a_to_b->Setup("a->b", b.get());
+    a_to_c->Setup("a->c", c.get());
+
+    a->AddProcess(a_to_b);
+    a->AddProcess(a_to_c);
 
     TCtx ctx;
-    a.AddContext(&ctx);
+    a->AddContext(&ctx);
 
     ctx.GetContextState().StartProcess("a->b");
     ctx.GetContextState().StartProcess("a->c");
 
     zoneMgr.Work();
 
-    ASSERT_TRUE(ctx.GetOwnerZone() == &c);
+    ASSERT_TRUE(ctx.GetOwnerZone() == c.get());
 }
 
 TEST(Zones, Finish_ComplexProcess_Ok)
 {
     TZoneManager zoneMgr;
 
-    TZone a("A");
-    TZone b("B");
+    auto a = std::make_shared<TZone>("A");
+    auto b = std::make_shared<TZone>("B");
 
-    zoneMgr.AddZone(&a);
-    zoneMgr.AddZone(&b);
+    zoneMgr.AddZone(a);
+    zoneMgr.AddZone(b);
 
-    TComplexProcess a_to_b;
-    a_to_b.Setup("a->b", &a, &b);
+    auto a_to_b = std::make_shared<TComplexProcess>();
+    a_to_b->Setup("a->b", b.get());
+
+    a->AddProcess(a_to_b);
 
     TCtx ctx;
-    a.AddContext(&ctx);
+    a->AddContext(&ctx);
 
     ctx.GetContextState().StartProcess("a->b");
 
     zoneMgr.Work();
 
-    ASSERT_TRUE(ctx.GetOwnerZone() == &b);
+    ASSERT_TRUE(ctx.GetOwnerZone() == b.get());
 }
 
 TEST(Zones, Stop_ComplexProcess_Ok)
 {
     TZoneManager zoneMgr;
 
-    TZone a("A");
-    TZone b("B");
+    auto a = std::make_shared<TZone>("A");
+    auto b = std::make_shared<TZone>("B");
 
-    zoneMgr.AddZone(&a);
-    zoneMgr.AddZone(&b);
+    zoneMgr.AddZone(a);
+    zoneMgr.AddZone(b);
 
-    TComplexProcess a_to_b;
-    a_to_b.Setup("a->b", &a, &b);
+    auto a_to_b = std::make_shared<TComplexProcess>();
+    a_to_b->Setup("a->b", b.get());
+
+    a->AddProcess(a_to_b);
 
     TCtx ctx;
-    a.AddContext(&ctx);
+    a->AddContext(&ctx);
 
     ctx.GetContextState().StartProcess("a->b");
     ctx.GetContextState().StopProcess();
@@ -261,17 +270,19 @@ TEST(Zones, Finish_TripleComplexProcess_Ok)
 {
     TZoneManager zoneMgr;
 
-    TZone a("A");
-    TZone b("B");
+    auto a = std::make_shared<TZone>("A");
+    auto b = std::make_shared<TZone>("B");
 
-    zoneMgr.AddZone(&a);
-    zoneMgr.AddZone(&b);
+    zoneMgr.AddZone(a);
+    zoneMgr.AddZone(b);
 
-    TTripleComplexProcess a_to_b;
-    a_to_b.Setup("a->b", &a, &b);
+    auto a_to_b = std::make_shared<TTripleComplexProcess>();
+    a_to_b->Setup("a->b", b.get());
+
+    a->AddProcess(a_to_b);
 
     TCtx ctx;
-    a.AddContext(&ctx);
+    a->AddContext(&ctx);
 
     ctx.GetContextState().StartProcess("a->b");
 
@@ -280,38 +291,40 @@ TEST(Zones, Finish_TripleComplexProcess_Ok)
     // b->c
     zoneMgr.Work();
 
-    ASSERT_TRUE(ctx.GetOwnerZone() == &b);
+    ASSERT_TRUE(ctx.GetOwnerZone() == b.get());
 }
 
 TEST(Zones, Simple_LargeQueue_Ok)
 {
     TZoneManager zoneMgr;
 
-    TZone a("A");
-    TZone b("B");
+    auto a = std::make_shared<TZone>("A");
+    auto b = std::make_shared<TZone>("B");
 
-    zoneMgr.AddZone(&a);
-    zoneMgr.AddZone(&b);
+    zoneMgr.AddZone(a);
+    zoneMgr.AddZone(b);
 
-    TSimpleProcess a_process;
-    a_process.Setup("a->b", &a, &b);
+    auto a_to_b = std::make_shared<TSimpleProcess>();
+    a_to_b->Setup("a->b", b.get());
+
+    a->AddProcess(a_to_b);
 
     const int CTX_COUNT = 10;
 
     std::array<TCtx, CTX_COUNT> ctxs;
     for (auto& ctx : ctxs) {
-        a.AddContext(&ctx);
+        a->AddContext(&ctx);
         ctx.GetContextState().StartProcess("a->b");
     }
 
     for (int i = 0; i < CTX_COUNT - 1; i++) {
         zoneMgr.Work();
-        ASSERT_TRUE(a_process.GetActiveContextCount() == 1);
+        ASSERT_TRUE(a_to_b->GetActiveContextCount() == 1);
     }
 
     zoneMgr.Work();
 
     for (auto& ctx : ctxs) {
-        ASSERT_TRUE(ctx.GetOwnerZone() == &b);
+        ASSERT_TRUE(ctx.GetOwnerZone() == b.get());
     }
 }

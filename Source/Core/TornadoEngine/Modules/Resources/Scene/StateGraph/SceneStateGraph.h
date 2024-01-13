@@ -13,8 +13,8 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "Base/Zones/Zone.h"
 #include "Base/Zones/ZoneManager.h"
+#include "Base/Zones/Zone.h"
 
 namespace nsBase::nsZones
 {
@@ -29,14 +29,13 @@ namespace nsTornadoEngine
     {
         nsBase::nsZones::TZoneManager mZoneMng;
 
-        nsBase::nsZones::TZone mInitZone;
-        nsBase::nsZones::TZone mInstantiatedZone;
-        nsBase::nsZones::TZone mDestroyedZone;
-        nsBase::nsZones::TZone mDeadZone;
-
-        using SharedPtrProcess = std::shared_ptr<nsBase::nsZones::TProcess>;
-
-        std::list<SharedPtrProcess> mProcesses;
+        enum class Zone
+        {
+            INIT,
+            INSTANTIATED,
+            DESTROYED,
+            DEAD,
+        };
 
     public:
         enum class Process
@@ -51,7 +50,7 @@ namespace nsTornadoEngine
 
         void Init();
 
-        // If the mthod spent a quant, then the method returns true, else returns false.
+        // If the method spent a quant, then the method returns true, else returns false.
         bool Work();
 
         void StartProcess(Process process, TSceneContext* pCtx);
@@ -62,15 +61,22 @@ namespace nsTornadoEngine
         // Mainly for the progress value
         nsBase::nsZones::TProcess* GetProcess(TSceneContext* pCtx) const;
     private:
-        template <typename Process>
-        void AddProcess(const std::string& name, nsBase::nsZones::TZone* fromZone, 
-            nsBase::nsZones::TZone* toZone, int maxActiveCount = 1)
+        template <typename ProcessType>
+        void AddProcess(Process process, Zone fromZone,
+            Zone toZone, int maxActiveCount = 1)
         {
-            auto p = std::make_shared<Process>();
-            fromZone->AddProcess(p.get());
-            mProcesses.push_back(p);
 
-            p->Setup(name, fromZone, toZone, maxActiveCount);
+            nsBase::nsZones::TZone* pFromZone = GetZone(fromZone);
+            nsBase::nsZones::TZone* pToZone = GetZone(toZone);
+
+            auto p = std::make_shared<ProcessType>();
+            pFromZone->AddProcess(p);
+
+            auto processName = GetProcessName(process);
+            p->Setup(processName, pToZone, maxActiveCount);
         }
+
+        nsBase::nsZones::TZone* GetZone(Zone zone);
+        std::string GetProcessName(Process process) const;
     };
 }

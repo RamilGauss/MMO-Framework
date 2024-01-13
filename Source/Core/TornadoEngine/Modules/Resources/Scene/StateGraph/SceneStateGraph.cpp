@@ -20,41 +20,25 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    const std::array<std::string, magic_enum::enum_count<TSceneStateGraph::Process>()> PROCESS_NAMES =
-    {
-        "Instantiate",
-        "Cancel instantiate",
-        "Save",
-        "Destroy"
-    };
-
-    std::string GetName(TSceneStateGraph::Process process)
-    {
-        return PROCESS_NAMES[(int)process];
-    }
-
-    TSceneStateGraph::TSceneStateGraph() :
-        mInitZone("Init"),
-        mInstantiatedZone("Instantiated"),
-        mDestroyedZone("Destroy"),
-        mDeadZone("Dead")
+    TSceneStateGraph::TSceneStateGraph() 
     {
 
     }
     //---------------------------------------------------------------------------------
     void TSceneStateGraph::Init()
     {
-        mZoneMng.AddZone(&mInitZone);
-        mZoneMng.AddZone(&mInstantiatedZone);
-        mZoneMng.AddZone(&mDestroyedZone);
-        mZoneMng.AddZone(&mDeadZone);
+        constexpr auto zones = magic_enum::enum_names<Zone>();
+        for (auto sv : zones) {
+            std::string zoneName = std::string(sv);
+            mZoneMng.AddZone(std::make_shared<nsBase::nsZones::TZone>(zoneName));
+        }
 
-        AddProcess<TInstantiateProcess>(GetName(Process::INSTANTIATE), &mInitZone, &mInstantiatedZone);
-        AddProcess<TCancelInstantiateProcess>(GetName(Process::CANCEL_INSTANTIATE), &mInitZone, &mDestroyedZone);
+        AddProcess<TInstantiateProcess>(Process::INSTANTIATE, Zone::INIT, Zone::INSTANTIATED);
+        AddProcess<TCancelInstantiateProcess>(Process::CANCEL_INSTANTIATE, Zone::INIT, Zone::DESTROYED);
 
-        AddProcess<TSaveProcess>(GetName(Process::SAVE), &mInstantiatedZone, &mInstantiatedZone);
+        AddProcess<TSaveProcess>(Process::SAVE, Zone::INSTANTIATED, Zone::INSTANTIATED);
 
-        AddProcess<TDestroyProcess>(GetName(Process::DESTROY), &mInstantiatedZone, &mDestroyedZone);
+        AddProcess<TDestroyProcess>(Process::DESTROY, Zone::INSTANTIATED, Zone::DESTROYED);
     }
     //---------------------------------------------------------------------------------
     bool TSceneStateGraph::Work()
@@ -64,7 +48,7 @@ namespace nsTornadoEngine
     //---------------------------------------------------------------------------------
     void TSceneStateGraph::StartProcess(Process process, TSceneContext* pCtx)
     {
-        pCtx->GetContextState().StartProcess(GetName(process));
+        pCtx->GetContextState().StartProcess(GetProcessName(process));
     }
     //---------------------------------------------------------------------------------
     void TSceneStateGraph::StopProcess(TSceneContext* pCtx)
@@ -83,6 +67,17 @@ namespace nsTornadoEngine
     nsBase::nsZones::TProcess* TSceneStateGraph::GetProcess(TSceneContext* pCtx) const
     {
         return pCtx->GetActiveProcess();
+    }
+    //---------------------------------------------------------------------------------
+    nsBase::nsZones::TZone* TSceneStateGraph::GetZone(Zone zone)
+    {
+        auto zoneName = std::string(magic_enum::enum_name(zone));
+        return mZoneMng.GetZone(zoneName);
+    }
+    //---------------------------------------------------------------------------------
+    std::string TSceneStateGraph::GetProcessName(Process process) const
+    {
+        return std::string(magic_enum::enum_name(process));
     }
     //---------------------------------------------------------------------------------
 }

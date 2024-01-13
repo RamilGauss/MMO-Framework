@@ -11,10 +11,22 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    void TZoneManager::AddZone(TZone* pZone)
+    void TZoneManager::AddZone(SharedPtrZone pZone)
     {
         mZones.push_back(pZone);
         pZone->SetRank(GetRank());
+    }
+    //------------------------------------------------------------------------------
+    TZone* TZoneManager::GetZone(const std::string& zoneName)
+    {
+        auto fit = std::find_if(mZones.begin(), mZones.end(),
+            [&zoneName](SharedPtrZone p) {return p->GetName() == zoneName; });
+
+        if (fit == std::end(mZones))
+            return nullptr;
+
+        return fit->get();
+
     }
     //------------------------------------------------------------------------------
     bool TZoneManager::Work()

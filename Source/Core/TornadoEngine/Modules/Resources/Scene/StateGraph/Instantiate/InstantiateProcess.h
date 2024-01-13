@@ -18,6 +18,12 @@ namespace nsTornadoEngine
 {
     class DllExport TInstantiateProcess : public nsBase::nsZones::TProcess
     {
+        //nsBase::nsZones::TZone mInitZone;
+        //nsBase::nsZones::TZone mAsyncedZone;
+        //nsBase::nsZones::TZone mSyncedZone;
+
+
+
     public:
 
         void Work(std::list<nsBase::nsZones::IContext*>& aciveCtx) override;
