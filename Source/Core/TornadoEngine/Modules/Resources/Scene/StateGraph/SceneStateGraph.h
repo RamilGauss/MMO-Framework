@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 
 #include "Base/Zones/ZoneManager.h"
+#include "Base/Zones/ZoneManagerMaster.h"
 #include "Base/Zones/Zone.h"
 
 namespace nsBase::nsZones
@@ -25,7 +26,7 @@ namespace nsTornadoEngine
 {
     struct TSceneContext;
 
-    class DllExport TSceneStateGraph
+    class DllExport TSceneStateGraph : public nsBase::nsZones::TZoneManagerMaster
     {
         nsBase::nsZones::TZoneManager mZoneMng;
 
@@ -60,23 +61,6 @@ namespace nsTornadoEngine
 
         // Mainly for the progress value
         nsBase::nsZones::TProcess* GetProcess(TSceneContext* pCtx) const;
-    private:
-        template <typename ProcessType>
-        void AddProcess(Process process, Zone fromZone,
-            Zone toZone, int maxActiveCount = 1)
-        {
 
-            nsBase::nsZones::TZone* pFromZone = GetZone(fromZone);
-            nsBase::nsZones::TZone* pToZone = GetZone(toZone);
-
-            auto p = std::make_shared<ProcessType>();
-            pFromZone->AddProcess(p);
-
-            auto processName = GetProcessName(process);
-            p->Setup(processName, pToZone, maxActiveCount);
-        }
-
-        nsBase::nsZones::TZone* GetZone(Zone zone);
-        std::string GetProcessName(Process process) const;
     };
 }

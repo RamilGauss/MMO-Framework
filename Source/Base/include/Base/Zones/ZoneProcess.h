@@ -16,6 +16,7 @@ See for more information LICENSE.md.
 #include "Base/Common/CallbackPool.h"
 
 #include "Base/Zones/Rank.h"
+#include "Base/Zones/ZoneManagerMaster.h"
 
 // Имя файла Process.h занято системным, поэтому называется ZoneProcess.h, а сам класс TProcess.
 
@@ -25,11 +26,9 @@ namespace nsBase::nsZones
     class TZone;
     class TZoneManager;
 
-    class DllExport TProcess : public TRank
+    class DllExport TProcess : public TZoneManagerMaster, public TRank
     {
     protected:
-        std::shared_ptr<TZoneManager> mZoneMng;
-
         std::list<IContext*> mAciveCtx;
 
         std::list<IContext*> mWaitingCtx;
@@ -41,7 +40,6 @@ namespace nsBase::nsZones
         std::string mName;
 
     public:
-        TProcess();
         virtual ~TProcess();
 
         void Setup(const std::string& name, TZone* finishZone, int maxActiveCount = 1);

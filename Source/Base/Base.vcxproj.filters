@@ -272,6 +272,9 @@
     <ClInclude Include="include\Base\Zones\Types.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Base\Zones\ZoneManagerMaster.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">

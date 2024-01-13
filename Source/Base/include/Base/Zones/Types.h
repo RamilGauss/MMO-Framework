@@ -15,7 +15,9 @@ namespace nsBase::nsZones
 {
     class TProcess;
     class TZone;
+    class TZoneManager;
 
     using SharedPtrZone = std::shared_ptr<TZone>;
+    using SharedPtrZoneManager = std::shared_ptr<TZoneManager>;
     using SharedPtrProcess = std::shared_ptr<TProcess>;
 }

@@ -15,11 +15,6 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    TProcess::TProcess()
-    {
-        mZoneMng.reset(new TZoneManager());
-    }
-    //------------------------------------------------------------------------------
     void TProcess::Setup(const std::string& name, TZone* finishZone, int maxActiveCount)
     {
         mName = name;

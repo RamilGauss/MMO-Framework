@@ -267,6 +267,7 @@
     <ClInclude Include="include\Base\Common\PathOperations.h" />
     <ClInclude Include="include\Base\Zones\Rank.h" />
     <ClInclude Include="include\Base\Zones\Types.h" />
+    <ClInclude Include="include\Base\Zones\ZoneManagerMaster.h" />
     <ClInclude Include="include\Base\Zones\ZoneProcess.h" />
     <ClInclude Include="include\Base\Common\ProgressValue.h" />
     <ClInclude Include="include\Base\Common\ResolverSelf_IP_v4.h" />

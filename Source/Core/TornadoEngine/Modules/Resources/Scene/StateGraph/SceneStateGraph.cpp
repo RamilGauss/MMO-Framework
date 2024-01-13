@@ -7,8 +7,6 @@ See for more information LICENSE.md.
 
 #include "SceneStateGraph.h"
 
-#include <magic_enum.hpp>
-
 #include "Base/Zones/ContextState.h"
 
 #include "Modules/Resources/Scene/StateGraph/CancelInstantiate/CancelInstantiateProcess.h"
@@ -27,11 +25,7 @@ namespace nsTornadoEngine
     //---------------------------------------------------------------------------------
     void TSceneStateGraph::Init()
     {
-        constexpr auto zones = magic_enum::enum_names<Zone>();
-        for (auto sv : zones) {
-            std::string zoneName = std::string(sv);
-            mZoneMng.AddZone(std::make_shared<nsBase::nsZones::TZone>(zoneName));
-        }
+        AddZones<Zone>();
 
         AddProcess<TInstantiateProcess>(Process::INSTANTIATE, Zone::INIT, Zone::INSTANTIATED);
         AddProcess<TCancelInstantiateProcess>(Process::CANCEL_INSTANTIATE, Zone::INIT, Zone::DESTROYED);
@@ -67,17 +61,6 @@ namespace nsTornadoEngine
     nsBase::nsZones::TProcess* TSceneStateGraph::GetProcess(TSceneContext* pCtx) const
     {
         return pCtx->GetActiveProcess();
-    }
-    //---------------------------------------------------------------------------------
-    nsBase::nsZones::TZone* TSceneStateGraph::GetZone(Zone zone)
-    {
-        auto zoneName = std::string(magic_enum::enum_name(zone));
-        return mZoneMng.GetZone(zoneName);
-    }
-    //---------------------------------------------------------------------------------
-    std::string TSceneStateGraph::GetProcessName(Process process) const
-    {
-        return std::string(magic_enum::enum_name(process));
     }
     //---------------------------------------------------------------------------------
 }

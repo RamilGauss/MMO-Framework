@@ -22,8 +22,18 @@ namespace nsTornadoEngine
         //nsBase::nsZones::TZone mAsyncedZone;
         //nsBase::nsZones::TZone mSyncedZone;
 
+        enum class Zone
+        {
+            INIT,
+            ASYNCED,
+            SYNCED,
+        };
 
-
+        enum class Process
+        {
+            ASYNC,
+            SYNC
+        };
     public:
 
         void Work(std::list<nsBase::nsZones::IContext*>& aciveCtx) override;
