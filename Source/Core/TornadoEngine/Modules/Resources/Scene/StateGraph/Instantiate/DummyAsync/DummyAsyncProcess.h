@@ -16,7 +16,7 @@ namespace nsBase::nsZones
 
 namespace nsTornadoEngine::nsInstantiate
 {
-    class DllExport TInstantiateProcess : public nsBase::nsZones::TProcess
+    class DllExport TDummyAsyncProcess : public nsBase::nsZones::TProcess
     {
         enum class Zone
         {
@@ -27,12 +27,14 @@ namespace nsTornadoEngine::nsInstantiate
 
         enum class Process
         {
-            ASYNC,
-            DUMMY_ASYNC,
-            SYNC
+            FILE_LOADING,
+            SCENE_DESERIALIZING,     // in one step
+            PREPARE_TREE_ENTITY,
+            SORTING_ENTITIES_BY_RANK,
+            COMPONENT_DESERIALIZING,
         };
     public:
-        TInstantiateProcess();
+        TDummyAsyncProcess();
 
         void Work(std::list<nsBase::nsZones::IContext*>& aciveCtx) override;
     };

@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "Base/Zones/ContextState.h"
 
+#include "Modules/Resources/Scene/StateGraph/Instantiate/InstantiateProcess.h"
 #include "Modules/Resources/Scene/StateGraph/CancelInstantiate/CancelInstantiateProcess.h"
 #include "Modules/Resources/Scene/StateGraph/Destroy/DestroyProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/InstantiateProcess.h"
 #include "Modules/Resources/Scene/StateGraph/Save/SaveProcess.h"
 
 #include "Modules/Resources/Scene/StateGraph/SceneContext.h"
@@ -27,7 +27,7 @@ namespace nsTornadoEngine
     {
         AddZones<Zone>();
 
-        AddProcess<TInstantiateProcess>(Process::INSTANTIATE, Zone::INIT, Zone::INSTANTIATED);
+        AddProcess<nsInstantiate::TInstantiateProcess>(Process::INSTANTIATE, Zone::INIT, Zone::INSTANTIATED);
         AddProcess<TCancelInstantiateProcess>(Process::CANCEL_INSTANTIATE, Zone::INIT, Zone::DESTROYED);
 
         AddProcess<TSaveProcess>(Process::SAVE, Zone::INSTANTIATED, Zone::INSTANTIATED);
