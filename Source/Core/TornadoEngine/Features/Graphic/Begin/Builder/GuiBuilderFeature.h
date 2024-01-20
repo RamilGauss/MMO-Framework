@@ -9,21 +9,20 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "ButtonBuilderSystem.h"
-#include "LabelBuilderSystem.h"
-#include "MenuNodeBuilderSystem.h"
-#include "InputTextBuilderSystem.h"
-#include "WindowBuilderSystem.h"
-#include "DialogBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Frames/DialogBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Frames/MainWindowBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Frames/TreeViewBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Frames/WindowBuilderSystem.h"
 
-#include "TreeNodeBuilderSystem.h"
-#include "TreeViewBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Graphic/CameraBuilderFeature.h"
 
-#include "MainWindowBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Properties/AddPropertiesFeature.h"
 
-#include "CameraBuilderFeature.h"
-
-#include "AddPropertiesFeature.h"
+#include "Features/Graphic/Begin/Builder/Units/ButtonBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Units/InputTextBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Units/LabelBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Units/MenuNodeBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Units/TreeNodeBuilderSystem.h"
 
 namespace nsGraphicWrapper
 {

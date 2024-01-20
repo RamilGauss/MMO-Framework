@@ -9,10 +9,10 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/TreeNode.h>
 
-#include "NodeIconComponent.h"
+#include "Components/Gui/Properties/NodeIconComponent.h"
 
-#include "VisibilityComponent.h"
-#include "TitleComponent.h"
+#include "Components/Gui/Properties/VisibilityComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
 
 
 using namespace nsGraphicWrapper;

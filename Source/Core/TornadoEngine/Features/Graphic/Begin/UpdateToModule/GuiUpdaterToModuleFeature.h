@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "TitleUpdaterSystem.h"
-#include "InputTextValueUpdaterSystem.h"
-#include "CameraUpdaterToModuleSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/TitleUpdaterSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/InputTextValueUpdaterSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/CameraUpdaterToModuleSystem.h"
 
 namespace nsGraphicWrapper
 {

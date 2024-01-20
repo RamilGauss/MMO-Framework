@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include <ECS/include/ExecuteSystem.h>
 
-#include "TitleComponent.h"
-#include "HandlerPool.h"
+#include "Components/Gui/Properties/TitleComponent.h"
+#include "Share/HandlerPool.h"
 
 namespace nsGraphicWrapper
 {

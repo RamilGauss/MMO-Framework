@@ -9,17 +9,17 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "AnchorsUpdateSystem.h"
-#include "FocusUpdateSystem.h"
-#include "HorizontalAlignUpdateSystem.h"
-#include "MaxSizeUpdateSystem.h"
-#include "MinDistanceToParentUpdateSystem.h"
-#include "MinSizeUpdateSystem.h"
-#include "PositionUpdateSystem.h"
-#include "SizeUpdateSystem.h"
-#include "TitleUpdateSystem.h"
-#include "VerticalAlignUpdateSystem.h"
-#include "VisibilityUpdateSystem.h"
+#include "Components/Gui/Properties/AnchorsUpdateSystem.h"
+#include "Components/Gui/Properties/FocusUpdateSystem.h"
+#include "Components/Gui/Properties/HorizontalAlignUpdateSystem.h"
+#include "Components/Gui/Properties/MaxSizeUpdateSystem.h"
+#include "Components/Gui/Properties/MinDistanceToParentUpdateSystem.h"
+#include "Components/Gui/Properties/MinSizeUpdateSystem.h"
+#include "Components/Gui/Properties/PositionUpdateSystem.h"
+#include "Components/Gui/Properties/SizeUpdateSystem.h"
+#include "Components/Gui/Properties/TitleUpdateSystem.h"
+#include "Components/Gui/Properties/VerticalAlignUpdateSystem.h"
+#include "Components/Gui/Properties/VisibilityUpdateSystem.h"
 
 namespace nsGraphicWrapper
 {

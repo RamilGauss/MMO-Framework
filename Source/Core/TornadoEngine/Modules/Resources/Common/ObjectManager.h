@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include <ECS/include/EntityManager.h>
 
 #include "ResourceContentMap.h"
-#include "GuidConstants.h"
+#include "Modules/Resources/Common/GuidConstants.h"
 
 #include "Base/Common/GuidGenerator.h"
 #include "ParentGuidComponent.h"

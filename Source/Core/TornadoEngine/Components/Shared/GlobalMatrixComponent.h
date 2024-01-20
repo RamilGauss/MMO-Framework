@@ -14,8 +14,8 @@ See for more information LICENSE.md.
 #include <ECS/include/IComponent.h>
 #include <GraphicEngine/RenderableObject.h>
 
-#include "MathStructs.h"
-#include "PropertyOf.h"
+#include "Share/MathStructs.h"
+#include "Share/PropertyOf.h"
 
 namespace nsCommonWrapper
 {

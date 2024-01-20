@@ -9,21 +9,19 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "ButtonMakerSystem.h"
-#include "LabelMakerSystem.h"
-#include "MenuNodeMakerSystem.h"
-#include "InputTextMakerSystem.h"
-#include "WindowMakerSystem.h"
-#include "DialogMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Frames/DialogMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Frames/MainWindowMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Frames/WindowMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Frames/TreeViewMakerSystem.h"
 
-#include "TreeNodeMakerSystem.h"
-#include "TreeViewMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Graphic/CameraMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Graphic/TextureMakerSystem.h"
 
-#include "MainWindowMakerSystem.h"
-
-#include "TextureMakerSystem.h"
-
-#include "CameraMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Units/ButtonMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Units/InputTextMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Units/LabelMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Units/MenuNodeMakerSystem.h"
+#include "Features/Graphic/Begin/Maker/Units/TreeNodeMakerSystem.h"
 
 namespace nsGraphicWrapper
 {

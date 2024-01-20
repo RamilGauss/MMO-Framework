@@ -11,12 +11,11 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "PropertyOf.h"
-
 #include <ECS/include/IComponent.h>
-
-#include "GuidConstants.h"
 #include <ImGuiWidgets/include/TreeNode.h>
+
+#include "Share/PropertyOf.h"
+#include "Modules/Resources/Common/GuidConstants.h"
 
 namespace nsGuiWrapper
 {

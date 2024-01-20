@@ -135,6 +135,12 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
 
         conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.coreConfig.componentConfig.includeListFileName;
 
+
+        auto sourceAbsPath = configComponent->value.engineSourcePath;
+        sourceAbsPath += "\\";
+
+        conf.targetForCodeGeneration.includeListParams.dirToInclude.push_back(sourceAbsPath);
+
         mEntMng->SetComponent(eid, reflectionConfigComponent);
     }
 }

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnUpdateCollectReactiveSystem.h>
 
-#include "PositionComponent.h"
+#include "Components/Gui/Properties/PositionComponent.h"
 
 namespace nsGraphicWrapper
 {

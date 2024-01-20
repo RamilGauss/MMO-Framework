@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 #include <GraphicEngine/Texture.h>
 #include <GraphicEngine/RenderableObject.h>
 
-#include "PropertyOf.h"
+#include "Share/PropertyOf.h"
 
 namespace nsGraphicWrapper
 {

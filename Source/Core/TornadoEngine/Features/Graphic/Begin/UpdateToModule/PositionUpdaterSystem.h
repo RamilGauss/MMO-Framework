@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include <ECS/include/OnUpdateInstantReactiveSystem.h>
 #include <ECS/include/InitSystem.h>
 
-#include "PositionComponent.h"
-#include "HandlerPool.h"
+#include "Components/Gui/Properties/PositionComponent.h"
+#include "Share/HandlerPool.h"
 
 namespace nsGraphicWrapper
 {

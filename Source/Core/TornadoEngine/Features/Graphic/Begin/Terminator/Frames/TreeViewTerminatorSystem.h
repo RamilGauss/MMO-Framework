@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnRemoveInstantReactiveSystem.h>
 
-#include "TreeViewComponent.h"
+#include "Components/Gui/Widgets/TreeViewComponent.h"
 
 namespace nsGraphicWrapper
 {

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_11_04 13:21:43.692
+// File has been generated at 2024_01_20 12:38:19.086
 	
 #include "JsonSerializer.h"
 #include "Base/Common/JsonPopMaster.h"
@@ -440,6 +440,7 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TCoreContainerConfig*
     PUM::Push(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
     PUM::Push(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
     PUM::Push(obj, "ecsDirectory", p->ecsDirectory);
+    PUM::Push(obj, "engineSourcePath", p->engineSourcePath);
     auto coreConfig_o = PUM::AddObject(obj, "coreConfig");
     _Serialize(&(p->coreConfig), coreConfig_o);
 }
@@ -449,6 +450,7 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TCoreContainerConfi
     POM::PopStr(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
     POM::PopStr(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
     POM::PopStr(obj, "ecsDirectory", p->ecsDirectory);
+    POM::PopStr(obj, "engineSourcePath", p->engineSourcePath);
     auto coreConfig_o0 = POM::FindObject(obj, "coreConfig");
     _Deserialize(&(p->coreConfig), coreConfig_o0);
 }

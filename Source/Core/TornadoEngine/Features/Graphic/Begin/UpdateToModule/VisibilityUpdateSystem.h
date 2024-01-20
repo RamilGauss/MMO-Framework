@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnUpdateCollectReactiveSystem.h>
 
-#include "VisibilityComponent.h"
+#include "Components/Gui/Properties/VisibilityComponent.h"
 
 namespace nsGraphicWrapper
 {

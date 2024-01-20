@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "ButtonComponent.h"
+#include "Components/Gui/Widgets/ButtonComponent.h"
 
 namespace nsGraphicWrapper
 {

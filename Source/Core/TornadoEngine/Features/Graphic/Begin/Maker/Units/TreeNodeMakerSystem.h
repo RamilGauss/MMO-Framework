@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "TreeNodeComponent.h"
+#include "Components/Gui/Widgets/TreeNodeComponent.h"
 
 namespace nsGraphicWrapper
 {

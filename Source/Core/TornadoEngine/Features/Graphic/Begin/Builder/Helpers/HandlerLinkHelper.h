@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 #include "PrefabGuidComponent.h"
 #include "SceneInstanceGuidComponent.h"
 
-#include "GuidConstants.h"
+#include "Modules/Resources/Common/GuidConstants.h"
 #include "Modules.h"
 #include "ProjectConfigContainer.h"
 #include "Base/Common/Logger.h"

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "UniverseIndexComponent.h"
+#include "Components/Meta/UniverseIndexComponent.h"
 
 namespace nsGraphicWrapper
 {

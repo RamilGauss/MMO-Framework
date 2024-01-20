@@ -3,6 +3,8 @@
     "entityManagerHeaderPath": "ECS/include/EntityManager.h",
     "ecsDirectory": "../../../Modules/ECS",
 
+    "engineSourcePath": "..",
+
     "coreConfig": {
         "exportDeclaration": "DllExport",
         "targetDirectory": "../Generated files/Container",

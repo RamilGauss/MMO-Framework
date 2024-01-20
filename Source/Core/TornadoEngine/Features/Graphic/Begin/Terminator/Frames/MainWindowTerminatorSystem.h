@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnRemoveInstantReactiveSystem.h>
 
-#include "MainWindowComponent.h"
+#include "Components/Gui/Widgets/MainWindowComponent.h"
 
 namespace nsGraphicWrapper
 {

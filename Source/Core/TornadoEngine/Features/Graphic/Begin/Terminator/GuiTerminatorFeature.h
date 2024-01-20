@@ -9,20 +9,19 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "ButtonTerminatorSystem.h"
-#include "LabelTerminatorSystem.h"
-#include "MenuNodeTerminatorSystem.h"
-#include "InputTextTerminatorSystem.h"
-#include "WindowTerminatorSystem.h"
-#include "DialogTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Frames/WindowTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Frames/DialogTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Frames/TreeViewTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Frames/MainWindowTerminatorSystem.h"
 
-#include "TreeNodeTerminatorSystem.h"
-#include "TreeViewTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Units/ButtonTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Units/LabelTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Units/MenuNodeTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Units/InputTextTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Units/TreeNodeTerminatorSystem.h"
 
-#include "MainWindowTerminatorSystem.h"
-
-#include "TextureTerminatorSystem.h"
-#include "CameraTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Graphic/TextureTerminatorSystem.h"
+#include "Features/Graphic/Begin/Terminator/Graphic/CameraTerminatorSystem.h"
 
 namespace nsGraphicWrapper
 {

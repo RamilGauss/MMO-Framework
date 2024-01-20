@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnRemoveInstantReactiveSystem.h>
 
-#include "TextureFromFileComponent.h"
+#include "Components/Graphic/TextureFromFileComponent.h"
 
 namespace nsGraphicWrapper
 {

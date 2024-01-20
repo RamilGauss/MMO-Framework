@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_01_07 18:19:35.108
+// File has been generated at 2024_01_20 12:50:13.708
 	
 #include "ComponentTypeFactory.h"
 #include "Base/Common/SingletonManager.h"

@@ -26,6 +26,7 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsCore
         ResolvePath(configComponent->value.coreConfig.parseDirectory);
         ResolvePath(configComponent->value.coreConfig.targetDirectory);
         ResolvePath(configComponent->value.coreConfig.imGuiWidgetsConfig.imGuiWidgetsDirectory);
+        ResolvePath(configComponent->value.engineSourcePath);
     }
     //------------------------------------------------------------------------------------------------------
     void TResolvePathesSystem::ResolvePath(std::string& path)

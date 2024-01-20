@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "PropertyOf.h"
+#include "Share/PropertyOf.h"
 
 #include <ECS/include/IComponent.h>
 #include <ImGuiWidgets/include/Position.h>

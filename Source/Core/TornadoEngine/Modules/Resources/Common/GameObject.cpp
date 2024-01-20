@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "GameObject.h"
-#include "GuidConstants.h"
+#include "Modules/Resources/Common/GuidConstants.h"
 #include "ParentGuidComponent.h"
 #include "GuidComponent.h"
 

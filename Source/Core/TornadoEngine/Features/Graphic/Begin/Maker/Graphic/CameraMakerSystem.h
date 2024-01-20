@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "CameraComponent.h"
+#include "Components/Graphic/CameraComponent.h"
 
 namespace nsGraphicWrapper
 {
