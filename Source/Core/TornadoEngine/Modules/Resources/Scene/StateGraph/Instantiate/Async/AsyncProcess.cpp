@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "Base/Zones/IContext.h"
 #include "Base/Zones/Zone.h"
 
-namespace nsTornadoEngine::nsInstantiate
+namespace nsTornadoEngine
 {
     TAsyncProcess::TAsyncProcess()
     {

@@ -27,7 +27,7 @@ namespace nsTornadoEngine
     {
         AddZones<Zone>();
 
-        AddProcess<nsInstantiate::TInstantiateProcess>(Process::INSTANTIATE, Zone::INIT, Zone::INSTANTIATED);
+        AddProcess<TInstantiateProcess>(Process::INSTANTIATE, Zone::INIT, Zone::INSTANTIATED);
         AddProcess<TCancelInstantiateProcess>(Process::CANCEL_INSTANTIATE, Zone::INIT, Zone::DESTROYED);
 
         AddProcess<TSaveProcess>(Process::SAVE, Zone::INSTANTIATED, Zone::INSTANTIATED);

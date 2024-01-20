@@ -20,7 +20,7 @@ nsTornadoEngine::TProjectConfigContainer* nsTornadoEngine::Project()
     return g_ProjectPtr;
 }
 //---------------------------------------------------------------------
-void SetProject(nsTornadoEngine::TProjectConfigContainer* pProject)
+void nsTornadoEngine::SetProject(nsTornadoEngine::TProjectConfigContainer* pProject)
 {
     g_ProjectPtr = pProject;
 }

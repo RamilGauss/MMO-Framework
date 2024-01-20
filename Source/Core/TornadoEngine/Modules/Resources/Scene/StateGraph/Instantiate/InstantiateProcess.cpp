@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "Modules/Resources/Scene/StateGraph/Instantiate/DummyAsync/DummyAsyncProcess.h"
 #include "Modules/Resources/Scene/StateGraph/Instantiate/Sync/SyncProcess.h"
 
-namespace nsTornadoEngine::nsInstantiate
+namespace nsTornadoEngine
 {
     TInstantiateProcess::TInstantiateProcess()
     {

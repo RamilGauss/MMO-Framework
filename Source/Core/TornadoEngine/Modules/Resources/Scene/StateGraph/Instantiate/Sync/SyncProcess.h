@@ -14,7 +14,7 @@ namespace nsBase::nsZones
     struct IContext;
 };
 
-namespace nsTornadoEngine::nsInstantiate
+namespace nsTornadoEngine
 {
     class DllExport TSyncProcess : public nsBase::nsZones::TProcess
     {

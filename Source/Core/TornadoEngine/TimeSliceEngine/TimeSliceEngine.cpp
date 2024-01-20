@@ -28,6 +28,8 @@ using namespace nsTornadoEngine;
 
 TTimeSliceEngine::TTimeSliceEngine()
 {
+    SetProject(&mProjectConfigContainer);
+
     mModuleMng.reset(new TModuleManager(this));
 
     nsBase::nsCommon::GetLogger()->Done();
