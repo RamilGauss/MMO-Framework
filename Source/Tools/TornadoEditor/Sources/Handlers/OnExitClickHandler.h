@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "IMenuNodeClickHandler.h"
 
-#include "Modules.h"
+#include "Modules/Common/Modules.h"
 #include "StopAccessor.h"
 
 namespace nsTornadoEditor

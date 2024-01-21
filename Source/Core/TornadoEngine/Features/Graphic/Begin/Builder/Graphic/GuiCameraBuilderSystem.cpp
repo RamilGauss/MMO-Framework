@@ -7,9 +7,10 @@ See for more information LICENSE.md.
 
 #include "GuiCameraBuilderSystem.h"
 
-#include "Modules.h"
-#include "GraphicEngineModule.h"
-#include "CameraComponent.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
+
+#include "Components/Graphic/CameraComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

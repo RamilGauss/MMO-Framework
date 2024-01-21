@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "InitSystem.h"
 
-#include "NameComponent.h"
+#include "Components/Meta/NameComponent.h"
 
 
 class TMyInitSystem : public nsECSFramework::TInitSystem

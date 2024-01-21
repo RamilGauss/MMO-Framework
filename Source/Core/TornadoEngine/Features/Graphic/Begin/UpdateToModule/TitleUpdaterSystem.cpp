@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #include "TitleUpdaterSystem.h"
 
-#include "ButtonComponent.h"
-#include "DialogComponent.h"
-#include "InputTextComponent.h"
-#include "MenuNodeComponent.h"
-#include "WindowComponent.h"
-#include "TreeNodeComponent.h"
+#include "Components/Gui/Widgets/ButtonComponent.h"
+#include "Components/Gui/Widgets/DialogComponent.h"
+#include "Components/Gui/Widgets/InputTextComponent.h"
+#include "Components/Gui/Widgets/MenuNodeComponent.h"
+#include "Components/Gui/Widgets/WindowComponent.h"
+#include "Components/Gui/Widgets/TreeNodeComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

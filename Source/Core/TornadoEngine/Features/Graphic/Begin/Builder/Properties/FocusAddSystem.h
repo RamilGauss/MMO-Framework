@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "FocusComponent.h"
+#include "Components/Gui/Properties/FocusComponent.h"
 
 namespace nsGraphicWrapper
 {

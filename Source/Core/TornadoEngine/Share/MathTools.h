@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "MathStructs.h"
+#include "Share/MathStructs.h"
 
 #define INDEX_I(M,k,n,I) \
 M I m(k,n)

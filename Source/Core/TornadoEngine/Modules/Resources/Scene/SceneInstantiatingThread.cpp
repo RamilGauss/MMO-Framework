@@ -9,17 +9,17 @@ See for more information LICENSE.md.
 
 #include "SceneHashCalculator.h"
 
-#include "Modules.h"
-#include "TornadoEngineJsonSerializer.h"
-#include "ProjectConfigContainer.h"
+#include "Modules/Common/Modules.h"
+#include "Generated Files/TornadoEngineJsonSerializer.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
 
 #include "SceneInstantiatingThread.h"
-#include "SceneInstanceState.h"
+#include "Modules/Resources/Scene/SceneInstanceState.h"
 
-#include "GuidComponent.h"
-#include "ParentGuidComponent.h"
-#include "SceneRootComponent.h"
-#include "ScenePartReflectionAggregator.h"
+#include "Components/Meta/GuidComponent.h"
+#include "Components/Meta/ParentGuidComponent.h"
+#include "Components/Meta/SceneRootComponent.h"
+#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 namespace nsTornadoEngine
 {

@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <list>
 #include <functional>
 
-#include "SceneInstanceState.h"
+#include "Modules/Resources/Scene/SceneInstanceState.h"
 
 namespace nsTornadoEngine
 {

@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 
-#include "LogicTerminatorFeature.h"
+#include "Features/Logic/End/Terminator/LogicTerminatorFeature.h"
 
 using namespace nsLogicWrapper;
 

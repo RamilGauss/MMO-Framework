@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include <list>
 
-#include "FeatureManager.h"
-#include "IModule.h"
+#include "Modules/Common/FeatureManager.h"
+#include "TimeSliceEngine/IModule.h"
 
 namespace nsTornadoEngine
 {

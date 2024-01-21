@@ -7,11 +7,12 @@ See for more information LICENSE.md.
 
 #include "CameraUpdaterToModuleSystem.h"
 
-#include "CameraComponent.h"
-#include "Modules.h"
-#include "GraphicEngineModule.h"
-#include "CameraWindowSizeComponent.h"
-#include "CameraWindowPositionComponent.h"
+#include "Components/Graphic/CameraComponent.h"
+#include "Components/Graphic/CameraWindowSizeComponent.h"
+#include "Components/Graphic/CameraWindowPositionComponent.h"
+
+#include "Modules/Common/Modules.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
 
 using namespace nsGraphicWrapper;
 

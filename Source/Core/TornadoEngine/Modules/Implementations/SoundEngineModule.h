@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ISoundEngineModule.h"
+#include "Modules/Interfaces/ISoundEngineModule.h"
 
 namespace nsTornadoEngine
 {

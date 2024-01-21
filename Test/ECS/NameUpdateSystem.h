@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "OnUpdateInstantReactiveSystem.h"
 
-#include "NameComponent.h"
+#include "Components/Meta/NameComponent.h"
 
 class TNameUpdateSystem : 
     public nsECSFramework::TOnUpdateInstantReactiveSystem<TNameComponent, TNameUpdateSystem>

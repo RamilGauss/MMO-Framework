@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #define _USE_MATH_DEFINES
 #include <cmath>
 
-#include "MathStructs.h"
+#include "Share/MathStructs.h"
 #include "MathTools.h"
 #include "Base/Common/BL_Debug.h"
 

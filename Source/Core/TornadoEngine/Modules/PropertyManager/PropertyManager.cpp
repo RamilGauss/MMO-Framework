@@ -5,10 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "PropertyManager.h"
+#include "Modules/PropertyManager/PropertyManager.h"
+
 #include "Base/Common/TextFile.h"
 
-#include "PropertyManagerConfigs.h"
+#include "Modules/PropertyManager/PropertyManagerConfigs.h"
 
 namespace nsTornadoEngine
 {

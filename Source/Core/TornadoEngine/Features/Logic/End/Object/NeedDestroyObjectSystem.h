@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "NeedDestroyObjectTagComponent.h"
+#include "Components/Meta/NeedDestroyObjectTagComponent.h"
 
 namespace nsLogicWrapper
 {

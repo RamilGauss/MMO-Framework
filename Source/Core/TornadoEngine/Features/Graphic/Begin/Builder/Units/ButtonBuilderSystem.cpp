@@ -9,19 +9,18 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/Button.h>
 
-#include "UnitBuilderHelper.h"
+#include "Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
+#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
-#include "TitleComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
 
-#include "IButtonClickHandler.h"
+#include "Handlers/Gui/IButtonClickHandler.h"
 
-#include "PrefabOriginalGuidComponent.h"
-#include "SceneOriginalGuidComponent.h"
+#include "Components/Meta/PrefabOriginalGuidComponent.h"
+#include "Components/Meta/SceneOriginalGuidComponent.h"
 
-#include "Modules.h"
-#include "HandlerCallCollector.h"
-
-#include "HandlerLinkHelper.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Common/HandlerCallCollector.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

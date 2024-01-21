@@ -9,22 +9,20 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/MenuNode.h>
 
-#include "UnitBuilderHelper.h"
+#include "Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
+#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
-#include "TitleComponent.h"
-#include "TextureFromFileComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
+#include "Components/Gui/Properties/NodeIconComponent.h"
+#include "Components/Graphic/TextureFromFileComponent.h"
 
-#include "PrefabOriginalGuidComponent.h"
-#include "SceneOriginalGuidComponent.h"
+#include "Components/Meta/PrefabOriginalGuidComponent.h"
+#include "Components/Meta/SceneOriginalGuidComponent.h"
 
-#include "Modules.h"
-#include "HandlerCallCollector.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Common/HandlerCallCollector.h"
 
-#include "HandlerLinkHelper.h"
-
-#include "NodeIconComponent.h"
-#include "Modules.h"
-#include "GraphicEngineModule.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
 
 #include "GraphicEngine/TextureFactory.h"
 

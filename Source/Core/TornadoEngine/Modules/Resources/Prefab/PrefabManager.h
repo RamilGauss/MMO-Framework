@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "InstantiatePrefabParams.h"
-#include "ObjectManager.h"
-#include "GameObject.h"
+#include "Modules/Resources/Common/ObjectManager.h"
+#include "Modules/Resources/Common/GameObject.h"
 
 namespace nsTornadoEngine
 {

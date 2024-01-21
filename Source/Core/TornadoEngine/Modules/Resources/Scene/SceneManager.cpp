@@ -7,31 +7,31 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "SceneManager.h"
+#include "Modules/Resources/Scene/SceneManager.h"
 
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/TextFile.h"
 #include "Base/Common/Logger.h"
 #include "Base/Common/GuidGenerator.h"
 
-#include "EngineLogger.h"
-#include "TornadoEngineJsonSerializer.h"
-#include "ProjectConfigContainer.h"
+#include "TimeSliceEngine/EngineLogger.h"
+#include "Generated Files/TornadoEngineJsonSerializer.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
 
-#include "Modules.h"
-#include "HandlerCallCollector.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Common/HandlerCallCollector.h"
 
-#include "PrefabManager.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
 
-#include "GuidComponent.h"
-#include "ParentGuidComponent.h"
-#include "SceneOriginalGuidComponent.h"
-#include "SceneInstanceGuidComponent.h"
-#include "NeedDestroyObjectTagComponent.h"
-#include "SceneRootComponent.h"
-#include "SceneGuidComponent.h"
-#include "UniverseIndexComponent.h"
-#include "UniverseGuidComponent.h"
+#include "Components/Meta/GuidComponent.h"
+#include "Components/Meta/ParentGuidComponent.h"
+#include "Components/Meta/SceneOriginalGuidComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
+#include "Components/Meta/NeedDestroyObjectTagComponent.h"
+#include "Components/Meta/SceneRootComponent.h"
+#include "Components/Meta/SceneGuidComponent.h"
+#include "Components/Meta/UniverseIndexComponent.h"
+#include "Components/Meta/UniverseGuidComponent.h"
 
 namespace nsTornadoEngine
 {

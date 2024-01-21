@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "IContext.h"
+#include "Modules/Common/IContext.h"
 
 #include <ImGuiWidgets/include/DialogStack.h>
 #include <GraphicEngine/GraphicEngineContext.h>

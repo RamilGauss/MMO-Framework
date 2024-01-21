@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "gtest/gtest.h"
 
-#include "SceneManager.h"
+#include "Modules/Resources/Scene/SceneManager.h"
 
 TEST(Parser, InheritanceTemplate)
 {

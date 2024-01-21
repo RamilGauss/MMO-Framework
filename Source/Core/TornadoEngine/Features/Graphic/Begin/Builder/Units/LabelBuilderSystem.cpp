@@ -9,17 +9,17 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/Label.h>
 
-#include "UnitBuilderHelper.h"
+#include "Components/Gui/Properties/TitleComponent.h"
 
-#include "TitleComponent.h"
+#include "Components/Meta/PrefabOriginalGuidComponent.h"
+#include "Components/Meta/SceneOriginalGuidComponent.h"
 
-#include "PrefabOriginalGuidComponent.h"
-#include "SceneOriginalGuidComponent.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Common/HandlerCallCollector.h"
 
-#include "Modules.h"
-#include "HandlerCallCollector.h"
+#include "Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
+#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
-#include "HandlerLinkHelper.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

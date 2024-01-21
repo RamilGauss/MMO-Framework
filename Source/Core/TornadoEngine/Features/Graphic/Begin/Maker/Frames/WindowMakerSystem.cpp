@@ -11,23 +11,23 @@ See for more information LICENSE.md.
 
 #include "TimeSliceEngine/ProjectConfigContainer.h"
 
-#include "SizeComponent.h"
-#include "PositionComponent.h"
+#include "Components/Gui/Properties/SizeComponent.h"
+#include "Components/Gui/Properties/PositionComponent.h"
 
-#include "VisibilityComponent.h"
-#include "TitleComponent.h"
+#include "Components/Gui/Properties/VisibilityComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
 
-#include "AnchorsComponent.h"
-#include "MinSizeComponent.h"
-#include "MaxSizeComponent.h"
-#include "VerticalAlignComponent.h"
-#include "HorizontalAlignComponent.h"
-#include "MinDistanceToParentComponent.h"
-#include "FocusComponent.h"
+#include "Components/Gui/Properties/AnchorsComponent.h"
+#include "Components/Gui/Properties/MinSizeComponent.h"
+#include "Components/Gui/Properties/MaxSizeComponent.h"
+#include "Components/Gui/Properties/VerticalAlignComponent.h"
+#include "Components/Gui/Properties/HorizontalAlignComponent.h"
+#include "Components/Gui/Properties/MinDistanceToParentComponent.h"
+#include "Components/Gui/Properties/FocusComponent.h"
 
-#include "PaddingComponent.h"
-#include "GridComponent.h"
-#include "SpacingComponent.h"
+#include "Components/Gui/Properties/PaddingComponent.h"
+#include "Components/Gui/Properties/GridComponent.h"
+#include "Components/Gui/Properties/SpacingComponent.h"
 
 #include <Modules/Common/Modules.h>
 #include <Modules/PropertyManager/PropertyManager.h>

@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "OnRemoveInstantReactiveSystem.h"
 
-#include "NameComponent.h"
+#include "Components/Meta/NameComponent.h"
 
 class TNameRemoveSystem : 
     public nsECSFramework::TOnRemoveInstantReactiveSystem<TNameComponent, TNameRemoveSystem>

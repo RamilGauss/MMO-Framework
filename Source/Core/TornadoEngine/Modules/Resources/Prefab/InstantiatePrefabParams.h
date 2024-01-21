@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "Modules/Resources/Common/GuidConstants.h"
-#include "MathStructs.h"
+#include "Share/MathStructs.h"
 
 namespace nsTornadoEngine
 {

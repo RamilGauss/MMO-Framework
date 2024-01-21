@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #include "OnOpenProjectClickHandler.h"
 
-#include "Modules.h"
+#include "Modules/Common/Modules.h"
 #include "StopAccessor.h"
-#include "PrefabManager.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
 
-#include "SceneInstanceGuidComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
 
 #include "SceneObjectReferenceComponent.h"
 #include "PrefabReferenceComponent.h"

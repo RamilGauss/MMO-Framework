@@ -7,10 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ILocalHandler.h"
-
 #include <ECS/include/Config.h>
-#include "ButtonComponent.h"
+
+#include "Handlers/Common/ILocalHandler.h"
+
+#include "Components/Gui/Widgets/ButtonComponent.h"
 
 namespace nsGuiWrapper
 {

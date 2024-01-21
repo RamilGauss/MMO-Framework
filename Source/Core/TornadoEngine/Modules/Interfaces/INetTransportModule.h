@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "LogicWrapperModule.h"
+#include "Modules/Common/LogicWrapperModule.h"
 
 namespace nsTornadoEngine
 {

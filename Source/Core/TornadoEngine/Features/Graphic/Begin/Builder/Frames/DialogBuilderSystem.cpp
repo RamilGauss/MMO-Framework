@@ -9,18 +9,18 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/Dialog.h>
 
-#include "Modules.h"
-#include "GraphicEngineModule.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
 
-#include "PositionComponent.h"
-#include "SizeComponent.h"
-#include "TitleComponent.h"
+#include "Components/Gui/Properties/PositionComponent.h"
+#include "Components/Gui/Properties/SizeComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
 
-#include "PrefabOriginalGuidComponent.h"
-#include "SceneOriginalGuidComponent.h"
+#include "Components/Meta/PrefabOriginalGuidComponent.h"
+#include "Components/Meta/SceneOriginalGuidComponent.h"
 
-#include "HandlerLinkHelper.h"
-#include "UnitBuilderHelper.h"
+#include "Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
+#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

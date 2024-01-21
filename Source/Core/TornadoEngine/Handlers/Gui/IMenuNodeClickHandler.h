@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ILocalHandler.h"
+#include "Handlers/Common/ILocalHandler.h"
 
 #include <ECS/include/Config.h>
 
-#include "MenuNodeComponent.h"
+#include "Components/Gui/Widgets/MenuNodeComponent.h"
 
 namespace nsGuiWrapper
 {

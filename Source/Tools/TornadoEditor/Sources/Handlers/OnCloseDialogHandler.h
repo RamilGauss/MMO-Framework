@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include "IDialogCloseEventHandler.h"
 
-#include "Modules.h"
-#include "PrefabManager.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
 
 namespace nsTornadoEditor
 {

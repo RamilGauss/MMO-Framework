@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "LogicModule.h"
-#include "Modules.h"
+#include "Modules/Implementations/LogicModule.h"
+#include "Modules/Common/Modules.h"
 
 using namespace nsTornadoEngine;
 using namespace nsECSFramework;

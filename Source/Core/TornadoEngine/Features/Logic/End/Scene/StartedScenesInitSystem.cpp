@@ -6,10 +6,10 @@ See for more information LICENSE.md.
 */
 
 #include "StartedScenesInitSystem.h"
-#include "ProjectConfigContainer.h"
-#include "Modules.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
+#include "Modules/Common/Modules.h"
 
-#include "SceneManager.h"
+#include "Modules/Resources/Scene/SceneManager.h"
 
 using namespace nsLogicWrapper;
 using namespace nsTornadoEngine;

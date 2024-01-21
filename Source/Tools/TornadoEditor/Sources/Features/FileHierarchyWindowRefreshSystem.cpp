@@ -10,20 +10,20 @@ See for more information LICENSE.md.
 #include <filesystem>
 #include <iostream>
 
-#include "Modules.h"
+#include "Modules/Common/Modules.h"
 #include "StopAccessor.h"
-#include "PrefabManager.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
 
-#include "GuidComponent.h"
+#include "Components/Meta/GuidComponent.h"
 #include "InputTextValueComponent.h"
-#include "TitleComponent.h"
-#include "SceneInstanceGuidComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
 #include <ECS/include/Helper.h>
 #include "AbsoluteFilePathComponent.h"
 #include "EditorInfoTagComponent.h"
 #include "FilePathNodeComponent.h"
-#include "NodeIconComponent.h"
-#include "TextureFromFileComponent.h"
+#include "Components/Gui/Properties/NodeIconComponent.h"
+#include "Components/Graphic/TextureFromFileComponent.h"
 
 
 namespace fs = std::filesystem;

@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "BootstrapperSystem.h"
 
-#include "Modules.h"
-#include "SceneManager.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Scene/SceneManager.h"
 #include "EditorInfoTagComponent.h"
 
 using namespace nsTornadoEditor;

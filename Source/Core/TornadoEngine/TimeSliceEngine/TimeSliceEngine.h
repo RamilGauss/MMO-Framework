@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 #include "Base/Common/CallbackPool.h"
 
 #include "ProjectConfig.h"
-#include "ProjectConfigContainer.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
 
 #include "StopAccessor.h"
 #include "ModuleType.h"

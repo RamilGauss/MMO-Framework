@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnUpdateCollectReactiveSystem.h>
 
-#include "MinDistanceToParentComponent.h"
+#include "Components/Gui/Properties/MinDistanceToParentComponent.h"
 
 namespace nsGraphicWrapper
 {

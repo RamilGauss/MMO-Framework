@@ -13,12 +13,12 @@ See for more information LICENSE.md.
 #include <ECS/include/EntityManager.h>
 #include "GraphicEngine/KeyMouseEventContainer.h"
 
-#include "SceneManager.h"
-#include "PrefabManager.h"
-#include "IModule.h"
-#include "HandlerCallCollector.h"
-#include "Gizmo.h"
-#include "PropertyManager.h"
+#include "Modules/Resources/Scene/SceneManager.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
+#include "TimeSliceEngine/IModule.h"
+#include "Modules/Resources/Common/HandlerCallCollector.h"
+#include "Modules/Gizmos/Gizmo.h"
+#include "Modules/PropertyManager/PropertyManager.h"
 
 namespace nsTornadoEngine
 {

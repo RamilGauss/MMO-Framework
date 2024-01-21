@@ -9,14 +9,14 @@ See for more information LICENSE.md.
 
 #include "GraphicEngine/imgui/imgui_internal.h"
 
-#include "Modules.h"
-#include "IGraphicEngineModule.h"
-#include "ILogicModule.h"
-#include "IPhysicEngineModule.h"
-#include "IMMOEngineModule.h"
-#include "INetTransportModule.h"
-#include "ISoundEngineModule.h"
-#include "IDataBaseModule.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Interfaces/IGraphicEngineModule.h"
+#include "Modules/Interfaces/ILogicModule.h"
+#include "Modules/Interfaces/IPhysicEngineModule.h"
+#include "Modules/Interfaces/IMMOEngineModule.h"
+#include "Modules/Interfaces/INetTransportModule.h"
+#include "Modules/Interfaces/ISoundEngineModule.h"
+#include "Modules/Interfaces/IDataBaseModule.h"
 
 #include "Base/Common/GuidGenerator.h"
 

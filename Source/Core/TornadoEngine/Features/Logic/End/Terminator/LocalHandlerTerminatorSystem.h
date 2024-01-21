@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnRemoveInstantReactiveSystem.h>
 
-#include "LocalHandlerComponent.h"
+#include "Components/Handler/LocalHandlerComponent.h"
 
 namespace nsLogicWrapper
 {

@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "TextureMakerSystem.h"
 
-#include "Modules.h"
-#include "ResourceManager.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Common/ResourceManager.h"
 
 #include "GraphicEngine/TextureFactory.h"
 

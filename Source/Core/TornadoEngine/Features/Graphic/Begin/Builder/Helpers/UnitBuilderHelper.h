@@ -14,7 +14,6 @@ See for more information LICENSE.md.
 #include <ImGuiWidgets/include/TreeNode.h>
 #include <ImGuiWidgets/include/Label.h>
 
-#include "ButtonComponent.h"
 
 namespace nsGraphicWrapper
 {

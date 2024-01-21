@@ -5,18 +5,18 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ModuleManager.h"
-#include "IModule.h"
-#include "Modules.h"
+#include "Modules/Common/ModuleManager.h"
+#include "TimeSliceEngine/IModule.h"
+#include "Modules/Common/Modules.h"
 #include "ModulesAccessor.h"
 
-#include "LogicModule.h"
-#include "GraphicEngineModule.h"
-#include "PhysicEngineModule.h"
-#include "SoundEngineModule.h"
-#include "MMOEngineModule.h"
-#include "NetTransportModule.h"
-#include "DatabaseModule.h"
+#include "Modules/Implementations/LogicModule.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
+#include "Modules/Implementations/PhysicEngineModule.h"
+#include "Modules/Implementations/SoundEngineModule.h"
+#include "Modules/Implementations/MMOEngineModule.h"
+#include "Modules/Implementations/NetTransportModule.h"
+#include "Modules/Implementations/DatabaseModule.h"
 
 using namespace nsTornadoEngine;
 

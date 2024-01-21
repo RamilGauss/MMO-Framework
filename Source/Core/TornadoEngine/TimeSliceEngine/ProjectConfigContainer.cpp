@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ProjectConfigContainer.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/PathOperations.h"
 
-#include "ScenePartReflectionAggregator.h"
+#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 static nsTornadoEngine::TProjectConfigContainer* g_ProjectPtr = nullptr;
 

@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "OnAddInstantReactiveSystem.h"
 
-#include "NameComponent.h"
+#include "Components/Meta/NameComponent.h"
 
 class TNameAddSystem : public nsECSFramework::TOnAddInstantReactiveSystem<TNameComponent, TNameAddSystem>
 {

@@ -9,17 +9,17 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/Window.h>
 
-#include "Modules.h"
-#include "GraphicEngineModule.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
 
-#include "PositionComponent.h"
-#include "SizeComponent.h"
-#include "TitleComponent.h"
+#include "Components/Gui/Properties/PositionComponent.h"
+#include "Components/Gui/Properties/SizeComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
 
-#include "UnitBuilderHelper.h"
-#include "HandlerLinkHelper.h"
-//#include "HandlerCallCollector.h"
-//#include "UniverseIndexComponent.h"
+#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
+#include "Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
+//#include "Modules/Resources/Common/HandlerCallCollector.h"
+//#include "Components/Meta/UniverseIndexComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

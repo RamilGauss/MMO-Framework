@@ -9,11 +9,11 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "GuiUpdaterFromModuleFeature.h"
+#include "Features/Graphic/End/UpdateFromModule/GuiUpdaterFromModuleFeature.h"
 
-#include "OnRemoveUniverseContextSystem.h"
+#include "Features/Graphic/End/GraphicContext/OnRemoveUniverseContextSystem.h"
 
-#include "CleanUpUniverseContextSystem.h"
+#include "Features/Graphic/End/GraphicContext/CleanUpUniverseContextSystem.h"
 
 namespace nsGraphicWrapper
 {

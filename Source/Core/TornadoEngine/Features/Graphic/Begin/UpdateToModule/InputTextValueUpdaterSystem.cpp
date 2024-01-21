@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "InputTextValueUpdaterSystem.h"
-#include "InputTextComponent.h"
+#include "Components/Gui/Widgets/InputTextComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

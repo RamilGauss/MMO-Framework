@@ -8,22 +8,24 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/TypeDef.h"
+#include "Base/Common/Logger.h"
+
 #include <ECS/include/EntityManager.h>
 
-#include "SceneGuidComponent.h"
-#include "PrefabGuidComponent.h"
-#include "SceneInstanceGuidComponent.h"
+#include "Components/Meta/SceneGuidComponent.h"
+#include "Components/Meta/PrefabGuidComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
+#include "Components/Meta/PrefabOriginalGuidComponent.h"
+#include "Components/Meta/SceneOriginalGuidComponent.h"
 
+#include "Modules/Common/Modules.h"
 #include "Modules/Resources/Common/GuidConstants.h"
-#include "Modules.h"
-#include "ProjectConfigContainer.h"
-#include "Base/Common/Logger.h"
-#include "EngineLogger.h"
-#include "PrefabOriginalGuidComponent.h"
-#include "SceneOriginalGuidComponent.h"
-#include "HandlerCallCollector.h"
+#include "Modules/Resources/Common/HandlerCallCollector.h"
 
-#include "ScenePartReflectionAggregator.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
+#include "TimeSliceEngine/EngineLogger.h"
+
+#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 namespace nsGraphicWrapper
 {

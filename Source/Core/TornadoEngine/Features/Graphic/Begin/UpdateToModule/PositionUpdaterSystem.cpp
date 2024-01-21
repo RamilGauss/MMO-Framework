@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 #include "PositionUpdaterSystem.h"
 
-#include "ButtonComponent.h"
-#include "DialogComponent.h"
-#include "FrameComponent.h"
-#include "InputTextComponent.h"
+#include "Components/Gui/Widgets/ButtonComponent.h"
+#include "Components/Gui/Widgets/DialogComponent.h"
+#include "Components/Gui/Widgets/FrameComponent.h"
+#include "Components/Gui/Widgets/InputTextComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IMMOEngineModule.h"
+#include "Modules/Interfaces/IMMOEngineModule.h"
 
 #include "MMOEngine/include/Base.h"
 #include "MMOEngine/include/INetTransport.h"

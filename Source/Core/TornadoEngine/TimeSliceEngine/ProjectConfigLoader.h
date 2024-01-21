@@ -12,10 +12,10 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/Logger.h"
-#include "ProjectConfigContainer.h"
-#include "TimeSliceEngine.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
+#include "TimeSliceEngine/TimeSliceEngine.h"
 #include "Base/Common/TextFile.h"
-#include "TornadoEngineJsonSerializer.h"
+#include "Generated Files/TornadoEngineJsonSerializer.h"
 
 namespace nsTornadoEngine
 {

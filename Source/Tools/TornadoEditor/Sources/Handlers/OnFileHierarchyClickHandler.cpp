@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #include "OnFileHierarchyClickHandler.h"
 
-#include "Modules.h"
-#include "PrefabManager.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
 
 #include <ECS/include/Helper.h>
 #include "FileHierarchyWindowTagComponent.h"
-#include "SceneInstanceGuidComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
 
 using namespace nsTornadoEditor;
 

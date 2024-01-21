@@ -6,12 +6,12 @@ See for more information LICENSE.md.
 */
 
 #include "LocalHandlerTerminatorSystem.h"
-#include "ProjectConfigContainer.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
 #include "Base/Common/Logger.h"
-#include "EngineLogger.h"
-#include "LogicModule.h"
-#include "Modules.h"
-#include "ScenePartReflectionAggregator.h"
+#include "TimeSliceEngine/EngineLogger.h"
+#include "Modules/Implementations/LogicModule.h"
+#include "Modules/Common/Modules.h"
+#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 using namespace nsLogicWrapper;
 

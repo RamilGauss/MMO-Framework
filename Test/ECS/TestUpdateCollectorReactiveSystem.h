@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "OnUpdateCollectReactiveSystem.h"
 
-#include "NameComponent.h"
+#include "Components/Meta/NameComponent.h"
 
 class TTestUpdateCollectorReactiveSystem : 
     public nsECSFramework::TOnUpdateCollectReactiveSystem<TNameComponent, TTestUpdateCollectorReactiveSystem>

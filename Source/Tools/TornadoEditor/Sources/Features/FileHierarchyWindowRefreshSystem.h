@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
 #include "FileHierarchyWindowRefreshTagComponent.h"
-#include "GameObject.h"
+#include "Modules/Resources/Common/GameObject.h"
 
 namespace nsTornadoEditor
 {

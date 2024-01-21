@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "LabelComponent.h"
+#include "Components/Gui/Widgets/LabelComponent.h"
 
 namespace nsGraphicWrapper
 {

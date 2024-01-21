@@ -23,8 +23,8 @@ See for more information LICENSE.md.
 #include "Base/Common/FileOperation.h"
 #include "Base/Common/PathOperations.h"
 
-#include "TimeSliceEngine.h"
-#include "ProjectConfigurator.h"
+#include "TimeSliceEngine/TimeSliceEngine.h"
+#include "TimeSliceEngine/ProjectConfigurator.h"
 
 
 using namespace nsTornadoEngine;

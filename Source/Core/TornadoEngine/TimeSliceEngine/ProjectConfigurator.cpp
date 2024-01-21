@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #include "ProjectConfigurator.h"
 
-#include "ProjectConfigContainer.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
 #include "ProjectConfigLoader.h"
 #include "ProjectConfigUnloader.h"
 
-#include "Modules.h"
-#include "ModuleManager.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Common/ModuleManager.h"
 
 using namespace nsTornadoEngine;
 

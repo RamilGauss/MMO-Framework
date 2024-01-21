@@ -11,13 +11,13 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TextFile.h"
 
-#include "Modules.h"
+#include "Modules/Common/Modules.h"
 #include "StopAccessor.h"
-#include "SceneManager.h"
-#include "PrefabManager.h"
-#include "GameObject.h"
+#include "Modules/Resources/Scene/SceneManager.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
+#include "Modules/Resources/Common/GameObject.h"
 
-#include "SceneInstanceGuidComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
 #include "SceneObjectReferenceComponent.h"
 #include "PrefabReferenceComponent.h"
 #include "EditorInfoTagComponent.h"
@@ -25,8 +25,8 @@ See for more information LICENSE.md.
 #include "AbsoluteFilePathComponent.h"
 #include "ProjectConfigComponent.h"
 
-#include "TornadoEngineJsonSerializer.h"
-#include "TitleComponent.h"
+#include "Generated Files/TornadoEngineJsonSerializer.h"
+#include "Components/Gui/Properties/TitleComponent.h"
 #include "LabelValueComponent.h"
 #include "FileHierarchyWindowTagComponent.h"
 #include "FileHierarchyWindowRefreshTagComponent.h"

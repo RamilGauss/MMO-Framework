@@ -11,12 +11,12 @@ See for more information LICENSE.md.
 
 #include "IObjectInstantiationCompletionHandler.h"
 
-#include "Modules.h"
+#include "Modules/Common/Modules.h"
 #include "StopAccessor.h"
-#include "PrefabManager.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
 
 #include "InputTextValueComponent.h"
-#include "TitleComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
 
 namespace nsTornadoEditor
 {

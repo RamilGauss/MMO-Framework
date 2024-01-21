@@ -16,12 +16,12 @@ See for more information LICENSE.md.
 #include "Modules/Resources/Common/GuidConstants.h"
 
 #include "Base/Common/GuidGenerator.h"
-#include "ParentGuidComponent.h"
-#include "GuidComponent.h"
+#include "Components/Meta/ParentGuidComponent.h"
+#include "Components/Meta/GuidComponent.h"
 
-#include "EntityContent.h"
+#include "Modules/Resources/Common/EntityContent.h"
 
-#include "ResourceManager.h"
+#include "Modules/Resources/Common/ResourceManager.h"
 
 namespace nsTornadoEngine
 {

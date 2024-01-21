@@ -14,11 +14,11 @@ See for more information LICENSE.md.
 
 #include "GraphicEngine/imgui/imgui_internal.h"
 
-#include "GuidComponent.h"
-#include "NameComponent.h"
+#include "Components/Meta/GuidComponent.h"
+#include "Components/Meta/NameComponent.h"
 
-#include "ProjectConfigContainer.h"
-#include "ScenePartReflectionAggregator.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
+#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 using namespace nsTornadoEngine;
 

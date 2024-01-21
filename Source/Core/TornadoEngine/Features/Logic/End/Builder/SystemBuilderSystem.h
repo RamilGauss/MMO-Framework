@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "SystemComponent.h"
+#include "Components/Logic/SystemComponent.h"
 
 namespace nsLogicWrapper
 {

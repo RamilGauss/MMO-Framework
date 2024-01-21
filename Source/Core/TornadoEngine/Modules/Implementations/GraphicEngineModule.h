@@ -8,10 +8,11 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/CallBackRegistrator.h"
-#include "IGraphicEngineModule.h"
 
-#include "BeginGraphicFeature.h"
-#include "EndGraphicFeature.h"
+#include "Modules/Interfaces/IGraphicEngineModule.h"
+
+#include "Features/Graphic/Begin/BeginGraphicFeature.h"
+#include "Features/Graphic/End/EndGraphicFeature.h"
 
 namespace nsTornadoEngine
 {

@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "OnAddUniverseContextSystem.h"
 
-#include "Modules.h"
-#include "GraphicEngineModule.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
 
 using namespace nsGraphicWrapper;
 

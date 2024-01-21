@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Config.h>
 
-#include "DialogComponent.h"
+#include "Components/Gui/Widgets/DialogComponent.h"
 
 namespace nsGuiWrapper
 {

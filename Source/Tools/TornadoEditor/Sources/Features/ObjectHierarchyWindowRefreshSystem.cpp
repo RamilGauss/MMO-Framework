@@ -7,22 +7,22 @@ See for more information LICENSE.md.
 
 #include "ObjectHierarchyWindowRefreshSystem.h"
 
-#include "Modules.h"
-#include "GameObject.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Common/GameObject.h"
 #include <filesystem>
-#include "Modules.h"
+#include "Modules/Common/Modules.h"
 #include "StopAccessor.h"
-#include "PrefabManager.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
 
-#include "GuidComponent.h"
+#include "Components/Meta/GuidComponent.h"
 #include "InputTextValueComponent.h"
-#include "TitleComponent.h"
-#include "SceneInstanceGuidComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
 #include <ECS/include/Helper.h>
 #include "AbsoluteFilePathComponent.h"
 #include "EditorInfoTagComponent.h"
 #include "FilePathNodeComponent.h"
-#include "NodeIconComponent.h"
+#include "Components/Gui/Properties/NodeIconComponent.h"
 
 #include <iostream>
 

@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "ExecuteSystem.h"
 
-#include "NameComponent.h"
+#include "Components/Meta/NameComponent.h"
 
 class TMyExecuteSystem : public nsECSFramework::TExecuteSystem
 {

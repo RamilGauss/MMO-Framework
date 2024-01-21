@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "HorizontalAlignComponent.h"
+#include "Components/Gui/Properties/HorizontalAlignComponent.h"
 
 namespace nsGraphicWrapper
 {

@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Modules.h"
+#include "Modules/Common/Modules.h"
 #include "Base/Common/SingletonManager.h"
 
 nsTornadoEngine::TModules* nsTornadoEngine::Modules()

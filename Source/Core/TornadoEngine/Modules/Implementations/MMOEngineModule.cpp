@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "MMOEngineModule.h"
+#include "Modules/Implementations/MMOEngineModule.h"
 
 using namespace nsTornadoEngine;
 

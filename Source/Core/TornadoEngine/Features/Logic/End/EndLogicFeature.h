@@ -9,12 +9,12 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "LogicMakerFeature.h"
-#include "LogicBuilderFeature.h"
-#include "LogicTerminatorFeature.h"
+#include "Features/Logic/End/Maker/LogicMakerFeature.h"
+#include "Features/Logic/End/Builder/LogicBuilderFeature.h"
+#include "Features/Logic/End/Terminator/LogicTerminatorFeature.h"
 
-#include "SceneFeature.h"
-#include "ObjectFeature.h"
+#include "Features/Logic/End/Scene/SceneFeature.h"
+#include "Features/Logic/End/Object/ObjectFeature.h"
 
 namespace nsLogicWrapper
 {

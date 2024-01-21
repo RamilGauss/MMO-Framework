@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 #include "InputTextTerminatorSystem.h"
 
-#include "GuidComponent.h"
-#include "ParentGuidComponent.h"
-#include "FrameComponent.h"
-#include "WindowComponent.h"
-#include "FrameComponent.h"
-#include "DialogComponent.h"
-#include "UnitBuilderHelper.h"
+#include "Components/Meta/GuidComponent.h"
+#include "Components/Meta/ParentGuidComponent.h"
+#include "Components/Gui/Widgets/FrameComponent.h"
+#include "Components/Gui/Widgets/WindowComponent.h"
+#include "Components/Gui/Widgets/FrameComponent.h"
+#include "Components/Gui/Widgets/DialogComponent.h"
+#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
 #include <ImGuiWidgets/include/InputText.h>
 

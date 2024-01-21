@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 #include "Base/Common/ProgressValue.h"
 
 #include "SceneInstantiatingThread.h"
-#include "InstantiateSceneParams.h"
+#include "Modules/Resources/Scene/InstantiateSceneParams.h"
 #include "EntityMetaContent.h"
 #include "SceneResourceContent.h"
 

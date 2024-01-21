@@ -9,11 +9,11 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "UniverseManager.h"
-#include "ObjectManager.h"
-#include "InstantiateSceneParams.h"
-#include "SceneInstanceState.h"
-#include "SceneList.h"
+#include "Modules/Resources/Scene/UniverseManager.h"
+#include "Modules/Resources/Common/ObjectManager.h"
+#include "Modules/Resources/Scene/InstantiateSceneParams.h"
+#include "Modules/Resources/Scene/SceneInstanceState.h"
+#include "Modules/Resources/Scene/SceneList.h"
 
 #include "Modules/Resources/Scene/StateGraph/SceneStateGraph.h"
 

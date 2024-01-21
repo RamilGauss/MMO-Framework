@@ -8,11 +8,11 @@ See for more information LICENSE.md.
 #include "OnOpenSystemViewerClickHandler.h"
 
 
-#include "Modules.h"
-#include "Gizmo.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Gizmos/Gizmo.h"
 
-#include "GraphicEngineModule.h"
-#include "UniverseIndexComponent.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
+#include "Components/Meta/UniverseIndexComponent.h"
 #include "GraphicEngineContext.h"
 
 using namespace nsTornadoEditor;

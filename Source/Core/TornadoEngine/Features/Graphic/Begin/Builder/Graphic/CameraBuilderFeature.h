@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "GuiCameraBuilderSystem.h"
+#include "Features/Graphic/Begin/Builder/Graphic/GuiCameraBuilderSystem.h"
 
 namespace nsGraphicWrapper
 {

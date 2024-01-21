@@ -11,12 +11,12 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Helper.h>
 
-#include "Modules.h"
+#include "Modules/Common/Modules.h"
 #include "StopAccessor.h"
-#include "SceneManager.h"
-#include "PrefabManager.h"
-#include "GameObject.h"
-#include "SceneInstanceGuidComponent.h"
+#include "Modules/Resources/Scene/SceneManager.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
+#include "Modules/Resources/Common/GameObject.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
 #include "FilePathNodeComponent.h"
 #include "ObjectHierarchyWindowTagComponent.h"
 #include "ObjectHierarchyWindowRefreshTagComponent.h"

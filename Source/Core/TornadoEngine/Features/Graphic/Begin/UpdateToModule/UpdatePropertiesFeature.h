@@ -9,17 +9,17 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Feature.h>
 
-#include "Components/Gui/Properties/AnchorsUpdateSystem.h"
-#include "Components/Gui/Properties/FocusUpdateSystem.h"
-#include "Components/Gui/Properties/HorizontalAlignUpdateSystem.h"
-#include "Components/Gui/Properties/MaxSizeUpdateSystem.h"
-#include "Components/Gui/Properties/MinDistanceToParentUpdateSystem.h"
-#include "Components/Gui/Properties/MinSizeUpdateSystem.h"
-#include "Components/Gui/Properties/PositionUpdateSystem.h"
-#include "Components/Gui/Properties/SizeUpdateSystem.h"
-#include "Components/Gui/Properties/TitleUpdateSystem.h"
-#include "Components/Gui/Properties/VerticalAlignUpdateSystem.h"
-#include "Components/Gui/Properties/VisibilityUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/AnchorsUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/FocusUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/HorizontalAlignUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/MaxSizeUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/MinDistanceToParentUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/MinSizeUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/PositionUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/SizeUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/TitleUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/VerticalAlignUpdateSystem.h"
+#include "Features/Graphic/Begin/UpdateToModule/VisibilityUpdateSystem.h"
 
 namespace nsGraphicWrapper
 {

@@ -5,23 +5,25 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "UnitBuilderHelper.h"
+#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
-#include "GuidComponent.h"
-#include "ParentGuidComponent.h"
-#include "PositionComponent.h"
-#include "SizeComponent.h"
-#include "TitleComponent.h"
+#include "Components/Meta/GuidComponent.h"
+#include "Components/Meta/ParentGuidComponent.h"
 
-#include "MainWindowComponent.h"
-#include "WindowComponent.h"
-#include "DialogComponent.h"
-#include "FrameComponent.h"
-#include "TreeViewComponent.h"
-#include "MenuNodeComponent.h"
-#include "TreeNodeComponent.h"
-#include "LabelValueComponent.h"
-#include "SelectedTreeNodeGuidComponent.h"
+#include "Components/Gui/Properties/PositionComponent.h"
+#include "Components/Gui/Properties/SizeComponent.h"
+#include "Components/Gui/Properties/TitleComponent.h"
+#include "Components/Gui/Properties/LabelValueComponent.h"
+#include "Components/Gui/Properties/SelectedTreeNodeGuidComponent.h"
+
+#include "Components/Gui/Widgets/ButtonComponent.h"
+#include "Components/Gui/Widgets/MainWindowComponent.h"
+#include "Components/Gui/Widgets/WindowComponent.h"
+#include "Components/Gui/Widgets/DialogComponent.h"
+#include "Components/Gui/Widgets/FrameComponent.h"
+#include "Components/Gui/Widgets/TreeViewComponent.h"
+#include "Components/Gui/Widgets/MenuNodeComponent.h"
+#include "Components/Gui/Widgets/TreeNodeComponent.h"
 
 using namespace nsGraphicWrapper;
 

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IPropertyOf.h"
+#include "Share/IPropertyOf.h"
 
 namespace nsTornadoEngine
 {

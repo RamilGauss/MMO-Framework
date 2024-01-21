@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 	
 #pragma once
 
-#include "ScenePartReflectionAggregator.h"
+#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 namespace nsTornadoEditor
 {

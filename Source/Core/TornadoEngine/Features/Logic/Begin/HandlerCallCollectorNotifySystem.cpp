@@ -6,8 +6,8 @@ See for more information LICENSE.md.
 */
 
 #include "HandlerCallCollectorNotifySystem.h"
-#include "Modules.h"
-#include "HandlerCallCollector.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Common/HandlerCallCollector.h"
 
 using namespace nsLogicWrapper;
 

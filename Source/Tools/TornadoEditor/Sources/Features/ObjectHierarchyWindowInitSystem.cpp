@@ -10,17 +10,17 @@ See for more information LICENSE.md.
 #include <ECS/include/Helper.h>
 
 #include "FileHierarchyWindowTagComponent.h"
-#include "Modules.h"
-#include "PrefabManager.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
 
-#include "IGraphicEngineModule.h"
+#include "Modules/Interfaces/IGraphicEngineModule.h"
 #include "MainWindowTagComponent.h"
 #include "MainWindowPrefabGuidComponent.h"
 
-#include "SceneInstanceGuidComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
 
-#include "PositionComponent.h"
-#include "SizeComponent.h"
+#include "Components/Gui/Properties/PositionComponent.h"
+#include "Components/Gui/Properties/SizeComponent.h"
 
 namespace nsTornadoEditor
 {

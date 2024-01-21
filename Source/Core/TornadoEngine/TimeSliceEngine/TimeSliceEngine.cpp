@@ -9,18 +9,18 @@ See for more information LICENSE.md.
 #include <stdarg.h>
 #include "fmt/core.h"
 
-#include "TimeSliceEngine.h"
+#include "TimeSliceEngine/TimeSliceEngine.h"
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/ShareMisc.h"
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/Logger.h"
 #include "Base/Common/FileOperation.h"
 
-#include "Modules.h"
-#include "IModule.h"
-#include "ModuleManager.h"
+#include "Modules/Common/Modules.h"
+#include "TimeSliceEngine/IModule.h"
+#include "Modules/Common/ModuleManager.h"
 
-#include "ProjectConfigContainer.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
 #include "ProjectConfigLoader.h"
 #include "ProjectConfigUnloader.h"
 

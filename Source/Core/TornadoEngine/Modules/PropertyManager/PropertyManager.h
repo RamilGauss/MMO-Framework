@@ -16,13 +16,14 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeName.h"
 
 #include <ECS/include/EntityManager.h>
-#include <IPropertyOf.h>
-#include <TimeSliceEngine/ProjectConfigContainer.h>
 
-#include "Archetype.h"
-#include "RelativeProperties.h"
+#include "Share/IPropertyOf.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
 
-#include "ScenePartReflectionAggregator.h"
+#include "Modules/PropertyManager/Archetype.h"
+#include "Modules/PropertyManager/RelativeProperties.h"
+
+#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 namespace nsTornadoEngine
 {

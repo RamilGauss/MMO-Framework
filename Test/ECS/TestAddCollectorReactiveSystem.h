@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "OnAddCollectReactiveSystem.h"
 
-#include "NameComponent.h"
+#include "Components/Meta/NameComponent.h"
 
 class TTestAddCollectorReactiveSystem : 
     public nsECSFramework::TOnAddCollectReactiveSystem<TNameComponent, TTestAddCollectorReactiveSystem>

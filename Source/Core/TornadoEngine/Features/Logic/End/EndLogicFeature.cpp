@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "EndLogicFeature.h"
+#include "Features/Logic/End/EndLogicFeature.h"
 
 using namespace nsLogicWrapper;
 

@@ -9,10 +9,10 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/MainWindow.h>
 
-#include "Modules.h"
-#include "GraphicEngineModule.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
 
-#include "UniverseIndexComponent.h"
+#include "Components/Meta/UniverseIndexComponent.h"
 
 using namespace nsGraphicWrapper;
 

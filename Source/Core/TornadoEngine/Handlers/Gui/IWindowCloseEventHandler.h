@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/Config.h>
 
-#include "WindowComponent.h"
+#include "Components/Gui/Widgets/WindowComponent.h"
 
 namespace nsGuiWrapper
 {

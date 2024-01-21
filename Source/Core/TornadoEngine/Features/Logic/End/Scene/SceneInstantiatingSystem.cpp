@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "SceneInstantiatingSystem.h"
 
-#include "Modules.h"
-#include "ModuleManager.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Common/ModuleManager.h"
 
 using namespace nsTornadoEngine;
 

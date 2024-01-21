@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <ECS/include/OnAddCollectReactiveSystem.h>
 
-#include "AnchorsComponent.h"
+#include "Components/Gui/Properties/AnchorsComponent.h"
 
 namespace nsGraphicWrapper
 {

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IDataBaseModule.h"
+#include "Modules/Interfaces/IDataBaseModule.h"
 
 namespace nsTornadoEngine
 {

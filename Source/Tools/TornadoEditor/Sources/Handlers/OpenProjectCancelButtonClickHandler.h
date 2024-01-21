@@ -9,11 +9,11 @@ See for more information LICENSE.md.
 
 #include "IButtonClickHandler.h"
 
-#include "Modules.h"
+#include "Modules/Common/Modules.h"
 #include "StopAccessor.h"
-#include "SceneManager.h"
+#include "Modules/Resources/Scene/SceneManager.h"
 
-#include "SceneInstanceGuidComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
 
 #include "SceneObjectReferenceComponent.h"
 #include "PrefabReferenceComponent.h"

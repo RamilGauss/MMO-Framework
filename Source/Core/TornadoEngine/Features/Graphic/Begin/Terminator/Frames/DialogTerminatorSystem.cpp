@@ -6,8 +6,8 @@ See for more information LICENSE.md.
 */
 
 #include "DialogTerminatorSystem.h"
-#include "Modules.h"
-#include "GraphicEngineModule.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Implementations/GraphicEngineModule.h"
 
 #include <ImGuiWidgets/include/Dialog.h>
 

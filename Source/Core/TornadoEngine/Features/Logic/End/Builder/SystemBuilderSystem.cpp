@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "SystemBuilderSystem.h"
 
-#include "Modules.h"
-#include "LogicModule.h"
+#include "Modules/Common/Modules.h"
+#include "Modules/Implementations/LogicModule.h"
 
 using namespace nsLogicWrapper;
 
