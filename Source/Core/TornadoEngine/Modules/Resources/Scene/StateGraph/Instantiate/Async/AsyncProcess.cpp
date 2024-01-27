@@ -13,6 +13,8 @@ namespace nsTornadoEngine
 {
     TAsyncProcess::TAsyncProcess()
     {
+        mThread = std::jthread(&TAsyncProcess::ThreadFunc, this);
+
         AddZones<Zone>();
 
         //AddProcess<TAsyncProcess>(Process::ASYNC, Zone::INIT, Zone::ASYNCED);
@@ -21,6 +23,13 @@ namespace nsTornadoEngine
     void TAsyncProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
     {
 
+    }
+    //-------------------------------------------------------------------------------
+    void TAsyncProcess::ThreadFunc()
+    {
+        while (true) {
+
+        }
     }
     //-------------------------------------------------------------------------------
 }

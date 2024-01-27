@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <thread>
+
 #include "Base/Zones/ZoneProcess.h"
 
 namespace nsBase::nsZones
@@ -33,9 +35,14 @@ namespace nsTornadoEngine
             SORTING_ENTITIES_BY_RANK,
             COMPONENT_DESERIALIZING,
         };
+
+        std::jthread mThread;
     public:
         TAsyncProcess();
 
         void Work(std::list<nsBase::nsZones::IContext*>& aciveCtx) override;
+
+    private:
+        void ThreadFunc();
     };
 }
