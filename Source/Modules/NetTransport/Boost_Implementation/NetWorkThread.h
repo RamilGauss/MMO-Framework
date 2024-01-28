@@ -8,9 +8,9 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <boost/asio/io_service.hpp>
-#include "Base/Common/ThreadBoost.h"
+#include "Base/Common/SingleThread.h"
 
-class TNetWorkThread : public nsBase::nsCommon::TThreadBoost
+class TNetWorkThread : public nsBase::nsCommon::TSingleThread
 {
     boost::asio::io_context mIO_Context;
 

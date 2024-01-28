@@ -12,9 +12,9 @@ See for more information LICENSE.md.
 #include <functional>
 
 #include "Base/Common/DataExchange2Thread.h"
-#include "Base/Common/ThreadBoost.h"
+#include "Base/Common/SingleThread.h"
 
-class DllExport TExecuteInstructionEngine : public nsBase::nsCommon::TThreadBoost
+class DllExport TExecuteInstructionEngine : public nsBase::nsCommon::TSingleThread
 {
     std::mutex mMutex;
     std::condition_variable mCondVar;

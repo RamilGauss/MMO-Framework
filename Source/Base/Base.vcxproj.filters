@@ -158,7 +158,7 @@
     <ClInclude Include="include\Base\Common\StatisticsValue.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Common\ThreadBoost.h">
+    <ClInclude Include="include\Base\Common\SingleThread.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\TypeDef.h">
@@ -376,7 +376,7 @@
     <ClCompile Include="src\SrcEvent.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ThreadBoost.cpp">
+    <ClCompile Include="src\SingleThread.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SingletonManager.cpp">

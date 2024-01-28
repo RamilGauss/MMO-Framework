@@ -37,6 +37,6 @@ void TNetWorkThread::Work()
 void TNetWorkThread::Stop()
 {
     mIO_Context.stop();
-    nsBase::nsCommon::TThreadBoost::Stop();
+    nsBase::nsCommon::TSingleThread::Stop();
 }
 //----------------------------------------------------------------------------------

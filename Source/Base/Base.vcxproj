@@ -287,7 +287,7 @@
     <ClInclude Include="include\Base\Common\StringExtensions.h" />
     <ClInclude Include="include\Base\Common\TextFile.h" />
     <ClInclude Include="include\Base\Common\TextGenerator.h" />
-    <ClInclude Include="include\Base\Common\ThreadBoost.h" />
+    <ClInclude Include="include\Base\Common\SingleThread.h" />
     <ClInclude Include="include\Base\Common\TypeDef.h" />
     <ClInclude Include="include\Base\Common\RunTimeTypeIndex.h" />
     <ClInclude Include="include\Base\Common\TypeName.h" />
@@ -353,7 +353,7 @@
     <ClCompile Include="src\StringExtensions.cpp" />
     <ClCompile Include="src\TextFile.cpp" />
     <ClCompile Include="src\TextGenerator.cpp" />
-    <ClCompile Include="src\ThreadBoost.cpp" />
+    <ClCompile Include="src\SingleThread.cpp" />
     <ClCompile Include="src\Zone.cpp" />
     <ClCompile Include="src\ZoneManager.cpp" />
   </ItemGroup>

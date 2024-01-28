@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/ThreadBoost.h"
+#include "Base/Common/SingleThread.h"
 
 namespace nsTornadoEngine
 {
     struct TSceneInstanceState;
 
-    class DllExport TSceneInstantiatingThread : public nsBase::nsCommon::TThreadBoost
+    class DllExport TSceneInstantiatingThread : public nsBase::nsCommon::TSingleThread
     {
         TSceneInstanceState* mScState = nullptr;
 

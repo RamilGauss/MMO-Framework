@@ -15,6 +15,8 @@ See for more information LICENSE.md.
 #include "Base/Zones/IContext.h"
 #include "Base/Zones/ContextState.h"
 
+#include "Base/Common/SingleThread.h"
+
 namespace nsBase::nsZones::nsTests
 {
     struct TCtx : IContext
@@ -153,6 +155,35 @@ namespace nsBase::nsZones::nsTests
             }
         }
 
+    };
+
+    class TAsyncProcess : public TProcess, public nsBase::nsCommon::TSingleThread
+    {
+    public:
+        TAsyncProcess()
+        {
+            nsBase::nsCommon::TSingleThread::Start();
+        }
+        void Work(std::list<IContext*>& aciveCtx) override
+        {
+            for (auto pCtx : aciveCtx) {
+                Finish(pCtx);
+            }
+        }
+        uint64_t GetTotalCount(IContext* pCtx) const override
+        {
+            return Ctx<TCtx>(pCtx)->totalCount;
+        }
+        uint64_t GetProgressCount(IContext* pCtx) const override
+        {
+            return Ctx<TCtx>(pCtx)->progressCount;
+        }
+    private:
+    protected:
+        void Work() override
+        {
+
+        }
     };
 }
 
@@ -327,4 +358,10 @@ TEST(Zones, Simple_LargeQueue_Ok)
     for (auto& ctx : ctxs) {
         ASSERT_TRUE(ctx.GetOwnerZone() == b.get());
     }
+}
+
+TEST(Zones, Async)
+{
+    TAsyncProcess asyncProcess;
+
 }

@@ -7,33 +7,26 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <atomic>
+#include <thread>
 
 #include "Base/Common/TypeDef.h"
 
 namespace nsBase::nsCommon
 {
-    class DllExport TThreadBoost
+    class DllExport TSingleThread
     {
-        std::atomic_bool flgActive;
-        std::atomic_bool flgNeedStop;
+        const uint32_t WAIT_FEED_BACK_MS = 1;
 
-        std::atomic_uint32_t mTimeStart;
-        enum
-        {
-            eWaitFeedBack = 1, // ждать пока активизируется двигатель, мс
-        };
+        std::jthread mThread;
 
     public:
-        TThreadBoost();
-        virtual ~TThreadBoost();
+        TSingleThread();
+        virtual ~TSingleThread();
 
         virtual bool IsActive();
         virtual void Start();
         virtual void Stop();
 
-        virtual unsigned int GetTimeLastStart();
-        virtual unsigned int GetTimeWork();
     protected:
         void Engine();
     protected:
