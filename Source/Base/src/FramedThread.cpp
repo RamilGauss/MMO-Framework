@@ -5,49 +5,42 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Base/Common/SingleThread.h"
+#include "Base/Common/FramedThread.h"
+#include "Base/Common/HiTimer.h"
 
 namespace nsBase::nsCommon
 {
-    TSingleThread::TSingleThread()
-    {
-
-    }
-    //-----------------------------------------------------------------
-    TSingleThread::~TSingleThread()
-    {
-        Stop();
-    }
-    //-----------------------------------------------------------------
-    void TSingleThread::Engine()
+    void TFramedThread::Engine()
     {
         auto stopToken = mThread.get_stop_token();
 
-        StartEvent();
-
         while (not stopToken.stop_requested()) {
-            Work();
+            mFrameFunc();
         }
-
-        StopEvent();
     }
     //----------------------------------------------------------------------------------
-    void TSingleThread::Start()
+    void TFramedThread::Start(std::function<void()> frameFunc)
     {
+        if(frameFunc == nullptr || IsActive()) {
+            return;
+        }
+
+        mFrameFunc = frameFunc;
+
         mThread = std::jthread(&TSingleThread::Engine, this);
 
-        while (not mThread.joinable()) {
-            int a = 0;
+        while (not IsActive()) {
+            ht_sleep(WAIT_FEED_BACK_MS);
         }
     }
     //----------------------------------------------------------------------------------
-    void TSingleThread::Stop()
+    void TFramedThread::Stop()
     {
         mThread.request_stop();
         mThread.join();
     }
     //----------------------------------------------------------------------------------
-    bool TSingleThread::IsActive()
+    bool TFramedThread::IsActive() const
     {
         return mThread.joinable();
     }

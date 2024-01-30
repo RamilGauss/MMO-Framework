@@ -8,34 +8,26 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <thread>
+#include <functional>
 
 #include "Base/Common/TypeDef.h"
 
 namespace nsBase::nsCommon
 {
-    class DllExport TSingleThread
+    class DllExport TFramedThread final
     {
         const uint32_t WAIT_FEED_BACK_MS = 1;
 
         std::jthread mThread;
 
+        std::function<void()> mFrameFunc;
+
     public:
-        TSingleThread();
-        virtual ~TSingleThread();
+        bool IsActive() const;
+        void Start(std::function<void()> frameFunc);
+        void Stop();
 
-        virtual bool IsActive();
-        virtual void Start();
-        virtual void Stop();
-
-    protected:
+    private:
         void Engine();
-    protected:
-        virtual void Work() = 0;
-        virtual void StartEvent()
-        {
-        }
-        virtual void StopEvent()
-        {
-        }
     };
 }
