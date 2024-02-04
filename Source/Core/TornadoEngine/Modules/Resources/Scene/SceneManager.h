@@ -9,8 +9,9 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "Modules/Resources/Scene/UniverseManager.h"
 #include "Modules/Resources/Common/ObjectManager.h"
+
+#include "Modules/Resources/Scene/UniverseManager.h"
 #include "Modules/Resources/Scene/InstantiateSceneParams.h"
 #include "Modules/Resources/Scene/SceneInstanceState.h"
 #include "Modules/Resources/Scene/SceneList.h"
@@ -21,6 +22,7 @@ namespace nsTornadoEngine
 {
     class TSceneCacheManager;
     class TPrefabManager;
+
     class DllExport TSceneManager : public TObjectManager
     {
         TUniverseManager mUniverseManager;

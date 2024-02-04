@@ -27,10 +27,10 @@ namespace nsBase::nsCommon
 
         mFrameFunc = frameFunc;
 
-        mThread = std::jthread(&TSingleThread::Engine, this);
+        mThread = std::jthread(&TFramedThread::Engine, this);
 
         while (not IsActive()) {
-            ht_sleep(WAIT_FEED_BACK_MS);
+            ht_msleep(WAIT_FEED_BACK_MS);
         }
     }
     //----------------------------------------------------------------------------------

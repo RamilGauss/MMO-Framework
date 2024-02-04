@@ -275,6 +275,12 @@
     <ClInclude Include="include\Base\Zones\ZoneManagerMaster.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Base\Common\FramedThread.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Base\Common\ThreadSharedValue.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -446,6 +452,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Rank.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FramedThread.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

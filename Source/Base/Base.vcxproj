@@ -222,6 +222,8 @@
     <ClInclude Include="include\Base\Common\ContainerPtrArrObj.h" />
     <ClInclude Include="include\Base\Common\ContainerRise.h" />
     <ClInclude Include="include\Base\Common\ContainerTypes.h" />
+    <ClInclude Include="include\Base\Common\FramedThread.h" />
+    <ClInclude Include="include\Base\Common\ThreadSharedValue.h" />
     <ClInclude Include="include\Base\Zones\ContextState.h" />
     <ClInclude Include="include\Base\Zones\IContext.h" />
     <ClInclude Include="include\Base\Common\ConverterLocale.h" />
@@ -297,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ContextState.cpp" />
+    <ClCompile Include="src\FramedThread.cpp" />
     <ClCompile Include="src\GuidGenerator.cpp" />
     <ClCompile Include="src\IContext.cpp" />
     <ClCompile Include="src\LoaderDLLFactory.cpp" />

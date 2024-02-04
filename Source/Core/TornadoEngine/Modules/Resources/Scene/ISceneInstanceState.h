@@ -9,10 +9,19 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
+
+namespace nsBase::nsZones
+{
+    struct IContext;
+}
+
 namespace nsTornadoEngine
 {
-    struct DllExport ISceneInstanceState
+    class DllExport ISceneInstanceState
     {
+    public:
+        ISceneInstanceState(nsBase::nsZones::IContext* pCtx) { mCtx = pCtx; }
+
         enum class State
         {
             INSTANTIATING,
@@ -26,15 +35,10 @@ namespace nsTornadoEngine
 
         virtual float GetProgress() const = 0;
 
+        virtual float GetStateProgress() const = 0;
+        virtual bool IsCompleted() const = 0;
 
-
-        virtual float GetInstantiatingProgress() const = 0;
-        virtual bool IsInstantiateCompleted() const = 0;
-
-        virtual float GetDestroyingProgress() const = 0;
-        virtual bool IsIDestroyCompleted() const = 0;
-
-        virtual float GetSavingProgress() const = 0;
-        virtual bool IsSaveCompleted() const = 0;
+    protected:
+        nsBase::nsZones::IContext* mCtx = nullptr;
     };
 }
