@@ -22,7 +22,6 @@ namespace nsBase::nsCommon
         return (TLogger*)&g_Logger;
     }
     //-----------------------------------------------------------------------
-    //TSaveToFile* GetLogger( const char* nameLog )
     TSaveToFile* GetLogger(const std::string& nameLog)
     {
         return g_Logger.Get(nameLog);

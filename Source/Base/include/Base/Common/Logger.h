@@ -73,6 +73,5 @@ namespace nsBase::nsCommon
     };
 
     extern DllExport TLogger* GetLogger();
-    //extern DllExport TSaveToFile* GetLogger( const char* nameLog );
     extern DllExport TSaveToFile* GetLogger(const std::string& nameLog);
 }
