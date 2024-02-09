@@ -17,29 +17,32 @@ TEventHub* GetEventHub()
     return &g_EventHub;
 }
 
-void TEventHub::AddEvent(const std::string& level, const std::string& message)
+void TEventHub::AddEvent(const std::string& level, const std::string& message, const std::string& message, const std::source_location loc)
 {
+    auto source_location_str = std::format("{}, {}, {}, {}", 
+        location.file_name(), location.line(), location.column(), location.function_name());
+
     auto str_time = ht_GetTimeStr();
-    auto event = std::format("{}: {} - {}", str_time, level, message);
+    auto event = std::format("{}|{}:{}({})", str_time, level, message, source_location_str);
 
     std::lock_guard<std::mutex> guard(mMutex);
 
     mEvents.push_back(event)
 }
 //------------------------------------------------------------------------------------------------
-void TEventHub::AddInfoEvent(const std::string& message)
+void TEventHub::AddInfoEvent(const std::string& message, const std::string& message, const std::source_location loc)
 {
-    AddEvent("Info", message);
+    AddEvent("Info", message, loc);
 }
 //------------------------------------------------------------------------------------------------
-void TEventHub::AddWarningEvent(const std::string& message)
+void TEventHub::AddWarningEvent(const std::string& message, const std::string& message, const std::source_location loc)
 {
-    AddEvent("Warning", message);
+    AddEvent("Warning", message, loc);
 }
 //------------------------------------------------------------------------------------------------
-void TEventHub::AddErrorEvent(const std::string& message)
+void TEventHub::AddErrorEvent(const std::string& message, const std::string& message, const std::source_location loc)
 {
-    AddEvent("Error", message);
+    AddEvent("Error", message, loc);
 }
 //------------------------------------------------------------------------------------------------
 void TEventHub::TakeEvents(std::vector<std::string>& events)

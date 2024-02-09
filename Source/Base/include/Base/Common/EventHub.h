@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include <mutex>
 #include <string>
 #include <vector>
+#include <source_location>
 
 #include "Base/Common/TypeDef.h"
 
@@ -21,10 +22,10 @@ namespace nsBase::nsCommon
         std::mutex mMutex;
         std::vector<std::string> mEvents;
     public:
-        void AddEvent(const std::string& level, const std::string& message);
-        void AddInfoEvent(const std::string& message);
-        void AddWarningEvent(const std::string& message);
-        void AddErrorEvent(const std::string& message);
+        void AddEvent(const std::string& level, const std::string& message, const std::source_location loc = std::source_location::current());
+        void AddInfoEvent(const std::string& message, const std::source_location loc = std::source_location::current());
+        void AddWarningEvent(const std::string& message, const std::source_location loc = std::source_location::current());
+        void AddErrorEvent(const std::string& message, const std::source_location loc = std::source_location::current());
        
         void TakeEvents(std::vector<std::string>& events);
     };
