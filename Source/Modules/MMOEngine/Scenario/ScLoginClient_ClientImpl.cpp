@@ -5,15 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include "Base/Common/EventHub.h"
+#include "Base/Common/SrcEvent_ex.h"
+#include "Base/Common/MD5.h"
+
 #include "ScLoginClient_ClientImpl.h"
 #include "ContextScLoginClient.h"
 #include "SessionManager.h"
 #include "Base.h"
-#include "Base/Common/Logger.h"
 #include "Events.h"
 #include "EnumMMO.h"
-#include "Base/Common/SrcEvent_ex.h"
-#include "Base/Common/MD5.h"
 #include "IScenario.h"
 
 using namespace nsMMOEngine;
@@ -62,9 +63,8 @@ void TScLoginClient_ClientImpl::TryLogin(TIP_Port& ip_port, const std::string& l
 {
     if (Begin() == false) {
         // генерация ошибки
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScenarioLoginClient::TryLogin() scenario is not active.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScenarioLoginClient::TryLogin() scenario is not active.");
         return;
     }
     Context()->SetNeedLeaveQueue(false);

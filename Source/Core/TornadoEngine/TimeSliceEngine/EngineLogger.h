@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include <fmt/core.h>
 
 #include "Base/Common/TypeDef.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 
 namespace nsTornadoEngine
 {
@@ -26,7 +26,8 @@ namespace nsTornadoEngine
         {
             //LogEvent();
 
-            nsBase::nsCommon::GetLogger(TEngineLogger::NAME)->WriteF_time(format, std::forward<Args>(args)...);
+            nsBase::nsCommon::GetEventHub()->
+                AddWarningEvent(std::format(format, std::forward<Args>(args)...));
         }
     protected:
         virtual void LogEvent(const std::string& str) {}

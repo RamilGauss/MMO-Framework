@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "Slave.h"
 
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "ControlScenario.h"
 #include "SessionManager.h"
 #include "Events.h"
@@ -201,9 +201,8 @@ void TSlave::EndRcm(IScenario* pSc)
         return;
     }
     if (pContext->IsRecipient() == false) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TSlave::EndRcm() Undef state.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TSlave::EndRcm() Undef state.");
         return;
     }
     // переместить из временного хранилища в постоянное

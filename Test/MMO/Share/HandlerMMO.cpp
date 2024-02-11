@@ -12,11 +12,12 @@ See for more information LICENSE.md.
 #include "MMOEngine/include/Events.h"
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
-#include "Base/Common/ResolverSelf_IP_v4.h"
 #include <iostream>
 #include <iomanip>
+
+#include "Base/Common/ResolverSelf_IP_v4.h"
 #include "Base/Common/BL_Debug.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 
 static THandlerMMO::TMapUIntPtr g_ID_MMO_HandlerPtr;
 
@@ -173,7 +174,8 @@ void THandlerMMO::PrintCC(const char* loggerName)
 
     s += "\n";
 
-    nsBase::nsCommon::GetLogger(loggerName)->WriteF(s.data());
+    nsBase::nsCommon::GetEventHub()->
+        AddWarningEvent(s.data());
 }
 //---------------------------------------------------------------------------------------------
 void THandlerMMO::AddClient(unsigned int clientKey)

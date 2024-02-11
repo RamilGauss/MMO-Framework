@@ -222,6 +222,7 @@
     <ClInclude Include="include\Base\Common\ContainerPtrArrObj.h" />
     <ClInclude Include="include\Base\Common\ContainerRise.h" />
     <ClInclude Include="include\Base\Common\ContainerTypes.h" />
+    <ClInclude Include="include\Base\Common\EventHub.h" />
     <ClInclude Include="include\Base\Common\FramedThread.h" />
     <ClInclude Include="include\Base\Common\ThreadSharedValue.h" />
     <ClInclude Include="include\Base\Zones\ContextState.h" />
@@ -263,7 +264,6 @@
     <ClInclude Include="include\Base\Common\MemoryObjectPoolAllocator.h" />
     <ClInclude Include="include\Base\Common\MemoryDumper.h" />
     <ClInclude Include="include\Base\Common\Mutex.h" />
-    <ClInclude Include="include\Base\Common\Only_N_Object.h" />
     <ClInclude Include="include\Base\Common\BinaryPopMaster.h" />
     <ClInclude Include="include\Base\Common\BinaryPushMaster.h" />
     <ClInclude Include="include\Base\Common\PathOperations.h" />
@@ -289,7 +289,6 @@
     <ClInclude Include="include\Base\Common\StringExtensions.h" />
     <ClInclude Include="include\Base\Common\TextFile.h" />
     <ClInclude Include="include\Base\Common\TextGenerator.h" />
-    <ClInclude Include="include\Base\Common\SingleThread.h" />
     <ClInclude Include="include\Base\Common\TypeDef.h" />
     <ClInclude Include="include\Base\Common\RunTimeTypeIndex.h" />
     <ClInclude Include="include\Base\Common\TypeName.h" />
@@ -299,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ContextState.cpp" />
+    <ClCompile Include="src\EventHub.cpp" />
     <ClCompile Include="src\FramedThread.cpp" />
     <ClCompile Include="src\GuidGenerator.cpp" />
     <ClCompile Include="src\IContext.cpp" />
@@ -331,7 +331,6 @@
     <ClCompile Include="src\MD5.cpp" />
     <ClCompile Include="src\MemoryDumper.cpp" />
     <ClCompile Include="src\Mutex.cpp" />
-    <ClCompile Include="src\Only_N_Object.cpp" />
     <ClCompile Include="src\BinaryPopMaster.cpp" />
     <ClCompile Include="src\BinaryPushMaster.cpp" />
     <ClCompile Include="src\PathOperations.cpp" />
@@ -356,7 +355,6 @@
     <ClCompile Include="src\StringExtensions.cpp" />
     <ClCompile Include="src\TextFile.cpp" />
     <ClCompile Include="src\TextGenerator.cpp" />
-    <ClCompile Include="src\SingleThread.cpp" />
     <ClCompile Include="src\Zone.cpp" />
     <ClCompile Include="src\ZoneManager.cpp" />
   </ItemGroup>

@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "ContainerContextSc.h"
 
 #include "ECS/include/EntityManager.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "ScenarioFlow.h"
 #include "ScenarioLoginClient.h"
 #include "ScenarioLoginSlave.h"
@@ -99,8 +99,8 @@ void TSlaveOnMasterLogic::NeedContextLoginSlave(unsigned int sessionID)
     auto slaveEntity = mEntMng->GetByUnique(slaveSessionIdentityComponent);
     if (slaveEntity != nsECSFramework::NONE) {
         // внутренняя ошибка
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TSlaveOnMasterLogic::NeedContextLoginSlave() against try authorized.\n");
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TSlaveOnMasterLogic::NeedContextLoginSlave() against try authorized.");
         return;
     }
     auto pC = AddContainer();

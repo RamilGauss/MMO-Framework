@@ -5,9 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
 #include "ManagerContextClientLogining.h"
 
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
+#include "Base/Common/BL_Debug.h"
+
 #include "ContainerContextSc.h"
 #include "EnumMMO.h"
 
@@ -28,8 +32,8 @@ bool TManagerContextClientLogining::FindSessionByClientKey(unsigned int clientKe
 {
     auto fit = mMapSessionKey.right.find(clientKey);
     if (fit == mMapSessionKey.right.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TManagerContextClientLogining::FindSessionByClientKey(clientKey=%u) not found.\n", clientKey);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TManagerContextClientLogining::FindSessionByClientKey(clientKey=%u) not found.", clientKey));
         return false;
     }
     sessionID = fit->second;
@@ -40,8 +44,8 @@ bool TManagerContextClientLogining::FindClientKeyBySession(unsigned int sessionI
 {
     auto fit = mMapSessionKey.left.find(sessionID);
     if (fit == mMapSessionKey.left.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TManagerContextClientLogining::FindClientKeyBySession(session=%u) not found.\n", sessionID);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TManagerContextClientLogining::FindClientKeyBySession(session=%u) not found.", sessionID));
         return false;
     }
     clientKey = fit->second;
@@ -52,8 +56,8 @@ TContainerContextSc* TManagerContextClientLogining::FindContextBySession(unsigne
 {
     TMapUintPtrIt fit = mMapSessionContext.find(sessionID);
     if (fit == mMapSessionContext.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TManagerContextClientLogining::FindContextBySession(session=%u) not found.\n", sessionID);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TManagerContextClientLogining::FindContextBySession(session=%u) not found.", sessionID));
         return nullptr;
     }
     return fit->second;

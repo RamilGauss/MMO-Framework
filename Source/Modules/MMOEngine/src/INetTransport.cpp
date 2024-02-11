@@ -6,16 +6,10 @@ See for more information LICENSE.md.
 */
 
 #include "INetTransport.h"
-#include "Base/Common/Logger.h"
 #include "EnumMMO.h"
 
 namespace nsMMOEngine
 {
-    INetTransport::INetTransport()
-    {
-        nsBase::nsCommon::GetLogger()->Register(STR_NAME_NET_TRANSPORT);
-    }
-    //---------------------------------------------------------------------------
     INetTransport::~INetTransport()
     {
 

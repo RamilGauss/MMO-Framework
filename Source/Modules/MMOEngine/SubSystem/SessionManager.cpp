@@ -5,8 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
 #include "SessionManager.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "Base.h"
 
 using namespace std;
@@ -35,7 +37,8 @@ void TSessionManager::SetMakerTransport(IMakerTransport* pMakerTransport)
 bool TSessionManager::Start(TDescOpen* pDesc, int count)
 {
     if (flgStart) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TSessionManager::Start() restart.\n");
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TSessionManager::Start() restart.");
         BL_FIX_BUG();
         return false;
     }
@@ -55,10 +58,8 @@ bool TSessionManager::StartTransport(unsigned short port, unsigned char subNet)
     INetTransport* pTransport = mMngTransport->Add(subNet);
     bool resOpen = pTransport->Open(port, subNet);
     if (resOpen == false) {
-        char s[100];
-        sprintf(s, "TSessionManager::Start() open port %u FAIL.\n", port);
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time(s);
-        BL_MessageBug(s);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TSessionManager::Start() open port %u FAIL.", port));
         return false;
     }
     // старт потока чтения
@@ -142,9 +143,8 @@ void TSessionManager::ConnectAsync(TIP_Port& ip_port, const std::string& login, 
         pSession = NewSession(mIP_PortUp, pTransport, true/*connect to*/);
     } else {
         unlockConnectUp();
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TSessionManager::Send(%s) sending to IP with exist session.\n", ip_port.ToString());
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TSessionManager::Send(%s) sending to IP with exist session.", ip_port.ToString()));
         return mConnectResult(INVALID_HANDLE_SESSION);
     }
     mSessionID_UP = pSession->GetID();
@@ -392,7 +392,8 @@ void TSessionManager::RecvIDconfirmation(TDescRecvSession& descRecvSession, TSes
 //-------------------------------------------------------------------------
 void TSessionManager::FixHack(const char* sMsg)
 {
-    nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("Try hack: %s.\n", sMsg);
+    nsBase::nsCommon::GetEventHub()->
+        AddWarningEvent(std::format("Try hack: {}.", sMsg));
 }
 //-------------------------------------------------------------------------
 void TSessionManager::BeginWaitConnectUp()

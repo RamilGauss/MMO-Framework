@@ -5,11 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include "Base/Common/EventHub.h"
+
 #include "HistoryPacketTCP.h"
 #include "HeaderTCP.h"
 #include "MMOEngine/include/INetTransport.h"
 #include "MMOEngine/include/EnumMMO.h"
-#include "Base/Common/Logger.h"
 
 THistoryPacketTCP::THistoryPacketTCP()
 {
@@ -117,8 +118,8 @@ void THistoryPacketTCP::CheckSize(TResult& res)
 {
     // проверка корректности предполагаемого размера пакета
     if (mSizePacket > eMaxSize) {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("THistoryPacketTCP::SearchSize expect very large size of packet.\n");
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("THistoryPacketTCP::SearchSize expect very large size of packet.");
         // сдвиг на 1 байт и поиск дальше, но фактически обмен нарушен
         // канал скоро умрет, админ, проверяя логи, забанит "хака".
         // ну, по крайней мере так должно быть.

@@ -5,14 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
+#include "Base/Common/EventHub.h"
+#include "Base/Common/SrcEvent_ex.h"
+
 #include "ScRecommutationClient_SlaveImpl.h"
-#include "Base/Common/Logger.h"
 #include "SessionManager.h"
 #include "BaseScRecommutationClient_Struct.h"
 #include "ContextScRecommutationClient.h"
-#include "Events.h"
-#include "Base/Common/SrcEvent_ex.h"
 #include "DescRequestConnectForRecipient.h"
+#include "Events.h"
 
 using namespace nsMMOEngine;
 using namespace nsRecommutationClientStruct;
@@ -100,9 +103,8 @@ void TScRecommutationClient_SlaveImpl::BeginDonor(TDescRecvSession* pDesc)
     THeaderBeginDonor* pHeader = (THeaderBeginDonor*)pDesc->data;
     NeedContextByClientKeyForSlave(pHeader->clientKey, true);
     if (Context() == nullptr) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScRecommutationClient_SlaveImpl::BeginDonor() Context()==NULL.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScRecommutationClient_SlaveImpl::BeginDonor() Context()==NULL.");
         return;
     }
     //--------------------------------------------
@@ -111,9 +113,8 @@ void TScRecommutationClient_SlaveImpl::BeginDonor(TDescRecvSession* pDesc)
     // начало сценария
     if (Begin() == false) {
         // генерация ошибки
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScRecommutationClient_SlaveImpl::BeginDonor() scenario is not active.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScRecommutationClient_SlaveImpl::BeginDonor() scenario is not active.");
         return;
     }
     // сформировать пакет далее для Клиента
@@ -132,9 +133,8 @@ void TScRecommutationClient_SlaveImpl::InfoRecipientToDonor(TDescRecvSession* pD
     THeaderInfoRecipientToDonor* pHeader = (THeaderInfoRecipientToDonor*)pDesc->data;
     NeedContextByClientKeyForSlave(pHeader->clientKey, true);
     if (Context() == nullptr) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScRecommutationClient_SlaveImpl::InfoRecipientToDonor() Context()==NULL.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScRecommutationClient_SlaveImpl::InfoRecipientToDonor() Context()==NULL.");
         return;
     }
     //--------------------------------------------
@@ -155,8 +155,8 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient(TDescRecvSession* pDesc)
     THeaderBeginRecipient* pHeader = (THeaderBeginRecipient*)pDesc->data;
     NeedContextByClientKeyForSlave(pHeader->clientKey, false);
     if (Context() == nullptr) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScRecommutationClient_SlaveImpl::BeginRecipient() Context()==NULL.\n");
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScRecommutationClient_SlaveImpl::BeginRecipient() Context()==NULL.");
         BL_FIX_BUG();
         return;
     }
@@ -168,9 +168,8 @@ void TScRecommutationClient_SlaveImpl::BeginRecipient(TDescRecvSession* pDesc)
     // начало сценария
     if (Begin() == false) {
         // генерация ошибки
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScRecommutationClient_SlaveImpl::BeginRecipient() scenario is not active.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScRecommutationClient_SlaveImpl::BeginRecipient() scenario is not active.");
         return;
     }
     // сохранить Контекст в контекст (извините за каламбур)
@@ -241,9 +240,9 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
     if (Context() == nullptr) {
         auto clientKey = pHeader->clientKey;
 
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScRecommutationClient_SlaveImpl::RequestConnect not found session=0x%X, key=%u",
-                pDesc->sessionID, clientKey);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TScRecommutationClient_SlaveImpl::RequestConnect not found session=0x{}, key={}",
+                pDesc->sessionID, clientKey));
         return;
     }
     // запомнить сессию

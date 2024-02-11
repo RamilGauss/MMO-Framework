@@ -32,7 +32,6 @@ namespace nsMMOEngine
             eTypeRecv type;
         };
 
-        INetTransport();
         virtual ~INetTransport();
 
         virtual bool Open(unsigned short port, unsigned char numNetWork = 0) = 0;

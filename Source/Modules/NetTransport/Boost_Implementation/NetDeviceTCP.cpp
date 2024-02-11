@@ -5,13 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
 #include "NetDeviceTCP.h"
 #include "MMOEngine/include/INetTransport.h"
 #include "MMOEngine/include/EnumMMO.h"
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/HiTimer.h"
 
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
 #include <boost/asio/socket_base.hpp>
 
@@ -49,8 +51,8 @@ bool TNetDeviceTCP::Open(unsigned short port, unsigned char numNetWork)
 
         res = true;
     } catch (std::exception& e) {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("Open TCP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("Open TCP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what()));
     }
     return res;
 }
@@ -63,8 +65,8 @@ void TNetDeviceTCP::Close()
     try {
         mSocket.close();
     } catch (std::exception& e) {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("Close TCP FAIL: %s.\n", e.what());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("Close TCP FAIL: %s.\n", e.what()));
     }
 }
 //--------------------------------------------------------------------------------

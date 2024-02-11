@@ -25,12 +25,6 @@ See for more information LICENSE.md.
 
 void TScenarioStressTestClient::Init(int argc, char** argv)
 {
-    nsBase::nsCommon::GetLogger()->Register(STR_NAME_MMO_ENGINE);
-    nsBase::nsCommon::GetLogger()->Register(STR_NAME_NET_TRANSPORT);
-    nsBase::nsCommon::GetLogger()->Init("StressTestClient");
-    nsBase::nsCommon::GetLogger()->SetPrintf(false);
-    nsBase::nsCommon::GetLogger()->SetEnable(false);
-
     bool res = mInputCmd.SetArg(argc, argv);
     BL_ASSERT(res);
 

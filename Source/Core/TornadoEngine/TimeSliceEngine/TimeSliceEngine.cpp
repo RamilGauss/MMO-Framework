@@ -31,14 +31,10 @@ TTimeSliceEngine::TTimeSliceEngine()
     SetProject(&mProjectConfigContainer);
 
     mModuleMng.reset(new TModuleManager(this));
-
-    nsBase::nsCommon::GetLogger()->Done();
-    nsBase::nsCommon::GetLogger()->Register(TEngineLogger::NAME);
 }
 //----------------------------------------------------------------------
 void TTimeSliceEngine::Done()
 {
-    nsBase::nsCommon::GetLogger()->Done();
 }
 //----------------------------------------------------------------------
 bool TTimeSliceEngine::Work(const std::list<ModuleType>& moduleTypes)

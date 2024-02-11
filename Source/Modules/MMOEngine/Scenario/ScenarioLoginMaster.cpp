@@ -6,11 +6,12 @@ See for more information LICENSE.md.
 */
 
 #include "ScenarioLoginMaster.h"
-#include "Base/Common/Logger.h"
-#include "SessionManager.h"
-#include "Events.h"
-#include "EnumMMO.h"
+#include "Base/Common/EventHub.h"
 #include "Base/Common/SrcEvent_ex.h"
+
+#include "Events.h"
+#include "SessionManager.h"
+#include "EnumMMO.h"
 
 using namespace nsMMOEngine;
 
@@ -30,9 +31,8 @@ void TScenarioLoginMaster::ConnectToSuperServer(TIP_Port& ip_port, const std::st
         End();
         // верхнее соединение занято выполнением другого сценария - такого не должно быть
         // внутренняя ошибка
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScenarioLoginMaster::ConnectToSuperServer() scenario is not active.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScenarioLoginMaster::ConnectToSuperServer() scenario is not active.");
         return;
     }
     Context()->GetMS()->CloseSession(Context()->GetSessionID());
@@ -93,9 +93,8 @@ void TScenarioLoginMaster::RecvFromMaster(TDescRecvSession* pDesc)
         End();
         // верхнее соединение занято выполнением другого сценария - такого не должно быть
         // внутренняя ошибка
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScenarioLoginMaster::RecvFromMaster() scenario is not active.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScenarioLoginMaster::RecvFromMaster() scenario is not active.");
         return;
     }
     Context()->SetSessionID(pDesc->sessionID);

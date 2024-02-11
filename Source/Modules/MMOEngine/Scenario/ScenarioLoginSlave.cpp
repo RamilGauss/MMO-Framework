@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "ScenarioLoginSlave.h"
 #include "Base/Common/BL_Debug.h"
 #include "SessionManager.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "Base/Common/HiTimer.h"
 #include "Events.h"
 #include "EnumMMO.h"
@@ -27,9 +27,7 @@ void TScenarioLoginSlave::ConnectToMaster(TIP_Port& ip_port, const std::string& 
     if (Begin() == false) {
         // верхнее соединение занято выполнением другого сценария - такого не должно быть
         // генерация ошибки
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScenarioLoginSlave::ConnectToMaster() scenario is not active.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->AddWarningEvent("TScenarioLoginSlave::ConnectToMaster() scenario is not active.");
         return;
     }
     // закрыть соединение
@@ -90,9 +88,8 @@ void TScenarioLoginSlave::RecvFromSlave(TDescRecvSession* pDesc)
         End();
         // верхнее соединение занято выполнением другого сценария - такого не должно быть
         // внутренняя ошибка
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScenarioLoginSlave::RecvFromSlave() scenario is not active.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScenarioLoginSlave::RecvFromSlave() scenario is not active.");
         return;
     }
     Context()->SetSessionID(pDesc->sessionID);
@@ -119,13 +116,13 @@ void TScenarioLoginSlave::Recv(TDescRecvSession* pDesc)
     NeedContextBySession(pDesc->sessionID);
     THeaderLoginSlave* pPacket = (THeaderLoginSlave*)pDesc->data;
     switch (pPacket->subType) {
-    case eFromSlave:
-        RecvFromSlave(pDesc);
-        break;
-    case eAnswerMaster:
-        RecvFromMaster(pDesc);
-        break;
-    default:BL_FIX_BUG();
+        case eFromSlave:
+            RecvFromSlave(pDesc);
+            break;
+        case eAnswerMaster:
+            RecvFromMaster(pDesc);
+            break;
+        default:BL_FIX_BUG();
     }
 }
 //--------------------------------------------------------------------------  

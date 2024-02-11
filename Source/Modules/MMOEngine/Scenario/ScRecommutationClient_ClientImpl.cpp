@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include "Base/Common/EventHub.h"
+
 #include "ScRecommutationClient_ClientImpl.h"
 #include "ContextScRecommutationClient.h"
-#include "Base/Common/Logger.h"
 #include "SessionManager.h"
 #include "Events.h"
 
@@ -74,9 +75,8 @@ void TScRecommutationClient_ClientImpl::BeginClient(TDescRecvSession* pDesc)
     // начало сценария
     if (Begin() == false) {
         // генерация ошибки
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScRecommutationClient_ClientImpl::BeginClient() scenario is not active.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScRecommutationClient_ClientImpl::BeginClient() scenario is not active.");
         return;
     }
     // сформировать пакет далее для Slave

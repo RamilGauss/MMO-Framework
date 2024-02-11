@@ -125,13 +125,8 @@ int main(int argc, char** argv)
 
     inputCmd.Get(g_InputArg);
 
-    nsBase::nsCommon::GetLogger()->Register("TestTransport");
-    nsBase::nsCommon::GetLogger()->Init("TestTransport");
-    nsBase::nsCommon::GetLogger()->SetPrintf(false);
-
     TMakerNetTransport makerTransport;
 
-    // обязательно инициализировать лог
     std::string sLocalHost;
     TResolverSelf_IP_v4 resolver;
     resolver.Get(sLocalHost, g_InputArg.sub_net);

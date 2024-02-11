@@ -7,7 +7,8 @@ See for more information LICENSE.md.
 
 #include "ManagerContextDownConnection.h"
 
-#include "Base/Common/Logger.h"
+#include "Base/Common/BL_Debug.h"
+
 #include "ContainerContextSc.h"
 #include "EnumMMO.h"
 

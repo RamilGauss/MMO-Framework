@@ -128,9 +128,6 @@
     <ClInclude Include="include\Base\Common\Mutex.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Common\Only_N_Object.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Base\Common\ResolverSelf_IP_v4.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -281,6 +278,9 @@
     <ClInclude Include="include\Base\Common\ThreadSharedValue.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Base\Common\EventHub.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -353,9 +353,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Mutex.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Only_N_Object.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ResolverSelf_IP_v4.cpp">
@@ -455,6 +452,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\FramedThread.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventHub.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

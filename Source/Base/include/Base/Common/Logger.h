@@ -11,12 +11,11 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "Base/Common/SaveToFile.h"
-#include "Base/Common/Only_N_Object.h"
 #include "Base/Common/TypeDef.h"
 
 namespace nsBase::nsCommon
 {
-    class DllExport TLogger : public TOnly_N_Object<TLogger>
+    class DllExport TLogger
     {
         typedef std::vector<TSaveToFile*> TVectorPtr;
         TVectorPtr mVecPtr;
@@ -36,15 +35,13 @@ namespace nsBase::nsCommon
         bool flgEnable;
         bool flgBuffer;
 
-    protected:
-        TLogger() :                            // запрет на создание
-            TOnly_N_Object<TLogger>(1)
+    public:
+        TLogger()
         {
             flgPrintf = true;
             flgEnable = true;
             flgBuffer = true;
-        }// только один объект
-    public:
+        }
 
         virtual ~TLogger();
 
@@ -53,7 +50,6 @@ namespace nsBase::nsCommon
 
         void Init(const std::string& sPrefix);
         void Done();
-        //TSaveToFile* Get( const char* nameLog );
         TSaveToFile* Get(const std::string& nameLog);
 
         void SetPrintf(bool val);
@@ -71,7 +67,4 @@ namespace nsBase::nsCommon
     protected:
         void InitLogger(TSaveToFile* saver, const std::string& sName, const std::string& extension);
     };
-
-    extern DllExport TLogger* GetLogger();
-    extern DllExport TSaveToFile* GetLogger(const std::string& nameLog);
 }

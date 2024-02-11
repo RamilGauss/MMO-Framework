@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include "Base/Common/EventHub.h"
+#include "Base/Common/SrcEvent_ex.h"
+
 #include "ScLoginClient_SlaveImpl.h"
 #include "ContextScLoginClient.h"
 #include "SessionManager.h"
 #include "Base.h"
-#include "Base/Common/Logger.h"
 #include "Events.h"
 #include "EnumMMO.h"
-
-#include "Base/Common/SrcEvent_ex.h"
 
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;
@@ -100,9 +100,8 @@ void TScLoginClient_SlaveImpl::ConnectToSlaveC2S(TDescRecvSession* pDesc)
 
     if (Context() == nullptr) {
         // генерация ошибки
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScLoginClient_SlaveImpl::SetIsExistClientID() id client is not exist.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScLoginClient_SlaveImpl::SetIsExistClientID() id client is not exist.");
         return;
     }
     // запомнить сессию Клиента
@@ -134,9 +133,8 @@ void TScLoginClient_SlaveImpl::InfoClientM2S(TDescRecvSession* pDesc)
         Context()->SetWasBegin();
         if (Begin() == false) {
             // генерация ошибки
-            nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-                WriteF_time("TScLoginClient_SlaveImpl::InfoClientM2S() scenario is not active.\n");
-            BL_FIX_BUG();
+            nsBase::nsCommon::GetEventHub()->
+                AddWarningEvent("TScLoginClient_SlaveImpl::InfoClientM2S() scenario is not active.");
             return;
         }
     }

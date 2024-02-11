@@ -5,10 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
 #include "NetDeviceUDP.h"
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/HiTimer.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "MMOEngine/include/INetTransport.h"
 #include "MMOEngine/include/EnumMMO.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
@@ -46,8 +48,8 @@ bool TNetDeviceUDP::Open(unsigned short port, unsigned char numNetWork)
         mIP_Port.Set(ipv4_address_Local.to_ulong(), port);
         res = true;
     } catch (std::exception& e) {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("Open UDP (%d,%d) FAIL: %s.\n", port, numNetWork, e.what());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("Open UDP (%d,%d) FAIL: %s.", port, numNetWork, e.what()));
     }
     return res;
 }
@@ -60,8 +62,8 @@ void TNetDeviceUDP::Close()
     try {
         mSocket.close();
     } catch (std::exception& e) {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("Close UDP FAIL: %s.\n", e.what());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("Close UDP FAIL: %s.", e.what()));
     }
 }
 //--------------------------------------------------------------------------------

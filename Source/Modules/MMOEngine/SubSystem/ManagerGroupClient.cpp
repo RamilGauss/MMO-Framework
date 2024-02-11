@@ -5,11 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <list>
+#include <format>
+
+#include "Base/Common/EventHub.h"
+
 #include "ManagerGroupClient.h"
 
-#include "Base/Common/Logger.h"
 #include "EnumMMO.h"
-#include <list>
 
 using namespace nsMMOEngine;
 using namespace std;
@@ -29,8 +32,8 @@ bool TManagerGroupClient::FindSessionByID(unsigned int groupID,
 {
     TMapUintUintIt fit = mMapID_SlaveSession.find(groupID);
     if (fit == mMapID_SlaveSession.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TManagerGroupClient::FindSessionByID(groupID=%u) not found.\n", groupID);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TManagerGroupClient::FindSessionByID(groupID=%u) not found.", groupID));
         return false;
     }
     sessionID = fit->second;
@@ -41,8 +44,8 @@ bool TManagerGroupClient::FindIDByClientKey(unsigned int clientKey, unsigned int
 {
     TMapUintUintIt fit = mMapClientKey_ID.find(clientKey);
     if (fit == mMapClientKey_ID.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TManagerGroupClient::FindIDByClientKey(clientKey=%u) not found.\n", clientKey);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TManagerGroupClient::FindIDByClientKey(clientKey=%u) not found.", clientKey));
         return false;
     }
     groupID = fit->second;
@@ -116,8 +119,8 @@ bool TManagerGroupClient::SetSessionByID(unsigned int groupID, unsigned int sess
 {
     TMapUintUintIt fit = mMapID_SlaveSession.find(groupID);
     if (fit == mMapID_SlaveSession.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TManagerGroupClient::SetSessionByID(groupID=%u) not found.\n", groupID);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TManagerGroupClient::SetSessionByID(groupID=%u) not found.", groupID));
         return false;
     }
     fit->second = sessionID;

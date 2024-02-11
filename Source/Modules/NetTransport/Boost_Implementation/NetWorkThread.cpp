@@ -6,14 +6,16 @@ See for more information LICENSE.md.
 */
 
 #include <algorithm>
+#include <format>
+
 #include "MMOEngine/include/EnumMMO.h"
 
 #include "NetWorkThread.h"
+#include "INetControl.h"
 
 #include "Base/Common/HiTimer.h"
-#include "INetControl.h"
 #include "Base/Common/BL_Debug.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 
 TNetWorkThread::TNetWorkThread()
 {
@@ -22,7 +24,7 @@ TNetWorkThread::TNetWorkThread()
 //-----------------------------------------------------------------
 TNetWorkThread::~TNetWorkThread()
 {
-    Stop();
+    mThread.Stop();
 }
 //-----------------------------------------------------------------
 void TNetWorkThread::Work()
@@ -30,13 +32,19 @@ void TNetWorkThread::Work()
     boost::system::error_code ec;
     mIO_Context.run_one(ec);
     if (ec) {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->WriteF_time("TNetWorkThread::Engine FAIL %d\n", ec.value());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TNetWorkThread::Engine FAIL %d", ec.value()));
     }
+}
+//----------------------------------------------------------------------------------
+void TNetWorkThread::Start()
+{
+    mThread.Start([this]() {Work(); });
 }
 //----------------------------------------------------------------------------------
 void TNetWorkThread::Stop()
 {
     mIO_Context.stop();
-    nsBase::nsCommon::TSingleThread::Stop();
+    mThread.Stop();
 }
 //----------------------------------------------------------------------------------

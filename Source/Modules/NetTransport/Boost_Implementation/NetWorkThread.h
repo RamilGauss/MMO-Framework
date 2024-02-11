@@ -8,10 +8,12 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <boost/asio/io_service.hpp>
-#include "Base/Common/SingleThread.h"
+#include "Base/Common/FramedThread.h"
 
-class TNetWorkThread : public nsBase::nsCommon::TSingleThread
+class TNetWorkThread
 {
+    nsBase::nsCommon::TFramedThread mThread;
+
     boost::asio::io_context mIO_Context;
 
 public:
@@ -23,7 +25,8 @@ public:
         return &mIO_Context;
     }
 
-    void Stop() override;
+    void Start();
+    void Stop();
 protected:
-    void Work() override;
+    void Work();
 };

@@ -7,7 +7,8 @@ See for more information LICENSE.md.
 
 #include "Base.h"
 
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
+
 #include "SessionManager.h"
 #include "DescRecvSession.h"
 #include "ManagerManagerContextSc.h"
@@ -40,8 +41,6 @@ TBase::TBase() :
 {
     mEntMng->Setup();// magic reflection
 
-    nsBase::nsCommon::GetLogger()->Register(STR_NAME_MMO_ENGINE);
-
     SetupScForContext(mContainerUp.get());
     // задать контекст по-умолчанию
     SetDefualtContextForScenario();
@@ -59,8 +58,8 @@ TBase::~TBase()
 void TBase::Init(IMakerTransport* pMakerTransport)
 {
     if (pMakerTransport == nullptr) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->WriteF_time("TBase::Init() pMakerTransport==NULL.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TBase::Init() pMakerTransport==NULL.");
         return;
     }
     mSessionManager->SetMakerTransport(pMakerTransport);

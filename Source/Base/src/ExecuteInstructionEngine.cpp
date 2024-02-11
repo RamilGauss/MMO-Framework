@@ -7,57 +7,60 @@ See for more information LICENSE.md.
 
 #include "Base/Common/ExecuteInstructionEngine.h"
 
-void TExecuteInstructionEngine::Push(Instruction& instruction)
+namespace nsBase::nsCommon
 {
-    Instruction* pInstruction = new Instruction();
-    *pInstruction = instruction;
+    void TExecuteInstructionEngine::Push(Instruction& instruction)
+    {
+        Instruction* pInstruction = new Instruction();
+        *pInstruction = instruction;
 
-    mConcurrentInstruction.Add(pInstruction);
-    // try wake up thread
-    WakeUp();
-}
-//------------------------------------------------------------------------------------------------------
-void TExecuteInstructionEngine::Pop()
-{
-    auto pp = mConcurrentInstructionResult.GetFirst();
-    while (pp) {
-        auto p = *pp;
-        (*p)();
-        //delete p;
-        // next
-        mConcurrentInstructionResult.RemoveFirst();
-        pp = mConcurrentInstructionResult.GetFirst();
+        mConcurrentInstruction.Add(pInstruction);
+        // try wake up thread
+        WakeUp();
     }
-}
-//------------------------------------------------------------------------------------------------------
-void TExecuteInstructionEngine::Work()
-{
-    auto pp = mConcurrentInstruction.GetFirst();
-    while (pp) {
-        auto p = *pp;
-        if (p) {
-            auto result = (*p)();
-            if (result)
-                mConcurrentInstructionResult.Add(result);
+    //------------------------------------------------------------------------------------------------------
+    void TExecuteInstructionEngine::Pop()
+    {
+        auto pp = mConcurrentInstructionResult.GetFirst();
+        while (pp) {
+            auto p = *pp;
+            (*p)();
+            //delete p;
+            // next
+            mConcurrentInstructionResult.RemoveFirst();
+            pp = mConcurrentInstructionResult.GetFirst();
         }
-        // next
-        mConcurrentInstruction.RemoveFirst();
-        pp = mConcurrentInstruction.GetFirst();
     }
+    //------------------------------------------------------------------------------------------------------
+    void TExecuteInstructionEngine::Work()
+    {
+        auto pp = mConcurrentInstruction.GetFirst();
+        while (pp) {
+            auto p = *pp;
+            if (p) {
+                auto result = (*p)();
+                if (result)
+                    mConcurrentInstructionResult.Add(result);
+            }
+            // next
+            mConcurrentInstruction.RemoveFirst();
+            pp = mConcurrentInstruction.GetFirst();
+        }
 
-    // try sleep thread
-    TrySleep();
+        // try sleep thread
+        TrySleep();
+    }
+    //------------------------------------------------------------------------------------------------------
+    void TExecuteInstructionEngine::TrySleep()
+    {
+        std::unique_lock<std::mutex> lock(mMutex);
+        mCondVar.wait(lock);
+    }
+    //------------------------------------------------------------------------------------------------------
+    void TExecuteInstructionEngine::WakeUp()
+    {
+        std::unique_lock<std::mutex> lock(mMutex);
+        mCondVar.notify_all();
+    }
+    //------------------------------------------------------------------------------------------------------
 }
-//------------------------------------------------------------------------------------------------------
-void TExecuteInstructionEngine::TrySleep()
-{
-    std::unique_lock<std::mutex> lock(mMutex);
-    mCondVar.wait(lock);
-}
-//------------------------------------------------------------------------------------------------------
-void TExecuteInstructionEngine::WakeUp()
-{
-    std::unique_lock<std::mutex> lock(mMutex);
-    mCondVar.notify_all();
-}
-//------------------------------------------------------------------------------------------------------

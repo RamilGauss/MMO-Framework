@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include <boost/lexical_cast.hpp>
 
@@ -13,8 +15,9 @@ See for more information LICENSE.md.
 #include "MMOEngine/include/Events.h"
 #include "MMOEngine/include/Master.h"
 #include "CommonParam.h"
+
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 
 using namespace std;
 
@@ -133,8 +136,9 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
     }
 
     if (pBE->mType == nsMMOEngine::eError) {
-        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("MMOEngine M (0x%p): %s.\t", pMaster, sEvent.data());
-        PrintCC(ServerLog);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("MMOEngine M (0x%p): %s.", pMaster, sEvent.data()));
+        //PrintCC(ServerLog);
     }
 }
 //---------------------------------------------------------------------------------------------

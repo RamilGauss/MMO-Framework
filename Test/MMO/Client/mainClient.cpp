@@ -6,6 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include <vector>
+#include <format>
 #include <string.h>
 
 #include <boost/asio/ip/impl/address_v4.ipp>
@@ -18,7 +19,7 @@ See for more information LICENSE.md.
 #include "InputCmdTestMMO_Client.h"
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "HandlerMMO_Client.h"
 #include "NetTransport/MakerNetTransport.h"
 #include "ClientDesc.h"
@@ -53,7 +54,6 @@ int main(int argc, char** argv)
 void StartClients(int argc, char** argv)
 {
     TBreakPacket sendBP;
-    InitLogger(ClientLog);
 
     auto start = ht_GetMSCount();
 
@@ -85,7 +85,8 @@ void StartClients(int argc, char** argv)
     printf("\n");
 
     auto createClientTime = ht_GetMSCount() - start;
-    nsBase::nsCommon::GetLogger(ClientLog)->WriteF("createClientTime = %d ms\n", createClientTime);
+    nsBase::nsCommon::GetEventHub()->
+        AddWarningEvent(std::format("createClientTime = %d ms", createClientTime));
 
     const char* sLocalHost = cmi.mInput.server_ip.data();
     unsigned int masterIP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
@@ -115,7 +116,8 @@ void StartClients(int argc, char** argv)
         indexClientOnLogin = cnt;
 
         if (cmi.mInput.count == indexClientOnLogin && flgNeedPrintEndLogin) {
-            nsBase::nsCommon::GetLogger(ClientLog)->WriteF("End login ----------------------------------------------------\n");
+            nsBase::nsCommon::GetEventHub()->
+                AddWarningEvent("End login ----------------------------------------------------");
             flgNeedPrintEndLogin = false;
         }
 
@@ -131,14 +133,16 @@ void StartClients(int argc, char** argv)
             auto speed_ms = delta * 1.0f / iCycle;
             if (handler.mPingCounter > 0) {
                 float meanPing = handler.mPingSumma * 1.0f / handler.mPingCounter;
-                nsBase::nsCommon::GetLogger(ClientLog)->WriteF("time of cycle = %f ms, mean ping(worth) = %f(%u/%u), indexClientOnLogin = %d\n",
-                    speed_ms, meanPing, handler.mWorthPing, handler.mBestPing, indexClientOnLogin);
+                nsBase::nsCommon::GetEventHub()->
+                    AddWarningEvent(std::format("time of cycle = %f ms, mean ping(worth) = %f(%u/%u), indexClientOnLogin = %d",
+                    speed_ms, meanPing, handler.mWorthPing, handler.mBestPing, indexClientOnLogin));
                 handler.mWorthPing = 0;
                 handler.mBestPing = 0xFFFFFFFF;
                 handler.mPingSumma = 0;
                 handler.mPingCounter = 0;
             } else
-                nsBase::nsCommon::GetLogger(ClientLog)->WriteF("time of cycle = %f ms\n", speed_ms);
+                        nsBase::nsCommon::GetEventHub()->
+                AddWarningEvent(std::format("time of cycle = %f ms", speed_ms));
 
             iCycle = 0;
         }

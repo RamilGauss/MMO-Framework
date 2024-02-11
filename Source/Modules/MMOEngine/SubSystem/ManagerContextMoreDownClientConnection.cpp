@@ -5,9 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
 #include "ManagerContextMoreDownClientConnection.h"
 
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
+#include "Base/Common/BL_Debug.h"
+
 #include "ContainerContextSc.h"
 #include "EnumMMO.h"
 
@@ -29,8 +33,8 @@ bool TManagerContextMoreDownClientConnection::FindSessionByClientKey(unsigned in
 {
     TMapUintUintIt fit = mMapKeySession.find(clientKey);
     if (fit == mMapKeySession.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TManagerContextMoreDownClientConnection::FindSessionByClientKey(key=%u) not found.\n", clientKey);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TManagerContextMoreDownClientConnection::FindSessionByClientKey(key=%u) not found.", clientKey));
         return false;
     }
     sessionID = fit->second;
@@ -41,8 +45,8 @@ TContainerContextSc* TManagerContextMoreDownClientConnection::FindContextByClien
 {
     TMapUintPtrIt fit = mMapKeyContext.find(clientKey);
     if (fit == mMapKeyContext.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TManagerContextMoreDownClientConnection::FindContextByClientKey(key=%u) not found.\n", clientKey);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TManagerContextMoreDownClientConnection::FindContextByClientKey(key=%u) not found.", clientKey));
         return nullptr;
     }
     return fit->second;
@@ -88,8 +92,8 @@ bool TManagerContextMoreDownClientConnection::SetSessionByClientKey(unsigned int
 {
     TMapUintUintIt fit = mMapKeySession.find(clientKey);
     if (fit == mMapKeySession.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TManagerContextMoreDownClientConnection::SetSessionByClientKey(key=%u) not found.\n", clientKey);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("TManagerContextMoreDownClientConnection::SetSessionByClientKey(key=%u) not found.", clientKey));
         return false;
     }
     fit->second = sessionID;

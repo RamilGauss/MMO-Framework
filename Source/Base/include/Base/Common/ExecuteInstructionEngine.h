@@ -12,24 +12,30 @@ See for more information LICENSE.md.
 #include <functional>
 
 #include "Base/Common/DataExchange2Thread.h"
-#include "Base/Common/SingleThread.h"
+#include "Base/Common/FramedThread.h"
 
-class DllExport TExecuteInstructionEngine : public nsBase::nsCommon::TSingleThread
+namespace nsBase::nsCommon
 {
-    std::mutex mMutex;
-    std::condition_variable mCondVar;
-public:
-    using InstructionResult = std::function<void()>;
-    using Instruction = std::function<InstructionResult*()>;
-protected:
-    TDataExchange2Thread<Instruction> mConcurrentInstruction;
-    TDataExchange2Thread<InstructionResult> mConcurrentInstructionResult;
-public:
-    void Push(Instruction& instruction);
-    void Pop();
-protected:
-    void Work() override;
+    class DllExport TExecuteInstructionEngine
+    {
+        TFramedThread mThread;// TODO: доделать класс для использования. Пока не продуман механизм. Нет идеалогии.
+        // В каком потоке будет вызвано возврат результатов.
 
-    void TrySleep();
-    void WakeUp();
-};
+        std::mutex mMutex;
+        std::condition_variable mCondVar;
+    public:
+        using InstructionResult = std::function<void()>;
+        using Instruction = std::function<InstructionResult* ()>;
+    protected:
+        TDataExchange2Thread<Instruction> mConcurrentInstruction;
+        TDataExchange2Thread<InstructionResult> mConcurrentInstructionResult;
+    public:
+        void Push(Instruction& instruction);
+        void Pop();
+    protected:
+        void Work();
+
+        void TrySleep();
+        void WakeUp();
+    };
+}

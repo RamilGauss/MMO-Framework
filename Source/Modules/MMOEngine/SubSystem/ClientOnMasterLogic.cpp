@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Events.h"
 #include "ControlScenario.h"
 #include "Components.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "Base/Common/SaveToFile.h"
 
 #include "ScenarioFlow.h"
@@ -99,8 +99,8 @@ void TClientOnMasterLogic::NeedContextLoginClientBySessionAfterAuthorised(unsign
     auto clientEntity = mEntMng->GetByUnique(clientSessionIdentityComponent);
     if (clientEntity == nsECSFramework::NONE) {
         // внутренняя ошибка
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TMaster::NeedContextLoginClientBySessionAfterAuthorised() context not found.\n");
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TMaster::NeedContextLoginClientBySessionAfterAuthorised() context not found.n");
         mBase->mControlSc->mLoginClient->SetContext(nullptr);
         return;
     }
@@ -176,8 +176,8 @@ void TClientOnMasterLogic::NeedContextLoginClientBySession(unsigned int sessionI
     auto clientEntity = mEntMng->GetByUnique(clientSessionIdentityComponent);
     if (clientEntity != nsECSFramework::NONE) {
         // внутренняя ошибка
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TMaster::NeedContextLoginClientBySession() against try authorized.\n");
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TMaster::NeedContextLoginClientBySession() against try authorized.");
         mBase->mControlSc->mLoginClient->SetContext(nullptr);
         return;
     }
@@ -289,9 +289,8 @@ bool TClientOnMasterLogic::TryAddClient(unsigned int clientKey, unsigned int& sl
     unsigned char load_procent = 0;
     if (FindMinimumLoad(slaveSessionId, load_procent) == false) {
         // генерация ошибки
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TMaster::SetResultLogin() count slave = 0.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TMaster::SetResultLogin() count slave = 0.");
         return false;
     }
     unsigned char limitLoadProcent = GetLimitLoadProcentByKey(clientKey);

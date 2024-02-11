@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
 #include "HandlerMMO_SuperServer.h"
 #include "MMOEngine/include/BaseEvent.h"
 #include "MMOEngine/include/Events.h"
@@ -12,7 +14,7 @@ See for more information LICENSE.md.
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 
 using namespace std;
 
@@ -66,8 +68,9 @@ void THandlerMMO_SuperServer::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
     }
 
     if (pBE->mType == nsMMOEngine::eError) {
-        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("MMOEngine SS(0x%p): %s.\t", pSuperServer, sEvent.data());
-        PrintCC(ServerLog);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("MMOEngine SS(0x%p): %s.\t", pSuperServer, sEvent.data()));
+        //PrintCC(ServerLog);
     }
 }
 //---------------------------------------------------------------------------------------------

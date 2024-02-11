@@ -12,21 +12,6 @@ using namespace std;
 
 namespace nsBase::nsCommon
 {
-    class TLoggerOneObject : public TLogger
-    {
-    };
-    //-----------------------------------------------------------------------
-    TLoggerOneObject g_Logger;
-    TLogger* GetLogger()
-    {
-        return (TLogger*)&g_Logger;
-    }
-    //-----------------------------------------------------------------------
-    TSaveToFile* GetLogger(const std::string& nameLog)
-    {
-        return g_Logger.Get(nameLog);
-    }
-    //-----------------------------------------------------------------------
     void TLogger::InitLogger(TSaveToFile* saver, const std::string& sName, const std::string& extension)
     {
         if (saver->IsOpen()) {

@@ -5,14 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include "Base/Common/EventHub.h"
+#include "Base/Common/SrcEvent_ex.h"
+
 #include "ScLoginClient_MasterImpl.h"
 #include "ContextScLoginClient.h"
 #include "SessionManager.h"
 #include "Base.h"
-#include "Base/Common/Logger.h"
 #include "Events.h"
 #include "EnumMMO.h"
-#include "Base/Common/SrcEvent_ex.h"
 
 using namespace std;
 using namespace nsMMOEngine;
@@ -245,9 +246,8 @@ void TScLoginClient_MasterImpl::TryLoginC2M(TDescRecvSession* pDesc)
     //-------------------------------------------------------------
     if (Begin() == false) {
         // генерация ошибки
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TScLoginClient_MasterImpl::TryLoginC2M() scenario is not active.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TScLoginClient_MasterImpl::TryLoginC2M() scenario is not active.");
         return;
     }
     // новая сессия, сохранить

@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include <fmt/core.h>
 
 #include "Base/Common/ILoaderDLL.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 
 #include "DeveloperTool_DLL.h"
 #include "ProjectConfig.h"
@@ -66,7 +66,8 @@ namespace nsTornadoEngine
                 mLogEvent(text);
             }
 
-            nsBase::nsCommon::GetLogger(mProjectName)->WriteF_time(text.c_str());
+            nsBase::nsCommon::GetEventHub()->
+                AddWarningEvent(text);
         }
 
         std::function<bool(const std::string&)> mLogEvent;

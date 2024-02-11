@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "ManagerContextMoreDownClientConnection.h"
 #include "ManagerContextDownConnection.h"
 
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "IScenario.h"
 #include "ContainerContextSc.h"
 #include "ControlScenario.h"
@@ -103,8 +103,8 @@ void TSuperServer::NeedContextLoginMaster(unsigned int sessionID)
     TContainerContextSc* pC = mMngContextMaster->FindContextBySession(sessionID);
     if (pC) {
         // внутренняя ошибка
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("TSuperServer::LoginMaster() against try authorized.\n");
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("TSuperServer::LoginMaster() against try authorized.");
         return;
     }
     pC = mMngContextMaster->AddContext(sessionID);

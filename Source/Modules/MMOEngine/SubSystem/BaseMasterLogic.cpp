@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "Master.h"
 #include "ECS/include/EntityManager.h"
 #include "Events.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "Components.h"
 
 using namespace nsMMOEngine;
@@ -136,9 +136,8 @@ unsigned char TBaseMasterLogic::GetLimitLoadProcentByKey(unsigned int clientKey)
     auto clientEntity = mEntMng->GetByUnique(clientIdentity);
     if (clientEntity == nsECSFramework::NONE) {
         // генерация ошибки
-        nsBase::nsCommon::GetLogger(STR_NAME_MMO_ENGINE)->
-            WriteF_time("GetLimitLoadProcentByKey() not found client.\n");
-        BL_FIX_BUG();
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("GetLimitLoadProcentByKey() not found client.");
     }
 
     auto groupId = mEntMng->ViewComponent<TGroupIDComponent>(clientEntity)->v;

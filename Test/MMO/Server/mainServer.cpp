@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include <iostream>
 #include <stdio.h>
 #include <thread>
+#include <format>
 
 #include "Base/Common/BL_Debug.h"
 #include "CommonParam.h"
@@ -19,7 +20,7 @@ See for more information LICENSE.md.
 #include "MMOEngine/include/SuperServer.h"
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "HandlerMMO_Slave.h"
 #include "HandlerMMO_Master.h"
 #include "HandlerMMO_SuperServer.h"
@@ -71,19 +72,23 @@ void StartServer(int argc, char** argv)
     InitLogger(ServerLog);
     {
         int countIP_v4 = resolver.GetCount();
-        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("ip count = %d\n", countIP_v4);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("ip count = %d\n", countIP_v4));
         for (int i = 0; i < countIP_v4; i++) {
             if (resolver.Get(sLocalHost, i) == false) {
                 continue;
             }
-            nsBase::nsCommon::GetLogger(ServerLog)->WriteF("ip = %s\n", sLocalHost.data());
+            nsBase::nsCommon::GetEventHub()->
+                AddWarningEvent(std::format("ip = %s", sLocalHost.data()));
         }
     }
 
     if (resolver.Get(sLocalHost, cmi.mInput.subnet)) {
-        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("use ip = %s\n", sLocalHost.data());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("use ip = %s", sLocalHost.data()));
     } else {
-        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("FAIL subnet = %u\n", cmi.mInput.subnet);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("FAIL subnet = %u", cmi.mInput.subnet));
         return;
     }
 
@@ -183,7 +188,8 @@ void StartServer(int argc, char** argv)
         auto delta = ht_GetMSCount() - start;
         if (delta >= limitDeltaTime) {
             auto speed_ms = delta * 1.0f / iCycle;
-            nsBase::nsCommon::GetLogger(ServerLog)->WriteF("time of cycle = %f ms\n", speed_ms);
+            nsBase::nsCommon::GetEventHub()->
+                AddWarningEvent(std::format("time of cycle = %f ms", speed_ms));
             iCycle = 0;
         }
     }

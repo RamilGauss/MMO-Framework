@@ -169,11 +169,6 @@ int main(int argc, char** argv)
     }
 
 
-    // обязательно инициализировать лог
-    nsBase::nsCommon::GetLogger()->Register("TestTransport");
-    nsBase::nsCommon::GetLogger()->Init("TestTransport");
-    nsBase::nsCommon::GetLogger()->SetPrintf(false);
-
     TMakerNetTransport makerTransport;
     g_pServerTransport = makerTransport.New();
 

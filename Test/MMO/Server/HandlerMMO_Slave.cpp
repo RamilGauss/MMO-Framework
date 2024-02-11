@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
 #include "MMOEngine/include/BaseEvent.h"
 #include "MMOEngine/include/Events.h"
 #include "MMOEngine/include/Slave.h"
@@ -12,7 +14,7 @@ See for more information LICENSE.md.
 #include "CommonParam.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
 #include "HandlerMMO_Slave.h"
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 
 const float SLAVE_LOAD_PER_CLIENT = 1.0f;
 
@@ -126,8 +128,9 @@ void THandlerMMO_Slave::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
     }
 
     if (pBE->mType == nsMMOEngine::eError) {
-        nsBase::nsCommon::GetLogger(ServerLog)->WriteF("MMOEngine S (0x%p): %s.\t", pSlave, sEvent.data());
-        PrintCC(ServerLog);
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("MMOEngine S (0x%p): %s.\t", pSlave, sEvent.data()));
+        //PrintCC(ServerLog);
     }
 }
 //---------------------------------------------------------------------------------------------

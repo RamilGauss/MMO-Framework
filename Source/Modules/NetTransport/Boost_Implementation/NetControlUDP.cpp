@@ -5,10 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <format>
+
 #include "NetControlUDP.h"
 #include "Base/Common/BL_Debug.h"
 
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "Base/Common/HiTimer.h"
 
 #include <boost/asio/placeholders.hpp>
@@ -46,7 +48,8 @@ bool TNetControlUDP::Open(unsigned short port, unsigned char numNetWork)
 //------------------------------------------------------------------------------
 bool TNetControlUDP::Connect(unsigned int ip, unsigned short port)
 {
-    nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->WriteF_time("Try connect on UDP.\n");
+    nsBase::nsCommon::GetEventHub()->
+        AddWarningEvent("Try connect on UDP.");
     return false;// нельзя, только TCP
 }
 //------------------------------------------------------------------------------
@@ -82,8 +85,8 @@ void TNetControlUDP::SetCntInByIP_Port(TIP_Port& ip_port, unsigned short cnt_in)
 {
     TMapIP_ICIt fit = mMapInfoConnect.find(ip_port);
     if (fit == mMapInfoConnect.end()) {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("SetCntInByIP_Port not found info connect.\n");
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent("SetCntInByIP_Port not found info connect.");
         return;
     }
     fit->second.cnt_in = cnt_in;
@@ -141,21 +144,21 @@ void TNetControlUDP::RecvFromEvent(const boost::system::error_code& error, size_
             descRecv.dataSize = bytes_transferred - sizeof(unsigned short);
             NotifyRecv(&descRecv);
         } else {
-            nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-                WriteF_time("ReadFromEvent UDP recv not fresh packet.\n");
+            nsBase::nsCommon::GetEventHub()->
+                AddWarningEvent("ReadFromEvent UDP recv not fresh packet.");
         }
         ReadyRecvFrom();
     } else {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("ReadFromEvent UDP error=%s.\n", error.message().data());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("ReadFromEvent UDP error=%s.", error.message().data()));
     }
 }
 //----------------------------------------------------------------------------------
 void TNetControlUDP::SendToEvent(const boost::system::error_code& error, size_t bytes_transferred)
 {
     if (error) {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("SendToEvent UDP error=%s.\n", error.message().data());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("SendToEvent UDP error=%s.", error.message().data()));
     }
 
     mSended = bytes_transferred;
@@ -179,8 +182,8 @@ l_repeat:
     ip::udp::endpoint sender_end_point(boost::asio::ip::address_v4(ip_port.ip), ip_port.port);
     int resSend = mDevice.GetSocket()->send_to(boost::asio::buffer(data, size), sender_end_point, flags, ec);
     if (ec || resSend == 0) {
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("RequestSendTo UDP error=%s.\n", ec.message().data());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("RequestSendTo UDP error=%s.", ec.message().data()));
     }
     if (resSend < size) {
         ht_msleep(eTimeRepeatSend);

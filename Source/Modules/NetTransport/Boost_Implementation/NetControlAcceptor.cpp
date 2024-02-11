@@ -5,6 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+
+#include <format>
+
 #include "NetControlAcceptor.h"
 
 #include <boost/asio/placeholders.hpp>
@@ -13,7 +16,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/BL_Debug.h"
 
-#include "Base/Common/Logger.h"
+#include "Base/Common/EventHub.h"
 #include "NetTransport_Boost.h"
 #include "NetControlTCP.h"
 #include "MMOEngine/include/EnumMMO.h"
@@ -66,8 +69,8 @@ void TNetControlAcceptor::AcceptEvent(const boost::system::error_code& error)
     } else {
         delete pNewControlTCP;
         pNewControlTCP = nullptr;
-        nsBase::nsCommon::GetLogger(STR_NAME_NET_TRANSPORT)->
-            WriteF_time("Acceptor AcceptEvent FAIL: %s.\n", error.message().data());
+        nsBase::nsCommon::GetEventHub()->
+            AddWarningEvent(std::format("Acceptor AcceptEvent FAIL: %s.", error.message().data()));
 
         flgReadyAccept = false;
         return;
