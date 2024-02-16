@@ -7,11 +7,14 @@ See for more information LICENSE.md.
 
 #include "Base/Common/FramedThread.h"
 #include "Base/Common/HiTimer.h"
+#include "Base/Common/ThreadManager.h"
 
 namespace nsBase::nsCommon
 {
     void TFramedThread::Engine()
     {
+        SingletonManager()->Get<TThreadManager>()->AddThreadId();
+
         auto stopToken = mThread.get_stop_token();
 
         while (not stopToken.stop_requested()) {
@@ -21,7 +24,7 @@ namespace nsBase::nsCommon
     //----------------------------------------------------------------------------------
     void TFramedThread::Start(std::function<void()> frameFunc)
     {
-        if(frameFunc == nullptr || IsActive()) {
+        if (frameFunc == nullptr || IsActive()) {
             return;
         }
 

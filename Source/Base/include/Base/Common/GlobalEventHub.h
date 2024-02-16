@@ -5,12 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#pragma once
+
 #include "Base/Common/EventHub.h"
 
 namespace nsBase::nsCommon
 {
-void TEventHub::TakeEvents(std::list<std::string>& events)
-{
-    std::swap(events, mEvents);
-}
+    extern DllExport TEventHub* GetEventHub(const std::source_location loc = std::source_location::current());
 }
