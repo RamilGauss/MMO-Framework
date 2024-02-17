@@ -5,8 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
 #include "HandlerMMO_Client.h"
 #include "MMOEngine/include/BaseEvent.h"
 #include "MMOEngine/include/Events.h"
@@ -15,7 +13,7 @@ See for more information LICENSE.md.
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 THandlerMMO_Client::THandlerMMO_Client() : THandlerMMO(nullptr, eClient)
 {}
@@ -45,7 +43,7 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
             nsMMOEngine::TErrorEvent* pEr = (nsMMOEngine::TErrorEvent*)pBE;
             sEvent = nsMMOEngine::GetStrError(pEr->code);
             nsBase::nsCommon::GetEventHub()->
-                AddWarningEvent(std::format("MMOEngine: %s.", sEvent.data()));
+                AddWarningEvent("MMOEngine: {}.", sEvent.data());
         }
         break;
         case nsMMOEngine::eRecvFromUp:
@@ -77,7 +75,7 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
                 sEvent += " Reject ";
             sEvent.append(pRes->c.GetPtr(), pRes->c.GetSize());
             nsBase::nsCommon::GetEventHub()->
-                AddWarningEvent(std::format("MMOEngine: %s\t\n", sEvent.data()));
+                AddWarningEvent("MMOEngine: {}", sEvent);
         }
         break;
         case nsMMOEngine::eEnterInQueue:
@@ -87,7 +85,7 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
             //pClient->LeaveQueue();
             auto numInQueue = pEnterEvent->numInQueue;
             nsBase::nsCommon::GetEventHub()->
-                AddWarningEvent(std::format("MMOEngine: %s, num = %d.\t\n", sEvent.data(), numInQueue));
+                AddWarningEvent("MMOEngine: {}, num = {}", sEvent, numInQueue);
         }
         break;
         case nsMMOEngine::eLeaveQueue:
@@ -98,7 +96,7 @@ void THandlerMMO_Client::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
 
     if (pBE->mType == nsMMOEngine::eError)
         nsBase::nsCommon::GetEventHub()->
-        AddWarningEvent(std::format("MMOEngine: %s.\t\n", sEvent.data()));
+        AddWarningEvent("MMOEngine: {}", sEvent);
 }
 //---------------------------------------------------------------------------------------------
 void THandlerMMO_Client::WorkInherit()

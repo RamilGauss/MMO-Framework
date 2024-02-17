@@ -7,14 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/SingleThread.h"
+#include "Base/Common/FramedThread.h"
 
 namespace nsTornadoEngine
 {
     struct TSceneInstanceState;
 
-    class DllExport TSceneInstantiatingThread : public nsBase::nsCommon::TSingleThread
+    class DllExport TSceneInstantiatingThread
     {
+        nsBase::nsCommon::TFramedThread mThread;
+
         TSceneInstanceState* mScState = nullptr;
 
         int mGuidComponentRtti = 0;
@@ -27,7 +29,7 @@ namespace nsTornadoEngine
     public:
         TSceneInstantiatingThread(TSceneInstanceState* pSceneInstanceState);
     protected:
-        void Work() override;
+        void Work();
     private:
         void Init();
         void FileLoading();

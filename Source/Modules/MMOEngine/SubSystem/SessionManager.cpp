@@ -5,10 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
 #include "SessionManager.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Base.h"
 
 using namespace std;
@@ -39,7 +37,6 @@ bool TSessionManager::Start(TDescOpen* pDesc, int count)
     if (flgStart) {
         nsBase::nsCommon::GetEventHub()->
             AddWarningEvent("TSessionManager::Start() restart.");
-        BL_FIX_BUG();
         return false;
     }
     flgStart = true;
@@ -59,7 +56,7 @@ bool TSessionManager::StartTransport(unsigned short port, unsigned char subNet)
     bool resOpen = pTransport->Open(port, subNet);
     if (resOpen == false) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TSessionManager::Start() open port %u FAIL.", port));
+            AddWarningEvent("TSessionManager::Start() open port {} FAIL.", port);
         return false;
     }
     // старт потока чтения
@@ -144,7 +141,7 @@ void TSessionManager::ConnectAsync(TIP_Port& ip_port, const std::string& login, 
     } else {
         unlockConnectUp();
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TSessionManager::Send(%s) sending to IP with exist session.", ip_port.ToString()));
+            AddWarningEvent("TSessionManager::Send({}) sending to IP with exist session.", ip_port.ToString());
         return mConnectResult(INVALID_HANDLE_SESSION);
     }
     mSessionID_UP = pSession->GetID();
@@ -393,7 +390,7 @@ void TSessionManager::RecvIDconfirmation(TDescRecvSession& descRecvSession, TSes
 void TSessionManager::FixHack(const char* sMsg)
 {
     nsBase::nsCommon::GetEventHub()->
-        AddWarningEvent(std::format("Try hack: {}.", sMsg));
+        AddWarningEvent("Try hack: {}.", sMsg);
 }
 //-------------------------------------------------------------------------
 void TSessionManager::BeginWaitConnectUp()

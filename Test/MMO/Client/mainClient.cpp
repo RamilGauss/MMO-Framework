@@ -19,7 +19,7 @@ See for more information LICENSE.md.
 #include "InputCmdTestMMO_Client.h"
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "HandlerMMO_Client.h"
 #include "NetTransport/MakerNetTransport.h"
 #include "ClientDesc.h"
@@ -86,7 +86,7 @@ void StartClients(int argc, char** argv)
 
     auto createClientTime = ht_GetMSCount() - start;
     nsBase::nsCommon::GetEventHub()->
-        AddWarningEvent(std::format("createClientTime = %d ms", createClientTime));
+        AddWarningEvent("createClientTime = {} ms", createClientTime);
 
     const char* sLocalHost = cmi.mInput.server_ip.data();
     unsigned int masterIP = boost::asio::ip::address_v4::from_string(sLocalHost).to_ulong();
@@ -134,15 +134,15 @@ void StartClients(int argc, char** argv)
             if (handler.mPingCounter > 0) {
                 float meanPing = handler.mPingSumma * 1.0f / handler.mPingCounter;
                 nsBase::nsCommon::GetEventHub()->
-                    AddWarningEvent(std::format("time of cycle = %f ms, mean ping(worth) = %f(%u/%u), indexClientOnLogin = %d",
-                    speed_ms, meanPing, handler.mWorthPing, handler.mBestPing, indexClientOnLogin));
+                    AddWarningEvent("time of cycle = {} ms, mean ping(worth) = {}({}/{}), indexClientOnLogin = {}",
+                    speed_ms, meanPing, handler.mWorthPing, handler.mBestPing, indexClientOnLogin);
                 handler.mWorthPing = 0;
                 handler.mBestPing = 0xFFFFFFFF;
                 handler.mPingSumma = 0;
                 handler.mPingCounter = 0;
             } else
                         nsBase::nsCommon::GetEventHub()->
-                AddWarningEvent(std::format("time of cycle = %f ms", speed_ms));
+                AddWarningEvent("time of cycle = {} ms", speed_ms);
 
             iCycle = 0;
         }

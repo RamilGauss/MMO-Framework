@@ -11,22 +11,22 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    TSceneInstanceState::TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams)
-    {
-        mInstantiateSceneParams = instantiateSceneParams;
-        
-        mFileBuffer.SetData(nullptr, FILE_PART_SIZE);
-        if (mInstantiateSceneParams.sceneInstanceGuid.empty()) {
-            mInstantiateSceneParams.sceneInstanceGuid = nsBase::nsCommon::TGuidGenerator::Generate();
-        }
+    //TSceneInstanceState::TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams)
+    //{
+    //    mInstantiateSceneParams = instantiateSceneParams;
+    //    
+    //    mFileBuffer.SetData(nullptr, FILE_PART_SIZE);
+    //    if (mInstantiateSceneParams.sceneInstanceGuid.empty()) {
+    //        mInstantiateSceneParams.sceneInstanceGuid = nsBase::nsCommon::TGuidGenerator::Generate();
+    //    }
 
-        mFileProgress.SetStep(FILE_PART_SIZE);
-        mPrepareTreeEntityProgress.SetStep(PREPARE_TREE_ENTITY_PART_SIZE);
-        mSortingProgress.SetStep(SORTING_PART_SIZE);
-        mComponentDeserializingProgress.SetStep(COMPONENT_DESERIALZING_PART_SIZE);
-        mEntityProgress.SetStep(ENTITY_INSTANTIATING_PART_SIZE);
-        mPrefabProgress.SetStep(PREFAB_INSTANTIATING_PART_SIZE);
-    }
+    //    mFileProgress.SetStep(FILE_PART_SIZE);
+    //    mPrepareTreeEntityProgress.SetStep(PREPARE_TREE_ENTITY_PART_SIZE);
+    //    mSortingProgress.SetStep(SORTING_PART_SIZE);
+    //    mComponentDeserializingProgress.SetStep(COMPONENT_DESERIALZING_PART_SIZE);
+    //    mEntityProgress.SetStep(ENTITY_INSTANTIATING_PART_SIZE);
+    //    mPrefabProgress.SetStep(PREFAB_INSTANTIATING_PART_SIZE);
+    //}
     //--------------------------------------------------------------------------------------------------
     ISceneInstanceState::State TSceneInstanceState::GetState() const
     {
@@ -51,36 +51,36 @@ namespace nsTornadoEngine
         return state;
     }
     //--------------------------------------------------------------------------------------------------
-    float TSceneInstanceState::GetInstantiatingProgress() const
-    {
-        return nsBase::TProgressValue::Accumulate(
-            { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mComponentDeserializingProgress, mEntityProgress, mPrefabProgress }).GetProgress();
-    }
-    //--------------------------------------------------------------------------------------------------
-    bool TSceneInstanceState::IsInstantiateCompleted() const
-    {
-        return nsBase::TProgressValue::Accumulate(
-            { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mComponentDeserializingProgress, mEntityProgress, mPrefabProgress }).IsCompleted();
-    }
-    //--------------------------------------------------------------------------------------------------
-    float TSceneInstanceState::GetDestroyingProgress() const
-    {
-        return 0.0f;
-    }
-    //--------------------------------------------------------------------------------------------------
-    bool TSceneInstanceState::IsIDestroyCompleted() const
-    {
-        return false;
-    }
-    //--------------------------------------------------------------------------------------------------
-    float TSceneInstanceState::GetSavingProgress() const
-    {
-        return 0.0f;
-    }
-    //--------------------------------------------------------------------------------------------------
-    bool TSceneInstanceState::IsSaveCompleted() const
-    {
-        return false;
-    }
+    //float TSceneInstanceState::GetInstantiatingProgress() const
+    //{
+    //    return nsBase::TProgressValue::Accumulate(
+    //        { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mComponentDeserializingProgress, mEntityProgress, mPrefabProgress }).GetProgress();
+    //}
+    ////--------------------------------------------------------------------------------------------------
+    //bool TSceneInstanceState::IsInstantiateCompleted() const
+    //{
+    //    return nsBase::TProgressValue::Accumulate(
+    //        { mFileProgress, mPrepareTreeEntityProgress, mSortingProgress, mComponentDeserializingProgress, mEntityProgress, mPrefabProgress }).IsCompleted();
+    //}
+    ////--------------------------------------------------------------------------------------------------
+    //float TSceneInstanceState::GetDestroyingProgress() const
+    //{
+    //    return 0.0f;
+    //}
+    ////--------------------------------------------------------------------------------------------------
+    //bool TSceneInstanceState::IsIDestroyCompleted() const
+    //{
+    //    return false;
+    //}
+    ////--------------------------------------------------------------------------------------------------
+    //float TSceneInstanceState::GetSavingProgress() const
+    //{
+    //    return 0.0f;
+    //}
+    ////--------------------------------------------------------------------------------------------------
+    //bool TSceneInstanceState::IsSaveCompleted() const
+    //{
+    //    return false;
+    //}
     //--------------------------------------------------------------------------------------------------
 }

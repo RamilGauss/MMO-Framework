@@ -100,19 +100,21 @@ namespace nsTornadoEngine
         static const int PREFAB_INSTANTIATING_PART_SIZE = 10;
 
         // Helpers
-        TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams);
+        //TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams);
 
         State GetState() const override;
         float GetProgress() const override { return 0; };
 
-        float GetInstantiatingProgress() const override;
-        bool IsInstantiateCompleted() const override;
+        float GetStateProgress() const override { return 0; }
+        bool IsCompleted() const override { return false; }
+        //float GetInstantiatingProgress() const override;
+        //bool IsInstantiateCompleted() const override;
 
-        float GetDestroyingProgress() const override;
-        bool IsIDestroyCompleted() const override;
+        //float GetDestroyingProgress() const override;
+        //bool IsIDestroyCompleted() const override;
 
-        float GetSavingProgress() const override;
-        bool IsSaveCompleted() const override;
+        //float GetSavingProgress() const override;
+        //bool IsSaveCompleted() const override;
     };
 
     using TSceneInstanceStatePtr = std::shared_ptr<TSceneInstanceState>;

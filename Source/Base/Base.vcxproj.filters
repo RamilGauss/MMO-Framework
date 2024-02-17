@@ -155,9 +155,6 @@
     <ClInclude Include="include\Base\Common\StatisticsValue.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Common\SingleThread.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Base\Common\TypeDef.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -281,6 +278,12 @@
     <ClInclude Include="include\Base\Common\EventHub.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Base\Common\ThreadIndexator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Base\Common\GlobalEventHub.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -379,9 +382,6 @@
     <ClCompile Include="src\SrcEvent.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\SingleThread.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\SingletonManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -455,6 +455,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\EventHub.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThreadIndexator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlobalEventHub.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

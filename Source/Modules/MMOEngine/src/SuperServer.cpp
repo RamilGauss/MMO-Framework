@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "ManagerContextMoreDownClientConnection.h"
 #include "ManagerContextDownConnection.h"
 
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "IScenario.h"
 #include "ContainerContextSc.h"
 #include "ControlScenario.h"

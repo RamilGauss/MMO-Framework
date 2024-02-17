@@ -6,9 +6,8 @@ See for more information LICENSE.md.
 */
 
 #include <list>
-#include <format>
 
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 #include "ManagerGroupClient.h"
 
@@ -33,7 +32,7 @@ bool TManagerGroupClient::FindSessionByID(unsigned int groupID,
     TMapUintUintIt fit = mMapID_SlaveSession.find(groupID);
     if (fit == mMapID_SlaveSession.end()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerGroupClient::FindSessionByID(groupID=%u) not found.", groupID));
+            AddWarningEvent("TManagerGroupClient::FindSessionByID(groupID={}) not found.", groupID);
         return false;
     }
     sessionID = fit->second;
@@ -45,7 +44,7 @@ bool TManagerGroupClient::FindIDByClientKey(unsigned int clientKey, unsigned int
     TMapUintUintIt fit = mMapClientKey_ID.find(clientKey);
     if (fit == mMapClientKey_ID.end()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerGroupClient::FindIDByClientKey(clientKey=%u) not found.", clientKey));
+            AddWarningEvent("TManagerGroupClient::FindIDByClientKey(clientKey={}) not found.", clientKey);
         return false;
     }
     groupID = fit->second;
@@ -120,7 +119,7 @@ bool TManagerGroupClient::SetSessionByID(unsigned int groupID, unsigned int sess
     TMapUintUintIt fit = mMapID_SlaveSession.find(groupID);
     if (fit == mMapID_SlaveSession.end()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerGroupClient::SetSessionByID(groupID=%u) not found.", groupID));
+            AddWarningEvent("TManagerGroupClient::SetSessionByID(groupID={}) not found.", groupID);
         return false;
     }
     fit->second = sessionID;

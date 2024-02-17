@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include <fmt/core.h>
 
 #include "Base/Common/ILoaderDLL.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 #include "DeveloperTool_DLL.h"
 #include "ProjectConfig.h"

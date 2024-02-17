@@ -5,12 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
 #include "ManagerRecommutation.h"
 #include "Base/Common/BL_Debug.h"
 #include "EnumMMO.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 using namespace nsMMOEngine;
 using namespace std;
@@ -92,7 +90,7 @@ void TManagerRecommutation::AddClientKey(unsigned int key, unsigned int id_sessi
 {
     if (id_session_donor == id_session_recipient) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerRecommutation::AddClientKey(key=%u) donor==recipient.", key));
+            AddWarningEvent("TManagerRecommutation::AddClientKey(key={}) donor==recipient.", key);
         BL_FIX_BUG();
         return;
     }
@@ -101,7 +99,7 @@ void TManagerRecommutation::AddClientKey(unsigned int key, unsigned int id_sessi
     if (fit != mMapClientKey_Slaves.end()) {
         // запись уже есть, значит, ее не удалили
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerRecommutation::AddClientKey(key=%u) is exist.", key));
+            AddWarningEvent("TManagerRecommutation::AddClientKey(key={}) is exist.", key);
         BL_FIX_BUG();
         return;
     }
@@ -119,7 +117,7 @@ void TManagerRecommutation::DeleteByClientKey(unsigned int key)
     // ищем Донора и Реципиента, связанных с Клиентом
     if (FindSessionByClientKey(key, donor, recipient) == false) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerRecommutation::DeleteByClientKey(key=%u) not found Slave.", key));
+            AddWarningEvent("TManagerRecommutation::DeleteByClientKey(key={}) not found Slave.", key);
         return;
     }
     // удалить из списка Донора
@@ -152,7 +150,7 @@ void TManagerRecommutation::DeleteClientKeyBySession(unsigned int key, unsigned 
     TMapUintSetIt fit = mMapSlave_SetClient.find(sessionID);
     if (fit == mMapSlave_SetClient.end()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerRecommutation::DeleteInSessionMapByClientKey(sessionID=%u) not found.", sessionID));
+            AddWarningEvent("TManagerRecommutation::DeleteInSessionMapByClientKey(sessionID={}) not found.", sessionID);
         return;
     }
     switch (type) {

@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include <fmt/core.h>
 
 #include "Base/Common/TypeDef.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 namespace nsTornadoEngine
 {
@@ -27,7 +27,7 @@ namespace nsTornadoEngine
             //LogEvent();
 
             nsBase::nsCommon::GetEventHub()->
-                AddWarningEvent(std::format(format, std::forward<Args>(args)...));
+                AddWarningEvent(format, std::forward<Args>(args)...);
         }
     protected:
         virtual void LogEvent(const std::string& str) {}

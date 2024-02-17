@@ -7,13 +7,14 @@ See for more information LICENSE.md.
 
 #include "Base/Common/FramedThread.h"
 #include "Base/Common/HiTimer.h"
-#include "Base/Common/ThreadManager.h"
+#include "Base/Common/ThreadIndexator.h"
+#include "Base/Common/SingletonManager.h"
 
 namespace nsBase::nsCommon
 {
     void TFramedThread::Engine()
     {
-        SingletonManager()->Get<TThreadManager>()->AddThreadId();
+        SingletonManager()->Get<TThreadIndexator>()->AddThreadId();
 
         auto stopToken = mThread.get_stop_token();
 

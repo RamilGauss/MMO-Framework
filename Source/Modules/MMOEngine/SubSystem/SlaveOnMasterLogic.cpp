@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "ContainerContextSc.h"
 
 #include "ECS/include/EntityManager.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "ScenarioFlow.h"
 #include "ScenarioLoginClient.h"
 #include "ScenarioLoginSlave.h"

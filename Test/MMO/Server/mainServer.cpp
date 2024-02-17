@@ -20,7 +20,8 @@ See for more information LICENSE.md.
 #include "MMOEngine/include/SuperServer.h"
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
+
 #include "HandlerMMO_Slave.h"
 #include "HandlerMMO_Master.h"
 #include "HandlerMMO_SuperServer.h"
@@ -73,22 +74,22 @@ void StartServer(int argc, char** argv)
     {
         int countIP_v4 = resolver.GetCount();
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("ip count = %d\n", countIP_v4));
+            AddWarningEvent("ip count = {}", countIP_v4);
         for (int i = 0; i < countIP_v4; i++) {
             if (resolver.Get(sLocalHost, i) == false) {
                 continue;
             }
             nsBase::nsCommon::GetEventHub()->
-                AddWarningEvent(std::format("ip = %s", sLocalHost.data()));
+                AddWarningEvent("ip = {}", sLocalHost);
         }
     }
 
     if (resolver.Get(sLocalHost, cmi.mInput.subnet)) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("use ip = %s", sLocalHost.data()));
+            AddWarningEvent("use ip = {}", sLocalHost);
     } else {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("FAIL subnet = %u", cmi.mInput.subnet));
+            AddWarningEvent("FAIL subnet = {}", cmi.mInput.subnet);
         return;
     }
 
@@ -189,7 +190,7 @@ void StartServer(int argc, char** argv)
         if (delta >= limitDeltaTime) {
             auto speed_ms = delta * 1.0f / iCycle;
             nsBase::nsCommon::GetEventHub()->
-                AddWarningEvent(std::format("time of cycle = %f ms", speed_ms));
+                AddWarningEvent("time of cycle = {} ms", speed_ms);
             iCycle = 0;
         }
     }

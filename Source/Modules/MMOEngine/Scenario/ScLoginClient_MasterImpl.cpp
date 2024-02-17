@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/SrcEvent_ex.h"
 
 #include "ScLoginClient_MasterImpl.h"

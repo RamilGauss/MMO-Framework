@@ -5,12 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
 #include "NetControlUDP.h"
 #include "Base/Common/BL_Debug.h"
 
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/HiTimer.h"
 
 #include <boost/asio/placeholders.hpp>
@@ -150,7 +148,7 @@ void TNetControlUDP::RecvFromEvent(const boost::system::error_code& error, size_
         ReadyRecvFrom();
     } else {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("ReadFromEvent UDP error=%s.", error.message().data()));
+            AddWarningEvent("ReadFromEvent UDP error={}.", error.message().data());
     }
 }
 //----------------------------------------------------------------------------------
@@ -158,7 +156,7 @@ void TNetControlUDP::SendToEvent(const boost::system::error_code& error, size_t 
 {
     if (error) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("SendToEvent UDP error=%s.", error.message().data()));
+            AddWarningEvent("SendToEvent UDP error={}.", error.message().data());
     }
 
     mSended = bytes_transferred;
@@ -183,7 +181,7 @@ l_repeat:
     int resSend = mDevice.GetSocket()->send_to(boost::asio::buffer(data, size), sender_end_point, flags, ec);
     if (ec || resSend == 0) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("RequestSendTo UDP error=%s.", ec.message().data()));
+            AddWarningEvent("RequestSendTo UDP error={}.", ec.message().data());
     }
     if (resSend < size) {
         ht_msleep(eTimeRepeatSend);

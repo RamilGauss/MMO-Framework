@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "ScenarioLoginMaster.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/SrcEvent_ex.h"
 
 #include "Events.h"

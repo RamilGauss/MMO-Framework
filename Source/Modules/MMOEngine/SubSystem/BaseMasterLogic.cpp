@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "Master.h"
 #include "ECS/include/EntityManager.h"
 #include "Events.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Components.h"
 
 using namespace nsMMOEngine;

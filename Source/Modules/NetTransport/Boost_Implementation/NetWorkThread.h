@@ -27,6 +27,7 @@ public:
 
     void Start();
     void Stop();
+    bool IsActive() const;
 protected:
     void Work();
 };

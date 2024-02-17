@@ -15,7 +15,35 @@ See for more information LICENSE.md.
 #include "Base/Zones/IContext.h"
 #include "Base/Zones/ContextState.h"
 
-#include "Base/Common/SingleThread.h"
+#include "Base/Common/FramedThread.h"
+
+
+
+#include "Base/Common/ThreadIndexator.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/GlobalEventHub.h"
+
+
+TEST(EventHub, Simple_Ok)
+{
+    using namespace nsBase::nsCommon;
+
+    SingletonManager()->Get<TThreadIndexator>()->AddThreadId();
+
+    GetEventHub()->AddEvent("Test", "asdasd");
+
+    GetEventHub()->AddEvent("Test", "{}", 42);
+    GetEventHub()->AddInfoEvent("{}", 42);
+    GetEventHub()->AddWarningEvent("{}", 42);
+    GetEventHub()->AddErrorEvent("{}", 42);
+
+
+    std::list<std::string> events;
+    GetEventHub()->TakeEvents(events);
+
+    events.begin();
+}
+
 
 namespace nsBase::nsZones::nsTests
 {
@@ -157,34 +185,34 @@ namespace nsBase::nsZones::nsTests
 
     };
 
-    class TAsyncProcess : public TProcess, public nsBase::nsCommon::TSingleThread
-    {
-    public:
-        TAsyncProcess()
-        {
-            nsBase::nsCommon::TSingleThread::Start();
-        }
-        void Work(std::list<IContext*>& aciveCtx) override
-        {
-            for (auto pCtx : aciveCtx) {
-                Finish(pCtx);
-            }
-        }
-        uint64_t GetTotalCount(IContext* pCtx) const override
-        {
-            return Ctx<TCtx>(pCtx)->totalCount;
-        }
-        uint64_t GetProgressCount(IContext* pCtx) const override
-        {
-            return Ctx<TCtx>(pCtx)->progressCount;
-        }
-    private:
-    protected:
-        void Work() override
-        {
+    //class TAsyncProcess : public TProcess, public nsBase::nsCommon::TSingleThread
+    //{
+    //public:
+    //    TAsyncProcess()
+    //    {
+    //        nsBase::nsCommon::TSingleThread::Start();
+    //    }
+    //    void Work(std::list<IContext*>& aciveCtx) override
+    //    {
+    //        for (auto pCtx : aciveCtx) {
+    //            Finish(pCtx);
+    //        }
+    //    }
+    //    uint64_t GetTotalCount(IContext* pCtx) const override
+    //    {
+    //        return Ctx<TCtx>(pCtx)->totalCount;
+    //    }
+    //    uint64_t GetProgressCount(IContext* pCtx) const override
+    //    {
+    //        return Ctx<TCtx>(pCtx)->progressCount;
+    //    }
+    //private:
+    //protected:
+    //    void Work() override
+    //    {
 
-        }
-    };
+    //    }
+    //};
 }
 
 using namespace nsBase::nsZones::nsTests;
@@ -360,8 +388,8 @@ TEST(Zones, Simple_LargeQueue_Ok)
     }
 }
 
-TEST(Zones, Async)
-{
-    TAsyncProcess asyncProcess;
-
-}
+//TEST(Zones, Async)
+//{
+//    TAsyncProcess asyncProcess;
+//
+//}

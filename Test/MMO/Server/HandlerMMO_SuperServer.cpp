@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 #include <boost/asio/ip/impl/address_v4.ipp>
 #include "CommonParam.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 using namespace std;
 
@@ -69,7 +69,7 @@ void THandlerMMO_SuperServer::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
 
     if (pBE->mType == nsMMOEngine::eError) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("MMOEngine SS(0x%p): %s.\t", pSuperServer, sEvent.data()));
+            AddWarningEvent("MMOEngine SS(0x{}): {}", pSuperServer, sEvent);
         //PrintCC(ServerLog);
     }
 }

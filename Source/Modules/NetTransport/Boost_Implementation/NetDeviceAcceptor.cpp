@@ -5,13 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
 #include "NetDeviceAcceptor.h"
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/HiTimer.h"
+#include "Base/Common/GlobalEventHub.h"
 
-#include "Base/Common/EventHub.h"
 #include "MMOEngine/include/INetTransport.h"
 #include "MMOEngine/include/EnumMMO.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
@@ -59,7 +57,7 @@ bool TNetDeviceAcceptor::Open(unsigned short port, unsigned char numNetWork)
         res = true;
     } catch (std::exception& e) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("Open Acceptor (%d,%d) FAIL: %s.", port, numNetWork, e.what()));
+            AddWarningEvent("Open Acceptor ({}, {}) FAIL: {}.", port, numNetWork, e.what());
     }
     return res;
 }
@@ -73,7 +71,7 @@ void TNetDeviceAcceptor::Close()
         mSocket.close();
     } catch (std::exception& e) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("Close Acceptor FAIL: %s.", e.what()));
+            AddWarningEvent("Close Acceptor FAIL: {}.", e.what());
     }
 }
 //--------------------------------------------------------------------------------

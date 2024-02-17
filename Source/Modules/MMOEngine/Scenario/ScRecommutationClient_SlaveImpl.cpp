@@ -5,9 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/SrcEvent_ex.h"
 
 #include "ScRecommutationClient_SlaveImpl.h"
@@ -241,8 +239,8 @@ void TScRecommutationClient_SlaveImpl::RequestConnect(TDescRecvSession* pDesc)
         auto clientKey = pHeader->clientKey;
 
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TScRecommutationClient_SlaveImpl::RequestConnect not found session=0x{}, key={}",
-                pDesc->sessionID, clientKey));
+            AddWarningEvent("TScRecommutationClient_SlaveImpl::RequestConnect not found session=0x{}, key={}",
+                pDesc->sessionID, clientKey);
         return;
     }
     // запомнить сессию

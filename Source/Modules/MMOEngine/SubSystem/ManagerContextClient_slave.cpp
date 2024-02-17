@@ -5,9 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/BL_Debug.h"
 
 #include "ManagerContextClient_slave.h"
@@ -43,7 +41,7 @@ TContainerContextSc* TManagerContextClient_slave::FindContextByKey(unsigned int 
     TMapUintPtrIt fit = mMapKeyContext.find(id);
     if (fit == mMapKeyContext.end()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerContextClient_slave::FindContextByKey(key=%u) not found.", id));
+            AddWarningEvent("TManagerContextClient_slave::FindContextByKey(key={}) not found.", id);
         return nullptr;
     }
     return fit->second;
@@ -61,8 +59,8 @@ bool TManagerContextClient_slave::GetSessionByIndex(int index, unsigned int& ses
 {
     if (index >= GetCountSession() || index < 0) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerContextClient_slave::GetSessionByIndex() index=%d is out of band c=%d.",
-                index, GetCountSession()));
+            AddWarningEvent("TManagerContextClient_slave::GetSessionByIndex() index={} is out of band c={}.",
+                index, GetCountSession());
         return false;
     }
     TMapUintUintIt it = mMapSessionKey.begin();
@@ -112,8 +110,7 @@ void TManagerContextClient_slave::AddSessionByKey(unsigned int id, unsigned int 
     TMapUintUintIt fit = mMapKeySession.find(id);
     if (fit == mMapKeySession.end()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerContextClient_slave::SetSessionByKey(key=%u) not found.", id));
-        BL_FIX_BUG();
+            AddWarningEvent("TManagerContextClient_slave::SetSessionByKey(key={}) not found.", id);
         return;
     }
     fit->second = sessionID;
@@ -160,7 +157,7 @@ bool TManagerContextClient_slave::FindInMapUintUint(TMapUintUint& map, unsigned 
     TMapUintUintIt fit = map.find(key);
     if (fit == map.end()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TManagerContextClient_slave::FindInMapUintUint(key=%u) not found.", key));
+            AddWarningEvent("TManagerContextClient_slave::FindInMapUintUint(key={}) not found.", key);
         return false;
     }
     value = fit->second;

@@ -5,35 +5,29 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <mutex>
-
 #include "Base/Common/GlobalEventHub.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/ThreadIndexator.h"
 
 namespace nsBase::nsCommon
 {
-    class TLockEventHub : public TEventHub
+
+    class DllExport TGlobalEventHub : public TEventHub
     {
-    protected:
-        std::mutex mMutex;
     public:
-        void Lock()
+        void SetSourceLocation(int index, const std::source_location& loc)
         {
-            mMutex.lock();
-        }
-        void Unlock()
-        {
-            mMutex.unlock();
+            mSrcLocations[index] = loc;
         }
     };
 
-TLockEventHub g_EventHub;
+    TGlobalEventHub g_EventHub;
 
-TEventHub* GetEventHub(const std::source_location loc)
-{
-    g_EventHub.Begin();
-    g_EventHub.SetSourceLocation(loc);
+    TEventHub* GetEventHub(const std::source_location loc)
+    {
+        auto index = SingletonManager()->Get<TThreadIndexator>()->GetThreadIndex();
+        g_EventHub.SetSourceLocation(index, loc);
 
-    return &g_EventHub;
-}
-
+        return &g_EventHub;
+    }
 }

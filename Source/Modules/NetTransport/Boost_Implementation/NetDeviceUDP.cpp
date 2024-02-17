@@ -5,12 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
 #include "NetDeviceUDP.h"
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/HiTimer.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
+
 #include "MMOEngine/include/INetTransport.h"
 #include "MMOEngine/include/EnumMMO.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
@@ -49,7 +48,7 @@ bool TNetDeviceUDP::Open(unsigned short port, unsigned char numNetWork)
         res = true;
     } catch (std::exception& e) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("Open UDP (%d,%d) FAIL: %s.", port, numNetWork, e.what()));
+            AddWarningEvent("Open UDP ({}, {}) FAIL: {}.", port, numNetWork, e.what());
     }
     return res;
 }
@@ -63,7 +62,7 @@ void TNetDeviceUDP::Close()
         mSocket.close();
     } catch (std::exception& e) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("Close UDP FAIL: %s.", e.what()));
+            AddWarningEvent("Close UDP FAIL: {}.", e.what());
     }
 }
 //--------------------------------------------------------------------------------

@@ -67,7 +67,7 @@ std::string ht_GetTimeStr()
     // формируем время в строку
     struct tm* my_time = localtime(&time1);
 
-    sprintf(str_time, "%04d_%02d_%02d %02d:%02d:%02d.%03d\n\t",
+    sprintf(str_time, "%04d_%02d_%02d %02d:%02d:%02d.%03d",
         my_time->tm_year + 1900, my_time->tm_mon + 1, my_time->tm_mday,
         my_time->tm_hour, my_time->tm_min, my_time->tm_sec, millitm1);
     return str_time;

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "Base.h"
 
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 #include "SessionManager.h"
 #include "DescRecvSession.h"

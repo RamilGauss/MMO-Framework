@@ -5,15 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
 #include "TransportManager.h"
 
 #include "ReceiverTransport.h"
 #include "IMakerTransport.h"
 #include "INetTransport.h"
 #include "Base/Common/BL_Debug.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "EnumMMO.h"
 
 using namespace nsMMOEngine;
@@ -40,7 +38,7 @@ INetTransport* TTransportManager::FindBySubNet(unsigned char v)
     TMapUcharPtrIt fit = mMapSubNetTransport.find(v);
     if (fit == mMapSubNetTransport.end()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TTransportManager::FindBySubNet({}) not found.", v));
+            AddWarningEvent("TTransportManager::FindBySubNet({}) not found.", v);
         return nullptr;
     }
     return fit->second;
@@ -51,7 +49,7 @@ INetTransport* TTransportManager::FindByReciver(TReceiverTransport* pRT)
     TMapPtrPtrIt fit = mMapReciverTransport.find(pRT);
     if (fit == mMapReciverTransport.end()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TTransportManager::FindByReciver(0x{}) not found.", pRT));
+            AddWarningEvent("TTransportManager::FindByReciver({:#010x}) not found.", (void*)pRT);
         return nullptr;
     }
     return fit->second;

@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 #include "CommonParam.h"
 
 #include "Base/Common/ResolverSelf_IP_v4.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 using namespace std;
 
@@ -137,7 +137,7 @@ void THandlerMMO_Master::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
 
     if (pBE->mType == nsMMOEngine::eError) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("MMOEngine M (0x%p): %s.", pMaster, sEvent.data()));
+            AddWarningEvent("MMOEngine M (0x{}): {}.", pMaster, sEvent);
         //PrintCC(ServerLog);
     }
 }

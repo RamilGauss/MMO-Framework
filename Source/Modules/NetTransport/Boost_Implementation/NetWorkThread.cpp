@@ -6,7 +6,6 @@ See for more information LICENSE.md.
 */
 
 #include <algorithm>
-#include <format>
 
 #include "MMOEngine/include/EnumMMO.h"
 
@@ -15,7 +14,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/BL_Debug.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 TNetWorkThread::TNetWorkThread()
 {
@@ -24,7 +23,7 @@ TNetWorkThread::TNetWorkThread()
 //-----------------------------------------------------------------
 TNetWorkThread::~TNetWorkThread()
 {
-    mThread.Stop();
+    
 }
 //-----------------------------------------------------------------
 void TNetWorkThread::Work()
@@ -33,7 +32,7 @@ void TNetWorkThread::Work()
     mIO_Context.run_one(ec);
     if (ec) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("TNetWorkThread::Engine FAIL %d", ec.value()));
+            AddWarningEvent("TNetWorkThread::Engine FAIL {}", ec.value());
     }
 }
 //----------------------------------------------------------------------------------
@@ -46,5 +45,10 @@ void TNetWorkThread::Stop()
 {
     mIO_Context.stop();
     mThread.Stop();
+}
+//----------------------------------------------------------------------------------
+bool TNetWorkThread::IsActive() const
+{
+    return mThread.IsActive();
 }
 //----------------------------------------------------------------------------------

@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "ScenarioLoginSlave.h"
 #include "Base/Common/BL_Debug.h"
 #include "SessionManager.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/HiTimer.h"
 #include "Events.h"
 #include "EnumMMO.h"

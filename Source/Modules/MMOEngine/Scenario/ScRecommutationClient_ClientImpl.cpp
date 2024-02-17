@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 #include "ScRecommutationClient_ClientImpl.h"
 #include "ContextScRecommutationClient.h"

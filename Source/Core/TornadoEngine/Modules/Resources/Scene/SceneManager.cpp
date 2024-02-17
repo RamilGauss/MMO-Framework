@@ -79,25 +79,25 @@ namespace nsTornadoEngine
     std::string TSceneManager::Instantiate(const TInstantiateSceneParams& instantiateSceneParams)
     {
         // Convert to abs path
-        auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
-        if (fit == mResourceContentMap.guidPathMap.end()) {
-            nsTornadoEngine::Modules()->Log()->Log("Guid \"%s\" not exist", instantiateSceneParams.guid.c_str());
+        //auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
+        //if (fit == mResourceContentMap.guidPathMap.end()) {
+        //    nsTornadoEngine::Modules()->Log()->Log("Guid \"%s\" not exist", instantiateSceneParams.guid.c_str());
             return "Not found";
-        }
+        //}
 
-        TSceneInstanceStatePtr sceneInstanceState = std::make_shared<TSceneInstanceState>(instantiateSceneParams);
+        //TSceneInstanceStatePtr sceneInstanceState = std::make_shared<TSceneInstanceState>(instantiateSceneParams);
 
-        if (sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid.empty()) {
-            sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid = nsBase::nsCommon::TGuidGenerator::Generate();
-        }
+        //if (sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid.empty()) {
+        //    sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid = nsBase::nsCommon::TGuidGenerator::Generate();
+        //}
 
-        sceneInstanceState->mAbsPath = fit->second;
+        //sceneInstanceState->mAbsPath = fit->second;
 
-        mSceneInstances.insert({ sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid, sceneInstanceState });
+        //mSceneInstances.insert({ sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid, sceneInstanceState });
 
-        mAsyncScenes.AddToWait(sceneInstanceState);
+        //mAsyncScenes.AddToWait(sceneInstanceState);
 
-        return sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid;
+        //return sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid;
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
@@ -158,7 +158,7 @@ namespace nsTornadoEngine
     {
         pSc->mAsyncThread = std::make_shared<TSceneInstantiatingThread>(pSc);
 
-        pSc->mAsyncThread->Start();
+        //pSc->mAsyncThread->Start();
     }
     //---------------------------------------------------------------------------------------
     void TSceneManager::SyncWork(TSceneInstanceState* pSc, unsigned int maxDuration)
@@ -180,9 +180,9 @@ namespace nsTornadoEngine
                 default:;
             }
 
-            if (pSc->IsInstantiateCompleted()) {
-                break;
-            }
+            //if (pSc->IsInstantiateCompleted()) {
+            //    break;
+            //}
 
             auto dt = ht_GetMSCount() - start;
 

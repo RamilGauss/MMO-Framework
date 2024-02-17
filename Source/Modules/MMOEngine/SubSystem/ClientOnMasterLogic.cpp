@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Events.h"
 #include "ControlScenario.h"
 #include "Components.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/SaveToFile.h"
 
 #include "ScenarioFlow.h"
@@ -100,7 +100,7 @@ void TClientOnMasterLogic::NeedContextLoginClientBySessionAfterAuthorised(unsign
     if (clientEntity == nsECSFramework::NONE) {
         // внутренняя ошибка
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent("TMaster::NeedContextLoginClientBySessionAfterAuthorised() context not found.n");
+            AddWarningEvent("TMaster::NeedContextLoginClientBySessionAfterAuthorised() context not found.");
         mBase->mControlSc->mLoginClient->SetContext(nullptr);
         return;
     }

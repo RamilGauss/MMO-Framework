@@ -5,15 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include <format>
-
 #include <boost/asio/placeholders.hpp>
 #include <boost/smart_ptr/shared_array.hpp>
 #include <boost/asio/socket_base.hpp>
 #include <boost/bind.hpp>
 
 #include "Base/Common/BL_Debug.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/HiTimer.h"
 
 #include "NetControlTCP.h"
@@ -75,7 +73,7 @@ void TNetControlTCP::RecvEvent(const boost::system::error_code& error, size_t by
 {
     if (error || bytes_transferred <= 0) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("RecvEvent TCP disconnect error=%s.", error.message().data()));
+            AddWarningEvent("RecvEvent TCP disconnect error={}.", error.message().data());
 
         DeleteSelf();
         return;
@@ -107,7 +105,7 @@ void TNetControlTCP::SendEvent(const boost::system::error_code& error, size_t by
 {
     if (error) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("SendEvent TCP error=%s.", error.message().data()));
+            AddWarningEvent("SendEvent TCP error={}.", error.message().data());
     }
 }
 //----------------------------------------------------------------------------------
@@ -118,7 +116,7 @@ void TNetControlTCP::ConnectEvent(const boost::system::error_code& error)
 
     if (error.failed()) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("ConnectEvent TCP error=%s.", error.message().data()));
+            AddWarningEvent("ConnectEvent TCP error={}.", error.message().data());
     }
 }
 //----------------------------------------------------------------------------------
@@ -131,7 +129,7 @@ void TNetControlTCP::ReadyRecv()
                 boost::asio::placeholders::bytes_transferred));
     } catch (std::exception& e) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("ReadyRecv TCP error=%s.", e.what()));
+            AddWarningEvent("ReadyRecv TCP error={}.", e.what());
     }
 }
 //----------------------------------------------------------------------------------
@@ -153,7 +151,7 @@ l_repeat:
     int resSend = mDevice.GetSocket()->send(boost::asio::buffer(data, size), flags, ec);
     if (ec) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("RequestSend TCP error=%s.", ec.message().data()));
+            AddWarningEvent("RequestSend TCP error={}.", ec.message().data());
         return;
     }
     if (resSend < size) {
@@ -175,7 +173,7 @@ void TNetControlTCP::RequestConnect(TIP_Port& ip_port)
         flgResConnect = true;
     } catch (std::exception& e) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent(std::format("RequestConnect TCP error=%s, ip_port=%s.", e.what(), ip_port.ToString()));
+            AddWarningEvent("RequestConnect TCP error={}, ip_port={}.", e.what(), ip_port.ToString());
 
         flgWaitConnect = false;
         flgResConnect = false;

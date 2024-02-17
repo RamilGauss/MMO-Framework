@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "Slave.h"
 
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 #include "ControlScenario.h"
 #include "SessionManager.h"
 #include "Events.h"

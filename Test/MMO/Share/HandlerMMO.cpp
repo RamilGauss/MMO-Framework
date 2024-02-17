@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/ResolverSelf_IP_v4.h"
 #include "Base/Common/BL_Debug.h"
-#include "Base/Common/EventHub.h"
+#include "Base/Common/GlobalEventHub.h"
 
 static THandlerMMO::TMapUIntPtr g_ID_MMO_HandlerPtr;
 
@@ -175,7 +175,7 @@ void THandlerMMO::PrintCC(const char* loggerName)
     s += "\n";
 
     nsBase::nsCommon::GetEventHub()->
-        AddWarningEvent(s.data());
+        AddWarningEvent(s);
 }
 //---------------------------------------------------------------------------------------------
 void THandlerMMO::AddClient(unsigned int clientKey)
