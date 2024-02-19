@@ -26,7 +26,6 @@ namespace nsTornadoEngine
         static void SetResourceMng(TResourceManager* value);
         static void SetSceneMng(TSceneManager* value);
         static void SetPrefabMng(TPrefabManager* value);
-        static void SetEngineLogger(TEngineLogger* value);
         static void SetStopAccessor(TStopAccessor* value);
         static void SetKeyMouse(nsGraphicEngine::TKeyMouseEventContainer* value);
         static void SetHandlerCall(THandlerCallCollector* value);
