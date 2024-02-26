@@ -49,13 +49,13 @@ namespace nsTornadoEngine
         std::string jsonContent;
         nsBase::nsCommon::TTextFile::Load(absPath, jsonContent);
         if (jsonContent.length() == 0) {
-            Modules()->Log()->Log("%s no such file", absPath.c_str());
+            Modules()->Log()->AddWarningEvent("{} no such file", absPath);
             return false;
         }
         std::string err;
         auto deserResult = TTornadoEngineJsonSerializer::Deserialize(p, jsonContent, err);
         if (!deserResult) {
-            Modules()->Log()->Log("%s %s", absPath.c_str(), err.c_str());
+            Modules()->Log()->AddWarningEvent("{} {}", absPath, err);
         }
         return deserResult;
     }

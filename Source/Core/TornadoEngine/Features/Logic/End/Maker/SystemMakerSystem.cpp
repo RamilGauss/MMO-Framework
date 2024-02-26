@@ -38,7 +38,7 @@ void TSystemMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsLogicWr
     int rtti;
     auto convertResult = systemReflection->mRtti->ConvertNameToType(pC->typeName, rtti);
     if (convertResult == false) {
-        nsTornadoEngine::Modules()->Log()->Log("Not converted typename \"%s\"", pC->typeName);
+        nsTornadoEngine::Modules()->Log()->AddWarningEvent("Not converted typename \"{}\"", pC->typeName);
         return;
     }
 

@@ -48,21 +48,21 @@ bool TProjectConfigLoader::LoadBinary()
     mPcc->mLoader = MakeLoaderDLL();
 
     if (mPcc->mLoader->Init(mPcc->GetBinaryAbsPath().c_str()) == false) {
-        Modules()->Log()->Log("LoadDLL() FAIL init.\n");
+        Modules()->Log()->AddWarningEvent("LoadDLL() FAIL init.");
         return false;
     }
     mPcc->mFreeScenePartAggregator = (FuncFreeScenePartReflectionAggregator) mPcc->mLoader->Get(StrFreeScenePartReflectionAggregator);
     if (mPcc->mFreeScenePartAggregator == nullptr) {
-        Modules()->Log()->Log("LoadDLL() FAIL load FuncFree.\n");
+        Modules()->Log()->AddWarningEvent("LoadDLL() FAIL load FuncFree.");
         return false;
     }
     mPcc->mGetScenePartAggregator = (FuncGetScenePartReflectionAggregator) mPcc->mLoader->Get(StrGetScenePartReflectionAggregator);
     if (mPcc->mGetScenePartAggregator == nullptr) {
-        Modules()->Log()->Log("LoadDLL() FAIL load FuncGetdevTool.\n");
+        Modules()->Log()->AddWarningEvent("LoadDLL() FAIL load FuncGetdevTool.");
         return false;
     }
     if (mPcc->mScenePartAggregator != nullptr) {
-        Modules()->Log()->Log("LoadDLL() warning, object was loaded.\n");
+        Modules()->Log()->AddWarningEvent("LoadDLL() warning, object was loaded.");
         return true;
     }
     mPcc->mScenePartAggregator = mPcc->mGetScenePartAggregator();

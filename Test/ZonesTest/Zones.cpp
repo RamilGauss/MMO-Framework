@@ -235,6 +235,8 @@ TEST(Zones, Simple_Ok)
     TCtx ctx;
     a->AddContext(&ctx);
 
+    ctx.StartProcess("a->b");
+
     ctx.GetContextState().StartProcess("a->b");
 
     zoneMgr.Work();

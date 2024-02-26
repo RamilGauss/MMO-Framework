@@ -33,6 +33,8 @@ namespace nsBase::nsZones
 
         TContextState GetContextState(uint32_t rank = 0);
 
+        void StartProcess(const std::string& processName, uint32_t rank = 0);
+
     private:
         std::vector<TProcess*> mActiveProcesses;
         std::vector<TZone*> mOwnerZones;

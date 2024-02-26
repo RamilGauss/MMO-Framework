@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/TypeDef.h"
+#include "Base/Common/EventHub.h"
 
 namespace nsECSFramework
 {
@@ -73,7 +74,7 @@ namespace nsTornadoEngine
         TPropertyManager* PropertyMng() const;
 
         // Core logger
-        TEventHub* Log(const std::source_location loc = std::source_location::current()) const;
+        nsBase::nsCommon::TEventHub* Log(const std::source_location loc = std::source_location::current()) const;
     protected:
         friend class TModulesAccessor;
 
