@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <vector>
+#include <string>
 
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/ProgressValue.h"
@@ -16,7 +17,6 @@ namespace nsBase::nsZones
 {
     class TProcess;
     class TZone;
-    class TContextState;
 
     struct DllExport IContext
     {
@@ -30,8 +30,6 @@ namespace nsBase::nsZones
         TZone* GetOwnerZone(uint32_t rank = 0) const;
 
         uint32_t GetRankCount() const;
-
-        TContextState GetContextState(uint32_t rank = 0);
 
         void StartProcess(const std::string& processName, uint32_t rank = 0);
 

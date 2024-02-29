@@ -6,7 +6,8 @@ See for more information LICENSE.md.
 */
 
 #include "Base/Zones/IContext.h"
-#include "Base/Zones/ContextState.h"
+#include "Base/Zones/Zone.h"
+#include "Base/Zones/ZoneProcess.h"
 
 namespace nsBase::nsZones
 {
@@ -53,9 +54,12 @@ namespace nsBase::nsZones
         return mOwnerZones[rank];
     }
     //-----------------------------------------------------------------------------
-    TContextState IContext::GetContextState(uint32_t rank)
+    void IContext::StartProcess(const std::string& processName, uint32_t rank)
     {
-        return TContextState(this, GetOwnerZone(rank), GetActiveProcess(rank));
+        auto pProcess = GetOwnerZone(rank)->GetProcess(processName);
+        if (pProcess)
+            pProcess->Start(this);
+        return (pProcess != nullptr);
     }
     //-----------------------------------------------------------------------------
 }

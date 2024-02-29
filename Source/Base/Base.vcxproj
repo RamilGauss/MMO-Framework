@@ -227,7 +227,6 @@
     <ClInclude Include="include\Base\Common\GlobalEventHub.h" />
     <ClInclude Include="include\Base\Common\ThreadIndexator.h" />
     <ClInclude Include="include\Base\Common\ThreadSharedValue.h" />
-    <ClInclude Include="include\Base\Zones\ContextState.h" />
     <ClInclude Include="include\Base\Zones\IContext.h" />
     <ClInclude Include="include\Base\Common\ConverterLocale.h" />
     <ClInclude Include="include\Base\Common\CRC8.h" />
@@ -299,7 +298,6 @@
     <ClInclude Include="include\Base\Zones\ZoneManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ContextState.cpp" />
     <ClCompile Include="src\EventHub.cpp" />
     <ClCompile Include="src\FramedThread.cpp" />
     <ClCompile Include="src\GlobalEventHub.cpp" />
