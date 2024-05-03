@@ -5,17 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Base/Zones/ZoneProcess.h"
+#include "Base/Zones/HopProcess.h"
 
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
-#include "Base/Zones/IContext.h"
+#include "Base/Zones/IHopProcessContext.h"
 
 #include "Base/Common/BL_Debug.h"
 
 namespace nsBase::nsZones
 {
-    void TProcess::Setup(const std::string& name, TZone* finishZone, int maxActiveCount)
+    void THopProcess::Setup(const std::string& name, TZone* finishZone, int maxActiveCount)
     {
         mName = name;
         mFinishZone = finishZone;
@@ -26,17 +26,17 @@ namespace nsBase::nsZones
         SetupEvent();
     }
     //------------------------------------------------------------------------------
-    TProcess::~TProcess()
+    THopProcess::~THopProcess()
     {
 
     }
     //------------------------------------------------------------------------------
-    std::string TProcess::GetName() const
+    std::string THopProcess::GetName() const
     {
         return mName;
     }
     //------------------------------------------------------------------------------
-    void TProcess::Start(IContext* pCtx)
+    void THopProcess::Start(IHopProcessContext* pCtx)
     {
         auto activeProcess = pCtx->GetActiveProcess(GetRank());
         if (activeProcess)
@@ -51,7 +51,7 @@ namespace nsBase::nsZones
         TryActivate();
     }
     //------------------------------------------------------------------------------
-    void TProcess::Stop(IContext* pCtx)
+    void THopProcess::Stop(IHopProcessContext* pCtx)
     {
         mWaitingCtx.remove(pCtx);
         mAciveCtx.remove(pCtx);
@@ -65,7 +65,7 @@ namespace nsBase::nsZones
         TryActivate();
     }
     //------------------------------------------------------------------------------
-    void TProcess::Finish(IContext* pCtx)
+    void THopProcess::Finish(IHopProcessContext* pCtx)
     {
         if (!IsActive(pCtx)) {
             BL_FIX_BUG();
@@ -80,23 +80,23 @@ namespace nsBase::nsZones
         TryActivate();
     }
     //------------------------------------------------------------------------------
-    int TProcess::GetMaxActiveCount() const
+    int THopProcess::GetMaxActiveCount() const
     {
         return mMaxActiveCount;
     }
     //------------------------------------------------------------------------------
-    TZone* TProcess::GetFinishZone() const
+    TZone* THopProcess::GetFinishZone() const
     {
         return mFinishZone;
     }
     //------------------------------------------------------------------------------
-    bool TProcess::IsActive(IContext* pCtx) const
+    bool THopProcess::IsActive(IHopProcessContext* pCtx) const
     {
         auto fit = std::find(mAciveCtx.begin(), mAciveCtx.end(), pCtx);
         return fit != mAciveCtx.end();
     }
     //------------------------------------------------------------------------------
-    void TProcess::TryActivate()
+    void THopProcess::TryActivate()
     {
         if (mAciveCtx.size() >= GetMaxActiveCount() || mWaitingCtx.empty())
             return;
@@ -107,7 +107,7 @@ namespace nsBase::nsZones
         mAciveCtx.push_back(pCtx);
     }
     //------------------------------------------------------------------------------
-    bool TProcess::Work()
+    bool THopProcess::Work()
     {
         mZoneMng->Work();
 
@@ -123,37 +123,37 @@ namespace nsBase::nsZones
         return wasSpent;
     }
     //------------------------------------------------------------------------------
-    uint32_t TProcess::GetActiveContextCount() const
+    uint32_t THopProcess::GetActiveContextCount() const
     {
         return mAciveCtx.size();
     }
     //------------------------------------------------------------------------------
-    void TProcess::SetupEvent()
+    void THopProcess::SetupEvent()
     {
 
     }
     //------------------------------------------------------------------------------
-    void TProcess::StartEvent(IContext* pCtx)
+    void THopProcess::StartEvent(IHopProcessContext* pCtx)
     {
 
     }
     //------------------------------------------------------------------------------
-    void TProcess::StopEvent(IContext* pCtx)
+    void THopProcess::StopEvent(IHopProcessContext* pCtx)
     {
 
     }
     //------------------------------------------------------------------------------
-    uint64_t TProcess::GetTotalCount(IContext* pCtx) const
+    uint64_t THopProcess::GetTotalCount(IHopProcessContext* pCtx) const
     {
         return 1;
     }
     //------------------------------------------------------------------------------
-    uint64_t TProcess::GetProgressCount(IContext* pCtx) const
+    uint64_t THopProcess::GetProgressCount(IHopProcessContext* pCtx) const
     {
         return 0;
     }
     //------------------------------------------------------------------------------
-    float TProcess::GetProgressValue(IContext* pCtx) const
+    float THopProcess::GetProgressValue(IHopProcessContext* pCtx) const
     {
         if (GetTotalCount(pCtx) == 0) {
             return 1.0f;

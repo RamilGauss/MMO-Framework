@@ -15,18 +15,18 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    class TProcess;
+    class THopProcess;
     class TZone;
 
-    struct DllExport IContext
+    struct DllExport IHopProcessContext
     {
-        void PushActiveProcess(TProcess* pProcess);
+        void PushActiveProcess(THopProcess* pProcess);
         void PopActiveProcess();
 
         void PushOwnerZone(TZone* pZone);
         void PopOwnerZone();
 
-        TProcess* GetActiveProcess(uint32_t rank = 0) const;
+        THopProcess* GetActiveProcess(uint32_t rank = 0) const;
         TZone* GetOwnerZone(uint32_t rank = 0) const;
 
         uint32_t GetRankCount() const;
@@ -34,7 +34,7 @@ namespace nsBase::nsZones
         void StartProcess(const std::string& processName, uint32_t rank = 0);
 
     private:
-        std::vector<TProcess*> mActiveProcesses;
+        std::vector<THopProcess*> mActiveProcesses;
         std::vector<TZone*> mOwnerZones;
     };
 }

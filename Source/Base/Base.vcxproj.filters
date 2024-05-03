@@ -248,10 +248,10 @@
     <ClInclude Include="include\Base\Zones\Zone.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\ZoneProcess.h">
+    <ClInclude Include="include\Base\Zones\HopProcess.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\IContext.h">
+    <ClInclude Include="include\Base\Zones\IHopProcessContext.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\LoaderDLLFactory.h">
@@ -430,7 +430,7 @@
     <ClCompile Include="src\Zone.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ZoneProcess.cpp">
+    <ClCompile Include="src\HopProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ZoneManager.cpp">
@@ -439,7 +439,7 @@
     <ClCompile Include="src\LoaderDLLFactory.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\IContext.cpp">
+    <ClCompile Include="src\IHopProcessContext.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Rank.cpp">

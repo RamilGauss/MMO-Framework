@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 namespace nsBase::nsZones
 {
     class TZone;
-    struct IContext;
+    struct IHopProcessContext;
     class DllExport TZoneManager : public TRank
     {
         std::list<SharedPtrZone> mZones;
@@ -30,6 +30,6 @@ namespace nsBase::nsZones
 
         bool Work();
 
-        void MoveContext(IContext* pCtx, TZone* from, TZone* to);
+        void MoveContext(IHopProcessContext* pCtx, TZone* from, TZone* to);
     };
 }

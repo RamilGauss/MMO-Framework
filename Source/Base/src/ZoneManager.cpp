@@ -39,7 +39,7 @@ namespace nsBase::nsZones
         return wasSpent;
     }
     //------------------------------------------------------------------------------
-    void TZoneManager::MoveContext(IContext* pCtx, TZone* from, TZone* to)
+    void TZoneManager::MoveContext(IHopProcessContext* pCtx, TZone* from, TZone* to)
     {
         from->RemoveContext(pCtx);
 

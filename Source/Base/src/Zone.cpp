@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #include "Base/Zones/Zone.h"
 
 #include "Base/Zones/ZoneManager.h"
-#include "Base/Zones/ZoneProcess.h"
-#include "Base/Zones/IContext.h"
+#include "Base/Zones/HopProcess.h"
+#include "Base/Zones/IHopProcessContext.h"
 
 namespace nsBase::nsZones
 {
@@ -23,7 +23,7 @@ namespace nsBase::nsZones
         return mName;
     }
     //------------------------------------------------------------------------------
-    void TZone::AddProcess(SharedPtrProcess pProcess)
+    void TZone::AddProcess(SharedPtrHopProcess pProcess)
     {
         mProcesses.push_back(pProcess);
 
@@ -33,10 +33,10 @@ namespace nsBase::nsZones
         pProcess->SetRank(GetRank());
     }
     //------------------------------------------------------------------------------
-    TProcess* TZone::GetProcess(const std::string& processName)
+    THopProcess* TZone::GetProcess(const std::string& processName)
     {
         auto fit = std::find_if(mProcesses.begin(), mProcesses.end(), 
-            [&processName](SharedPtrProcess p) {return p->GetName() == processName; });
+            [&processName](SharedPtrHopProcess p) {return p->GetName() == processName; });
 
         if (fit == std::end(mProcesses))
             return nullptr;
@@ -44,13 +44,13 @@ namespace nsBase::nsZones
         return fit->get();
     }
     //------------------------------------------------------------------------------
-    void TZone::AddContext(IContext* pCtx)
+    void TZone::AddContext(IHopProcessContext* pCtx)
     {
         mContexts.push_back(pCtx);
         pCtx->PushOwnerZone(this);
     }
     //------------------------------------------------------------------------------
-    void TZone::RemoveContext(IContext* pCtx)
+    void TZone::RemoveContext(IHopProcessContext* pCtx)
     {
         mContexts.remove(pCtx);
         pCtx->PopOwnerZone();
@@ -66,12 +66,12 @@ namespace nsBase::nsZones
         return wasSpent;
     }
     //------------------------------------------------------------------------------
-    void TZone::OnStopProcess(TProcess* pProcess, IContext* pCtx)
+    void TZone::OnStopProcess(THopProcess* pProcess, IHopProcessContext* pCtx)
     {
 
     }
     //------------------------------------------------------------------------------
-    void TZone::OnFinishProcess(TProcess* pProcess, TZone* pZone, IContext* pCtx)
+    void TZone::OnFinishProcess(THopProcess* pProcess, TZone* pZone, IHopProcessContext* pCtx)
     {
         mZoneMng->MoveContext(pCtx, this, pZone);
     }

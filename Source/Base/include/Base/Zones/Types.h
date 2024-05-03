@@ -13,11 +13,11 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    class TProcess;
+    class THopProcess;
     class TZone;
     class TZoneManager;
 
     using SharedPtrZone = std::shared_ptr<TZone>;
     using SharedPtrZoneManager = std::shared_ptr<TZoneManager>;
-    using SharedPtrProcess = std::shared_ptr<TProcess>;
+    using SharedPtrHopProcess = std::shared_ptr<THopProcess>;
 }

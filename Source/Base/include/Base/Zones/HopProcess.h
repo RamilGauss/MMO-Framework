@@ -18,20 +18,18 @@ See for more information LICENSE.md.
 #include "Base/Zones/Rank.h"
 #include "Base/Zones/ZoneManagerMaster.h"
 
-// Имя файла Process.h занято системным, поэтому называется ZoneProcess.h, а сам класс TProcess.
-
 namespace nsBase::nsZones
 {
-    struct IContext;
+    struct IHopProcessContext;
     class TZone;
     class TZoneManager;
 
-    class DllExport TProcess : public TZoneManagerMaster, public TRank
+    class DllExport THopProcess : public TZoneManagerMaster, public TRank
     {
     protected:
-        std::list<IContext*> mAciveCtx;
+        std::list<IHopProcessContext*> mAciveCtx;
 
-        std::list<IContext*> mWaitingCtx;
+        std::list<IHopProcessContext*> mWaitingCtx;
 
         int mMaxActiveCount = 1;
 
@@ -40,12 +38,12 @@ namespace nsBase::nsZones
         std::string mName;
 
     public:
-        virtual ~TProcess();
+        virtual ~THopProcess();
 
         void Setup(const std::string& name, TZone* finishZone, int maxActiveCount = 1);
 
-        void Start(IContext* pCtx);
-        void Stop(IContext* pCtx);
+        void Start(IHopProcessContext* pCtx);
+        void Stop(IHopProcessContext* pCtx);
         
         bool Work();
 
@@ -57,22 +55,22 @@ namespace nsBase::nsZones
         uint32_t GetActiveContextCount() const;
 
         // Events
-        using ProcessStopEvent = TCallbackPool<TProcess*, IContext*>;
-        using ProcessFinishEvent = TCallbackPool<TProcess*, TZone*, IContext*>;
-        using ProcessErrorEvent = TCallbackPool<TProcess*, IContext*>;
+        using ProcessStopEvent = TCallbackPool<THopProcess*, IHopProcessContext*>;
+        using ProcessFinishEvent = TCallbackPool<THopProcess*, TZone*, IHopProcessContext*>;
+        using ProcessErrorEvent = TCallbackPool<THopProcess*, IHopProcessContext*>;
 
         ProcessStopEvent mStopEvent;
         ProcessFinishEvent mFinishEvent;
         ProcessErrorEvent mErrorEvent;
 
-        virtual uint64_t GetTotalCount(IContext* pCtx) const;
-        virtual uint64_t GetProgressCount(IContext* pCtx) const;
+        virtual uint64_t GetTotalCount(IHopProcessContext* pCtx) const;
+        virtual uint64_t GetProgressCount(IHopProcessContext* pCtx) const;
 
-        float GetProgressValue(IContext* pCtx) const;
+        float GetProgressValue(IHopProcessContext* pCtx) const;
 
     protected:
         template <typename ToType>
-        ToType* Ctx(IContext* pCtx) const
+        ToType* Ctx(IHopProcessContext* pCtx) const
         {
             if constexpr (std::is_polymorphic<ToType>()) {
                 return dynamic_cast<ToType*>(pCtx);
@@ -80,18 +78,18 @@ namespace nsBase::nsZones
             return reinterpret_cast<ToType*>(pCtx);
         }
 
-        void Finish(IContext* pCtx);
+        void Finish(IHopProcessContext* pCtx);
 
         void TryActivate();
 
-        virtual void Work(std::list<IContext*>& aciveCtx) = 0;
+        virtual void Work(std::list<IHopProcessContext*>& aciveCtx) = 0;
 
         virtual void SetupEvent();
         
-        virtual void StartEvent(IContext* pCtx);
-        virtual void StopEvent(IContext* pCtx);
+        virtual void StartEvent(IHopProcessContext* pCtx);
+        virtual void StopEvent(IHopProcessContext* pCtx);
 
     private:
-        bool IsActive(IContext* pCtx) const;
+        bool IsActive(IHopProcessContext* pCtx) const;
     };
 }

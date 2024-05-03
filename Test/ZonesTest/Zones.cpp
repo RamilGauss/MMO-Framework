@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
-#include "Base/Zones/ZoneProcess.h"
-#include "Base/Zones/IContext.h"
+#include "Base/Zones/HopProcess.h"
+#include "Base/Zones/IHopProcessContext.h"
 
 #include "Base/Common/FramedThread.h"
 
@@ -46,47 +46,47 @@ TEST(EventHub, Simple_Ok)
 
 namespace nsBase::nsZones::nsTests
 {
-    struct TCtx : IContext
+    struct TCtx : IHopProcessContext
     {
         uint64_t totalCount = 1;
         uint64_t progressCount = 0;
     };
 
-    class TSimpleProcess : public TProcess
+    class TSimpleProcess : public THopProcess
     {
     public:
-        void Work(std::list<IContext*>& aciveCtx) override
+        void Work(std::list<IHopProcessContext*>& aciveCtx) override
         {
             for (auto pCtx : aciveCtx) {
                 Finish(pCtx);
             }
         }
-        uint64_t GetTotalCount(IContext* pCtx) const override
+        uint64_t GetTotalCount(IHopProcessContext* pCtx) const override
         {
             return Ctx<TCtx>(pCtx)->totalCount;
         }
-        uint64_t GetProgressCount(IContext* pCtx) const override
+        uint64_t GetProgressCount(IHopProcessContext* pCtx) const override
         {
             return Ctx<TCtx>(pCtx)->progressCount;
         }
     };
 
-    class TComplexProcess : public TProcess
+    class TComplexProcess : public THopProcess
     {
     public:
         TComplexProcess()
         {
         }
 
-        void Work(std::list<IContext*>& aciveCtx) override
+        void Work(std::list<IHopProcessContext*>& aciveCtx) override
         {
 
         }
-        uint64_t GetTotalCount(IContext* pCtx) const override
+        uint64_t GetTotalCount(IHopProcessContext* pCtx) const override
         {
             return 0;// mA_to_b.GetTotalCount(pCtx);
         }
-        uint64_t GetProgressCount(IContext* pCtx) const override
+        uint64_t GetProgressCount(IHopProcessContext* pCtx) const override
         {
             return 0;//mA_to_b.GetProgressCount(pCtx);
         }
@@ -102,17 +102,17 @@ namespace nsBase::nsZones::nsTests
 
             a_to_b->mFinishEvent.Register(this, &TComplexProcess::OnFinishEvent);
         }
-        void StartEvent(IContext* pCtx) override
+        void StartEvent(IHopProcessContext* pCtx) override
         {
             mZoneMng->GetZone("A")->AddContext(pCtx);
             pCtx->StartProcess("a->b", GetNextRank());
         }
-        void StopEvent(IContext* pCtx) override
+        void StopEvent(IHopProcessContext* pCtx) override
         {
             //pCtx->GetContextState(GetNextRank()).StopProcess();
         }
 
-        void OnFinishEvent(TProcess* pProcess, TZone* pZone, IContext* pCtx)
+        void OnFinishEvent(THopProcess* pProcess, TZone* pZone, IHopProcessContext* pCtx)
         {
             pZone->RemoveContext(pCtx);
             Finish(pCtx);
@@ -120,26 +120,26 @@ namespace nsBase::nsZones::nsTests
 
     };
 
-    class TTripleComplexProcess : public TProcess
+    class TTripleComplexProcess : public THopProcess
     {
-        SharedPtrProcess mA_to_b;
-        SharedPtrProcess mB_to_c;
+        SharedPtrHopProcess mA_to_b;
+        SharedPtrHopProcess mB_to_c;
 
     public:
         TTripleComplexProcess()
         {
         }
 
-        void Work(std::list<IContext*>& aciveCtx) override
+        void Work(std::list<IHopProcessContext*>& aciveCtx) override
         {
 
         }
 
-        uint64_t GetTotalCount(IContext* pCtx) const override
+        uint64_t GetTotalCount(IHopProcessContext* pCtx) const override
         {
             return 0;// mA_to_b.GetTotalCount(pCtx) + mB_to_c.GetTotalCount(pCtx);
         }
-        uint64_t GetProgressCount(IContext* pCtx) const override
+        uint64_t GetProgressCount(IHopProcessContext* pCtx) const override
         {
             return 0;//mA_to_b.GetProgressCount(pCtx) + mB_to_c.GetProgressCount(pCtx);
         }
@@ -162,17 +162,17 @@ namespace nsBase::nsZones::nsTests
             mA_to_b->mFinishEvent.Register(this, &TTripleComplexProcess::OnFinishEvent);
             mB_to_c->mFinishEvent.Register(this, &TTripleComplexProcess::OnFinishEvent);
         }
-        void StartEvent(IContext* pCtx) override
+        void StartEvent(IHopProcessContext* pCtx) override
         {
             mZoneMng->GetZone("A")->AddContext(pCtx);
             pCtx->StartProcess("a->b", GetNextRank());
         }
-        void StopEvent(IContext* pCtx) override
+        void StopEvent(IHopProcessContext* pCtx) override
         {
             //pCtx->GetContextState(GetNextRank()).StopProcess();
         }
 
-        void OnFinishEvent(TProcess* pProcess, TZone* pZone, IContext* pCtx)
+        void OnFinishEvent(THopProcess* pProcess, TZone* pZone, IHopProcessContext* pCtx)
         {
             if (pZone->GetName() == "B") {
                 pCtx->StartProcess("b->c", GetNextRank());

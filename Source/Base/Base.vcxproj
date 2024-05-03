@@ -227,7 +227,7 @@
     <ClInclude Include="include\Base\Common\GlobalEventHub.h" />
     <ClInclude Include="include\Base\Common\ThreadIndexator.h" />
     <ClInclude Include="include\Base\Common\ThreadSharedValue.h" />
-    <ClInclude Include="include\Base\Zones\IContext.h" />
+    <ClInclude Include="include\Base\Zones\IHopProcessContext.h" />
     <ClInclude Include="include\Base\Common\ConverterLocale.h" />
     <ClInclude Include="include\Base\Common\CRC8.h" />
     <ClInclude Include="include\Base\Common\CryptoAES_Impl.h" />
@@ -271,7 +271,7 @@
     <ClInclude Include="include\Base\Zones\Rank.h" />
     <ClInclude Include="include\Base\Zones\Types.h" />
     <ClInclude Include="include\Base\Zones\ZoneManagerMaster.h" />
-    <ClInclude Include="include\Base\Zones\ZoneProcess.h" />
+    <ClInclude Include="include\Base\Zones\HopProcess.h" />
     <ClInclude Include="include\Base\Common\ProgressValue.h" />
     <ClInclude Include="include\Base\Common\ResolverSelf_IP_v4.h" />
     <ClInclude Include="include\Base\Common\ReversedContainerRise.h" />
@@ -302,7 +302,7 @@
     <ClCompile Include="src\FramedThread.cpp" />
     <ClCompile Include="src\GlobalEventHub.cpp" />
     <ClCompile Include="src\GuidGenerator.cpp" />
-    <ClCompile Include="src\IContext.cpp" />
+    <ClCompile Include="src\IHopProcessContext.cpp" />
     <ClCompile Include="src\LoaderDLLFactory.cpp" />
     <ClCompile Include="src\LockFreeFifo.cpp" />
     <ClCompile Include="src\AllocatorPool.cpp" />
@@ -337,7 +337,7 @@
     <ClCompile Include="src\PathOperations.cpp" />
     <ClCompile Include="src\Rank.cpp" />
     <ClCompile Include="src\ThreadIndexator.cpp" />
-    <ClCompile Include="src\ZoneProcess.cpp" />
+    <ClCompile Include="src\HopProcess.cpp" />
     <ClCompile Include="src\ProgressValue.cpp" />
     <ClCompile Include="src\ResolverSelf_IP_v4.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp14</LanguageStandard>
