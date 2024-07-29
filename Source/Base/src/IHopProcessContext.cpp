@@ -58,8 +58,16 @@ namespace nsBase::nsZones
     {
         auto pProcess = GetOwnerZone(rank)->GetProcess(processName);
         if (pProcess)
-            pProcess->Start(this);
-        //return (pProcess != nullptr);
+            mStrandHolder->StartCoroutine(
+                [&]() {
+                    return pProcess->Start(this);
+                }
+            );
+    }
+    //-----------------------------------------------------------------------------
+    void IHopProcessContext::SetStrand(nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
+    {
+        mStrandHolder = strandHolder;
     }
     //-----------------------------------------------------------------------------
 }

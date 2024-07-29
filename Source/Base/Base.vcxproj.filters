@@ -281,6 +281,15 @@
     <ClInclude Include="include\Base\Common\GlobalEventHub.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Base\Common\AsyncAwaitable.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StrandHolder.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Base\Common\StrandHolder.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -455,6 +464,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\GlobalEventHub.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AsyncAwaitable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StrandHolder.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

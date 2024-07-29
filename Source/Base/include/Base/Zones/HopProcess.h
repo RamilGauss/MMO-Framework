@@ -12,8 +12,11 @@ See for more information LICENSE.md.
 #include <list>
 #include <string>
 
-#include "Base/Common/TypeDef.h"
+#include <boost/asio/awaitable.hpp>
+
+#include "Base/Common/AsyncAwaitable.h"
 #include "Base/Common/CallbackPool.h"
+#include "Base/Common/TypeDef.h"
 
 #include "Base/Zones/Rank.h"
 #include "Base/Zones/ZoneManagerMaster.h"
@@ -37,15 +40,19 @@ namespace nsBase::nsZones
 
         std::string mName;
 
+        nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
+        nsBase::nsCommon::TAsyncAwaitable::Ptr mCtxWaitingAwaitable;
+
     public:
+        THopProcess();
         virtual ~THopProcess();
 
         void Setup(const std::string& name, TZone* finishZone, int maxActiveCount = 1);
 
-        void Start(IHopProcessContext* pCtx);
-        void Stop(IHopProcessContext* pCtx);
-        
-        bool Work();
+        void SetStrand(nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
+
+        boost::asio::awaitable<void> Start(IHopProcessContext* pCtx);
+        boost::asio::awaitable<void> Stop(IHopProcessContext* pCtx);
 
         std::string GetName() const;
 
@@ -80,9 +87,10 @@ namespace nsBase::nsZones
 
         void Finish(IHopProcessContext* pCtx);
 
-        void TryActivate();
+        boost::asio::awaitable<void> TryActivate();
+        boost::asio::awaitable<void> AsyncWork(IHopProcessContext* ctx);
 
-        virtual void Work(std::list<IHopProcessContext*>& aciveCtx) = 0;
+        virtual void Work(IHopProcessContext* ctx) = 0;
 
         virtual void SetupEvent();
         

@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include <list>
 #include <string>
 
+#include "Base/Common/StrandHolder.h"
 #include "Base/Common/TypeDef.h"
 
 #include "Base/Zones/Rank.h"
@@ -31,18 +32,20 @@ namespace nsBase::nsZones
 
         std::string mName;// For debugging
 
+        nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
+
     public:
         TZone(const std::string& name);
+
+        void SetStrand(nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
 
         const std::string& GetName() const;
 
         void AddProcess(SharedPtrHopProcess pProcess);
         THopProcess* GetProcess(const std::string& processName);
-        
+
         void AddContext(IHopProcessContext* pCtx);
         void RemoveContext(IHopProcessContext* pCtx);
-
-        bool Work();
 
     protected:
 

@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/ProgressValue.h"
+#include "Base/Common/StrandHolder.h"
 
 namespace nsBase::nsZones
 {
@@ -33,8 +34,12 @@ namespace nsBase::nsZones
 
         void StartProcess(const std::string& processName, uint32_t rank = 0);
 
+        void SetStrand(nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
+
     private:
         std::vector<THopProcess*> mActiveProcesses;
         std::vector<TZone*> mOwnerZones;
+
+        nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
     };
 }

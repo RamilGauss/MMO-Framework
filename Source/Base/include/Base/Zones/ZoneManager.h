@@ -10,7 +10,10 @@ See for more information LICENSE.md.
 #include <list>
 #include <string>
 
+#include <boost/asio/io_context.hpp>
+
 #include "Base/Common/TypeDef.h"
+#include "Base/Common/StrandHolder.h"
 
 #include "Base/Zones/Rank.h"
 #include "Base/Zones/Types.h"
@@ -23,7 +26,12 @@ namespace nsBase::nsZones
     {
         std::list<SharedPtrZone> mZones;
 
+        boost::asio::io_context mIoContext;
+
+        nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
+
     public:
+        TZoneManager();
         void AddZone(SharedPtrZone pZone);
 
         TZone* GetZone(const std::string& zoneName);

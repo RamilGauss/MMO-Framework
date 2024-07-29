@@ -18,6 +18,11 @@ namespace nsBase::nsZones
 
     }
     //------------------------------------------------------------------------------
+    void TZone::SetStrand(nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
+    {
+        mStrandHolder = strandHolder;
+    }
+    //------------------------------------------------------------------------------
     const std::string& TZone::GetName() const
     {
         return mName;
@@ -31,6 +36,7 @@ namespace nsBase::nsZones
         pProcess->mFinishEvent.Register(this, &TZone::OnFinishProcess);
 
         pProcess->SetRank(GetRank());
+        pProcess->SetStrand(mStrandHolder);
     }
     //------------------------------------------------------------------------------
     THopProcess* TZone::GetProcess(const std::string& processName)
@@ -48,22 +54,13 @@ namespace nsBase::nsZones
     {
         mContexts.push_back(pCtx);
         pCtx->PushOwnerZone(this);
+        pCtx->SetStrand(mStrandHolder);
     }
     //------------------------------------------------------------------------------
     void TZone::RemoveContext(IHopProcessContext* pCtx)
     {
         mContexts.remove(pCtx);
         pCtx->PopOwnerZone();
-    }
-    //------------------------------------------------------------------------------
-    bool TZone::Work()
-    {
-        bool wasSpent = false;
-        for (auto process : mProcesses) {
-            wasSpent |= process->Work();
-        }
-
-        return wasSpent;
     }
     //------------------------------------------------------------------------------
     void TZone::OnStopProcess(THopProcess* pProcess, IHopProcessContext* pCtx)

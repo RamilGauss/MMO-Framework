@@ -11,10 +11,16 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
+    TZoneManager::TZoneManager()
+    {
+        mStrandHolder = nsBase::nsCommon::TStrandHolder::New(mIoContext);
+    }
+    //------------------------------------------------------------------------------
     void TZoneManager::AddZone(SharedPtrZone pZone)
     {
         mZones.push_back(pZone);
         pZone->SetRank(GetRank());
+        pZone->SetStrand(mStrandHolder);
     }
     //------------------------------------------------------------------------------
     TZone* TZoneManager::GetZone(const std::string& zoneName)
@@ -31,12 +37,8 @@ namespace nsBase::nsZones
     //------------------------------------------------------------------------------
     bool TZoneManager::Work()
     {
-        bool wasSpent = false;
-        for (auto& pZone : mZones) {
-            wasSpent |= pZone->Work();
-        }
-
-        return wasSpent;
+        auto handlerCount = mIoContext.run_one();
+        return  (handlerCount > 0);
     }
     //------------------------------------------------------------------------------
     void TZoneManager::MoveContext(IHopProcessContext* pCtx, TZone* from, TZone* to)

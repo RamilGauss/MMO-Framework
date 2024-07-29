@@ -55,11 +55,10 @@ namespace nsBase::nsZones::nsTests
     class TSimpleProcess : public THopProcess
     {
     public:
-        void Work(std::list<IHopProcessContext*>& aciveCtx) override
+        void Work(IHopProcessContext* pCtx) override
         {
-            for (auto pCtx : aciveCtx) {
-                Finish(pCtx);
-            }
+            Finish(pCtx);
+
         }
         uint64_t GetTotalCount(IHopProcessContext* pCtx) const override
         {
@@ -78,7 +77,7 @@ namespace nsBase::nsZones::nsTests
         {
         }
 
-        void Work(std::list<IHopProcessContext*>& aciveCtx) override
+        void Work(IHopProcessContext* pCtx) override
         {
 
         }
@@ -130,7 +129,7 @@ namespace nsBase::nsZones::nsTests
         {
         }
 
-        void Work(std::list<IHopProcessContext*>& aciveCtx) override
+        void Work(IHopProcessContext* pCtx) override
         {
 
         }

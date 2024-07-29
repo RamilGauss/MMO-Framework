@@ -210,6 +210,7 @@
   <ItemGroup>
     <ClInclude Include="include\Base\Common\AllocatorPool.h" />
     <ClInclude Include="include\Base\Common\ArrContainer.h" />
+    <ClInclude Include="include\Base\Common\AsyncAwaitable.h" />
     <ClInclude Include="include\Base\Common\BiMap.h" />
     <ClInclude Include="include\Base\Common\BinaryMaster.h" />
     <ClInclude Include="include\Base\Common\BL_Debug.h" />
@@ -225,6 +226,7 @@
     <ClInclude Include="include\Base\Common\EventHub.h" />
     <ClInclude Include="include\Base\Common\FramedThread.h" />
     <ClInclude Include="include\Base\Common\GlobalEventHub.h" />
+    <ClInclude Include="include\Base\Common\StrandHolder.h" />
     <ClInclude Include="include\Base\Common\ThreadIndexator.h" />
     <ClInclude Include="include\Base\Common\ThreadSharedValue.h" />
     <ClInclude Include="include\Base\Zones\IHopProcessContext.h" />
@@ -298,6 +300,7 @@
     <ClInclude Include="include\Base\Zones\ZoneManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AsyncAwaitable.cpp" />
     <ClCompile Include="src\EventHub.cpp" />
     <ClCompile Include="src\FramedThread.cpp" />
     <ClCompile Include="src\GlobalEventHub.cpp" />
@@ -336,6 +339,7 @@
     <ClCompile Include="src\BinaryPushMaster.cpp" />
     <ClCompile Include="src\PathOperations.cpp" />
     <ClCompile Include="src\Rank.cpp" />
+    <ClCompile Include="src\StrandHolder.cpp" />
     <ClCompile Include="src\ThreadIndexator.cpp" />
     <ClCompile Include="src\HopProcess.cpp" />
     <ClCompile Include="src\ProgressValue.cpp" />

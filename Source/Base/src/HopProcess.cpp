@@ -15,6 +15,11 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
+    THopProcess::THopProcess()
+    {
+        mCtxWaitingAwaitable = nsBase::nsCommon::TAsyncAwaitable::New();
+    }
+    //------------------------------------------------------------------------------
     void THopProcess::Setup(const std::string& name, TZone* finishZone, int maxActiveCount)
     {
         mName = name;
@@ -31,16 +36,21 @@ namespace nsBase::nsZones
 
     }
     //------------------------------------------------------------------------------
+    void THopProcess::SetStrand(nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
+    {
+        mStrandHolder = strandHolder;
+    }
+    //------------------------------------------------------------------------------
     std::string THopProcess::GetName() const
     {
         return mName;
     }
     //------------------------------------------------------------------------------
-    void THopProcess::Start(IHopProcessContext* pCtx)
+    boost::asio::awaitable<void> THopProcess::Start(IHopProcessContext* pCtx)
     {
         auto activeProcess = pCtx->GetActiveProcess(GetRank());
         if (activeProcess)
-            activeProcess->Stop(pCtx);
+            co_await activeProcess->Stop(pCtx);
 
         // 1. Push, 2. StartEvent
         pCtx->PushActiveProcess(this);
@@ -48,10 +58,12 @@ namespace nsBase::nsZones
 
         mWaitingCtx.push_back(pCtx);
 
-        TryActivate();
+        co_await TryActivate();
+
+        co_return;
     }
     //------------------------------------------------------------------------------
-    void THopProcess::Stop(IHopProcessContext* pCtx)
+    boost::asio::awaitable<void> THopProcess::Stop(IHopProcessContext* pCtx)
     {
         mWaitingCtx.remove(pCtx);
         mAciveCtx.remove(pCtx);
@@ -63,6 +75,10 @@ namespace nsBase::nsZones
         mStopEvent.Notify(this, pCtx);
 
         TryActivate();
+
+        mCtxWaitingAwaitable->Resume();
+
+        co_return;
     }
     //------------------------------------------------------------------------------
     void THopProcess::Finish(IHopProcessContext* pCtx)
@@ -96,31 +112,20 @@ namespace nsBase::nsZones
         return fit != mAciveCtx.end();
     }
     //------------------------------------------------------------------------------
-    void THopProcess::TryActivate()
+    boost::asio::awaitable<void> THopProcess::TryActivate()
     {
-        if (mAciveCtx.size() >= GetMaxActiveCount() || mWaitingCtx.empty())
-            return;
+        co_await mCtxWaitingAwaitable->Wait();
+
+
+        //if (mAciveCtx.size() >= GetMaxActiveCount() || mWaitingCtx.empty())
+        //    return;
 
         auto pCtx = mWaitingCtx.front();
         mWaitingCtx.pop_front();
 
         mAciveCtx.push_back(pCtx);
-    }
-    //------------------------------------------------------------------------------
-    bool THopProcess::Work()
-    {
-        mZoneMng->Work();
 
-        auto activeCtx = mAciveCtx;
-
-        // Даже если ZoneMng потратил время, то значит есть активные задачи.
-        bool wasSpent = (activeCtx.size() > 0);
-
-        Work(activeCtx);
-
-        TryActivate();
-
-        return wasSpent;
+        co_await AsyncWork(pCtx);
     }
     //------------------------------------------------------------------------------
     uint32_t THopProcess::GetActiveContextCount() const
@@ -160,6 +165,17 @@ namespace nsBase::nsZones
         }
 
         return (GetProgressCount(pCtx) * 1.0f / GetTotalCount(pCtx));
+    }
+    //------------------------------------------------------------------------------
+    boost::asio::awaitable<void> THopProcess::AsyncWork(IHopProcessContext* ctx)
+    {
+        while (IsActive(ctx)) {
+
+            Work(ctx);
+            co_await mStrandHolder->Wait();
+        }
+
+        co_return;
     }
     //------------------------------------------------------------------------------
 }
