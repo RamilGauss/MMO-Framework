@@ -15,9 +15,10 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    THopProcess::THopProcess()
+    THopProcess::THopProcess() : mThreadPool(1)
     {
         mCtxWaitingAwaitable = nsBase::nsCommon::TAsyncAwaitable::New();
+        mThreadAwaitable = nsBase::nsCommon::TAsyncAwaitable::New();
     }
     //------------------------------------------------------------------------------
     void THopProcess::Setup(const std::string& name, TZone* finishZone, int maxActiveCount)
@@ -166,16 +167,4 @@ namespace nsBase::nsZones
 
         return (GetProgressCount(pCtx) * 1.0f / GetTotalCount(pCtx));
     }
-    //------------------------------------------------------------------------------
-    boost::asio::awaitable<void> THopProcess::AsyncWork(IHopProcessContext* ctx)
-    {
-        while (IsActive(ctx)) {
-
-            Work(ctx);
-            co_await mStrandHolder->Wait();
-        }
-
-        co_return;
-    }
-    //------------------------------------------------------------------------------
 }

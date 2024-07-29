@@ -284,10 +284,13 @@
     <ClInclude Include="include\Base\Common\AsyncAwaitable.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\StrandHolder.h">
+    <ClInclude Include="include\Base\Common\StrandHolder.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Common\StrandHolder.h">
+    <ClInclude Include="include\Base\Zones\AsyncHopProcess.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Base\Zones\SyncHopProcess.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -470,6 +473,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\StrandHolder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SyncHopProcess.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AsyncHopProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

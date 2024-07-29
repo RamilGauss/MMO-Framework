@@ -43,6 +43,10 @@ namespace nsBase::nsZones
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
         nsBase::nsCommon::TAsyncAwaitable::Ptr mCtxWaitingAwaitable;
 
+        nsBase::nsCommon::TAsyncAwaitable::Ptr mThreadAwaitable;
+
+        boost::asio::thread_pool mThreadPool;
+
     public:
         THopProcess();
         virtual ~THopProcess();
@@ -88,7 +92,7 @@ namespace nsBase::nsZones
         void Finish(IHopProcessContext* pCtx);
 
         boost::asio::awaitable<void> TryActivate();
-        boost::asio::awaitable<void> AsyncWork(IHopProcessContext* ctx);
+        virtual boost::asio::awaitable<void> AsyncWork(IHopProcessContext* ctx) = 0;
 
         virtual void Work(IHopProcessContext* ctx) = 0;
 
@@ -97,7 +101,6 @@ namespace nsBase::nsZones
         virtual void StartEvent(IHopProcessContext* pCtx);
         virtual void StopEvent(IHopProcessContext* pCtx);
 
-    private:
         bool IsActive(IHopProcessContext* pCtx) const;
     };
 }

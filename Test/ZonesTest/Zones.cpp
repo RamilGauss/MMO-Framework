@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
-#include "Base/Zones/HopProcess.h"
+#include "Base/Zones/SyncHopProcess.h"
 #include "Base/Zones/IHopProcessContext.h"
 
 #include "Base/Common/FramedThread.h"
@@ -52,7 +52,7 @@ namespace nsBase::nsZones::nsTests
         uint64_t progressCount = 0;
     };
 
-    class TSimpleProcess : public THopProcess
+    class TSimpleProcess : public TSyncHopProcess
     {
     public:
         void Work(IHopProcessContext* pCtx) override
@@ -70,7 +70,7 @@ namespace nsBase::nsZones::nsTests
         }
     };
 
-    class TComplexProcess : public THopProcess
+    class TComplexProcess : public TSyncHopProcess
     {
     public:
         TComplexProcess()
@@ -119,7 +119,7 @@ namespace nsBase::nsZones::nsTests
 
     };
 
-    class TTripleComplexProcess : public THopProcess
+    class TTripleComplexProcess : public TSyncHopProcess
     {
         SharedPtrHopProcess mA_to_b;
         SharedPtrHopProcess mB_to_c;
@@ -183,7 +183,7 @@ namespace nsBase::nsZones::nsTests
 
     };
 
-    //class TAsyncProcess : public TProcess, public nsBase::nsCommon::TSingleThread
+    //class TAsyncProcess : public TAsyncHopProcess
     //{
     //public:
     //    TAsyncProcess()
