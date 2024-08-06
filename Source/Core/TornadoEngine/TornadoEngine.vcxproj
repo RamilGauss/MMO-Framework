@@ -140,7 +140,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4068;4251;4275;4005;4244;4250;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
     </ClCompile>
     <Link>
@@ -199,6 +199,7 @@
       <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base.lib;ECS.lib;ImGuiWidgets.lib;GraphicEngine.lib;PhysicEngine.lib;NetTransport.lib;MMOEngine.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>

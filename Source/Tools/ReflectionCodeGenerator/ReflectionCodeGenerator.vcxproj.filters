@@ -18,6 +18,5 @@
     <Text Include="readme.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="$(SolutionDir)\conanfile.txt" />
   </ItemGroup>
 </Project>

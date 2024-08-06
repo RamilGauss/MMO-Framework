@@ -76,9 +76,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Inheritance.h">
       <Filter>SourcesForParsing</Filter>
     </ClInclude>

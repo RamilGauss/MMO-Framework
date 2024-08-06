@@ -1,363 +1,364 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<ItemGroup Label="ProjectConfigurations">
-<ProjectConfiguration Include="Debug|Win32">
-<Configuration>Debug</Configuration>
-<Platform>Win32</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Debug|x64">
-<Configuration>Debug</Configuration>
-<Platform>x64</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Release|Win32">
-<Configuration>Release</Configuration>
-<Platform>Win32</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Release|x64">
-<Configuration>Release</Configuration>
-<Platform>x64</Platform>
-</ProjectConfiguration>
-</ItemGroup>
-<PropertyGroup Label="Globals">
-<ProjectGuid>{0E4224F3-AE4D-4E4C-914C-800A97AA5594}</ProjectGuid>
-<RootNamespace>Melissa</RootNamespace>
-<Keyword>Win32Proj</Keyword>
-<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-</PropertyGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-<WholeProgramOptimization>true</WholeProgramOptimization>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-<WholeProgramOptimization>true</WholeProgramOptimization>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
-<ImportGroup Label="ExtensionSettings">
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/>
-<Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/>
-<Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/>
-<Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/>
-<Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<PropertyGroup Label="UserMacros"/>
-<PropertyGroup>
-<_ProjectFileVersion>15.0.27130.2020</_ProjectFileVersion>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<LinkIncremental>true</LinkIncremental>
-<TargetName>$(ProjectName)_d</TargetName>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<LinkIncremental>true</LinkIncremental>
-<TargetName>$(ProjectName)_d</TargetName>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<LinkIncremental>false</LinkIncremental>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<LinkIncremental>false</LinkIncremental>
-</PropertyGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-<ClCompile>
-<Optimization>Disabled</Optimization>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<MinimalRebuild>true</MinimalRebuild>
-<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-<PrecompiledHeader/>
-<WarningLevel>Level3</WarningLevel>
-<DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-<DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-<LanguageStandard>stdcpp14</LanguageStandard>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<SubSystem>Windows</SubSystem>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-<TargetMachine>MachineX86</TargetMachine>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-<Midl>
-<TargetEnvironment>X64</TargetEnvironment>
-</Midl>
-<ClCompile>
-<Optimization>Disabled</Optimization>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<MinimalRebuild>false</MinimalRebuild>
-<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-<PrecompiledHeader/>
-<WarningLevel>Level3</WarningLevel>
-<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-<DisableSpecificWarnings>4251;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-<LanguageStandard>stdcpp20</LanguageStandard>
-<PrecompiledHeaderFile/>
-<PrecompiledHeaderOutputFile/>
-<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-<AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<SubSystem>Windows</SubSystem>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-<TargetMachine>MachineX64</TargetMachine>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-<ClCompile>
-<Optimization>Full</Optimization>
-<IntrinsicFunctions>true</IntrinsicFunctions>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-<FunctionLevelLinking>true</FunctionLevelLinking>
-<PrecompiledHeader/>
-<WarningLevel>Level3</WarningLevel>
-<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-<DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-<LanguageStandard>stdcpp17</LanguageStandard>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base.lib;MappedComponents.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<SubSystem>Windows</SubSystem>
-<OptimizeReferences>true</OptimizeReferences>
-<EnableCOMDATFolding>true</EnableCOMDATFolding>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-<TargetMachine>MachineX86</TargetMachine>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-<Midl>
-<TargetEnvironment>X64</TargetEnvironment>
-</Midl>
-<ClCompile>
-<Optimization>Full</Optimization>
-<IntrinsicFunctions>true</IntrinsicFunctions>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-<FunctionLevelLinking>true</FunctionLevelLinking>
-<PrecompiledHeader/>
-<WarningLevel>Level3</WarningLevel>
-<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-<DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-<LanguageStandard>stdcpp20</LanguageStandard>
-<PrecompiledHeaderFile/>
-<PrecompiledHeaderOutputFile/>
-<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base.lib;ECS.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<SubSystem>Windows</SubSystem>
-<OptimizeReferences>true</OptimizeReferences>
-<EnableCOMDATFolding>true</EnableCOMDATFolding>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-<TargetMachine>MachineX64</TargetMachine>
-</Link>
-</ItemDefinitionGroup>
-<ItemGroup>
-<ClCompile Include="ScenarioContext\ContextScDisconnectClient.cpp"/>
-<ClCompile Include="ScenarioContext\ContextScFlow.cpp"/>
-<ClCompile Include="ScenarioContext\ContextScLoginClient.cpp"/>
-<ClCompile Include="ScenarioContext\ContextScLoginMaster.cpp"/>
-<ClCompile Include="ScenarioContext\ContextScLoginSlave.cpp"/>
-<ClCompile Include="ScenarioContext\ContextScRecommutationClient.cpp"/>
-<ClCompile Include="ScenarioContext\ContextScSendToClient.cpp"/>
-<ClCompile Include="ScenarioContext\ContextScSynchroSlave.cpp"/>
-<ClCompile Include="Scenario\BaseScLoginClient.cpp"/>
-<ClCompile Include="Scenario\BaseScLoginClient_Struct.cpp"/>
-<ClCompile Include="Scenario\BaseScRecommutationClient.cpp"/>
-<ClCompile Include="Scenario\BaseScRecommutationClient_Struct.cpp"/>
-<ClCompile Include="Scenario\DescRequestConnectForRecipient.cpp"/>
-<ClCompile Include="Scenario\ScenarioDisconnectClient.cpp"/>
-<ClCompile Include="Scenario\ScenarioFlow.cpp"/>
-<ClCompile Include="Scenario\ScenarioLoginClient.cpp"/>
-<ClCompile Include="Scenario\ScenarioLoginMaster.cpp"/>
-<ClCompile Include="Scenario\ScenarioLoginSlave.cpp"/>
-<ClCompile Include="Scenario\ScenarioRecommutationClient.cpp"/>
-<ClCompile Include="Scenario\ScenarioSendToClient.cpp"/>
-<ClCompile Include="Scenario\ScenarioSynchroSlave.cpp"/>
-<ClCompile Include="Scenario\ScLoginClient_ClientImpl.cpp"/>
-<ClCompile Include="Scenario\ScLoginClient_MasterImpl.cpp"/>
-<ClCompile Include="Scenario\ScLoginClient_SlaveImpl.cpp"/>
-<ClCompile Include="Scenario\ScLoginClient_SuperServerImpl.cpp"/>
-<ClCompile Include="Scenario\ScRecommutationClient_ClientImpl.cpp"/>
-<ClCompile Include="Scenario\ScRecommutationClient_MasterImpl.cpp"/>
-<ClCompile Include="Scenario\ScRecommutationClient_SlaveImpl.cpp"/>
-<ClCompile Include="src\ActiveServer.cpp"/>
-<ClCompile Include="src\Base.cpp"/>
-<ClCompile Include="src\BaseServer.cpp"/>
-<ClCompile Include="src\Client.cpp"/>
-<ClCompile Include="src\EnumMMO.cpp"/>
-<ClCompile Include="src\Events.cpp"/>
-<ClCompile Include="src\INetTransport.cpp"/>
-<ClCompile Include="src\Master.cpp"/>
-<ClCompile Include="src\Master.cpp.txt"/>
-<ClCompile Include="src\Slave.cpp"/>
-<ClCompile Include="src\Structs.cpp"/>
-<ClCompile Include="src\SuperServer.cpp"/>
-<ClCompile Include="SubSystem\BaseLogic.cpp"/>
-<ClCompile Include="SubSystem\BaseMasterLogic.cpp"/>
-<ClCompile Include="SubSystem\ClientOnMasterLogic.cpp"/>
-<ClCompile Include="SubSystem\ContainerContextSc.cpp"/>
-<ClCompile Include="SubSystem\ControlScenario.cpp"/>
-<ClCompile Include="SubSystem\DelegateManagerContextSc.cpp"/>
-<ClCompile Include="SubSystem\GroupLogic.cpp"/>
-<ClCompile Include="SubSystem\IScenarioContext.cpp"/>
-<ClCompile Include="SubSystem\IScenario.cpp"/>
-<ClCompile Include="SubSystem\MakerScenario.cpp"/>
-<ClCompile Include="SubSystem\ManagerContextClientLogining.cpp"/>
-<ClCompile Include="SubSystem\ManagerContextClient_slave.cpp"/>
-<ClCompile Include="SubSystem\ManagerContextDownConnection.cpp"/>
-<ClCompile Include="SubSystem\ManagerContextDownConnection_Slave.cpp"/>
-<ClCompile Include="SubSystem\ManagerContextMoreDownClientConnection.cpp"/>
-<ClCompile Include="SubSystem\ManagerLoginingClientsOnSlave.cpp"/>
-<ClCompile Include="SubSystem\RCMLogic.cpp"/>
-<ClCompile Include="SubSystem\ScContextManager.cpp"/>
-<ClCompile Include="SubSystem\ManagerGroupClient.cpp"/>
-<ClCompile Include="SubSystem\ManagerManagerContextSc.cpp"/>
-<ClCompile Include="SubSystem\ManagerRecommutation.cpp"/>
-<ClCompile Include="SubSystem\SessionManager.cpp"/>
-<ClCompile Include="SubSystem\SlaveOnMasterLogic.cpp"/>
-<ClCompile Include="SubSystem\StateTimeWait.cpp"/>
-<ClCompile Include="SubSystem\TransportManager.cpp"/>
-<ClCompile Include="SubSystem\SessionNavigator.cpp"/>
-<ClCompile Include="SubSystem\ReceiverTransport.cpp"/>
-<ClCompile Include="SubSystem\Session.cpp"/>
-<ClCompile Include="SubSystem\StatisticaClientInGroup.cpp"/>
-</ItemGroup>
-<ItemGroup>
-<ClInclude Include="include\ActiveServer.h"/>
-<ClInclude Include="include\Base.h"/>
-<ClInclude Include="include\BaseEvent.h"/>
-<ClInclude Include="include\BaseServer.h"/>
-<ClInclude Include="include\Client.h"/>
-<ClInclude Include="include\EnumMMO.h"/>
-<ClInclude Include="include\Events.h"/>
-<ClInclude Include="include\IMakerTransport.h"/>
-<ClInclude Include="include\INetTransport.h"/>
-<ClInclude Include="include\Master.h"/>
-<ClInclude Include="include\Master.h.bak"/>
-<ClInclude Include="include\Slave.h"/>
-<ClInclude Include="include\Structs.h"/>
-<ClInclude Include="include\SuperServer.h"/>
-<ClInclude Include="ScenarioContext\ContextScDisconnectClient.h"/>
-<ClInclude Include="ScenarioContext\ContextScFlow.h"/>
-<ClInclude Include="ScenarioContext\ContextScLoginClient.h"/>
-<ClInclude Include="ScenarioContext\ContextScLoginMaster.h"/>
-<ClInclude Include="ScenarioContext\ContextScLoginSlave.h"/>
-<ClInclude Include="ScenarioContext\ContextScRecommutationClient.h"/>
-<ClInclude Include="ScenarioContext\ContextScSendToClient.h"/>
-<ClInclude Include="ScenarioContext\ContextScSynchroSlave.h"/>
-<ClInclude Include="Scenario\BaseScLoginClient.h"/>
-<ClInclude Include="Scenario\BaseScLoginClient_Struct.h"/>
-<ClInclude Include="Scenario\BaseScRecommutationClient.h"/>
-<ClInclude Include="Scenario\BaseScRecommutationClient_Struct.h"/>
-<ClInclude Include="Scenario\DescRequestConnectForRecipient.h"/>
-<ClInclude Include="Scenario\ScenarioDisconnectClient.h"/>
-<ClInclude Include="Scenario\ScenarioFlow.h"/>
-<ClInclude Include="Scenario\ScenarioLoginClient.h"/>
-<ClInclude Include="Scenario\ScenarioLoginMaster.h"/>
-<ClInclude Include="Scenario\ScenarioLoginSlave.h"/>
-<ClInclude Include="Scenario\ScenarioRecommutationClient.h"/>
-<ClInclude Include="Scenario\ScenarioSendToClient.h"/>
-<ClInclude Include="Scenario\ScenarioSynchroSlave.h"/>
-<ClInclude Include="Scenario\ScLoginClient_ClientImpl.h"/>
-<ClInclude Include="Scenario\ScLoginClient_MasterImpl.h"/>
-<ClInclude Include="Scenario\ScLoginClient_SlaveImpl.h"/>
-<ClInclude Include="Scenario\ScLoginClient_SuperServerImpl.h"/>
-<ClInclude Include="Scenario\ScRecommutationClient_ClientImpl.h"/>
-<ClInclude Include="Scenario\ScRecommutationClient_MasterImpl.h"/>
-<ClInclude Include="Scenario\ScRecommutationClient_SlaveImpl.h"/>
-<ClInclude Include="SubSystem\BaseLogic.h"/>
-<ClInclude Include="SubSystem\BaseMasterLogic.h"/>
-<ClInclude Include="SubSystem\ClientOnMasterLogic.h"/>
-<ClInclude Include="SubSystem\Components.h"/>
-<ClInclude Include="SubSystem\ContainerContextSc.h"/>
-<ClInclude Include="SubSystem\ControlScenario.h"/>
-<ClInclude Include="SubSystem\DelegateManagerContextSc.h"/>
-<ClInclude Include="SubSystem\DescRecvSession.h"/>
-<ClInclude Include="SubSystem\GroupLogic.h"/>
-<ClInclude Include="SubSystem\IScenarioContext.h"/>
-<ClInclude Include="SubSystem\IScenario.h"/>
-<ClInclude Include="SubSystem\MakerScenario.h"/>
-<ClInclude Include="SubSystem\ManagerContextClientLogining.h"/>
-<ClInclude Include="SubSystem\ManagerContextClient_slave.h"/>
-<ClInclude Include="SubSystem\ManagerContextDownConnection.h"/>
-<ClInclude Include="SubSystem\ManagerContextDownConnection_Slave.h"/>
-<ClInclude Include="SubSystem\ManagerContextMoreDownClientConnection.h"/>
-<ClInclude Include="SubSystem\ManagerLoginingClientsOnSlave.h"/>
-<ClInclude Include="SubSystem\RCMLogic.h"/>
-<ClInclude Include="SubSystem\ScContextManager.h"/>
-<ClInclude Include="SubSystem\ManagerGroupClient.h"/>
-<ClInclude Include="SubSystem\ManagerManagerContextSc.h"/>
-<ClInclude Include="SubSystem\ManagerRecommutation.h"/>
-<ClInclude Include="SubSystem\SessionManager.h"/>
-<ClInclude Include="SubSystem\SlaveOnMasterLogic.h"/>
-<ClInclude Include="SubSystem\StateTimeWait.h"/>
-<ClInclude Include="SubSystem\TransportEvents.h"/>
-<ClInclude Include="SubSystem\TransportManager.h"/>
-<ClInclude Include="SubSystem\SessionNavigator.h"/>
-<ClInclude Include="SubSystem\ReceiverTransport.h"/>
-<ClInclude Include="SubSystem\ScenarioBaseHeader.h"/>
-<ClInclude Include="SubSystem\Session.h"/>
-<ClInclude Include="SubSystem\StatisticaClientInGroup.h"/>
-</ItemGroup>
-<ItemGroup>
-<ProjectReference Include="..\..\Base\Base.vcxproj">
-<Project>{4fe15a87-875c-41ab-b100-317eaa0a9e5a}</Project>
-<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-</ProjectReference>
-</ItemGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
-<ImportGroup Label="ExtensionTargets">
-</ImportGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0E4224F3-AE4D-4E4C-914C-800A97AA5594}</ProjectGuid>
+    <RootNamespace>Melissa</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.27130.2020</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/Zc:__cplusplus /Zm256 /bigobj  /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base_d.lib;ECS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;$(BOOST_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base.lib;MappedComponents.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules;include;src;SubSystem;Scenario;ScenarioContext;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;MARKUP_STL;MMO_ENGINE_EI=__declspec(dllexport);MMO_ENGINE_EXPORTS;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/Zc:__cplusplus /Zm256 /bigobj  /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS);shlwapi.lib;ws2_32.lib;Base.lib;ECS.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ScenarioContext\ContextScDisconnectClient.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScFlow.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScLoginClient.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScLoginMaster.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScLoginSlave.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScRecommutationClient.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScSendToClient.cpp" />
+    <ClCompile Include="ScenarioContext\ContextScSynchroSlave.cpp" />
+    <ClCompile Include="Scenario\BaseScLoginClient.cpp" />
+    <ClCompile Include="Scenario\BaseScLoginClient_Struct.cpp" />
+    <ClCompile Include="Scenario\BaseScRecommutationClient.cpp" />
+    <ClCompile Include="Scenario\BaseScRecommutationClient_Struct.cpp" />
+    <ClCompile Include="Scenario\DescRequestConnectForRecipient.cpp" />
+    <ClCompile Include="Scenario\ScenarioDisconnectClient.cpp" />
+    <ClCompile Include="Scenario\ScenarioFlow.cpp" />
+    <ClCompile Include="Scenario\ScenarioLoginClient.cpp" />
+    <ClCompile Include="Scenario\ScenarioLoginMaster.cpp" />
+    <ClCompile Include="Scenario\ScenarioLoginSlave.cpp" />
+    <ClCompile Include="Scenario\ScenarioRecommutationClient.cpp" />
+    <ClCompile Include="Scenario\ScenarioSendToClient.cpp" />
+    <ClCompile Include="Scenario\ScenarioSynchroSlave.cpp" />
+    <ClCompile Include="Scenario\ScLoginClient_ClientImpl.cpp" />
+    <ClCompile Include="Scenario\ScLoginClient_MasterImpl.cpp" />
+    <ClCompile Include="Scenario\ScLoginClient_SlaveImpl.cpp" />
+    <ClCompile Include="Scenario\ScLoginClient_SuperServerImpl.cpp" />
+    <ClCompile Include="Scenario\ScRecommutationClient_ClientImpl.cpp" />
+    <ClCompile Include="Scenario\ScRecommutationClient_MasterImpl.cpp" />
+    <ClCompile Include="Scenario\ScRecommutationClient_SlaveImpl.cpp" />
+    <ClCompile Include="src\ActiveServer.cpp" />
+    <ClCompile Include="src\Base.cpp" />
+    <ClCompile Include="src\BaseServer.cpp" />
+    <ClCompile Include="src\Client.cpp" />
+    <ClCompile Include="src\EnumMMO.cpp" />
+    <ClCompile Include="src\Events.cpp" />
+    <ClCompile Include="src\INetTransport.cpp" />
+    <ClCompile Include="src\Master.cpp" />
+    <ClCompile Include="src\Master.cpp.txt" />
+    <ClCompile Include="src\Slave.cpp" />
+    <ClCompile Include="src\Structs.cpp" />
+    <ClCompile Include="src\SuperServer.cpp" />
+    <ClCompile Include="SubSystem\BaseLogic.cpp" />
+    <ClCompile Include="SubSystem\BaseMasterLogic.cpp" />
+    <ClCompile Include="SubSystem\ClientOnMasterLogic.cpp" />
+    <ClCompile Include="SubSystem\ContainerContextSc.cpp" />
+    <ClCompile Include="SubSystem\ControlScenario.cpp" />
+    <ClCompile Include="SubSystem\DelegateManagerContextSc.cpp" />
+    <ClCompile Include="SubSystem\GroupLogic.cpp" />
+    <ClCompile Include="SubSystem\IScenarioContext.cpp" />
+    <ClCompile Include="SubSystem\IScenario.cpp" />
+    <ClCompile Include="SubSystem\MakerScenario.cpp" />
+    <ClCompile Include="SubSystem\ManagerContextClientLogining.cpp" />
+    <ClCompile Include="SubSystem\ManagerContextClient_slave.cpp" />
+    <ClCompile Include="SubSystem\ManagerContextDownConnection.cpp" />
+    <ClCompile Include="SubSystem\ManagerContextDownConnection_Slave.cpp" />
+    <ClCompile Include="SubSystem\ManagerContextMoreDownClientConnection.cpp" />
+    <ClCompile Include="SubSystem\ManagerLoginingClientsOnSlave.cpp" />
+    <ClCompile Include="SubSystem\RCMLogic.cpp" />
+    <ClCompile Include="SubSystem\ScContextManager.cpp" />
+    <ClCompile Include="SubSystem\ManagerGroupClient.cpp" />
+    <ClCompile Include="SubSystem\ManagerManagerContextSc.cpp" />
+    <ClCompile Include="SubSystem\ManagerRecommutation.cpp" />
+    <ClCompile Include="SubSystem\SessionManager.cpp" />
+    <ClCompile Include="SubSystem\SlaveOnMasterLogic.cpp" />
+    <ClCompile Include="SubSystem\StateTimeWait.cpp" />
+    <ClCompile Include="SubSystem\TransportManager.cpp" />
+    <ClCompile Include="SubSystem\SessionNavigator.cpp" />
+    <ClCompile Include="SubSystem\ReceiverTransport.cpp" />
+    <ClCompile Include="SubSystem\Session.cpp" />
+    <ClCompile Include="SubSystem\StatisticaClientInGroup.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ActiveServer.h" />
+    <ClInclude Include="include\Base.h" />
+    <ClInclude Include="include\BaseEvent.h" />
+    <ClInclude Include="include\BaseServer.h" />
+    <ClInclude Include="include\Client.h" />
+    <ClInclude Include="include\EnumMMO.h" />
+    <ClInclude Include="include\Events.h" />
+    <ClInclude Include="include\IMakerTransport.h" />
+    <ClInclude Include="include\INetTransport.h" />
+    <ClInclude Include="include\Master.h" />
+    <ClInclude Include="include\Master.h.bak" />
+    <ClInclude Include="include\Slave.h" />
+    <ClInclude Include="include\Structs.h" />
+    <ClInclude Include="include\SuperServer.h" />
+    <ClInclude Include="ScenarioContext\ContextScDisconnectClient.h" />
+    <ClInclude Include="ScenarioContext\ContextScFlow.h" />
+    <ClInclude Include="ScenarioContext\ContextScLoginClient.h" />
+    <ClInclude Include="ScenarioContext\ContextScLoginMaster.h" />
+    <ClInclude Include="ScenarioContext\ContextScLoginSlave.h" />
+    <ClInclude Include="ScenarioContext\ContextScRecommutationClient.h" />
+    <ClInclude Include="ScenarioContext\ContextScSendToClient.h" />
+    <ClInclude Include="ScenarioContext\ContextScSynchroSlave.h" />
+    <ClInclude Include="Scenario\BaseScLoginClient.h" />
+    <ClInclude Include="Scenario\BaseScLoginClient_Struct.h" />
+    <ClInclude Include="Scenario\BaseScRecommutationClient.h" />
+    <ClInclude Include="Scenario\BaseScRecommutationClient_Struct.h" />
+    <ClInclude Include="Scenario\DescRequestConnectForRecipient.h" />
+    <ClInclude Include="Scenario\ScenarioDisconnectClient.h" />
+    <ClInclude Include="Scenario\ScenarioFlow.h" />
+    <ClInclude Include="Scenario\ScenarioLoginClient.h" />
+    <ClInclude Include="Scenario\ScenarioLoginMaster.h" />
+    <ClInclude Include="Scenario\ScenarioLoginSlave.h" />
+    <ClInclude Include="Scenario\ScenarioRecommutationClient.h" />
+    <ClInclude Include="Scenario\ScenarioSendToClient.h" />
+    <ClInclude Include="Scenario\ScenarioSynchroSlave.h" />
+    <ClInclude Include="Scenario\ScLoginClient_ClientImpl.h" />
+    <ClInclude Include="Scenario\ScLoginClient_MasterImpl.h" />
+    <ClInclude Include="Scenario\ScLoginClient_SlaveImpl.h" />
+    <ClInclude Include="Scenario\ScLoginClient_SuperServerImpl.h" />
+    <ClInclude Include="Scenario\ScRecommutationClient_ClientImpl.h" />
+    <ClInclude Include="Scenario\ScRecommutationClient_MasterImpl.h" />
+    <ClInclude Include="Scenario\ScRecommutationClient_SlaveImpl.h" />
+    <ClInclude Include="SubSystem\BaseLogic.h" />
+    <ClInclude Include="SubSystem\BaseMasterLogic.h" />
+    <ClInclude Include="SubSystem\ClientOnMasterLogic.h" />
+    <ClInclude Include="SubSystem\Components.h" />
+    <ClInclude Include="SubSystem\ContainerContextSc.h" />
+    <ClInclude Include="SubSystem\ControlScenario.h" />
+    <ClInclude Include="SubSystem\DelegateManagerContextSc.h" />
+    <ClInclude Include="SubSystem\DescRecvSession.h" />
+    <ClInclude Include="SubSystem\GroupLogic.h" />
+    <ClInclude Include="SubSystem\IScenarioContext.h" />
+    <ClInclude Include="SubSystem\IScenario.h" />
+    <ClInclude Include="SubSystem\MakerScenario.h" />
+    <ClInclude Include="SubSystem\ManagerContextClientLogining.h" />
+    <ClInclude Include="SubSystem\ManagerContextClient_slave.h" />
+    <ClInclude Include="SubSystem\ManagerContextDownConnection.h" />
+    <ClInclude Include="SubSystem\ManagerContextDownConnection_Slave.h" />
+    <ClInclude Include="SubSystem\ManagerContextMoreDownClientConnection.h" />
+    <ClInclude Include="SubSystem\ManagerLoginingClientsOnSlave.h" />
+    <ClInclude Include="SubSystem\RCMLogic.h" />
+    <ClInclude Include="SubSystem\ScContextManager.h" />
+    <ClInclude Include="SubSystem\ManagerGroupClient.h" />
+    <ClInclude Include="SubSystem\ManagerManagerContextSc.h" />
+    <ClInclude Include="SubSystem\ManagerRecommutation.h" />
+    <ClInclude Include="SubSystem\SessionManager.h" />
+    <ClInclude Include="SubSystem\SlaveOnMasterLogic.h" />
+    <ClInclude Include="SubSystem\StateTimeWait.h" />
+    <ClInclude Include="SubSystem\TransportEvents.h" />
+    <ClInclude Include="SubSystem\TransportManager.h" />
+    <ClInclude Include="SubSystem\SessionNavigator.h" />
+    <ClInclude Include="SubSystem\ReceiverTransport.h" />
+    <ClInclude Include="SubSystem\ScenarioBaseHeader.h" />
+    <ClInclude Include="SubSystem\Session.h" />
+    <ClInclude Include="SubSystem\StatisticaClientInGroup.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Base\Base.vcxproj">
+      <Project>{4fe15a87-875c-41ab-b100-317eaa0a9e5a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>

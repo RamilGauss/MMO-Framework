@@ -4,9 +4,6 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="NameComponent.h" />
     <ClInclude Include="MyInitSystem.h" />
     <ClInclude Include="MyFeature.h" />

@@ -109,6 +109,7 @@
       <PrecompiledHeaderOutputFile />
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -176,6 +177,7 @@
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

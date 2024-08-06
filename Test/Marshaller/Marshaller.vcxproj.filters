@@ -77,9 +77,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="config.json">
       <Filter>Resource Files</Filter>
     </None>

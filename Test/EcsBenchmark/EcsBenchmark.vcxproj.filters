@@ -12,9 +12,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="BenchmarkResults.md" />
   </ItemGroup>
 </Project>

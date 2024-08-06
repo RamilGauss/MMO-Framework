@@ -87,7 +87,4 @@
       <UniqueIdentifier>{0370391f-85f3-4925-86f4-e894b072dd6f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="$(SolutionDir)\conanfile.txt" />
-  </ItemGroup>
 </Project>

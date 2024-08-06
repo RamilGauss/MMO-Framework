@@ -1,171 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<ItemGroup Label="ProjectConfigurations">
-<ProjectConfiguration Include="Debug|Win32">
-<Configuration>Debug</Configuration>
-<Platform>Win32</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Release|Win32">
-<Configuration>Release</Configuration>
-<Platform>Win32</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Debug|x64">
-<Configuration>Debug</Configuration>
-<Platform>x64</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Release|x64">
-<Configuration>Release</Configuration>
-<Platform>x64</Platform>
-</ProjectConfiguration>
-</ItemGroup>
-<PropertyGroup Label="Globals">
-<VCProjectVersion>16.0</VCProjectVersion>
-<Keyword>Win32Proj</Keyword>
-<ProjectGuid>{72d017f0-cbb8-4ab4-a674-241e72a2ad51}</ProjectGuid>
-<RootNamespace>Application</RootNamespace>
-<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-<ProjectName>Application</ProjectName>
-</PropertyGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-<ConfigurationType>Application</ConfigurationType>
-<UseDebugLibraries>true</UseDebugLibraries>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-<ConfigurationType>Application</ConfigurationType>
-<UseDebugLibraries>false</UseDebugLibraries>
-<PlatformToolset>v143</PlatformToolset>
-<WholeProgramOptimization>true</WholeProgramOptimization>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-<ConfigurationType>Application</ConfigurationType>
-<UseDebugLibraries>true</UseDebugLibraries>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-<ConfigurationType>Application</ConfigurationType>
-<UseDebugLibraries>false</UseDebugLibraries>
-<PlatformToolset>v143</PlatformToolset>
-<WholeProgramOptimization>true</WholeProgramOptimization>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
-<ImportGroup Label="ExtensionSettings">
-</ImportGroup>
-<ImportGroup Label="Shared">
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-<Import Project="..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-<Import Project="..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-<Import Project="..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-<Import Project="..\..\Conan.props"/><Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<PropertyGroup Label="UserMacros"/>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-<LinkIncremental>true</LinkIncremental>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-<LinkIncremental>false</LinkIncremental>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-<LinkIncremental>true</LinkIncremental>
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<TargetName>$(ProjectName)_d</TargetName>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-<LinkIncremental>false</LinkIncremental>
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-</PropertyGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-<ClCompile>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
-<SDLCheck>true</SDLCheck>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<ConformanceMode>true</ConformanceMode>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-<ClCompile>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories><WarningLevel>Level3</WarningLevel>
-<FunctionLevelLinking>true</FunctionLevelLinking>
-<IntrinsicFunctions>true</IntrinsicFunctions>
-<SDLCheck>true</SDLCheck>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<ConformanceMode>true</ConformanceMode>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies><SubSystem>Windows</SubSystem>
-<EnableCOMDATFolding>true</EnableCOMDATFolding>
-<OptimizeReferences>true</OptimizeReferences>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-<ClCompile>
-<WarningLevel>Level3</WarningLevel>
-<SDLCheck>true</SDLCheck>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);_DEBUG;_WIN32;__WIN32__;WIN32;_WINDOWS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<ConformanceMode>true</ConformanceMode>
-<LanguageStandard>stdcpp20</LanguageStandard>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Modules/GraphicEngine/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<AdditionalOptions>/Zm256 /bigobj</AdditionalOptions>
-<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-</ClCompile>
-<Link>
-<SubSystem>Windows</SubSystem>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<AdditionalDependencies>$(CONAN_LIBS);GraphicEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-</Link>
-<ProjectReference>
-<LinkLibraryDependencies>false</LinkLibraryDependencies>
-</ProjectReference>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-<ClCompile>
-<WarningLevel>Level3</WarningLevel>
-<FunctionLevelLinking>true</FunctionLevelLinking>
-<IntrinsicFunctions>true</IntrinsicFunctions>
-<SDLCheck>true</SDLCheck>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);NDEBUG;_WIN32;__WIN32__;WIN32;_WINDOWS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<ConformanceMode>true</ConformanceMode>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Modules/GraphicEngine/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<LanguageStandard>stdcpp20</LanguageStandard>
-<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-</ClCompile>
-<Link>
-<SubSystem>Windows</SubSystem>
-<EnableCOMDATFolding>true</EnableCOMDATFolding>
-<OptimizeReferences>true</OptimizeReferences>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<AdditionalDependencies>$(CONAN_LIBS);GraphicEngine.lib;%(AdditionalDependencies);%(AdditionalDependencies)</AdditionalDependencies>
-<AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-</Link>
-</ItemDefinitionGroup>
-<ItemGroup>
-<ClCompile Include="GuiDemo.cpp"/>
-<ClCompile Include="main.cpp"/>
-</ItemGroup>
-<ItemGroup>
-<ClInclude Include="GuiDemo.h"/>
-</ItemGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
-<ImportGroup Label="ExtensionTargets">
-</ImportGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{72d017f0-cbb8-4ab4-a674-241e72a2ad51}</ProjectGuid>
+    <RootNamespace>Application</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Application</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES)</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);_DEBUG;_WIN32;__WIN32__;WIN32;_WINDOWS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Modules/GraphicEngine/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP /utf-8</AdditionalOptions>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CONAN_LIBS);GraphicEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);NDEBUG;_WIN32;__WIN32__;WIN32;_WINDOWS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);$(SolutionDir)Source/Base/include;$(SolutionDir)Source/Modules/GraphicEngine;$(SolutionDir)Source/Modules/GraphicEngine/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CONAN_LIBS);GraphicEngine.lib;%(AdditionalDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="GuiDemo.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GuiDemo.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>

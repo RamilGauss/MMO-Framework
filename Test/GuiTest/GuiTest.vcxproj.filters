@@ -37,9 +37,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\conanfile.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="WindowTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>

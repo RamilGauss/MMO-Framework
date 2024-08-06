@@ -1,215 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<ItemGroup Label="ProjectConfigurations">
-<ProjectConfiguration Include="Debug|Win32">
-<Configuration>Debug</Configuration>
-<Platform>Win32</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Debug|x64">
-<Configuration>Debug</Configuration>
-<Platform>x64</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Release|Win32">
-<Configuration>Release</Configuration>
-<Platform>Win32</Platform>
-</ProjectConfiguration>
-<ProjectConfiguration Include="Release|x64">
-<Configuration>Release</Configuration>
-<Platform>x64</Platform>
-</ProjectConfiguration>
-</ItemGroup>
-<PropertyGroup Label="Globals">
-<ProjectGuid>{4540BC7A-5138-426F-B74C-EDFBD5348645}</ProjectGuid>
-<RootNamespace>PhysicEngine</RootNamespace>
-<Keyword>Win32Proj</Keyword>
-<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-</PropertyGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-<WholeProgramOptimization>true</WholeProgramOptimization>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-<WholeProgramOptimization>true</WholeProgramOptimization>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-<ConfigurationType>DynamicLibrary</ConfigurationType>
-<PlatformToolset>v143</PlatformToolset>
-<CharacterSet>Unicode</CharacterSet>
-</PropertyGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
-<ImportGroup Label="ExtensionSettings">
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/>
-<Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/>
-<Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/>
-<Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-<Import Project="..\..\..\Conan.props"/>
-<Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
-</ImportGroup>
-<PropertyGroup Label="UserMacros"/>
-<PropertyGroup>
-<_ProjectFileVersion>15.0.27130.2020</_ProjectFileVersion>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<LinkIncremental>true</LinkIncremental>
-<TargetName>$(ProjectName)_d</TargetName>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<LinkIncremental>true</LinkIncremental>
-<TargetName>$(ProjectName)_d</TargetName>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<LinkIncremental>false</LinkIncremental>
-</PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-<OutDir>$(SolutionDir)\Exe\</OutDir>
-<IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
-<LinkIncremental>false</LinkIncremental>
-</PropertyGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-<ClCompile>
-<Optimization>Disabled</Optimization>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);./;$(SolutionDir)Source\Base\include;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<MinimalRebuild>true</MinimalRebuild>
-<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-<PrecompiledHeader/>
-<WarningLevel>Level3</WarningLevel>
-<DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-<DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;BulletCollision_d.lib;BulletDynamics_d.lib;BulletSoftBody_d.lib;LinearMath_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<SubSystem>Windows</SubSystem>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-<TargetMachine>MachineX86</TargetMachine>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-<Midl>
-<TargetEnvironment>X64</TargetEnvironment>
-</Midl>
-<ClCompile>
-<Optimization>Disabled</Optimization>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);./;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<MinimalRebuild>false</MinimalRebuild>
-<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-<PrecompiledHeader/>
-<WarningLevel>Level3</WarningLevel>
-<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-<DisableSpecificWarnings>4251;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-<LanguageStandard>stdcpp20</LanguageStandard>
-<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-<AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<SubSystem>Windows</SubSystem>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-<TargetMachine>MachineX64</TargetMachine>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-<ClCompile>
-<Optimization>MaxSpeed</Optimization>
-<IntrinsicFunctions>true</IntrinsicFunctions>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);./;$(SolutionDir)Source\Base\include;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-<FunctionLevelLinking>true</FunctionLevelLinking>
-<PrecompiledHeader/>
-<WarningLevel>Level3</WarningLevel>
-<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-<DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS);Base.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<SubSystem>Windows</SubSystem>
-<OptimizeReferences>true</OptimizeReferences>
-<EnableCOMDATFolding>true</EnableCOMDATFolding>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-<TargetMachine>MachineX86</TargetMachine>
-</Link>
-</ItemDefinitionGroup>
-<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-<Midl>
-<TargetEnvironment>X64</TargetEnvironment>
-</Midl>
-<ClCompile>
-<Optimization>MaxSpeed</Optimization>
-<IntrinsicFunctions>true</IntrinsicFunctions>
-<AdditionalIncludeDirectories>$(CONAN_INCLUDES);./;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-<PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-<FunctionLevelLinking>true</FunctionLevelLinking>
-<PrecompiledHeader/>
-<WarningLevel>Level3</WarningLevel>
-<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-<DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-<LanguageStandard>stdcpp20</LanguageStandard>
-<ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
-</ClCompile>
-<Link>
-<AdditionalDependencies>$(CONAN_LIBS);Base.lib;%(AdditionalDependencies)</AdditionalDependencies>
-<AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-<GenerateDebugInformation>true</GenerateDebugInformation>
-<SubSystem>Windows</SubSystem>
-<OptimizeReferences>true</OptimizeReferences>
-<EnableCOMDATFolding>true</EnableCOMDATFolding>
-<ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
-<TargetMachine>MachineX64</TargetMachine>
-</Link>
-</ItemDefinitionGroup>
-<ItemGroup>
-<ClCompile Include="PhysicEngine_Bullet.cpp"/>
-</ItemGroup>
-<ItemGroup>
-<ClInclude Include="PhysicEngine_Bullet.h"/>
-</ItemGroup>
-<ItemGroup>
-<ProjectReference Include="..\..\Base\Base.vcxproj">
-<Project>{4fe15a87-875c-41ab-b100-317eaa0a9e5a}</Project>
-<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-</ProjectReference>
-</ItemGroup>
-<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
-<ImportGroup Label="ExtensionTargets">
-</ImportGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4540BC7A-5138-426F-B74C-EDFBD5348645}</ProjectGuid>
+    <RootNamespace>PhysicEngine</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\..\..\Conan.props" />
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.27130.2020</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\Exe\</OutDir>
+    <IntDir>$(SolutionDir)\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);./;$(SolutionDir)Source\Base\include;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;BulletCollision_d.lib;BulletDynamics_d.lib;BulletSoftBody_d.lib;LinearMath_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);./;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;_DEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/Zc:__cplusplus /Zm256 /bigobj  /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);./;$(SolutionDir)Source\Base\include;$(BOOST_PATH);$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletCollision;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletDynamics;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\BulletSoftBody;$(DEP_PATH_MMO_FRAMEWORK)\Include\Bullet\LinearMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS);Base.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;$(BOOST_PATH)\stage\lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib;$(DEP_PATH_MMO_FRAMEWORK)\Lib\ssl32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);./;$(SolutionDir)Source\Base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);WIN32;NDEBUG;_WINDOWS;_USRDLL;PHYSICENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;4275;4005;4244;4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/Zc:__cplusplus /Zm256 /bigobj  /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(CONAN_LIBS);Base.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)\Lib\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="PhysicEngine_Bullet.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PhysicEngine_Bullet.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Base\Base.vcxproj">
+      <Project>{4fe15a87-875c-41ab-b100-317eaa0a9e5a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>

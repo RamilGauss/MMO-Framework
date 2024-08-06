@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <optional>
 #include <list>
 #include <memory>
-#include <magic_enum.hpp>
+#include <magic_enum/magic_enum.hpp>
 
 #include "Base/Common/TypeDef.h"
 

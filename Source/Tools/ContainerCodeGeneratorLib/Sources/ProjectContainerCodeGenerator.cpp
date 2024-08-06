@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <fmt/core.h>
 #include <fmt/color.h>
 
-#include <magic_enum.hpp>
+#include <magic_enum/magic_enum.hpp>
 
 #include "Base/Common/LoadFromFile.h"
 

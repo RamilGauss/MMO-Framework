@@ -119,6 +119,7 @@
       <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>$(CONAN_LIBS);Base_d.lib;shlwapi.lib;ws2_32.lib;winmm.lib;comctl32.lib;Imm32.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -137,6 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>$(CONAN_PREPROCESSOR);NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>$(CONAN_LIBS)</AdditionalDependencies>

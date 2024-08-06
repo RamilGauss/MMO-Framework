@@ -266,7 +266,7 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(CONAN_INCLUDES);./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui\misc\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/Zm256 /bigobj /Zc:__cplusplus /MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Zc:__cplusplus /Zm256 /bigobj  /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
       <DisableSpecificWarnings>4068;4251;4275;4267;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -293,6 +293,7 @@
       <AdditionalIncludeDirectories>$(CONAN_INCLUDES);./include;./src;$(SolutionDir)Source\Base\include;$(SolutionDir)Source\Modules\GraphicEngine\imgui;$(SolutionDir)Source\Modules;$(SolutionDir)Source\Modules\GraphicEngine\imgui\misc\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>
+      <AdditionalOptions>/Zc:__cplusplus /Zm256 /bigobj  /MP /utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
