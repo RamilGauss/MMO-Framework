@@ -23,8 +23,10 @@ namespace nsBase::nsCommon
         std::function<void()> mFrameFunc;
 
     public:
+        ~TFramedThread();
+
         bool IsActive() const;
-        void Start(std::function<void()> frameFunc);
+        void Start(std::function<void()>&& frameFunc);
         void Stop();
 
     private:

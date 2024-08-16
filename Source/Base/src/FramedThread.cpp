@@ -12,6 +12,11 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsCommon
 {
+    TFramedThread::~TFramedThread()
+    {
+        Stop();
+    }
+    //----------------------------------------------------------------------------------
     void TFramedThread::Engine()
     {
         SingletonManager()->Get<TThreadIndexator>()->AddThreadId();
@@ -23,13 +28,13 @@ namespace nsBase::nsCommon
         }
     }
     //----------------------------------------------------------------------------------
-    void TFramedThread::Start(std::function<void()> frameFunc)
+    void TFramedThread::Start(std::function<void()>&& frameFunc)
     {
         if (frameFunc == nullptr || IsActive()) {
             return;
         }
 
-        mFrameFunc = frameFunc;
+        mFrameFunc = std::move(frameFunc);
 
         mThread = std::jthread(&TFramedThread::Engine, this);
 

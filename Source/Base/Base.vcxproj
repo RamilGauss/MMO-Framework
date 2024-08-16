@@ -224,6 +224,7 @@
     <ClInclude Include="include\Base\Common\ContainerPtrArrObj.h" />
     <ClInclude Include="include\Base\Common\ContainerRise.h" />
     <ClInclude Include="include\Base\Common\ContainerTypes.h" />
+    <ClInclude Include="include\Base\Common\CoroInThread.h" />
     <ClInclude Include="include\Base\Common\EventHub.h" />
     <ClInclude Include="include\Base\Common\FramedThread.h" />
     <ClInclude Include="include\Base\Common\GlobalEventHub.h" />
@@ -305,6 +306,7 @@
   <ItemGroup>
     <ClCompile Include="src\AsyncAwaitable.cpp" />
     <ClCompile Include="src\AsyncHopProcess.cpp" />
+    <ClCompile Include="src\CoroInThread.cpp" />
     <ClCompile Include="src\EventHub.cpp" />
     <ClCompile Include="src\FramedThread.cpp" />
     <ClCompile Include="src\GlobalEventHub.cpp" />

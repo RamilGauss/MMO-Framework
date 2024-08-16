@@ -293,6 +293,9 @@
     <ClInclude Include="include\Base\Zones\SyncHopProcess.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Base\Common\CoroInThread.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorPool.cpp">
@@ -479,6 +482,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\AsyncHopProcess.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoroInThread.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
