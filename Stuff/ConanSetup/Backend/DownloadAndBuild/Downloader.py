@@ -27,13 +27,9 @@ class Downloader:
         self.absConfigPath = configPath
 
         currentDir = os.getcwd()
-        tempDir = ".\Temp"
-        
-        if os.path.isdir(tempDir):
-            shutil.rmtree(tempDir)
-        os.mkdir(tempDir)
-        os.chdir(tempDir)
 
+        tempDir = os.path.abspath(".\\Temp")
+        os.chdir(tempDir)
         self.Work(configPath)
         
         os.chdir(currentDir)

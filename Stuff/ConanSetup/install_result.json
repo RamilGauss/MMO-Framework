@@ -1,5 +1,5 @@
 {
-    "date": "2024-08-06 13:34:15.117072",
+    "date": "2024-08-16 11:49:24.750339",
     "defines": [
         "FMT_SHARED",
         "GTEST_LINKED_AS_SHARED_LIBRARY=1",
@@ -11,104 +11,104 @@
     ],
     "packages": {
         "b2/5.2.1": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b2c45ac73ef9f80\\p\\bin",
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b2c45ac73ef9f80\\p\\bin",
             "includeDir": "",
             "libDir": ""
         },
         "boost/1.85.0": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\boost41c0c57479348\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\boost41c0c57479348\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\boost41c0c57479348\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\boostd80e80f534ea5\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\boostd80e80f534ea5\\p\\include",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\boostd80e80f534ea5\\p\\lib"
         },
         "bullet3/3.25": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\bulle89ae0bbd739a9\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\bulle89ae0bbd739a9\\p\\include\\bullet",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\bulle89ae0bbd739a9\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\bullee470a387c8653\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\bullee470a387c8653\\p\\include\\bullet",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\bullee470a387c8653\\p\\lib"
         },
         "bzip2/1.0.8": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\bzip25b775da5145a3\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\bzip25b775da5145a3\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\bzip25b775da5145a3\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\bzip2f1af48343de09\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\bzip2f1af48343de09\\p\\include",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\bzip2f1af48343de09\\p\\lib"
         },
         "cmake/3.30.1": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\cmake3081ce9d742b2\\p\\bin",
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\cmake3081ce9d742b2\\p\\bin",
             "includeDir": "",
             "libDir": ""
         },
         "fmt/11.0.2": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\fmt5ae92b4ff9f73\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\fmt5ae92b4ff9f73\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\fmt5ae92b4ff9f73\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\fmt033aaf6e8839e\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\fmt033aaf6e8839e\\p\\include",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\fmt033aaf6e8839e\\p\\lib"
         },
         "glad/0.1.36": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\glade2f02eb315135\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\glade2f02eb315135\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\glade2f02eb315135\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\glad594d942a39e8a\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\glad594d942a39e8a\\p\\include",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\glad594d942a39e8a\\p\\lib"
         },
         "glm/1.0.1": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\glmc7261f667dea4\\p\\include",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\glmc7261f667dea4\\p\\include",
             "libDir": ""
         },
         "gtest/1.15.0": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\gtest2a7b2757aa6d3\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\gtest2a7b2757aa6d3\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\gtest2a7b2757aa6d3\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\gtest32804f671306e\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\gtest32804f671306e\\p\\include",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\gtest32804f671306e\\p\\lib"
         },
         "inja/3.4.0": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\inja62ccb399ee74d\\p\\include",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\inja62ccb399ee74d\\p\\include",
             "libDir": ""
         },
         "lz4/1.10.0": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\lz461f9a59eb1354\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\lz461f9a59eb1354\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\lz461f9a59eb1354\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\lz492caec5fadb1d\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\lz492caec5fadb1d\\p\\include",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\lz492caec5fadb1d\\p\\lib"
         },
         "magic_enum/0.9.6": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\magicb0dff7758e04a\\p\\include",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\magic11fd6d7dbeae3\\p\\include",
             "libDir": ""
         },
         "nasm/2.16.01": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\nasm82fc2c9a305c1\\p\\bin",
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\nasm82fc2c9a305c1\\p\\bin",
             "includeDir": "",
             "libDir": ""
         },
         "nlohmann_json/3.11.3": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\nlohm0567ffc90cfc1\\p\\include",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\nlohm0567ffc90cfc1\\p\\include",
             "libDir": ""
         },
         "openssl/1.1.1w": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\opensff4185a99dfff\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\opensff4185a99dfff\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\opensff4185a99dfff\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\opensef6575e83d189\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\opensef6575e83d189\\p\\include",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\opensef6575e83d189\\p\\lib"
         },
         "rapidjson/cci.20220822": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\rapideb2d90c50e7f7\\p\\include",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\rapideb2d90c50e7f7\\p\\include",
             "libDir": ""
         },
         "sdl/2.30.6": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\sdl64020d3f04b7a\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\sdl64020d3f04b7a\\p\\include\\SDL2",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\sdl64020d3f04b7a\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\sdldc064403d28f2\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\sdldc064403d28f2\\p\\include\\SDL2",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\sdldc064403d28f2\\p\\lib"
         },
         "stb/cci.20240531": {
             "binDir": "",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\stb19b77fb56ffd7\\p\\include",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\stb19b77fb56ffd7\\p\\include",
             "libDir": ""
         },
         "strawberryperl/5.32.1.1": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\straw898fb56546adc\\p\\bin",
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\straw898fb56546adc\\p\\bin",
             "includeDir": "",
             "libDir": ""
         },
         "zlib/1.3.1": {
-            "binDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\zlibdabad644d1103\\p\\bin",
-            "includeDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\zlibdabad644d1103\\p\\include",
-            "libDir": "C:\\Users\\Gauss\\.conan2\\p\\b\\zlibdabad644d1103\\p\\lib"
+            "binDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\zlib9d9d6c04d2ec4\\p\\bin",
+            "includeDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\zlib9d9d6c04d2ec4\\p\\include",
+            "libDir": "C:\\MMO-Framework\\Stuff\\ConanSetup\\Temp\\conan2\\p\\b\\zlib9d9d6c04d2ec4\\p\\lib"
         }
     }
 }
