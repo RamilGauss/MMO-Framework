@@ -10,37 +10,72 @@ See for more information LICENSE.md.
 #include "Base/Common/CoroInThread.h"
 #include "Base/Common/AsyncAwaitable.h"
 
+struct State
+{
+    int commonCount = 0;
+    int progressCount = 0;
+
+    std::string state;
+
+    void Increment()
+    {
+        progressCount++;
+    }
+
+    float GetProgress() const
+    {
+        if (commonCount == 0)
+            return -1.0f;
+        return (progressCount * 100.0f) / commonCount;
+    }
+
+    bool IsCompleted() const
+    {
+        return commonCount == progressCount;
+    }
+
+    bool IsFinishedOrStopped() const
+    {
+        return state == "stop" || state == "finish";
+    }
+    bool IsWork() const
+    {
+        return state == "work";
+    }
+};
+
+
 class HopProcess
 {
-    nsBase::nsCommon::TCoroInThread* mCoroInThread = nullptr;
+    // Main thread
     nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
 
-
-    std::string mInnerState;
-    std::string mState;
-
+    // Second thread
+    nsBase::nsCommon::TCoroInThread* mCoroInThread = nullptr;
+    State mInnerState;
+    State mState;
 public:
     HopProcess(nsBase::nsCommon::TCoroInThread* coroInThread,
         nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
-      : mStrandHolder(std::move(strandHolder)),
+        : mStrandHolder(std::move(strandHolder)),
         mCoroInThread(coroInThread)
     {
-
     }
     //-------------------------------------------------------------------------------------------------
     boost::asio::awaitable<void> WorkInOtherThread()
     {
-        mInnerState = "work";
+        mInnerState.commonCount = 500000;
+        mInnerState.state = "work";
 
-        int count = 0;
         while (true) {
             co_await mCoroInThread->GetStrandHolder()->Wait();
-            count++;
-            if (count > 1000000) {
-                mInnerState = "finish";
-            }
-            if (mState == "finish" || mState == "stop")
+            if (mState.IsFinishedOrStopped())
                 break;
+            if (mInnerState.IsCompleted()) {
+                mInnerState.state = "finish";
+            } else {
+                mInnerState.Increment();
+            }
         }
 
         std::cout << "WorkInOtherThread ends id = " << std::this_thread::get_id() << std::endl;
@@ -50,7 +85,7 @@ public:
     boost::asio::awaitable<void> FinishInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable)
     {
-        mState = "finish";
+        mState.state = "finish";
         strandHolder->Post([awaitable]() { awaitable->Resume(); });
         co_return;
     }
@@ -58,14 +93,15 @@ public:
     boost::asio::awaitable<void> StopInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable)
     {
-        mState = "stop";
+        mInnerState.state = "stop";
+        mState.state = "stop";
         strandHolder->Post([awaitable]() { awaitable->Resume(); });
         co_return;
     }
 
     boost::asio::awaitable<void> UpdateState(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable,
-        std::string& state)
+        State& state)
     {
         state = mInnerState;
         mState = mInnerState;
@@ -73,8 +109,10 @@ public:
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> Stop()
+    boost::asio::awaitable<void> Stop(std::function<void()> cb)
     {
+        printf("Stop()\n");
+
         auto awaitable = nsBase::nsCommon::TAsyncAwaitable::New();
 
         mStrandHolder->Post([this, &awaitable]() {
@@ -83,12 +121,15 @@ public:
             });
 
         co_await awaitable->Wait();
+
+        cb();
+        printf("Stop() ends\n");
     }
 
     boost::asio::awaitable<void> Start()
     {
         printf("Start()\n");
-        std::string state;
+        State state;
 
         mStrandHolder->Post([this]() {
             mCoroInThread->GetStrandHolder()->StartCoroutine([this]() {return WorkInOtherThread(); });
@@ -102,11 +143,15 @@ public:
                 });
             co_await awaitable->Wait();
 
+            std::cout << "Progress " << state.GetProgress() << " %" << std::endl;
 
-            if (state == "stop") {
+            using namespace std::literals;
+            std::this_thread::sleep_for(10ms);
+
+            if (state.state == "stop") {
                 break;
             }
-            if (state == "finish") {
+            if (state.state == "finish") {
                 mStrandHolder->Post([this, awaitable]() {
                     mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable]() {
                         return FinishInOtherThread(mStrandHolder, awaitable); });
@@ -116,7 +161,12 @@ public:
             }
         }
 
-        std::cout << "end cause " << state << ", id = " << std::this_thread::get_id() << std::endl;
+        std::cout << "end cause " << state.state << ", id = " << std::this_thread::get_id() << std::endl;
+    }
+
+    State GetState() const
+    {
+        return mState;
     }
 };
 
@@ -132,12 +182,25 @@ int main(int argc, char** argv)
 
     strandHolder->StartCoroutine([&hopProcess]() {return hopProcess.Start(); });
 
+    bool isStopping = false;
+
     while (true) {
         auto quantUsedCount = ioContext.run_one();
-        //if (quantUsedCount == 0) {
-            using namespace std::literals;
-            std::this_thread::sleep_for(10ms);
-        //}
+
+        using namespace std::literals;
+        std::this_thread::sleep_for(10ms);
+
+        if (hopProcess.GetState().IsWork() && 
+            hopProcess.GetState().GetProgress() > 70) {
+
+            if (!isStopping) {
+                isStopping = true;
+                strandHolder->StartCoroutine([&hopProcess, &isStopping]() {
+                    return hopProcess.Stop([&isStopping]() {
+                        isStopping = false;
+                }); });
+            }
+        }
     }
 
     ::testing::InitGoogleTest(&argc, argv);

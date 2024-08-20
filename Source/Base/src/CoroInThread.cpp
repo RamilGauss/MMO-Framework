@@ -15,17 +15,14 @@ namespace nsBase::nsCommon
     void TCoroInThread::Start()
     {
         mThread.Start([this]() {
-            static int counter = 0;
+            if (mIoContext.stopped())
+                mIoContext.restart();
 
-            auto quantUsedCount = mIoContext.run_one();
-            if (quantUsedCount == 0 && counter > 2) {
+            auto callHandlerCount = mIoContext.run_one();
 
-                counter = 0;
-
+            if (callHandlerCount == 0) {
                 using namespace std::literals;
                 std::this_thread::sleep_for(10ms);
-            } else {
-                counter++;
             }
 
             });
