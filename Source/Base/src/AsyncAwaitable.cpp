@@ -15,7 +15,7 @@ namespace nsBase::nsCommon
             decltype(boost::asio::use_awaitable),
             void(boost::system::error_code)>(
                 [self = Ptr(this->shared_from_this())](auto&& handler) mutable {
-                    self->mCallbacks.push_back(std::forward<decltype(handler)>(handler));
+                    self->mCallbacks.push_back(std::make_shared<ElementType>(std::forward<decltype(handler)>(handler)));
                 },
                 boost::asio::use_awaitable
             );
@@ -26,7 +26,7 @@ namespace nsBase::nsCommon
         if (mCallbacks.size()) {
             auto func = std::move(mCallbacks.front());
             mCallbacks.pop_front();
-            (std::move(func))(boost::system::error_code());
+            (std::move(func))->operator()(boost::system::error_code());
         }
     }
 }

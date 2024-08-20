@@ -6,9 +6,11 @@
 
 #include <concepts>
 
+#include "Base/Common/TypeDef.h"
+
 namespace nsBase::nsCommon
 {
-    class TStrandHolder : public std::enable_shared_from_this<TStrandHolder>
+    class DllExport TStrandHolder : public std::enable_shared_from_this<TStrandHolder>
     {
     public:
         using Ptr = std::shared_ptr<TStrandHolder>;
