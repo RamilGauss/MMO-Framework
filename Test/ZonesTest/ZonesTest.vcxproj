@@ -150,7 +150,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="AsyncHopProcess.h" />
     <ClCompile Include="Zones.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HopProcessState.h" />
+    <ClInclude Include="SyncHopProcess.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

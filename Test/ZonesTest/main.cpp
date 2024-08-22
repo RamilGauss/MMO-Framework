@@ -10,174 +10,28 @@ See for more information LICENSE.md.
 #include "Base/Common/CoroInThread.h"
 #include "Base/Common/AsyncAwaitable.h"
 
-struct State
+#include "AsyncHopProcess.h"
+
+#define asString() asStringPure(__FILE__, __LINE__)
+
+
+void asStringPure(const char* fileName, int line)
 {
-    int commonCount = 0;
-    int progressCount = 0;
-
-    std::string state;
-
-    void Increment()
-    {
-        progressCount++;
-    }
-
-    float GetProgress() const
-    {
-        if (commonCount == 0)
-            return -1.0f;
-        return (progressCount * 100.0f) / commonCount;
-    }
-
-    bool IsCompleted() const
-    {
-        return commonCount == progressCount;
-    }
-
-    bool IsFinishedOrStopped() const
-    {
-        return state == "stop" || state == "finish";
-    }
-    bool IsWork() const
-    {
-        return state == "work";
-    }
-};
-
-
-class HopProcess
-{
-    // Main thread
-    nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
-
-    // Second thread
-    nsBase::nsCommon::TCoroInThread* mCoroInThread = nullptr;
-    State mInnerState;
-    State mState;
-public:
-    HopProcess(nsBase::nsCommon::TCoroInThread* coroInThread,
-        nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
-        : mStrandHolder(std::move(strandHolder)),
-        mCoroInThread(coroInThread)
-    {
-    }
-    //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> WorkInOtherThread()
-    {
-        mInnerState.commonCount = 500000;
-        mInnerState.state = "work";
-
-        while (true) {
-            co_await mCoroInThread->GetStrandHolder()->Wait();
-            if (mState.IsFinishedOrStopped())
-                break;
-            if (mInnerState.IsCompleted()) {
-                mInnerState.state = "finish";
-            } else {
-                mInnerState.Increment();
-            }
-        }
-
-        std::cout << "WorkInOtherThread ends id = " << std::this_thread::get_id() << std::endl;
-        co_return;
-    }
-
-    boost::asio::awaitable<void> FinishInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
-        nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable)
-    {
-        mState.state = "finish";
-        strandHolder->Post([awaitable]() { awaitable->Resume(); });
-        co_return;
-    }
-
-    boost::asio::awaitable<void> StopInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
-        nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable)
-    {
-        mInnerState.state = "stop";
-        mState.state = "stop";
-        strandHolder->Post([awaitable]() { awaitable->Resume(); });
-        co_return;
-    }
-
-    boost::asio::awaitable<void> UpdateState(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
-        nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable,
-        State& state)
-    {
-        state = mInnerState;
-        mState = mInnerState;
-        strandHolder->Post([awaitable]() { awaitable->Resume(); });
-        co_return;
-    }
-    //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> Stop(std::function<void()> cb)
-    {
-        printf("Stop()\n");
-
-        auto awaitable = nsBase::nsCommon::TAsyncAwaitable::New();
-
-        mStrandHolder->Post([this, &awaitable]() {
-            mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable]() {
-                return StopInOtherThread(mStrandHolder, awaitable); });
-            });
-
-        co_await awaitable->Wait();
-
-        cb();
-        printf("Stop() ends\n");
-    }
-
-    boost::asio::awaitable<void> Start()
-    {
-        printf("Start()\n");
-        State state;
-
-        mStrandHolder->Post([this]() {
-            mCoroInThread->GetStrandHolder()->StartCoroutine([this]() {return WorkInOtherThread(); });
-            });
-
-        auto awaitable = nsBase::nsCommon::TAsyncAwaitable::New();
-        while (true) {
-            mStrandHolder->Post([this, awaitable, &state]() {
-                mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable, &state]() {
-                    return UpdateState(mStrandHolder, awaitable, state); });
-                });
-            co_await awaitable->Wait();
-
-            std::cout << "Progress " << state.GetProgress() << " %" << std::endl;
-
-            using namespace std::literals;
-            std::this_thread::sleep_for(10ms);
-
-            if (state.state == "stop") {
-                break;
-            }
-            if (state.state == "finish") {
-                mStrandHolder->Post([this, awaitable]() {
-                    mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable]() {
-                        return FinishInOtherThread(mStrandHolder, awaitable); });
-                    });
-                co_await awaitable->Wait();
-                break;
-            }
-        }
-
-        std::cout << "end cause " << state.state << ", id = " << std::this_thread::get_id() << std::endl;
-    }
-
-    State GetState() const
-    {
-        return mState;
-    }
-};
+    printf("%s %d\n", fileName, line);
+}
 
 
 int main(int argc, char** argv)
 {
+    asString();
+    asString();
+
+
     boost::asio::io_context ioContext;
     nsBase::nsCommon::TStrandHolder::Ptr strandHolder = nsBase::nsCommon::TStrandHolder::New(ioContext);
     nsBase::nsCommon::TCoroInThread coroInThread;
 
-    HopProcess hopProcess(&coroInThread, strandHolder);
+    TAsyncHopProcess hopProcess(&coroInThread, strandHolder);
     coroInThread.Start();
 
     strandHolder->StartCoroutine([&hopProcess]() {return hopProcess.Start(); });
