@@ -12,21 +12,8 @@ See for more information LICENSE.md.
 
 #include "AsyncHopProcess.h"
 
-#define asString() asStringPure(__FILE__, __LINE__)
-
-
-void asStringPure(const char* fileName, int line)
-{
-    printf("%s %d\n", fileName, line);
-}
-
-
 int main(int argc, char** argv)
 {
-    asString();
-    asString();
-
-
     boost::asio::io_context ioContext;
     nsBase::nsCommon::TStrandHolder::Ptr strandHolder = nsBase::nsCommon::TStrandHolder::New(ioContext);
     nsBase::nsCommon::TCoroInThread coroInThread;
@@ -44,16 +31,19 @@ int main(int argc, char** argv)
         using namespace std::literals;
         std::this_thread::sleep_for(10ms);
 
-        if (hopProcess.GetState().IsWork() && 
-            hopProcess.GetState().GetProgress() > 70) {
+        auto state = hopProcess.GetState();
 
-            if (!isStopping) {
+        if (state.IsWork() && 
+            state.GetProgress() > 70) {
+
+            if (isStopping == false) {
                 isStopping = true;
                 strandHolder->StartCoroutine([&hopProcess, &isStopping]() {
-                    return hopProcess.Stop([&isStopping]() {
-                        isStopping = false;
-                }); });
+                    return hopProcess.Stop(); });
             }
+        }
+        if (state.IsFinishedOrStopped()) {
+            isStopping = false;
         }
     }
 

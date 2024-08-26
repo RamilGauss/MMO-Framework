@@ -21,11 +21,9 @@ public:
     {
     }
 
-    boost::asio::awaitable<void> Stop(std::function<void()> cb)
+    boost::asio::awaitable<void> Stop()
     {
         mState.state = "stop";
-        cb();
-
         co_return;
     }
 

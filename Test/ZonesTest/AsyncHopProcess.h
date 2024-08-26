@@ -79,7 +79,7 @@ public:
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> Stop(std::function<void()> cb)
+    boost::asio::awaitable<void> Stop()
     {
         printf("Stop()\n");
 
@@ -92,7 +92,6 @@ public:
 
         co_await awaitable->Wait();
 
-        cb();
         printf("Stop() ends\n");
     }
 

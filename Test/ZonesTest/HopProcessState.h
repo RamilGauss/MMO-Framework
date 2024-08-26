@@ -24,6 +24,11 @@ struct THopProcessState
         progressCount++;
     }
 
+    std::string GetState() const
+    {
+        return state;
+    }
+
     float GetProgress() const
     {
         if (commonCount == 0)
