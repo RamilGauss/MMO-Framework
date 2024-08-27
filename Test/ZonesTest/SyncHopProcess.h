@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#pragma once
+
 #include "Base/Common/AsyncAwaitable.h"
 
 #include "HopProcessState.h"
@@ -14,40 +16,12 @@ class TSyncHopProcess
     nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
     THopProcessState mState;
 public:
+
+    TSyncHopProcess(nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
+
+    boost::asio::awaitable<void> Stop();
+    boost::asio::awaitable<void> Start();
+    THopProcessState GetState() const;
+protected:
     virtual void Work() {};
-
-    TSyncHopProcess(nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
-        : mStrandHolder(std::move(strandHolder))
-    {
-    }
-
-    boost::asio::awaitable<void> Stop()
-    {
-        mState.state = "stop";
-        co_return;
-    }
-
-    boost::asio::awaitable<void> Start()
-    {
-        mState.commonCount = 500000;
-        mState.state = "work";
-
-        while (true) {
-            co_await mStrandHolder->Wait();
-            if (mState.IsFinishedOrStopped())
-                break;
-            if (mState.IsCompleted()) {
-                mState.state = "finish";
-                break;
-            } else {
-                Work();
-                mState.Increment();
-            }
-        }
-    }
-
-    THopProcessState GetState() const
-    {
-        return mState;
-    }
 };

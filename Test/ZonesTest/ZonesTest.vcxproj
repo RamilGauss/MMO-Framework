@@ -149,8 +149,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AsyncHopProcess.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="AsyncHopProcess.h" />
+    <ClCompile Include="SyncHopProcess.cpp" />
     <ClCompile Include="Zones.cpp" />
   </ItemGroup>
   <ItemGroup>

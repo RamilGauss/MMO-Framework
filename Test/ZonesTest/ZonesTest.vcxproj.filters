@@ -20,6 +20,12 @@
     <ClCompile Include="AsyncHopProcess.h">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AsyncHopProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SyncHopProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HopProcessState.h">
