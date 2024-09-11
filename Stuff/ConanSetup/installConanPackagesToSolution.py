@@ -9,8 +9,11 @@ from Backend.PropsGenerator.Generator import *
 from Backend.Copy.Worker import *
 from Backend.SolutionSetup.SolutionSetup import *
 
+# tempFolderAbsPath = os.path.abspath("..\\Temp")
+tempFolderAbsPath = "C:\\Temp"
+
 def recreateTempDir():
-    tempDir = os.path.abspath(".\\Temp")
+    tempDir = tempFolderAbsPath
     if os.path.isdir(tempDir):
         shutil.rmtree(tempDir)
     os.mkdir(tempDir)
@@ -20,7 +23,7 @@ if __name__ == '__main__':
     recreateTempDir()
 
     # Detect profile
-    absPath = os.path.abspath(".\\Temp\\conan2")
+    absPath = f"{tempFolderAbsPath}\\conan2"
     profileDetector = ProfileDetector()
     profileDetector.Setup(absPath)
 

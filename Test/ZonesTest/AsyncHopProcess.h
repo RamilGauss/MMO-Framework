@@ -11,8 +11,9 @@ See for more information LICENSE.md.
 #include "Base/Common/AsyncAwaitable.h"
 
 #include "HopProcessState.h"
+#include "IHopProcess.h"
 
-class TAsyncHopProcess
+class TAsyncHopProcess : public IHopProcess
 {
     // Main thread
     nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
@@ -21,16 +22,15 @@ class TAsyncHopProcess
     nsBase::nsCommon::TCoroInThread* mCoroInThread = nullptr;
     THopProcessState mInnerState;
     THopProcessState mState;
-public:
 
+public:
     TAsyncHopProcess(nsBase::nsCommon::TCoroInThread* coroInThread,
         nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
-    boost::asio::awaitable<void> Stop();
-    boost::asio::awaitable<void> Start();
-    THopProcessState GetState() const;
+    boost::asio::awaitable<void> Stop() override;
+    boost::asio::awaitable<void> Start() override;
+    THopProcessState GetState() const override;
 
 protected:
-    virtual void Work() {};
 
     boost::asio::awaitable<void> WorkInOtherThread();
     boost::asio::awaitable<void> FinishInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,

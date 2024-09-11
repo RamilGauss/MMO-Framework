@@ -34,5 +34,8 @@
     <ClInclude Include="SyncHopProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IHopProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

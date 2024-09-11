@@ -29,6 +29,8 @@ class Downloader:
         currentDir = os.getcwd()
 
         tempDir = os.path.abspath(".\\Temp")
+        if not os.path.isdir(tempDir):
+            os.mkdir(tempDir)
         os.chdir(tempDir)
         self.Work(configPath)
         

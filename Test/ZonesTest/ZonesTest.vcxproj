@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HopProcessState.h" />
+    <ClInclude Include="IHopProcess.h" />
     <ClInclude Include="SyncHopProcess.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -9,7 +9,8 @@ See for more information LICENSE.md.
 
 TAsyncHopProcess::TAsyncHopProcess(nsBase::nsCommon::TCoroInThread* coroInThread,
     nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
-    : mStrandHolder(std::move(strandHolder)),
+    : IHopProcess(), 
+    mStrandHolder(std::move(strandHolder)),
     mCoroInThread(coroInThread)
 {
 }

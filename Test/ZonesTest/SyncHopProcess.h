@@ -7,11 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include "IHopProcess.h"
+
 #include "Base/Common/AsyncAwaitable.h"
 
 #include "HopProcessState.h"
 
-class TSyncHopProcess
+class TSyncHopProcess : public IHopProcess
 {
     nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
     THopProcessState mState;
@@ -19,9 +21,7 @@ public:
 
     TSyncHopProcess(nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
 
-    boost::asio::awaitable<void> Stop();
-    boost::asio::awaitable<void> Start();
-    THopProcessState GetState() const;
-protected:
-    virtual void Work() {};
+    boost::asio::awaitable<void> Stop() override;
+    boost::asio::awaitable<void> Start() override;
+    THopProcessState GetState() const override;
 };
