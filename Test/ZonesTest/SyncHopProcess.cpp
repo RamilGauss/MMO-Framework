@@ -7,8 +7,9 @@ See for more information LICENSE.md.
 
 #include "SyncHopProcess.h"
 
-TSyncHopProcess::TSyncHopProcess(nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
-    : mStrandHolder(std::move(strandHolder))
+TSyncHopProcess::TSyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread, 
+    nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
+    : IHopProcess(std::move(coroInThread), std::move(strandHolder))//mStrandHolder(std::move(strandHolder))
 {
 }
 //-------------------------------------------------------------------------------------------------

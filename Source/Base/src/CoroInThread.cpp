@@ -2,6 +2,13 @@
 
 namespace nsBase::nsCommon
 {
+    TCoroInThread::Ptr TCoroInThread::New()
+    {
+        Ptr ptr;
+        ptr.reset(new TCoroInThread());
+        return ptr;
+    }
+    //----------------------------------------------------------------------------------
     TCoroInThread::TCoroInThread()
     {
         mStrandHolder = TStrandHolder::New(mIoContext);

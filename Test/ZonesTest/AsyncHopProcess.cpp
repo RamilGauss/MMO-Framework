@@ -7,11 +7,9 @@ See for more information LICENSE.md.
 
 #include "AsyncHopProcess.h"
 
-TAsyncHopProcess::TAsyncHopProcess(nsBase::nsCommon::TCoroInThread* coroInThread,
+TAsyncHopProcess::TAsyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
     nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
-    : IHopProcess(), 
-    mStrandHolder(std::move(strandHolder)),
-    mCoroInThread(coroInThread)
+    : IHopProcess(std::move(coroInThread), std::move(strandHolder))
 {
 }
 //-------------------------------------------------------------------------------------------------

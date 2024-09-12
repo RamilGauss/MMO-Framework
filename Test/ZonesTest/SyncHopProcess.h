@@ -15,11 +15,9 @@ See for more information LICENSE.md.
 
 class TSyncHopProcess : public IHopProcess
 {
-    nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
-    THopProcessState mState;
 public:
 
-    TSyncHopProcess(nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
+    TSyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread, nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
 
     boost::asio::awaitable<void> Stop() override;
     boost::asio::awaitable<void> Start() override;

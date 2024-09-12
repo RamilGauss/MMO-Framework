@@ -15,16 +15,8 @@ See for more information LICENSE.md.
 
 class TAsyncHopProcess : public IHopProcess
 {
-    // Main thread
-    nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
-
-    // Second thread
-    nsBase::nsCommon::TCoroInThread* mCoroInThread = nullptr;
-    THopProcessState mInnerState;
-    THopProcessState mState;
-
 public:
-    TAsyncHopProcess(nsBase::nsCommon::TCoroInThread* coroInThread,
+    TAsyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
         nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
     boost::asio::awaitable<void> Stop() override;
     boost::asio::awaitable<void> Start() override;

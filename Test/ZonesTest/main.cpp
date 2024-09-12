@@ -16,10 +16,10 @@ int main(int argc, char** argv)
 {
     boost::asio::io_context ioContext;
     nsBase::nsCommon::TStrandHolder::Ptr strandHolder = nsBase::nsCommon::TStrandHolder::New(ioContext);
-    nsBase::nsCommon::TCoroInThread coroInThread;
+    auto  coroInThread = nsBase::nsCommon::TCoroInThread::New();
 
-    TAsyncHopProcess hopProcess(&coroInThread, strandHolder);
-    coroInThread.Start();
+    TAsyncHopProcess hopProcess(coroInThread, strandHolder);
+    coroInThread->Start();
 
     strandHolder->StartCoroutine([&hopProcess]() {return hopProcess.Start(); });
 

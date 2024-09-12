@@ -14,7 +14,12 @@ See for more information LICENSE.md.
 class IHopProcess
 {
 public:
-    IHopProcess(nsBase::nsCommon::TStrandHolder::Ptr strandHolder) {}
+    IHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
+        nsBase::nsCommon::TStrandHolder::Ptr strandHolder) :
+        mStrandHolder(std::move(strandHolder)),
+        mCoroInThread(std::move(coroInThread))
+    {
+    }
     virtual ~IHopProcess() {}
 
     virtual boost::asio::awaitable<void> Stop() = 0;
@@ -22,4 +27,12 @@ public:
     virtual THopProcessState GetState() const = 0;
 protected:
     virtual void Work() {};
+
+    // Main thread
+    nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
+
+    // Second thread
+    nsBase::nsCommon::TCoroInThread::Ptr mCoroInThread;
+    THopProcessState mInnerState;
+    THopProcessState mState;
 };

@@ -11,13 +11,16 @@ namespace nsBase::nsCommon
     class DllExport TCoroInThread final
     {
     public:
-        TCoroInThread();
+        using Ptr = std::shared_ptr<TCoroInThread>;
+
+        static Ptr New();
 
         TStrandHolder::Ptr GetStrandHolder() const;
         void Start();
         void Stop();
 
     private:
+        TCoroInThread();
         TFramedThread mThread;
 
         boost::asio::io_context mIoContext;
