@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <magic_enum.hpp>
+
 #include "AsyncHopProcess.h"
 
 TAsyncHopProcess::TAsyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
@@ -16,14 +18,14 @@ TAsyncHopProcess::TAsyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInTh
 boost::asio::awaitable<void> TAsyncHopProcess::WorkInOtherThread()
 {
     mInnerState.commonCount = 500000;
-    mInnerState.state = "work";
+    mInnerState.state = THopProcessState::State::WORK;
 
     while (true) {
         co_await mCoroInThread->GetStrandHolder()->Wait();
         if (mState.IsFinishedOrStopped())
             break;
         if (mInnerState.IsCompleted()) {
-            mInnerState.state = "finish";
+            mInnerState.state = THopProcessState::State::FINISH;
             break;
         } else {
             mInnerState.Increment();
@@ -39,7 +41,7 @@ boost::asio::awaitable<void> TAsyncHopProcess::WorkInOtherThread()
 boost::asio::awaitable<void> TAsyncHopProcess::FinishInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
     nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable)
 {
-    mState.state = "finish";
+    mState.state = THopProcessState::State::FINISH;
     strandHolder->Post([awaitable]() { awaitable->Resume(); });
     co_return;
 }
@@ -47,8 +49,8 @@ boost::asio::awaitable<void> TAsyncHopProcess::FinishInOtherThread(nsBase::nsCom
 boost::asio::awaitable<void> TAsyncHopProcess::StopInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
     nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable)
 {
-    mInnerState.state = "stop";
-    mState.state = "stop";
+    mInnerState.state = THopProcessState::State::STOP;
+    mState.state = THopProcessState::State::STOP;
     strandHolder->Post([awaitable]() { awaitable->Resume(); });
     co_return;
 }
@@ -101,10 +103,10 @@ boost::asio::awaitable<void> TAsyncHopProcess::Start()
         using namespace std::literals;
         std::this_thread::sleep_for(10ms);
 
-        if (state.state == "stop") {
+        if (state.state == THopProcessState::State::STOP) {
             break;
         }
-        if (state.state == "finish") {
+        if (state.state == THopProcessState::State::FINISH) {
             mStrandHolder->Post([this, awaitable]() {
                 mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable]() {
                     return FinishInOtherThread(mStrandHolder, awaitable); });
@@ -114,7 +116,7 @@ boost::asio::awaitable<void> TAsyncHopProcess::Start()
         }
     }
 
-    std::cout << "end cause " << state.state << ", id = " << std::this_thread::get_id() << std::endl;
+    std::cout << "end cause " << magic_enum::enum_name(state.state) << ", id = " << std::this_thread::get_id() << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 THopProcessState TAsyncHopProcess::GetState() const

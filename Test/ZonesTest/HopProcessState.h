@@ -17,14 +17,21 @@ struct THopProcessState
     int commonCount = 0;
     int progressCount = 0;
 
-    std::string state;
+    enum class State
+    {
+        IDLE,
+        WORK,
+        STOP,
+        FINISH,
+    };
+    State state;
 
     void Increment()
     {
         progressCount++;
     }
 
-    std::string GetState() const
+    State GetState() const
     {
         return state;
     }
@@ -43,10 +50,10 @@ struct THopProcessState
 
     bool IsFinishedOrStopped() const
     {
-        return state == "stop" || state == "finish";
+        return state == State::STOP || state == State::FINISH;
     }
     bool IsWork() const
     {
-        return state == "work";
+        return state == State::WORK;
     }
 };

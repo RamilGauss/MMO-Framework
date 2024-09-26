@@ -15,21 +15,21 @@ TSyncHopProcess::TSyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThre
 //-------------------------------------------------------------------------------------------------
 boost::asio::awaitable<void> TSyncHopProcess::Stop()
 {
-    mState.state = "stop";
+    mState.state = THopProcessState::State::STOP;
     co_return;
 }
 //-------------------------------------------------------------------------------------------------
 boost::asio::awaitable<void> TSyncHopProcess::Start()
 {
     mState.commonCount = 500000;
-    mState.state = "work";
+    mState.state = THopProcessState::State::WORK;
 
     while (true) {
         co_await mStrandHolder->Wait();
         if (mState.IsFinishedOrStopped())
             break;
         if (mState.IsCompleted()) {
-            mState.state = "finish";
+            mState.state = THopProcessState::State::FINISH;
             break;
         } else {
             Work();
