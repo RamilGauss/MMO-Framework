@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 
 struct THopProcessState
 {
+    std::string 
     int commonCount = 0;
     int progressCount = 0;
 
