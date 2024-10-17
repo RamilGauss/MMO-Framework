@@ -25,8 +25,6 @@ public:
     virtual boost::asio::awaitable<void> Stop() = 0;
     virtual boost::asio::awaitable<void> Start() = 0;
     virtual THopProcessState GetState() const = 0;
-
-    virtual void EndSubprocess() = 0;
 protected:
     virtual void Work() {};
 

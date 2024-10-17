@@ -22,7 +22,7 @@ a_process.Setup("a->b", &a, &b);
 TCtx ctx;
 a.AddContext(&ctx);
 
-ctx.GetContextZone().StartProcess("a->b");
+ctx.StartProcess("a->b");
 ```
 
 Для запуска процесса перехода нужно дать квант `TZoneManager`, который владеет Зонами и процессом.
@@ -31,7 +31,7 @@ ctx.GetContextZone().StartProcess("a->b");
 TCtx ctx;
 a.AddContext(&ctx);
 
-ctx.GetContextZone().StartProcess("a->b");
+ctx.StartProcess("a->b");
 
 zoneMgr.Work();
 ```

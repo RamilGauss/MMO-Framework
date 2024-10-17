@@ -7,14 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "gtest/gtest.h"
-
-#include "Base/Common/CoroInThread.h"
 #include "Base/Common/AsyncAwaitable.h"
 
 struct THopProcessState
 {
-    std::string 
     int commonCount = 0;
     int progressCount = 0;
 

@@ -235,6 +235,7 @@ TEST(Zones, Simple_Ok)
 
     ctx.StartProcess("a->b");
 
+
     zoneMgr.Work();
 
     ASSERT_TRUE(ctx.GetOwnerZone() == b.get());

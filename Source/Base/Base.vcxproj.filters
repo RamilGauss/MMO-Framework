@@ -248,16 +248,13 @@
     <ClInclude Include="include\Base\Zones\Zone.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\HopProcess.h">
+    <ClInclude Include="include\Base\Zones\IHopProcess.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Zones\IHopProcessContext.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\LoaderDLLFactory.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Base\Zones\Rank.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Zones\Types.h">
@@ -294,6 +291,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\CoroInThread.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Base\Zones\HopProcessState.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Base\Zones\ContextState.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -457,9 +460,6 @@
     <ClCompile Include="src\IHopProcessContext.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Rank.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\FramedThread.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -485,6 +485,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\CoroInThread.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IHopProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

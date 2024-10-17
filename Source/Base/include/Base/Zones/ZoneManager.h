@@ -15,14 +15,13 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/StrandHolder.h"
 
-#include "Base/Zones/Rank.h"
 #include "Base/Zones/Types.h"
 
 namespace nsBase::nsZones
 {
     class TZone;
     struct IHopProcessContext;
-    class DllExport TZoneManager : public TRank
+    class DllExport TZoneManager
     {
         std::list<SharedPtrZone> mZones;
 

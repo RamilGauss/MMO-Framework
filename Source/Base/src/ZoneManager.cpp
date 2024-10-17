@@ -19,7 +19,6 @@ namespace nsBase::nsZones
     void TZoneManager::AddZone(SharedPtrZone pZone)
     {
         mZones.push_back(pZone);
-        pZone->SetRank(GetRank());
         pZone->SetStrand(mStrandHolder);
     }
     //------------------------------------------------------------------------------

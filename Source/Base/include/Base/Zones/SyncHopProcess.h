@@ -8,12 +8,21 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Zones/HopProcess.h"
+#include "IHopProcess.h"
+
+#include "Base/Common/AsyncAwaitable.h"
+
+#include "HopProcessState.h"
 
 namespace nsBase::nsZones
 {
-    class DllExport TSyncHopProcess : public THopProcess
+    class DllExport TSyncHopProcess : public IHopProcess
     {
-    protected:
-        boost::asio::awaitable<void> AsyncWork(IHopProcessContext* ctx) override;
+    public:
+
+        TSyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread, nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
+
+        boost::asio::awaitable<void> Stop(IHopProcessContext* pCtx) override;
+        boost::asio::awaitable<void> Start(IHopProcessContext* pCtx) override;
     };
 }

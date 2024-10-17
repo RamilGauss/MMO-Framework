@@ -13,7 +13,6 @@ See for more information LICENSE.md.
 #include "Base/Common/StrandHolder.h"
 #include "Base/Common/TypeDef.h"
 
-#include "Base/Zones/Rank.h"
 #include "Base/Zones/Types.h"
 
 namespace nsBase::nsZones
@@ -22,7 +21,7 @@ namespace nsBase::nsZones
     class THopProcess;
     struct IHopProcessContext;
 
-    class DllExport TZone : public TRank
+    class DllExport TZone
     {
         TZoneManager* mZoneMng = nullptr;
 

@@ -7,20 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-
-#include <cstdint>
-
-#include "Base/Common/TypeDef.h"
+#include "Base/Zones/HopProcessState.h"
 
 namespace nsBase::nsZones
 {
-    class DllExport TRank
+    struct DllExport TContextState
     {
-        uint32_t mRank = 0;
-    public:
-        void SetRank(uint32_t value);
-        uint32_t GetRank() const;
-
-        uint32_t GetNextRank() const;
+        THopProcessState inner;
+        THopProcessState state;
     };
 }

@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    class THopProcess;
+    class IHopProcess;
     class TZone;
 
     struct DllExport IHopProcessContext
@@ -37,8 +37,8 @@ namespace nsBase::nsZones
         void SetStrand(nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
 
     private:
-        std::vector<THopProcess*> mActiveProcesses;
-        std::vector<TZone*> mOwnerZones;
+        IHopProcess* mActiveProcess = nullptr;
+        TZone* mOwnerZone = nullptr;
 
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
     };

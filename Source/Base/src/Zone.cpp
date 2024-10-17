@@ -35,7 +35,6 @@ namespace nsBase::nsZones
         pProcess->mStopEvent.Register(this, &TZone::OnStopProcess);
         pProcess->mFinishEvent.Register(this, &TZone::OnFinishProcess);
 
-        pProcess->SetRank(GetRank());
         pProcess->SetStrand(mStrandHolder);
     }
     //------------------------------------------------------------------------------

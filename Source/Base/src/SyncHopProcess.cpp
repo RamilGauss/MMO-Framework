@@ -9,14 +9,35 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    boost::asio::awaitable<void> TSyncHopProcess::AsyncWork(IHopProcessContext* ctx)
+    TSyncHopProcess::TSyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
+        nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
+        : IHopProcess(std::move(coroInThread), std::move(strandHolder))
     {
-        while (IsActive(ctx)) {
-
-            Work(ctx);
-            co_await mStrandHolder->Wait();
-        }
-
+    }
+    //-------------------------------------------------------------------------------------------------
+    boost::asio::awaitable<void> TSyncHopProcess::Stop(IHopProcessContext* pCtx)
+    {
+        mState.state = THopProcessState::State::STOP;
         co_return;
     }
+    //-------------------------------------------------------------------------------------------------
+    boost::asio::awaitable<void> TSyncHopProcess::Start(IHopProcessContext* pCtx)
+    {
+        mState.commonCount = 500000;
+        mState.state = THopProcessState::State::WORK;
+
+        while (true) {
+            co_await mStrandHolder->Wait();
+            if (mState.IsFinishedOrStopped())
+                break;
+            if (mState.IsCompleted()) {
+                mState.state = THopProcessState::State::FINISH;
+                break;
+            } else {
+                Work();
+                mState.Increment();
+            }
+        }
+    }
+    //-------------------------------------------------------------------------------------------------
 }
