@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 namespace nsBase::nsZones
 {
     class TZoneManager;
-    class THopProcess;
+    class IHopProcess;
     struct IHopProcessContext;
 
     class DllExport TZone
@@ -41,7 +41,7 @@ namespace nsBase::nsZones
         const std::string& GetName() const;
 
         void AddProcess(SharedPtrHopProcess pProcess);
-        THopProcess* GetProcess(const std::string& processName);
+        IHopProcess* GetProcess(const std::string& processName);
 
         void AddContext(IHopProcessContext* pCtx);
         void RemoveContext(IHopProcessContext* pCtx);
@@ -49,7 +49,7 @@ namespace nsBase::nsZones
     protected:
 
     private:
-        void OnStopProcess(THopProcess* pProcess, IHopProcessContext* pCtx);
-        void OnFinishProcess(THopProcess* pProcess, TZone* pZone, IHopProcessContext* pCtx);
+        void OnStopProcess(IHopProcess* pProcess, IHopProcessContext* pCtx);
+        void OnFinishProcess(IHopProcess* pProcess, TZone* pZone, IHopProcessContext* pCtx);
     };
 }

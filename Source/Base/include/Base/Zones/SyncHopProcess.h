@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Zones/HopProcess.h"
+#include "Base/Zones/IHopProcess.h"
 #include "IHopProcess.h"
 
 #include "Base/Common/AsyncAwaitable.h"

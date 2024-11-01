@@ -21,18 +21,10 @@ namespace nsBase::nsZones
 
     struct DllExport IHopProcessContext
     {
-        void PushActiveProcess(THopProcess* pProcess);
-        void PopActiveProcess();
+        IHopProcess* GetActiveProcess() const;
+        TZone* GetOwnerZone() const;
 
-        void PushOwnerZone(TZone* pZone);
-        void PopOwnerZone();
-
-        THopProcess* GetActiveProcess(uint32_t rank = 0) const;
-        TZone* GetOwnerZone(uint32_t rank = 0) const;
-
-        uint32_t GetRankCount() const;
-
-        void StartProcess(const std::string& processName, uint32_t rank = 0);
+        void StartProcess(const std::string& processName);
 
         void SetStrand(nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
 

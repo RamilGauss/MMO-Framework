@@ -5,8 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+
+#include <iostream>
 #include <magic_enum.hpp>
 #include "Base/Zones/AsyncHopProcess.h"
+#include "Base/Zones/ContextState.h"
 
 namespace nsBase::nsZones
 {
@@ -16,21 +19,20 @@ namespace nsBase::nsZones
     {
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncHopProcess::WorkInOtherThread()
+    boost::asio::awaitable<void> TAsyncHopProcess::WorkInOtherThread(SharedPtrContextState pState)
     {
-        mInnerState.commonCount = 500000;
-        mInnerState.state = THopProcessState::State::WORK;
+        pState->inner.commonCount = 500000;
+        pState->inner.state = THopProcessState::State::WORK;
 
         while (true) {
             co_await mCoroInThread->GetStrandHolder()->Wait();
-            if (mState.IsFinishedOrStopped())
+            if (pState->state.IsFinishedOrStopped())
                 break;
-            if (mInnerState.IsCompleted()) {
-                mInnerState.state = THopProcessState::State::FINISH;
+            if (pState->inner.IsCompleted()) {
+                pState->inner.state = THopProcessState::State::FINISH;
                 break;
             } else {
-                mInnerState.Increment();
-                // call work() for do work
+                pState->inner.Increment();
                 Work();
             }
         }
@@ -40,41 +42,45 @@ namespace nsBase::nsZones
     }
     //-------------------------------------------------------------------------------------------------
     boost::asio::awaitable<void> TAsyncHopProcess::FinishInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
-        nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable)
+        nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable, SharedPtrContextState pState)
     {
-        mState.state = THopProcessState::State::FINISH;
+        pState->state.state = THopProcessState::State::FINISH;
         strandHolder->Post([awaitable]() { awaitable->Resume(); });
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
     boost::asio::awaitable<void> TAsyncHopProcess::StopInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
-        nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable)
+        nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable, SharedPtrContextState pState)
     {
-        mInnerState.state = THopProcessState::State::STOP;
-        mState.state = THopProcessState::State::STOP;
+        pState->inner.state = THopProcessState::State::STOP;
+        pState->state.state = THopProcessState::State::STOP;
         strandHolder->Post([awaitable]() { awaitable->Resume(); });
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
     boost::asio::awaitable<void> TAsyncHopProcess::UpdateState(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable,
-        THopProcessState& state)
+        SharedPtrContextState pState)
     {
-        state = mInnerState;
-        mState = mInnerState;
+        pState->state = pState->inner;
         strandHolder->Post([awaitable]() { awaitable->Resume(); });
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncHopProcess::Stop()
+    boost::asio::awaitable<void> TAsyncHopProcess::Stop(IHopProcessContext* pCtx)
     {
+        auto fit = mCtxStateMap.find(pCtx);
+        if (fit == mCtxStateMap.end()) {
+            co_return;
+        }
+        auto state = fit->second;
         printf("Stop()\n");
 
         auto awaitable = nsBase::nsCommon::TAsyncAwaitable::New();
 
-        mStrandHolder->Post([this, &awaitable]() {
-            mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable]() {
-                return StopInOtherThread(mStrandHolder, awaitable); });
+        mStrandHolder->Post([this, &awaitable, state]() {
+            mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable, state]() {
+                return StopInOtherThread(mStrandHolder, awaitable, state); });
             });
 
         co_await awaitable->Wait();
@@ -82,42 +88,46 @@ namespace nsBase::nsZones
         printf("Stop() ends\n");
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncHopProcess::Start()
+    boost::asio::awaitable<void> TAsyncHopProcess::Start(IHopProcessContext* pCtx)
     {
-        printf("Start()\n");
-        THopProcessState state;
+        auto newState = std::make_shared<TContextState>();
+        mCtxStateMap.insert({ pCtx, newState });
 
-        mStrandHolder->Post([this]() {
-            mCoroInThread->GetStrandHolder()->StartCoroutine([this]() {return WorkInOtherThread(); });
+        printf("Start()\n");
+
+        mStrandHolder->Post([this, newState]() {
+            mCoroInThread->GetStrandHolder()->StartCoroutine([this, newState]() {return WorkInOtherThread(newState); });
             });
 
         auto awaitable = nsBase::nsCommon::TAsyncAwaitable::New();
         while (true) {
-            mStrandHolder->Post([this, awaitable, &state]() {
-                mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable, &state]() {
-                    return UpdateState(mStrandHolder, awaitable, state); });
+            mStrandHolder->Post([this, awaitable, newState]() {
+                mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable, newState]() {
+                    return UpdateState(mStrandHolder, awaitable, newState); });
                 });
             co_await awaitable->Wait();
 
-            std::cout << "Progress " << state.GetProgress() << " %" << std::endl;
+            std::cout << "Progress " << newState->state.GetProgress() << " %" << std::endl;
 
             using namespace std::literals;
             std::this_thread::sleep_for(10ms);
 
-            if (state.state == THopProcessState::State::STOP) {
+            if (newState->state.state == THopProcessState::State::STOP) {
                 break;
             }
-            if (state.state == THopProcessState::State::FINISH) {
-                mStrandHolder->Post([this, awaitable]() {
-                    mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable]() {
-                        return FinishInOtherThread(mStrandHolder, awaitable); });
+            if (newState->state.state == THopProcessState::State::FINISH) {
+                mStrandHolder->Post([this, awaitable, newState]() {
+                    mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable, newState]() {
+                        return FinishInOtherThread(mStrandHolder, awaitable, newState); });
                     });
                 co_await awaitable->Wait();
                 break;
             }
         }
 
-        std::cout << "end cause " << magic_enum::enum_name(state.state) << ", id = " << std::this_thread::get_id() << std::endl;
+        std::cout << "end cause " << magic_enum::enum_name(newState->state.state) << ", id = " << std::this_thread::get_id() << std::endl;
+
+        mCtxStateMap.erase(pCtx);
     }
     //-------------------------------------------------------------------------------------------------
 }

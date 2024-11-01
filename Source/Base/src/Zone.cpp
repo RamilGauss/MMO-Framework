@@ -38,7 +38,7 @@ namespace nsBase::nsZones
         pProcess->SetStrand(mStrandHolder);
     }
     //------------------------------------------------------------------------------
-    THopProcess* TZone::GetProcess(const std::string& processName)
+    IHopProcess* TZone::GetProcess(const std::string& processName)
     {
         auto fit = std::find_if(mProcesses.begin(), mProcesses.end(), 
             [&processName](SharedPtrHopProcess p) {return p->GetName() == processName; });
@@ -52,17 +52,17 @@ namespace nsBase::nsZones
     void TZone::AddContext(IHopProcessContext* pCtx)
     {
         mContexts.push_back(pCtx);
-        pCtx->PushOwnerZone(this);
+        pCtx->SetOwnerZone(this);
         pCtx->SetStrand(mStrandHolder);
     }
     //------------------------------------------------------------------------------
     void TZone::RemoveContext(IHopProcessContext* pCtx)
     {
         mContexts.remove(pCtx);
-        pCtx->PopOwnerZone();
+        pCtx->SetOwnerZone(nullptr);
     }
     //------------------------------------------------------------------------------
-    void TZone::OnStopProcess(THopProcess* pProcess, IHopProcessContext* pCtx)
+    void TZone::OnStopProcess(IHopProcess* pProcess, IHopProcessContext* pCtx)
     {
 
     }

@@ -149,16 +149,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AsyncHopProcess.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="AsyncHopProcess.h" />
-    <ClCompile Include="SyncHopProcess.cpp" />
     <ClCompile Include="Zones.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="HopProcessState.h" />
-    <ClInclude Include="IHopProcess.h" />
-    <ClInclude Include="SyncHopProcess.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
