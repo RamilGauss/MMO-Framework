@@ -13,9 +13,6 @@ namespace nsBase::nsZones
 {
     struct DllExport THopProcessState
     {
-        int commonCount = 0;
-        int progressCount = 0;
-
         enum class State
         {
             IDLE,
@@ -25,26 +22,9 @@ namespace nsBase::nsZones
         };
         State state;
 
-        void Increment()
-        {
-            progressCount++;
-        }
-
         State GetState() const
         {
             return state;
-        }
-
-        float GetProgress() const
-        {
-            if (commonCount == 0)
-                return -1.0f;
-            return (progressCount * 100.0f) / commonCount;
-        }
-
-        bool IsCompleted() const
-        {
-            return commonCount == progressCount;
         }
 
         bool IsFinishedOrStopped() const

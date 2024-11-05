@@ -22,6 +22,8 @@ See for more information LICENSE.md.
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/GlobalEventHub.h"
 
+#include "Base/Common/CoroInThread.h"
+
 
 TEST(EventHub, Simple_Ok)
 {
@@ -218,6 +220,11 @@ using namespace nsBase::nsZones;
 
 TEST(Zones, Simple_Ok)
 {
+    //boost::asio::io_context ioContext;
+
+    //auto coroInThread = nsBase::nsCommon::TCoroInThread::New();
+    //auto strandHolder = nsBase::nsCommon::TStrandHolder::New(ioContext);
+
     TZoneManager zoneMgr;
 
     auto a = std::make_shared<TZone>("A");
@@ -226,15 +233,13 @@ TEST(Zones, Simple_Ok)
     zoneMgr.AddZone(a);
     zoneMgr.AddZone(b);
 
-    auto a_process = std::make_shared<TSimpleProcess>();
-    a_process->Setup("a->b", b.get());
+    auto a_process = std::make_shared<TSimpleProcess>(b);
     a->AddProcess(a_process);
 
     TCtx ctx;
     a->AddContext(&ctx);
 
     ctx.StartProcess("a->b");
-
 
     zoneMgr.Work();
 

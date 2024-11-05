@@ -37,7 +37,7 @@ namespace nsBase::nsZones
     bool TZoneManager::Work()
     {
         auto handlerCount = mIoContext.run_one();
-        return  (handlerCount > 0);
+        return (handlerCount > 0);
     }
     //------------------------------------------------------------------------------
     void TZoneManager::MoveContext(IHopProcessContext* pCtx, TZone* from, TZone* to)
