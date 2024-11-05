@@ -233,6 +233,7 @@
     <ClInclude Include="include\Base\Common\ThreadSharedValue.h" />
     <ClInclude Include="include\Base\Zones\AsyncHopProcess.h" />
     <ClInclude Include="include\Base\Zones\ContextState.h" />
+    <ClInclude Include="include\Base\Zones\HopProcess.h" />
     <ClInclude Include="include\Base\Zones\HopProcessState.h" />
     <ClInclude Include="include\Base\Zones\IHopProcessContext.h" />
     <ClInclude Include="include\Base\Common\ConverterLocale.h" />
@@ -278,7 +279,7 @@
     <ClInclude Include="include\Base\Zones\SyncHopProcess.h" />
     <ClInclude Include="include\Base\Zones\Types.h" />
     <ClInclude Include="include\Base\Zones\ZoneManagerMaster.h" />
-    <ClInclude Include="include\Base\Zones\IHopProcess.h" />
+    <ClInclude Include="include\Base\Zones\IHopSubProcess.h" />
     <ClInclude Include="include\Base\Common\ProgressValue.h" />
     <ClInclude Include="include\Base\Common\ResolverSelf_IP_v4.h" />
     <ClInclude Include="include\Base\Common\ReversedContainerRise.h" />
@@ -312,7 +313,7 @@
     <ClCompile Include="src\FramedThread.cpp" />
     <ClCompile Include="src\GlobalEventHub.cpp" />
     <ClCompile Include="src\GuidGenerator.cpp" />
-    <ClCompile Include="src\IHopProcess.cpp" />
+    <ClCompile Include="src\IHopSubProcess.cpp" />
     <ClCompile Include="src\IHopProcessContext.cpp" />
     <ClCompile Include="src\LoaderDLLFactory.cpp" />
     <ClCompile Include="src\LockFreeFifo.cpp" />

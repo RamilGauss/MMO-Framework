@@ -248,7 +248,7 @@
     <ClInclude Include="include\Base\Zones\Zone.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\IHopProcess.h">
+    <ClInclude Include="include\Base\Zones\IHopSubProcess.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Zones\IHopProcessContext.h">
@@ -297,6 +297,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Zones\ContextState.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Base\Zones\HopProcess.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -487,7 +490,7 @@
     <ClCompile Include="src\CoroInThread.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\IHopProcess.cpp">
+    <ClCompile Include="src\IHopSubProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

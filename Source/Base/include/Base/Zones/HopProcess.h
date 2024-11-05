@@ -23,17 +23,21 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    class DllExport IHopProcess
+    class DllExport THopProcess
     {
     public:
-        IHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
+        THopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
             nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
-        virtual ~IHopProcess();
+        virtual ~THopProcess();
 
         virtual boost::asio::awaitable<void> Start(IHopProcessContext* pCtx) = 0;
         virtual boost::asio::awaitable<void> Stop(IHopProcessContext* pCtx) = 0;
-        
+
         std::optional<SharedPtrContextState> GetState(IHopProcessContext* pCtx) const;
+
+        virtual uint32_t GetSubProcessTotalPartCount() const = 0;
+        virtual uint32_t GetSubProcessCompletedPartCount() const = 0;
+        virtual std::string GetSubProcessName() const = 0;
     protected:
         virtual void Work() {};
 

@@ -5,22 +5,22 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Base/Zones/IHopProcess.h"
+#include "Base/Zones/IHopSubProcess.h"
 
 namespace nsBase::nsZones
 {
-    IHopProcess::IHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
+    IHopSubProcess::IHopSubProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
         nsBase::nsCommon::TStrandHolder::Ptr strandHolder) :
         mStrandHolder(std::move(strandHolder)),
         mCoroInThread(std::move(coroInThread))
     {
     }
     //---------------------------------------------------------------------------------------------------
-    IHopProcess::~IHopProcess() 
+    IHopSubProcess::~IHopSubProcess()
     {
     }
     //---------------------------------------------------------------------------------------------------
-    std::optional<SharedPtrContextState> IHopProcess::GetState(IHopProcessContext* pCtx) const
+    std::optional<SharedPtrContextState> IHopSubProcess::GetState(IHopProcessContext* pCtx) const
     {
         auto fit = mCtxStateMap.find(pCtx);
         if (fit == mCtxStateMap.end())
