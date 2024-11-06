@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    struct DllExport THopProcessState
+    struct DllExport TContextStateInProcess
     {
         enum class State
         {
@@ -20,21 +20,27 @@ namespace nsBase::nsZones
             STOP,
             FINISH,
         };
-        State state;
 
         State GetState() const
         {
-            return state;
+            return mState;
+        }
+
+        void SetState(State state)
+        {
+            mState = state;
         }
 
         bool IsFinishedOrStopped() const
         {
-            return state == State::STOP || state == State::FINISH;
+            return mState == State::STOP || mState == State::FINISH;
         }
         bool IsWork() const
         {
-            return state == State::WORK;
+            return mState == State::WORK;
         }
+    private:
+        State mState;
     };
 
 }

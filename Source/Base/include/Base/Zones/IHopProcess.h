@@ -20,21 +20,22 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 
 #include "Base/Zones/HopProcessState.h"
+#include "Base/Zones/Types.h"
 
 namespace nsBase::nsZones
 {
-    class DllExport THopProcess
+    class DllExport IHopProcess
     {
     public:
-        THopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
-            nsBase::nsCommon::TStrandHolder::Ptr strandHolder, 
-            SharedPtrZone zone);
-        virtual ~THopProcess();
+        IHopProcess() = default;
+        void Init(nsBase::nsCommon::TStrandHolder::Ptr strandHolder, 
+            nsBase::nsCommon::TCoroInThread::Ptr coroInThread);
+        virtual ~IHopProcess() = default;
 
-        virtual boost::asio::awaitable<void> Start(IHopProcessContext* pCtx) = 0;
-        virtual boost::asio::awaitable<void> Stop(IHopProcessContext* pCtx) = 0;
+        virtual boost::asio::awaitable<void> Start(SharedPtrHopProcessContext pCtx) = 0;
+        virtual boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext pCtx) = 0;
 
-        THopProcessState GetState(IHopProcessContext* pCtx) const;
+        virtual TContextStateInProcess GetState(SharedPtrHopProcessContext pCtx) const = 0;
 
         virtual std::string GetName() const = 0;
 
@@ -49,8 +50,6 @@ namespace nsBase::nsZones
         // Second thread
         nsBase::nsCommon::TCoroInThread::Ptr mCoroInThread;
 
-        SharedPtrZone mZone;
-
-        std::unordered_map<IHopProcessContext*, SharedPtrContextState> mCtxStateMap;
+        std::unordered_map<SharedPtrHopProcessContext, SharedPtrContextState> mCtxStateMap;
     };
 }

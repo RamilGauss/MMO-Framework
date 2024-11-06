@@ -16,11 +16,11 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    class DllExport TSyncHopProcess : public IHopProcess
+    class DllExport TSyncSubProcess : public ISubProcess
     {
     public:
 
-        TSyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread, nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
+        TSyncSubProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread, nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
 
         boost::asio::awaitable<void> Stop(IHopProcessContext* pCtx) override;
         boost::asio::awaitable<void> Start(IHopProcessContext* pCtx) override;

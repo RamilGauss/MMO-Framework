@@ -22,14 +22,14 @@ namespace nsBase::nsZones
     boost::asio::awaitable<void> TAsyncHopProcess::WorkInOtherThread(SharedPtrContextState pState)
     {
         pState->inner.commonCount = 500000;
-        pState->inner.state = THopProcessState::State::WORK;
+        pState->inner.state = TContextStateInProcess::State::WORK;
 
         while (true) {
             co_await mCoroInThread->GetStrandHolder()->Wait();
             if (pState->state.IsFinishedOrStopped())
                 break;
             if (pState->inner.IsCompleted()) {
-                pState->inner.state = THopProcessState::State::FINISH;
+                pState->inner.state = TContextStateInProcess::State::FINISH;
                 break;
             } else {
                 pState->inner.Increment();
@@ -44,7 +44,7 @@ namespace nsBase::nsZones
     boost::asio::awaitable<void> TAsyncHopProcess::FinishInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable, SharedPtrContextState pState)
     {
-        pState->state.state = THopProcessState::State::FINISH;
+        pState->state.state = TContextStateInProcess::State::FINISH;
         strandHolder->Post([awaitable]() { awaitable->Resume(); });
         co_return;
     }
@@ -52,8 +52,8 @@ namespace nsBase::nsZones
     boost::asio::awaitable<void> TAsyncHopProcess::StopInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable, SharedPtrContextState pState)
     {
-        pState->inner.state = THopProcessState::State::STOP;
-        pState->state.state = THopProcessState::State::STOP;
+        pState->inner.state = TContextStateInProcess::State::STOP;
+        pState->state.state = TContextStateInProcess::State::STOP;
         strandHolder->Post([awaitable]() { awaitable->Resume(); });
         co_return;
     }
@@ -112,10 +112,10 @@ namespace nsBase::nsZones
             using namespace std::literals;
             std::this_thread::sleep_for(10ms);
 
-            if (newState->state.state == THopProcessState::State::STOP) {
+            if (newState->state.state == TContextStateInProcess::State::STOP) {
                 break;
             }
-            if (newState->state.state == THopProcessState::State::FINISH) {
+            if (newState->state.state == TContextStateInProcess::State::FINISH) {
                 mStrandHolder->Post([this, awaitable, newState]() {
                     mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable, newState]() {
                         return FinishInOtherThread(mStrandHolder, awaitable, newState); });

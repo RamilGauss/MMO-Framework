@@ -12,6 +12,7 @@ See for more information LICENSE.md.
 
 #include <boost/asio/io_context.hpp>
 
+#include "Base/Common/CoroInThread.h"
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/StrandHolder.h"
 
@@ -19,24 +20,23 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    class TZone;
-    struct IHopProcessContext;
     class DllExport TZoneManager
     {
+    public:
+        TZoneManager() = default;
+
+        void Init(nsBase::nsCommon::TStrandHolder::Ptr strandHolder, nsBase::nsCommon::TCoroInThread::Ptr coroInThread);
+
+        void AddZone(SharedPtrZone pZone);
+        SharedPtrZone GetZone(const std::string& zoneName);
+
+        void StartProcess(SharedPtrHopProcessContext ctx, SharedPtrHopProcess process, SharedPtrZone toZone);
+    private:
+        boost::asio::awaitable<void> AsyncStartProcess(SharedPtrHopProcessContext ctx, SharedPtrHopProcess process, SharedPtrZone toZone);
+
         std::list<SharedPtrZone> mZones;
 
-        boost::asio::io_context mIoContext;
-
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
-
-    public:
-        TZoneManager();
-        void AddZone(SharedPtrZone pZone);
-
-        TZone* GetZone(const std::string& zoneName);
-
-        bool Work();
-
-        void MoveContext(IHopProcessContext* pCtx, TZone* from, TZone* to);
+        nsBase::nsCommon::TCoroInThread::Ptr mCoroInThread;
     };
 }

@@ -13,13 +13,13 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    class THopProcess;
+    class IHopProcess;
     class TZone;
     class TZoneManager;
-    struct TContextState;
+    struct THopProcessContext;
 
     using SharedPtrZone = std::shared_ptr<TZone>;
     using SharedPtrZoneManager = std::shared_ptr<TZoneManager>;
-    using SharedPtrHopProcess = std::shared_ptr<THopProcess>;
-    using SharedPtrContextState = std::shared_ptr<TContextState>;
+    using SharedPtrHopProcess = std::shared_ptr<IHopProcess>;
+    using SharedPtrHopProcessContext = std::shared_ptr<THopProcessContext>;
 }

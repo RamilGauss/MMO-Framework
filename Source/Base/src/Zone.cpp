@@ -13,17 +13,19 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
-    TZone::TZone(const std::string& name) : mName(name)
+    TZone::TZone(const std::string& name)
     {
-
+        mName = name;
     }
     //------------------------------------------------------------------------------
-    void TZone::SetStrand(nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
+    void TZone::Init(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+        nsBase::nsCommon::TCoroInThread::Ptr coroInThread)
     {
-        mStrandHolder = strandHolder;
+        mStrandHolder = std::move(strandHolder);
+        mCoroInThread = std::move(coroInThread);
     }
     //------------------------------------------------------------------------------
-    const std::string& TZone::GetName() const
+    std::string TZone::GetName() const
     {
         return mName;
     }
@@ -31,14 +33,10 @@ namespace nsBase::nsZones
     void TZone::AddProcess(SharedPtrHopProcess pProcess)
     {
         mProcesses.push_back(pProcess);
-
-        pProcess->mStopEvent.Register(this, &TZone::OnStopProcess);
-        pProcess->mFinishEvent.Register(this, &TZone::OnFinishProcess);
-
-        pProcess->SetStrand(mStrandHolder);
+        pProcess->Init(mStrandHolder, mCoroInThread);
     }
     //------------------------------------------------------------------------------
-    IHopProcess* TZone::GetProcess(const std::string& processName)
+    SharedPtrHopProcess TZone::GetProcess(const std::string& processName)
     {
         auto fit = std::find_if(mProcesses.begin(), mProcesses.end(), 
             [&processName](SharedPtrHopProcess p) {return p->GetName() == processName; });
@@ -46,30 +44,20 @@ namespace nsBase::nsZones
         if (fit == std::end(mProcesses))
             return nullptr;
 
-        return fit->get();
+        return *fit;
     }
     //------------------------------------------------------------------------------
-    void TZone::AddContext(IHopProcessContext* pCtx)
+    void TZone::AddContext(SharedPtrHopProcessContext pCtx)
     {
         mContexts.push_back(pCtx);
         pCtx->SetOwnerZone(this);
         pCtx->SetStrand(mStrandHolder);
     }
     //------------------------------------------------------------------------------
-    void TZone::RemoveContext(IHopProcessContext* pCtx)
+    void TZone::RemoveContext(SharedPtrHopProcessContext pCtx)
     {
         mContexts.remove(pCtx);
         pCtx->SetOwnerZone(nullptr);
-    }
-    //------------------------------------------------------------------------------
-    void TZone::OnStopProcess(IHopProcess* pProcess, IHopProcessContext* pCtx)
-    {
-
-    }
-    //------------------------------------------------------------------------------
-    void TZone::OnFinishProcess(THopProcess* pProcess, TZone* pZone, IHopProcessContext* pCtx)
-    {
-        mZoneMng->MoveContext(pCtx, this, pZone);
     }
     //------------------------------------------------------------------------------
 }

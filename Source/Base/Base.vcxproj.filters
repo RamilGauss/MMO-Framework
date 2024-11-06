@@ -248,19 +248,16 @@
     <ClInclude Include="include\Base\Zones\Zone.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\IHopSubProcess.h">
+    <ClInclude Include="include\Base\Zones\ISubProcess.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\IHopProcessContext.h">
+    <ClInclude Include="include\Base\Zones\HopProcessContext.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\LoaderDLLFactory.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Zones\Types.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Base\Zones\ZoneManagerMaster.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\FramedThread.h">
@@ -293,13 +290,13 @@
     <ClInclude Include="include\Base\Common\CoroInThread.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\HopProcessState.h">
+    <ClInclude Include="include\Base\Zones\ContextStateInProcess.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Zones\ContextState.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\HopProcess.h">
+    <ClInclude Include="include\Base\Zones\IHopProcess.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -451,7 +448,7 @@
     <ClCompile Include="src\Zone.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\HopProcess.cpp">
+    <ClCompile Include="src\IHopProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ZoneManager.cpp">
@@ -460,7 +457,7 @@
     <ClCompile Include="src\LoaderDLLFactory.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\IHopProcessContext.cpp">
+    <ClCompile Include="src\HopProcessContext.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\FramedThread.cpp">

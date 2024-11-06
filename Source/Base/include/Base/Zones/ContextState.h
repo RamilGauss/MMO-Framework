@@ -13,7 +13,7 @@ namespace nsBase::nsZones
 {
     struct DllExport TContextState
     {
-        THopProcessState inner;
-        THopProcessState state;
+        TContextStateInProcess inner;
+        TContextStateInProcess state;
     };
 }

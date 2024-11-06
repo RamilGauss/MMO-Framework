@@ -12,7 +12,8 @@ See for more information LICENSE.md.
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
 #include "Base/Zones/SyncHopProcess.h"
-#include "Base/Zones/IHopProcessContext.h"
+#include "Base/Zones/IHopProcess.h"
+#include "Base/Zones/HopProcessContext.h"
 
 #include "Base/Common/FramedThread.h"
 
@@ -48,13 +49,12 @@ TEST(EventHub, Simple_Ok)
 
 namespace nsBase::nsZones::nsTests
 {
-    struct TCtx : IHopProcessContext
+    struct TCtx : THopProcessContext
     {
-        uint64_t totalCount = 1;
-        uint64_t progressCount = 0;
+
     };
 
-    class TSimpleProcess : public TSyncHopProcess
+    class TSimpleProcess : public IHopProcess
     {
     public:
         void Work(IHopProcessContext* pCtx) override
@@ -220,12 +220,14 @@ using namespace nsBase::nsZones;
 
 TEST(Zones, Simple_Ok)
 {
-    //boost::asio::io_context ioContext;
+    boost::asio::io_context ioContext;
 
-    //auto coroInThread = nsBase::nsCommon::TCoroInThread::New();
-    //auto strandHolder = nsBase::nsCommon::TStrandHolder::New(ioContext);
+    auto strandHolder = nsBase::nsCommon::TStrandHolder::New(ioContext);
+    auto coroInThread = nsBase::nsCommon::TCoroInThread::New();
 
+    // Construct graph
     TZoneManager zoneMgr;
+    zoneMgr.Init(strandHolder, coroInThread);
 
     auto a = std::make_shared<TZone>("A");
     auto b = std::make_shared<TZone>("B");
@@ -233,17 +235,17 @@ TEST(Zones, Simple_Ok)
     zoneMgr.AddZone(a);
     zoneMgr.AddZone(b);
 
-    auto a_process = std::make_shared<TSimpleProcess>(b);
-    a->AddProcess(a_process);
+    auto simpleProcess = std::make_shared<TSimpleProcess>(b);
+    a->AddProcess(simpleProcess);
 
-    TCtx ctx;
-    a->AddContext(&ctx);
+    auto ctx = std::make_shared<TCtx>();
+    a->AddContext(ctx);
 
-    ctx.StartProcess("a->b");
+    // Start process
+    zoneMgr.StartProcess(ctx, simpleProcess, b);
+    ioContext.run_one();
 
-    zoneMgr.Work();
-
-    ASSERT_TRUE(ctx.GetOwnerZone() == b.get());
+    ASSERT_TRUE(ctx->GetOwnerZone().get() == b.get());
 }
 
 //TEST(Zones, Displacement_Process_Ok)
