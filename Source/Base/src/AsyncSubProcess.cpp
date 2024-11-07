@@ -31,7 +31,6 @@ namespace nsBase::nsZones
             }
         }
 
-        std::cout << "WorkInOtherThread ends id = " << std::this_thread::get_id() << std::endl;
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
@@ -68,8 +67,6 @@ namespace nsBase::nsZones
             co_return;
         }
         auto state = fit->second;
-        printf("Stop()\n");
-
         auto awaitable = nsBase::nsCommon::TAsyncAwaitable::New();
 
         mStrandHolder->Post([this, &awaitable, state]() {
@@ -78,8 +75,6 @@ namespace nsBase::nsZones
             });
 
         co_await awaitable->Wait();
-
-        printf("Stop() ends\n");
     }
     //-------------------------------------------------------------------------------------------------
     boost::asio::awaitable<bool> TAsyncSubProcess::Start(SharedPtrHopProcessContext pCtx)
@@ -88,10 +83,11 @@ namespace nsBase::nsZones
         auto newState = std::make_shared<TContextState>();
         mCtxStateMap.insert({ pCtx, newState });
 
-        printf("Start()\n");
-
         mStrandHolder->Post([this, pCtx, newState]() {
-            mCoroInThread->GetStrandHolder()->StartCoroutine([this, pCtx, newState]() {return WorkInOtherThread(pCtx, newState); });
+            mCoroInThread->GetStrandHolder()->StartCoroutine([this, pCtx, newState]()
+                {
+                    return WorkInOtherThread(pCtx, newState);
+                });
             });
 
         auto awaitable = nsBase::nsCommon::TAsyncAwaitable::New();
@@ -101,8 +97,6 @@ namespace nsBase::nsZones
                     return UpdateState(mStrandHolder, awaitable, newState); });
                 });
             co_await awaitable->Wait();
-
-            //std::cout << "Progress " << newState->state.GetProgress() << " %" << std::endl;
 
             using namespace std::literals;
             std::this_thread::sleep_for(10ms);
@@ -120,8 +114,6 @@ namespace nsBase::nsZones
                 break;
             }
         }
-
-        std::cout << "end cause " << magic_enum::enum_name(newState->state.GetState()) << ", id = " << std::this_thread::get_id() << std::endl;
 
         mCtxStateMap.erase(pCtx);
         co_return result;

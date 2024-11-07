@@ -51,10 +51,10 @@ namespace nsBase::nsZones
         void Increment() { mSubProcessCompletedPartCount++; }
         bool IsCompleted() const { return mSubProcessTotalPartCount == mSubProcessCompletedPartCount; };
     private:
-        State mState;
+        State mState = State::IDLE;
 
-        uint32_t mSubProcessTotalPartCount;
-        uint32_t mSubProcessCompletedPartCount;
+        uint32_t mSubProcessTotalPartCount = 0;
+        uint32_t mSubProcessCompletedPartCount = 0;
         std::string mSubProcessName;
     };
 

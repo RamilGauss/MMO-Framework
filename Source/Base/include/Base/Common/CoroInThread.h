@@ -19,6 +19,7 @@ namespace nsBase::nsCommon
         void Start();
         void Stop();
 
+        ~TCoroInThread();
     private:
         TCoroInThread();
         TFramedThread mThread;

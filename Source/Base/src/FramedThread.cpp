@@ -45,8 +45,10 @@ namespace nsBase::nsCommon
     //----------------------------------------------------------------------------------
     void TFramedThread::Stop()
     {
-        mThread.request_stop();
-        mThread.join();
+        if (IsActive()) {
+            mThread.request_stop();
+            mThread.join();
+        }
     }
     //----------------------------------------------------------------------------------
     bool TFramedThread::IsActive() const

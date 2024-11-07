@@ -18,8 +18,6 @@ See for more information LICENSE.md.
 
 #include "Base/Common/FramedThread.h"
 
-
-
 #include "Base/Common/ThreadIndexator.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/GlobalEventHub.h"
@@ -47,15 +45,15 @@ TEST(EventHub, Simple_Ok)
     events.begin();
 }
 
-
 namespace nsBase::nsZones::nsTests
 {
     struct TCtx : THopProcessContext
     {
         std::string fileName;
+        int counter = 0;
     };
 
-    class TSimpleSubProcess : public TSyncSubProcess
+    class TSimpleSyncSubProcess : public TSyncSubProcess
     {
     protected:
         void Work(SharedPtrHopProcessContext pCtx) override
@@ -68,10 +66,22 @@ namespace nsBase::nsZones::nsTests
         }
     };
 
-
-    class TSimpleProcess : public IHopProcess
+    class TSimpleAsyncSubProcess : public TAsyncSubProcess
     {
-        TSimpleSubProcess mSubProcess;
+    protected:
+        void Work(SharedPtrHopProcessContext pCtx) override
+        {
+            std::cout << std::static_pointer_cast<TCtx>(pCtx)->counter++ << std::endl;
+        }
+        uint32_t GetSubProcessTotalPartCount(SharedPtrHopProcessContext pCtx) override
+        {
+            return 10;
+        }
+    };
+
+    class TSimpleSyncProcess : public IHopProcess
+    {
+        TSimpleSyncSubProcess mSubProcess;
     public:
         void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override
@@ -80,7 +90,34 @@ namespace nsBase::nsZones::nsTests
         }
         std::string GetName() const override
         {
-            return "Simple";
+            return "Sync";
+        }
+        boost::asio::awaitable<bool> Start(SharedPtrHopProcessContext pCtx) override
+        {
+            co_return co_await mSubProcess.Start(pCtx);
+        }
+        boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext pCtx) override
+        {
+            co_await mSubProcess.Stop(pCtx);
+        }
+        TContextStateInProcess GetState(SharedPtrHopProcessContext pCtx) const override
+        {
+            return mSubProcess.GetState(pCtx);
+        }
+    };
+
+    class TSimpleAsyncProcess : public IHopProcess
+    {
+        TSimpleAsyncSubProcess mSubProcess;
+    public:
+        void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+            nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override
+        {
+            mSubProcess.Init(strandHolder, coroInThread);
+        }
+        std::string GetName() const override
+        {
+            return "Async";
         }
         boost::asio::awaitable<bool> Start(SharedPtrHopProcessContext pCtx) override
         {
@@ -259,7 +296,7 @@ TEST(Zones, Simple_Ok)
     zoneMgr.AddZone(a);
     zoneMgr.AddZone(b);
 
-    auto simpleProcess = std::make_shared<TSimpleProcess>();
+    auto simpleProcess = std::make_shared<TSimpleSyncProcess>();
     a->AddProcess(simpleProcess);
 
     auto ctx = std::make_shared<TCtx>();
@@ -423,8 +460,37 @@ TEST(Zones, Simple_Ok)
 //    }
 //}
 
-//TEST(Zones, Async)
-//{
-//    TAsyncProcess asyncProcess;
-//
-//}
+TEST(Zones, Async)
+{
+    boost::asio::io_context ioContext;
+
+    auto strandHolder = nsBase::nsCommon::TStrandHolder::New(ioContext);
+    auto coroInThread = nsBase::nsCommon::TCoroInThread::New();
+
+    // Construct graph
+    TZoneManager zoneMgr;
+    zoneMgr.Init(strandHolder, coroInThread);
+
+    auto a = std::make_shared<TZone>("A");
+    auto b = std::make_shared<TZone>("B");
+
+    zoneMgr.AddZone(a);
+    zoneMgr.AddZone(b);
+
+    auto simpleProcess = std::make_shared<TSimpleAsyncProcess>();
+    a->AddProcess(simpleProcess);
+
+    auto ctx = std::make_shared<TCtx>();
+    ctx->fileName = "x.log";
+    zoneMgr.LinkContext(ctx, a);
+
+    // Start process
+    zoneMgr.StartProcess(ctx, simpleProcess->GetName(), b);
+
+    ioContext.run();
+
+    auto state = zoneMgr.GetState(ctx);
+
+    ASSERT_EQ(zoneMgr.GetZone(ctx).get(), b.get());
+    ASSERT_EQ(state, std::nullopt);
+}

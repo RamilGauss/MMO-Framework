@@ -14,6 +14,11 @@ namespace nsBase::nsCommon
         mStrandHolder = TStrandHolder::New(mIoContext);
     }
     //----------------------------------------------------------------------------------
+    TCoroInThread::~TCoroInThread()
+    {
+
+    }
+    //----------------------------------------------------------------------------------
     TStrandHolder::Ptr TCoroInThread::GetStrandHolder() const
     {
         return mStrandHolder;

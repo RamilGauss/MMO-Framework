@@ -17,6 +17,8 @@ namespace nsBase::nsZones
     {
         mStrandHolder = std::move(strandHolder);
         mCoroInThread = std::move(coroInThread);
+
+        mCoroInThread->Start();
     }
     //------------------------------------------------------------------------------
     void TZoneManager::AddZone(SharedPtrZone pZone)
