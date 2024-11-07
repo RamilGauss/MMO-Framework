@@ -24,6 +24,7 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
+    class ISubProcess;
     class DllExport IHopProcess
     {
     public:
@@ -39,10 +40,15 @@ namespace nsBase::nsZones
         virtual void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread) = 0;
 
+        void SetCurrentSubProcess(SharedPtrHopProcessContext pCtx, ISubProcess* pCurrentSubvProcess);
+        ISubProcess* GetCurrentSubProcess(SharedPtrHopProcessContext pCtx) const;
+
         // Main thread
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
 
         // Second thread
         nsBase::nsCommon::TCoroInThread::Ptr mCoroInThread;
+
+        std::unordered_map<SharedPtrHopProcessContext, ISubProcess*> mCurrentSubProcess;
     };
 }

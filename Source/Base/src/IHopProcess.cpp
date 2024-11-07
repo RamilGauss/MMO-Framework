@@ -18,4 +18,24 @@ namespace nsBase::nsZones
 
         InitSubProcesses(mStrandHolder, mCoroInThread);
     }
+    //--------------------------------------------------------------------------------------------------
+    void IHopProcess::SetCurrentSubProcess(SharedPtrHopProcessContext pCtx, ISubProcess* pCurrentSubvProcess)
+    {
+        if (pCurrentSubvProcess)
+            mCurrentSubProcess.insert_or_assign(pCtx, pCurrentSubvProcess);
+        else
+            mCurrentSubProcess.erase(pCtx);
+    }
+    //--------------------------------------------------------------------------------------------------
+    ISubProcess* IHopProcess::GetCurrentSubProcess(SharedPtrHopProcessContext pCtx) const
+    {
+        auto fit = mCurrentSubProcess.find(pCtx);
+        if (fit == mCurrentSubProcess.end()) {
+            return nullptr;
+        }
+        return fit->second;
+    }
+    //--------------------------------------------------------------------------------------------------
+
 }
+

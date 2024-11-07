@@ -98,9 +98,6 @@ namespace nsBase::nsZones
                 });
             co_await awaitable->Wait();
 
-            using namespace std::literals;
-            std::this_thread::sleep_for(10ms);
-
             if (newState->state.GetState() == TContextStateInProcess::State::CANCELED) {
                 break;
             }
