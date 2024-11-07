@@ -17,6 +17,7 @@ See for more information LICENSE.md.
 #include "Base/Common/StrandHolder.h"
 
 #include "Base/Zones/Types.h"
+#include "Base/Zones/ContextStateInProcess.h"
 
 namespace nsBase::nsZones
 {
@@ -30,13 +31,27 @@ namespace nsBase::nsZones
         void AddZone(SharedPtrZone pZone);
         SharedPtrZone GetZone(const std::string& zoneName);
 
-        void StartProcess(SharedPtrHopProcessContext ctx, SharedPtrHopProcess process, SharedPtrZone toZone);
+        void LinkContext(SharedPtrHopProcessContext ctx, SharedPtrZone pZone);
+        SharedPtrZone GetZone(SharedPtrHopProcessContext ctx) const;
+
+        SharedPtrHopProcess GetActiveProcess(SharedPtrHopProcessContext ctx) const;
+
+        std::optional<TContextStateInProcess> GetState(SharedPtrHopProcessContext ctx) const;
+
+        void StartProcess(SharedPtrHopProcessContext ctx, const std::string& processName, SharedPtrZone toZone);
+        void StopProcess(SharedPtrHopProcessContext ctx);
     private:
-        boost::asio::awaitable<void> AsyncStartProcess(SharedPtrHopProcessContext ctx, SharedPtrHopProcess process, SharedPtrZone toZone);
+        boost::asio::awaitable<void> AsyncStartProcess(SharedPtrHopProcessContext ctx, const std::string& processName, SharedPtrZone toZone);
+        boost::asio::awaitable<void> AsyncStopCurrentProcess(SharedPtrHopProcessContext ctx);
+
+        void SetActiveProcess(SharedPtrHopProcessContext ctx, SharedPtrHopProcess process);
 
         std::list<SharedPtrZone> mZones;
 
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
         nsBase::nsCommon::TCoroInThread::Ptr mCoroInThread;
+
+        std::unordered_map<SharedPtrHopProcessContext, SharedPtrZone> mCtxZones;
+        std::unordered_map<SharedPtrHopProcessContext, SharedPtrHopProcess> mCtxProcesses;
     };
 }

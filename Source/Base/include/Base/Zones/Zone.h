@@ -31,13 +31,10 @@ namespace nsBase::nsZones
         void AddProcess(SharedPtrHopProcess pProcess);
         SharedPtrHopProcess GetProcess(const std::string& processName);
 
-        void AddContext(SharedPtrHopProcessContext pCtx);
-        void RemoveContext(SharedPtrHopProcessContext pCtx);
+        std::vector<std::string> GetProcessNames() const;
 
     private:
         std::list<SharedPtrHopProcess> mProcesses;
-
-        std::list<SharedPtrHopProcessContext> mContexts;
 
         std::string mName;// For debugging
 

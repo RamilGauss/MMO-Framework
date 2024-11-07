@@ -6,6 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "Base/Zones/IHopProcess.h"
+#include "Base/Zones/ContextState.h"
 
 namespace nsBase::nsZones
 {
@@ -14,5 +15,7 @@ namespace nsBase::nsZones
     {
         mStrandHolder = std::move(strandHolder);
         mCoroInThread = std::move(coroInThread);
+
+        InitSubProcesses(mStrandHolder, mCoroInThread);
     }
 }

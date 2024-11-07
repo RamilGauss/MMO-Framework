@@ -11,7 +11,8 @@ See for more information LICENSE.md.
 
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
-#include "Base/Zones/SyncHopProcess.h"
+#include "Base/Zones/SyncSubProcess.h"
+#include "Base/Zones/AsyncSubProcess.h"
 #include "Base/Zones/IHopProcess.h"
 #include "Base/Zones/HopProcessContext.h"
 
@@ -51,24 +52,44 @@ namespace nsBase::nsZones::nsTests
 {
     struct TCtx : THopProcessContext
     {
-
+        std::string fileName;
     };
+
+    class TSimpleSubProcess : public TSyncSubProcess
+    {
+    protected:
+        void Work(SharedPtrHopProcessContext pCtx) override
+        {
+            std::cout << std::static_pointer_cast<TCtx>(pCtx)->fileName;
+        }
+        uint32_t GetSubProcessTotalPartCount(SharedPtrHopProcessContext pCtx)  override { return 1; }
+    };
+
 
     class TSimpleProcess : public IHopProcess
     {
+        TSimpleSubProcess mSubProcess;
     public:
-        void Work(IHopProcessContext* pCtx) override
+        void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+            nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override
         {
-            Finish(pCtx);
-
+            mSubProcess.Init(strandHolder, coroInThread);
         }
-        uint64_t GetTotalCount(IHopProcessContext* pCtx) const override
+        std::string GetName() const override
         {
-            return Ctx<TCtx>(pCtx)->totalCount;
+            return "Simple";
         }
-        uint64_t GetProgressCount(IHopProcessContext* pCtx) const override
+        boost::asio::awaitable<void> Start(SharedPtrHopProcessContext pCtx) override
         {
-            return Ctx<TCtx>(pCtx)->progressCount;
+            co_await mSubProcess.Start(pCtx);
+        }
+        boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext pCtx) override
+        {
+            co_await mSubProcess.Stop(pCtx);
+        }
+        TContextStateInProcess GetState(SharedPtrHopProcessContext pCtx) const override
+        {
+            return mSubProcess.GetState(pCtx);
         }
     };
 
@@ -235,17 +256,23 @@ TEST(Zones, Simple_Ok)
     zoneMgr.AddZone(a);
     zoneMgr.AddZone(b);
 
-    auto simpleProcess = std::make_shared<TSimpleProcess>(b);
+    auto simpleProcess = std::make_shared<TSimpleProcess>();
     a->AddProcess(simpleProcess);
 
     auto ctx = std::make_shared<TCtx>();
-    a->AddContext(ctx);
+    ctx->fileName = "x.log";
+    zoneMgr.LinkContext(ctx, a);
 
     // Start process
-    zoneMgr.StartProcess(ctx, simpleProcess, b);
-    ioContext.run_one();
+    zoneMgr.StartProcess(ctx, simpleProcess->GetName(), b);
 
-    ASSERT_TRUE(ctx->GetOwnerZone().get() == b.get());
+    for (int i = 0; i < 100; i++)
+        ioContext.run_one();
+
+    auto state = zoneMgr.GetState(ctx);
+
+    ASSERT_TRUE(zoneMgr.GetZone(ctx).get() == b.get());
+    ASSERT_TRUE(state, std::nullopt);
 }
 
 //TEST(Zones, Displacement_Process_Ok)

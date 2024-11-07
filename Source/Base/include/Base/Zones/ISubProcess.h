@@ -27,16 +27,18 @@ namespace nsBase::nsZones
     class DllExport ISubProcess
     {
     public:
-        ISubProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
-            nsBase::nsCommon::TStrandHolder::Ptr strandHolder);
+        void Init(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+            nsBase::nsCommon::TCoroInThread::Ptr coroInThread);
+
         virtual ~ISubProcess();
 
-        virtual boost::asio::awaitable<void> Start(SharedPtrHopProcessContext* pCtx) = 0;
-        virtual boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext* pCtx) = 0;
+        virtual boost::asio::awaitable<void> Start(SharedPtrHopProcessContext pCtx) = 0;
+        virtual boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext pCtx) = 0;
         
-        std::optional<TContextStateInProcess> GetState(SharedPtrHopProcessContext* pCtx) const;
+        TContextStateInProcess GetState(SharedPtrHopProcessContext pCtx) const;
     protected:
-        virtual void Work() {};
+        virtual void Work(SharedPtrHopProcessContext pCtx) = 0;
+        virtual uint32_t GetSubProcessTotalPartCount(SharedPtrHopProcessContext pCtx) = 0;
 
         // Main thread
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
@@ -44,6 +46,6 @@ namespace nsBase::nsZones
         // Second thread
         nsBase::nsCommon::TCoroInThread::Ptr mCoroInThread;
 
-        std::unordered_map<SharedPtrHopProcessContext*, TContextStateInProcess> mCtxStateMap;
+        std::unordered_map<SharedPtrHopProcessContext, SharedPtrContextState> mCtxStateMap;
     };
 }

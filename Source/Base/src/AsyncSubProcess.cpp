@@ -8,32 +8,26 @@ See for more information LICENSE.md.
 
 #include <iostream>
 #include <magic_enum.hpp>
-#include "Base/Zones/AsyncHopProcess.h"
+#include "Base/Zones/AsyncSubProcess.h"
 #include "Base/Zones/ContextState.h"
 
 namespace nsBase::nsZones
 {
-    TAsyncHopProcess::TAsyncHopProcess(nsBase::nsCommon::TCoroInThread::Ptr coroInThread,
-        nsBase::nsCommon::TStrandHolder::Ptr strandHolder)
-        : IHopProcess(std::move(coroInThread), std::move(strandHolder))
+    boost::asio::awaitable<void> TAsyncSubProcess::WorkInOtherThread(SharedPtrHopProcessContext pCtx, SharedPtrContextState pState)
     {
-    }
-    //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncHopProcess::WorkInOtherThread(SharedPtrContextState pState)
-    {
-        pState->inner.commonCount = 500000;
-        pState->inner.state = TContextStateInProcess::State::WORK;
+        pState->inner.SetSubProcessTotalPartCount(GetSubProcessTotalPartCount(pCtx));
+        pState->inner.SetState(TContextStateInProcess::State::WORKING);
 
         while (true) {
             co_await mCoroInThread->GetStrandHolder()->Wait();
             if (pState->state.IsFinishedOrStopped())
                 break;
             if (pState->inner.IsCompleted()) {
-                pState->inner.state = TContextStateInProcess::State::FINISH;
+                pState->inner.SetState(TContextStateInProcess::State::DONE);
                 break;
             } else {
                 pState->inner.Increment();
-                Work();
+                Work(pCtx);
             }
         }
 
@@ -41,24 +35,24 @@ namespace nsBase::nsZones
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncHopProcess::FinishInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+    boost::asio::awaitable<void> TAsyncSubProcess::FinishInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable, SharedPtrContextState pState)
     {
-        pState->state.state = TContextStateInProcess::State::FINISH;
+        pState->state.SetState(TContextStateInProcess::State::DONE);
         strandHolder->Post([awaitable]() { awaitable->Resume(); });
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncHopProcess::StopInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+    boost::asio::awaitable<void> TAsyncSubProcess::StopInOtherThread(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable, SharedPtrContextState pState)
     {
-        pState->inner.state = TContextStateInProcess::State::STOP;
-        pState->state.state = TContextStateInProcess::State::STOP;
+        pState->inner.SetState(TContextStateInProcess::State::CANCELED);
+        pState->state.SetState(TContextStateInProcess::State::CANCELED);
         strandHolder->Post([awaitable]() { awaitable->Resume(); });
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncHopProcess::UpdateState(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+    boost::asio::awaitable<void> TAsyncSubProcess::UpdateState(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TAsyncAwaitable::Ptr awaitable,
         SharedPtrContextState pState)
     {
@@ -67,7 +61,7 @@ namespace nsBase::nsZones
         co_return;
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncHopProcess::Stop(IHopProcessContext* pCtx)
+    boost::asio::awaitable<void> TAsyncSubProcess::Stop(SharedPtrHopProcessContext pCtx)
     {
         auto fit = mCtxStateMap.find(pCtx);
         if (fit == mCtxStateMap.end()) {
@@ -88,15 +82,15 @@ namespace nsBase::nsZones
         printf("Stop() ends\n");
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncHopProcess::Start(IHopProcessContext* pCtx)
+    boost::asio::awaitable<void> TAsyncSubProcess::Start(SharedPtrHopProcessContext pCtx)
     {
         auto newState = std::make_shared<TContextState>();
         mCtxStateMap.insert({ pCtx, newState });
 
         printf("Start()\n");
 
-        mStrandHolder->Post([this, newState]() {
-            mCoroInThread->GetStrandHolder()->StartCoroutine([this, newState]() {return WorkInOtherThread(newState); });
+        mStrandHolder->Post([this, pCtx, newState]() {
+            mCoroInThread->GetStrandHolder()->StartCoroutine([this, pCtx, newState]() {return WorkInOtherThread(pCtx, newState); });
             });
 
         auto awaitable = nsBase::nsCommon::TAsyncAwaitable::New();
@@ -107,15 +101,15 @@ namespace nsBase::nsZones
                 });
             co_await awaitable->Wait();
 
-            std::cout << "Progress " << newState->state.GetProgress() << " %" << std::endl;
+            //std::cout << "Progress " << newState->state.GetProgress() << " %" << std::endl;
 
             using namespace std::literals;
             std::this_thread::sleep_for(10ms);
 
-            if (newState->state.state == TContextStateInProcess::State::STOP) {
+            if (newState->state.GetState() == TContextStateInProcess::State::CANCELED) {
                 break;
             }
-            if (newState->state.state == TContextStateInProcess::State::FINISH) {
+            if (newState->state.GetState() == TContextStateInProcess::State::DONE) {
                 mStrandHolder->Post([this, awaitable, newState]() {
                     mCoroInThread->GetStrandHolder()->StartCoroutine([this, awaitable, newState]() {
                         return FinishInOtherThread(mStrandHolder, awaitable, newState); });
@@ -125,7 +119,7 @@ namespace nsBase::nsZones
             }
         }
 
-        std::cout << "end cause " << magic_enum::enum_name(newState->state.state) << ", id = " << std::this_thread::get_id() << std::endl;
+        std::cout << "end cause " << magic_enum::enum_name(newState->state.GetState()) << ", id = " << std::this_thread::get_id() << std::endl;
 
         mCtxStateMap.erase(pCtx);
     }

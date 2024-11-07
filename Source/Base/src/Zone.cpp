@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #include "Base/Zones/Zone.h"
 
 #include "Base/Zones/ZoneManager.h"
-#include "Base/Zones/HopProcess.h"
-#include "Base/Zones/IHopProcessContext.h"
+#include "Base/Zones/IHopProcess.h"
+#include "Base/Zones/HopProcessContext.h"
 
 namespace nsBase::nsZones
 {
@@ -47,17 +47,13 @@ namespace nsBase::nsZones
         return *fit;
     }
     //------------------------------------------------------------------------------
-    void TZone::AddContext(SharedPtrHopProcessContext pCtx)
+    std::vector<std::string> TZone::GetProcessNames() const
     {
-        mContexts.push_back(pCtx);
-        pCtx->SetOwnerZone(this);
-        pCtx->SetStrand(mStrandHolder);
-    }
-    //------------------------------------------------------------------------------
-    void TZone::RemoveContext(SharedPtrHopProcessContext pCtx)
-    {
-        mContexts.remove(pCtx);
-        pCtx->SetOwnerZone(nullptr);
+        std::vector<std::string> processNames;
+        for (auto& process : mProcesses) {
+            processNames.push_back(process->GetName());
+        }
+        return processNames;
     }
     //------------------------------------------------------------------------------
 }

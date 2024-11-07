@@ -16,9 +16,9 @@ namespace nsBase::nsZones
         enum class State
         {
             IDLE,
-            WORK,
-            STOP,
-            FINISH,
+            WORKING,
+            CANCELED,
+            DONE,
         };
 
         State GetState() const
@@ -33,14 +33,29 @@ namespace nsBase::nsZones
 
         bool IsFinishedOrStopped() const
         {
-            return mState == State::STOP || mState == State::FINISH;
+            return mState == State::CANCELED || mState == State::DONE;
         }
         bool IsWork() const
         {
-            return mState == State::WORK;
+            return mState == State::WORKING;
         }
+
+        void SetSubProcessTotalPartCount(uint32_t value) { mSubProcessTotalPartCount = value; };
+        void SetSubProcessCompletedPartCount(uint32_t value) { mSubProcessCompletedPartCount = value; };
+        void SetSubProcessName(const std::string& value) { mSubProcessName = value; };
+
+        uint32_t GetSubProcessTotalPartCount() const { return mSubProcessTotalPartCount; };
+        uint32_t GetSubProcessCompletedPartCount() const { return mSubProcessCompletedPartCount; };
+        std::string GetSubProcessName() const { return mSubProcessName; };
+
+        void Increment() { mSubProcessCompletedPartCount++; }
+        bool IsCompleted() const { return mSubProcessCompletedPartCount == mSubProcessCompletedPartCount; };
     private:
         State mState;
+
+        uint32_t mSubProcessTotalPartCount;
+        uint32_t mSubProcessCompletedPartCount;
+        std::string mSubProcessName;
     };
 
 }

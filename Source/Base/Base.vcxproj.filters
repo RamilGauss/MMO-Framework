@@ -281,10 +281,10 @@
     <ClInclude Include="include\Base\Common\StrandHolder.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\AsyncHopProcess.h">
+    <ClInclude Include="include\Base\Zones\AsyncSubProcess.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base\Zones\SyncHopProcess.h">
+    <ClInclude Include="include\Base\Zones\SyncSubProcess.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\CoroInThread.h">
@@ -457,9 +457,6 @@
     <ClCompile Include="src\LoaderDLLFactory.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\HopProcessContext.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\FramedThread.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -478,16 +475,16 @@
     <ClCompile Include="src\StrandHolder.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\SyncHopProcess.cpp">
+    <ClCompile Include="src\SyncSubProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\AsyncHopProcess.cpp">
+    <ClCompile Include="src\AsyncSubProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\CoroInThread.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\IHopSubProcess.cpp">
+    <ClCompile Include="src\ISubProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

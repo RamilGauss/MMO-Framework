@@ -19,7 +19,7 @@ See for more information LICENSE.md.
 #include "Base/Common/CoroInThread.h"
 #include "Base/Common/TypeDef.h"
 
-#include "Base/Zones/HopProcessState.h"
+#include "Base/Zones/ContextStateInProcess.h"
 #include "Base/Zones/Types.h"
 
 namespace nsBase::nsZones
@@ -27,29 +27,22 @@ namespace nsBase::nsZones
     class DllExport IHopProcess
     {
     public:
-        IHopProcess() = default;
-        void Init(nsBase::nsCommon::TStrandHolder::Ptr strandHolder, 
+        void Init(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread);
         virtual ~IHopProcess() = default;
 
+        virtual std::string GetName() const = 0;
         virtual boost::asio::awaitable<void> Start(SharedPtrHopProcessContext pCtx) = 0;
         virtual boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext pCtx) = 0;
-
         virtual TContextStateInProcess GetState(SharedPtrHopProcessContext pCtx) const = 0;
-
-        virtual std::string GetName() const = 0;
-
-        virtual uint32_t GetSubProcessTotalPartCount() const = 0;
-        virtual uint32_t GetSubProcessCompletedPartCount() const = 0;
-        virtual std::string GetSubProcessName() const = 0;
     protected:
+        virtual void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+            nsBase::nsCommon::TCoroInThread::Ptr coroInThread) = 0;
 
         // Main thread
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
 
         // Second thread
         nsBase::nsCommon::TCoroInThread::Ptr mCoroInThread;
-
-        std::unordered_map<SharedPtrHopProcessContext, SharedPtrContextState> mCtxStateMap;
     };
 }

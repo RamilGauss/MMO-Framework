@@ -17,9 +17,11 @@ namespace nsBase::nsZones
     class TZone;
     class TZoneManager;
     struct THopProcessContext;
+    struct TContextState;
 
     using SharedPtrZone = std::shared_ptr<TZone>;
     using SharedPtrZoneManager = std::shared_ptr<TZoneManager>;
     using SharedPtrHopProcess = std::shared_ptr<IHopProcess>;
     using SharedPtrHopProcessContext = std::shared_ptr<THopProcessContext>;
+    using SharedPtrContextState = std::shared_ptr<TContextState>;
 }

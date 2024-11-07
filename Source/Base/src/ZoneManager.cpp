@@ -37,24 +37,82 @@ namespace nsBase::nsZones
 
     }
     //------------------------------------------------------------------------------
-    void TZoneManager::StartProcess(SharedPtrHopProcessContext ctx, SharedPtrHopProcess process, SharedPtrZone toZone)
+    void TZoneManager::StartProcess(SharedPtrHopProcessContext ctx, const std::string& processName, SharedPtrZone toZone)
     {
         mStrandHolder->StartCoroutine(
-            [ctx, process, toZone, this]() {
-                return this->AsyncStartProcess(ctx, process, toZone);
+            [ctx, processName, toZone, this]() {
+                return this->AsyncStartProcess(ctx, processName, toZone);
             }
         );
     }
     //------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TZoneManager::AsyncStartProcess(SharedPtrHopProcessContext ctx, SharedPtrHopProcess process, SharedPtrZone toZone)
+    void TZoneManager::StopProcess(SharedPtrHopProcessContext ctx)
     {
+        mStrandHolder->StartCoroutine(
+            [ctx, this]() {
+                return this->AsyncStopCurrentProcess(ctx);
+            }
+        );
+    }
+    //------------------------------------------------------------------------------
+    boost::asio::awaitable<void> TZoneManager::AsyncStopCurrentProcess(SharedPtrHopProcessContext ctx)
+    {
+        auto activeProcess = GetActiveProcess(ctx);
+        if (activeProcess) {
+            co_await activeProcess->Stop(ctx);
+        }
+    }
+    //------------------------------------------------------------------------------
+    boost::asio::awaitable<void> TZoneManager::AsyncStartProcess(SharedPtrHopProcessContext ctx, const std::string& processName, SharedPtrZone toZone)
+    {
+        auto process = GetZone(ctx)->GetProcess(processName);
+        if (process == nullptr) {
+            co_return;
+        }
+
+        co_await AsyncStopCurrentProcess(ctx);
+
+        SetActiveProcess(ctx, process);
         co_await process->Start(ctx);
         auto state = process->GetState(ctx);
-        if (state.GetState() == TContextStateInProcess::State::FINISH) {
-            auto currentZone = ctx->GetOwnerZone();
-            currentZone->RemoveContext(ctx);
-            toZone->AddContext(ctx);
+        if (state.GetState() == TContextStateInProcess::State::DONE) {
+            LinkContext(ctx, toZone);
         }
+        SetActiveProcess(ctx, nullptr);
+    }
+    //------------------------------------------------------------------------------
+    void TZoneManager::LinkContext(SharedPtrHopProcessContext ctx, SharedPtrZone pZone)
+    {
+        mCtxZones.insert_or_assign(ctx, pZone);
+    }
+    //------------------------------------------------------------------------------
+    SharedPtrZone TZoneManager::GetZone(SharedPtrHopProcessContext ctx) const
+    {
+        auto fit = mCtxZones.find(ctx);
+        if (fit == mCtxZones.end())
+            return nullptr;
+        return fit->second;
+    }
+    //------------------------------------------------------------------------------
+    SharedPtrHopProcess TZoneManager::GetActiveProcess(SharedPtrHopProcessContext ctx) const
+    {
+        auto fit = mCtxProcesses.find(ctx);
+        if (fit == mCtxProcesses.end())
+            return nullptr;
+        return fit->second;
+    }
+    //------------------------------------------------------------------------------
+    void TZoneManager::SetActiveProcess(SharedPtrHopProcessContext ctx, SharedPtrHopProcess process)
+    {
+        mCtxProcesses.insert_or_assign(ctx, process);
+    }
+    //------------------------------------------------------------------------------
+    std::optional<TContextStateInProcess> TZoneManager::GetState(SharedPtrHopProcessContext ctx) const
+    {
+        auto process = GetActiveProcess(ctx);
+        if (process)
+            return process->GetState(ctx);
+        return std::nullopt;
     }
     //------------------------------------------------------------------------------
 }

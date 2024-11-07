@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Zones/HopProcessState.h"
+#include "Base/Zones/ContextStateInProcess.h"
 
 namespace nsBase::nsZones
 {
