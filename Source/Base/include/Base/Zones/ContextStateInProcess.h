@@ -49,7 +49,7 @@ namespace nsBase::nsZones
         std::string GetSubProcessName() const { return mSubProcessName; };
 
         void Increment() { mSubProcessCompletedPartCount++; }
-        bool IsCompleted() const { return mSubProcessCompletedPartCount == mSubProcessCompletedPartCount; };
+        bool IsCompleted() const { return mSubProcessTotalPartCount == mSubProcessCompletedPartCount; };
     private:
         State mState;
 

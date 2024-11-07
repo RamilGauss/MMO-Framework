@@ -73,9 +73,8 @@ namespace nsBase::nsZones
         co_await AsyncStopCurrentProcess(ctx);
 
         SetActiveProcess(ctx, process);
-        co_await process->Start(ctx);
-        auto state = process->GetState(ctx);
-        if (state.GetState() == TContextStateInProcess::State::DONE) {
+        auto result = co_await process->Start(ctx);
+        if (result) {
             LinkContext(ctx, toZone);
         }
         SetActiveProcess(ctx, nullptr);

@@ -14,7 +14,7 @@ namespace nsBase::nsZones
     class DllExport TSyncSubProcess : public ISubProcess
     {
     public:
-        boost::asio::awaitable<void> Start(SharedPtrHopProcessContext pCtx) override;
+        boost::asio::awaitable<bool> Start(SharedPtrHopProcessContext pCtx) override;
         boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext pCtx) override;
     };
 }

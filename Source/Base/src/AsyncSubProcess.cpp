@@ -82,8 +82,9 @@ namespace nsBase::nsZones
         printf("Stop() ends\n");
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TAsyncSubProcess::Start(SharedPtrHopProcessContext pCtx)
+    boost::asio::awaitable<bool> TAsyncSubProcess::Start(SharedPtrHopProcessContext pCtx)
     {
+        bool result = false;
         auto newState = std::make_shared<TContextState>();
         mCtxStateMap.insert({ pCtx, newState });
 
@@ -115,6 +116,7 @@ namespace nsBase::nsZones
                         return FinishInOtherThread(mStrandHolder, awaitable, newState); });
                     });
                 co_await awaitable->Wait();
+                result = true;
                 break;
             }
         }
@@ -122,6 +124,7 @@ namespace nsBase::nsZones
         std::cout << "end cause " << magic_enum::enum_name(newState->state.GetState()) << ", id = " << std::this_thread::get_id() << std::endl;
 
         mCtxStateMap.erase(pCtx);
+        co_return result;
     }
     //-------------------------------------------------------------------------------------------------
 }

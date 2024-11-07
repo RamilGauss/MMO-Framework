@@ -32,7 +32,7 @@ namespace nsBase::nsZones
         virtual ~IHopProcess() = default;
 
         virtual std::string GetName() const = 0;
-        virtual boost::asio::awaitable<void> Start(SharedPtrHopProcessContext pCtx) = 0;
+        virtual boost::asio::awaitable<bool> Start(SharedPtrHopProcessContext pCtx) = 0;
         virtual boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext pCtx) = 0;
         virtual TContextStateInProcess GetState(SharedPtrHopProcessContext pCtx) const = 0;
     protected:

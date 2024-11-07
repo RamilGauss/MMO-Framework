@@ -60,9 +60,12 @@ namespace nsBase::nsZones::nsTests
     protected:
         void Work(SharedPtrHopProcessContext pCtx) override
         {
-            std::cout << std::static_pointer_cast<TCtx>(pCtx)->fileName;
+            //std::cout << std::static_pointer_cast<TCtx>(pCtx)->fileName;
         }
-        uint32_t GetSubProcessTotalPartCount(SharedPtrHopProcessContext pCtx)  override { return 1; }
+        uint32_t GetSubProcessTotalPartCount(SharedPtrHopProcessContext pCtx) override
+        {
+            return 1;
+        }
     };
 
 
@@ -79,9 +82,9 @@ namespace nsBase::nsZones::nsTests
         {
             return "Simple";
         }
-        boost::asio::awaitable<void> Start(SharedPtrHopProcessContext pCtx) override
+        boost::asio::awaitable<bool> Start(SharedPtrHopProcessContext pCtx) override
         {
-            co_await mSubProcess.Start(pCtx);
+            co_return co_await mSubProcess.Start(pCtx);
         }
         boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext pCtx) override
         {
@@ -266,13 +269,12 @@ TEST(Zones, Simple_Ok)
     // Start process
     zoneMgr.StartProcess(ctx, simpleProcess->GetName(), b);
 
-    for (int i = 0; i < 100; i++)
-        ioContext.run_one();
+    ioContext.run();
 
     auto state = zoneMgr.GetState(ctx);
 
-    ASSERT_TRUE(zoneMgr.GetZone(ctx).get() == b.get());
-    ASSERT_TRUE(state, std::nullopt);
+    ASSERT_EQ(zoneMgr.GetZone(ctx).get(), b.get());
+    ASSERT_EQ(state, std::nullopt);
 }
 
 //TEST(Zones, Displacement_Process_Ok)

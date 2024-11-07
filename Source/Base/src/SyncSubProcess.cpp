@@ -19,8 +19,9 @@ namespace nsBase::nsZones
         fit->second->state.SetState(TContextStateInProcess::State::CANCELED);
     }
     //-------------------------------------------------------------------------------------------------
-    boost::asio::awaitable<void> TSyncSubProcess::Start(SharedPtrHopProcessContext pCtx)
+    boost::asio::awaitable<bool> TSyncSubProcess::Start(SharedPtrHopProcessContext pCtx)
     {
+        bool result = false;
         auto newState = std::make_shared<TContextState>();
         mCtxStateMap.insert({ pCtx, newState });
 
@@ -33,6 +34,7 @@ namespace nsBase::nsZones
                 break;
             if (newState->state.IsCompleted()) {
                 newState->state.SetState(TContextStateInProcess::State::DONE);
+                result = true;
                 break;
             } else {
                 Work(pCtx);
@@ -41,6 +43,7 @@ namespace nsBase::nsZones
         }
 
         mCtxStateMap.erase(pCtx);
+        co_return result;
     }
     //-------------------------------------------------------------------------------------------------
 }
