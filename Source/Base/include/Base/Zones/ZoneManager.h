@@ -32,6 +32,7 @@ namespace nsBase::nsZones
         SharedPtrZone GetZone(const std::string& zoneName);
 
         void LinkContext(SharedPtrHopProcessContext ctx, SharedPtrZone pZone);
+        void RemoveContext(SharedPtrHopProcessContext ctx);
         SharedPtrZone GetZone(SharedPtrHopProcessContext ctx) const;
 
         SharedPtrHopProcess GetActiveProcess(SharedPtrHopProcessContext ctx) const;

@@ -6,12 +6,12 @@ See for more information LICENSE.md.
 */
 
 #include "SaveProcess.h"
-#include "Base/Zones/IContext.h"
+//#include "Base/Zones/IContext.h"
 
 namespace nsTornadoEngine
 {
-    void TSaveProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
-    {
+    //void TSaveProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
+    //{
 
-    }
+    //}
 }

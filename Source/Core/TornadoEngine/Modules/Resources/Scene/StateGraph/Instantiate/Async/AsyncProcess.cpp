@@ -6,30 +6,30 @@ See for more information LICENSE.md.
 */
 
 #include "AsyncProcess.h"
-#include "Base/Zones/IContext.h"
+//#include "Base/Zones/IContext.h"
 #include "Base/Zones/Zone.h"
 
 namespace nsTornadoEngine
 {
     TAsyncProcess::TAsyncProcess()
     {
-        mThread = std::jthread(&TAsyncProcess::ThreadFunc, this);
+        //mThread = std::jthread(&TAsyncProcess::ThreadFunc, this);
 
-        AddZones<Zone>();
+        //AddZones<Zone>();
 
         //AddProcess<TAsyncProcess>(Process::ASYNC, Zone::INIT, Zone::ASYNCED);
     }
     //-------------------------------------------------------------------------------
-    void TAsyncProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
-    {
+    //void TAsyncProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
+    //{
 
-    }
-    //-------------------------------------------------------------------------------
-    void TAsyncProcess::ThreadFunc()
-    {
-        while (true) {
+    //}
+    ////-------------------------------------------------------------------------------
+    //void TAsyncProcess::ThreadFunc()
+    //{
+    //    while (true) {
 
-        }
-    }
+    //    }
+    //}
     //-------------------------------------------------------------------------------
 }

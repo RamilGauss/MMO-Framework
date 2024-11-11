@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "InstantiateProcess.h"
-#include "Base/Zones/IContext.h"
+//#include "Base/Zones/IContext.h"
 #include "Base/Zones/Zone.h"
 
 #include "Modules/Resources/Scene/StateGraph/Instantiate/Async/AsyncProcess.h"
@@ -15,18 +15,17 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    TInstantiateProcess::TInstantiateProcess()
+    std::string TInstantiateProcess::GetName() const
     {
-        AddZones<Zone>();
-
-        AddProcess<TAsyncProcess>(Process::ASYNC, Zone::INIT, Zone::ASYNCED);
-        AddProcess<TDummyAsyncProcess>(Process::DUMMY_ASYNC, Zone::INIT, Zone::SYNCED);
-        AddProcess<TSyncProcess>(Process::SYNC, Zone::ASYNCED, Zone::SYNCED);
+        return "Instantiate";
     }
     //-------------------------------------------------------------------------------
-    void TInstantiateProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
+    boost::asio::awaitable<bool> TInstantiateProcess::Start(nsBase::nsZones::SharedPtrHopProcessContext pCtx) { co_return true; }
+    boost::asio::awaitable<void> TInstantiateProcess::Stop(nsBase::nsZones::SharedPtrHopProcessContext pCtx) { co_return; }
+    nsBase::nsZones::TContextStateInProcess TInstantiateProcess::GetState(nsBase::nsZones::SharedPtrHopProcessContext pCtx) const { return {}; }
+    void TInstantiateProcess::InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+        nsBase::nsCommon::TCoroInThread::Ptr coroInThread)
     {
-
     }
     //-------------------------------------------------------------------------------
 }

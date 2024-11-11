@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Zones/ZoneProcess.h"
+#include "Base/Zones/IHopProcess.h"
 
 namespace nsBase::nsZones
 {
@@ -16,10 +16,10 @@ namespace nsBase::nsZones
 
 namespace nsTornadoEngine
 {
-    class DllExport TSaveProcess : public nsBase::nsZones::TProcess
+    class DllExport TSaveProcess : public nsBase::nsZones::IHopProcess
     {
     public:
 
-        void Work(std::list<nsBase::nsZones::IContext*>& aciveCtx) override;
+        //void Work(std::list<nsBase::nsZones::IContext*>& aciveCtx) override;
     };
 }

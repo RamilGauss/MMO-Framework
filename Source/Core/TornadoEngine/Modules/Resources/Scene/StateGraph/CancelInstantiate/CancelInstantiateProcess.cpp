@@ -6,12 +6,12 @@ See for more information LICENSE.md.
 */
 
 #include "CancelInstantiateProcess.h"
-#include "Base/Zones/IContext.h"
+//#include "Base/Zones/IContext.h"
 
 namespace nsTornadoEngine
 {
-    void TCancelInstantiateProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
-    {
+    //void TCancelInstantiateProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
+    //{
 
-    }
+    //}
 }

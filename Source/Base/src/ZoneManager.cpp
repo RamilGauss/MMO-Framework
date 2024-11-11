@@ -87,6 +87,11 @@ namespace nsBase::nsZones
         mCtxZones.insert_or_assign(ctx, pZone);
     }
     //------------------------------------------------------------------------------
+    void TZoneManager::RemoveContext(SharedPtrHopProcessContext ctx)
+    {
+        mCtxZones.erase(ctx);
+    }
+    //------------------------------------------------------------------------------
     SharedPtrZone TZoneManager::GetZone(SharedPtrHopProcessContext ctx) const
     {
         auto fit = mCtxZones.find(ctx);

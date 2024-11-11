@@ -115,16 +115,7 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()
     {
-        int maxDuration = GetLoadQuant();
-        auto start = ht_GetMSCount();
-        while (true) {
-
-            if (not mSceneStateGraph.Work())
-                break;
-
-            if (ht_GetMSCount() - start >= maxDuration)
-                break;
-        }
+        mSceneStateGraph.Work(GetLoadQuant());
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::IncrementReferenceCounter(TUniverseManager::IndexType index)

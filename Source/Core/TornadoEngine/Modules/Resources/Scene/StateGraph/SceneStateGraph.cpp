@@ -20,47 +20,44 @@ namespace nsTornadoEngine
 {
     TSceneStateGraph::TSceneStateGraph() 
     {
-
+        mStrandHolder = nsBase::nsCommon::TStrandHolder::New(mIoContext);
+        mCoroInThread = nsBase::nsCommon::TCoroInThread::New();
     }
     //---------------------------------------------------------------------------------
     void TSceneStateGraph::Init()
     {
-        AddZones<Zone>();
+        mZoneMng.Init(mStrandHolder, mCoroInThread);
 
-        AddProcess<TInstantiateProcess>(Process::INSTANTIATE, Zone::INIT, Zone::INSTANTIATED);
-        AddProcess<TCancelInstantiateProcess>(Process::CANCEL_INSTANTIATE, Zone::INIT, Zone::DESTROYED);
-
-        AddProcess<TSaveProcess>(Process::SAVE, Zone::INSTANTIATED, Zone::INSTANTIATED);
-
-        AddProcess<TDestroyProcess>(Process::DESTROY, Zone::INSTANTIATED, Zone::DESTROYED);
+        //mZoneMng.AddZone();
+        //mZoneMng.Remove
     }
     //---------------------------------------------------------------------------------
-    bool TSceneStateGraph::Work()
+    void TSceneStateGraph::Work(int maxDuration)
     {
-        return mZoneMng.Work();
+        //mIoContext.run_for({ maxDuration });
     }
     //---------------------------------------------------------------------------------
     void TSceneStateGraph::StartProcess(Process process, TSceneContext* pCtx)
     {
-        pCtx->GetContextState().StartProcess(GetProcessName(process));
+        //pCtx->GetContextState().StartProcess(GetProcessName(process));
     }
     //---------------------------------------------------------------------------------
     void TSceneStateGraph::StopProcess(TSceneContext* pCtx)
     {
-        pCtx->GetContextState().StopProcess();
+        //pCtx->GetContextState().StopProcess();
     }
     //---------------------------------------------------------------------------------
     std::optional<std::string> TSceneStateGraph::GetZoneName(TSceneContext* pCtx) const
     {
-        auto pZone = pCtx->GetOwnerZone();
-        if (pZone)
-            return pZone->GetName();
+        //auto pZone = pCtx->GetOwnerZone();
+        //if (pZone)
+            //return pZone->GetName();
         return std::nullopt;
     }
     //---------------------------------------------------------------------------------
-    nsBase::nsZones::TProcess* TSceneStateGraph::GetProcess(TSceneContext* pCtx) const
-    {
-        return pCtx->GetActiveProcess();
-    }
+    //nsBase::nsZones::TProcess* TSceneStateGraph::GetProcess(TSceneContext* pCtx) const
+    //{
+        //return nullptr;// pCtx->GetActiveProcess();
+    //}
     //---------------------------------------------------------------------------------
 }

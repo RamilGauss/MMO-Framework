@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Zones/ZoneProcess.h"
+#include "Base/Zones/IHopProcess.h"
 
 namespace nsBase::nsZones
 {
@@ -16,7 +16,7 @@ namespace nsBase::nsZones
 
 namespace nsTornadoEngine
 {
-    class DllExport TInstantiateProcess : public nsBase::nsZones::TProcess
+    class DllExport TInstantiateProcess : public nsBase::nsZones::IHopProcess
     {
         enum class Zone
         {
@@ -32,8 +32,12 @@ namespace nsTornadoEngine
             SYNC
         };
     public:
-        TInstantiateProcess();
-
-        void Work(std::list<nsBase::nsZones::IContext*>& aciveCtx) override;
+        std::string GetName() const override;
+        boost::asio::awaitable<bool> Start(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
+        boost::asio::awaitable<void> Stop(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
+        nsBase::nsZones::TContextStateInProcess GetState(nsBase::nsZones::SharedPtrHopProcessContext pCtx) const override;
+    protected:
+        void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
+            nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override;
     };
 }

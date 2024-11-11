@@ -8,11 +8,6 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <boost/asio.hpp>
-#include <boost/smart_ptr/intrusive_ptr.hpp>
-#include <boost/smart_ptr/intrusive_ref_counter.hpp>
-
-#include <concepts>
-
 #include "Base/Common/TypeDef.h"
 
 namespace nsBase::nsCommon

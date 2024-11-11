@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Zones/ZoneProcess.h"
+#include "Base/Zones/ISubProcess.h"
 
 namespace nsBase::nsZones
 {
@@ -16,7 +16,7 @@ namespace nsBase::nsZones
 
 namespace nsTornadoEngine
 {
-    class DllExport TSyncProcess : public nsBase::nsZones::TProcess
+    class DllExport TSyncProcess : public nsBase::nsZones::ISubProcess
     {
         enum class Zone
         {
@@ -36,6 +36,6 @@ namespace nsTornadoEngine
     public:
         TSyncProcess();
 
-        void Work(std::list<nsBase::nsZones::IContext*>& aciveCtx) override;
+        //void Work(std::list<nsBase::nsZones::IContext*>& aciveCtx) override;
     };
 }

@@ -6,12 +6,12 @@ See for more information LICENSE.md.
 */
 
 #include "DestroyProcess.h"
-#include "Base/Zones/IContext.h"
+//#include "Base/Zones/IContext.h"
 
 namespace nsTornadoEngine
 {
-    void TDestroyProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
-    {
+    //void TDestroyProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
+    //{
 
-    }
+    //}
 }

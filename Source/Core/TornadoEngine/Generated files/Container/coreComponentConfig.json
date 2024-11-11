@@ -88,7 +88,7 @@
         "includeListParams": {
             "includeListFileName": "ComponentIncludeList",
             "dirToInclude": [
-                "C:\\MMOFramework\\Source\\Core\\TornadoEngine\\"
+                "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\"
             ]
         }
     }

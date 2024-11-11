@@ -6,21 +6,21 @@ See for more information LICENSE.md.
 */
 
 #include "SyncProcess.h"
-#include "Base/Zones/IContext.h"
+//#include "Base/Zones/IContext.h"
 #include "Base/Zones/Zone.h"
 
 namespace nsTornadoEngine
 {
     TSyncProcess::TSyncProcess()
     {
-        AddZones<Zone>();
+        //AddZones<Zone>();
 
         //AddProcess<TAsyncProcess>(Process::ASYNC, Zone::INIT, Zone::ASYNCED);
     }
     //-------------------------------------------------------------------------------
-    void TSyncProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
-    {
+    //void TSyncProcess::Work(std::list<nsBase::nsZones::IContext*>& aciveCtx)
+    //{
 
-    }
+    //}
     //-------------------------------------------------------------------------------
 }

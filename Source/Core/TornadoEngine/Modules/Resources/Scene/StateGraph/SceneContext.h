@@ -7,12 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Zones/IContext.h"
+#include "Base/Zones/HopProcessContext.h"
 
 namespace nsTornadoEngine
 {
-    struct DllExport TSceneContext : 
-        nsBase::nsZones::IContext
+    struct DllExport TSceneContext : nsBase::nsZones::THopProcessContext
     {
 
     };

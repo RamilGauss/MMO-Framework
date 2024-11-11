@@ -14,19 +14,13 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 
 #include "Base/Zones/ZoneManager.h"
-#include "Base/Zones/ZoneManagerMaster.h"
 #include "Base/Zones/Zone.h"
-
-namespace nsBase::nsZones
-{
-    class TProcess;
-};
 
 namespace nsTornadoEngine
 {
     struct TSceneContext;
 
-    class DllExport TSceneStateGraph : public nsBase::nsZones::TZoneManagerMaster
+    class DllExport TSceneStateGraph
     {
         nsBase::nsZones::TZoneManager mZoneMng;
 
@@ -52,7 +46,7 @@ namespace nsTornadoEngine
         void Init();
 
         // If the method spent a quant, then the method returns true, else returns false.
-        bool Work();
+        void Work(int maxDuration);
 
         void StartProcess(Process process, TSceneContext* pCtx);
         void StopProcess(TSceneContext* pCtx);
@@ -60,7 +54,12 @@ namespace nsTornadoEngine
         std::optional<std::string> GetZoneName(TSceneContext* pCtx) const;
 
         // Mainly for the progress value
-        nsBase::nsZones::TProcess* GetProcess(TSceneContext* pCtx) const;
+        //nsBase::nsZones::IHopProcess* GetProcess(TSceneContext* pCtx) const;
 
+    private:
+        boost::asio::io_context mIoContext;
+
+        nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
+        nsBase::nsCommon::TCoroInThread::Ptr mCoroInThread;
     };
 }
