@@ -11,7 +11,7 @@
         { "name": "bullet3",    "version": "3.25",          "options" : []},
         { "name": "stb",        "version": "cci.20240531",  "options" : []},
         { "name": "glad",       "version": "0.1.36",        "options" : []},
-        { "name": "glm",        "version": "1.0.1",         "options" : []},
+        { "name": "glm",        "version": "cci.20230113",  "options" : []},
         { "name": "inja",       "version": "3.4.0",         "options" : []}
     ],
     "profile": {
