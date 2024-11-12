@@ -16,12 +16,11 @@ See for more information LICENSE.md.
 #include "Modules/Resources/Scene/SceneInstanceState.h"
 #include "Modules/Resources/Scene/SceneList.h"
 
-#include "Modules/Resources/Scene/StateGraph/SceneStateGraph.h"
-
 namespace nsTornadoEngine
 {
     class TSceneCacheManager;
     class TPrefabManager;
+    class TSceneStateGraph;
 
     class DllExport TSceneManager : public TObjectManager
     {
@@ -49,7 +48,7 @@ namespace nsTornadoEngine
         std::function<bool(TSceneInstanceStatePtr)> mAsyncCondition;
         std::function<bool(TSceneInstanceStatePtr)> mSyncCondition;
 
-        TSceneStateGraph mSceneStateGraph;
+        std::shared_ptr<TSceneStateGraph> mSceneStateGraph;
     public:
         TSceneManager();
 

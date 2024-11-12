@@ -22,6 +22,7 @@ See for more information LICENSE.md.
 #include "Modules/Resources/Common/HandlerCallCollector.h"
 
 #include "Modules/Resources/Prefab/PrefabManager.h"
+#include "Modules/Resources/Scene/StateGraph/SceneStateGraph.h"
 
 #include "Components/Meta/GuidComponent.h"
 #include "Components/Meta/ParentGuidComponent.h"
@@ -33,6 +34,7 @@ See for more information LICENSE.md.
 #include "Components/Meta/UniverseIndexComponent.h"
 #include "Components/Meta/UniverseGuidComponent.h"
 
+
 namespace nsTornadoEngine
 {
     TSceneManager::TSceneManager()
@@ -41,6 +43,7 @@ namespace nsTornadoEngine
         //    [](TSceneInstanceStatePtr pSc) {return pSc->GetState() != TSceneInstanceState::State::ASYNC_INSTANTIATING; };
         //mSyncCondition =
         //    [](TSceneInstanceStatePtr pSc) {return pSc->GetState() != TSceneInstanceState::State::SYNC_INSTANTIATING; };
+        mSceneStateGraph = std::make_shared<TSceneStateGraph>();
 
         mAsyncScenes.Setup(MAX_ASYNC_LOADING_SCENE_COUNT, mAsyncCondition);
         mSyncScenes.Setup(MAX_SYNC_LOADING_SCENE_COUNT, mSyncCondition);
@@ -115,7 +118,7 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()
     {
-        mSceneStateGraph.Work(GetLoadQuant());
+        mSceneStateGraph->Work(GetLoadQuant());
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::IncrementReferenceCounter(TUniverseManager::IndexType index)
