@@ -14,7 +14,6 @@ See for more information LICENSE.md.
 #include "Modules/Resources/Scene/UniverseManager.h"
 #include "Modules/Resources/Scene/InstantiateSceneParams.h"
 #include "Modules/Resources/Scene/SceneInstanceState.h"
-#include "Modules/Resources/Scene/SceneList.h"
 
 namespace nsTornadoEngine
 {
@@ -34,19 +33,10 @@ namespace nsTornadoEngine
 
         std::unordered_map<std::string, TSceneInstanceStatePtr> mSceneInstances;
 
-        const int MAX_ASYNC_LOADING_SCENE_COUNT = 1;
-        const int MAX_SYNC_LOADING_SCENE_COUNT = 1;
-
-        TSceneList mAsyncScenes;
-        TSceneList mSyncScenes;
-
         int mLoadQuant = 5;// ms
 
         TPrefabManager* mPrefabMng = nullptr;
         TSceneCacheManager* mSceneCacheMng = nullptr;
-
-        std::function<bool(TSceneInstanceStatePtr)> mAsyncCondition;
-        std::function<bool(TSceneInstanceStatePtr)> mSyncCondition;
 
         std::shared_ptr<TSceneStateGraph> mSceneStateGraph;
     public:
@@ -80,14 +70,8 @@ namespace nsTornadoEngine
 
         int GetReferenceCounter(TUniverseManager::IndexType index);
 
-        void AsyncWork(TSceneInstanceState* pSc);
-        void SyncWork(TSceneInstanceState* pSc, unsigned int maxDuration);
-
         void PrepareInstantiating(TSceneInstanceState* pSc);
         void EntityInstantiating(TSceneInstanceState* pSc);
         void PrefabInstantiating(TSceneInstanceState* pSc);
-
-        void TryDeactivateSyncScenes();
-        void TryActivateSyncScenes();
     };
 }

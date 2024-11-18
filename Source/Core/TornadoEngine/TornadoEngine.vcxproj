@@ -354,7 +354,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\Resources\Scene\SceneHashCalculator.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneInstanceState.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneInstantiatingThread.cpp" />
-    <ClCompile Include="Modules\Resources\Scene\SceneList.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneManager.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\CancelInstantiate\CancelInstantiateProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.cpp" />
@@ -422,7 +421,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Resources\Scene\SceneHashCalculator.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneInstanceState.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneInstantiatingThread.h" />
-    <ClInclude Include="Modules\Resources\Scene\SceneList.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneManager.h" />
     <ClInclude Include="Modules\Resources\Scene\InstantiateSceneParams.h" />
     <ClInclude Include="Modules\Resources\Scene\PrefabInstance.h" />

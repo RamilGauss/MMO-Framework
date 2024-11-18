@@ -39,14 +39,7 @@ namespace nsTornadoEngine
 {
     TSceneManager::TSceneManager()
     {
-        //mAsyncCondition =
-        //    [](TSceneInstanceStatePtr pSc) {return pSc->GetState() != TSceneInstanceState::State::ASYNC_INSTANTIATING; };
-        //mSyncCondition =
-        //    [](TSceneInstanceStatePtr pSc) {return pSc->GetState() != TSceneInstanceState::State::SYNC_INSTANTIATING; };
         mSceneStateGraph = std::make_shared<TSceneStateGraph>();
-
-        mAsyncScenes.Setup(MAX_ASYNC_LOADING_SCENE_COUNT, mAsyncCondition);
-        mSyncScenes.Setup(MAX_SYNC_LOADING_SCENE_COUNT, mSyncCondition);
     }
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::Create(const std::string& absPath)
@@ -81,6 +74,8 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::Instantiate(const TInstantiateSceneParams& instantiateSceneParams)
     {
+        //mSceneStateGraph->StartProcess()
+
         // Convert to abs path
         //auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
         //if (fit == mResourceContentMap.guidPathMap.end()) {
@@ -148,44 +143,6 @@ namespace nsTornadoEngine
         mSceneCacheMng = pSceneCachebMng;
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::AsyncWork(TSceneInstanceState* pSc)
-    {
-        pSc->mAsyncThread = std::make_shared<TSceneInstantiatingThread>(pSc);
-
-        //pSc->mAsyncThread->Start();
-    }
-    //---------------------------------------------------------------------------------------
-    void TSceneManager::SyncWork(TSceneInstanceState* pSc, unsigned int maxDuration)
-    {
-        auto start = ht_GetMSCount();
-
-        while (true) {
-
-            switch (pSc->mSubState) {
-                case TSceneInstanceState::SubState::PREPARE_INSTANTIATING:
-                    PrepareInstantiating(pSc);
-                    break;
-                case TSceneInstanceState::SubState::ENTITY_INSTANTIATING:
-                    EntityInstantiating(pSc);
-                    break;
-                case TSceneInstanceState::SubState::PREFAB_INSTANTIATING:
-                    PrefabInstantiating(pSc);
-                    break;
-                default:;
-            }
-
-            //if (pSc->IsInstantiateCompleted()) {
-            //    break;
-            //}
-
-            auto dt = ht_GetMSCount() - start;
-
-            if (dt >= maxDuration) {
-                break;
-            }
-        }
-    }
-    //---------------------------------------------------------------------------------------
     void TSceneManager::PrepareInstantiating(TSceneInstanceState* pSc)
     {
         pSc->mEntIt = pSc->mSceneContent.entities.begin();
@@ -275,36 +232,6 @@ namespace nsTornadoEngine
         if (pSc->mPrefabProgress.IsCompleted()) {
             pSc->mSubState = TSceneInstanceState::SubState::INSTANTIATED;
         }
-    }
-    //--------------------------------------------------------------------------------
-    void TSceneManager::TryDeactivateSyncScenes()
-    {
-        auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
-
-        //std::list<TSceneInstanceStatePtr> deactivatedSyncScenes;
-        //mSyncScenes.TryDeactivate(deactivatedSyncScenes);
-
-        //for (auto& deactivatedSyncScene : deactivatedSyncScenes) {
-        //    auto pEntMng = mEntityManager;
-        //    auto eids = pEntMng->GetByHasCopy<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>();
-
-        //    for (auto& eid : eids) {
-        //        auto handler = pEntMng->ViewComponent<nsLogicWrapper::TSceneInstantiationCompletionHandlerComponent>(eid)->handler;
-
-        //        auto tag = deactivatedSyncScene->mInstantiateSceneParams.tag;
-        //        auto sceneInstanceGuid = deactivatedSyncScene->mInstantiateSceneParams.sceneInstanceGuid;
-        //        handlerCallCollector->Add([handler, eid, sceneInstanceGuid, tag]()
-        //        {
-        //            handler->Handle(eid, sceneInstanceGuid, tag);
-        //        });
-        //    }
-        //}
-    }
-    //--------------------------------------------------------------------------------
-    void TSceneManager::TryActivateSyncScenes()
-    {
-        std::list<TSceneInstanceStatePtr> activatedSyncScenes;
-        mSyncScenes.TryActivate(activatedSyncScenes);
     }
     //--------------------------------------------------------------------------------
 }
