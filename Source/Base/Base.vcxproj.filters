@@ -487,5 +487,8 @@
     <ClCompile Include="src\ISubProcess.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\ContextStateInProcess.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

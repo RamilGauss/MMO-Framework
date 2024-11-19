@@ -9,8 +9,6 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "Base/Zones/Types.h"
-
 namespace nsBase::nsZones
 {
     struct DllExport THopProcessContext

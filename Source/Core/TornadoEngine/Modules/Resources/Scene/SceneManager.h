@@ -9,17 +9,20 @@ See for more information LICENSE.md.
 
 #include <string>
 
+#include "Base/Zones/ContextStateInProcess.h"
+
 #include "Modules/Resources/Common/ObjectManager.h"
 
 #include "Modules/Resources/Scene/UniverseManager.h"
 #include "Modules/Resources/Scene/InstantiateSceneParams.h"
-#include "Modules/Resources/Scene/SceneInstanceState.h"
 
 namespace nsTornadoEngine
 {
     class TSceneCacheManager;
     class TPrefabManager;
     class TSceneStateGraph;
+    struct TSceneContext;
+    using TSceneContextPtr = std::shared_ptr<TSceneContext>;
 
     class DllExport TSceneManager : public TObjectManager
     {
@@ -31,7 +34,7 @@ namespace nsTornadoEngine
 
         TColanderVector<TReference> mReferenceCounters;
 
-        std::unordered_map<std::string, TSceneInstanceStatePtr> mSceneInstances;
+        std::unordered_map<std::string, TSceneContextPtr> mSceneInstances;
 
         int mLoadQuant = 5;// ms
 
@@ -42,7 +45,7 @@ namespace nsTornadoEngine
     public:
         TSceneManager();
 
-        const ISceneInstanceState* GetSceneInstanceState(const std::string& sceneInstanceGuid);
+        std::optional<nsBase::nsZones::TContextStateInProcess> GetSceneInstanceState(const std::string& sceneInstanceGuid);
 
         // Per one call
         std::string Create(const std::string& absPath); // -> guid
@@ -70,8 +73,8 @@ namespace nsTornadoEngine
 
         int GetReferenceCounter(TUniverseManager::IndexType index);
 
-        void PrepareInstantiating(TSceneInstanceState* pSc);
-        void EntityInstantiating(TSceneInstanceState* pSc);
-        void PrefabInstantiating(TSceneInstanceState* pSc);
+        //void PrepareInstantiating(TSceneInstanceState* pSc);
+        //void EntityInstantiating(TSceneInstanceState* pSc);
+        //void PrefabInstantiating(TSceneInstanceState* pSc);
     };
 }

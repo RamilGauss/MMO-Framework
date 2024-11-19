@@ -16,22 +16,14 @@ See for more information LICENSE.md.
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
 
+#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+
 namespace nsTornadoEngine
 {
     struct TSceneContext;
 
     class DllExport TSceneStateGraph
     {
-        nsBase::nsZones::TZoneManager mZoneMng;
-
-        enum class Zone
-        {
-            INIT,
-            INSTANTIATED,
-            DESTROYED,
-            DEAD,
-        };
-
     public:
         enum class Process
         {
@@ -48,15 +40,25 @@ namespace nsTornadoEngine
         // If the method spent a quant, then the method returns true, else returns false.
         void Work(int maxDuration);
 
-        void StartProcess(Process process, TSceneContext* pCtx);
+        void StartProcess(Process process, TSceneContextPtr pCtx);
         void StopProcess(TSceneContext* pCtx);
 
         std::optional<std::string> GetZoneName(TSceneContext* pCtx) const;
 
         // Mainly for the progress value
-        //nsBase::nsZones::IHopProcess* GetProcess(TSceneContext* pCtx) const;
+        std::optional<nsBase::nsZones::TContextStateInProcess> GetSceneInstanceState(TSceneContextPtr pCtx);
 
     private:
+        nsBase::nsZones::TZoneManager mZoneMng;
+
+        enum class Zone
+        {
+            INIT,
+            INSTANTIATED,
+            DESTROYED,
+            DEAD,
+        };
+
         boost::asio::io_context mIoContext;
 
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;

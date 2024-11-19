@@ -7,7 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/AsyncAwaitable.h"
+#include <stdint.h>
+#include <string>
+
+#include "Base/Common/TypeDef.h"
 
 namespace nsBase::nsZones
 {
@@ -21,35 +24,21 @@ namespace nsBase::nsZones
             DONE,
         };
 
-        State GetState() const
-        {
-            return mState;
-        }
+        State GetState() const;
+        void SetState(State state);
+        bool IsFinishedOrStopped() const;
+        bool IsWork() const;
 
-        void SetState(State state)
-        {
-            mState = state;
-        }
+        void SetSubProcessTotalPartCount(uint32_t value);
+        void SetSubProcessCompletedPartCount(uint32_t value);
+        void SetSubProcessName(const std::string& value);
 
-        bool IsFinishedOrStopped() const
-        {
-            return mState == State::CANCELED || mState == State::DONE;
-        }
-        bool IsWork() const
-        {
-            return mState == State::WORKING;
-        }
+        uint32_t GetSubProcessTotalPartCount() const;
+        uint32_t GetSubProcessCompletedPartCount() const;
+        std::string GetSubProcessName() const;
 
-        void SetSubProcessTotalPartCount(uint32_t value) { mSubProcessTotalPartCount = value; };
-        void SetSubProcessCompletedPartCount(uint32_t value) { mSubProcessCompletedPartCount = value; };
-        void SetSubProcessName(const std::string& value) { mSubProcessName = value; };
-
-        uint32_t GetSubProcessTotalPartCount() const { return mSubProcessTotalPartCount; };
-        uint32_t GetSubProcessCompletedPartCount() const { return mSubProcessCompletedPartCount; };
-        std::string GetSubProcessName() const { return mSubProcessName; };
-
-        void Increment() { mSubProcessCompletedPartCount++; }
-        bool IsCompleted() const { return mSubProcessTotalPartCount == mSubProcessCompletedPartCount; };
+        void Increment();
+        bool IsCompleted() const;
     private:
         State mState = State::IDLE;
 

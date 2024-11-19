@@ -307,6 +307,7 @@
   <ItemGroup>
     <ClCompile Include="src\AsyncAwaitable.cpp" />
     <ClCompile Include="src\AsyncSubProcess.cpp" />
+    <ClCompile Include="src\ContextStateInProcess.cpp" />
     <ClCompile Include="src\CoroInThread.cpp" />
     <ClCompile Include="src\EventHub.cpp" />
     <ClCompile Include="src\FramedThread.cpp" />

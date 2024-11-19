@@ -1119,7 +1119,6 @@
     <ClInclude Include="Modules\Resources\Scene\SceneHashCalculator.h" />
     <ClInclude Include="Generated files\Container\ComponentTypeFactory.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneCacheManager.h" />
-    <ClInclude Include="Modules\Resources\Scene\ISceneInstanceState.h" />
     <ClInclude Include="Modules\Resources\Common\ResourceManager.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabPatchOperation.h" />
     <ClInclude Include="TimeSliceEngine\EngineLogger.h" />

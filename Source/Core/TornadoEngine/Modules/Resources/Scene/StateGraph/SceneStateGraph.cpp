@@ -34,10 +34,10 @@ namespace nsTornadoEngine
     //---------------------------------------------------------------------------------
     void TSceneStateGraph::Work(int maxDuration)
     {
-        //mIoContext.run_for({ maxDuration });
+        mIoContext.run_for(std::chrono::milliseconds(maxDuration));
     }
     //---------------------------------------------------------------------------------
-    void TSceneStateGraph::StartProcess(Process process, TSceneContext* pCtx)
+    void TSceneStateGraph::StartProcess(Process process, TSceneContextPtr pCtx)
     {
         //pCtx->GetContextState().StartProcess(GetProcessName(process));
     }
@@ -55,9 +55,9 @@ namespace nsTornadoEngine
         return std::nullopt;
     }
     //---------------------------------------------------------------------------------
-    //nsBase::nsZones::TProcess* TSceneStateGraph::GetProcess(TSceneContext* pCtx) const
-    //{
-        //return nullptr;// pCtx->GetActiveProcess();
-    //}
+    std::optional<nsBase::nsZones::TContextStateInProcess> TSceneStateGraph::GetSceneInstanceState(TSceneContextPtr pCtx)
+    {
+        return mZoneMng.GetState(pCtx);
+    }
     //---------------------------------------------------------------------------------
 }

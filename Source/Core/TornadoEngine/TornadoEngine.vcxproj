@@ -416,7 +416,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Resources\Prefab\PrefabPatchOperation.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabResourceContent.h" />
     <ClInclude Include="Modules\Resources\Scene\EntityMetaContent.h" />
-    <ClInclude Include="Modules\Resources\Scene\ISceneInstanceState.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneCacheManager.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneHashCalculator.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneInstanceState.h" />

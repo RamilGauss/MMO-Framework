@@ -9,10 +9,16 @@ See for more information LICENSE.md.
 
 #include "Base/Zones/HopProcessContext.h"
 
+#include "Modules/Resources/Scene/InstantiateSceneParams.h"
+
 namespace nsTornadoEngine
 {
     struct DllExport TSceneContext : nsBase::nsZones::THopProcessContext
     {
+        std::string sceneAbsPath;
 
+        TInstantiateSceneParams instantiateSceneParams;
     };
+
+    using TSceneContextPtr = std::shared_ptr<TSceneContext>;
 }

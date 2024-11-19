@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <boost/asio.hpp>
-
 #include <list>
+
+#include <boost/asio.hpp>
 
 #include "Base/Common/TypeDef.h"
 

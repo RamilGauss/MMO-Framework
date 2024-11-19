@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #include "Base/Common/StrandHolder.h"
 
+#include <boost/asio/co_spawn.hpp>
+
 namespace nsBase::nsCommon
 {
     TStrandHolder::Ptr TStrandHolder::New(boost::asio::io_context& ioContext)

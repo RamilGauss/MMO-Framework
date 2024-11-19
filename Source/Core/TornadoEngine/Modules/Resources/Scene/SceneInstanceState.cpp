@@ -28,9 +28,9 @@ namespace nsTornadoEngine
     //    mPrefabProgress.SetStep(PREFAB_INSTANTIATING_PART_SIZE);
     //}
     //--------------------------------------------------------------------------------------------------
-    ISceneInstanceState::State TSceneInstanceState::GetState() const
-    {
-        TSceneInstanceState::State state = TSceneInstanceState::State::INSTANTIATED;
+    //ISceneInstanceState::State TSceneInstanceState::GetState() const
+    //{
+        //TSceneInstanceState::State state = TSceneInstanceState::State::INSTANTIATED;
         //switch (mSubState) {
         //    case SubState::INIT:
         //    case SubState::FILE_LOADING:
@@ -48,8 +48,8 @@ namespace nsTornadoEngine
         //        state = ISceneInstanceState::State::INSTANTIATED;
         //        break;
         //}
-        return state;
-    }
+        //return state;
+    //}
     //--------------------------------------------------------------------------------------------------
     //float TSceneInstanceState::GetInstantiatingProgress() const
     //{

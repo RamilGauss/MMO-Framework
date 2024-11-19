@@ -14,15 +14,15 @@ See for more information LICENSE.md.
 #include "Base/Common/Logger.h"
 #include "Base/Common/GuidGenerator.h"
 
-#include "TimeSliceEngine/EngineLogger.h"
 #include "Generated Files/TornadoEngineJsonSerializer.h"
+#include "TimeSliceEngine/EngineLogger.h"
 #include "TimeSliceEngine/ProjectConfigContainer.h"
 
 #include "Modules/Common/Modules.h"
 #include "Modules/Resources/Common/HandlerCallCollector.h"
-
 #include "Modules/Resources/Prefab/PrefabManager.h"
 #include "Modules/Resources/Scene/StateGraph/SceneStateGraph.h"
+#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
 
 #include "Components/Meta/GuidComponent.h"
 #include "Components/Meta/ParentGuidComponent.h"
@@ -62,40 +62,34 @@ namespace nsTornadoEngine
         return mLoadQuant;
     }
     //--------------------------------------------------------------------------------------------------------
-    const ISceneInstanceState* TSceneManager::GetSceneInstanceState(const std::string& sceneInstanceGuid)
+    std::optional<nsBase::nsZones::TContextStateInProcess> TSceneManager::GetSceneInstanceState(const std::string& sceneInstanceGuid)
     {
         auto fit = mSceneInstances.find(sceneInstanceGuid);
         if (fit == mSceneInstances.end()) {
-            return nullptr;
+            return std::nullopt;
         }
 
-        return fit->second.get();
+        return mSceneStateGraph->GetSceneInstanceState(fit->second);
     }
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::Instantiate(const TInstantiateSceneParams& instantiateSceneParams)
     {
-        //mSceneStateGraph->StartProcess()
-
         // Convert to abs path
-        //auto fit = mResourceContentMap.guidPathMap.find(instantiateSceneParams.guid);
-        //if (fit == mResourceContentMap.guidPathMap.end()) {
-        //    nsTornadoEngine::Modules()->Log()->AddWarningEvent("Guid \"{}\" not exist", instantiateSceneParams.guid.c_str());
+        auto absPath = GetAbsPath(instantiateSceneParams.guid);
+        if (absPath.empty()) {
+            nsTornadoEngine::Modules()->Log()->AddWarningEvent("Guid \"{}\" not exist", instantiateSceneParams.guid);
             return "Not found";
-        //}
+        }
 
-        //TSceneInstanceStatePtr sceneInstanceState = std::make_shared<TSceneInstanceState>(instantiateSceneParams);
-
-        //if (sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid.empty()) {
-        //    sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid = nsBase::nsCommon::TGuidGenerator::Generate();
-        //}
-
-        //sceneInstanceState->mAbsPath = fit->second;
-
-        //mSceneInstances.insert({ sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid, sceneInstanceState });
-
-        //mAsyncScenes.AddToWait(sceneInstanceState);
-
-        //return sceneInstanceState->mInstantiateSceneParams.sceneInstanceGuid;
+        auto sceneCtx = std::make_shared<TSceneContext>();
+        sceneCtx->instantiateSceneParams = instantiateSceneParams;
+        if (sceneCtx->instantiateSceneParams.sceneInstanceGuid.empty()) {
+            sceneCtx->instantiateSceneParams.sceneInstanceGuid = nsBase::nsCommon::TGuidGenerator::Generate();
+            sceneCtx->sceneAbsPath = absPath;
+        }
+        mSceneInstances.insert({ sceneCtx->instantiateSceneParams.sceneInstanceGuid, sceneCtx });
+        mSceneStateGraph->StartProcess(TSceneStateGraph::Process::INSTANTIATE, sceneCtx);
+        return sceneCtx->instantiateSceneParams.sceneInstanceGuid;
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Destroy(const std::string& sceneInstanceGuid)
@@ -105,10 +99,10 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Save(const std::string& sceneInstanceGuid)
     {
-        auto pSceneInstanceState = (TSceneInstanceState*)GetSceneInstanceState(sceneInstanceGuid);
-        if (pSceneInstanceState == nullptr) {
-            return;
-        }
+        //auto pSceneInstanceState = (TSceneInstanceState*)GetSceneInstanceState(sceneInstanceGuid);
+        //if (pSceneInstanceState == nullptr) {
+        //    return;
+        //}
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()
@@ -143,95 +137,95 @@ namespace nsTornadoEngine
         mSceneCacheMng = pSceneCachebMng;
     }
     //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::PrepareInstantiating(TSceneInstanceState* pSc)
-    {
-        pSc->mEntIt = pSc->mSceneContent.entities.begin();
+    //void TSceneManager::PrepareInstantiating(TSceneInstanceState* pSc)
+    //{
+    //    pSc->mEntIt = pSc->mSceneContent.entities.begin();
 
-        auto universeIndex = mUniverseManager.GetIndexByGuid(pSc->mInstantiateSceneParams.universeGuid);
-        if (universeIndex == TUniverseManager::UNDEFINED_INDEX) {
-            mUniverseManager.Create(pSc->mInstantiateSceneParams.universeGuid);
-            universeIndex = mUniverseManager.GetIndexByGuid(pSc->mInstantiateSceneParams.universeGuid);
-        }
+    //    auto universeIndex = mUniverseManager.GetIndexByGuid(pSc->mInstantiateSceneParams.universeGuid);
+    //    if (universeIndex == TUniverseManager::UNDEFINED_INDEX) {
+    //        mUniverseManager.Create(pSc->mInstantiateSceneParams.universeGuid);
+    //        universeIndex = mUniverseManager.GetIndexByGuid(pSc->mInstantiateSceneParams.universeGuid);
+    //    }
 
-        IncrementReferenceCounter(universeIndex);
+    //    IncrementReferenceCounter(universeIndex);
 
-        pSc->mUniverseIndex = universeIndex;
+    //    pSc->mUniverseIndex = universeIndex;
 
-        pSc->mSubState = TSceneInstanceState::SubState::ENTITY_INSTANTIATING;
-    }
+    //    pSc->mSubState = TSceneInstanceState::SubState::ENTITY_INSTANTIATING;
+    //}
     //---------------------------------------------------------------------------------------
-    void TSceneManager::EntityInstantiating(TSceneInstanceState* pSc)
-    {
-        int partSize = pSc->mEntityProgress.GetSteppedRemain();
+    //void TSceneManager::EntityInstantiating(TSceneInstanceState* pSc)
+    //{
+    //    int partSize = pSc->mEntityProgress.GetSteppedRemain();
 
-        using namespace nsCommonWrapper;
+    //    using namespace nsCommonWrapper;
 
-        std::list<nsECSFramework::TEntityID> newEntities;
+    //    std::list<nsECSFramework::TEntityID> newEntities;
 
-        // Convert typeName to rtti
-        DeserializeObjects(newEntities, pSc->mEntIt, partSize);
+    //    // Convert typeName to rtti
+    //    DeserializeObjects(newEntities, pSc->mEntIt, partSize);
 
-        // Replace all guids to new guid with ParentGuids and SceneGuids
-        UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, pSc->mInstantiateSceneParams.sceneInstanceGuid);
+    //    // Replace all guids to new guid with ParentGuids and SceneGuids
+    //    UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, pSc->mInstantiateSceneParams.sceneInstanceGuid);
 
-        TUniverseGuidComponent universeGuidComponent;
-        universeGuidComponent.value = pSc->mInstantiateSceneParams.universeGuid;
-        AddComponent(newEntities, &universeGuidComponent);
+    //    TUniverseGuidComponent universeGuidComponent;
+    //    universeGuidComponent.value = pSc->mInstantiateSceneParams.universeGuid;
+    //    AddComponent(newEntities, &universeGuidComponent);
 
-        TUniverseIndexComponent universeIndexComponent;
-        universeIndexComponent.value = pSc->mUniverseIndex;
-        AddComponent(newEntities, &universeIndexComponent);
+    //    TUniverseIndexComponent universeIndexComponent;
+    //    universeIndexComponent.value = pSc->mUniverseIndex;
+    //    AddComponent(newEntities, &universeIndexComponent);
 
-        pSc->mEntityProgress.IncrementValue(partSize);
+    //    pSc->mEntityProgress.IncrementValue(partSize);
 
-        if (pSc->mEntityProgress.IsCompleted()) {
+    //    if (pSc->mEntityProgress.IsCompleted()) {
 
-            if (pSc->mSceneContent.prefabInstances.size()) {
-                pSc->mSubState = TSceneInstanceState::SubState::PREFAB_INSTANTIATING;
-            } else {
-                pSc->mSubState = TSceneInstanceState::SubState::INSTANTIATED;
-            }
-        }
-    }
+    //        if (pSc->mSceneContent.prefabInstances.size()) {
+    //            pSc->mSubState = TSceneInstanceState::SubState::PREFAB_INSTANTIATING;
+    //        } else {
+    //            pSc->mSubState = TSceneInstanceState::SubState::INSTANTIATED;
+    //        }
+    //    }
+    //}
     //--------------------------------------------------------------------------------
-    void TSceneManager::PrefabInstantiating(TSceneInstanceState* pSc)
-    {
-        using namespace nsCommonWrapper;
+    //void TSceneManager::PrefabInstantiating(TSceneInstanceState* pSc)
+    //{
+    //    using namespace nsCommonWrapper;
 
-        int partSize = pSc->mPrefabProgress.GetSteppedRemain();
+    //    int partSize = pSc->mPrefabProgress.GetSteppedRemain();
 
-        for (int i = 0; i < partSize; i++, pSc->mPrefabIt++) {
+    //    for (int i = 0; i < partSize; i++, pSc->mPrefabIt++) {
 
-            std::string parentGuid;
+    //        std::string parentGuid;
 
-            TSceneOriginalGuidComponent sceneOriginalGuidComponent;
-            sceneOriginalGuidComponent.value = pSc->mPrefabIt->parentGuid;
+    //        TSceneOriginalGuidComponent sceneOriginalGuidComponent;
+    //        sceneOriginalGuidComponent.value = pSc->mPrefabIt->parentGuid;
 
-            auto sceneOriginalGuidEntities = mEntityManager->GetByValueCopy(sceneOriginalGuidComponent);
-            for (auto eid : sceneOriginalGuidEntities) {
+    //        auto sceneOriginalGuidEntities = mEntityManager->GetByValueCopy(sceneOriginalGuidComponent);
+    //        for (auto eid : sceneOriginalGuidEntities) {
 
-                auto sceneInstanceGuid = mEntityManager->ViewComponent<TSceneInstanceGuidComponent>(eid)->value;
-                if (sceneInstanceGuid == pSc->mInstantiateSceneParams.sceneInstanceGuid) {
-                    parentGuid = sceneInstanceGuid;
-                    break;
-                }
-            }
+    //            auto sceneInstanceGuid = mEntityManager->ViewComponent<TSceneInstanceGuidComponent>(eid)->value;
+    //            if (sceneInstanceGuid == pSc->mInstantiateSceneParams.sceneInstanceGuid) {
+    //                parentGuid = sceneInstanceGuid;
+    //                break;
+    //            }
+    //        }
 
-            TInstantiatePrefabParams instantiatePrefabParams;
+    //        TInstantiatePrefabParams instantiatePrefabParams;
 
-            instantiatePrefabParams.guid = pSc->mPrefabIt->prefabGuid;
-            instantiatePrefabParams.rootMatrix = pSc->mPrefabIt->localMatrix;
-            instantiatePrefabParams.parentGuid = parentGuid;
-            instantiatePrefabParams.sceneInstanceGuid = pSc->mInstantiateSceneParams.sceneInstanceGuid;
+    //        instantiatePrefabParams.guid = pSc->mPrefabIt->prefabGuid;
+    //        instantiatePrefabParams.rootMatrix = pSc->mPrefabIt->localMatrix;
+    //        instantiatePrefabParams.parentGuid = parentGuid;
+    //        instantiatePrefabParams.sceneInstanceGuid = pSc->mInstantiateSceneParams.sceneInstanceGuid;
 
-            mPrefabMng->Instantiate(instantiatePrefabParams);
-        }
+    //        mPrefabMng->Instantiate(instantiatePrefabParams);
+    //    }
 
-        pSc->mPrefabProgress.IncrementValue(partSize);
+    //    pSc->mPrefabProgress.IncrementValue(partSize);
 
-        if (pSc->mPrefabProgress.IsCompleted()) {
-            pSc->mSubState = TSceneInstanceState::SubState::INSTANTIATED;
-        }
-    }
+    //    if (pSc->mPrefabProgress.IsCompleted()) {
+    //        pSc->mSubState = TSceneInstanceState::SubState::INSTANTIATED;
+    //    }
+    //}
     //--------------------------------------------------------------------------------
 }

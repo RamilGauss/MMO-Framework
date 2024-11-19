@@ -21,11 +21,11 @@ See for more information LICENSE.md.
 #include "EntityMetaContent.h"
 #include "SceneResourceContent.h"
 
-#include "ISceneInstanceState.h"
+//#include "ISceneInstanceState.h"
 
 namespace nsTornadoEngine
 {
-    struct DllExport TSceneInstanceState : ISceneInstanceState
+    struct DllExport TSceneInstanceState// : ISceneInstanceState
     {
         enum class SubState
         {
@@ -102,11 +102,11 @@ namespace nsTornadoEngine
         // Helpers
         //TSceneInstanceState(const TInstantiateSceneParams& instantiateSceneParams);
 
-        State GetState() const override;
-        float GetProgress() const override { return 0; };
+        //State GetState() const override;
+        //float GetProgress() const override { return 0; };
 
-        float GetStateProgress() const override { return 0; }
-        bool IsCompleted() const override { return false; }
+        //float GetStateProgress() const override { return 0; }
+        //bool IsCompleted() const override { return false; }
         //float GetInstantiatingProgress() const override;
         //bool IsInstantiateCompleted() const override;
 
