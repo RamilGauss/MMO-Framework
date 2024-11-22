@@ -15,6 +15,8 @@ See for more information LICENSE.md.
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/Logger.h"
 #include "Base/Common/FileOperation.h"
+#include "Base/Common/ThreadIndexator.h"
+#include "Base/Common/SingletonManager.h"
 
 #include "Modules/Common/Modules.h"
 #include "TimeSliceEngine/IModule.h"
@@ -28,6 +30,8 @@ using namespace nsTornadoEngine;
 
 TTimeSliceEngine::TTimeSliceEngine()
 {
+    SingletonManager()->Get<nsBase::nsCommon::TThreadIndexator>()->AddThreadId();// Не логично. Пока сюда вставлю. Потом надо подумать куда.
+
     SetProject(&mProjectConfigContainer);
 
     mModuleMng.reset(new TModuleManager(this));
