@@ -45,7 +45,14 @@ namespace nsTornadoEngine
     public:
         TSceneManager();
 
-        std::optional<nsBase::nsZones::TContextStateInProcess> GetSceneInstanceState(const std::string& sceneInstanceGuid);
+        struct TScenaState
+        {
+            bool inProcess = false;
+            nsBase::nsZones::TContextStateInProcess progress;
+            std::string zoneName;
+        };
+
+        std::optional<TScenaState> GetState(const std::string& sceneInstanceGuid);
 
         // Per one call
         std::string Create(const std::string& absPath); // -> guid

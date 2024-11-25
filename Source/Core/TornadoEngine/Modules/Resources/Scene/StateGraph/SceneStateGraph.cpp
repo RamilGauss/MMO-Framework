@@ -47,7 +47,7 @@ namespace nsTornadoEngine
         //pCtx->GetContextState().StopProcess();
     }
     //---------------------------------------------------------------------------------
-    std::optional<std::string> TSceneStateGraph::GetZoneName(TSceneContext* pCtx) const
+    std::optional<std::string> TSceneStateGraph::GetZoneName(TSceneContextPtr pCtx) const
     {
         //auto pZone = pCtx->GetOwnerZone();
         //if (pZone)

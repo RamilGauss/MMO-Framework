@@ -43,7 +43,7 @@ namespace nsTornadoEngine
         void StartProcess(Process process, TSceneContextPtr pCtx);
         void StopProcess(TSceneContext* pCtx);
 
-        std::optional<std::string> GetZoneName(TSceneContext* pCtx) const;
+        std::optional<std::string> GetZoneName(TSceneContextPtr pCtx) const;
 
         // Mainly for the progress value
         std::optional<nsBase::nsZones::TContextStateInProcess> GetSceneInstanceState(TSceneContextPtr pCtx);

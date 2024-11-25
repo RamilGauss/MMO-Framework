@@ -62,14 +62,26 @@ namespace nsTornadoEngine
         return mLoadQuant;
     }
     //--------------------------------------------------------------------------------------------------------
-    std::optional<nsBase::nsZones::TContextStateInProcess> TSceneManager::GetSceneInstanceState(const std::string& sceneInstanceGuid)
+    std::optional<TSceneManager::TScenaState> TSceneManager::GetState(const std::string& sceneInstanceGuid)
     {
         auto fit = mSceneInstances.find(sceneInstanceGuid);
         if (fit == mSceneInstances.end()) {
             return std::nullopt;
         }
+        auto pCtx = fit->second;
 
-        return mSceneStateGraph->GetSceneInstanceState(fit->second);
+        TScenaState sceneState;
+        auto progress = mSceneStateGraph->GetSceneInstanceState(pCtx);
+        if (progress) {
+            sceneState.inProcess = true;
+            sceneState.progress = *progress;
+        }
+        auto zoneName = mSceneStateGraph->GetZoneName(pCtx);
+        if (zoneName) {
+            sceneState.zoneName = *zoneName;
+            return { sceneState };
+        }
+        return std::nullopt;
     }
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::Instantiate(const TInstantiateSceneParams& instantiateSceneParams)
@@ -85,8 +97,11 @@ namespace nsTornadoEngine
         sceneCtx->instantiateSceneParams = instantiateSceneParams;
         if (sceneCtx->instantiateSceneParams.sceneInstanceGuid.empty()) {
             sceneCtx->instantiateSceneParams.sceneInstanceGuid = nsBase::nsCommon::TGuidGenerator::Generate();
-            sceneCtx->sceneAbsPath = absPath;
         }
+        sceneCtx->sceneAbsPath = absPath;
+
+
+
         mSceneInstances.insert({ sceneCtx->instantiateSceneParams.sceneInstanceGuid, sceneCtx });
         mSceneStateGraph->StartProcess(TSceneStateGraph::Process::INSTANTIATE, sceneCtx);
         return sceneCtx->instantiateSceneParams.sceneInstanceGuid;

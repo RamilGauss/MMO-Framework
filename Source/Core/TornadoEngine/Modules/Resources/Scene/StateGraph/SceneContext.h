@@ -18,6 +18,10 @@ namespace nsTornadoEngine
         std::string sceneAbsPath;
 
         TInstantiateSceneParams instantiateSceneParams;
+
+
+
+
     };
 
     using TSceneContextPtr = std::shared_ptr<TSceneContext>;
