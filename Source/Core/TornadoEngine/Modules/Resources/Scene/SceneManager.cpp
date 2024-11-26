@@ -34,7 +34,6 @@ See for more information LICENSE.md.
 #include "Components/Meta/UniverseIndexComponent.h"
 #include "Components/Meta/UniverseGuidComponent.h"
 
-
 namespace nsTornadoEngine
 {
     TSceneManager::TSceneManager()
@@ -115,10 +114,7 @@ namespace nsTornadoEngine
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Save(const std::string& sceneInstanceGuid)
     {
-        //auto pSceneInstanceState = (TSceneInstanceState*)GetSceneInstanceState(sceneInstanceGuid);
-        //if (pSceneInstanceState == nullptr) {
-        //    return;
-        //}
+
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::Work()
@@ -153,95 +149,4 @@ namespace nsTornadoEngine
         mSceneCacheMng = pSceneCachebMng;
     }
     //--------------------------------------------------------------------------------------------------------
-    //void TSceneManager::PrepareInstantiating(TSceneInstanceState* pSc)
-    //{
-    //    pSc->mEntIt = pSc->mSceneContent.entities.begin();
-
-    //    auto universeIndex = mUniverseManager.GetIndexByGuid(pSc->mInstantiateSceneParams.universeGuid);
-    //    if (universeIndex == TUniverseManager::UNDEFINED_INDEX) {
-    //        mUniverseManager.Create(pSc->mInstantiateSceneParams.universeGuid);
-    //        universeIndex = mUniverseManager.GetIndexByGuid(pSc->mInstantiateSceneParams.universeGuid);
-    //    }
-
-    //    IncrementReferenceCounter(universeIndex);
-
-    //    pSc->mUniverseIndex = universeIndex;
-
-    //    pSc->mSubState = TSceneInstanceState::SubState::ENTITY_INSTANTIATING;
-    //}
-    //---------------------------------------------------------------------------------------
-    //void TSceneManager::EntityInstantiating(TSceneInstanceState* pSc)
-    //{
-    //    int partSize = pSc->mEntityProgress.GetSteppedRemain();
-
-    //    using namespace nsCommonWrapper;
-
-    //    std::list<nsECSFramework::TEntityID> newEntities;
-
-    //    // Convert typeName to rtti
-    //    DeserializeObjects(newEntities, pSc->mEntIt, partSize);
-
-    //    // Replace all guids to new guid with ParentGuids and SceneGuids
-    //    UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(newEntities, pSc->mInstantiateSceneParams.sceneInstanceGuid);
-
-    //    TUniverseGuidComponent universeGuidComponent;
-    //    universeGuidComponent.value = pSc->mInstantiateSceneParams.universeGuid;
-    //    AddComponent(newEntities, &universeGuidComponent);
-
-    //    TUniverseIndexComponent universeIndexComponent;
-    //    universeIndexComponent.value = pSc->mUniverseIndex;
-    //    AddComponent(newEntities, &universeIndexComponent);
-
-    //    pSc->mEntityProgress.IncrementValue(partSize);
-
-    //    if (pSc->mEntityProgress.IsCompleted()) {
-
-    //        if (pSc->mSceneContent.prefabInstances.size()) {
-    //            pSc->mSubState = TSceneInstanceState::SubState::PREFAB_INSTANTIATING;
-    //        } else {
-    //            pSc->mSubState = TSceneInstanceState::SubState::INSTANTIATED;
-    //        }
-    //    }
-    //}
-    //--------------------------------------------------------------------------------
-    //void TSceneManager::PrefabInstantiating(TSceneInstanceState* pSc)
-    //{
-    //    using namespace nsCommonWrapper;
-
-    //    int partSize = pSc->mPrefabProgress.GetSteppedRemain();
-
-    //    for (int i = 0; i < partSize; i++, pSc->mPrefabIt++) {
-
-    //        std::string parentGuid;
-
-    //        TSceneOriginalGuidComponent sceneOriginalGuidComponent;
-    //        sceneOriginalGuidComponent.value = pSc->mPrefabIt->parentGuid;
-
-    //        auto sceneOriginalGuidEntities = mEntityManager->GetByValueCopy(sceneOriginalGuidComponent);
-    //        for (auto eid : sceneOriginalGuidEntities) {
-
-    //            auto sceneInstanceGuid = mEntityManager->ViewComponent<TSceneInstanceGuidComponent>(eid)->value;
-    //            if (sceneInstanceGuid == pSc->mInstantiateSceneParams.sceneInstanceGuid) {
-    //                parentGuid = sceneInstanceGuid;
-    //                break;
-    //            }
-    //        }
-
-    //        TInstantiatePrefabParams instantiatePrefabParams;
-
-    //        instantiatePrefabParams.guid = pSc->mPrefabIt->prefabGuid;
-    //        instantiatePrefabParams.rootMatrix = pSc->mPrefabIt->localMatrix;
-    //        instantiatePrefabParams.parentGuid = parentGuid;
-    //        instantiatePrefabParams.sceneInstanceGuid = pSc->mInstantiateSceneParams.sceneInstanceGuid;
-
-    //        mPrefabMng->Instantiate(instantiatePrefabParams);
-    //    }
-
-    //    pSc->mPrefabProgress.IncrementValue(partSize);
-
-    //    if (pSc->mPrefabProgress.IsCompleted()) {
-    //        pSc->mSubState = TSceneInstanceState::SubState::INSTANTIATED;
-    //    }
-    //}
-    //--------------------------------------------------------------------------------
 }
