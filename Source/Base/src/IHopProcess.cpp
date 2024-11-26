@@ -10,6 +10,16 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsZones
 {
+    IHopProcess::IHopProcess(std::string name)
+    {
+        mName = std::move(name);
+    }
+    //--------------------------------------------------------------------------------------------------
+    std::string IHopProcess::GetName() const
+    {
+        return mName;
+    }
+    //--------------------------------------------------------------------------------------------------
     void IHopProcess::Init(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TCoroInThread::Ptr coroInThread)
     {

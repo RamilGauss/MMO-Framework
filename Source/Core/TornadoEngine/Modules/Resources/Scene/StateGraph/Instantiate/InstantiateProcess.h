@@ -18,26 +18,17 @@ namespace nsTornadoEngine
 {
     class DllExport TInstantiateProcess : public nsBase::nsZones::IHopProcess
     {
-        enum class Zone
-        {
-            INIT,
-            ASYNCED,
-            SYNCED,
-        };
-
-        enum class Process
-        {
-            ASYNC,
-            DUMMY_ASYNC,
-            SYNC
-        };
     public:
-        std::string GetName() const override;
+        TInstantiateProcess(std::string name) : nsBase::nsZones::IHopProcess(std::move(name)) {}
         boost::asio::awaitable<bool> Start(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
         boost::asio::awaitable<void> Stop(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
         nsBase::nsZones::TContextStateInProcess GetState(nsBase::nsZones::SharedPtrHopProcessContext pCtx) const override;
     protected:
         void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override;
+
+        TSyncSubProcess  mSyncSubProcess;
+        TAsyncSubProcess mAsyncSubProcess;
+        TSyncSubProcess  mSyncSubProcess;
     };
 }

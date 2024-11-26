@@ -504,7 +504,6 @@
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Save\SaveProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\AsyncProcess.cpp" />
-    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\DummyAsync\DummyAsyncProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\SyncProcess.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -1134,7 +1133,6 @@
     <ClInclude Include="Handlers\Common\IGlobalHandler.h" />
     <ClInclude Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.h" />
     <ClInclude Include="Features\Logic\End\Terminator\GlobalHandlerTerminatorSystem.h" />
-    <ClInclude Include="Modules\Resources\Scene\SceneState.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\SceneStateGraph.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\SceneContext.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\InstantiateProcess.h" />
@@ -1142,7 +1140,6 @@
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Save\SaveProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\AsyncProcess.h" />
-    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\DummyAsync\DummyAsyncProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\SyncProcess.h" />
   </ItemGroup>
   <ItemGroup>

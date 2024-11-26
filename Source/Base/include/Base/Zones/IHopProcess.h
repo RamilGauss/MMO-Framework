@@ -28,11 +28,12 @@ namespace nsBase::nsZones
     class DllExport IHopProcess
     {
     public:
+        explicit IHopProcess(std::string name);
         void Init(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread);
         virtual ~IHopProcess() = default;
 
-        virtual std::string GetName() const = 0;
+        std::string GetName() const;
         virtual boost::asio::awaitable<bool> Start(SharedPtrHopProcessContext pCtx) = 0;
         virtual boost::asio::awaitable<void> Stop(SharedPtrHopProcessContext pCtx) = 0;
         virtual TContextStateInProcess GetState(SharedPtrHopProcessContext pCtx) const = 0;
@@ -42,6 +43,8 @@ namespace nsBase::nsZones
 
         void SetCurrentSubProcess(SharedPtrHopProcessContext pCtx, ISubProcess* pCurrentSubvProcess);
         ISubProcess* GetCurrentSubProcess(SharedPtrHopProcessContext pCtx) const;
+
+        std::string mName;
 
         // Main thread
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;

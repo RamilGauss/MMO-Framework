@@ -40,6 +40,7 @@ namespace nsTornadoEngine
     TSceneManager::TSceneManager()
     {
         mSceneStateGraph = std::make_shared<TSceneStateGraph>();
+        mSceneStateGraph->Init();
     }
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::Create(const std::string& absPath)

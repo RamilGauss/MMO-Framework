@@ -87,14 +87,11 @@ namespace nsBase::nsZones::nsTests
     {
         TSimpleSyncSubProcess mSubProcess;
     public:
+        TSimpleSyncProcess(std::string name) : IHopProcess(std::move(name)) {}
         void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override
         {
             mSubProcess.Init(strandHolder, coroInThread);
-        }
-        std::string GetName() const override
-        {
-            return "Sync";
         }
         boost::asio::awaitable<bool> Start(SharedPtrHopProcessContext pCtx) override
         {
@@ -114,14 +111,11 @@ namespace nsBase::nsZones::nsTests
     {
         TSimpleAsyncSubProcess mSubProcess;
     public:
+        TSimpleAsyncProcess(std::string name) : IHopProcess(std::move(name)) {}
         void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override
         {
             mSubProcess.Init(strandHolder, coroInThread);
-        }
-        std::string GetName() const override
-        {
-            return "Async";
         }
         boost::asio::awaitable<bool> Start(SharedPtrHopProcessContext pCtx) override
         {
@@ -142,15 +136,12 @@ namespace nsBase::nsZones::nsTests
         TSimpleSyncSubProcess  mSyncSubProcess;
         TSimpleAsyncSubProcess mAsyncSubProcess;
     public:
+        TComplexProcess(std::string name) : IHopProcess(std::move(name)) {}
         void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override
         {
             mSyncSubProcess.Init(strandHolder, coroInThread);
             mAsyncSubProcess.Init(strandHolder, coroInThread);
-        }
-        std::string GetName() const override
-        {
-            return "Complex";
         }
         boost::asio::awaitable<bool> Start(SharedPtrHopProcessContext pCtx) override
         {
@@ -176,6 +167,7 @@ namespace nsBase::nsZones::nsTests
             auto currentSubProcess = GetCurrentSubProcess(pCtx);
             if (currentSubProcess)
                 return currentSubProcess->GetState(pCtx);
+            return {};
         }
     };
 }
@@ -200,7 +192,7 @@ TEST(Zones, Simple_Ok)
     zoneMgr.AddZone(a);
     zoneMgr.AddZone(b);
 
-    auto process = std::make_shared<TSimpleSyncProcess>();
+    auto process = std::make_shared<TSimpleSyncProcess>("Sync");
     a->AddProcess(process);
 
     auto ctx = std::make_shared<TCtx>();
@@ -235,7 +227,7 @@ TEST(Zones, Async)
     zoneMgr.AddZone(a);
     zoneMgr.AddZone(b);
 
-    auto process = std::make_shared<TSimpleAsyncProcess>();
+    auto process = std::make_shared<TSimpleAsyncProcess>("Async");
     a->AddProcess(process);
 
     auto ctx = std::make_shared<TCtx>();
@@ -271,7 +263,7 @@ TEST(Zones, Complex)
     zoneMgr.AddZone(a);
     zoneMgr.AddZone(b);
 
-    auto process = std::make_shared<TComplexProcess>();
+    auto process = std::make_shared<TComplexProcess>("Complex");
     a->AddProcess(process);
 
     auto ctx = std::make_shared<TCtx>();
@@ -306,7 +298,7 @@ TEST(Zones, Cancel)
     zoneMgr.AddZone(a);
     zoneMgr.AddZone(b);
 
-    auto process = std::make_shared<TSimpleAsyncProcess>();
+    auto process = std::make_shared<TSimpleAsyncProcess>("Async");
     a->AddProcess(process);
 
     auto ctx = std::make_shared<TCtx>();

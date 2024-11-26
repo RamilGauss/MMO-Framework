@@ -11,6 +11,8 @@ See for more information LICENSE.md.
 #include <list>
 #include <memory>
 
+#include <magic_enum/magic_enum.hpp>
+
 #include "Base/Common/TypeDef.h"
 
 #include "Base/Zones/ZoneManager.h"
@@ -41,7 +43,7 @@ namespace nsTornadoEngine
         void Work(int maxDuration);
 
         void StartProcess(Process process, TSceneContextPtr pCtx);
-        void StopProcess(TSceneContext* pCtx);
+        void StopProcess(TSceneContextPtr pCtx);
 
         std::optional<std::string> GetZoneName(TSceneContextPtr pCtx) const;
 
@@ -49,6 +51,12 @@ namespace nsTornadoEngine
         std::optional<nsBase::nsZones::TContextStateInProcess> GetSceneInstanceState(TSceneContextPtr pCtx);
 
     private:
+        template <typename ENUM_NAME>
+        std::string ToString(ENUM_NAME enumName)
+        {
+            return std::string(magic_enum::enum_name(enumName));
+        }
+
         nsBase::nsZones::TZoneManager mZoneMng;
 
         enum class Zone
@@ -63,5 +71,11 @@ namespace nsTornadoEngine
 
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;
         nsBase::nsCommon::TCoroInThread::Ptr mCoroInThread;
+
+        nsBase::nsZones::SharedPtrZone mInitZone;
+        nsBase::nsZones::SharedPtrZone mInstantiatedZone;
+        nsBase::nsZones::SharedPtrZone mDestroyedZone;
+        nsBase::nsZones::SharedPtrZone mDeadZone;
+
     };
 }
