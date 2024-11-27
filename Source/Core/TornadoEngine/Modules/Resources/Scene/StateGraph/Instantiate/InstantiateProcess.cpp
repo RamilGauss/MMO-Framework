@@ -8,21 +8,18 @@ See for more information LICENSE.md.
 #include "InstantiateProcess.h"
 #include "Base/Zones/Zone.h"
 
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/AsyncProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Sync/SyncProcess.h"
-
 namespace nsTornadoEngine
 {
     boost::asio::awaitable<bool> TInstantiateProcess::Start(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
-        SetCurrentSubProcess(pCtx, &mSyncSubProcess);
-        if (co_await mSyncSubProcess.Start(pCtx) == false) {
+        SetCurrentSubProcess(pCtx, &mSceneFileOpeningProcess);
+        if (co_await mSceneFileOpeningProcess.Start(pCtx) == false) {
             co_return false;
         }
-        SetCurrentSubProcess(pCtx, &mAsyncSubProcess);
-        if (co_await mAsyncSubProcess.Start(pCtx) == false) {
-            co_return false;
-        }
+        //SetCurrentSubProcess(pCtx, &mAsyncSubProcess);
+        //if (co_await mAsyncSubProcess.Start(pCtx) == false) {
+        //    co_return false;
+        //}
         SetCurrentSubProcess(pCtx, nullptr);
         co_return true;
     }
@@ -45,9 +42,9 @@ namespace nsTornadoEngine
     void TInstantiateProcess::InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TCoroInThread::Ptr coroInThread)
     {
-        mSyncSubProcess.Init(strandHolder, coroInThread);
-        mAsyncSubProcess.Init(strandHolder, coroInThread);
-        mSyncSubProcess.Init(strandHolder, coroInThread);
+        mSceneFileOpeningProcess.Init(strandHolder, coroInThread);
+        //mAsyncSubProcess.Init(strandHolder, coroInThread);
+        //mSyncSubProcess.Init(strandHolder, coroInThread);
     }
     //-------------------------------------------------------------------------------
 }

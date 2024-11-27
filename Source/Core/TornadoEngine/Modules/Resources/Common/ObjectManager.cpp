@@ -20,10 +20,10 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    void TObjectManager::SetContentMap(const std::string& contentMapPath)
-    {
+    //void TObjectManager::SetContentMap(const std::string& contentMapPath)
+    //{
         //mResourceContentMap = resourceContentMap;
-    }
+    //}
     //------------------------------------------------------------------------------------------------------
     void TObjectManager::SetEntityManager(nsECSFramework::TEntityManager* entMng)
     {

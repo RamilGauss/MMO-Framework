@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Zones/IHopProcess.h"
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneFileOpeningProcess.h"
 
 namespace nsBase::nsZones
 {
@@ -27,8 +28,8 @@ namespace nsTornadoEngine
         void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override;
 
-        TSyncSubProcess  mSyncSubProcess;
-        TAsyncSubProcess mAsyncSubProcess;
-        TSyncSubProcess  mSyncSubProcess;
+        TSceneFileOpeningProcess  mSceneFileOpeningProcess;
+        //TAsyncSubProcess mAsyncSubProcess;
+        //TSyncSubProcess  mSyncSubProcess;
     };
 }

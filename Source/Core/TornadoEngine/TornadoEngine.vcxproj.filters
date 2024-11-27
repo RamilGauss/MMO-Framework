@@ -503,8 +503,8 @@
     <ClCompile Include="Modules\Resources\Scene\StateGraph\CancelInstantiate\CancelInstantiateProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Save\SaveProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.cpp" />
-    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\AsyncProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\SyncProcess.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneFileOpeningProcess.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TimeSliceEngine\FrameworkResources.h">
@@ -1139,8 +1139,8 @@
     <ClInclude Include="Modules\Resources\Scene\StateGraph\CancelInstantiate\CancelInstantiateProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Save\SaveProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.h" />
-    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\AsyncProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\SyncProcess.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneFileOpeningProcess.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

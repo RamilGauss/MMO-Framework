@@ -357,7 +357,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Modules\Resources\Scene\SceneManager.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\CancelInstantiate\CancelInstantiateProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.cpp" />
-    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\AsyncProcess.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneFileOpeningProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\InstantiateProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\SyncProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Save\SaveProcess.cpp" />
@@ -425,7 +425,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Modules\Resources\Scene\SceneResourceContent.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\CancelInstantiate\CancelInstantiateProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.h" />
-    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\AsyncProcess.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneFileOpeningProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\InstantiateProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\SyncProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Save\SaveProcess.h" />

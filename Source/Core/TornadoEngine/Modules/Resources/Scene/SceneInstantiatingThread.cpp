@@ -128,7 +128,7 @@ namespace nsTornadoEngine
 
             bool isRoot = false;
 
-            entityMetaContentPtr->conent = *(mScState->mCurrentEntIt);
+            entityMetaContentPtr->content = *(mScState->mCurrentEntIt);
 
             for (auto component : mScState->mCurrentEntIt->components) {
                 if (component.typeName == mGuidComponentTypeName) {
@@ -219,7 +219,7 @@ namespace nsTornadoEngine
             std::list<TEntityContent> sortedByRankEntities;
             for (auto& layer : mScState->mLayers) {
                 for (auto& entity : layer) {
-                    sortedByRankEntities.push_back(entity.second->conent);
+                    sortedByRankEntities.push_back(entity.second->content);
                 }
             }
 

@@ -13,7 +13,7 @@ namespace nsTornadoEngine
 {
     struct DllExport TEntityMetaContent
     {
-        TEntityContent conent;
+        TEntityContent content;
 
         std::string guid;
         std::string parentGuid;
