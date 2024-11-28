@@ -62,8 +62,8 @@ namespace nsTornadoEngine
         if (fit == mResourceContentMap.guidPathMap.end()) {
             return "";
         }
-
-        return nsBase::TPathOperations::CalculatePathBy(mContentMapPath, fit->second);
+        auto contentMapDirAbsPath = nsBase::TPathOperations::TPathOperations::FileDirPath(mContentMapPath);
+        return nsBase::TPathOperations::CalculatePathBy(contentMapDirAbsPath, fit->second);
     }
     //------------------------------------------------------------------------------------
     void TResourceManager::Rename(const std::string& guid, const std::string& newAbsPath)

@@ -19,5 +19,11 @@ namespace nsTornadoEngine
         std::string resourcesContentMapPath;
         std::string prefabsContentMapPath;
         std::string scenesContentMapPath;
+#pragma IGNORE_ATTRIBUTE
+        std::string resourcesContentMapAbsPath;
+#pragma IGNORE_ATTRIBUTE
+        std::string prefabsContentMapAbsPath;
+#pragma IGNORE_ATTRIBUTE
+        std::string scenesContentMapAbsPath;
     };
 }

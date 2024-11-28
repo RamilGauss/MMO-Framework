@@ -62,7 +62,7 @@ namespace nsTornadoEngine
         return mLoadQuant;
     }
     //--------------------------------------------------------------------------------------------------------
-    std::optional<TSceneManager::TScenaState> TSceneManager::GetState(const std::string& sceneInstanceGuid)
+    std::optional<TSceneState> TSceneManager::GetState(const std::string& sceneInstanceGuid)
     {
         auto fit = mSceneInstances.find(sceneInstanceGuid);
         if (fit == mSceneInstances.end()) {
@@ -70,7 +70,7 @@ namespace nsTornadoEngine
         }
         auto pCtx = fit->second;
 
-        TScenaState sceneState;
+        TSceneState sceneState;
         auto progress = mSceneStateGraph->GetSceneInstanceState(pCtx);
         if (progress) {
             sceneState.inProcess = true;

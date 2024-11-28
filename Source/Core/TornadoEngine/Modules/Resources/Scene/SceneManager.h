@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 
 #include "Modules/Resources/Scene/UniverseManager.h"
 #include "Modules/Resources/Scene/InstantiateSceneParams.h"
+#include "Modules/Resources/Scene/SceneState.h"
 
 namespace nsTornadoEngine
 {
@@ -45,14 +46,7 @@ namespace nsTornadoEngine
     public:
         TSceneManager();
 
-        struct TScenaState
-        {
-            bool inProcess = false;
-            nsBase::nsZones::TContextStateInProcess progress;
-            std::string zoneName;
-        };
-
-        std::optional<TScenaState> GetState(const std::string& sceneInstanceGuid);
+        std::optional<TSceneState> GetState(const std::string& sceneInstanceGuid);
 
         // Per one call
         std::string Create(const std::string& absPath); // -> guid
@@ -79,9 +73,5 @@ namespace nsTornadoEngine
         void DecrementReferenceCounter(TUniverseManager::IndexType index);
 
         int GetReferenceCounter(TUniverseManager::IndexType index);
-
-        //void PrepareInstantiating(TSceneInstanceState* pSc);
-        //void EntityInstantiating(TSceneInstanceState* pSc);
-        //void PrefabInstantiating(TSceneInstanceState* pSc);
     };
 }

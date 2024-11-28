@@ -1141,6 +1141,7 @@
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\SyncProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneFileOpeningProcess.h" />
+    <ClInclude Include="Modules\Resources\Scene\SceneState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

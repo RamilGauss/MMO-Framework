@@ -84,6 +84,16 @@ bool TProjectConfigLoader::LoadConveyor()
 //------------------------------------------------------------------------
 bool TProjectConfigLoader::LoadResources()
 {
-    return TResourceManager::Load(mPcc->GetResourcesAbsPath(), &(mPcc->mResources));
+    auto resourceAbsPath = mPcc->GetResourcesAbsPath();
+    auto pResource = &(mPcc->mResources);
+    auto res = TResourceManager::Load(resourceAbsPath, pResource);
+    if (res == false) {
+        return false;
+    }
+    auto resourceDirAbsPath = TPathOperations::FileDirPath(resourceAbsPath);
+    pResource->resourcesContentMapAbsPath = TPathOperations::CalculatePathBy(resourceDirAbsPath, pResource->resourcesContentMapPath);
+    pResource->prefabsContentMapAbsPath = TPathOperations::CalculatePathBy(resourceDirAbsPath, pResource->prefabsContentMapPath);
+    pResource->scenesContentMapAbsPath = TPathOperations::CalculatePathBy(resourceDirAbsPath, pResource->scenesContentMapPath);
+    return true;
 }
 //------------------------------------------------------------------------
