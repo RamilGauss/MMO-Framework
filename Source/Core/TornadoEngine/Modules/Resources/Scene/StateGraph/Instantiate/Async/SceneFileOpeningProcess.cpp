@@ -17,8 +17,12 @@ namespace nsTornadoEngine
         ctx->file.ReOpen((char*)ctx->sceneAbsPath.c_str());
 
         auto size = ctx->file.Size();
+        auto partCount = size / TSceneContext::FILE_PART_SIZE;
+        if (partCount == 0) {
+            partCount = 1;
+        }
 
-        ctx->fileProgress.SetTotal(size);
+        ctx->fileProgress.SetTotal(partCount);
         ctx->fileContent.reserve(size);
     }
     //-------------------------------------------------------------------------------

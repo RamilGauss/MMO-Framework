@@ -66,7 +66,7 @@ namespace nsTornadoEngine
 
         unsigned short universeIndex = 0;
 
-        static const int FILE_PART_SIZE = 10'000'000;
+        static const int FILE_PART_SIZE = 1'000'000;
         static const int PREPARE_TREE_ENTITY_PART_SIZE = 100;
         static const int SORTING_PART_SIZE = 100;
         static const int COMPONENT_DESERIALZING_PART_SIZE = 1000;
