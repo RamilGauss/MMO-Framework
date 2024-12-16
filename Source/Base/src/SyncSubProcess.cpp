@@ -25,7 +25,10 @@ namespace nsBase::nsZones
         auto newState = std::make_shared<TContextState>();
         mCtxStateMap.insert({ pCtx, newState });
 
-        newState->state.SetSubProcessTotalPartCount(GetSubProcessTotalPartCount(pCtx));
+        Launch(pCtx);
+        co_await mStrandHolder->Wait();
+
+        newState->state.SetSubProcessTotalPartCount(GetTotalPartCount(pCtx));
         newState->state.SetState(TContextStateInProcess::State::WORKING);
 
         while (true) {
@@ -41,6 +44,8 @@ namespace nsBase::nsZones
                 newState->state.Increment();
             }
         }
+
+        Finalize(pCtx);
 
         mCtxStateMap.erase(pCtx);
         co_return result;

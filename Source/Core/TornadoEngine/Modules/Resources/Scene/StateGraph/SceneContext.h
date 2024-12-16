@@ -26,16 +26,17 @@ namespace nsTornadoEngine
 {
     struct DllExport TSceneContext : nsBase::nsZones::THopProcessContext
     {
+        int guidComponentRtti = 0;
+        int garentGuidComponentRtti = 0;
+        int sceneRootComponentRtti = 0;
+
+        std::string guidComponentTypeName;
+        std::string parentGuidComponentTypeName;
+        std::string sceneRootComponentTypeName;
+
         std::string sceneAbsPath;
 
         TInstantiateSceneParams instantiateSceneParams;
-
-        nsBase::TProgressValue fileProgress;
-        nsBase::TProgressValue prepareTreeEntityProgress;
-        nsBase::TProgressValue sortingProgress;
-        nsBase::TProgressValue componentDeserializingProgress;
-        nsBase::TProgressValue entityProgress;
-        nsBase::TProgressValue prefabProgress;
 
         TContainer fileBuffer;
         std::string fileContent;
@@ -43,6 +44,8 @@ namespace nsTornadoEngine
         nsBase::nsCommon::TLoadFromFile file;
 
         TSceneResourceContent sceneContent;
+
+        std::list<std::string> entityGuids;
 
         std::list<TEntityContent>::iterator currentEntIt;
 

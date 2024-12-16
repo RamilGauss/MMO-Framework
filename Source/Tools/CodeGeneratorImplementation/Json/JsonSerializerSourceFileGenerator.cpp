@@ -572,9 +572,6 @@ void TJsonSerializerSourceFileGenerator::AddPushReflectionDepthMap(TMemberInfo* 
             str = fmt::format("{}::{}({}, {}::{}({}.{}).data(), {});",
                 s_PUM, s_Push, prevC, s_PUM, s_ConvertToString, curE, s_First, curC);
             Add(str);
-
-            //auto a0_m_c1 = _SerializeEnum(&a0_m_e0.second);
-            //PUM::Push(a0_m_c0, PUM::ConvertToString(a0_m_e0.first).data(), a0_m_c1);
         } else {
             str = fmt::format("auto {} = {}::{}({}, {}::{}({}.first).data());", curA, s_PUM, s_AddObject, prevC,
                 s_PUM, s_ConvertToString, curE);
@@ -631,7 +628,13 @@ void TJsonSerializerSourceFileGenerator::AddBeginPushListOrSet(TMemberInfo* pMem
     }
 
     auto curE = ElementName(pMemberInfo->mName, depth);
-    str = fmt::format("for(auto& {} : {}) {{", curE, prevE);
+
+    auto refStr = "&";
+    if (pMemberInfo->mExtendedInfo.mCategory == TypeCategory::SET) {
+        refStr = "";
+    }
+
+    str = fmt::format("for(auto{} {} : {}) {{", refStr, curE, prevE);
     Add(str);
 
     IncrementTabs();
@@ -1076,6 +1079,11 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
     Find(&(pExtArr->at(depth)), withinClassTypeNameList, type);
     auto typeE = type->GetTypeNameWithNameSpace();
 
+    auto addMethod = s_PushBack;
+    if (pMemberInfo->mExtendedInfo.mCategory == TypeCategory::SET) {
+        addMethod = s_Insert;
+    }
+
     if (category == AccessMethod::OBJECT) {
         std::string str;
         if (type->mType == DeclarationType::ENUM) {
@@ -1085,7 +1093,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
             Add(str);
             str = fmt::format("{}({}, &{});", methodStr, curO, curC);
             Add(str);
-            str = fmt::format("{}.{}({});", dst, s_PushBack, curC);
+            str = fmt::format("{}.{}({});", dst, addMethod, curC);
             Add(str);
         } else {
             str = fmt::format("auto {} = {}.{}();", curO, prevE, s_GetObject);
@@ -1094,7 +1102,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
             Add(str);
             str = fmt::format("{}(&{}, {});", methodStr, curC, curO);
             Add(str);
-            str = fmt::format("{}.{}({});", dst, s_PushBack, curC);
+            str = fmt::format("{}.{}({});", dst, addMethod, curC);
             Add(str);
         }
     } else {
@@ -1116,7 +1124,7 @@ void TJsonSerializerSourceFileGenerator::AddPopReflectionDepthSetListVector(TMem
         Add(str);
         str = fmt::format("{}({}{}, {});", methodStr, curC, access, curO);
         Add(str);
-        str = fmt::format("{}.{}({});", dst, s_PushBack, curC);
+        str = fmt::format("{}.{}({});", dst, addMethod, curC);
         Add(str);
 
         DecrementTabs();

@@ -76,6 +76,5 @@ namespace nsTornadoEngine
         nsBase::nsZones::SharedPtrZone mInstantiatedZone;
         nsBase::nsZones::SharedPtrZone mDestroyedZone;
         nsBase::nsZones::SharedPtrZone mDeadZone;
-
     };
 }

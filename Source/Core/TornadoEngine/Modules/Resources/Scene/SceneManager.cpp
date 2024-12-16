@@ -34,12 +34,26 @@ See for more information LICENSE.md.
 #include "Components/Meta/UniverseIndexComponent.h"
 #include "Components/Meta/UniverseGuidComponent.h"
 
+#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
+
 namespace nsTornadoEngine
 {
     TSceneManager::TSceneManager()
     {
         mSceneStateGraph = std::make_shared<TSceneStateGraph>();
         mSceneStateGraph->Init();
+
+        auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
+
+        auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
+
+        mGuidComponentRtti = globalTypeIdentifier->Type<nsCommonWrapper::TGuidComponent>();
+        mParentGuidComponentRtti = globalTypeIdentifier->Type<nsCommonWrapper::TParentGuidComponent>();
+        mSceneRootComponentRtti = globalTypeIdentifier->Type<nsCommonWrapper::TSceneRootComponent>();
+
+        componentReflection->mRtti->ConvertTypeToName(mGuidComponentRtti, mGuidComponentTypeName);
+        componentReflection->mRtti->ConvertTypeToName(mParentGuidComponentRtti, mParentGuidComponentTypeName);
+        componentReflection->mRtti->ConvertTypeToName(mSceneRootComponentRtti, mSceneRootComponentTypeName);
     }
     //--------------------------------------------------------------------------------------------------------
     std::string TSceneManager::Create(const std::string& absPath)
@@ -100,7 +114,12 @@ namespace nsTornadoEngine
         }
         sceneCtx->sceneAbsPath = absPath;
 
-
+        sceneCtx->guidComponentRtti = mGuidComponentRtti;
+        sceneCtx->garentGuidComponentRtti = mParentGuidComponentRtti;
+        sceneCtx->sceneRootComponentRtti = mSceneRootComponentRtti;
+        sceneCtx->guidComponentTypeName = mGuidComponentTypeName;
+        sceneCtx->parentGuidComponentTypeName = mParentGuidComponentTypeName;
+        sceneCtx->sceneRootComponentTypeName = mSceneRootComponentTypeName;
 
         mSceneInstances.insert({ sceneCtx->instantiateSceneParams.sceneInstanceGuid, sceneCtx });
         mSceneStateGraph->StartProcess(TSceneStateGraph::Process::INSTANTIATE, sceneCtx);

@@ -2,9 +2,8 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_01_07 18:18:28.289
-	
-#include "Generated Files/TornadoEngineJsonSerializer.h"
+// File has been generated at 2024_12_16 15:46:49.009
+#include "TornadoEngineJsonSerializer.h"
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
 #include "Base/Common/SingletonManager.h"
@@ -482,10 +481,10 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsMathTools::TVector4* p, const 
 std::string TTornadoEngineJsonSerializer::_SerializeEnum(nsTornadoEngine::FieldAccessType* p)
 {
     switch (*p) {
-        case nsTornadoEngine::FieldAccessType::DELETE:
-            return "DELETE";
         case nsTornadoEngine::FieldAccessType::READ:
             return "READ";
+        case nsTornadoEngine::FieldAccessType::REMOVE:
+            return "REMOVE";
         case nsTornadoEngine::FieldAccessType::SHOW:
             return "SHOW";
         case nsTornadoEngine::FieldAccessType::WRITE:
@@ -498,8 +497,8 @@ std::string TTornadoEngineJsonSerializer::_SerializeEnum(nsTornadoEngine::FieldA
 void TTornadoEngineJsonSerializer::_DeserializeEnum(std::string& str, nsTornadoEngine::FieldAccessType* p)
 {
     std::map<std::string, nsTornadoEngine::FieldAccessType> m;
-    m.insert({"DELETE", nsTornadoEngine::FieldAccessType::DELETE});
     m.insert({"READ", nsTornadoEngine::FieldAccessType::READ});
+    m.insert({"REMOVE", nsTornadoEngine::FieldAccessType::REMOVE});
     m.insert({"SHOW", nsTornadoEngine::FieldAccessType::SHOW});
     m.insert({"WRITE", nsTornadoEngine::FieldAccessType::WRITE});
     *p = m[str];
@@ -544,7 +543,7 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TArchetypeField* 
 {
     PUM::Push(obj, "name", p->name);
     PUM::Value access_a0(rapidjson::kArrayType);
-    for(auto& access_e0 : p->access) {
+    for(auto access_e0 : p->access) {
         auto access_c1 = _SerializeEnum(&access_e0);
         PUM::PushBack(access_a0, access_c1);
     }
@@ -559,7 +558,7 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TArchetypeField
         std::string access_o1 = access_e0.GetString();
         nsTornadoEngine::FieldAccessType access_c1;
         _DeserializeEnum(access_o1, &access_c1);
-        p->access.push_back(access_c1);
+        p->access.insert(access_c1);
     }
 }
 //---------------------------------------------------------------------------------------
@@ -626,6 +625,9 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TFrameworkResourc
     PUM::Push(obj, "resourcesContentMapPath", p->resourcesContentMapPath);
     PUM::Push(obj, "prefabsContentMapPath", p->prefabsContentMapPath);
     PUM::Push(obj, "scenesContentMapPath", p->scenesContentMapPath);
+    PUM::Push(obj, "resourcesContentMapAbsPath", p->resourcesContentMapAbsPath);
+    PUM::Push(obj, "prefabsContentMapAbsPath", p->prefabsContentMapAbsPath);
+    PUM::Push(obj, "scenesContentMapAbsPath", p->scenesContentMapAbsPath);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TFrameworkResources* p, const Jobj& obj)
@@ -633,6 +635,9 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TFrameworkResou
     POM::PopStr(obj, "resourcesContentMapPath", p->resourcesContentMapPath);
     POM::PopStr(obj, "prefabsContentMapPath", p->prefabsContentMapPath);
     POM::PopStr(obj, "scenesContentMapPath", p->scenesContentMapPath);
+    POM::PopStr(obj, "resourcesContentMapAbsPath", p->resourcesContentMapAbsPath);
+    POM::PopStr(obj, "prefabsContentMapAbsPath", p->prefabsContentMapAbsPath);
+    POM::PopStr(obj, "scenesContentMapAbsPath", p->scenesContentMapAbsPath);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabInstance* p, Jobj& obj)

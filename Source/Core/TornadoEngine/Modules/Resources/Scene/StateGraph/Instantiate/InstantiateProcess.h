@@ -8,7 +8,13 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Zones/IHopProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneFileOpeningProcess.h"
+
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/CollectGuidsProcess.h"
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/ComponentDeserializingProcess.h"
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneFileLoadingProcess.h"
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneDeserializingProcess.h"
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SortingEntityByRankProcess.h"
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/PrepareTreeEntityProcess.h"
 
 namespace nsBase::nsZones
 {
@@ -28,8 +34,11 @@ namespace nsTornadoEngine
         void InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
             nsBase::nsCommon::TCoroInThread::Ptr coroInThread) override;
 
-        TSceneFileOpeningProcess  mSceneFileOpeningProcess;
-        //TAsyncSubProcess mAsyncSubProcess;
-        //TSyncSubProcess  mSyncSubProcess;
+        TSceneFileLoadingProcess mSceneFileLoadingProcess;
+        TSceneDeserializingProcess mSceneDeserializingProcess;
+        TComponentDeserializingProcess mComponentDeserializingProcess;
+        TCollectGuidsProcess mCollectGuidsProcess;
+        TPrepareTreeEntityProcess mPrepareTreeEntityProcess;
+        TSortingEntityByRankProcess mSortingEntityByRankProcess;
     };
 }

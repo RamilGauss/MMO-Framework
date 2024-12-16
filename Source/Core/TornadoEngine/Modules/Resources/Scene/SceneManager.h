@@ -73,5 +73,13 @@ namespace nsTornadoEngine
         void DecrementReferenceCounter(TUniverseManager::IndexType index);
 
         int GetReferenceCounter(TUniverseManager::IndexType index);
+
+        int mGuidComponentRtti = 0;
+        int mParentGuidComponentRtti = 0;
+        int mSceneRootComponentRtti = 0;
+
+        std::string mGuidComponentTypeName;
+        std::string mParentGuidComponentTypeName;
+        std::string mSceneRootComponentTypeName;
     };
 }

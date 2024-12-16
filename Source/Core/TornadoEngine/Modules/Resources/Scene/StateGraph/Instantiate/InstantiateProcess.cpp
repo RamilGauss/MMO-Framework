@@ -8,18 +8,41 @@ See for more information LICENSE.md.
 #include "InstantiateProcess.h"
 #include "Base/Zones/Zone.h"
 
+#include "Modules/Resources/Scene/SceneHashCalculator.h"
+#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+
 namespace nsTornadoEngine
 {
     boost::asio::awaitable<bool> TInstantiateProcess::Start(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
-        SetCurrentSubProcess(pCtx, &mSceneFileOpeningProcess);
-        if (co_await mSceneFileOpeningProcess.Start(pCtx) == false) {
+        SetCurrentSubProcess(pCtx, &mSceneFileLoadingProcess);
+        if (co_await mSceneFileLoadingProcess.Start(pCtx) == false) {
             co_return false;
         }
-        //SetCurrentSubProcess(pCtx, &mAsyncSubProcess);
-        //if (co_await mAsyncSubProcess.Start(pCtx) == false) {
-        //    co_return false;
-        //}
+        SetCurrentSubProcess(pCtx, &mSceneDeserializingProcess);
+        if (co_await mSceneDeserializingProcess.Start(pCtx) == false) {
+            co_return false;
+        }
+        SetCurrentSubProcess(pCtx, &mCollectGuidsProcess);
+        if (co_await mCollectGuidsProcess.Start(pCtx) == false) {
+            co_return false;
+        }
+        // Calculate the hash and compare with a hash in the saved file
+        auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
+        std::string calculatedHash = TSceneHashCalculator::Calculate(ctx->entityGuids);
+
+        nsBase::nsZones::ISubProcess* pNextSubProcess = nullptr;
+        if (calculatedHash != ctx->sceneContent.groupedByRankEntityGuidHash) {
+            pNextSubProcess = &mPrepareTreeEntityProcess;
+        } else {
+            pNextSubProcess = &mSortingEntityByRankProcess;
+        }
+
+        SetCurrentSubProcess(pCtx, pNextSubProcess);
+        if (co_await mPrepareTreeEntityProcess.Start(pCtx) == false) {
+            co_return false;
+        }
+
         SetCurrentSubProcess(pCtx, nullptr);
         co_return true;
     }
@@ -42,9 +65,12 @@ namespace nsTornadoEngine
     void TInstantiateProcess::InitSubProcesses(nsBase::nsCommon::TStrandHolder::Ptr strandHolder,
         nsBase::nsCommon::TCoroInThread::Ptr coroInThread)
     {
-        mSceneFileOpeningProcess.Init(strandHolder, coroInThread);
-        //mAsyncSubProcess.Init(strandHolder, coroInThread);
-        //mSyncSubProcess.Init(strandHolder, coroInThread);
+        mSceneFileLoadingProcess.Init(strandHolder, coroInThread);
+        mSceneDeserializingProcess.Init(strandHolder, coroInThread);
+        mComponentDeserializingProcess.Init(strandHolder, coroInThread);
+        mCollectGuidsProcess.Init(strandHolder, coroInThread);
+        mPrepareTreeEntityProcess.Init(strandHolder, coroInThread);
+        mSortingEntityByRankProcess.Init(strandHolder, coroInThread);
     }
     //-------------------------------------------------------------------------------
 }

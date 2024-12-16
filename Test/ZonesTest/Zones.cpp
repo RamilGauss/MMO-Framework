@@ -57,11 +57,12 @@ namespace nsBase::nsZones::nsTests
     class TSimpleSyncSubProcess : public TSyncSubProcess
     {
     protected:
+        void Launch(SharedPtrHopProcessContext pCtx) override {}
         void Work(SharedPtrHopProcessContext pCtx) override
         {
             //std::cout << std::static_pointer_cast<TCtx>(pCtx)->fileName;
         }
-        uint32_t GetSubProcessTotalPartCount(SharedPtrHopProcessContext pCtx) override
+        uint32_t GetTotalPartCount(SharedPtrHopProcessContext pCtx) override
         {
             return 1;
         }
@@ -70,6 +71,7 @@ namespace nsBase::nsZones::nsTests
     class TSimpleAsyncSubProcess : public TAsyncSubProcess
     {
     protected:
+        void Launch(SharedPtrHopProcessContext pCtx) override {}
         void Work(SharedPtrHopProcessContext pCtx) override
         {
             auto ctx = std::static_pointer_cast<TCtx>(pCtx);
@@ -77,7 +79,7 @@ namespace nsBase::nsZones::nsTests
             ht_msleep(ctx->asyncTimeToSleep);
             //std::cout << ctx->counter++ << std::endl;
         }
-        uint32_t GetSubProcessTotalPartCount(SharedPtrHopProcessContext pCtx) override
+        uint32_t GetTotalPartCount(SharedPtrHopProcessContext pCtx) override
         {
             return 10;
         }

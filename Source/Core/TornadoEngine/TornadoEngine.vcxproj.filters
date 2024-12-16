@@ -504,7 +504,12 @@
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Save\SaveProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\SyncProcess.cpp" />
-    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneFileOpeningProcess.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneDeserializingProcess.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneFileLoadingProcess.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\ComponentDeserializingProcess.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\PrepareTreeEntityProcess.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\CollectGuidsProcess.cpp" />
+    <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SortingEntityByRankProcess.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TimeSliceEngine\FrameworkResources.h">
@@ -1140,8 +1145,13 @@
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Save\SaveProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Destroy\DestroyProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\SyncProcess.h" />
-    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneFileOpeningProcess.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneDeserializingProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneState.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SceneFileLoadingProcess.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\ComponentDeserializingProcess.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\PrepareTreeEntityProcess.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\CollectGuidsProcess.h" />
+    <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Async\SortingEntityByRankProcess.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

@@ -37,8 +37,10 @@ namespace nsBase::nsZones
         
         TContextStateInProcess GetState(SharedPtrHopProcessContext pCtx) const;
     protected:
+        virtual void Launch(SharedPtrHopProcessContext pCtx) {};
+        virtual uint32_t GetTotalPartCount(SharedPtrHopProcessContext pCtx) = 0;
         virtual void Work(SharedPtrHopProcessContext pCtx) = 0;
-        virtual uint32_t GetSubProcessTotalPartCount(SharedPtrHopProcessContext pCtx) = 0;
+        virtual void Finalize(SharedPtrHopProcessContext pCtx) {};
 
         // Main thread
         nsBase::nsCommon::TStrandHolder::Ptr mStrandHolder;

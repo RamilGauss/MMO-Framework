@@ -15,7 +15,10 @@ namespace nsBase::nsZones
 {
     boost::asio::awaitable<void> TAsyncSubProcess::WorkInOtherThread(SharedPtrHopProcessContext pCtx, SharedPtrContextState pState)
     {
-        pState->inner.SetSubProcessTotalPartCount(GetSubProcessTotalPartCount(pCtx));
+        Launch(pCtx);
+        co_await mCoroInThread->GetStrandHolder()->Wait();
+
+        pState->inner.SetSubProcessTotalPartCount(GetTotalPartCount(pCtx));
         pState->inner.SetState(TContextStateInProcess::State::WORKING);
 
         while (true) {
@@ -31,6 +34,7 @@ namespace nsBase::nsZones
             }
         }
 
+        Finalize(pCtx);
         co_return;
     }
     //-------------------------------------------------------------------------------------------------

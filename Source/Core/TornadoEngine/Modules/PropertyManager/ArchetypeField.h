@@ -8,9 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
-#include <list>
-#include <map>
-#include <vector>
+#include <unordered_set>
 
 #include "Base/Common/TypeDef.h"
 
@@ -21,14 +19,14 @@ namespace nsTornadoEngine
         SHOW,
         READ,
         WRITE,
-        DELETE,
+        REMOVE,
     };
 
 #pragma REFLECTION_ATTRIBUTE
     struct DllExport TArchetypeField
     {
         std::string name;
-        std::list<FieldAccessType> access;
+        std::unordered_set<FieldAccessType> access;
     };
 
     //{
