@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #include "SceneDeserializingProcess.h"
 
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+//#include "Generated files/TornadoEngineJsonSerializer.h"
 
-#include "Generated files/TornadoEngineJsonSerializer.h"
+#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
 
 namespace nsTornadoEngine
 {
@@ -17,14 +17,14 @@ namespace nsTornadoEngine
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
 
-        std::string err;
-        auto deserResult = TTornadoEngineJsonSerializer::Deserialize(&ctx->sceneContent, ctx->fileContent, err);
+        //std::string err;
+        //auto deserResult = TTornadoEngineJsonSerializer::Deserialize(&ctx->sceneContent, ctx->fileContent, err);
 
 
         for (auto& entity : ctx->sceneContent.entities) {
             for (auto& component : entity.components) {
                 if (component.typeName == "") {
-                    ctx->entityGuids.push_back();
+                    //ctx->entityGuids.push_back();
                 }
             }
         }

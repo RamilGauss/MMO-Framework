@@ -14,7 +14,6 @@ See for more information LICENSE.md.
 #include <map>
 
 #include "Base/Common/LoadFromFile.h"
-#include "Base/Common/ProgressValue.h"
 
 #include "Base/Zones/HopProcessContext.h"
 

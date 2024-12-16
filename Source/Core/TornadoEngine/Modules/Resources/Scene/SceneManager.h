@@ -9,8 +9,6 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "Base/Zones/ContextStateInProcess.h"
-
 #include "Modules/Resources/Common/ObjectManager.h"
 
 #include "Modules/Resources/Scene/UniverseManager.h"
