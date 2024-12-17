@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_16 14:23:26.968
+// File has been generated at 2024_12_17 09:38:46.444
 #pragma once
 
 #include <vector>
@@ -251,6 +251,7 @@ namespace nsTornadoEngine
     template <typename Type>
     static void TComponentJson::Serialize(Type* p, std::string& str)
     {
+    #undef GetObject
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         auto obj = doc.GetObject();
     

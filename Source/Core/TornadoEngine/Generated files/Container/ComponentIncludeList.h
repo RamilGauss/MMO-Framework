@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_16 14:23:27.046
+// File has been generated at 2024_12_17 09:38:46.508
 #pragma once
 
 #include "Components/Graphic/CameraComponent.h"

@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_16 15:46:49.006
+// File has been generated at 2024_12_17 09:39:05.096
 #pragma once
 
 #include <vector>
@@ -116,6 +116,7 @@ namespace nsTornadoEngine
     template <typename Type>
     static void TTornadoEngineJsonSerializer::Serialize(Type* p, std::string& str)
     {
+    #undef GetObject
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         auto obj = doc.GetObject();
     
