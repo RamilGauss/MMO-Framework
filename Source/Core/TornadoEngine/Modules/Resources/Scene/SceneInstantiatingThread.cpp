@@ -7,8 +7,6 @@ See for more information LICENSE.md.
 
 #include <filesystem>
 
-#include "SceneHashCalculator.h"
-
 #include "Modules/Common/Modules.h"
 #include "Generated Files/TornadoEngineJsonSerializer.h"
 #include "TimeSliceEngine/ProjectConfigContainer.h"
@@ -103,16 +101,16 @@ namespace nsTornadoEngine
 
         mScState->mCurrentEntIt = mScState->mSceneContent.entities.begin();
 
-        std::list<std::string> entityGuids;
+        //std::list<std::string> entityGuids;
 
         // Calculate the hash and compare with a hash in the saved file
-        std::string calculatedHash = TSceneHashCalculator::Calculate(entityGuids);
+        //std::string calculatedHash = TSceneHashCalculator::Calculate(entityGuids);
 
-        if (calculatedHash != mScState->mSceneContent.groupedByRankEntityGuidHash) {
-            mScState->mSubState = TSceneInstanceState::SubState::PREPARE_TREE_ENTITY;
-        } else {
-            mScState->mSubState = TSceneInstanceState::SubState::COMPONENT_DESERIALIZING;
-        }
+        //if (calculatedHash != mScState->mSceneContent.groupedByRankEntityGuidHash) {
+        //    mScState->mSubState = TSceneInstanceState::SubState::PREPARE_TREE_ENTITY;
+        //} else {
+        //    mScState->mSubState = TSceneInstanceState::SubState::COMPONENT_DESERIALIZING;
+        //}
     }
     //---------------------------------------------------------------------------------------------------
     void TSceneInstantiatingThread::PrepareTreeEntity()

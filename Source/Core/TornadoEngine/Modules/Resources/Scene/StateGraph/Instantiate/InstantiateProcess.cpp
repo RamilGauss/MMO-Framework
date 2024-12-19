@@ -8,7 +8,6 @@ See for more information LICENSE.md.
 #include "InstantiateProcess.h"
 #include "Base/Zones/Zone.h"
 
-#include "Modules/Resources/Scene/SceneHashCalculator.h"
 #include "Modules/Resources/Scene/StateGraph/SceneContext.h"
 
 namespace nsTornadoEngine
@@ -27,21 +26,11 @@ namespace nsTornadoEngine
         if (co_await mCollectGuidsProcess.Start(pCtx) == false) {
             co_return false;
         }
-        // Calculate the hash and compare with a hash in the saved file
-        auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        std::string calculatedHash = TSceneHashCalculator::Calculate(ctx->entityGuids);
 
-        nsBase::nsZones::ISubProcess* pNextSubProcess = nullptr;
-        if (calculatedHash != ctx->sceneContent.groupedByRankEntityGuidHash) {
-            pNextSubProcess = &mPrepareTreeEntityProcess;
-        } else {
-            pNextSubProcess = &mSortingEntityByRankProcess;
-        }
-
-        SetCurrentSubProcess(pCtx, pNextSubProcess);
-        if (co_await mPrepareTreeEntityProcess.Start(pCtx) == false) {
-            co_return false;
-        }
+        //SetCurrentSubProcess(pCtx, pNextSubProcess);
+        //if (co_await mPrepareTreeEntityProcess.Start(pCtx) == false) {
+        //    co_return false;
+        //}
 
         SetCurrentSubProcess(pCtx, nullptr);
         co_return true;

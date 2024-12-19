@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_17 09:39:05.100
+// File has been generated at 2024_12_19 16:07:20.626
 #include "TornadoEngineJsonSerializer.h"
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
@@ -785,7 +785,6 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TResourceConten
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TSceneResourceContent* p, Jobj& obj)
 {
-    PUM::Push(obj, "groupedByRankEntityGuidHash", p->groupedByRankEntityGuidHash);
     PUM::Value entities_a0(rapidjson::kArrayType);
     for(auto& entities_e0 : p->entities) {
         PUM::Value entities_a1(rapidjson::kObjectType);
@@ -806,7 +805,6 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TSceneResourceCon
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TSceneResourceContent* p, const Jobj& obj)
 {
-    POM::PopStr(obj, "groupedByRankEntityGuidHash", p->groupedByRankEntityGuidHash);
     auto entities_a0 = POM::FindArray(obj, "entities");
     for(auto& entities_e0 : entities_a0) {
         auto entities_o1 = entities_e0.GetObject();

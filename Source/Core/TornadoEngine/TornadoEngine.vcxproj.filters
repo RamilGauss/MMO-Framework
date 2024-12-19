@@ -486,7 +486,6 @@
     <ClCompile Include="Modules\Resources\Scene\SceneInstanceState.cpp" />
     <ClCompile Include="Features\Logic\End\Scene\SceneInstantiatingSystem.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneInstantiatingThread.cpp" />
-    <ClCompile Include="Modules\Resources\Scene\SceneHashCalculator.cpp" />
     <ClCompile Include="Generated files\Container\ComponentTypeFactory.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneCacheManager.cpp" />
     <ClCompile Include="Modules\Resources\Common\ResourceManager.cpp" />
@@ -1120,7 +1119,6 @@
     <ClInclude Include="Features\Logic\End\Scene\SceneInstantiatingSystem.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneInstantiatingThread.h" />
     <ClInclude Include="Modules\Resources\Scene\EntityMetaContent.h" />
-    <ClInclude Include="Modules\Resources\Scene\SceneHashCalculator.h" />
     <ClInclude Include="Generated files\Container\ComponentTypeFactory.h" />
     <ClInclude Include="Modules\Resources\Scene\SceneCacheManager.h" />
     <ClInclude Include="Modules\Resources\Common\ResourceManager.h" />

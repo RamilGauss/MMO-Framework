@@ -1,6 +1,5 @@
 {
     "guid": "scene_prefab_test",
-    "groupedByRankEntityGuidHash": "abcdef",
     "entities": [
         {
             "components": [
