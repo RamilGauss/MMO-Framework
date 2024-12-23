@@ -10,40 +10,27 @@ See for more information LICENSE.md.
 #include <string>
 #include <list>
 #include <unordered_map>
+#include <memory>
 
 #include "Base/Common/TypeDef.h"
 
 namespace nsTornadoEngine
 {
+    struct TSceneResourceContent;
+
     class DllExport TSceneCacheManager
     {
-        std::unordered_map<std::string, void*> mScenes;
     public:
-        template <typename T>
-        void Add(const std::string& guid, T* p);
+        using TSceneResourceContentPtr = std::shared_ptr<TSceneResourceContent>;
 
-        template <typename T>
-        const T* Get(const std::string& guid) const;
+        void Add(const std::string& guid, TSceneResourceContentPtr ptr);
+
+        TSceneResourceContentPtr Get(const std::string& guid) const;
 
         void Remove(const std::string& guid);
 
         std::list<std::string> GetGuids() const;
+    private:
+        std::unordered_map<std::string, TSceneResourceContentPtr> mScenes;
     };
-    //-------------------------------------------------------------------------------
-    template <typename T>
-    void TSceneCacheManager::Add(const std::string& guid, T* p)
-    {
-        mScenes.insert({ guid, p });
-    }
-    //-------------------------------------------------------------------------------
-    template <typename T>
-    const T* TSceneCacheManager::Get(const std::string& guid) const
-    {
-        auto fit = mScenes.find();
-        if (fit == mScenes.end()) {
-            return nullptr;
-        }
-        return (const T*)fit->second;
-    }
-    //-------------------------------------------------------------------------------
 }

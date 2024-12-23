@@ -12,10 +12,9 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    class DllExport TComponentDeserializingProcess : public nsBase::nsZones::TAsyncSubProcess
+    class DllExport TUniverseIndexCreatingProcess : public nsBase::nsZones::TAsyncSubProcess
     {
     public:
-        void Launch(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
         void Work(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
         uint32_t GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
     };

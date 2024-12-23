@@ -9,6 +9,21 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
+    //-------------------------------------------------------------------------------
+    void TSceneCacheManager::Add(const std::string& guid, TSceneResourceContentPtr ptr)
+    {
+        mScenes.insert({ guid, ptr });
+    }
+    //-------------------------------------------------------------------------------
+    TSceneCacheManager::TSceneResourceContentPtr TSceneCacheManager::Get(const std::string& guid) const
+    {
+        auto fit = mScenes.find(guid);
+        if (fit == mScenes.end()) {
+            return nullptr;
+        }
+        return fit->second;
+    }
+    //-------------------------------------------------------------------------------
     void TSceneCacheManager::Remove(const std::string& guid)
     {
         mScenes.erase(guid);

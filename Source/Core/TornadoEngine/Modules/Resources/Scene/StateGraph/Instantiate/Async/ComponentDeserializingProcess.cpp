@@ -7,6 +7,9 @@ See for more information LICENSE.md.
 
 #include "ComponentDeserializingProcess.h"
 
+#include "TimeSliceEngine/ProjectConfigContainer.h"
+#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
+
 #include "Modules/Resources/Scene/StateGraph/SceneContext.h"
 
 namespace nsTornadoEngine
@@ -14,38 +17,35 @@ namespace nsTornadoEngine
     void TComponentDeserializingProcess::Launch(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        ctx->file.ReOpen((char*)ctx->sceneAbsPath.c_str());
+        ctx->currentEntIt = ctx->sceneContent->entities.begin();
     }
     //-------------------------------------------------------------------------------
     void TComponentDeserializingProcess::Work(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
 
-        unsigned int offset = ctx->fileContent.size();
-        auto fileSize = ctx->file.Size();
-        int remainSize = fileSize - offset;
-        unsigned int partSize = std::min(remainSize, TSceneContext::FILE_PART_SIZE);
+        std::string err;
 
-        ctx->file.Read(ctx->fileBuffer.GetPtr(), partSize, offset);
+        auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
+        for (auto& component : ctx->currentEntIt->components) {
+            // Add component by rtti
+            auto convertResult = componentReflection->mRtti->ConvertNameToType(component.typeName, component.rtti);
+            if (convertResult == false) {
+                continue;
+            }
 
-        ctx->fileContent.append(ctx->fileBuffer.GetPtr(), partSize);
+            component.p = componentReflection->mTypeFactory->New(component.rtti);
+
+            // Deserialize component by rtti and json body
+            std::string err;
+            componentReflection->mJson->Deserialize(component.p, component.jsonBody, component.rtti, err);
+        }
     }
     //-------------------------------------------------------------------------------
     uint32_t TComponentDeserializingProcess::GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        auto size = ctx->file.Size();
-        auto partCount = size / TSceneContext::FILE_PART_SIZE;
-        if (partCount == 0) {
-            partCount = 1;
-        }
-        return partCount;
-    }
-    //-------------------------------------------------------------------------------
-    void TComponentDeserializingProcess::Finalize(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
-    {
-        auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        ctx->file.Close();
+        return ctx->sceneContent->entities.size();
     }
     //-------------------------------------------------------------------------------
 }

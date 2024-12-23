@@ -20,6 +20,8 @@ See for more information LICENSE.md.
 #include "Modules/Resources/Scene/InstantiateSceneParams.h"
 #include "Modules/Resources/Scene/EntityMetaContent.h"
 #include "Modules/Resources/Scene/SceneResourceContent.h"
+#include "Modules/Resources/Scene/SceneCacheManager.h"
+#include "Modules/Resources/Scene/UniverseManager.h"
 
 namespace nsTornadoEngine
 {
@@ -42,23 +44,26 @@ namespace nsTornadoEngine
 
         nsBase::nsCommon::TLoadFromFile file;
 
-        TSceneResourceContent sceneContent;
+        std::shared_ptr<TSceneResourceContent> sceneContent;
 
         std::list<std::string> entityGuids;
 
         std::list<TEntityContent>::iterator currentEntIt;
 
-        // Sorting in map need for same sorting as in a saved file.
-        std::unordered_map<std::string, std::map<std::string, TEntityMetaContentPtr>> parentGuidEntities;
-        TEntityMetaContentPtr rootEntity;
+        TSceneCacheManager* cacheManager = nullptr;
+        TUniverseManager* universeManager = nullptr;
 
-        std::list<std::map<std::string, TEntityMetaContentPtr>> layers;
+        //// Sorting in map need for same sorting as in a saved file.
+        //std::unordered_map<std::string, std::map<std::string, TEntityMetaContentPtr>> parentGuidEntities;
+        //TEntityMetaContentPtr rootEntity;
 
-        std::list<std::map<std::string, TEntityMetaContentPtr>>::iterator currentLayer;
+        //std::list<std::map<std::string, TEntityMetaContentPtr>> layers;
 
-        int currentLayerIndex = 0;
+        //std::list<std::map<std::string, TEntityMetaContentPtr>>::iterator currentLayer;
 
-        std::map<std::string, TEntityMetaContentPtr>::iterator currentLayerEntIt;
+        //int currentLayerIndex = 0;
+
+        //std::map<std::string, TEntityMetaContentPtr>::iterator currentLayerEntIt;
 
         std::list<TEntityContent>::const_iterator entIt;
         std::list<TPrefabInstance>::const_iterator prefabIt;

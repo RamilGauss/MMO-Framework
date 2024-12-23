@@ -43,7 +43,18 @@ namespace nsTornadoEngine
 
         GuidVector mGuids;
 
+        struct TReference
+        {
+            int counter = 0;
+        };
+
+        TColanderVector<TReference> mReferenceCounters;
 
         IndexType GetFreeIndex();
+
+        void IncrementReferenceCounter(IndexType index);
+        void DecrementReferenceCounter(IndexType index);
+        int GetReferenceCounter(IndexType index);
+
     };
 }

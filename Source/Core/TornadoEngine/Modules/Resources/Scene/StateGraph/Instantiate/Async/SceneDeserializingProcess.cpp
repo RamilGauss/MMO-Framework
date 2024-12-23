@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "SceneDeserializingProcess.h"
 
-//#include "Generated files/TornadoEngineJsonSerializer.h"
+#include "Generated files/TornadoEngineJsonSerializer.h"
 
 #include "Modules/Resources/Scene/StateGraph/SceneContext.h"
 
@@ -17,17 +17,10 @@ namespace nsTornadoEngine
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
 
-        //std::string err;
-        //auto deserResult = TTornadoEngineJsonSerializer::Deserialize(&ctx->sceneContent, ctx->fileContent, err);
+        ctx->sceneContent.reset(new TSceneResourceContent);
 
-
-        for (auto& entity : ctx->sceneContent.entities) {
-            for (auto& component : entity.components) {
-                if (component.typeName == "") {
-                    //ctx->entityGuids.push_back();
-                }
-            }
-        }
+        std::string err;
+        auto deserResult = TTornadoEngineJsonSerializer::Deserialize(ctx->sceneContent.get(), ctx->fileContent, err);
     }
     //-------------------------------------------------------------------------------
     uint32_t TSceneDeserializingProcess::GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx)

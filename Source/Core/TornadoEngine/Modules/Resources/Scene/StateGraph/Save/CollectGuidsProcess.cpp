@@ -16,7 +16,7 @@ namespace nsTornadoEngine
     void TCollectGuidsProcess::Launch(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        ctx->currentEntIt = ctx->sceneContent.entities.begin();
+        ctx->currentEntIt = ctx->sceneContent->entities.begin();
     }
     //-------------------------------------------------------------------------------
     void TCollectGuidsProcess::Work(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
@@ -34,7 +34,7 @@ namespace nsTornadoEngine
     uint32_t TCollectGuidsProcess::GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        return ctx->sceneContent.entities.size();
+        return ctx->sceneContent->entities.size();
     }
     //-------------------------------------------------------------------------------
 }

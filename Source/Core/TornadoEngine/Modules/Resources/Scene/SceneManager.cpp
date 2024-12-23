@@ -120,6 +120,8 @@ namespace nsTornadoEngine
         sceneCtx->guidComponentTypeName = mGuidComponentTypeName;
         sceneCtx->parentGuidComponentTypeName = mParentGuidComponentTypeName;
         sceneCtx->sceneRootComponentTypeName = mSceneRootComponentTypeName;
+        sceneCtx->universeManager = &mUniverseManager;
+        sceneCtx->cacheManager = mSceneCacheMng;
 
         mSceneInstances.insert({ sceneCtx->instantiateSceneParams.sceneInstanceGuid, sceneCtx });
         mSceneStateGraph->StartProcess(TSceneStateGraph::Process::INSTANTIATE, sceneCtx);
@@ -139,23 +141,6 @@ namespace nsTornadoEngine
     void TSceneManager::Work()
     {
         mSceneStateGraph->Work(GetLoadQuant());
-    }
-    //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::IncrementReferenceCounter(TUniverseManager::IndexType index)
-    {
-        mReferenceCounters[index].counter++;
-    }
-    //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::DecrementReferenceCounter(TUniverseManager::IndexType index)
-    {
-        mReferenceCounters[index].counter--;
-
-        BL_ASSERT(mReferenceCounters[index].counter >= 0);
-    }
-    //--------------------------------------------------------------------------------------------------------
-    int TSceneManager::GetReferenceCounter(TUniverseManager::IndexType index)
-    {
-        return mReferenceCounters[index].counter;
     }
     //--------------------------------------------------------------------------------------------------------
     void TSceneManager::SetPrefabManager(TPrefabManager* pPrefabMng)

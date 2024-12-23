@@ -14,23 +14,39 @@ namespace nsTornadoEngine
 {
     boost::asio::awaitable<bool> TInstantiateProcess::Start(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
-        SetCurrentSubProcess(pCtx, &mSceneFileLoadingProcess);
-        if (co_await mSceneFileLoadingProcess.Start(pCtx) == false) {
-            co_return false;
-        }
-        SetCurrentSubProcess(pCtx, &mSceneDeserializingProcess);
-        if (co_await mSceneDeserializingProcess.Start(pCtx) == false) {
-            co_return false;
-        }
-        SetCurrentSubProcess(pCtx, &mCollectGuidsProcess);
-        if (co_await mCollectGuidsProcess.Start(pCtx) == false) {
-            co_return false;
+        auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
+        auto sceneCache = ctx->cacheManager->Get(ctx->instantiateSceneParams.guid);
+
+        if (sceneCache == nullptr) {
+            SetCurrentSubProcess(pCtx, &mSceneFileLoadingProcess);
+            if (co_await mSceneFileLoadingProcess.Start(pCtx) == false) {
+                co_return false;
+            }
+            SetCurrentSubProcess(pCtx, &mSceneDeserializingProcess);
+            if (co_await mSceneDeserializingProcess.Start(pCtx) == false) {
+                co_return false;
+            }
+            SetCurrentSubProcess(pCtx, &mComponentDeserializingProcess);
+            if (co_await mComponentDeserializingProcess.Start(pCtx) == false) {
+                co_return false;
+            }
+            ctx->cacheManager->Add(ctx->instantiateSceneParams.guid, ctx->sceneContent);
+        } else {
+            ctx->sceneContent = sceneCache;
         }
 
-        //SetCurrentSubProcess(pCtx, pNextSubProcess);
-        //if (co_await mPrepareTreeEntityProcess.Start(pCtx) == false) {
-        //    co_return false;
-        //}
+        SetCurrentSubProcess(pCtx, &mUniverseIndexCreatingProcess);
+        if (co_await mUniverseIndexCreatingProcess.Start(pCtx) == false) {
+            co_return false;
+        }
+        SetCurrentSubProcess(pCtx, &mPrefabInstantiatingProcess);
+        if (co_await mPrefabInstantiatingProcess.Start(pCtx) == false) {
+            co_return false;
+        }
+        SetCurrentSubProcess(pCtx, &mEntityInstantiatingProcess);
+        if (co_await mEntityInstantiatingProcess.Start(pCtx) == false) {
+            co_return false;
+        }
 
         SetCurrentSubProcess(pCtx, nullptr);
         co_return true;
@@ -57,9 +73,6 @@ namespace nsTornadoEngine
         mSceneFileLoadingProcess.Init(strandHolder, coroInThread);
         mSceneDeserializingProcess.Init(strandHolder, coroInThread);
         mComponentDeserializingProcess.Init(strandHolder, coroInThread);
-        mCollectGuidsProcess.Init(strandHolder, coroInThread);
-        mPrepareTreeEntityProcess.Init(strandHolder, coroInThread);
-        mSortingEntityByRankProcess.Init(strandHolder, coroInThread);
     }
     //-------------------------------------------------------------------------------
 }

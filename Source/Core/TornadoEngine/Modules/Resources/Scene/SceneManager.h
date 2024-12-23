@@ -26,12 +26,6 @@ namespace nsTornadoEngine
     class DllExport TSceneManager : public TObjectManager
     {
         TUniverseManager mUniverseManager;
-        struct TReference
-        {
-            int counter = 0;
-        };
-
-        TColanderVector<TReference> mReferenceCounters;
 
         std::unordered_map<std::string, TSceneContextPtr> mSceneInstances;
 
@@ -67,11 +61,6 @@ namespace nsTornadoEngine
 
         void Work();
     private:
-        void IncrementReferenceCounter(TUniverseManager::IndexType index);
-        void DecrementReferenceCounter(TUniverseManager::IndexType index);
-
-        int GetReferenceCounter(TUniverseManager::IndexType index);
-
         int mGuidComponentRtti = 0;
         int mParentGuidComponentRtti = 0;
         int mSceneRootComponentRtti = 0;

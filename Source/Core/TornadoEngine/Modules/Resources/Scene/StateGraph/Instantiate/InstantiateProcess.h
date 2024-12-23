@@ -9,12 +9,13 @@ See for more information LICENSE.md.
 
 #include "Base/Zones/IHopProcess.h"
 
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/CollectGuidsProcess.h"
 #include "Modules/Resources/Scene/StateGraph/Instantiate/Async/ComponentDeserializingProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneFileLoadingProcess.h"
 #include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneDeserializingProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SortingEntityByRankProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/PrepareTreeEntityProcess.h"
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneFileLoadingProcess.h"
+
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Sync/EntityInstantiatingProcess.h"
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Sync/PrefabInstantiatingProcess.h"
+#include "Modules/Resources/Scene/StateGraph/Instantiate/Sync/UniverseIndexCreatingProcess.h"
 
 namespace nsBase::nsZones
 {
@@ -37,8 +38,9 @@ namespace nsTornadoEngine
         TSceneFileLoadingProcess mSceneFileLoadingProcess;
         TSceneDeserializingProcess mSceneDeserializingProcess;
         TComponentDeserializingProcess mComponentDeserializingProcess;
-        TCollectGuidsProcess mCollectGuidsProcess;
-        TPrepareTreeEntityProcess mPrepareTreeEntityProcess;
-        TSortingEntityByRankProcess mSortingEntityByRankProcess;
+
+        TUniverseIndexCreatingProcess mUniverseIndexCreatingProcess;
+        TPrefabInstantiatingProcess mPrefabInstantiatingProcess;
+        TEntityInstantiatingProcess mEntityInstantiatingProcess;
     };
 }
