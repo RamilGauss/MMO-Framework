@@ -7,45 +7,62 @@ See for more information LICENSE.md.
 
 #include "EntityInstantiatingProcess.h"
 
+#include <iterator>
+
+#include "Base/Common/GuidGenerator.h"
+
+#include "Modules/Resources/Common/ObjectHelper.h"
 #include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+
+#include "Components/Meta/UniverseIndexComponent.h"
+#include "Components/Meta/UniverseGuidComponent.h"
+#include "Components/Meta/SceneOriginalGuidComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
 
 namespace nsTornadoEngine
 {
     void TEntityInstantiatingProcess::Launch(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        ctx->file.ReOpen((char*)ctx->sceneAbsPath.c_str());
+        ctx->entIt = ctx->sceneContent->entities.begin();
     }
     //-------------------------------------------------------------------------------
     void TEntityInstantiatingProcess::Work(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
 
-        unsigned int offset = ctx->fileContent.size();
-        auto fileSize = ctx->file.Size();
-        int remainSize = fileSize - offset;
-        unsigned int partSize = std::min(remainSize, TSceneContext::FILE_PART_SIZE);
+        using namespace nsCommonWrapper;
 
-        ctx->file.Read(ctx->fileBuffer.GetPtr(), partSize, offset);
+        std::list<nsECSFramework::TEntityID> newEntities;
 
-        ctx->fileContent.append(ctx->fileBuffer.GetPtr(), partSize);
+        int remainCount = std::ranges::distance(ctx->sceneContent->entities.end(), ctx->entIt);
+        auto count = std::min(PART_SIZE, remainCount);
+
+        TObjectHelper::DeserializeObjects(ctx->entityManager, newEntities, ctx->entIt, PART_SIZE);
+
+        // Replace all guids to new guid with ParentGuids and SceneGuids
+        TObjectHelper::UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(
+            ctx->entityManager,
+            newEntities, 
+            ctx->instantiateSceneParams.sceneInstanceGuid);
+
+        TUniverseGuidComponent universeGuidComponent;
+        universeGuidComponent.value = ctx->instantiateSceneParams.universeGuid;
+        TObjectHelper::AddComponent(ctx->entityManager, newEntities, &universeGuidComponent);
+
+        TUniverseIndexComponent universeIndexComponent;
+        universeIndexComponent.value = ctx->universeIndex;
+        TObjectHelper::AddComponent(ctx->entityManager, newEntities, &universeIndexComponent);
     }
     //-------------------------------------------------------------------------------
     uint32_t TEntityInstantiatingProcess::GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        auto size = ctx->file.Size();
-        auto partCount = size / TSceneContext::FILE_PART_SIZE;
-        if (partCount == 0) {
-            partCount = 1;
+        auto count = ctx->sceneContent->entities.size() / PART_SIZE;
+        if (count == 0) {
+            count = 1;
         }
-        return partCount;
-    }
-    //-------------------------------------------------------------------------------
-    void TEntityInstantiatingProcess::Finalize(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
-    {
-        auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        ctx->file.Close();
+        return count;
     }
     //-------------------------------------------------------------------------------
 }

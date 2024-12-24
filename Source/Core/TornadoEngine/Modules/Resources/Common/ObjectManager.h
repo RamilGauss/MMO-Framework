@@ -40,59 +40,5 @@ namespace nsTornadoEngine
         // Каскадное уничтожение детей, только для редактирования префабов и сцен
         // доступ только в редакторе!
         void DestroyObject(const std::string& guid);
-
-    protected:
-        void DeserializeObjects(std::list<nsECSFramework::TEntityID>& newEntities, std::list<TEntityContent>::const_iterator& entIt, int count);
-
-        template <typename Component>
-        void AddComponent(const std::list<nsECSFramework::TEntityID>& newEntities, Component* pComponent);
-
-        template <typename OriginalGuidType, typename InstanceGuidType>
-        void UpdateGuidsAndInstantiate(const std::list<nsECSFramework::TEntityID>& newEntities,
-            const std::string& instanceGuid);
     };
-    //--------------------------------------------------------------------------------
-    template <typename Component>
-    void TObjectManager::AddComponent(const std::list<nsECSFramework::TEntityID>& newEntities, Component* pComponent)
-    {
-        auto copyComponent = *pComponent;
-        for (auto& eid : newEntities) {
-            mEntityManager->SetComponent(eid, copyComponent);
-        }
-    }
-    //--------------------------------------------------------------------------------
-    template <typename OriginalGuidType, typename InstanceGuidType>
-    void TObjectManager::UpdateGuidsAndInstantiate(const std::list<nsECSFramework::TEntityID>& newEntities,
-        const std::string& instanceGuid)
-    {
-        for (auto& eid : newEntities) {
-            auto pGuidComponent = mEntityManager->ViewComponent<nsCommonWrapper::TGuidComponent>(eid);
-            if (pGuidComponent == nullptr) {
-                continue;
-            }
-            auto guidComponent = *pGuidComponent;
-
-            auto newGuid = nsBase::nsCommon::TGuidGenerator::Generate();
-
-            nsCommonWrapper::TParentGuidComponent parentGuidComponent;
-            parentGuidComponent.value = guidComponent.value;
-            auto copyChildEids = mEntityManager->GetByValueCopy<nsCommonWrapper::TParentGuidComponent>(parentGuidComponent);
-            for (auto& childEid : copyChildEids) {
-                parentGuidComponent.value = newGuid;
-                mEntityManager->SetComponent(childEid, parentGuidComponent);
-            }
-
-            OriginalGuidType originalGuid;
-            originalGuid.value = guidComponent.value;
-            mEntityManager->SetComponent(eid, originalGuid);
-
-            guidComponent.value = newGuid;
-            mEntityManager->SetComponent(eid, guidComponent);
-
-            InstanceGuidType instanceGuidComponent;
-            instanceGuidComponent.value = instanceGuid;
-            mEntityManager->SetComponent(eid, instanceGuidComponent);
-        }
-    }
-    //--------------------------------------------------------------------------------
 }

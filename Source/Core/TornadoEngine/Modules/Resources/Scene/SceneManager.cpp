@@ -122,6 +122,8 @@ namespace nsTornadoEngine
         sceneCtx->sceneRootComponentTypeName = mSceneRootComponentTypeName;
         sceneCtx->universeManager = &mUniverseManager;
         sceneCtx->cacheManager = mSceneCacheMng;
+        sceneCtx->entityManager = mEntityManager;
+        sceneCtx->prefabMng = mPrefabMng;
 
         mSceneInstances.insert({ sceneCtx->instantiateSceneParams.sceneInstanceGuid, sceneCtx });
         mSceneStateGraph->StartProcess(TSceneStateGraph::Process::INSTANTIATE, sceneCtx);

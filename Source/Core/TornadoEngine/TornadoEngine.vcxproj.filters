@@ -511,6 +511,7 @@
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\EntityInstantiatingProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\PrefabInstantiatingProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\UniverseIndexCreatingProcess.cpp" />
+    <ClCompile Include="Modules\Resources\Common\ObjectHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TimeSliceEngine\FrameworkResources.h">
@@ -1154,6 +1155,7 @@
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\EntityInstantiatingProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\PrefabInstantiatingProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\UniverseIndexCreatingProcess.h" />
+    <ClInclude Include="Modules\Resources\Common\ObjectHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

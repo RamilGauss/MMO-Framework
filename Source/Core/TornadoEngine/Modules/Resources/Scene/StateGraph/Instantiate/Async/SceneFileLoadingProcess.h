@@ -20,5 +20,8 @@ namespace nsTornadoEngine
         uint32_t GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
 
         void Finalize(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
+
+    private:
+        static const int FILE_PART_SIZE = 10'000'000;
     };
 }

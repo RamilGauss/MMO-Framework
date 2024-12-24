@@ -7,6 +7,14 @@ See for more information LICENSE.md.
 
 #include "PrefabInstantiatingProcess.h"
 
+#include <iterator>
+
+#include "Components/Meta/SceneOriginalGuidComponent.h"
+#include "Components/Meta/SceneInstanceGuidComponent.h"
+
+#include "Modules/Resources/Common/ObjectHelper.h"
+#include "Modules/Resources/Prefab/InstantiatePrefabParams.h"
+#include "Modules/Resources/Prefab/PrefabManager.h"
 #include "Modules/Resources/Scene/StateGraph/SceneContext.h"
 
 namespace nsTornadoEngine
@@ -14,38 +22,54 @@ namespace nsTornadoEngine
     void TPrefabInstantiatingProcess::Launch(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        ctx->file.ReOpen((char*)ctx->sceneAbsPath.c_str());
+        ctx->prefabIt = ctx->sceneContent->prefabInstances.begin();
     }
     //-------------------------------------------------------------------------------
     void TPrefabInstantiatingProcess::Work(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
 
-        unsigned int offset = ctx->fileContent.size();
-        auto fileSize = ctx->file.Size();
-        int remainSize = fileSize - offset;
-        unsigned int partSize = std::min(remainSize, TSceneContext::FILE_PART_SIZE);
+        int remainCount = std::ranges::distance(ctx->sceneContent->prefabInstances.end(), ctx->prefabIt);
+        auto count = std::min(PART_SIZE, remainCount);
 
-        ctx->file.Read(ctx->fileBuffer.GetPtr(), partSize, offset);
+        using namespace nsCommonWrapper;
 
-        ctx->fileContent.append(ctx->fileBuffer.GetPtr(), partSize);
+        for (int i = 0; i < count; i++, ctx->prefabIt++) {
+
+            std::string parentGuid;
+
+            TSceneOriginalGuidComponent sceneOriginalGuidComponent;
+            sceneOriginalGuidComponent.value = ctx->prefabIt->parentGuid;
+
+            auto sceneOriginalGuidEntities = ctx->entityManager->GetByValueCopy(sceneOriginalGuidComponent);
+            for (auto eid : sceneOriginalGuidEntities) {
+
+                auto sceneInstanceGuid = ctx->entityManager->ViewComponent<TSceneInstanceGuidComponent>(eid)->value;
+                if (sceneInstanceGuid == ctx->instantiateSceneParams.sceneInstanceGuid) {
+                    parentGuid = sceneInstanceGuid;
+                    break;
+                }
+            }
+
+            TInstantiatePrefabParams instantiatePrefabParams;
+
+            instantiatePrefabParams.guid = ctx->prefabIt->prefabGuid;
+            instantiatePrefabParams.rootMatrix = ctx->prefabIt->localMatrix;
+            instantiatePrefabParams.parentGuid = parentGuid;
+            instantiatePrefabParams.sceneInstanceGuid = ctx->instantiateSceneParams.sceneInstanceGuid;
+
+            ctx->prefabMng->Instantiate(instantiatePrefabParams);
+        }
     }
     //-------------------------------------------------------------------------------
     uint32_t TPrefabInstantiatingProcess::GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        auto size = ctx->file.Size();
-        auto partCount = size / TSceneContext::FILE_PART_SIZE;
-        if (partCount == 0) {
-            partCount = 1;
+        auto count = ctx->sceneContent->prefabInstances.size() / PART_SIZE;
+        if (count == 0) {
+            count = 1;
         }
-        return partCount;
-    }
-    //-------------------------------------------------------------------------------
-    void TPrefabInstantiatingProcess::Finalize(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
-    {
-        auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        ctx->file.Close();
+        return count;
     }
     //-------------------------------------------------------------------------------
 }

@@ -24,7 +24,7 @@ namespace nsTornadoEngine
         unsigned int offset = ctx->fileContent.size();
         auto fileSize = ctx->file.Size();
         int remainSize = fileSize - offset;
-        unsigned int partSize = std::min(remainSize, TSceneContext::FILE_PART_SIZE);
+        unsigned int partSize = std::min(remainSize, FILE_PART_SIZE);
 
         ctx->file.Read(ctx->fileBuffer.GetPtr(), partSize, offset);
 
@@ -35,7 +35,7 @@ namespace nsTornadoEngine
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
         auto size = ctx->file.Size();
-        auto partCount = size / TSceneContext::FILE_PART_SIZE;
+        auto partCount = size / FILE_PART_SIZE;
         if (partCount == 0) {
             partCount = 1;
         }
