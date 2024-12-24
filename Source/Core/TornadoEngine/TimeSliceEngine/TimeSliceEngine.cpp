@@ -34,7 +34,6 @@ TTimeSliceEngine::TTimeSliceEngine()
 
     SetProject(&mProjectConfigContainer);
 
-    mModuleMng.reset(new TModuleManager(this));
 }
 //----------------------------------------------------------------------
 void TTimeSliceEngine::Done()
@@ -43,6 +42,7 @@ void TTimeSliceEngine::Done()
 //----------------------------------------------------------------------
 bool TTimeSliceEngine::Work(const std::list<ModuleType>& moduleTypes)
 {
+    mModuleMng.reset(new TModuleManager(this));
     mModuleTypes = moduleTypes;
 
     if (CreateModules() == false) {
