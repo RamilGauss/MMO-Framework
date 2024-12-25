@@ -35,8 +35,8 @@
                     "jsonBody": "{\"value\":\"\"}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"entityGuid\":\"WarningDialog_0\"}"
+                    "typeName": "nsLogicWrapper::TLocalHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"entityGuid\":\"WarningDialog_0\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },

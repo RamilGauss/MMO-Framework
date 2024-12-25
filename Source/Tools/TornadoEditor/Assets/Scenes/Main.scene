@@ -116,8 +116,8 @@
                     "jsonBody": "{\"prefabGuid\":\"1\"}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenProjectClickHandler\", \"entityGuid\":\"main_3\"}"
+                    "typeName": "nsLogicWrapper::TLocalHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TLocalHandlerComponent\", \"entityGuid\":\"main_3\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },
@@ -144,8 +144,8 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnExitClickHandler\", \"entityGuid\":\"main_4\"}"
+                    "typeName": "nsLogicWrapper::TLocalHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnExitClickHandler\", \"entityGuid\":\"main_4\", \"filter\":\"SELF_AND_CHILDS\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TNodeIconComponent",
@@ -204,8 +204,8 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnFileHierarchyClickHandler\", \"entityGuid\":\"main_6\"}"
+                    "typeName": "nsLogicWrapper::TLocalHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnFileHierarchyClickHandler\", \"entityGuid\":\"main_6\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },
@@ -304,8 +304,8 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenComponentViewerClickHandler\", \"entityGuid\":\"main_10\"}"
+                    "typeName": "nsLogicWrapper::TLocalHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenComponentViewerClickHandler\", \"entityGuid\":\"main_10\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },
@@ -332,8 +332,8 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenSystemViewerClickHandler\", \"entityGuid\":\"main_11\"}"
+                    "typeName": "nsLogicWrapper::TLocalHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenSystemViewerClickHandler\", \"entityGuid\":\"main_11\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         }

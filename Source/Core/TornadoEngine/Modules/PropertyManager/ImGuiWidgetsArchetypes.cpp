@@ -28,8 +28,8 @@ namespace nsTornadoEngine
             .parentNames = {"nsGuiWrapper::TWidgetComponent"},
             .properties =
             {
-                "nsGuiWrapper::TTextureReferenceComponent",
-                "nsGuiWrapper::TTextureSizeComponent",
+                // "nsGuiWrapper::TTextureReferenceComponent",
+                // "nsGuiWrapper::TTextureSizeComponent",
             }
         },
         {
@@ -106,29 +106,29 @@ namespace nsTornadoEngine
             {"nsGuiWrapper::TTreeNodeComponent",             "nsImGuiWidgets::TTreeNode"},
             {"nsGuiWrapper::TToolTipComponent",             "nsImGuiWidgets::TToolTip"},
         
-            {"nsGuiWrapper::TPaddingComponent",              "nsImGuiWidgets::TPadding"},
-            {"nsGuiWrapper::TGridComponent",                 "nsImGuiWidgets::TGrid"},
             {"nsGuiWrapper::TSpacingComponent",              "nsImGuiWidgets::TSpacing"},
             //{"nsGuiWrapper::T",                              "nsImGuiWidgets::T"},
             //{"nsGuiWrapper::T",                              "nsImGuiWidgets::T"},
             //{"nsGuiWrapper::T",                              "nsImGuiWidgets::T"},
 
-            { "nsGuiWrapper::TColorComponent",               "nsImGuiWidgets::TColor" },
-
-            { "nsGuiWrapper::TTitleComponent",               "nsImGuiWidgets::TTitle" },
-            { "nsGuiWrapper::TSizeComponent",                "nsImGuiWidgets::TSize" },
-            { "nsGuiWrapper::TPositionComponent",            "nsImGuiWidgets::TPosition"},
-            { "nsGuiWrapper::TVisibilityComponent",          "nsImGuiWidgets::TVisibility" },
             { "nsGuiWrapper::TAnchorComponent",              "nsImGuiWidgets::TAnchor" },
+            { "nsGuiWrapper::TColorComponent",               "nsImGuiWidgets::TColor" },
             { "nsGuiWrapper::TFocusComponent",               "nsImGuiWidgets::TFocus" },
+            {"nsGuiWrapper::TGridComponent",                 "nsImGuiWidgets::TGrid"},
             { "nsGuiWrapper::THorizontalAlignComponent",     "nsImGuiWidgets::THorizontalAlign" },
             { "nsGuiWrapper::TMaxSizeComponent",             "nsImGuiWidgets::TMaxSize" },
-            { "nsGuiWrapper::TMinSizeComponent",             "nsImGuiWidgets::TMinSize" },
             { "nsGuiWrapper::TMinDistanceToParentComponent", "nsImGuiWidgets::TMinDistanceToParent" },
+            { "nsGuiWrapper::TMinSizeComponent",             "nsImGuiWidgets::TMinSize" },
+            {"nsGuiWrapper::TPaddingComponent",              "nsImGuiWidgets::TPadding"},
+            { "nsGuiWrapper::TPositionComponent",            "nsImGuiWidgets::TPosition"},
+
+            { "nsGuiWrapper::TSizeComponent",                "nsImGuiWidgets::TSize" },
+            { "nsGuiWrapper::TTitleComponent",               "nsImGuiWidgets::TTitle" },
+            { "nsGuiWrapper::TVisibilityComponent",          "nsImGuiWidgets::TVisibility" },
             { "nsGuiWrapper::TVerticalAlignComponent",       "nsImGuiWidgets::TVerticalAlign" },
-            { "nsGuiWrapper::TTextureReferenceComponent",    "nsImGuiWidgets::TTextureReference" },
-            { "nsGuiWrapper::TTextureSizeComponent",         "nsImGuiWidgets::TTextureSize" },
-            { "nsGuiWrapper::TTextureUvComponent",           "nsImGuiWidgets::TTextureUv" },
+            // { "nsGuiWrapper::TTextureReferenceComponent",    "nsImGuiWidgets::TTextureReference" },
+            // { "nsGuiWrapper::TTextureSizeComponent",         "nsImGuiWidgets::TTextureSize" },
+            // { "nsGuiWrapper::TTextureUvComponent",           "nsImGuiWidgets::TTextureUv" },
         }
     };
 

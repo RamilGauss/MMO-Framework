@@ -49,7 +49,7 @@
         "includeListParams": {
             "includeListFileName": "ImGuiWidgetsIncludeList",
             "dirToInclude": [
-                "C:\\MMO-Framework\\Source\\Modules\\ImGuiWidgets"
+                "c:\\MMOFramework\\Source\\Modules\\ImGuiWidgets"
             ]
         }
     }

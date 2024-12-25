@@ -123,6 +123,7 @@ namespace nsReflectionCodeGenerator
         void ConvertStringToTypeCategory(std::map<std::string, std::string>& strTypeCustomizerMap,
             std::map<std::string, nsCppParser::TypeCategory>& typeCustomizerMap);
 
+        void ThinningMembersInTypes();
         void CorrectMemberInfoInAllTypes();
 
         nsCppParser::TTypeInfo* Find(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,

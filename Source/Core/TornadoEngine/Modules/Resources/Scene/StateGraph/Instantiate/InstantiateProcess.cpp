@@ -39,12 +39,12 @@ namespace nsTornadoEngine
         if (co_await mUniverseIndexCreatingProcess.Start(pCtx) == false) {
             co_return false;
         }
-        SetCurrentSubProcess(pCtx, &mPrefabInstantiatingProcess);
-        if (co_await mPrefabInstantiatingProcess.Start(pCtx) == false) {
-            co_return false;
-        }
         SetCurrentSubProcess(pCtx, &mEntityInstantiatingProcess);
         if (co_await mEntityInstantiatingProcess.Start(pCtx) == false) {
+            co_return false;
+        }
+        SetCurrentSubProcess(pCtx, &mPrefabInstantiatingProcess);
+        if (co_await mPrefabInstantiatingProcess.Start(pCtx) == false) {
             co_return false;
         }
 
@@ -73,6 +73,10 @@ namespace nsTornadoEngine
         mSceneFileLoadingProcess.Init(strandHolder, coroInThread);
         mSceneDeserializingProcess.Init(strandHolder, coroInThread);
         mComponentDeserializingProcess.Init(strandHolder, coroInThread);
+
+        mUniverseIndexCreatingProcess.Init(strandHolder, coroInThread);
+        mPrefabInstantiatingProcess.Init(strandHolder, coroInThread);
+        mEntityInstantiatingProcess.Init(strandHolder, coroInThread);
     }
     //-------------------------------------------------------------------------------
 }

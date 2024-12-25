@@ -42,7 +42,7 @@ public:
         TypeCounter;
 #endif
 private:
-    AtomicTypeCounter mCounter;
+    AtomicTypeCounter mCounter = 0;
 
     struct MultiType
     {

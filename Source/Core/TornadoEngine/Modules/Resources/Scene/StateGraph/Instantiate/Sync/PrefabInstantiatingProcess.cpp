@@ -29,7 +29,7 @@ namespace nsTornadoEngine
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
 
-        int remainCount = std::ranges::distance(ctx->sceneContent->prefabInstances.end(), ctx->prefabIt);
+        int remainCount = std::ranges::distance(ctx->prefabIt, ctx->sceneContent->prefabInstances.end());
         auto count = std::min(PART_SIZE, remainCount);
 
         using namespace nsCommonWrapper;

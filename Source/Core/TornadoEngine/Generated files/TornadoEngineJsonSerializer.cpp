@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_19 16:07:20.626
+// File has been generated at 2024_12_25 11:00:07.615
 #include "TornadoEngineJsonSerializer.h"
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
@@ -566,14 +566,12 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TComponentContent
 {
     PUM::Push(obj, "typeName", p->typeName);
     PUM::Push(obj, "jsonBody", p->jsonBody);
-    PUM::Push(obj, "rtti", p->rtti);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TComponentContent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "typeName", p->typeName);
     POM::PopStr(obj, "jsonBody", p->jsonBody);
-    POM::PopNum(obj, "rtti", p->rtti);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TConveyorConfig* p, Jobj& obj)
@@ -625,9 +623,6 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TFrameworkResourc
     PUM::Push(obj, "resourcesContentMapPath", p->resourcesContentMapPath);
     PUM::Push(obj, "prefabsContentMapPath", p->prefabsContentMapPath);
     PUM::Push(obj, "scenesContentMapPath", p->scenesContentMapPath);
-    PUM::Push(obj, "resourcesContentMapAbsPath", p->resourcesContentMapAbsPath);
-    PUM::Push(obj, "prefabsContentMapAbsPath", p->prefabsContentMapAbsPath);
-    PUM::Push(obj, "scenesContentMapAbsPath", p->scenesContentMapAbsPath);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TFrameworkResources* p, const Jobj& obj)
@@ -635,9 +630,6 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TFrameworkResou
     POM::PopStr(obj, "resourcesContentMapPath", p->resourcesContentMapPath);
     POM::PopStr(obj, "prefabsContentMapPath", p->prefabsContentMapPath);
     POM::PopStr(obj, "scenesContentMapPath", p->scenesContentMapPath);
-    POM::PopStr(obj, "resourcesContentMapAbsPath", p->resourcesContentMapAbsPath);
-    POM::PopStr(obj, "prefabsContentMapAbsPath", p->prefabsContentMapAbsPath);
-    POM::PopStr(obj, "scenesContentMapAbsPath", p->scenesContentMapAbsPath);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TPrefabInstance* p, Jobj& obj)

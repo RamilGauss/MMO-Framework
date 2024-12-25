@@ -8,11 +8,11 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Zones/Types.h"
-#include "Base/Zones/AsyncSubProcess.h"
+#include "Base/Zones/SyncSubProcess.h"
 
 namespace nsTornadoEngine
 {
-    class DllExport TUniverseIndexCreatingProcess : public nsBase::nsZones::TAsyncSubProcess
+    class DllExport TUniverseIndexCreatingProcess : public nsBase::nsZones::TSyncSubProcess
     {
     public:
         void Work(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;

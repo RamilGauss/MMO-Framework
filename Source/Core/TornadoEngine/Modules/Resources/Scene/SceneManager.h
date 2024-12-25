@@ -14,10 +14,10 @@ See for more information LICENSE.md.
 #include "Modules/Resources/Scene/UniverseManager.h"
 #include "Modules/Resources/Scene/InstantiateSceneParams.h"
 #include "Modules/Resources/Scene/SceneState.h"
+#include "Modules/Resources/Scene/SceneCacheManager.h"
 
 namespace nsTornadoEngine
 {
-    class TSceneCacheManager;
     class TPrefabManager;
     class TSceneStateGraph;
     struct TSceneContext;
@@ -32,7 +32,7 @@ namespace nsTornadoEngine
         int mLoadQuant = 5;// ms
 
         TPrefabManager* mPrefabMng = nullptr;
-        TSceneCacheManager* mSceneCacheMng = nullptr;
+        TSceneCacheManager mSceneCacheMng;
 
         std::shared_ptr<TSceneStateGraph> mSceneStateGraph;
     public:
@@ -57,7 +57,6 @@ namespace nsTornadoEngine
         int GetLoadQuant() const;
 
         void SetPrefabManager(TPrefabManager* pPrefabMng);
-        void SetSceneCacheManager(TSceneCacheManager* pSceneCachebMng);
 
         void Work();
     private:

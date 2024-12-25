@@ -121,7 +121,7 @@ namespace nsTornadoEngine
         sceneCtx->parentGuidComponentTypeName = mParentGuidComponentTypeName;
         sceneCtx->sceneRootComponentTypeName = mSceneRootComponentTypeName;
         sceneCtx->universeManager = &mUniverseManager;
-        sceneCtx->cacheManager = mSceneCacheMng;
+        sceneCtx->cacheManager = &mSceneCacheMng;
         sceneCtx->entityManager = mEntityManager;
         sceneCtx->prefabMng = mPrefabMng;
 
@@ -148,11 +148,6 @@ namespace nsTornadoEngine
     void TSceneManager::SetPrefabManager(TPrefabManager* pPrefabMng)
     {
         mPrefabMng = pPrefabMng;
-    }
-    //--------------------------------------------------------------------------------------------------------
-    void TSceneManager::SetSceneCacheManager(TSceneCacheManager* pSceneCachebMng)
-    {
-        mSceneCacheMng = pSceneCachebMng;
     }
     //--------------------------------------------------------------------------------------------------------
 }

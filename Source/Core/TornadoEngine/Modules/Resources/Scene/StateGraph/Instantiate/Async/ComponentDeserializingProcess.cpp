@@ -40,6 +40,8 @@ namespace nsTornadoEngine
             std::string err;
             componentReflection->mJson->Deserialize(component.p, component.jsonBody, component.rtti, err);
         }
+
+        ctx->currentEntIt++;
     }
     //-------------------------------------------------------------------------------
     uint32_t TComponentDeserializingProcess::GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx)

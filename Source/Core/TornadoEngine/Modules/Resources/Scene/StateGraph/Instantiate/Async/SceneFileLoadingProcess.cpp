@@ -15,6 +15,7 @@ namespace nsTornadoEngine
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
         ctx->file.ReOpen((char*)ctx->sceneAbsPath.c_str());
+        ctx->fileBuffer.SetData(nullptr, FILE_PART_SIZE);
     }
     //-------------------------------------------------------------------------------
     void TSceneFileLoadingProcess::Work(nsBase::nsZones::SharedPtrHopProcessContext pCtx)

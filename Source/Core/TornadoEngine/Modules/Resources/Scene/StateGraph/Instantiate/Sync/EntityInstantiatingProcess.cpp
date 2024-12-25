@@ -35,10 +35,10 @@ namespace nsTornadoEngine
 
         std::list<nsECSFramework::TEntityID> newEntities;
 
-        int remainCount = std::ranges::distance(ctx->sceneContent->entities.end(), ctx->entIt);
+        int remainCount = std::ranges::distance(ctx->entIt, ctx->sceneContent->entities.end());
         auto count = std::min(PART_SIZE, remainCount);
 
-        TObjectHelper::DeserializeObjects(ctx->entityManager, newEntities, ctx->entIt, PART_SIZE);
+        TObjectHelper::DeserializeObjects(ctx->entityManager, newEntities, ctx->entIt, count);
 
         // Replace all guids to new guid with ParentGuids and SceneGuids
         TObjectHelper::UpdateGuidsAndInstantiate<TSceneOriginalGuidComponent, TSceneInstanceGuidComponent>(

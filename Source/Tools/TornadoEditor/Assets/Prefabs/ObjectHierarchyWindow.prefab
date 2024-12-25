@@ -75,8 +75,8 @@
                     "jsonBody": "{}"
                 },
                 {
-                    "typeName": "nsGuiWrapper::TTargetHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnMouseClickObjectNodeHandler\", \"entityGuid\":\"ObjectHierarchyWindow_1\"}"
+                    "typeName": "nsLogicWrapper::TLocalHandlerComponent",
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnMouseClickObjectNodeHandler\", \"entityGuid\":\"ObjectHierarchyWindow_1\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         }
