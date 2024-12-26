@@ -72,7 +72,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnMouseClickFileNodeHandler\", \"entityGuid\":\"FileHierarchyWindow_1\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnMouseClickFileNodeHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         }

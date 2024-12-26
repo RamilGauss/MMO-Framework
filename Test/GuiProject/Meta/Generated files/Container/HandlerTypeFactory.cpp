@@ -2,7 +2,7 @@
 Project Handler
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_11_28 13:52:41.598
+// File has been generated at 2024_12_26 15:38:42.986
 #include "HandlerTypeFactory.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"

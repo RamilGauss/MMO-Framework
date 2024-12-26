@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_25 11:43:17.755
+// File has been generated at 2024_12_26 15:38:34.661
 #include "ComponentTypeFactory.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
@@ -449,6 +449,13 @@ void TComponentTypeFactory::Init()
     nsLogicWrapper_TPrefabReferenceComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabReferenceComponent>();
     
     datas.push_back(nsLogicWrapper_TPrefabReferenceComponent_Data);
+    
+    Data nsLogicWrapper_TReferenceHandlerComponent_Data;
+    nsLogicWrapper_TReferenceHandlerComponent_Data.newFunc = [](){ return new nsLogicWrapper::TReferenceHandlerComponent(); };
+    nsLogicWrapper_TReferenceHandlerComponent_Data.deleteFunc = [](void* p){ delete (nsLogicWrapper::TReferenceHandlerComponent*)p; };
+    nsLogicWrapper_TReferenceHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TReferenceHandlerComponent>();
+    
+    datas.push_back(nsLogicWrapper_TReferenceHandlerComponent_Data);
     
     Data nsLogicWrapper_TSceneObjectReferenceComponent_Data;
     nsLogicWrapper_TSceneObjectReferenceComponent_Data.newFunc = [](){ return new nsLogicWrapper::TSceneObjectReferenceComponent(); };

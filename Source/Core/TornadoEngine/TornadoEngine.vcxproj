@@ -387,6 +387,7 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     </ClInclude>
     <ClInclude Include="Components\Handler\GlobalHandlerComponent.h" />
     <ClInclude Include="Components\Handler\LocalHandlerComponent.h" />
+    <ClInclude Include="Components\Handler\ReferenceHandlerComponent.h" />
     <ClInclude Include="Components\Meta\GuidComponent.h" />
     <ClInclude Include="Features\Logic\End\Maker\GlobalHandlerMakerSystem.h" />
     <ClInclude Include="Features\Logic\End\Maker\LocalHandlerMakerSystem.h" />

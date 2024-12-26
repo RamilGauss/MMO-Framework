@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_25 11:43:17.743
+// File has been generated at 2024_12_26 15:38:34.648
 #include "ComponentJson.h"
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
@@ -760,6 +760,18 @@ void TComponentJson::Init()
     
     funcs.push_back(_nsLogicWrapper_TPrefabReferenceComponentTypeFunc);
     
+    TypeFunc _nsLogicWrapper_TReferenceHandlerComponentTypeFunc;
+    _nsLogicWrapper_TReferenceHandlerComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsLogicWrapper::TReferenceHandlerComponent>((nsLogicWrapper::TReferenceHandlerComponent*) p, str);
+    };
+    _nsLogicWrapper_TReferenceHandlerComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsLogicWrapper::TReferenceHandlerComponent>((nsLogicWrapper::TReferenceHandlerComponent*) p, str, err);
+    };
+    
+    _nsLogicWrapper_TReferenceHandlerComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TReferenceHandlerComponent>();
+    
+    funcs.push_back(_nsLogicWrapper_TReferenceHandlerComponentTypeFunc);
+    
     TypeFunc _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc;
     _nsLogicWrapper_TSceneObjectReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsLogicWrapper::TSceneObjectReferenceComponent>((nsLogicWrapper::TSceneObjectReferenceComponent*) p, str);
@@ -1497,7 +1509,6 @@ void TComponentJson::_Serialize(nsLogicWrapper::TLocalHandlerComponent* p, Jobj&
 {
     auto filter_c0 = _SerializeEnum(&(p->filter));
     PUM::Push(obj, "filter", filter_c0);
-    PUM::Push(obj, "entityGuid", p->entityGuid);
     PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
@@ -1506,7 +1517,6 @@ void TComponentJson::_Deserialize(nsLogicWrapper::TLocalHandlerComponent* p, con
     std::string filter_c0;
     POM::PopStr(obj, "filter", filter_c0);
     _DeserializeEnum(filter_c0, &(p->filter));
-    POM::PopStr(obj, "entityGuid", p->entityGuid);
     POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
@@ -1530,6 +1540,18 @@ void TComponentJson::_Serialize(nsLogicWrapper::TPrefabReferenceComponent* p, Jo
 void TComponentJson::_Deserialize(nsLogicWrapper::TPrefabReferenceComponent* p, const Jobj& obj)
 {
     POM::PopStr(obj, "prefabGuid", p->prefabGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsLogicWrapper::TReferenceHandlerComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "entityGuid", p->entityGuid);
+    PUM::Push(obj, "handlerTypeName", p->handlerTypeName);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsLogicWrapper::TReferenceHandlerComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "entityGuid", p->entityGuid);
+    POM::PopStr(obj, "handlerTypeName", p->handlerTypeName);
 }
 //---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, Jobj& obj)

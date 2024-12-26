@@ -36,7 +36,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"entityGuid\":\"WarningDialog_0\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },

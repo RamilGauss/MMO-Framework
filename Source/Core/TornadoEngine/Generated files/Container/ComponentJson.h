@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_25 11:43:17.741
+// File has been generated at 2024_12_26 15:38:34.645
 #pragma once
 
 #include <vector>
@@ -227,6 +227,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsLogicWrapper::TPrefabReferenceComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TPrefabReferenceComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsLogicWrapper::TReferenceHandlerComponent* p, Jobj& obj);
+        static void _Deserialize(nsLogicWrapper::TReferenceHandlerComponent* p, const Jobj& obj);
         
         static void _Serialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, Jobj& obj);
         static void _Deserialize(nsLogicWrapper::TSceneObjectReferenceComponent* p, const Jobj& obj);

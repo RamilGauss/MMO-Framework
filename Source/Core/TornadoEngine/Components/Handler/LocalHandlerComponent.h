@@ -24,7 +24,6 @@ namespace nsLogicWrapper
 
         Filter filter = Filter::SELF_AND_CHILDS;
 
-        std::string entityGuid;
         std::string handlerTypeName;
 
 #pragma IGNORE_ATTRIBUTE
@@ -32,19 +31,12 @@ namespace nsLogicWrapper
 
         bool IsLess(const IComponent* pOther) const override
         {
-            if (handlerTypeName < ((TLocalHandlerComponent*)pOther)->handlerTypeName) {
-                return false;
-            } else if (handlerTypeName > ((TLocalHandlerComponent*)pOther)->handlerTypeName) {
-                return true;
-            }
-
-            return (entityGuid == ((TLocalHandlerComponent*)pOther)->entityGuid);
+            return handlerTypeName < ((TLocalHandlerComponent*)pOther)->handlerTypeName;
         }
 
         bool IsEqual(const IComponent* pOther) const override
         {
-            return ((entityGuid == ((TLocalHandlerComponent*)pOther)->entityGuid) &&
-                    (handlerTypeName == ((TLocalHandlerComponent*)pOther)->handlerTypeName));
+            return handlerTypeName == ((TLocalHandlerComponent*)pOther)->handlerTypeName;
         }
     };
 }

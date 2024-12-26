@@ -64,6 +64,7 @@
         "nsLogicWrapper::TLocalHandlerComponent",
         "nsLogicWrapper::TPrefabObjectReferenceComponent",
         "nsLogicWrapper::TPrefabReferenceComponent",
+        "nsLogicWrapper::TReferenceHandlerComponent",
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
         "nsLogicWrapper::TSystemComponent",

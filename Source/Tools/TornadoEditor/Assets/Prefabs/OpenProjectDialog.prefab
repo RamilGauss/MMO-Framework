@@ -36,7 +36,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"entityGuid\":\"OpenProjectDialog_0\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnCloseDialogHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },
@@ -144,7 +144,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectOkButtonClickHandler\", \"entityGuid\" : \"OpenProjectDialog_3\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectOkButtonClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },
@@ -212,7 +212,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectCancelButtonClickHandler\", \"entityGuid\" : \"OpenProjectDialog_4\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\" : \"nsTornadoEditor::TOpenProjectCancelButtonClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         }
