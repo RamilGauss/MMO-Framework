@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_26 15:38:34.669
+// File has been generated at 2024_12_27 12:44:43.247
 #include "ComponentDynamicCaster.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
@@ -276,6 +276,42 @@ void TComponentDynamicCaster::Init()
     
     m.insert({ nsGuiWrapper_TSpacingComponent_rtti, nsGuiWrapper_TSpacingComponent_Map });
     
+    std::map<int, Data> nsGuiWrapper_TTextureReferenceComponent_Map;
+    
+    Data nsGuiWrapper_TTextureReferenceComponent_nsTornadoEngine_IPropertyOf_Data;
+    nsGuiWrapper_TTextureReferenceComponent_nsTornadoEngine_IPropertyOf_Data.castFunc = [](void* p){ return SmartCast<nsTornadoEngine::IPropertyOf, nsGuiWrapper::TTextureReferenceComponent>(p); };
+    auto nsGuiWrapper_TTextureReferenceComponent_nsTornadoEngine_IPropertyOf_rtti = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
+    
+    nsGuiWrapper_TTextureReferenceComponent_Map.insert({ nsGuiWrapper_TTextureReferenceComponent_nsTornadoEngine_IPropertyOf_rtti, nsGuiWrapper_TTextureReferenceComponent_nsTornadoEngine_IPropertyOf_Data });
+    
+    auto nsGuiWrapper_TTextureReferenceComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureReferenceComponent>();
+    
+    m.insert({ nsGuiWrapper_TTextureReferenceComponent_rtti, nsGuiWrapper_TTextureReferenceComponent_Map });
+    
+    std::map<int, Data> nsGuiWrapper_TTextureSizeComponent_Map;
+    
+    Data nsGuiWrapper_TTextureSizeComponent_nsTornadoEngine_IPropertyOf_Data;
+    nsGuiWrapper_TTextureSizeComponent_nsTornadoEngine_IPropertyOf_Data.castFunc = [](void* p){ return SmartCast<nsTornadoEngine::IPropertyOf, nsGuiWrapper::TTextureSizeComponent>(p); };
+    auto nsGuiWrapper_TTextureSizeComponent_nsTornadoEngine_IPropertyOf_rtti = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
+    
+    nsGuiWrapper_TTextureSizeComponent_Map.insert({ nsGuiWrapper_TTextureSizeComponent_nsTornadoEngine_IPropertyOf_rtti, nsGuiWrapper_TTextureSizeComponent_nsTornadoEngine_IPropertyOf_Data });
+    
+    auto nsGuiWrapper_TTextureSizeComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureSizeComponent>();
+    
+    m.insert({ nsGuiWrapper_TTextureSizeComponent_rtti, nsGuiWrapper_TTextureSizeComponent_Map });
+    
+    std::map<int, Data> nsGuiWrapper_TTextureUvComponent_Map;
+    
+    Data nsGuiWrapper_TTextureUvComponent_nsTornadoEngine_IPropertyOf_Data;
+    nsGuiWrapper_TTextureUvComponent_nsTornadoEngine_IPropertyOf_Data.castFunc = [](void* p){ return SmartCast<nsTornadoEngine::IPropertyOf, nsGuiWrapper::TTextureUvComponent>(p); };
+    auto nsGuiWrapper_TTextureUvComponent_nsTornadoEngine_IPropertyOf_rtti = globalTypeIdentifier->Type<nsTornadoEngine::IPropertyOf>();
+    
+    nsGuiWrapper_TTextureUvComponent_Map.insert({ nsGuiWrapper_TTextureUvComponent_nsTornadoEngine_IPropertyOf_rtti, nsGuiWrapper_TTextureUvComponent_nsTornadoEngine_IPropertyOf_Data });
+    
+    auto nsGuiWrapper_TTextureUvComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureUvComponent>();
+    
+    m.insert({ nsGuiWrapper_TTextureUvComponent_rtti, nsGuiWrapper_TTextureUvComponent_Map });
+    
     std::map<int, Data> nsGuiWrapper_TTitleComponent_Map;
     
     Data nsGuiWrapper_TTitleComponent_nsTornadoEngine_IPropertyOf_Data;
@@ -433,6 +469,24 @@ void TComponentDynamicCaster::Init()
     auto nsTornadoEngine_IPropertyOf_nsGuiWrapper_TSpacingComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TSpacingComponent>();
     
     nsTornadoEngine_IPropertyOf_Map.insert({ nsTornadoEngine_IPropertyOf_nsGuiWrapper_TSpacingComponent_rtti, nsTornadoEngine_IPropertyOf_nsGuiWrapper_TSpacingComponent_Data });
+    
+    Data nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureReferenceComponent_Data;
+    nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureReferenceComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TTextureReferenceComponent, nsTornadoEngine::IPropertyOf>(p); };
+    auto nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureReferenceComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureReferenceComponent>();
+    
+    nsTornadoEngine_IPropertyOf_Map.insert({ nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureReferenceComponent_rtti, nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureReferenceComponent_Data });
+    
+    Data nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureSizeComponent_Data;
+    nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureSizeComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TTextureSizeComponent, nsTornadoEngine::IPropertyOf>(p); };
+    auto nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureSizeComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureSizeComponent>();
+    
+    nsTornadoEngine_IPropertyOf_Map.insert({ nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureSizeComponent_rtti, nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureSizeComponent_Data });
+    
+    Data nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureUvComponent_Data;
+    nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureUvComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TTextureUvComponent, nsTornadoEngine::IPropertyOf>(p); };
+    auto nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureUvComponent_rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureUvComponent>();
+    
+    nsTornadoEngine_IPropertyOf_Map.insert({ nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureUvComponent_rtti, nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTextureUvComponent_Data });
     
     Data nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTitleComponent_Data;
     nsTornadoEngine_IPropertyOf_nsGuiWrapper_TTitleComponent_Data.castFunc = [](void* p){ return SmartCast<nsGuiWrapper::TTitleComponent, nsTornadoEngine::IPropertyOf>(p); };

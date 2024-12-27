@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_26 15:38:34.677
+// File has been generated at 2024_12_27 12:44:43.254
 #pragma once
 
 #include "Components/Graphic/CameraComponent.h"
@@ -33,6 +33,9 @@ Core Component
 #include "Components/Gui/Properties/SizeComponent.h"
 #include "Components/Gui/Properties/SizeInGridComponent.h"
 #include "Components/Gui/Properties/SpacingComponent.h"
+#include "Components/Gui/Properties/TextureReferenceComponent.h"
+#include "Components/Gui/Properties/TextureSizeComponent.h"
+#include "Components/Gui/Properties/TextureUvComponent.h"
 #include "Components/Gui/Properties/TitleComponent.h"
 #include "Components/Gui/Properties/VerticalAlignComponent.h"
 #include "Components/Gui/Properties/VisibilityComponent.h"

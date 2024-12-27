@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_26 15:38:34.645
+// File has been generated at 2024_12_27 12:44:43.227
 #pragma once
 
 #include <vector>
@@ -192,6 +192,15 @@ namespace nsTornadoEngine
         static void _Serialize(nsGuiWrapper::TSpacingComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TSpacingComponent* p, const Jobj& obj);
         
+        static void _Serialize(nsGuiWrapper::TTextureReferenceComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TTextureReferenceComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TTextureSizeComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TTextureSizeComponent* p, const Jobj& obj);
+        
+        static void _Serialize(nsGuiWrapper::TTextureUvComponent* p, Jobj& obj);
+        static void _Deserialize(nsGuiWrapper::TTextureUvComponent* p, const Jobj& obj);
+        
         static void _Serialize(nsGuiWrapper::TTitleComponent* p, Jobj& obj);
         static void _Deserialize(nsGuiWrapper::TTitleComponent* p, const Jobj& obj);
         
@@ -248,6 +257,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsMathTools::TMatrix16* p, Jobj& obj);
         static void _Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj);
+        
+        static void _Serialize(nsMathTools::TVector2* p, Jobj& obj);
+        static void _Deserialize(nsMathTools::TVector2* p, const Jobj& obj);
         
     };
     //------------------------------------------------------------------------------------------------------------

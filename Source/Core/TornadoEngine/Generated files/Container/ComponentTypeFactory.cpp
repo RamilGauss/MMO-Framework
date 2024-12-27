@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_26 15:38:34.661
+// File has been generated at 2024_12_27 12:44:43.240
 #include "ComponentTypeFactory.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
@@ -379,6 +379,27 @@ void TComponentTypeFactory::Init()
     nsGuiWrapper_TSpacingComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TSpacingComponent>();
     
     datas.push_back(nsGuiWrapper_TSpacingComponent_Data);
+    
+    Data nsGuiWrapper_TTextureReferenceComponent_Data;
+    nsGuiWrapper_TTextureReferenceComponent_Data.newFunc = [](){ return new nsGuiWrapper::TTextureReferenceComponent(); };
+    nsGuiWrapper_TTextureReferenceComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TTextureReferenceComponent*)p; };
+    nsGuiWrapper_TTextureReferenceComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureReferenceComponent>();
+    
+    datas.push_back(nsGuiWrapper_TTextureReferenceComponent_Data);
+    
+    Data nsGuiWrapper_TTextureSizeComponent_Data;
+    nsGuiWrapper_TTextureSizeComponent_Data.newFunc = [](){ return new nsGuiWrapper::TTextureSizeComponent(); };
+    nsGuiWrapper_TTextureSizeComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TTextureSizeComponent*)p; };
+    nsGuiWrapper_TTextureSizeComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureSizeComponent>();
+    
+    datas.push_back(nsGuiWrapper_TTextureSizeComponent_Data);
+    
+    Data nsGuiWrapper_TTextureUvComponent_Data;
+    nsGuiWrapper_TTextureUvComponent_Data.newFunc = [](){ return new nsGuiWrapper::TTextureUvComponent(); };
+    nsGuiWrapper_TTextureUvComponent_Data.deleteFunc = [](void* p){ delete (nsGuiWrapper::TTextureUvComponent*)p; };
+    nsGuiWrapper_TTextureUvComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureUvComponent>();
+    
+    datas.push_back(nsGuiWrapper_TTextureUvComponent_Data);
     
     Data nsGuiWrapper_TTitleComponent_Data;
     nsGuiWrapper_TTitleComponent_Data.newFunc = [](){ return new nsGuiWrapper::TTitleComponent(); };

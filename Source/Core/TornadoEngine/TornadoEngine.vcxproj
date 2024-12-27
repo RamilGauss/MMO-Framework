@@ -385,6 +385,9 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Components\Gui\Properties\TextureReferenceComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\TextureSizeComponent.h" />
+    <ClInclude Include="Components\Gui\Properties\TextureUvComponent.h" />
     <ClInclude Include="Components\Handler\GlobalHandlerComponent.h" />
     <ClInclude Include="Components\Handler\LocalHandlerComponent.h" />
     <ClInclude Include="Components\Handler\ReferenceHandlerComponent.h" />

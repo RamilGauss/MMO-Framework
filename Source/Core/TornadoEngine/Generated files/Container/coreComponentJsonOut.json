@@ -55,6 +55,9 @@
         "nsGuiWrapper::TSizeComponent",
         "nsGuiWrapper::TSizeInGridComponent",
         "nsGuiWrapper::TSpacingComponent",
+        "nsGuiWrapper::TTextureReferenceComponent",
+        "nsGuiWrapper::TTextureSizeComponent",
+        "nsGuiWrapper::TTextureUvComponent",
         "nsGuiWrapper::TTitleComponent",
         "nsGuiWrapper::TTreeNodeComponent",
         "nsGuiWrapper::TTreeViewComponent",
@@ -72,6 +75,7 @@
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
         "nsLogicWrapper::TSystemComponent",
-        "nsMathTools::TMatrix16"
+        "nsMathTools::TMatrix16",
+        "nsMathTools::TVector2"
     ]
 }

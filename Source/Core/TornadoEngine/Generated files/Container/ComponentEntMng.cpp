@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_26 15:38:34.664
+// File has been generated at 2024_12_27 12:44:43.243
 #include "ComponentEntMng.h"
 
 using namespace nsTornadoEngine;
@@ -531,6 +531,36 @@ void TComponentEntMng::Init()
     nsGuiWrapper_TSpacingComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TSpacingComponent>();
     
     datas.push_back(nsGuiWrapper_TSpacingComponent_Data);
+    
+    Data nsGuiWrapper_TTextureReferenceComponent_Data;
+    nsGuiWrapper_TTextureReferenceComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTextureReferenceComponent*)p)); };
+    nsGuiWrapper_TTextureReferenceComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TTextureReferenceComponent>(eid); };
+    nsGuiWrapper_TTextureReferenceComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TTextureReferenceComponent>(eid); };
+    nsGuiWrapper_TTextureReferenceComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TTextureReferenceComponent>(eid); };
+    nsGuiWrapper_TTextureReferenceComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TTextureReferenceComponent>(); };
+    nsGuiWrapper_TTextureReferenceComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureReferenceComponent>();
+    
+    datas.push_back(nsGuiWrapper_TTextureReferenceComponent_Data);
+    
+    Data nsGuiWrapper_TTextureSizeComponent_Data;
+    nsGuiWrapper_TTextureSizeComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTextureSizeComponent*)p)); };
+    nsGuiWrapper_TTextureSizeComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TTextureSizeComponent>(eid); };
+    nsGuiWrapper_TTextureSizeComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TTextureSizeComponent>(eid); };
+    nsGuiWrapper_TTextureSizeComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TTextureSizeComponent>(eid); };
+    nsGuiWrapper_TTextureSizeComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TTextureSizeComponent>(); };
+    nsGuiWrapper_TTextureSizeComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureSizeComponent>();
+    
+    datas.push_back(nsGuiWrapper_TTextureSizeComponent_Data);
+    
+    Data nsGuiWrapper_TTextureUvComponent_Data;
+    nsGuiWrapper_TTextureUvComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTextureUvComponent*)p)); };
+    nsGuiWrapper_TTextureUvComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsGuiWrapper::TTextureUvComponent>(eid); };
+    nsGuiWrapper_TTextureUvComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsGuiWrapper::TTextureUvComponent>(eid); };
+    nsGuiWrapper_TTextureUvComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsGuiWrapper::TTextureUvComponent>(eid); };
+    nsGuiWrapper_TTextureUvComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsGuiWrapper::TTextureUvComponent>(); };
+    nsGuiWrapper_TTextureUvComponent_Data.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureUvComponent>();
+    
+    datas.push_back(nsGuiWrapper_TTextureUvComponent_Data);
     
     Data nsGuiWrapper_TTitleComponent_Data;
     nsGuiWrapper_TTitleComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsGuiWrapper::TTitleComponent*)p)); };

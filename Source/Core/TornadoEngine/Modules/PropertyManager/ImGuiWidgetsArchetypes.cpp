@@ -28,8 +28,8 @@ namespace nsTornadoEngine
             .parentNames = {"nsGuiWrapper::TWidgetComponent"},
             .properties =
             {
-                // "nsGuiWrapper::TTextureReferenceComponent",
-                // "nsGuiWrapper::TTextureSizeComponent",
+                "nsGuiWrapper::TTextureReferenceComponent",
+                "nsGuiWrapper::TTextureUvComponent",
             }
         },
         {
@@ -126,9 +126,9 @@ namespace nsTornadoEngine
             { "nsGuiWrapper::TTitleComponent",               "nsImGuiWidgets::TTitle" },
             { "nsGuiWrapper::TVisibilityComponent",          "nsImGuiWidgets::TVisibility" },
             { "nsGuiWrapper::TVerticalAlignComponent",       "nsImGuiWidgets::TVerticalAlign" },
-            // { "nsGuiWrapper::TTextureReferenceComponent",    "nsImGuiWidgets::TTextureReference" },
-            // { "nsGuiWrapper::TTextureSizeComponent",         "nsImGuiWidgets::TTextureSize" },
-            // { "nsGuiWrapper::TTextureUvComponent",           "nsImGuiWidgets::TTextureUv" },
+            { "nsGuiWrapper::TTextureReferenceComponent",    "nsImGuiWidgets::TTextureReference" },
+            { "nsGuiWrapper::TTextureSizeComponent",         "nsImGuiWidgets::TTextureSize" },
+            { "nsGuiWrapper::TTextureUvComponent",           "nsImGuiWidgets::TTextureUv" },
         }
     };
 

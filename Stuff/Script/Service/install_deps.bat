@@ -1,3 +1,3 @@
-cd ../ConanSetup
+cd ../../ConanSetup
 
 python.exe installConanPackagesToSolution.py

@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_26 15:38:34.673
+// File has been generated at 2024_12_27 12:44:43.251
 #include "ComponentRtti.h"
 
 #include "Base/Common/SingletonManager.h"
@@ -331,6 +331,24 @@ void TComponentRtti::Init()
     mTypeNameList.push_back(nsGuiWrapper_TSpacingComponent_n);
     mRttiList.push_back(nsGuiWrapper_TSpacingComponent_i);
     mNameRttiMap.insert({ nsGuiWrapper_TSpacingComponent_n, nsGuiWrapper_TSpacingComponent_i });
+    
+    int nsGuiWrapper_TTextureReferenceComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TTextureReferenceComponent>();
+    std::string nsGuiWrapper_TTextureReferenceComponent_n = "nsGuiWrapper::TTextureReferenceComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TTextureReferenceComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TTextureReferenceComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TTextureReferenceComponent_n, nsGuiWrapper_TTextureReferenceComponent_i });
+    
+    int nsGuiWrapper_TTextureSizeComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TTextureSizeComponent>();
+    std::string nsGuiWrapper_TTextureSizeComponent_n = "nsGuiWrapper::TTextureSizeComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TTextureSizeComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TTextureSizeComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TTextureSizeComponent_n, nsGuiWrapper_TTextureSizeComponent_i });
+    
+    int nsGuiWrapper_TTextureUvComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TTextureUvComponent>();
+    std::string nsGuiWrapper_TTextureUvComponent_n = "nsGuiWrapper::TTextureUvComponent";
+    mTypeNameList.push_back(nsGuiWrapper_TTextureUvComponent_n);
+    mRttiList.push_back(nsGuiWrapper_TTextureUvComponent_i);
+    mNameRttiMap.insert({ nsGuiWrapper_TTextureUvComponent_n, nsGuiWrapper_TTextureUvComponent_i });
     
     int nsGuiWrapper_TTitleComponent_i = globalTypeIdentifier->Type<nsGuiWrapper::TTitleComponent>();
     std::string nsGuiWrapper_TTitleComponent_n = "nsGuiWrapper::TTitleComponent";

@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_26 15:38:34.648
+// File has been generated at 2024_12_27 12:44:43.229
 #include "ComponentJson.h"
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
@@ -640,6 +640,42 @@ void TComponentJson::Init()
     
     funcs.push_back(_nsGuiWrapper_TSpacingComponentTypeFunc);
     
+    TypeFunc _nsGuiWrapper_TTextureReferenceComponentTypeFunc;
+    _nsGuiWrapper_TTextureReferenceComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TTextureReferenceComponent>((nsGuiWrapper::TTextureReferenceComponent*) p, str);
+    };
+    _nsGuiWrapper_TTextureReferenceComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TTextureReferenceComponent>((nsGuiWrapper::TTextureReferenceComponent*) p, str, err);
+    };
+    
+    _nsGuiWrapper_TTextureReferenceComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureReferenceComponent>();
+    
+    funcs.push_back(_nsGuiWrapper_TTextureReferenceComponentTypeFunc);
+    
+    TypeFunc _nsGuiWrapper_TTextureSizeComponentTypeFunc;
+    _nsGuiWrapper_TTextureSizeComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TTextureSizeComponent>((nsGuiWrapper::TTextureSizeComponent*) p, str);
+    };
+    _nsGuiWrapper_TTextureSizeComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TTextureSizeComponent>((nsGuiWrapper::TTextureSizeComponent*) p, str, err);
+    };
+    
+    _nsGuiWrapper_TTextureSizeComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureSizeComponent>();
+    
+    funcs.push_back(_nsGuiWrapper_TTextureSizeComponentTypeFunc);
+    
+    TypeFunc _nsGuiWrapper_TTextureUvComponentTypeFunc;
+    _nsGuiWrapper_TTextureUvComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsGuiWrapper::TTextureUvComponent>((nsGuiWrapper::TTextureUvComponent*) p, str);
+    };
+    _nsGuiWrapper_TTextureUvComponentTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsGuiWrapper::TTextureUvComponent>((nsGuiWrapper::TTextureUvComponent*) p, str, err);
+    };
+    
+    _nsGuiWrapper_TTextureUvComponentTypeFunc.rtti = globalTypeIdentifier->Type<nsGuiWrapper::TTextureUvComponent>();
+    
+    funcs.push_back(_nsGuiWrapper_TTextureUvComponentTypeFunc);
+    
     TypeFunc _nsGuiWrapper_TTitleComponentTypeFunc;
     _nsGuiWrapper_TTitleComponentTypeFunc.serializeFunc = [] (void* p, std::string& str) {
     Serialize<nsGuiWrapper::TTitleComponent>((nsGuiWrapper::TTitleComponent*) p, str);
@@ -819,6 +855,18 @@ void TComponentJson::Init()
     _nsMathTools_TMatrix16TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TMatrix16>();
     
     funcs.push_back(_nsMathTools_TMatrix16TypeFunc);
+    
+    TypeFunc _nsMathTools_TVector2TypeFunc;
+    _nsMathTools_TVector2TypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsMathTools::TVector2>((nsMathTools::TVector2*) p, str);
+    };
+    _nsMathTools_TVector2TypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsMathTools::TVector2>((nsMathTools::TVector2*) p, str, err);
+    };
+    
+    _nsMathTools_TVector2TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TVector2>();
+    
+    funcs.push_back(_nsMathTools_TVector2TypeFunc);
     
     int max = 0;
     for (auto& f : funcs) {
@@ -1387,6 +1435,44 @@ void TComponentJson::_Deserialize(nsGuiWrapper::TSpacingComponent* p, const Jobj
     POM::PopNum(obj, "value", p->value);
 }
 //---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsGuiWrapper::TTextureReferenceComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "resourceGuid", p->resourceGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsGuiWrapper::TTextureReferenceComponent* p, const Jobj& obj)
+{
+    POM::PopStr(obj, "resourceGuid", p->resourceGuid);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsGuiWrapper::TTextureSizeComponent* p, Jobj& obj)
+{
+    PUM::Push(obj, "width", p->width);
+    PUM::Push(obj, "height", p->height);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsGuiWrapper::TTextureSizeComponent* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "width", p->width);
+    POM::PopNum(obj, "height", p->height);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsGuiWrapper::TTextureUvComponent* p, Jobj& obj)
+{
+    auto minUv_o = PUM::AddObject(obj, "minUv");
+    _Serialize(&(p->minUv), minUv_o);
+    auto maxUv_o = PUM::AddObject(obj, "maxUv");
+    _Serialize(&(p->maxUv), maxUv_o);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsGuiWrapper::TTextureUvComponent* p, const Jobj& obj)
+{
+    auto minUv_o0 = POM::FindObject(obj, "minUv");
+    _Deserialize(&(p->minUv), minUv_o0);
+    auto maxUv_o0 = POM::FindObject(obj, "maxUv");
+    _Deserialize(&(p->maxUv), maxUv_o0);
+}
+//---------------------------------------------------------------------------------------
 void TComponentJson::_Serialize(nsGuiWrapper::TTitleComponent* p, Jobj& obj)
 {
     PUM::Push(obj, "value", p->value);
@@ -1668,5 +1754,17 @@ void TComponentJson::_Deserialize(nsMathTools::TMatrix16* p, const Jobj& obj)
     POM::PopNum(obj, "_42", p->_42);
     POM::PopNum(obj, "_43", p->_43);
     POM::PopNum(obj, "_44", p->_44);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Serialize(nsMathTools::TVector2* p, Jobj& obj)
+{
+    PUM::Push(obj, "x", p->x);
+    PUM::Push(obj, "y", p->y);
+}
+//---------------------------------------------------------------------------------------
+void TComponentJson::_Deserialize(nsMathTools::TVector2* p, const Jobj& obj)
+{
+    POM::PopNum(obj, "x", p->x);
+    POM::PopNum(obj, "y", p->y);
 }
 //---------------------------------------------------------------------------------------
