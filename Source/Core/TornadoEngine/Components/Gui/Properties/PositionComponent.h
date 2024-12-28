@@ -18,25 +18,10 @@ namespace nsGuiWrapper
 {
     struct DllExport TPositionComponent : nsTornadoEngine::TPropertyOf<nsImGuiWidgets::TPosition>, nsECSFramework::IComponent
     {
+        TPositionComponent(int x, int y) : x(x), y(y) {}
+        TPositionComponent() {}
+
         int x = 0;
         int y = 0;
-
-        bool IsLess(const IComponent* pOther) const override
-        {
-            if (x < ((TPositionComponent*) pOther)->x) {
-                return false;
-            }
-
-            if (x == ((TPositionComponent*) pOther)->x) {
-                return y < ((TPositionComponent*) pOther)->y;
-            }
-
-            return true;
-        }
-
-        bool IsEqual(const IComponent* pOther) const override
-        {
-            return x == ((TPositionComponent*) pOther)->x && y == ((TPositionComponent*) pOther)->y;
-        }
     };
 }

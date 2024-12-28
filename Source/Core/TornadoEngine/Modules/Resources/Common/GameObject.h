@@ -63,6 +63,8 @@ namespace nsTornadoEngine
 
         template <typename Component>
         void SetComponent(const Component& component);
+        template <typename Component>
+        void SetComponent(Component&& component);
 
         void RemoveChilds();
         void RemoveChild(const TGameObject& child);
@@ -95,6 +97,12 @@ namespace nsTornadoEngine
     void TGameObject::SetComponent(const Component& component)
     {
         mEntMng->SetComponent<Component>(mEid, component);
+    }
+    //--------------------------------------------------------------------------------------------------
+    template <typename Component>
+    void TGameObject::SetComponent(Component&& component)
+    {
+        mEntMng->SetComponent(mEid, component);
     }
     //--------------------------------------------------------------------------------------------------
 }

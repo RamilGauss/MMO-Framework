@@ -40,14 +40,7 @@ namespace nsTornadoEditor
         return;//###
         auto go = prefabMng->Instantiate({ mainWindowPrefabGuidComponent->fileHierarchyGuid, sceneInstanceGuid });
 
-        nsGuiWrapper::TPositionComponent posComponent;
-        posComponent.x = 0;
-        posComponent.y = 0;
-        go.SetComponent(posComponent);
-
-        nsGuiWrapper::TSizeComponent sizeComponent;
-        sizeComponent.x = displayWidth / 3;
-        sizeComponent.y = displayHeight / 2;
-        go.SetComponent(sizeComponent);
+        go.SetComponent<nsGuiWrapper::TPositionComponent>({ 0, 0 });
+        go.SetComponent<nsGuiWrapper::TSizeComponent>({ displayWidth / 3 , displayHeight / 2 });
     }
 }
