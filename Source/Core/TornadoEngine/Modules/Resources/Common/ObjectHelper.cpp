@@ -24,9 +24,6 @@ namespace nsTornadoEngine
         std::list<nsECSFramework::TEntityID>& newEntities,
         std::list<TEntityContent>::const_iterator& entIt, int count)
     {
-        //nsTornadoEngine::TEngineLogger::Log()
-        //auto start = ht_GetUSCount();//###
-
         auto componentReflection = Project()->mScenePartAggregator->mComponents;
         auto reflectionEntMng = componentReflection->mEntMng->GetEntityManager();
 
@@ -42,13 +39,7 @@ namespace nsTornadoEngine
                 componentReflection->mEntMng->SetComponent(eid, component.rtti, component.p);
             }
         }
-
         componentReflection->mEntMng->SetEntityManager(reflectionEntMng);
-        //###
-        //int dt = ht_GetUSCount() - start;
-        //logger->WriteF_time("sync load %d us\n", dt);
-        //logger->ReOpen((char*)"1.log", true);
-        //###
     }
     //------------------------------------------------------------------------------------------------------
 }

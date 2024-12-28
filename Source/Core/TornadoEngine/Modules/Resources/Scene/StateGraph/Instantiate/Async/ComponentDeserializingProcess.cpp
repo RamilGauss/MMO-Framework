@@ -24,8 +24,6 @@ namespace nsTornadoEngine
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
 
-        std::string err;
-
         auto componentReflection = nsTornadoEngine::Project()->mScenePartAggregator->mComponents;
         for (auto& component : ctx->currentEntIt->components) {
             // Add component by rtti

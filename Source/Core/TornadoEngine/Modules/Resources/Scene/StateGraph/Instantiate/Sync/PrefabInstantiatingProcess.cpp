@@ -58,7 +58,7 @@ namespace nsTornadoEngine
             instantiatePrefabParams.parentGuid = parentGuid;
             instantiatePrefabParams.sceneInstanceGuid = ctx->instantiateSceneParams.sceneInstanceGuid;
 
-            ctx->prefabMng->Instantiate(instantiatePrefabParams);
+            ctx->prefabMng->Instantiate(std::move(instantiatePrefabParams));
         }
     }
     //-------------------------------------------------------------------------------

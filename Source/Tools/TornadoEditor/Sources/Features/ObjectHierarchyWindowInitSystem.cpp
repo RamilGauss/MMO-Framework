@@ -39,9 +39,10 @@ namespace nsTornadoEditor
         auto mainWindowPrefabGuidComponent = entMng->ViewComponent<TMainWindowPrefabGuidComponent>(mainWindowEid);
 
         return;//###
+
         auto go = prefabMng->Instantiate({ mainWindowPrefabGuidComponent->objectHierarchyGuid, sceneInstanceGuid });
 
-        go.SetComponent<nsGuiWrapper::TPositionComponent>({0, displayHeight / 2 });
+        go.SetComponent<nsGuiWrapper::TPositionComponent>({ 0, displayHeight / 2 });
         go.SetComponent<nsGuiWrapper::TSizeComponent>({ displayWidth / 3 , displayHeight / 2 });
     }
 }

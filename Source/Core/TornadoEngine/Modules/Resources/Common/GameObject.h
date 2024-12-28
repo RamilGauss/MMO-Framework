@@ -28,6 +28,7 @@ namespace nsTornadoEngine
         nsECSFramework::TEntityID GetEid() const;
 
         bool IsEmpty() const;
+        operator bool() const;
 
         [[nodiscard]]
         TGameObject GetParent();

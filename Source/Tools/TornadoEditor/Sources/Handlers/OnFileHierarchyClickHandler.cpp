@@ -31,7 +31,7 @@ void TOnFileHierarchyClickHandler::Handle(nsECSFramework::TEntityID eid, const n
         instantiatePrefabParams.guid = "0";
         instantiatePrefabParams.sceneInstanceGuid = sceneInstanceGuid;
 
-        prefabMng->Instantiate(instantiatePrefabParams);
+        prefabMng->Instantiate(std::move(instantiatePrefabParams));
     } else {
         prefabMng->Destroy(fileHierarchyWindowEid);
     }

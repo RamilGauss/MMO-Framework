@@ -27,7 +27,7 @@ namespace nsTornadoEngine
         // Если SceneInstance не задан, то искать нужно по родителю
         // И наоборот, если не задан родитель, то нужен SceneInstance, что бы найти root.
 
-        TGameObject Instantiate(const TInstantiatePrefabParams& instantiatePrefabParams);
+        TGameObject Instantiate(TInstantiatePrefabParams&& instantiatePrefabParams);
 
         // Уничтожить 
         void Destroy(nsECSFramework::TEntityID anyEidInScene);

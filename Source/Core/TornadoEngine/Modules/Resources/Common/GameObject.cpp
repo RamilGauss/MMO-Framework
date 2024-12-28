@@ -20,6 +20,7 @@ namespace nsTornadoEngine
     TGameObject::TGameObject(nsECSFramework::TEntityID eid, nsECSFramework::TEntityManager* entMng)
     {
         mEid = eid;
+        mEntMng = entMng;
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     nsECSFramework::TEntityID TGameObject::GetEid() const
@@ -49,6 +50,11 @@ namespace nsTornadoEngine
     bool TGameObject::IsEmpty() const
     {
         return (mEid == nsECSFramework::NONE);
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------
+    TGameObject::operator bool() const
+    {
+        return IsEmpty();
     }
     //------------------------------------------------------------------------------------------------------------------------------------
     TGameObject TGameObject::GetParent()
