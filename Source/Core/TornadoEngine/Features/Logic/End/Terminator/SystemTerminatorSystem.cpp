@@ -10,7 +10,6 @@ See for more information LICENSE.md.
 #include "SystemTerminatorSystem.h"
 
 #include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "TimeSliceEngine/EngineLogger.h"
 
 #include "Modules/Implementations/LogicModule.h"
 #include "Modules/Common/Modules.h"

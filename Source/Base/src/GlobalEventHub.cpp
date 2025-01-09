@@ -11,7 +11,6 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsCommon
 {
-
     class DllExport TGlobalEventHub : public TEventHub
     {
     public:
@@ -21,13 +20,13 @@ namespace nsBase::nsCommon
         }
     };
 
-    TGlobalEventHub g_EventHub;
-
     TEventHub* GetEventHub(const std::source_location loc)
     {
         auto index = SingletonManager()->Get<TThreadIndexator>()->GetThreadIndex();
-        g_EventHub.SetSourceLocation(index, loc);
 
-        return &g_EventHub;
+        auto eventHub = SingletonManager()->Get<TGlobalEventHub>();
+        eventHub->SetSourceLocation(index, loc);
+
+        return eventHub;
     }
 }

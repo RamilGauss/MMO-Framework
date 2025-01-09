@@ -56,13 +56,13 @@ namespace nsMMOEngine
         std::shared_ptr<TContainerContextSc> mContainerUp;
 
         // уведомления о разрыве связи
-        typedef TDataExchange2Thread<unsigned int> TListUint;
+        using TListUint = TDataExchange2Thread<unsigned int>;
         TListUint mDisconnectSessionID;
         // полученные пакеты от mSessionManager
-        typedef TDataExchange2Thread<TDescRecvSession> TListRecvPacket;
+        using TListRecvPacket = TDataExchange2Thread<TDescRecvSession>;
         TListRecvPacket mRecvPacket;
 
-        typedef TDataExchange2Thread<TTryConnectDown> TListTryConnectDown;
+        using TListTryConnectDown = TDataExchange2Thread<TTryConnectDown>;
         TListTryConnectDown mTryConnectDown;
 
         // транспорт

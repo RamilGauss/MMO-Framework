@@ -14,7 +14,6 @@ See for more information LICENSE.md.
 
 #include "ResourceContentMap.h"
 #include "Generated Files/TornadoEngineJsonSerializer.h"
-#include "TimeSliceEngine/EngineLogger.h"
 #include "Modules/Common/Modules.h"
 
 namespace nsTornadoEngine

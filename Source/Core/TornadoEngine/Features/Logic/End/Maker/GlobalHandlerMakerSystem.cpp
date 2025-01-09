@@ -11,7 +11,6 @@ See for more information LICENSE.md.
 #include "TimeSliceEngine/ProjectConfigContainer.h"
 #include "Modules/Common/Modules.h"
 #include "Base/Common/Logger.h"
-#include "TimeSliceEngine/EngineLogger.h"
 
 #include "GlobalHandlerMakerSystem.h"
 #include "ReflectionAggregators/ScenePartReflectionAggregator.h"

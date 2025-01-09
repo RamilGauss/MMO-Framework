@@ -7,17 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <vector>
+#include <array>
 
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/RunTimeTypeIndex.h"
 
-// not Thread-safe!
+// Thread-safe
 class DllExport TSingletonManager
 {
-    typedef std::vector<void*> TPtrVector;
-
-    TPtrVector mTypeObjVec;
+    std::array<void*, 1024 * 10> mObjArray = {nullptr};
 
     TRunTimeTypeIndex<TSingletonManager> mGlobalTypeIdentifier;
 public:
@@ -25,14 +23,10 @@ public:
     Type* Get()
     {
         auto index = mGlobalTypeIdentifier.Type<Type>();
-        size_t count = index + 1;
-        if ( mTypeObjVec.size() < count ) {
-            mTypeObjVec.resize(count);
+        if (mObjArray[index] == nullptr) {
+            mObjArray[index] = new Type();
         }
-        if ( mTypeObjVec[index] == nullptr ) {
-            mTypeObjVec[index] = new Type();
-        }
-        return (Type*) mTypeObjVec[index];
+        return (Type*)mObjArray[index];
     }
 };
 

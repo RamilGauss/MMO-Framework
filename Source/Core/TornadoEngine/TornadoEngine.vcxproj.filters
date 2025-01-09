@@ -489,7 +489,6 @@
     <ClCompile Include="Generated files\Container\ComponentTypeFactory.cpp" />
     <ClCompile Include="Modules\Resources\Scene\SceneCacheManager.cpp" />
     <ClCompile Include="Modules\Resources\Common\ResourceManager.cpp" />
-    <ClCompile Include="TimeSliceEngine\EngineLogger.cpp" />
     <ClCompile Include="Features\Logic\End\Maker\LocalHandlerMakerSystem.cpp" />
     <ClCompile Include="Features\Logic\End\Terminator\LocalHandlerTerminatorSystem.cpp" />
     <ClCompile Include="Features\Graphic\Begin\Builder\Helpers\HandlerLinkHelper.cpp" />
@@ -1126,7 +1125,6 @@
     <ClInclude Include="Modules\Resources\Scene\SceneCacheManager.h" />
     <ClInclude Include="Modules\Resources\Common\ResourceManager.h" />
     <ClInclude Include="Modules\Resources\Prefab\PrefabPatchOperation.h" />
-    <ClInclude Include="TimeSliceEngine\EngineLogger.h" />
     <ClInclude Include="Handlers\Logic\ISceneDestroyCompletionHandler.h" />
     <ClInclude Include="Handlers\Logic\ISceneSaveCompletionHandler.h" />
     <ClInclude Include="Components\Handler\LocalHandlerComponent.h" />

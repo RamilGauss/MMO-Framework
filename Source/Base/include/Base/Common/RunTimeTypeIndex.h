@@ -7,16 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <type_traits>
-#include <cstddef>
-#include <atomic>
-#include <map>
-#include <vector>
-#include <set>
-#include <list>
-#include <functional>
 #include <algorithm>
 #include <assert.h>
+#include <atomic>
+#include <cstddef>
+#include <functional>
+#include <list>
+#include <map>
+#include <mutex>
+#include <set>
+#include <type_traits>
 #include <typeinfo>
 #include <typeindex>
 
@@ -27,6 +27,9 @@ See for more information LICENSE.md.
 
 // use: SingletonManager()->Get<TRunTimeTypeIndex<ClassSpace>>()
 // ClassSpace - space for unique identity
+
+// Thread-safe
+
 template<typename...>
 class DllExport TRunTimeTypeIndex
 {
@@ -34,14 +37,10 @@ protected:
     friend class TSingletonManager;
     TRunTimeTypeIndex() {}
 public:
-    using TypeCounter = unsigned int;
-    using AtomicTypeCounter = 
-#ifdef USE_MULTITHREAD
-        std::atomic<TypeCounter>;
-#else
-        TypeCounter;
-#endif
+    using TypeCounter = int;
+    using AtomicTypeCounter = std::atomic<TypeCounter>;
 private:
+    std::mutex mMutex;
     AtomicTypeCounter mCounter = 0;
 
     struct MultiType
@@ -72,10 +71,12 @@ public:
     template <typename T, typename ... Args>
     TypeCounter Type()
     {
-        static TypeCounter innerCounter = -1;
+        static AtomicTypeCounter innerCounter = -1;
         if (innerCounter == -1) {
             MultiType multiType;
             Fill<T, Args...>(multiType);
+
+            std::lock_guard<std::mutex> guard(mMutex);
 
             auto fit = mTypeCounters.find(multiType);
             if (mTypeCounters.end() == fit) {

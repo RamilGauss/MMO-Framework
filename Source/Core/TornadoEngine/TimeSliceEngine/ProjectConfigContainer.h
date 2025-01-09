@@ -56,21 +56,6 @@ namespace nsTornadoEngine
         std::string GetResourcesAbsPath();
         
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng);
-
-        template<typename ... Args>
-        void Log(const char* format, Args && ... args)
-        {
-            std::string text = fmt::format(format, std::forward<Args>(args)...);
-            
-            if (mLogEvent) {
-                mLogEvent(text);
-            }
-
-            nsBase::nsCommon::GetEventHub()->
-                AddWarningEvent(text);
-        }
-
-        std::function<bool(const std::string&)> mLogEvent;
     };
 
     extern TProjectConfigContainer* Project();

@@ -13,19 +13,26 @@ See for more information LICENSE.md.
 #include <source_location>
 #include <array>
 
-#include "Base/Common/TypeDef.h"
+#include "Base/Common/DataExchange2Thread.h"
 #include "Base/Common/HiTimer.h"
+#include "Base/Common/TypeDef.h"
 
 namespace nsBase::nsCommon
 {
+    class TThreadIndexator;
     class DllExport TEventHub
     {
     protected:
-        std::list<std::string> mEvents;
+        using TStringList = TDataExchange2Thread<std::string>;
+        using TStringListPtr = std::shared_ptr<TStringList>;
 
+        std::array<TStringListPtr, 1024> mEventPipes;
         std::array<std::source_location, 1024> mSrcLocations;
 
+        TThreadIndexator* mThreadIndexator = nullptr;
     public:
+        TEventHub();
+
         template <typename ... Args>
         void AddEvent(const std::string& level, const std::string& format, Args ... args);
 
@@ -44,6 +51,8 @@ namespace nsBase::nsCommon
         const std::source_location& GetSourceLocation(int index);
     private:
         const std::source_location& GetSourceLocationForThisThread();
+
+        TStringListPtr GetPipForThisThread();
     };
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
@@ -53,13 +62,14 @@ namespace nsBase::nsCommon
 
         auto message = std::vformat(format, std::make_format_args(args...));
 
-        auto source_location_str = std::format("{} - {}, {}", 
+        auto sourceLocationStr = std::format("{} - {}, {}", 
             loc.file_name(), loc.line(), loc.function_name());
 
-        auto str_time = ht_GetTimeStr();
-        auto event = std::format("{}|{}: {} ({})", str_time, level, message, source_location_str);
+        auto timeStr = ht_GetTimeStr();
+        auto pEvent = new std::string();
+        *pEvent = std::move(std::format("{}|{}: {} ({})", timeStr, level, message, sourceLocationStr));
 
-        mEvents.push_back(event);
+        GetPipForThisThread()->Add(pEvent);
     }
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>

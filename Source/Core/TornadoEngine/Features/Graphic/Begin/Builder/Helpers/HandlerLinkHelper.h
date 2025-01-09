@@ -23,7 +23,6 @@ See for more information LICENSE.md.
 #include "Modules/Resources/Common/HandlerCallCollector.h"
 
 #include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "TimeSliceEngine/EngineLogger.h"
 
 #include "ReflectionAggregators/ScenePartReflectionAggregator.h"
 
@@ -122,7 +121,8 @@ namespace nsGraphicWrapper
         int rtti;
         auto convertResult = handlerReflection->mRtti->ConvertNameToType(pHandlerComponent->handlerTypeName, rtti);
         if (convertResult == false) {
-            nsTornadoEngine::TEngineLogger::Log("Not converted typename \"%s\"", pHandlerComponent->handlerTypeName);
+            //nsTornadoEngine::Modules()->Log()->AddWarningEvent("Not converted typename \"{}\"", pHandlerComponent->handlerTypeName);
+            nsBase::nsCommon::GetEventHub()->AddWarningEvent("Not converted typename \"{}\"", pHandlerComponent->handlerTypeName);
             return;
         }
         handlerReflection->mTypeFactory->Delete(pHandlerComponent->handler, rtti);

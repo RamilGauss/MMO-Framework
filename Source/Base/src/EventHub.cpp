@@ -11,20 +11,39 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsCommon
 {
-void TEventHub::TakeEvents(std::list<std::string>& events)
-{
-    std::swap(events, mEvents);
-}
-//--------------------------------------------------------------------------------------
-const std::source_location& TEventHub::GetSourceLocation(int index)
-{
-    return mSrcLocations[index];
-}
-//--------------------------------------------------------------------------------------
-const std::source_location& TEventHub::GetSourceLocationForThisThread()
-{
-    auto index = SingletonManager()->Get<TThreadIndexator>()->GetThreadIndex();
-    return GetSourceLocation(index);
-}
-//--------------------------------------------------------------------------------------
+    TEventHub::TEventHub()
+    {
+        mThreadIndexator = SingletonManager()->Get<TThreadIndexator>();
+    }
+    //--------------------------------------------------------------------------------------
+    void TEventHub::TakeEvents(std::list<std::string>& events)
+    {
+        auto count = mThreadIndexator->GetCount();
+        for (int i = 0; i < count; i++) {
+            std::string** pFirst = mEventPipes[i]->GetFirst();
+            while (pFirst) {
+                events.push_back(std::move(*pFirst[0]));
+                mEventPipes[i]->RemoveFirst();
+                pFirst = mEventPipes[i]->GetFirst();
+            }
+        }
+    }
+    //--------------------------------------------------------------------------------------
+    const std::source_location& TEventHub::GetSourceLocation(int index)
+    {
+        return mSrcLocations[index];
+    }
+    //--------------------------------------------------------------------------------------
+    const std::source_location& TEventHub::GetSourceLocationForThisThread()
+    {
+        auto index = mThreadIndexator->GetThreadIndex();
+        return GetSourceLocation(index);
+    }
+    //--------------------------------------------------------------------------------------
+    TEventHub::TStringListPtr TEventHub::GetPipForThisThread()
+    {
+        auto index = mThreadIndexator->GetThreadIndex();
+        return mEventPipes[index];
+    }
+    //--------------------------------------------------------------------------------------
 }

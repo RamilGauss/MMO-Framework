@@ -373,7 +373,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClCompile Include="Share\ImGuiSerializeTask.cpp" />
     <ClCompile Include="Share\MathStructs.cpp" />
     <ClCompile Include="Share\MathTools.cpp" />
-    <ClCompile Include="TimeSliceEngine\EngineLogger.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigContainer.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigLoader.cpp" />
     <ClCompile Include="TimeSliceEngine\ProjectConfigUnloader.cpp" />
@@ -666,7 +665,6 @@ $(SolutionDir)Exe\ReflectionCodeGenerator.exe "$(SolutionDir)Source\Core\Tornado
     <ClInclude Include="Share\PropertyOf.h" />
     <ClInclude Include="TimeSliceEngine\ConveyorConfig.h" />
     <ClInclude Include="TimeSliceEngine\DeveloperTool_DLL.h" />
-    <ClInclude Include="TimeSliceEngine\EngineLogger.h" />
     <ClInclude Include="TimeSliceEngine\EngineVersion.h" />
     <ClInclude Include="TimeSliceEngine\IModule.h" />
     <ClInclude Include="TimeSliceEngine\ModuleType.h" />

@@ -24,6 +24,8 @@ namespace nsBase::nsCommon
             }
             index++;
         }
+
+        mCount.fetch_add(1);
     }
     //----------------------------------------------------------------------------------------------------
     int TThreadIndexator::GetThreadIndex(std::thread::id threadId) const
@@ -38,6 +40,11 @@ namespace nsBase::nsCommon
         }
 
         return index;
+    }
+    //----------------------------------------------------------------------------------------------------
+    int TThreadIndexator::GetCount() const
+    {
+        return mCount.load();
     }
     //----------------------------------------------------------------------------------------------------
 }
