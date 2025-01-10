@@ -25,11 +25,14 @@ namespace nsBase::nsCommon
     {
         auto count = mThreadIndexator->GetCount();
         for (int i = 0; i < count; i++) {
-            std::string** pFirst = mEventPipes[i]->GetFirst();
-            while (pFirst) {
-                events.push_back(std::move(*pFirst[0]));
-                mEventPipes[i]->RemoveFirst();
-                pFirst = mEventPipes[i]->GetFirst();
+            auto pipe = mEventPipes[i];
+            if (pipe) {
+                std::string** pFirst = pipe->GetFirst();
+                while (pFirst) {
+                    events.push_back(std::move(*pFirst[0]));
+                    pipe->RemoveFirst();
+                    pFirst = pipe->GetFirst();
+                }
             }
         }
     }

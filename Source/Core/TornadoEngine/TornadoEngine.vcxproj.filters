@@ -511,6 +511,7 @@
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\PrefabInstantiatingProcess.cpp" />
     <ClCompile Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\UniverseIndexCreatingProcess.cpp" />
     <ClCompile Include="Modules\Resources\Common\ObjectHelper.cpp" />
+    <ClCompile Include="TimeSliceEngine\LogDumper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TimeSliceEngine\FrameworkResources.h">
@@ -1158,6 +1159,7 @@
     <ClInclude Include="Components\Gui\Properties\TextureSizeComponent.h" />
     <ClInclude Include="Components\Gui\Properties\TextureUvComponent.h" />
     <ClInclude Include="Components\Gui\Properties\TextureReferenceComponent.h" />
+    <ClInclude Include="TimeSliceEngine\LogDumper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated files\componentConfig.json" />

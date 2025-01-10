@@ -17,6 +17,7 @@ See for more information LICENSE.md.
 
 #include "ProjectConfig.h"
 #include "TimeSliceEngine/ProjectConfigContainer.h"
+#include "TimeSliceEngine/LogDumper.h"
 
 #include "StopAccessor.h"
 #include "ModuleType.h"
@@ -35,6 +36,8 @@ namespace nsTornadoEngine
         std::list<ModuleType> mModuleTypes;
 
         TProjectConfigContainer mProjectConfigContainer;
+
+        std::shared_ptr<TLogDumper> mLogDumper;
 
     public:
         TTimeSliceEngine();

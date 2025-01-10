@@ -33,8 +33,6 @@ namespace nsTornadoEngine
     class DllExport TProjectConfigContainer
     {
     public:
-        std::string mProjectName = "project.log";
-
         std::string projectAbsPath;
         std::string projectDirAbsPath;
 

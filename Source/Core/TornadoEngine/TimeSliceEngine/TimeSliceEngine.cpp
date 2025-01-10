@@ -33,7 +33,6 @@ TTimeSliceEngine::TTimeSliceEngine()
     SingletonManager()->Get<nsBase::nsCommon::TThreadIndexator>()->AddThreadId();// Не логично. Пока сюда вставлю. Потом надо подумать куда.
 
     SetProject(&mProjectConfigContainer);
-
 }
 //----------------------------------------------------------------------
 void TTimeSliceEngine::Done()
@@ -42,6 +41,8 @@ void TTimeSliceEngine::Done()
 //----------------------------------------------------------------------
 bool TTimeSliceEngine::Work(const std::list<ModuleType>& moduleTypes)
 {
+    mLogDumper.reset(new TLogDumper(mProjectConfigContainer.mProjectConfig.loggerConfig));
+
     mModuleMng.reset(new TModuleManager(this));
     mModuleTypes = moduleTypes;
 
@@ -69,6 +70,7 @@ void TTimeSliceEngine::Work()
         for (auto& pModule : mModulePtrList) {
             pModule->Work();
         }
+        mLogDumper->Work();
         if (IsNeedStop()) {
             break;
         }

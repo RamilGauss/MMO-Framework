@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2025_01_10 13:44:41.459
+// File has been generated at 2025_01_10 17:01:10.601
 #pragma once
 
 #include <vector>
@@ -69,9 +69,6 @@ namespace nsTornadoEngine
         static std::string _SerializeEnum(nsTornadoEngine::FieldAccessType* p);
         static void _DeserializeEnum(std::string& str, nsTornadoEngine::FieldAccessType* p);
         
-        static void _Serialize(nsTornadoEngine::LoggerConfig* p, Jobj& obj);
-        static void _Deserialize(nsTornadoEngine::LoggerConfig* p, const Jobj& obj);
-        
         static std::string _SerializeEnum(nsTornadoEngine::ModuleType* p);
         static void _DeserializeEnum(std::string& str, nsTornadoEngine::ModuleType* p);
         
@@ -89,6 +86,9 @@ namespace nsTornadoEngine
         
         static void _Serialize(nsTornadoEngine::TFrameworkResources* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TFrameworkResources* p, const Jobj& obj);
+        
+        static void _Serialize(nsTornadoEngine::TLoggerConfig* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::TLoggerConfig* p, const Jobj& obj);
         
         static void _Serialize(nsTornadoEngine::TPrefabInstance* p, Jobj& obj);
         static void _Deserialize(nsTornadoEngine::TPrefabInstance* p, const Jobj& obj);
