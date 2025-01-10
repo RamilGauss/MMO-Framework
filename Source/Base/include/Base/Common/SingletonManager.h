@@ -15,7 +15,9 @@ See for more information LICENSE.md.
 // Thread-safe
 class DllExport TSingletonManager
 {
-    std::array<void*, 1024 * 10> mObjArray = {nullptr};
+    std::array<void*, 1024 * 10> mObjArray = { nullptr };
+
+    std::mutex mMutex;
 
     TRunTimeTypeIndex<TSingletonManager> mGlobalTypeIdentifier;
 public:
@@ -23,8 +25,13 @@ public:
     Type* Get()
     {
         auto index = mGlobalTypeIdentifier.Type<Type>();
-        if (mObjArray[index] == nullptr) {
-            mObjArray[index] = new Type();
+        static std::atomic_bool isNeedInit = true;
+        if (isNeedInit) {
+            std::lock_guard<std::mutex> guard(mMutex);
+            if (mObjArray[index] == nullptr) {
+                mObjArray[index] = new Type();
+            }
+            isNeedInit = false;
         }
         return (Type*)mObjArray[index];
     }

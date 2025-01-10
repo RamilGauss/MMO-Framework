@@ -18,32 +18,11 @@ See for more information LICENSE.md.
 
 #include "Base/Common/FramedThread.h"
 
+#include "Base/Common/HiTimer.h"
 #include "Base/Common/ThreadIndexator.h"
 #include "Base/Common/SingletonManager.h"
-#include "Base/Common/GlobalEventHub.h"
 
 #include "Base/Common/CoroInThread.h"
-
-
-TEST(EventHub, Simple_Ok)
-{
-    using namespace nsBase::nsCommon;
-
-    SingletonManager()->Get<TThreadIndexator>()->AddThreadId();
-
-    GetEventHub()->AddEvent("Test", "asdasd");
-
-    GetEventHub()->AddEvent("Test", "{}", 42);
-    GetEventHub()->AddInfoEvent("{}", 42);
-    GetEventHub()->AddWarningEvent("{}", 42);
-    GetEventHub()->AddErrorEvent("{}", 42);
-
-
-    std::list<std::string> events;
-    GetEventHub()->TakeEvents(events);
-
-    events.begin();
-}
 
 namespace nsBase::nsZones::nsTests
 {

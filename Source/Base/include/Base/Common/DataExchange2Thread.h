@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "Base/Common/DataExchange2ThreadElement.h"
 #include "Base/Common/AllocatorPool.h"
 
-using namespace DataExchange2Thread;
+using namespace nsDataExchange2Thread;
 
 #ifdef _DEBUG
 #define USE_COUNT_FOR_DEBUG

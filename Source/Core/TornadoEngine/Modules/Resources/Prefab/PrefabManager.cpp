@@ -35,12 +35,12 @@ namespace nsTornadoEngine
 
         if (!deserializeResult) {
             nsTornadoEngine::Modules()->Log()->AddWarningEvent("Prefab by abs path \"{}\" not exists", instantiatePrefabParams.absPath);
-            return;
+            return {};
         }
 
         // Convert typeName to rtti
         std::list<nsECSFramework::TEntityID> newEntities;
-        TObjectHelper::DeserializeObjects(newEntities, prefabResourceContent);
+        //TObjectHelper::DeserializeObjects(newEntities, prefabResourceContent);
 
         SetupUniverse(newEntities, instantiatePrefabParams.sceneInstanceGuid, instantiatePrefabParams.parentGuid);
         return TGameObject();

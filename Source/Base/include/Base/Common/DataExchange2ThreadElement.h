@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include "Base/Common/CallBackRegistrator.h"
 #include "Base/Common/TypeDef.h"
 
-namespace DataExchange2Thread
+namespace nsDataExchange2Thread
 {
 #pragma pack(push, 1)
     struct DllExport TElement

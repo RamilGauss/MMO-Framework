@@ -15,6 +15,14 @@ See for more information LICENSE.md.
 namespace nsTornadoEngine
 {
 #pragma REFLECTION_ATTRIBUTE
+    struct DllExport LoggerConfig
+    {
+        bool enabled;
+        std::string logFileName;
+        int intervalTimeMs;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
     struct DllExport TProjectConfig
     {
         std::string binaryFilePath;
@@ -22,5 +30,7 @@ namespace nsTornadoEngine
         std::string resourcesFilePath;
 
         std::list<std::string> startScenesGuid;
+
+        LoggerConfig loggerConfig;
     };
 }

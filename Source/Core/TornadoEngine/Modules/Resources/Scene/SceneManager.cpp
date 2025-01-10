@@ -15,7 +15,6 @@ See for more information LICENSE.md.
 #include "Base/Common/GuidGenerator.h"
 
 #include "Generated Files/TornadoEngineJsonSerializer.h"
-#include "TimeSliceEngine/EngineLogger.h"
 #include "TimeSliceEngine/ProjectConfigContainer.h"
 
 #include "Modules/Common/Modules.h"

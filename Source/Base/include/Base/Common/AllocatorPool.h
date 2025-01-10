@@ -17,6 +17,6 @@ public:
     TAllocatorPool();
     ~TAllocatorPool();
 
-    DataExchange2Thread::TElement* Allocate();
-    void Deallocate(DataExchange2Thread::TElement* pElement);
+    nsDataExchange2Thread::TElement* Allocate();
+    void Deallocate(nsDataExchange2Thread::TElement* pElement);
 };

@@ -7,11 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <format>
-#include <string>
-#include <list>
-#include <source_location>
 #include <array>
+#include <format>
+#include <functional>
+#include <list>
+#include <string>
+#include <source_location>
 
 #include "Base/Common/DataExchange2Thread.h"
 #include "Base/Common/HiTimer.h"
@@ -30,8 +31,12 @@ namespace nsBase::nsCommon
         std::array<std::source_location, 1024> mSrcLocations;
 
         TThreadIndexator* mThreadIndexator = nullptr;
+
+        std::function<std::string()> mTimerFunction = ht_GetTimeStr;
     public:
         TEventHub();
+
+        void SetupTimer(std::function<std::string()> timerFunction);
 
         template <typename ... Args>
         void AddEvent(const std::string& level, const std::string& format, Args ... args);
@@ -65,9 +70,9 @@ namespace nsBase::nsCommon
         auto sourceLocationStr = std::format("{} - {}, {}", 
             loc.file_name(), loc.line(), loc.function_name());
 
-        auto timeStr = ht_GetTimeStr();
+        auto timeStr = mTimerFunction();
         auto pEvent = new std::string();
-        *pEvent = std::move(std::format("{}|{}: {} ({})", timeStr, level, message, sourceLocationStr));
+        *pEvent = std::move(std::format("{}|{}: {} [{}]", timeStr, level, message, sourceLocationStr));
 
         GetPipForThisThread()->Add(pEvent);
     }

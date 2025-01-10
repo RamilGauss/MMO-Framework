@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_25 11:00:09.497
+// File has been generated at 2025_01_10 13:44:41.466
 #pragma once
 
 #include "Modules/PropertyManager/ArchetypeField.h"

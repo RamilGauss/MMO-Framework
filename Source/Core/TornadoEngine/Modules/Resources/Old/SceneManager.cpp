@@ -12,7 +12,6 @@ See for more information LICENSE.md.
 #include "HiTimer.h"
 #include "TextFile.h"
 #include "Logger.h"
-#include "EngineLogger.h"
 #include "TornadoEngineJsonSerializer.h"
 #include "ProjectConfigContainer.h"
 

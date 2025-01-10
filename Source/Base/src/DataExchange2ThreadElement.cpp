@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/DataExchange2ThreadElement.h"
 
-namespace DataExchange2Thread
+namespace nsDataExchange2Thread
 {
     void TElement::Init()
     {

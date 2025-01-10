@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 #define ALLOCATOR ((boost::pool<>*)mAlloc)
 
-using namespace DataExchange2Thread;
+using namespace nsDataExchange2Thread;
 
 TAllocatorPool::TAllocatorPool()
 {

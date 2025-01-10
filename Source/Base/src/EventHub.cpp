@@ -16,6 +16,11 @@ namespace nsBase::nsCommon
         mThreadIndexator = SingletonManager()->Get<TThreadIndexator>();
     }
     //--------------------------------------------------------------------------------------
+    void TEventHub::SetupTimer(std::function<std::string()> timerFunction)
+    {
+        mTimerFunction = timerFunction;
+    }
+    //--------------------------------------------------------------------------------------
     void TEventHub::TakeEvents(std::list<std::string>& events)
     {
         auto count = mThreadIndexator->GetCount();
@@ -43,7 +48,11 @@ namespace nsBase::nsCommon
     TEventHub::TStringListPtr TEventHub::GetPipForThisThread()
     {
         auto index = mThreadIndexator->GetThreadIndex();
-        return mEventPipes[index];
+        auto&& pipe = mEventPipes[index];
+        if (pipe == nullptr) {
+            pipe.reset(new TStringList());
+        }
+        return pipe;
     }
     //--------------------------------------------------------------------------------------
 }

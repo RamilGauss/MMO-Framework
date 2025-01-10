@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_25 11:00:05.913
+// File has been generated at 2025_01_10 13:44:41.459
 #pragma once
 
 #include <vector>
@@ -68,6 +68,9 @@ namespace nsTornadoEngine
         
         static std::string _SerializeEnum(nsTornadoEngine::FieldAccessType* p);
         static void _DeserializeEnum(std::string& str, nsTornadoEngine::FieldAccessType* p);
+        
+        static void _Serialize(nsTornadoEngine::LoggerConfig* p, Jobj& obj);
+        static void _Deserialize(nsTornadoEngine::LoggerConfig* p, const Jobj& obj);
         
         static std::string _SerializeEnum(nsTornadoEngine::ModuleType* p);
         static void _DeserializeEnum(std::string& str, nsTornadoEngine::ModuleType* p);

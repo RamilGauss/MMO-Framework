@@ -1,1 +1,0 @@
-call ../../../../Exe/ContainerCodeGenerator_d.exe project ProjectContainerConfig.json

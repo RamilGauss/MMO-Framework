@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_25 11:00:07.615
+// File has been generated at 2025_01_10 13:44:41.460
 #include "TornadoEngineJsonSerializer.h"
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
@@ -135,6 +135,18 @@ void TTornadoEngineJsonSerializer::Init()
     _nsMathTools_TVector4TypeFunc.rtti = globalTypeIdentifier->Type<nsMathTools::TVector4>();
     
     funcs.push_back(_nsMathTools_TVector4TypeFunc);
+    
+    TypeFunc _nsTornadoEngine_LoggerConfigTypeFunc;
+    _nsTornadoEngine_LoggerConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
+    Serialize<nsTornadoEngine::LoggerConfig>((nsTornadoEngine::LoggerConfig*) p, str);
+    };
+    _nsTornadoEngine_LoggerConfigTypeFunc.deserializeFunc = [] (void* p, const std::string& str, std::string& err) {
+        return Deserialize<nsTornadoEngine::LoggerConfig>((nsTornadoEngine::LoggerConfig*) p, str, err);
+    };
+    
+    _nsTornadoEngine_LoggerConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsTornadoEngine::LoggerConfig>();
+    
+    funcs.push_back(_nsTornadoEngine_LoggerConfigTypeFunc);
     
     TypeFunc _nsTornadoEngine_TArchetypeFieldTypeFunc;
     _nsTornadoEngine_TArchetypeFieldTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -504,6 +516,20 @@ void TTornadoEngineJsonSerializer::_DeserializeEnum(std::string& str, nsTornadoE
     *p = m[str];
 }
 //---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::LoggerConfig* p, Jobj& obj)
+{
+    PUM::Push(obj, "enabled", p->enabled);
+    PUM::Push(obj, "logFileName", p->logFileName);
+    PUM::Push(obj, "intervalTimeMs", p->intervalTimeMs);
+}
+//---------------------------------------------------------------------------------------
+void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::LoggerConfig* p, const Jobj& obj)
+{
+    POM::PopBool(obj, "enabled", p->enabled);
+    POM::PopStr(obj, "logFileName", p->logFileName);
+    POM::PopNum(obj, "intervalTimeMs", p->intervalTimeMs);
+}
+//---------------------------------------------------------------------------------------
 std::string TTornadoEngineJsonSerializer::_SerializeEnum(nsTornadoEngine::ModuleType* p)
 {
     switch (*p) {
@@ -740,6 +766,8 @@ void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TProjectConfig* p
         PUM::PushBack(startScenesGuid_a0, startScenesGuid_e0);
     }
     PUM::Push(obj, "startScenesGuid", startScenesGuid_a0);
+    auto loggerConfig_o = PUM::AddObject(obj, "loggerConfig");
+    _Serialize(&(p->loggerConfig), loggerConfig_o);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TProjectConfig* p, const Jobj& obj)
@@ -757,6 +785,8 @@ void TTornadoEngineJsonSerializer::_Deserialize(nsTornadoEngine::TProjectConfig*
         POM::PopStr(obj, "startScenesGuid", startScenesGuid_t0);
         p->startScenesGuid.push_back(startScenesGuid_t0);
     }
+    auto loggerConfig_o0 = POM::FindObject(obj, "loggerConfig");
+    _Deserialize(&(p->loggerConfig), loggerConfig_o0);
 }
 //---------------------------------------------------------------------------------------
 void TTornadoEngineJsonSerializer::_Serialize(nsTornadoEngine::TResourceContentMap* p, Jobj& obj)

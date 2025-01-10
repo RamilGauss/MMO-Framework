@@ -1,9 +1,14 @@
 {
-	"binaryFilePath": "../../../../Exe/TornadoEditor_d.dll",
-	"conveyorFilePath": "./Conveyor.json",
-	"resourcesFilePath": "./Resources.json",
+    "binaryFilePath": "../../../../Exe/TornadoEditor_d.dll",
+    "conveyorFilePath": "./Conveyor.json",
+    "resourcesFilePath": "./Resources.json",
 
-	"startScenesGuid": [
-		"Bootstrapper.scene"
-	]
+    "startScenesGuid": [
+        "Bootstrapper.scene"
+    ],
+    "loggerConfig": {
+        "enabled": true,
+        "logFileName": "editor.log",
+        "intervalTimeMs":  1000
+    }
 }

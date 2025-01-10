@@ -12,7 +12,6 @@ See for more information LICENSE.md.
 #include "Generated Files/TornadoEngineJsonSerializer.h"
 #include "Base/Common/PathOperations.h"
 
-#include "TimeSliceEngine/EngineLogger.h"
 #include "Modules/Resources/Common/ResourceManager.h"
 #include "Modules/Common/Modules.h"
 

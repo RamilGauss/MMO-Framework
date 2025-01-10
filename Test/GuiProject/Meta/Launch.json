@@ -5,5 +5,10 @@
 
     "startScenesGuid": [
         "window_test.scene"
-    ]
+    ],
+    "loggerConfig": {
+        "enabled": true,
+        "logFileName": "gui_test.log",
+        "intervalTimeMs": 1000
+    }
 }
