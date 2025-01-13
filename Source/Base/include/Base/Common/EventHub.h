@@ -21,10 +21,29 @@ See for more information LICENSE.md.
 namespace nsBase::nsCommon
 {
     class TThreadIndexator;
+
+    struct TEventInfo
+    {
+        std::string time;
+        std::string level;
+        std::string message;
+        std::string fileLocation;
+        std::string source;
+
+        bool operator == (const TEventInfo& other) const
+        {
+            return (time == other.time) &&
+                (level == other.level) &&
+                (message == other.message) &&
+                (fileLocation == other.fileLocation) &&
+                (source == other.source);
+        }
+    };
+
     class DllExport TEventHub
     {
     protected:
-        using TStringList = TDataExchange2Thread<std::string>;
+        using TStringList = TDataExchange2Thread<TEventInfo>;
         using TStringListPtr = std::shared_ptr<TStringList>;
 
         std::array<TStringListPtr, 1024> mEventPipes;
@@ -33,66 +52,80 @@ namespace nsBase::nsCommon
         TThreadIndexator* mThreadIndexator = nullptr;
 
         std::function<std::string()> mTimerFunction = ht_GetTimeStr;
+
+        int mRegisterCount = 0;
+
+        std::vector<int> mDstOffsetInEvents;
+
+        std::vector<TEventInfo*> mEvents;
     public:
         TEventHub();
 
         void SetupTimer(std::function<std::string()> timerFunction);
 
+        // may call AddXXX in many (different) threads
         template <typename ... Args>
-        void AddEvent(const std::string& level, const std::string& format, Args ... args);
+        void AddInfoEvent(std::string&& source, const std::string& format, Args ... args);
 
         template <typename ... Args>
-        void AddInfoEvent(const std::string& format, Args ... args);
+        void AddWarningEvent(std::string&& source, const std::string& format, Args ... args);
 
         template <typename ... Args>
-        void AddWarningEvent(const std::string& format, Args ... args);
-
-        template <typename ... Args>
-        void AddErrorEvent(const std::string& format, Args ... args);
+        void AddErrorEvent(std::string&& source, const std::string& format, Args ... args);
         
-        void TakeEvents(std::list<std::string>& events);
+        // might call in only one thread
+        int RegisterDestination();
+        void TakeEvents(int dstId, std::list<TEventInfo>& events);
 
     protected:
+
         const std::source_location& GetSourceLocation(int index);
     private:
+        template <typename ... Args>
+        void AddEvent(std::string&& source, std::string&& level, const std::string& format, Args ... args);
+
         const std::source_location& GetSourceLocationForThisThread();
+        
+        void RefreshEvents();
+        int CalculateMinOffset();
 
         TStringListPtr GetPipForThisThread();
     };
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
-    void TEventHub::AddEvent(const std::string& level, const std::string& format, Args ... args)
+    void TEventHub::AddEvent(std::string&& source, std::string&& level, const std::string& format, Args ... args)
     {
         auto& loc = GetSourceLocationForThisThread();
 
         auto message = std::vformat(format, std::make_format_args(args...));
 
-        auto sourceLocationStr = std::format("{} - {}, {}", 
-            loc.file_name(), loc.line(), loc.function_name());
+        TEventInfo* pEventInfo = new TEventInfo();
 
-        auto timeStr = mTimerFunction();
-        auto pEvent = new std::string();
-        *pEvent = std::move(std::format("{}|{}: {} [{}]", timeStr, level, message, sourceLocationStr));
+        pEventInfo->time = std::move(mTimerFunction());
+        pEventInfo->message = std::move(message);
+        pEventInfo->source = std::move(source);
+        pEventInfo->level = std::move(level);
+        pEventInfo->fileLocation = std::move(std::format("{}:{}:{}", loc.file_name(), loc.line(), loc.column()));
 
-        GetPipForThisThread()->Add(pEvent);
+        GetPipForThisThread()->Add(pEventInfo);
     }
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
-    void TEventHub::AddInfoEvent(const std::string& format, Args ... args)
+    void TEventHub::AddInfoEvent(std::string&& source, const std::string& format, Args ... args)
     {
-        AddEvent("Info", format, args...);
+        AddEvent(std::move(source), "Info", format, args...);
     }
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
-    void TEventHub::AddWarningEvent(const std::string& format, Args ... args)
+    void TEventHub::AddWarningEvent(std::string&& source, const std::string& format, Args ... args)
     {
-        AddEvent("Warning", format, args...);
+        AddEvent(std::move(source), "Warning", format, args...);
     }
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
-    void TEventHub::AddErrorEvent(const std::string& format, Args ... args)
+    void TEventHub::AddErrorEvent(std::string&& source, const std::string& format, Args ... args)
     {
-        AddEvent("Error", format, args...);
+        AddEvent(std::move(source), "Error", format, args...);
     }
     //------------------------------------------------------------------------------------------------
 }

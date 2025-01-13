@@ -22,9 +22,9 @@ namespace nsBase::nsCommon
 
     TEventHub* GetEventHub(const std::source_location loc)
     {
-        auto index = SingletonManager()->Get<TThreadIndexator>()->GetThreadIndex();
-
         auto eventHub = SingletonManager()->Get<TGlobalEventHub>();
+
+        auto index = SingletonManager()->Get<TThreadIndexator>()->GetThreadIndex();
         eventHub->SetSourceLocation(index, loc);
 
         return eventHub;
