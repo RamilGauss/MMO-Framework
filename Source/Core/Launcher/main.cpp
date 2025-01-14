@@ -22,6 +22,8 @@ See for more information LICENSE.md.
 #include "Base/Common/ContainerTypes.h"
 #include "Base/Common/FileOperation.h"
 #include "Base/Common/PathOperations.h"
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/ThreadIndexator.h"
 
 #include "TimeSliceEngine/TimeSliceEngine.h"
 #include "TimeSliceEngine/ProjectConfigurator.h"
@@ -41,6 +43,8 @@ void IncorrectPathToProject(const std::string& absProjectPath);
 #ifdef WIN32
 INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR cmdLine, INT)
 {
+    SingletonManager()->Get<nsBase::nsCommon::TThreadIndexator>()->AddThreadId();
+
     char** argv = __argv;
     int argc = __argc;
 #else
@@ -61,8 +65,6 @@ int main(int argc, char** argv)
         return -1;
     }
     //-----------------------------------------------------------------
-    auto timeSliceEngine = new TTimeSliceEngine;
-
     auto currentDir = TPathOperations::GetCurrentDir();
     auto absProjectPath = TPathOperations::CalculatePathBy(currentDir, argv[1]);
 
@@ -70,15 +72,15 @@ int main(int argc, char** argv)
     auto loadResult = projectConfigurator->LoadProject(absProjectPath);
 
     if (loadResult) {
+        auto timeSliceEngine = new TTimeSliceEngine;
         timeSliceEngine->onModuleCreationEndsCb.Register(projectConfigurator, &TProjectConfigurator::Setup);
         timeSliceEngine->Work(projectConfigurator->GetModuleTypes());
+        delete timeSliceEngine;
     } else {
         IncorrectPathToProject(absProjectPath);
     }
-    delete timeSliceEngine;
 
     projectConfigurator->UnloadProject();
-
     delete projectConfigurator;
 
     return 0;

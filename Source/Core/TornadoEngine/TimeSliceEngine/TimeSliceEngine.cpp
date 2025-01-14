@@ -30,8 +30,6 @@ using namespace nsTornadoEngine;
 
 TTimeSliceEngine::TTimeSliceEngine()
 {
-    SingletonManager()->Get<nsBase::nsCommon::TThreadIndexator>()->AddThreadId();// Не логично. Пока сюда вставлю. Потом надо подумать куда.
-
     SetProject(&mProjectConfigContainer);
 }
 //----------------------------------------------------------------------

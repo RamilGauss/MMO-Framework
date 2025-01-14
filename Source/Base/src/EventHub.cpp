@@ -11,9 +11,9 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsCommon
 {
-    TEventHub::TEventHub()
+    TEventHub::TEventHub(TThreadIndexator* threadIndexator)
     {
-        mThreadIndexator = SingletonManager()->Get<TThreadIndexator>();
+        mThreadIndexator = threadIndexator;
     }
     //--------------------------------------------------------------------------------------
     void TEventHub::SetupTimer(std::function<std::string()> timerFunction)
@@ -93,6 +93,11 @@ namespace nsBase::nsCommon
                 }
             }
         }
+    }
+    //--------------------------------------------------------------------------------------
+    void TEventHub::SetSourceLocation(std::source_location&& loc, int index)
+    {
+        mSrcLocations[index] = std::move(loc);
     }
     //--------------------------------------------------------------------------------------
 }

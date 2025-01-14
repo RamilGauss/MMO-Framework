@@ -59,9 +59,10 @@ namespace nsBase::nsCommon
 
         std::vector<TEventInfo*> mEvents;
     public:
-        TEventHub();
+        TEventHub(TThreadIndexator* threadIndexator);
 
         void SetupTimer(std::function<std::string()> timerFunction);
+        void SetSourceLocation(std::source_location&& loc, int index = 0);
 
         // may call AddXXX in many (different) threads
         template <typename ... Args>
@@ -76,14 +77,11 @@ namespace nsBase::nsCommon
         // might call in only one thread
         int RegisterDestination();
         void TakeEvents(int dstId, std::list<TEventInfo>& events);
-
-    protected:
-
-        const std::source_location& GetSourceLocation(int index);
     private:
         template <typename ... Args>
         void AddEvent(std::string&& source, std::string&& level, const std::string& format, Args ... args);
 
+        const std::source_location& GetSourceLocation(int index);
         const std::source_location& GetSourceLocationForThisThread();
         
         void RefreshEvents();
