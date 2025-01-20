@@ -48,6 +48,7 @@ namespace nsBase::nsCommon
 
         std::array<TStringListPtr, 1024> mEventPipes;
         std::array<std::source_location, 1024> mSrcLocations;
+        std::array<std::string, 1024> mSources;
 
         TThreadIndexator* mThreadIndexator = nullptr;
 
@@ -63,26 +64,27 @@ namespace nsBase::nsCommon
 
         void SetupTimer(std::function<std::string()> timerFunction);
         void SetSourceLocation(std::source_location&& loc, int index = 0);
+        void SetSource(std::string&& source, int index = 0);
 
         // may call AddXXX in many (different) threads
         template <typename ... Args>
-        void AddInfoEvent(std::string&& source, const std::string& format, Args ... args);
+        void AddInfoEvent(const std::string& format, Args ... args);
 
         template <typename ... Args>
-        void AddWarningEvent(std::string&& source, const std::string& format, Args ... args);
+        void AddWarningEvent(const std::string& format, Args ... args);
 
         template <typename ... Args>
-        void AddErrorEvent(std::string&& source, const std::string& format, Args ... args);
+        void AddErrorEvent(const std::string& format, Args ... args);
         
         // might call in only one thread
         int RegisterDestination();
         void TakeEvents(int dstId, std::list<TEventInfo>& events);
     private:
         template <typename ... Args>
-        void AddEvent(std::string&& source, std::string&& level, const std::string& format, Args ... args);
+        void AddEvent(std::string&& level, const std::string& format, Args ... args);
 
-        const std::source_location& GetSourceLocation(int index);
         const std::source_location& GetSourceLocationForThisThread();
+        const std::string& GetSourceForThisThread();
         
         void RefreshEvents();
         int CalculateMinOffset();
@@ -91,8 +93,9 @@ namespace nsBase::nsCommon
     };
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
-    void TEventHub::AddEvent(std::string&& source, std::string&& level, const std::string& format, Args ... args)
+    void TEventHub::AddEvent(std::string&& level, const std::string& format, Args ... args)
     {
+        std::string source = GetSourceForThisThread();
         auto& loc = GetSourceLocationForThisThread();
 
         auto message = std::vformat(format, std::make_format_args(args...));
@@ -109,21 +112,21 @@ namespace nsBase::nsCommon
     }
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
-    void TEventHub::AddInfoEvent(std::string&& source, const std::string& format, Args ... args)
+    void TEventHub::AddInfoEvent(const std::string& format, Args ... args)
     {
-        AddEvent(std::move(source), "Info", format, args...);
+        AddEvent("Info", format, args...);
     }
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
-    void TEventHub::AddWarningEvent(std::string&& source, const std::string& format, Args ... args)
+    void TEventHub::AddWarningEvent(const std::string& format, Args ... args)
     {
-        AddEvent(std::move(source), "Warning", format, args...);
+        AddEvent("Warning", format, args...);
     }
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
-    void TEventHub::AddErrorEvent(std::string&& source, const std::string& format, Args ... args)
+    void TEventHub::AddErrorEvent(const std::string& format, Args ... args)
     {
-        AddEvent(std::move(source), "Error", format, args...);
+        AddEvent("Error", format, args...);
     }
     //------------------------------------------------------------------------------------------------
 }

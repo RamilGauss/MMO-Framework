@@ -24,7 +24,7 @@ void TGlobalHandlerMakerSystem::Reactive(nsECSFramework::TEntityID eid, const ns
     int rtti;
     auto convertResult = handlerReflection->mRtti->ConvertNameToType(pC->handlerTypeName, rtti);
     if (convertResult == false) {
-        nsTornadoEngine::Modules()->Log()->AddWarningEvent("Not converted typename \"{}\"", pC->handlerTypeName);
+        nsTornadoEngine::Modules()->CoreLog()->AddWarningEvent("Not converted typename \"{}\"", pC->handlerTypeName);
         return;
     }
     pC->handler = handlerReflection->mTypeFactory->New(rtti);

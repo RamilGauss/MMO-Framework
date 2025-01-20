@@ -28,7 +28,7 @@ void TSystemTerminatorSystem::Reactive(nsECSFramework::TEntityID eid, const nsLo
     int rtti;
     auto convertResult = featureReflection->mRtti->ConvertNameToType(pC->typeName, rtti);
     if (convertResult == false) {
-        nsTornadoEngine::Modules()->Log()->AddWarningEvent("Not converted typename \"{}\"", pC->typeName);
+        nsTornadoEngine::Modules()->CoreLog()->AddWarningEvent("Not converted typename \"{}\"", pC->typeName);
         return;
     }
 

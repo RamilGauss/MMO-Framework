@@ -11,5 +11,5 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsCommon
 {
-    extern DllExport TEventHub* GetEventHub(std::source_location loc = std::source_location::current());
+    extern DllExport TEventHub* GetEventHub(std::string&& source = "Common", std::source_location loc = std::source_location::current());
 }

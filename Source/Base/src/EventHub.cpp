@@ -21,15 +21,16 @@ namespace nsBase::nsCommon
         mTimerFunction = timerFunction;
     }
     //--------------------------------------------------------------------------------------
-    const std::source_location& TEventHub::GetSourceLocation(int index)
-    {
-        return mSrcLocations[index];
-    }
-    //--------------------------------------------------------------------------------------
     const std::source_location& TEventHub::GetSourceLocationForThisThread()
     {
         auto index = mThreadIndexator->GetThreadIndex();
-        return GetSourceLocation(index);
+        return mSrcLocations[index];
+    }
+    //--------------------------------------------------------------------------------------
+    const std::string& TEventHub::GetSourceForThisThread()
+    {
+        auto index = mThreadIndexator->GetThreadIndex();
+        return mSources[index];
     }
     //--------------------------------------------------------------------------------------
     TEventHub::TStringListPtr TEventHub::GetPipForThisThread()
@@ -98,6 +99,11 @@ namespace nsBase::nsCommon
     void TEventHub::SetSourceLocation(std::source_location&& loc, int index)
     {
         mSrcLocations[index] = std::move(loc);
+    }
+    //--------------------------------------------------------------------------------------
+    void TEventHub::SetSource(std::string&& source, int index)
+    {
+        mSources[index] = std::move(source);
     }
     //--------------------------------------------------------------------------------------
 }

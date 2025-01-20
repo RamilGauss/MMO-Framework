@@ -27,6 +27,7 @@ See for more information LICENSE.md.
 
 #include "TimeSliceEngine/TimeSliceEngine.h"
 #include "TimeSliceEngine/ProjectConfigurator.h"
+#include "TimeSliceEngine/ProjectConfigContainer.h"
 
 
 using namespace nsTornadoEngine;
@@ -60,7 +61,7 @@ int main(int argc, char** argv)
 
     SetCurrentPathByFile(argv[0]);
 
-    if (argc == 1)   {
+    if (argc == 1) {
         ViewHowUse();
         return -1;
     }
@@ -68,25 +69,39 @@ int main(int argc, char** argv)
     auto currentDir = TPathOperations::GetCurrentDir();
     auto absProjectPath = TPathOperations::CalculatePathBy(currentDir, argv[1]);
 
-    auto projectConfigurator = new TProjectConfigurator();
+    TLoggerConfig coreLoggerConfig = {
+        .enabled = true,
+        .logFileName = "core.log",
+        .intervalTimeMs = 1000,
+    };
+
+    auto projectContainer = std::make_shared<TProjectConfigContainer>();
+    SetProject(projectContainer.get());
+
+    auto projectConfigurator = std::make_shared<TProjectConfigurator>();
     auto loadResult = projectConfigurator->LoadProject(absProjectPath);
 
     if (loadResult) {
-        auto timeSliceEngine = new TTimeSliceEngine;
-        timeSliceEngine->onModuleCreationEndsCb.Register(projectConfigurator, &TProjectConfigurator::Setup);
-        timeSliceEngine->Work(projectConfigurator->GetModuleTypes());
-        delete timeSliceEngine;
+        auto eventHub = nsBase::nsCommon::GetEventHub();
+        auto coreLogDumper = std::make_shared<TLogDumper>("Core", eventHub, coreLoggerConfig);
+        auto projectLogDumper = std::make_shared<TLogDumper>("Project", eventHub, projectContainer->mProjectConfig.loggerConfig);
+
+        auto timeSliceEngine = std::make_shared<TTimeSliceEngine>();
+        timeSliceEngine->Init(projectConfigurator->GetModuleTypes());
+        timeSliceEngine->StartModules();
+        projectConfigurator->Setup();
+        timeSliceEngine->Work({ coreLogDumper.get(), projectLogDumper.get() });
+        timeSliceEngine->StopModules();
     } else {
         IncorrectPathToProject(absProjectPath);
     }
 
     projectConfigurator->UnloadProject();
-    delete projectConfigurator;
 
     return 0;
 }
 //-------------------------------------------------------------------------------
-void IncorrectPathToProject(const std::string& absProjectPath)
+void IncorrectPathToProject(const std::string & absProjectPath)
 {
     auto message = fmt::format("Incorrect path to the file project:\n\"{}\"", absProjectPath);
     BL_MessageBug(message.c_str());

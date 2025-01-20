@@ -7,6 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include "Base/Common/EventHub.h"
 #include "Base/Common/SaveToFile.h"
 #include "Base/Common/TypeDef.h"
 
@@ -16,14 +17,20 @@ namespace nsTornadoEngine
 {
     class DllExport TLogDumper
     {
+        nsBase::nsCommon::TEventHub* mEventHub = nullptr;
+
         TLoggerConfig mLoggerConfig;
 
         unsigned int mLastTimeDump = 0;
 
         nsBase::nsCommon::TSaveToFile mFile;
 
+        int mRegisterDstId = 0;
+
+        std::string mSource;
+
     public:
-        TLogDumper(const TLoggerConfig& loggerConfig);
+        TLogDumper(std::string&& source, nsBase::nsCommon::TEventHub* eventHub, const TLoggerConfig& loggerConfig);
 
         void Work();
     };

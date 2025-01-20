@@ -174,8 +174,7 @@ void THandlerMMO::PrintCC(const char* loggerName)
 
     s += "\n";
 
-    nsBase::nsCommon::GetEventHub()->
-        AddWarningEvent(s);
+    nsBase::nsCommon::GetEventHub()->AddWarningEvent(s);
 }
 //---------------------------------------------------------------------------------------------
 void THandlerMMO::AddClient(unsigned int clientKey)

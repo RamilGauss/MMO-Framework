@@ -56,8 +56,8 @@ namespace nsTornadoEngine
         void SetEntityManager(nsECSFramework::TEntityManager* pEntMng);
     };
 
-    extern TProjectConfigContainer* Project();
-    extern void SetProject(TProjectConfigContainer* pProject);
+    DllExport_C TProjectConfigContainer* Project();
+    DllExport_C void SetProject(TProjectConfigContainer* pProject);
 }
 
 

@@ -13,8 +13,11 @@ See for more information LICENSE.md.
 
 namespace nsTornadoEngine
 {
-    TLogDumper::TLogDumper(const TLoggerConfig& loggerConfig)
+    TLogDumper::TLogDumper(std::string&& source, nsBase::nsCommon::TEventHub* eventHub, const TLoggerConfig& loggerConfig)
     {
+        mSource = std::move(source);
+        mEventHub = eventHub;
+        mRegisterDstId = mEventHub->RegisterDestination();
         mLoggerConfig = loggerConfig;
         if (mLoggerConfig.enabled) {
             mFile.ReOpen((char*)mLoggerConfig.logFileName.c_str());
@@ -31,11 +34,14 @@ namespace nsTornadoEngine
             }
             mLastTimeDump = now;
 
-            std::list<std::string> events;
-            Modules()->Log()->TakeEvents(events);
+            std::list<nsBase::nsCommon::TEventInfo> events;
+            mEventHub->TakeEvents(mRegisterDstId, events);
             
             for (auto&& event : events) {
-                mFile.WriteF("%s\n", event.c_str());
+                if (event.source == mSource) {
+                    auto str = std::format("{}[{}]:{} -> {}", event.time, event.source, event.message, event.fileLocation);
+                    mFile.WriteF("%s\n", str.c_str());
+                }
             }
         }
     }

@@ -18,7 +18,7 @@ namespace nsTornadoEngine
             // Convert to abs path
             auto absPath = GetAbsPath(instantiatePrefabParams.guid);
             if (absPath.empty()) {
-                nsTornadoEngine::Modules()->Log()->AddWarningEvent("Guid \"{}\" not exists", instantiatePrefabParams.guid);
+                nsTornadoEngine::Modules()->CoreLog()->AddWarningEvent("Guid \"{}\" not exists", instantiatePrefabParams.guid);
                 return {};
             }
 
@@ -34,7 +34,7 @@ namespace nsTornadoEngine
         auto deserializeResult = TTornadoEngineJsonSerializer::Deserialize(&prefabResourceContent, fileContent, err);
 
         if (!deserializeResult) {
-            nsTornadoEngine::Modules()->Log()->AddWarningEvent("Prefab by abs path \"{}\" not exists", instantiatePrefabParams.absPath);
+            nsTornadoEngine::Modules()->CoreLog()->AddWarningEvent("Prefab by abs path \"{}\" not exists", instantiatePrefabParams.absPath);
             return {};
         }
 

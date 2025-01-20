@@ -18,11 +18,12 @@ namespace nsBase::nsCommon
         }
     };
 
-    TEventHub* GetEventHub(std::source_location loc)
+    TEventHub* GetEventHub(std::string&& source, std::source_location loc)
     {
         auto eventHub = SingletonManager()->Get<TGlobalEventHub>();
         auto index = SingletonManager()->Get<TThreadIndexator>()->GetThreadIndex();
         eventHub->SetSourceLocation(std::move(loc), index);
+        eventHub->SetSource(std::move(source), index);
         return eventHub;
     }
 }

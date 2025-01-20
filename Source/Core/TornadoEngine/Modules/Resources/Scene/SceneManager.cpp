@@ -102,7 +102,7 @@ namespace nsTornadoEngine
         // Convert to abs path
         auto absPath = GetAbsPath(instantiateSceneParams.guid);
         if (absPath.empty()) {
-            nsTornadoEngine::Modules()->Log()->AddWarningEvent("Guid \"{}\" not exist", instantiateSceneParams.guid);
+            nsTornadoEngine::Modules()->CoreLog()->AddWarningEvent("Guid \"{}\" not exist", instantiateSceneParams.guid);
             return "Not found";
         }
 

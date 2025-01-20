@@ -19,61 +19,52 @@ See for more information LICENSE.md.
 #include "Base/Common/SingletonManager.h"
 
 #include "Modules/Common/Modules.h"
-#include "TimeSliceEngine/IModule.h"
 #include "Modules/Common/ModuleManager.h"
 
+#include "TimeSliceEngine/IModule.h"
 #include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "ProjectConfigLoader.h"
-#include "ProjectConfigUnloader.h"
+#include "TimeSliceEngine/ProjectConfigLoader.h"
+#include "TimeSliceEngine/ProjectConfigUnloader.h"
 
 using namespace nsTornadoEngine;
 
-TTimeSliceEngine::TTimeSliceEngine()
+bool TTimeSliceEngine::Init(const std::list<ModuleType>& moduleTypes)
 {
-    SetProject(&mProjectConfigContainer);
-}
-//----------------------------------------------------------------------
-void TTimeSliceEngine::Done()
-{
-}
-//----------------------------------------------------------------------
-bool TTimeSliceEngine::Work(const std::list<ModuleType>& moduleTypes)
-{
-    mLogDumper.reset(new TLogDumper(mProjectConfigContainer.mProjectConfig.loggerConfig));
-
     mModuleMng.reset(new TModuleManager(this));
     mModuleTypes = moduleTypes;
 
     if (CreateModules() == false) {
         return false;
     }
-
-    Work();
-
-    Done();
     return true;
 }
 //------------------------------------------------------------------------
-void TTimeSliceEngine::Work()
+void TTimeSliceEngine::StartModules()
 {
     for (auto& pModule : mModulePtrList) {
         if (!pModule->StartEvent()) {
             return;
         }
     }
-
-    onModuleCreationEndsCb.Notify();
-
+}
+//------------------------------------------------------------------------
+void TTimeSliceEngine::Work(std::list<TLogDumper*>&& logDumpers)
+{
     while (true) {
         for (auto& pModule : mModulePtrList) {
             pModule->Work();
         }
-        mLogDumper->Work();
+        for (auto& logDumper : logDumpers) {
+            logDumper->Work();
+        }
         if (IsNeedStop()) {
             break;
         }
     }
-
+}
+//------------------------------------------------------------------------
+void TTimeSliceEngine::StopModules()
+{
     for (auto& pModule : mModulePtrList) {
         pModule->StopEvent();
     }

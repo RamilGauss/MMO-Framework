@@ -16,7 +16,6 @@ See for more information LICENSE.md.
 #include "Base/Common/CallbackPool.h"
 
 #include "ProjectConfig.h"
-#include "TimeSliceEngine/ProjectConfigContainer.h"
 #include "TimeSliceEngine/LogDumper.h"
 
 #include "StopAccessor.h"
@@ -35,20 +34,13 @@ namespace nsTornadoEngine
         
         std::list<ModuleType> mModuleTypes;
 
-        TProjectConfigContainer mProjectConfigContainer;
-
-        std::shared_ptr<TLogDumper> mLogDumper;
-
     public:
-        TTimeSliceEngine();
-
-        bool Work(const std::list<ModuleType>& moduleTypes);
-
-        TCallbackPool<> onModuleCreationEndsCb;
+        bool Init(const std::list<ModuleType>& moduleTypes);
+        void StartModules();
+        void Work(std::list<TLogDumper*>&& logDumpers);
+        void StopModules();
 
     private:
         bool CreateModules();
-        void Work();
-        void Done();
     };
 }

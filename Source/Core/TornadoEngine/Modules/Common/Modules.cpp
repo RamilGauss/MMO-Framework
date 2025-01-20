@@ -100,9 +100,14 @@ TPropertyManager* TModules::PropertyMng() const
     return propertyMng;
 }
 //----------------------------------------------------------
+nsBase::nsCommon::TEventHub* TModules::CoreLog(const std::source_location loc) const
+{
+    return nsBase::nsCommon::GetEventHub("Core", loc);
+}
+//----------------------------------------------------------
 nsBase::nsCommon::TEventHub* TModules::Log(const std::source_location loc) const
 {
-    return nsBase::nsCommon::GetEventHub(loc);
+    return nsBase::nsCommon::GetEventHub("Project", loc);
 }
 //----------------------------------------------------------
 TModules::TModules()

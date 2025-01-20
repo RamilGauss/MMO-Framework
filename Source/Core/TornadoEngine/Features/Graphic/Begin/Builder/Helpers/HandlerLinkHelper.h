@@ -121,8 +121,7 @@ namespace nsGraphicWrapper
         int rtti;
         auto convertResult = handlerReflection->mRtti->ConvertNameToType(pHandlerComponent->handlerTypeName, rtti);
         if (convertResult == false) {
-            //nsTornadoEngine::Modules()->Log()->AddWarningEvent("Not converted typename \"{}\"", pHandlerComponent->handlerTypeName);
-            nsBase::nsCommon::GetEventHub()->AddWarningEvent("Not converted typename \"{}\"", pHandlerComponent->handlerTypeName);
+            nsTornadoEngine::Modules()->CoreLog()->AddWarningEvent("Not converted typename \"{}\"", pHandlerComponent->handlerTypeName);
             return;
         }
         handlerReflection->mTypeFactory->Delete(pHandlerComponent->handler, rtti);

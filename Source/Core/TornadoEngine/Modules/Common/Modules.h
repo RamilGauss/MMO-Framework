@@ -74,6 +74,7 @@ namespace nsTornadoEngine
         TPropertyManager* PropertyMng() const;
 
         // Core logger
+        nsBase::nsCommon::TEventHub* CoreLog(const std::source_location loc = std::source_location::current()) const;
         nsBase::nsCommon::TEventHub* Log(const std::source_location loc = std::source_location::current()) const;
     protected:
         friend class TModulesAccessor;

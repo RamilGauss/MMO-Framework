@@ -35,9 +35,10 @@ namespace nsFixture
         g_EventHub = eventHub;
     }
 
-    TEventHub* GetEventHub(std::source_location loc = std::source_location::current())
+    TEventHub* GetEventHub(std::string&& source = "Common", std::source_location loc = std::source_location::current())
     {
         g_EventHub->SetSourceLocation(std::move(loc));
+        g_EventHub->SetSource(std::move(source));
         return g_EventHub;
     }
 }
@@ -54,9 +55,9 @@ TEST(EventHub, TakeEvents_Ok)
 
     nsFixture::GetEventHub()->SetupTimer([]() {return ""; });
 
-    nsFixture::GetEventHub()->AddInfoEvent("A", "{}", 42);
-    nsFixture::GetEventHub()->AddWarningEvent("B", "{}", 42);
-    nsFixture::GetEventHub()->AddErrorEvent("C", "{}", 42);
+    nsFixture::GetEventHub()->AddInfoEvent("{}", 42);
+    nsFixture::GetEventHub()->AddWarningEvent("{}", 42);
+    nsFixture::GetEventHub()->AddErrorEvent("{}", 42);
 
     std::list<TEventInfo> events;
     nsFixture::GetEventHub()->TakeEvents(regId, events);
@@ -66,22 +67,22 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Info",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:57:16",
-            .source = "A",
+            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:58:16",
+            .source = "Common",
         },
         {
             .time = "",
             .level = "Warning",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:58:16",
-            .source = "B",
+            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:59:16",
+            .source = "Common",
         },
         {
             .time = "",
             .level = "Error",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:59:16",
-            .source = "C",
+            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:60:16",
+            .source = "Common",
         },
     };
 
@@ -101,15 +102,15 @@ TEST(EventHub, TakeEventsFromFewDestinations_Ok)
 
     nsFixture::GetEventHub()->SetupTimer([]() {return ""; });
 
-    nsFixture::GetEventHub()->AddInfoEvent("A", "{}", 42);
+    nsFixture::GetEventHub()->AddInfoEvent("{}", 42);
 
     std::list<TEventInfo> events0;
     nsFixture::GetEventHub()->TakeEvents(regId0, events0);
 
     ASSERT_TRUE(events0.size(), 1);
 
-    nsFixture::GetEventHub()->AddWarningEvent("B", "{}", 42);
-    nsFixture::GetEventHub()->AddErrorEvent("C", "{}", 42);
+    nsFixture::GetEventHub()->AddWarningEvent("{}", 42);
+    nsFixture::GetEventHub()->AddErrorEvent("{}", 42);
 
     std::list<TEventInfo> events1;
     nsFixture::GetEventHub()->TakeEvents(regId1, events1);
