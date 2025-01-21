@@ -225,3 +225,4 @@ pip-log.txt
 .mr.developer.cfg
 Conan.props
 Staff/ConanSetup/install_result.json
+/.vscode
