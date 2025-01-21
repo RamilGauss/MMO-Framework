@@ -81,9 +81,9 @@ int main(int argc, char** argv)
     auto projectConfigurator = std::make_shared<TProjectConfigurator>();
     auto loadResult = projectConfigurator->LoadProject(absProjectPath);
 
+    auto eventHub = nsBase::nsCommon::GetEventHub();
+    auto coreLogDumper = std::make_shared<TLogDumper>("Core", eventHub, coreLoggerConfig);
     if (loadResult) {
-        auto eventHub = nsBase::nsCommon::GetEventHub();
-        auto coreLogDumper = std::make_shared<TLogDumper>("Core", eventHub, coreLoggerConfig);
         auto projectLogDumper = std::make_shared<TLogDumper>("Project", eventHub, projectContainer->mProjectConfig.loggerConfig);
 
         auto timeSliceEngine = std::make_shared<TTimeSliceEngine>();
@@ -97,6 +97,8 @@ int main(int argc, char** argv)
     }
 
     projectConfigurator->UnloadProject();
+
+    coreLogDumper->FlushToFile();
 
     return 0;
 }

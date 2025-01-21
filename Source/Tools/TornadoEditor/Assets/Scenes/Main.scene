@@ -165,7 +165,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TLocalHandlerComponent\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOpenProjectOkButtonClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },

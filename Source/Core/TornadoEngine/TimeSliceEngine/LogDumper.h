@@ -32,6 +32,8 @@ namespace nsTornadoEngine
     public:
         TLogDumper(std::string&& source, nsBase::nsCommon::TEventHub* eventHub, const TLoggerConfig& loggerConfig);
 
-        void Work();
+        void TryFlushToFile();
+
+        void FlushToFile();
     };
 }

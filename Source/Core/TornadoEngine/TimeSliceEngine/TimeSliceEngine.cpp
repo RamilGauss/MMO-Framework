@@ -55,7 +55,7 @@ void TTimeSliceEngine::Work(std::list<TLogDumper*>&& logDumpers)
             pModule->Work();
         }
         for (auto& logDumper : logDumpers) {
-            logDumper->Work();
+            logDumper->TryFlushToFile();
         }
         if (IsNeedStop()) {
             break;

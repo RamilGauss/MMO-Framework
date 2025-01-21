@@ -25,7 +25,7 @@ namespace nsTornadoEngine
         }
     }
     //-------------------------------------------------------------------------------------
-    void TLogDumper::Work()
+    void TLogDumper::TryFlushToFile()
     {
         if (mLoggerConfig.enabled) {
             auto now = ht_GetMSCount();
@@ -34,14 +34,20 @@ namespace nsTornadoEngine
             }
             mLastTimeDump = now;
 
-            std::list<nsBase::nsCommon::TEventInfo> events;
-            mEventHub->TakeEvents(mRegisterDstId, events);
-            
-            for (auto&& event : events) {
-                if (event.source == mSource) {
-                    auto str = std::format("{}[{}]:{} -> {}", event.time, event.source, event.message, event.fileLocation);
-                    mFile.WriteF("%s\n", str.c_str());
-                }
+            FlushToFile();
+        }
+    }
+    //-------------------------------------------------------------------------------------
+    void TLogDumper::FlushToFile()
+    {
+        std::list<nsBase::nsCommon::TEventInfo> events;
+        mEventHub->TakeEvents(mRegisterDstId, events);
+
+        for (auto&& event : events) {
+            if (event.source == mSource) {
+                auto str = std::format("{} [{}|{}]:{} -> {}", 
+                    event.time, event.level, event.source, event.message, event.fileLocation);
+                mFile.WriteF("%s\n", str.c_str());
             }
         }
     }

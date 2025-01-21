@@ -17,7 +17,7 @@ class DllExport TSingletonManager
 {
     std::array<void*, 1024 * 10> mObjArray = { nullptr };
 
-    std::mutex mMutex;
+    std::recursive_mutex mMutex;
 
     TRunTimeTypeIndex<TSingletonManager> mGlobalTypeIdentifier;
 public:
@@ -27,7 +27,7 @@ public:
         auto index = mGlobalTypeIdentifier.Type<Type>();
         static std::atomic_bool isNeedInit = true;
         if (isNeedInit) {
-            std::lock_guard<std::mutex> guard(mMutex);
+            std::lock_guard<std::recursive_mutex> guard(mMutex);
             if (mObjArray[index] == nullptr) {
                 mObjArray[index] = new Type();
             }
