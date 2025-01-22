@@ -233,7 +233,8 @@ void TEntityViewer::RenderModel()
     ImGui::PopID();
     
     ImGui::SameLine();
-    ImGui::Text("Count: %d, FPS=%f", mModel.nameEntities.size(), ImGui::GetIO().Framerate);
+    auto stat = std::format("Count: {}, FPS={:.1f}", mModel.nameEntities.size(), ImGui::GetIO().Framerate);
+    ImGui::Text(stat.c_str());
 
     // Search and add to the filter
     RenderFilterSearching();

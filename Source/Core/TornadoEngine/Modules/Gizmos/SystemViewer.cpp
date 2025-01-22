@@ -28,8 +28,7 @@ void TSystemViewer::Render()
 
     UpdateStat();
 
-    char str[1000];
-    sprintf(str, "Dt = %d us, FPS = %.1f", (int)(mCommonSummaDt * 1'000'000.0), ImGui::GetIO().Framerate);
+    auto str = std::format("Dt = {} us, FPS = {:.1f}", (int)(mCommonSummaDt * 1'000'000.0), ImGui::GetIO().Framerate);
     mStat.SetText(str);
 
     mWindow.Render();
@@ -94,7 +93,7 @@ void TSystemViewer::Init()
     }
 
     auto db = nsTornadoEngine::Modules()->DB();
-    if (physic != nullptr) {
+    if (db != nullptr) {
         AddLogicWrapper(dynamic_cast<TLogicWrapperModule*>(db), "DataBase", { 0.0f, 0.0f, 0.0f, 1.0f });
     }
 
