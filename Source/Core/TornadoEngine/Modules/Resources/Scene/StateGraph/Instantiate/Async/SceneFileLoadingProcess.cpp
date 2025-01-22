@@ -36,7 +36,7 @@ namespace nsTornadoEngine
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
         auto size = ctx->file.Size();
-        auto partCount = size / FILE_PART_SIZE;
+        auto partCount = std::ceil((size * 1.0f) / FILE_PART_SIZE);
         if (partCount == 0) {
             partCount = 1;
         }

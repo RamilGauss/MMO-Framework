@@ -58,7 +58,7 @@ namespace nsTornadoEngine
     uint32_t TEntityInstantiatingProcess::GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        auto count = ctx->sceneContent->entities.size() / PART_SIZE;
+        auto count = std::ceil((ctx->sceneContent->entities.size() * 1.0f) / PART_SIZE);
         if (count == 0) {
             count = 1;
         }

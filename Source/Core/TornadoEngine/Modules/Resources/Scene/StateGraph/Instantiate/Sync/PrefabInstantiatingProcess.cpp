@@ -65,7 +65,7 @@ namespace nsTornadoEngine
     uint32_t TPrefabInstantiatingProcess::GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx)
     {
         auto ctx = std::static_pointer_cast<TSceneContext>(pCtx);
-        auto count = ctx->sceneContent->prefabInstances.size() / PART_SIZE;
+        auto count = std::ceil((ctx->sceneContent->prefabInstances.size() * 1.0f) / PART_SIZE);
         if (count == 0) {
             count = 1;
         }
