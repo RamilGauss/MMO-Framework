@@ -67,12 +67,17 @@ namespace nsTornadoEngine
 
             auto newGuid = nsBase::nsCommon::TGuidGenerator::Generate();
 
-            nsCommonWrapper::TParentGuidComponent parentGuidComponent;
-            parentGuidComponent.value = guidComponent.value;
-            auto copyChildEids = entMng->GetByValueCopy<nsCommonWrapper::TParentGuidComponent>(parentGuidComponent);
-            for (auto& childEid : copyChildEids) {
-                parentGuidComponent.value = newGuid;
-                entMng->SetComponent(childEid, parentGuidComponent);
+            auto parentGuidComponent = entMng->ViewComponent<nsCommonWrapper::TParentGuidComponent>(eid);
+
+            if (parentGuidComponent) {
+                OriginalGuidType originalGuid;
+                originalGuid.value = parentGuidComponent->value;
+                auto copyParentEids = entMng->GetByValueCopy<OriginalGuidType>(originalGuid);
+                for (auto& parentEid : copyParentEids) {
+                    nsCommonWrapper::TParentGuidComponent newParentComponent;
+                    newParentComponent.value = entMng->ViewComponent<nsCommonWrapper::TGuidComponent>(parentEid)->value;
+                    entMng->SetComponent(eid, newParentComponent);
+                }
             }
 
             OriginalGuidType originalGuid;
