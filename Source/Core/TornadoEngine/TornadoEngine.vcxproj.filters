@@ -1151,7 +1151,6 @@
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\PrefabInstantiatingProcess.h" />
     <ClInclude Include="Modules\Resources\Scene\StateGraph\Instantiate\Sync\UniverseIndexCreatingProcess.h" />
     <ClInclude Include="Modules\Resources\Common\ObjectHelper.h" />
-    <ClInclude Include="Components\Handler\ReferenceHandlerComponent.h" />
     <ClInclude Include="Components\Gui\Properties\TextureSizeComponent.h" />
     <ClInclude Include="Components\Gui\Properties\TextureUvComponent.h" />
     <ClInclude Include="Components\Gui\Properties\TextureReferenceComponent.h" />

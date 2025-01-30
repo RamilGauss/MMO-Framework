@@ -9,11 +9,8 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/TreeNode.h>
 
-#include "Components/Gui/Properties/NodeIconComponent.h"
-
-#include "Components/Gui/Properties/VisibilityComponent.h"
-#include "Components/Gui/Properties/TitleComponent.h"
-
+#include <Modules/Common/Modules.h>
+#include <Modules/PropertyManager/PropertyManager.h>
 
 using namespace nsGraphicWrapper;
 
@@ -22,11 +19,13 @@ void TTreeNodeMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     auto pTreeNode = new nsImGuiWidgets::TTreeNode();
     pTreeNodeComponent->value = pTreeNode;
 
-    auto entMng = GetEntMng();
+    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pTreeNodeComponent);
 
-    auto pWidget = dynamic_cast<nsImGuiWidgets::TWidget*>(pTreeNode);
+    //auto entMng = GetEntMng();
 
-    entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->SetOwner(pTreeNode);
-    entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->SetOwner(pTreeNode);
-    entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid)->SetOwner(pTreeNode);
+    //auto pWidget = dynamic_cast<nsImGuiWidgets::TWidget*>(pTreeNode);
+
+    //entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->SetOwner(pTreeNode);
+    //entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->SetOwner(pTreeNode);
+    //entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid)->SetOwner(pTreeNode);
 }

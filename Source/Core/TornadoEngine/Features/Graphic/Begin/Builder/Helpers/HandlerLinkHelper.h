@@ -31,14 +31,11 @@ namespace nsGraphicWrapper
     class DllExport THandlerLinkHelper
     {
     public:
-        static std::list<void*> FindReferenceHandlers(nsECSFramework::TEntityManager* entMng,
-            nsECSFramework::TEntityID eid, const std::string& handlerTypeName);
-
         static std::list<void*> FindLocalHandlers(nsECSFramework::TEntityManager* entMng,
-            nsECSFramework::TEntityID eid, const std::string& handlerTypeName);
+            nsECSFramework::TEntityID eid, const std::string& parentHandlerTypeName);
 
         static std::list<void*> FindGlobalHandlers(nsECSFramework::TEntityManager* entMng,
-            nsECSFramework::TEntityID eid, const std::string& handlerTypeName);
+            nsECSFramework::TEntityID eid, const std::string& parentHandlerTypeName);
 
         template<typename GuiType>
         static void RegisterMouseKey(nsECSFramework::TEntityManager* entMng,

@@ -9,9 +9,15 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/InputText.h>
 
+#include <Modules/Common/Modules.h>
+#include <Modules/PropertyManager/PropertyManager.h>
+
 using namespace nsGraphicWrapper;
 
 void TInputTextMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TInputTextComponent* pInputTextComponent)
 {
-    pInputTextComponent->value = new nsImGuiWidgets::TInputText();
+    auto pInputText = new nsImGuiWidgets::TInputText();
+    pInputTextComponent->value = pInputText;
+
+    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pInputTextComponent);
 }

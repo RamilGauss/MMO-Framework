@@ -2,7 +2,7 @@
 Project Handler
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_27 12:43:36.037
+// File has been generated at 2025_01_30 15:40:58.004
 #include "HandlerTypeInfo.h"
 
 #include "Base/Common/SingletonManager.h"
@@ -27,7 +27,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TCurrentPathToInputTextHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TCurrentPathToInputTextHandler>();
     std::string nsTornadoEditor_TCurrentPathToInputTextHandler_jc = "{"
 "    \"mFileName\": \"CurrentPathToInputTextHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\CurrentPathToInputTextHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\CurrentPathToInputTextHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"
@@ -57,7 +57,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TDialogButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TDialogButtonClickHandler>();
     std::string nsTornadoEditor_TDialogButtonClickHandler_jc = "{"
 "    \"mFileName\": \"DialogButtonClickHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\DialogButtonClickHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\DialogButtonClickHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"
@@ -87,7 +87,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TOnExitClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnExitClickHandler>();
     std::string nsTornadoEditor_TOnExitClickHandler_jc = "{"
 "    \"mFileName\": \"OnExitClickHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\OnExitClickHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OnExitClickHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"
@@ -117,7 +117,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TOnFileHierarchyClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnFileHierarchyClickHandler>();
     std::string nsTornadoEditor_TOnFileHierarchyClickHandler_jc = "{"
 "    \"mFileName\": \"OnFileHierarchyClickHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\OnFileHierarchyClickHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OnFileHierarchyClickHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"
@@ -147,7 +147,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TOnMouseClickFileNodeHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnMouseClickFileNodeHandler>();
     std::string nsTornadoEditor_TOnMouseClickFileNodeHandler_jc = "{"
 "    \"mFileName\": \"OnMouseClickFileNodeHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\OnMouseClickFileNodeHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OnMouseClickFileNodeHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"
@@ -177,7 +177,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TOnOpenComponentViewerClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenComponentViewerClickHandler>();
     std::string nsTornadoEditor_TOnOpenComponentViewerClickHandler_jc = "{"
 "    \"mFileName\": \"OnOpenComponentViewerClickHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\OnOpenComponentViewerClickHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OnOpenComponentViewerClickHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"
@@ -207,7 +207,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TOnOpenProjectClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenProjectClickHandler>();
     std::string nsTornadoEditor_TOnOpenProjectClickHandler_jc = "{"
 "    \"mFileName\": \"OnOpenProjectClickHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\OnOpenProjectClickHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OnOpenProjectClickHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"
@@ -237,7 +237,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TOnOpenSystemViewerClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOnOpenSystemViewerClickHandler>();
     std::string nsTornadoEditor_TOnOpenSystemViewerClickHandler_jc = "{"
 "    \"mFileName\": \"OnOpenSystemViewerClickHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\OnOpenSystemViewerClickHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OnOpenSystemViewerClickHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"
@@ -267,7 +267,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TOpenProjectCancelButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOpenProjectCancelButtonClickHandler>();
     std::string nsTornadoEditor_TOpenProjectCancelButtonClickHandler_jc = "{"
 "    \"mFileName\": \"OpenProjectCancelButtonClickHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\OpenProjectCancelButtonClickHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OpenProjectCancelButtonClickHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"
@@ -297,7 +297,7 @@ void THandlerTypeInfo::Init()
     int nsTornadoEditor_TOpenProjectOkButtonClickHandler_i = globalTypeIdentifier->Type<nsTornadoEditor::TOpenProjectOkButtonClickHandler>();
     std::string nsTornadoEditor_TOpenProjectOkButtonClickHandler_jc = "{"
 "    \"mFileName\": \"OpenProjectOkButtonClickHandler.h\","
-"    \"mAbsFileName\": \"C:\\\\\\MMOFramework\\\\\\Source\\\\\\Tools\\\\\\TornadoEditor\\\\\\Sources\\\\\\Handlers\\\\\\OpenProjectOkButtonClickHandler.h\","
+"    \"mAbsFileName\": \"C:\\\\MMOFramework\\\\Source\\\\Tools\\\\TornadoEditor\\\\Sources\\\\Handlers\\\\OpenProjectOkButtonClickHandler.h\","
 "    \"mPragmaTextSet\": [],"
 "    \"mType\": \"CLASS\","
 "    \"mEnumKeys\": [],"

@@ -101,7 +101,7 @@ void TTypeInformationSourceFileGenerator::AddInit()
         for (auto& c : rawJsonContent) {
             switch (c) {
                 case  '\\':
-                    jsonContent += "\\\\";
+                    jsonContent += "\\";
                     jsonContent += c;
                     break;
                 case  '\"':

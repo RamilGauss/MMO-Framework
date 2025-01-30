@@ -165,7 +165,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOpenProjectOkButtonClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOpenProjectOkButtonClickHandler\", \"parentHandlerTypeName\": \"nsGuiWrapper::IButtonClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },
@@ -217,7 +217,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnExitClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnExitClickHandler\", \"parentHandlerTypeName\": \"nsGuiWrapper::IMenuNodeClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 },
                 {
                     "typeName": "nsGuiWrapper::TNodeIconComponent",
@@ -325,7 +325,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnFileHierarchyClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnFileHierarchyClickHandler\", \"parentHandlerTypeName\": \"nsGuiWrapper::IMenuNodeClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },
@@ -521,7 +521,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenComponentViewerClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenComponentViewerClickHandler\", \"parentHandlerTypeName\": \"nsGuiWrapper::IMenuNodeClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         },
@@ -573,7 +573,7 @@
                 },
                 {
                     "typeName": "nsLogicWrapper::TLocalHandlerComponent",
-                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenSystemViewerClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
+                    "jsonBody": "{\"handlerTypeName\":\"nsTornadoEditor::TOnOpenSystemViewerClickHandler\", \"parentHandlerTypeName\": \"nsGuiWrapper::IMenuNodeClickHandler\", \"filter\":\"SELF_AND_CHILDS\"}"
                 }
             ]
         }

@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_28 13:32:54.771
+// File has been generated at 2025_01_30 15:40:51.229
 #pragma once
 
 #include "Components/Graphic/CameraComponent.h"
@@ -51,7 +51,6 @@ Core Component
 #include "Components/Gui/Widgets/WindowComponent.h"
 #include "Components/Handler/GlobalHandlerComponent.h"
 #include "Components/Handler/LocalHandlerComponent.h"
-#include "Components/Handler/ReferenceHandlerComponent.h"
 #include "Components/Logic/PrefabObjectReferenceComponent.h"
 #include "Components/Logic/PrefabReferenceComponent.h"
 #include "Components/Logic/SceneObjectReferenceComponent.h"

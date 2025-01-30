@@ -25,18 +25,20 @@ namespace nsLogicWrapper
         Filter filter = Filter::SELF_AND_CHILDS;
 
         std::string handlerTypeName;
+        // Meta
+        std::string parentHandlerTypeName;// Чтобы было легче искать при сработке события.
 
 #pragma IGNORE_ATTRIBUTE
         mutable void* handler = nullptr;
 
         bool IsLess(const IComponent* pOther) const override
         {
-            return handlerTypeName < ((TLocalHandlerComponent*)pOther)->handlerTypeName;
+            return parentHandlerTypeName < ((TLocalHandlerComponent*)pOther)->parentHandlerTypeName;
         }
 
         bool IsEqual(const IComponent* pOther) const override
         {
-            return handlerTypeName == ((TLocalHandlerComponent*)pOther)->handlerTypeName;
+            return parentHandlerTypeName == ((TLocalHandlerComponent*)pOther)->parentHandlerTypeName;
         }
     };
 }

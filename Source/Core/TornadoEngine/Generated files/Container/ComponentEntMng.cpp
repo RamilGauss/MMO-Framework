@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_28 13:32:54.743
+// File has been generated at 2025_01_30 15:40:51.218
 #include "ComponentEntMng.h"
 
 using namespace nsTornadoEngine;
@@ -661,16 +661,6 @@ void TComponentEntMng::Init()
     nsLogicWrapper_TPrefabReferenceComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TPrefabReferenceComponent>();
     
     datas.push_back(nsLogicWrapper_TPrefabReferenceComponent_Data);
-    
-    Data nsLogicWrapper_TReferenceHandlerComponent_Data;
-    nsLogicWrapper_TReferenceHandlerComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TReferenceHandlerComponent*)p)); };
-    nsLogicWrapper_TReferenceHandlerComponent_Data.viewFunc = [](TEntityManager* pEntMng, TEntityID eid){ return (void*) pEntMng->ViewComponent<nsLogicWrapper::TReferenceHandlerComponent>(eid); };
-    nsLogicWrapper_TReferenceHandlerComponent_Data.hasFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->HasComponent<nsLogicWrapper::TReferenceHandlerComponent>(eid); };
-    nsLogicWrapper_TReferenceHandlerComponent_Data.removeFunc = [](TEntityManager* pEntMng, TEntityID eid){ return pEntMng->RemoveComponent<nsLogicWrapper::TReferenceHandlerComponent>(eid); };
-    nsLogicWrapper_TReferenceHandlerComponent_Data.getByHasFunc = [](TEntityManager* pEntMng){ return pEntMng->GetByHasCopy<nsLogicWrapper::TReferenceHandlerComponent>(); };
-    nsLogicWrapper_TReferenceHandlerComponent_Data.rtti = globalTypeIdentifier->Type<nsLogicWrapper::TReferenceHandlerComponent>();
-    
-    datas.push_back(nsLogicWrapper_TReferenceHandlerComponent_Data);
     
     Data nsLogicWrapper_TSceneObjectReferenceComponent_Data;
     nsLogicWrapper_TSceneObjectReferenceComponent_Data.setFunc = [](TEntityManager* pEntMng, TEntityID eid, void* p){ pEntMng->SetComponent(eid, *((nsLogicWrapper::TSceneObjectReferenceComponent*)p)); };

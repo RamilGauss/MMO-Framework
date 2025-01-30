@@ -81,7 +81,7 @@ namespace nsTornadoEngine
 
                 int targetRtti;
                 imGuiWidgetsReflection->mRtti->ConvertNameToType(typeProperty, targetRtti);
-                auto targetPtr = imGuiWidgetsReflection->mDynamicCaster->Cast(typeRtti, pObject, targetRtti);
+                auto targetPtr = imGuiWidgetsReflection->mDynamicCaster->Cast(typeRtti, (void*)pObject, targetRtti);
 
                 propertyOf->SetOwner(targetPtr);
             }

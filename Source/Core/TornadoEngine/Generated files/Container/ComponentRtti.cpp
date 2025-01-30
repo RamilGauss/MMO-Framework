@@ -2,7 +2,7 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_12_28 13:32:54.761
+// File has been generated at 2025_01_30 15:40:51.226
 #include "ComponentRtti.h"
 
 #include "Base/Common/SingletonManager.h"
@@ -409,12 +409,6 @@ void TComponentRtti::Init()
     mTypeNameList.push_back(nsLogicWrapper_TPrefabReferenceComponent_n);
     mRttiList.push_back(nsLogicWrapper_TPrefabReferenceComponent_i);
     mNameRttiMap.insert({ nsLogicWrapper_TPrefabReferenceComponent_n, nsLogicWrapper_TPrefabReferenceComponent_i });
-    
-    int nsLogicWrapper_TReferenceHandlerComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TReferenceHandlerComponent>();
-    std::string nsLogicWrapper_TReferenceHandlerComponent_n = "nsLogicWrapper::TReferenceHandlerComponent";
-    mTypeNameList.push_back(nsLogicWrapper_TReferenceHandlerComponent_n);
-    mRttiList.push_back(nsLogicWrapper_TReferenceHandlerComponent_i);
-    mNameRttiMap.insert({ nsLogicWrapper_TReferenceHandlerComponent_n, nsLogicWrapper_TReferenceHandlerComponent_i });
     
     int nsLogicWrapper_TSceneObjectReferenceComponent_i = globalTypeIdentifier->Type<nsLogicWrapper::TSceneObjectReferenceComponent>();
     std::string nsLogicWrapper_TSceneObjectReferenceComponent_n = "nsLogicWrapper::TSceneObjectReferenceComponent";

@@ -71,7 +71,6 @@
         "nsLogicWrapper::TLocalHandlerComponent::Filter",
         "nsLogicWrapper::TPrefabObjectReferenceComponent",
         "nsLogicWrapper::TPrefabReferenceComponent",
-        "nsLogicWrapper::TReferenceHandlerComponent",
         "nsLogicWrapper::TSceneObjectReferenceComponent",
         "nsLogicWrapper::TSceneReferenceComponent",
         "nsLogicWrapper::TSystemComponent",

@@ -19,6 +19,8 @@ See for more information LICENSE.md.
 #include "Components/Meta/PrefabOriginalGuidComponent.h"
 #include "Components/Meta/SceneOriginalGuidComponent.h"
 
+#include "Handlers/Gui/IMenuNodeClickHandler.h"
+
 #include "Modules/Common/Modules.h"
 #include "Modules/Resources/Common/HandlerCallCollector.h"
 
@@ -46,17 +48,17 @@ void TMenuNodeBuilderSystem::Reactive(nsECSFramework::TEntityID eid, const nsGui
         pMenuNodeComponent->value->SetTextureSize(pTreeNodeIconComponent->width, pTreeNodeIconComponent->height);
     }
 
-
-    //auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
-    //pMenuNodeComponent->value->mOnLeftClickCB.Register(pMenuNodeComponent->value,
-    //    [entMng, handlerCallCollector, eid, pMenuNodeComponent](nsImGuiWidgets::TNode* pB)
-    //{
-    //    auto handlers = THandlerLinkHelper::FindHandlers<TMenuNodeClickHandlerComponent>(entMng, eid, pMenuNodeComponent);
-    //    for (auto& pHandler : handlers) {
-    //        handlerCallCollector->Add([pHandler, eid, pMenuNodeComponent]()
-    //        {
-    //            pHandler->handler->Handle(eid, pMenuNodeComponent);
-    //        });
-    //    }
-    //});
+    auto handlerCallCollector = nsTornadoEngine::Modules()->HandlerCalls();
+    pMenuNodeComponent->value->mOnLeftClickCB.Register(pMenuNodeComponent->value,
+        [entMng, handlerCallCollector, eid, pMenuNodeComponent](nsImGuiWidgets::TNode* pB)
+    {
+        auto handlers = THandlerLinkHelper::FindLocalHandlers(entMng, eid, "nsGuiWrapper::IMenuNodeClickHandler");
+        for (auto& pHandler : handlers) {
+            auto pH = static_cast<nsGuiWrapper::IMenuNodeClickHandler*>(pHandler);
+            handlerCallCollector->Add([pH, eid, pMenuNodeComponent]()
+            {
+                pH->Handle(eid, pMenuNodeComponent);
+            });
+        }
+    });
 }
