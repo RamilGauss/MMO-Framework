@@ -9,9 +9,15 @@ See for more information LICENSE.md.
 
 #include <ImGuiWidgets/include/Label.h>
 
+#include <Modules/Common/Modules.h>
+#include <Modules/PropertyManager/PropertyManager.h>
+
 using namespace nsGraphicWrapper;
 
 void TLabelMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrapper::TLabelComponent* pLabelComponent)
 {
-    pLabelComponent->value = new nsImGuiWidgets::TLabel();
+    auto pLabel = new nsImGuiWidgets::TLabel();
+    pLabelComponent->value = pLabel;
+
+    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pLabel);
 }

@@ -57,7 +57,7 @@ namespace nsTornadoEngine
             .parentNames = {"nsGuiWrapper::TWidgetComponent"},
             .properties =
             {
-                "nsGuiWrapper::TAnchorComponent",
+                "nsGuiWrapper::TAnchorsComponent",
                 "nsGuiWrapper::THorizontalAlignComponent",
                 "nsGuiWrapper::TFocusComponent",
                 "nsGuiWrapper::TMaxSizeComponent",
@@ -79,6 +79,13 @@ namespace nsTornadoEngine
                 "nsGuiWrapper::TPaddingComponent",
                 "nsGuiWrapper::TGridComponent",
                 "nsGuiWrapper::TSpacingComponent"
+            }
+        },
+        {
+            .typeName = "nsGuiWrapper::TMainWindowComponent",
+            .parentNames = {"nsGuiWrapper::TProtoFrameComponent"},
+            .properties =
+            {
             }
         },
         {
@@ -111,15 +118,15 @@ namespace nsTornadoEngine
             //{"nsGuiWrapper::T",                              "nsImGuiWidgets::T"},
             //{"nsGuiWrapper::T",                              "nsImGuiWidgets::T"},
 
-            { "nsGuiWrapper::TAnchorComponent",              "nsImGuiWidgets::TAnchor" },
+            { "nsGuiWrapper::TAnchorsComponent",             "nsImGuiWidgets::TAnchors" },
             { "nsGuiWrapper::TColorComponent",               "nsImGuiWidgets::TColor" },
             { "nsGuiWrapper::TFocusComponent",               "nsImGuiWidgets::TFocus" },
-            {"nsGuiWrapper::TGridComponent",                 "nsImGuiWidgets::TGrid"},
+            { "nsGuiWrapper::TGridComponent",                "nsImGuiWidgets::TGrid"},
             { "nsGuiWrapper::THorizontalAlignComponent",     "nsImGuiWidgets::THorizontalAlign" },
             { "nsGuiWrapper::TMaxSizeComponent",             "nsImGuiWidgets::TMaxSize" },
             { "nsGuiWrapper::TMinDistanceToParentComponent", "nsImGuiWidgets::TMinDistanceToParent" },
             { "nsGuiWrapper::TMinSizeComponent",             "nsImGuiWidgets::TMinSize" },
-            {"nsGuiWrapper::TPaddingComponent",              "nsImGuiWidgets::TPadding"},
+            { "nsGuiWrapper::TPaddingComponent",             "nsImGuiWidgets::TPadding"},
             { "nsGuiWrapper::TPositionComponent",            "nsImGuiWidgets::TPosition"},
 
             { "nsGuiWrapper::TSizeComponent",                "nsImGuiWidgets::TSize" },

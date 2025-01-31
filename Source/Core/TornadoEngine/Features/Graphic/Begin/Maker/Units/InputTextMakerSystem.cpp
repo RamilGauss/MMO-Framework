@@ -19,5 +19,5 @@ void TInputTextMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiW
     auto pInputText = new nsImGuiWidgets::TInputText();
     pInputTextComponent->value = pInputText;
 
-    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pInputTextComponent);
+    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pInputText);
 }

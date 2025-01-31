@@ -62,6 +62,42 @@
                 {
                     "typeName": "nsGuiWrapper::TFocusComponent",
                     "jsonBody": "{\"value\":true}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TAnchorsComponent",
+                    "jsonBody": "{\"leftIsUsed\":false,\"leftOffset\":0,\"rightIsUsed\":false,\"rightOffset\":0,\"topIsUsed\":false,\"topOffset\":0,\"bottomIsUsed\":false,\"bottomOffset\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMaxSizeComponent",
+                    "jsonBody": "{\"x\":0, \"y\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMinDistanceToParentComponent",
+                    "jsonBody": "{\"left\":0, \"right\":0, \"top\":0, \"bottom\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TMinSizeComponent",
+                    "jsonBody": "{\"x\":0, \"y\":0}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::THorizontalAlignComponent",
+                    "jsonBody": "{\"value\":\"CENTER\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TVerticalAlignComponent",
+                    "jsonBody": "{\"value\":\"CENTER\"}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TSizeComponent",
+                    "jsonBody": "{\"x\": 100, \"y\": 100}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TPositionComponent",
+                    "jsonBody": "{\"x\": 100, \"y\": 100}"
+                },
+                {
+                    "typeName": "nsGuiWrapper::TColorComponent",
+                    "jsonBody": "{\"r\": 1.0, \"g\": 1.0, \"b\": 1.0, \"a\": 0.0}"
                 }
             ]
         },

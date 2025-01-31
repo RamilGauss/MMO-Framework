@@ -19,24 +19,5 @@ void TButtonMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWrap
     auto pButton = new nsImGuiWidgets::TButton();
     pButtonComponent->value = pButton;
 
-    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pButtonComponent);
-
-    //auto entMng = GetEntMng();
-
-    //auto pWidget = dynamic_cast<nsImGuiWidgets::TWidget*>(pButton);
-
-    //entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->pOwner = pWidget;
-    //entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->pOwner = pWidget;
-    //entMng->ViewComponent<nsGuiWrapper::TSizeComponent>(eid)->pOwner = pWidget;
-    //entMng->ViewComponent<nsGuiWrapper::TPositionComponent>(eid)->pOwner = pWidget;
-
-    //auto pUnit = dynamic_cast<nsImGuiWidgets::TUnit*>(pButton);
-
-    //entMng->ViewComponent<nsGuiWrapper::TAnchorsComponent>(eid)->pOwner = pUnit;
-    //entMng->ViewComponent<nsGuiWrapper::TMinSizeComponent>(eid)->pOwner = pUnit;
-    //entMng->ViewComponent<nsGuiWrapper::TMaxSizeComponent>(eid)->pOwner = pUnit;
-    //entMng->ViewComponent<nsGuiWrapper::TVerticalAlignComponent>(eid)->pOwner = pUnit;
-    //entMng->ViewComponent<nsGuiWrapper::THorizontalAlignComponent>(eid)->pOwner = pUnit;
-    //entMng->ViewComponent<nsGuiWrapper::TMinDistanceToParentComponent>(eid)->pOwner = pUnit;
-    //entMng->ViewComponent<nsGuiWrapper::TFocusComponent>(eid)->pOwner = pUnit;
+    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pButton);
 }

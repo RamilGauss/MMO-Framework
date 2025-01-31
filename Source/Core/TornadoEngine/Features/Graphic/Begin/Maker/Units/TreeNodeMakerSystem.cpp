@@ -19,13 +19,5 @@ void TTreeNodeMakerSystem::Reactive(nsECSFramework::TEntityID eid, const nsGuiWr
     auto pTreeNode = new nsImGuiWidgets::TTreeNode();
     pTreeNodeComponent->value = pTreeNode;
 
-    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pTreeNodeComponent);
-
-    //auto entMng = GetEntMng();
-
-    //auto pWidget = dynamic_cast<nsImGuiWidgets::TWidget*>(pTreeNode);
-
-    //entMng->ViewComponent<nsGuiWrapper::TTitleComponent>(eid)->SetOwner(pTreeNode);
-    //entMng->ViewComponent<nsGuiWrapper::TVisibilityComponent>(eid)->SetOwner(pTreeNode);
-    //entMng->ViewComponent<nsGuiWrapper::TNodeIconComponent>(eid)->SetOwner(pTreeNode);
+    nsTornadoEngine::Modules()->PropertyMng()->SetupProperties(GetEntMng(), eid, pTreeNode);
 }
