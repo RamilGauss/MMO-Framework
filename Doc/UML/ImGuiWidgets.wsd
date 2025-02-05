@@ -1,0 +1,30 @@
+@startuml ImGuiWidgets
+
+class Size #green
+class Focus #green
+class Color #green
+class Position #green
+class Title #green
+class Visibility #green
+class Identity #green
+class HorizontalAlign #green
+class VerticalAlign #green
+class Anchors #green
+
+
+interface Renderable
+{
+    +virtual void Render() = 0;
+}
+
+class Widget
+{
+    #mParent: Widget*
+    +GetSubType() SubType
+}
+
+Renderable <|-- Widget
+
+Widget <|-- Unit
+
+@enduml
