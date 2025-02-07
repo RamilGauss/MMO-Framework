@@ -89,7 +89,7 @@ namespace nsBase::nsCommon
         void RefreshEvents();
         int CalculateMinOffset();
 
-        TStringListPtr GetPipForThisThread();
+        TStringListPtr GetPipeForThisThread();
     };
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
@@ -108,7 +108,7 @@ namespace nsBase::nsCommon
         pEventInfo->level = std::move(level);
         pEventInfo->fileLocation = std::move(std::format("{}:{}:{}", loc.file_name(), loc.line(), loc.column()));
 
-        GetPipForThisThread()->Add(pEventInfo);
+        GetPipeForThisThread()->Add(pEventInfo);
     }
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>

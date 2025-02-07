@@ -33,7 +33,7 @@ namespace nsBase::nsCommon
         return mSources[index];
     }
     //--------------------------------------------------------------------------------------
-    TEventHub::TStringListPtr TEventHub::GetPipForThisThread()
+    TEventHub::TStringListPtr TEventHub::GetPipeForThisThread()
     {
         auto index = mThreadIndexator->GetThreadIndex();
         auto&& pipe = mEventPipes[index];

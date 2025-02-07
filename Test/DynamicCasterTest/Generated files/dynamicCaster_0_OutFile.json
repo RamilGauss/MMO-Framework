@@ -1,9 +1,0 @@
-{
-    "fileName": "DynamicCaster_0",
-    "nameSpaceName": "nsDynamicCasterTest",
-    "typeName": "TDynamicCaster_0",
-    "customizedTypes": [
-        "nsFirst::A",
-        "nsFirst::B"
-    ]
-}
