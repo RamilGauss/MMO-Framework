@@ -11,6 +11,7 @@ See for more information LICENSE.md.
 
 #include "ScenarioDisconnectClient.h"
 #include "Base/Common/Logger.h"
+#include "Base/Common/BL_Debug.h"
 #include "SessionManager.h"
 
 using namespace std;

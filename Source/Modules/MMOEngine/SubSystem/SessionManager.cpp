@@ -7,12 +7,14 @@ See for more information LICENSE.md.
 
 #include "SessionManager.h"
 #include "Base/Common/GlobalEventHub.h"
+#include "Base/Common/BL_Debug.h"
 #include "Base.h"
 
 using namespace std;
 using namespace nsMMOEngine;
 
-TSessionManager::TSessionManager()
+TSessionManager::TSessionManager() :
+    mTransportEventList(100'000)
 {
     mNavigateSession = new TSessionNavigator;
     mMngTransport = new TTransportManager(this);
@@ -185,11 +187,11 @@ void TSessionManager::CloseSession(unsigned int ID_Session)
 //--------------------------------------------------------------------------------------------
 void TSessionManager::Recv(INetTransport::TDescRecv* pDescRecv)
 {
-    auto transportEvent = new TRecvTransportEvent();
+    auto transportEvent = std::make_shared<TRecvTransportEvent>();
     transportEvent->ip_port = pDescRecv->ip_port;
     transportEvent->typeRecv = pDescRecv->type;
     transportEvent->data.SetData(pDescRecv->data, pDescRecv->dataSize);
-    mTransportEventList.Add(transportEvent);
+    mTransportEventList.push(transportEvent);
 }
 //--------------------------------------------------------------------------------------------
 void TSessionManager::RecvHandler(TRecvTransportEvent* pEvent)
@@ -240,9 +242,9 @@ void TSessionManager::RecvHandler(TRecvTransportEvent* pEvent)
 //--------------------------------------------------------------------------------------------
 void TSessionManager::Disconnect(TIP_Port* ip_port)
 {
-    auto disconnectEvent = new TDisconnectTransportEvent();
+    auto disconnectEvent = std::make_shared<TDisconnectTransportEvent>();
     disconnectEvent->ip_port = *ip_port;
-    mTransportEventList.Add(disconnectEvent);
+    mTransportEventList.push(disconnectEvent);
 }
 //--------------------------------------------------------------------------------------------
 void TSessionManager::DisconnectHandler(TDisconnectTransportEvent* pEvent)
@@ -261,10 +263,10 @@ void TSessionManager::DisconnectHandler(TDisconnectTransportEvent* pEvent)
 //--------------------------------------------------------------------------------------------
 void TSessionManager::ConnectFrom(TIP_Port* ip_port, INetTransport* pTransport)
 {
-    auto connectFromEvent = new TConnectFromTransportEvent();
+    auto connectFromEvent = std::make_shared<TConnectFromTransportEvent>();
     connectFromEvent->ip_port = *ip_port;
     connectFromEvent->pTransport = pTransport;
-    mTransportEventList.Add(connectFromEvent);
+    mTransportEventList.push(connectFromEvent);
 }
 //-------------------------------------------------------------------------------------------
 void TSessionManager::ConnectFromHandler(TConnectFromTransportEvent* pEvent)
@@ -435,23 +437,24 @@ void TSessionManager::Reject(unsigned int sessionID)
 //-------------------------------------------------------------------------
 void TSessionManager::TransportEventHandler()
 {
-    auto ppFirst = mTransportEventList.GetFirst();
-    while (ppFirst) {
-        auto pFirst = *ppFirst;
-        switch (pFirst->type) {
+    while (true) {
+        PBaseTransportEvent pBaseTransportEvent;
+        mTransportEventList.try_pop(pBaseTransportEvent);
+        if (pBaseTransportEvent == nullptr) {
+            break;
+        }
+        auto ptr = pBaseTransportEvent.get();
+        switch (pBaseTransportEvent->type) {
             case TBaseTransportEvent::Recv:
-                RecvHandler((TRecvTransportEvent*)pFirst);
+                RecvHandler(dynamic_cast<TRecvTransportEvent*>(ptr));
                 break;
             case TBaseTransportEvent::Disconnect:
-                DisconnectHandler((TDisconnectTransportEvent*)pFirst);
+                DisconnectHandler(dynamic_cast<TDisconnectTransportEvent*>(ptr));
                 break;
             case TBaseTransportEvent::ConnectFrom:
-                ConnectFromHandler((TConnectFromTransportEvent*)pFirst);
+                ConnectFromHandler(dynamic_cast<TConnectFromTransportEvent*>(ptr));
                 break;
         }
-
-        mTransportEventList.RemoveFirst();
-        ppFirst = mTransportEventList.GetFirst();
     }
 }
 //-------------------------------------------------------------------------

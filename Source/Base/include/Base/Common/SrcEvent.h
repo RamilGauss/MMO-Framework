@@ -40,6 +40,6 @@ public:
     template<typename T>
     void AddEventWithoutCopy(T* pObject, unsigned int time_create_ms);
 
-    void Translate(nsEvent::TEvent* pEvent, bool use_self_info = true);
+    void Translate(nsEvent::PEvent pEvent, bool use_self_info = true);
 };
 //-------------------------------------------------------------------------------

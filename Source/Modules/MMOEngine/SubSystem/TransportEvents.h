@@ -18,8 +18,10 @@ namespace nsMMOEngine
         {
             Recv, Disconnect, ConnectFrom
         };
-        Type type;
+        Type type = Recv;
         TIP_Port ip_port;
+
+        virtual ~TBaseTransportEvent() {}
     };
 
     struct TRecvTransportEvent : public TBaseTransportEvent
@@ -27,6 +29,7 @@ namespace nsMMOEngine
         TRecvTransportEvent()
         {
             type = TBaseTransportEvent::Recv;
+            typeRecv = INetTransport::eTypeRecv::eTcp;
         }
 
         INetTransport::eTypeRecv typeRecv;
@@ -47,4 +50,6 @@ namespace nsMMOEngine
             type = TBaseTransportEvent::ConnectFrom;
         }
     };
+
+    using PBaseTransportEvent = std::shared_ptr<TBaseTransportEvent>;
 }

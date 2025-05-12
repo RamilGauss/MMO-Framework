@@ -37,7 +37,10 @@ TBase::TBase() :
     mSessionManager(new TSessionManager),
     mControlSc(new TControlScenario),
     mContainerUp(new TContainerContextSc),
-    mMngMngContextSc(new TManagerManagerContextSc)
+    mMngMngContextSc(new TManagerManagerContextSc),
+    mDisconnectSessionID(10'000),
+    mRecvPacket(1'000'000),
+    mTryConnectDown(10'000)
 {
     mEntMng->Setup();// magic reflection
 
@@ -115,39 +118,40 @@ bool TBase::IsConnect(unsigned int id)
 //-------------------------------------------------------------------------
 void TBase::Recv(TDescRecvSession* pDesc)
 {
-    TDescRecvSession* pNewDesc = new TDescRecvSession;
+    auto pNewDesc = std::make_shared<TDescRecvSession>();
     pNewDesc->Assign(pDesc);
-    mRecvPacket.Add(pNewDesc);
+    mRecvPacket.push(pNewDesc);
 }
 //-------------------------------------------------------------------------
 void TBase::Disconnect(unsigned int id)
 {
-    unsigned int* pID = new unsigned int(id);
-    mDisconnectSessionID.Add(pID);
+    auto pID = std::make_shared<unsigned int>(id);
+    mDisconnectSessionID.push(pID);
 }
 //-------------------------------------------------------------------------
 void TBase::TryConnectDown(TTryConnectDown* pTryConnectDown)
 {
-    auto pNewTryConnectDown = new TTryConnectDown;
+    auto pNewTryConnectDown = std::make_shared<TTryConnectDown>();
     pNewTryConnectDown->Assign(pTryConnectDown);
-    mTryConnectDown.Add(pNewTryConnectDown);
+    mTryConnectDown.push(pNewTryConnectDown);
 }
 //-------------------------------------------------------------------------
 void TBase::HandleTryConnectDownList()
 {
-    TTryConnectDown** ppFirst = mTryConnectDown.GetFirst();
-    while (ppFirst) {
-        TTryConnectDown* pTryConnectDown = *ppFirst;
-        // обработать через сценарий
-        TTryConnectDownEvent* pEvent = new TTryConnectDownEvent();
-        pEvent->sessionID = pTryConnectDown->sessionID;
-        pEvent->c = pTryConnectDown->loginHash;
-        pEvent->hashLogin = pEvent->c.GetPtr();
-        pEvent->hashLoginSize = pEvent->c.GetSize();
-        AddEventWithoutCopy<TTryConnectDownEvent>(pEvent);
-
-        mTryConnectDown.RemoveFirst();
-        ppFirst = mTryConnectDown.GetFirst();
+    while (true) {
+        std::shared_ptr<TTryConnectDown> tryConnectDown;
+        mTryConnectDown.try_pop(tryConnectDown);
+        if (tryConnectDown) {
+            // обработать через сценарий
+            TTryConnectDownEvent* pEvent = new TTryConnectDownEvent();
+            pEvent->sessionID = tryConnectDown->sessionID;
+            pEvent->c = tryConnectDown->loginHash;
+            pEvent->hashLogin = pEvent->c.GetPtr();
+            pEvent->hashLoginSize = pEvent->c.GetSize();
+            AddEventWithoutCopy<TTryConnectDownEvent>(pEvent);
+        } else {
+            break;
+        }
     }
 }
 //-------------------------------------------------------------------------
@@ -177,28 +181,32 @@ void TBase::SetTimeLiveSession(unsigned int time_ms)
 //-------------------------------------------------------------------------
 void TBase::HandleListDisconnect()
 {
-    unsigned int** ppFirst = mDisconnectSessionID.GetFirst();
-    while (ppFirst) {
-        unsigned int ID = *(*ppFirst);
-        // сообщить о разрыве связи для различных реализаций
-        DisconnectInherit(ID);
-        // закрыть сессию
-        mSessionManager->CloseSession(ID);
-        // следующий ID
-        mDisconnectSessionID.RemoveFirst();
-        ppFirst = mDisconnectSessionID.GetFirst();
+    while (true) {
+        std::shared_ptr<unsigned int> pId;
+        mDisconnectSessionID.try_pop(pId);
+        if (pId) {
+            unsigned int id = *pId;
+            // сообщить о разрыве связи для различных реализаций
+            DisconnectInherit(id);
+            // закрыть сессию
+            mSessionManager->CloseSession(id);
+        } else {
+            break;
+        }
     }
 }
 //-------------------------------------------------------------------------
 void TBase::HandleListRecv()
 {
-    TDescRecvSession** ppFirst = mRecvPacket.GetFirst();
-    while (ppFirst) {
-        TDescRecvSession* pDesc = *ppFirst;
-        // обработать через сценарий
-        mControlSc->Recv(pDesc);
-        mRecvPacket.RemoveFirst();
-        ppFirst = mRecvPacket.GetFirst();
+    while (true) {
+        std::shared_ptr<TDescRecvSession> descRecvSession;
+        mRecvPacket.try_pop(descRecvSession);
+        if (descRecvSession) {
+            // обработать через сценарий
+            mControlSc->Recv(descRecvSession.get());
+        } else {
+            break;
+        }
     }
 }
 //-------------------------------------------------------------------------

@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #include <boost/asio/ip/impl/address_v4.ipp>
 
 #include "Base/Common/ResolverSelf_IP_v4.h"
+#include "Base/Common/BL_Debug.h"
 
 #include "MMOEngine/include/BaseEvent.h"
 #include "MMOEngine/include/Events.h"

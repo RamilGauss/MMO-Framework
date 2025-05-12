@@ -42,7 +42,7 @@ void TBaseTransport::Work()
 {
     mBase->Work();
 
-    nsEvent::TEvent* pEvent = GetEvent();
+    auto pEvent = GetEvent();
     while (pEvent) {
         // обработать событие
         auto pBase = (nsMMOEngine::TBaseEvent*)pEvent->pContainer->GetPtr();
@@ -102,7 +102,6 @@ void TBaseTransport::Work()
                 break;
         }
 
-        delete pEvent;
         pEvent = GetEvent();
     }
 }

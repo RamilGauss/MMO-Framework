@@ -10,11 +10,11 @@ See for more information LICENSE.md.
 #include <array>
 #include <format>
 #include <functional>
-#include <list>
+#include <vector>
 #include <string>
 #include <source_location>
 
-#include "Base/Common/DataExchange2Thread.h"
+#include "Base/Common/MPMCQueue.h"
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/TypeDef.h"
 
@@ -40,27 +40,23 @@ namespace nsBase::nsCommon
         }
     };
 
+    using PEventInfo = std::shared_ptr<TEventInfo>;
+
     class DllExport TEventHub
     {
     protected:
-        using TStringList = TDataExchange2Thread<TEventInfo>;
-        using TStringListPtr = std::shared_ptr<TStringList>;
+        using TEventInfoQueue = rigtorp::MPMCQueue<PEventInfo>;
+        using PEventInfoQueue = std::shared_ptr<TEventInfoQueue>;
 
-        std::array<TStringListPtr, 1024> mEventPipes;
+        std::array<PEventInfoQueue, 1024> mEventPipes;
         std::array<std::source_location, 1024> mSrcLocations;
         std::array<std::string, 1024> mSources;
 
-        TThreadIndexator* mThreadIndexator = nullptr;
-
         std::function<std::string()> mTimerFunction = ht_GetTimeStr;
 
-        int mRegisterCount = 0;
-
-        std::vector<int> mDstOffsetInEvents;
-
-        std::vector<TEventInfo*> mEvents;
+        std::atomic_int mRegisterCount = 0;
     public:
-        TEventHub(TThreadIndexator* threadIndexator);
+        TEventHub();
 
         void SetupTimer(std::function<std::string()> timerFunction);
         void SetSourceLocation(std::source_location&& loc, int index = 0);
@@ -78,18 +74,15 @@ namespace nsBase::nsCommon
         
         // might call in only one thread
         int RegisterDestination();
-        void TakeEvents(int dstId, std::list<TEventInfo>& events);
+        std::vector<PEventInfo> TakeEvents(int dstId);
     private:
         template <typename ... Args>
         void AddEvent(std::string&& level, const std::string& format, Args ... args);
 
+        void AddEvent(PEventInfo event);
+
         const std::source_location& GetSourceLocationForThisThread();
         const std::string& GetSourceForThisThread();
-        
-        void RefreshEvents();
-        int CalculateMinOffset();
-
-        TStringListPtr GetPipeForThisThread();
     };
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>
@@ -100,7 +93,7 @@ namespace nsBase::nsCommon
 
         auto message = std::vformat(format, std::make_format_args(args...));
 
-        TEventInfo* pEventInfo = new TEventInfo();
+        auto pEventInfo = std::make_shared<TEventInfo>();
 
         pEventInfo->time = std::move(mTimerFunction());
         pEventInfo->message = std::move(message);
@@ -108,7 +101,7 @@ namespace nsBase::nsCommon
         pEventInfo->level = std::move(level);
         pEventInfo->fileLocation = std::move(std::format("{}:{}:{}", loc.file_name(), loc.line(), loc.column()));
 
-        GetPipeForThisThread()->Add(pEventInfo);
+        AddEvent(pEventInfo);
     }
     //------------------------------------------------------------------------------------------------
     template <typename ... Args>

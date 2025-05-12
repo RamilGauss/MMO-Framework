@@ -15,7 +15,6 @@ See for more information LICENSE.md.
 #include "Structs.h"
 #include "Base/Common/SrcEvent.h"
 #include "IMakerTransport.h"
-#include "Base/Common/DataExchange2Thread.h"
 #include "EnumMMO.h"
 
 namespace nsECSFramework
@@ -56,13 +55,13 @@ namespace nsMMOEngine
         std::shared_ptr<TContainerContextSc> mContainerUp;
 
         // уведомления о разрыве связи
-        using TListUint = TDataExchange2Thread<unsigned int>;
+        using TListUint = rigtorp::MPMCQueue<std::shared_ptr<unsigned int>>;
         TListUint mDisconnectSessionID;
         // полученные пакеты от mSessionManager
-        using TListRecvPacket = TDataExchange2Thread<TDescRecvSession>;
+        using TListRecvPacket = rigtorp::MPMCQueue< std::shared_ptr<TDescRecvSession>>;
         TListRecvPacket mRecvPacket;
 
-        using TListTryConnectDown = TDataExchange2Thread<TTryConnectDown>;
+        using TListTryConnectDown = rigtorp::MPMCQueue< std::shared_ptr<TTryConnectDown>>;
         TListTryConnectDown mTryConnectDown;
 
         // транспорт

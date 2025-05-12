@@ -7,7 +7,6 @@ See for more information LICENSE.md.
 
 #include "Base/Common/FramedThread.h"
 #include "Base/Common/HiTimer.h"
-#include "Base/Common/ThreadIndexator.h"
 #include "Base/Common/SingletonManager.h"
 
 namespace nsBase::nsCommon
@@ -19,8 +18,6 @@ namespace nsBase::nsCommon
     //----------------------------------------------------------------------------------
     void TFramedThread::Engine()
     {
-        SingletonManager()->Get<TThreadIndexator>()->AddThreadId();
-
         auto stopToken = mThread.get_stop_token();
 
         while (not stopToken.stop_requested()) {

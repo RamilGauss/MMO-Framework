@@ -70,7 +70,7 @@ void StartServer(int argc, char** argv)
     std::string sLocalHost;
     TResolverSelf_IP_v4 resolver;
 
-    InitLogger(ServerLog);
+    //InitLogger(ServerLog);
     {
         int countIP_v4 = resolver.GetCount();
         nsBase::nsCommon::GetEventHub()->
@@ -167,7 +167,7 @@ void StartServer(int argc, char** argv)
         }
 
         if (printTime < now) {
-            THandlerMMO::PrintCC(ServerLog);
+            //THandlerMMO::PrintCC(ServerLog);
             printTime = now + printInterval;
         }
 

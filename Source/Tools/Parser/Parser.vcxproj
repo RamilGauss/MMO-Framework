@@ -241,7 +241,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\Sources;.\Generated files;$(SolutionDir)/Source/Base/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CONAN_INCLUDES);.\Sources;.\Generated files;$(SolutionDir)/Source/Base/include;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <ObjectFileName>$(IntDir)\anyname\%(RelativeDir)\</ObjectFileName>

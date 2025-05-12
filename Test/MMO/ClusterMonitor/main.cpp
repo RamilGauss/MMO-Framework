@@ -8,15 +8,15 @@ See for more information LICENSE.md.
 #include "ClusterMonitorClientHandler.h"
 #include <iostream>
 
-int main( int argc, char** argv )
+int main(int argc, char** argv)
 {
-  setlocale( LC_ALL, "Russian" );
-  InitLogger( ClusterMonitorLog );
+    setlocale(LC_ALL, "Russian");
+    //InitLogger( ClusterMonitorLog );
 
-  TClusterMonitorClientHandler clientHandler( argc, argv );
+    TClusterMonitorClientHandler clientHandler(argc, argv);
 
-  while( true )
-    clientHandler.Work();
-  return 0;
+    while (true)
+        clientHandler.Work();
+    return 0;
 }
 

@@ -45,10 +45,7 @@ namespace nsFixture
 
 TEST(EventHub, TakeEvents_Ok)
 {
-    auto threadIndexator = SingletonManager()->Get<TThreadIndexator>();
-    threadIndexator->AddThreadId();
-
-    TEventHub eventHub(threadIndexator);
+    TEventHub eventHub;
     nsFixture::SetEventHub(&eventHub);
 
     auto regId = nsFixture::GetEventHub()->RegisterDestination();
@@ -59,42 +56,43 @@ TEST(EventHub, TakeEvents_Ok)
     nsFixture::GetEventHub()->AddWarningEvent("{}", 42);
     nsFixture::GetEventHub()->AddErrorEvent("{}", 42);
 
-    std::list<TEventInfo> events;
-    nsFixture::GetEventHub()->TakeEvents(regId, events);
+    auto events = nsFixture::GetEventHub()->TakeEvents(regId);
 
-    std::list<TEventInfo> expectedEvents = {
+    std::vector<PEventInfo> expectedEvents;
+    expectedEvents.push_back(std::make_shared<TEventInfo>(TEventInfo
         {
             .time = "",
             .level = "Info",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:58:16",
+            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:55:16",
             .source = "Common",
-        },
+        }));
+    expectedEvents.push_back(std::make_shared<TEventInfo>(TEventInfo
         {
             .time = "",
             .level = "Warning",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:59:16",
+            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:56:16",
             .source = "Common",
-        },
+        }));
+    expectedEvents.push_back(std::make_shared<TEventInfo>(TEventInfo
         {
             .time = "",
             .level = "Error",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:60:16",
+            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:57:16",
             .source = "Common",
-        },
-    };
+        }));
 
-    ASSERT_EQ(events, expectedEvents);
+    ASSERT_TRUE(events.size() == expectedEvents.size());
+    for (size_t i = 0; i < events.size(); i++) {
+        ASSERT_EQ(*events[i], *expectedEvents[i]);
+    }
 }
 
 TEST(EventHub, TakeEventsFromFewDestinations_Ok)
 {
-    auto threadIndexator = SingletonManager()->Get<TThreadIndexator>();
-    threadIndexator->AddThreadId();
-
-    TEventHub eventHub(threadIndexator);
+    TEventHub eventHub;
     nsFixture::SetEventHub(&eventHub);
 
     auto regId0 = nsFixture::GetEventHub()->RegisterDestination();
@@ -104,21 +102,18 @@ TEST(EventHub, TakeEventsFromFewDestinations_Ok)
 
     nsFixture::GetEventHub()->AddInfoEvent("{}", 42);
 
-    std::list<TEventInfo> events0;
-    nsFixture::GetEventHub()->TakeEvents(regId0, events0);
+    auto events0 = nsFixture::GetEventHub()->TakeEvents(regId0);
 
     ASSERT_TRUE(events0.size(), 1);
 
     nsFixture::GetEventHub()->AddWarningEvent("{}", 42);
     nsFixture::GetEventHub()->AddErrorEvent("{}", 42);
 
-    std::list<TEventInfo> events1;
-    nsFixture::GetEventHub()->TakeEvents(regId1, events1);
+    auto events1 = nsFixture::GetEventHub()->TakeEvents(regId1);
 
-    ASSERT_TRUE(events1.size(), 2);
+    ASSERT_TRUE(events1.size(), 3);
 
-    nsFixture::GetEventHub()->TakeEvents(regId0, events0);
+    events0 = nsFixture::GetEventHub()->TakeEvents(regId0);
 
-    ASSERT_TRUE(events0.size() == 3);
-    ASSERT_TRUE(events1.size() == 3);
+    ASSERT_TRUE(events0.size() == 2);
 }

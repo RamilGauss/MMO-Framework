@@ -15,6 +15,7 @@ See for more information LICENSE.md.
 #include "Base/Common/ResolverSelf_IP_v4.h"
 #include "HandlerMMO_Slave.h"
 #include "Base/Common/GlobalEventHub.h"
+#include "Base/Common/BL_Debug.h"
 
 const float SLAVE_LOAD_PER_CLIENT = 1.0f;
 
@@ -129,7 +130,7 @@ void THandlerMMO_Slave::HandleFromMMOEngine(nsEvent::TEvent* pEvent)
 
     if (pBE->mType == nsMMOEngine::eError) {
         nsBase::nsCommon::GetEventHub()->
-            AddWarningEvent("MMOEngine S (0x{}): {}", pSlave, sEvent);
+            AddWarningEvent("MMOEngine S (0x{}): {}", (void*)pSlave, sEvent);
         //PrintCC(ServerLog);
     }
 }

@@ -9,42 +9,38 @@ See for more information LICENSE.md.
 
 using namespace nsEvent;
 
-TDstEvent::TDstEvent()
+TDstEvent::TDstEvent() : 
+    mListEvent(100'000)
 {
-    mListEvent = new TDataExchange2Thread<TEvent>();
 }
 //------------------------------------------------------------
 TDstEvent::~TDstEvent()
 {
-    delete mListEvent;
 }
 //------------------------------------------------------------
 void TDstEvent::AddEventInQueueCopy(int srcType, void* ptr_src, void* data, int size, unsigned int time_create_ms)
 {
-    TEvent* pEvent = new TEvent;
+    auto pEvent = std::make_shared<nsEvent::TEvent>();
     pEvent->Init(time_create_ms);
 
     pEvent->pSrc = ptr_src;
     pEvent->srcType = srcType;
     pEvent->pContainer->SetDataByCount((char*)data, size);// sizeof(char)==1, поэтому size
 
-    mListEvent->Add(pEvent);
+    mListEvent.push(pEvent);
 }
 //------------------------------------------------------------
-TEvent* TDstEvent::GetEvent()
+PEvent TDstEvent::GetEvent()
 {
-    TEvent** ppEvent = mListEvent->GetFirst();
-    if (ppEvent == nullptr)
-        return nullptr;
-
-    TEvent* pEvent = *(ppEvent);
-    mListEvent->UnlinkData(ppEvent);
-    mListEvent->RemoveFirst();
-    return pEvent;
+    nsEvent::PEvent pEvent;
+    if (mListEvent.try_pop(pEvent)) {
+        return pEvent;
+    }
+    return {};
 }
 //------------------------------------------------------------
-void TDstEvent::Translate(nsEvent::TEvent* pEvent)
+void TDstEvent::Translate(nsEvent::PEvent pEvent)
 {
-    mListEvent->Add(pEvent);
+    mListEvent.push(pEvent);
 }
 //------------------------------------------------------------

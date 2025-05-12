@@ -6,6 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include "Base/Common/GlobalEventHub.h"
+#include "Base/Common/BL_Debug.h"
 
 #include "ScRecommutationClient_ClientImpl.h"
 #include "ContextScRecommutationClient.h"

@@ -30,4 +30,4 @@ See for more information LICENSE.md.
 #define CLIENT_QUANT_TIME 100 // мс
 #define STEP_LOGIN        100
 
-void InitLogger( const char* loggerName );
+void InitLogger(const char* loggerName);

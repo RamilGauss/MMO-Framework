@@ -10,6 +10,8 @@ See for more information LICENSE.md.
 #include <map>
 
 #include "Base/Common/ShareMisc.h"
+#include "Base/Common/MPMCQueue.h"
+
 #include "Session.h"
 #include "Base/Common/Mutex.h"
 #include "SessionNavigator.h"
@@ -17,7 +19,6 @@ See for more information LICENSE.md.
 #include "DescRecvSession.h"
 #include "TransportManager.h"
 #include "Structs.h"
-#include "Base/Common/DataExchange2Thread.h"
 #include "TransportEvents.h"
 
 namespace nsMMOEngine
@@ -73,7 +74,7 @@ namespace nsMMOEngine
 
         std::list<TSession*> mSessionListOnDelete;
 
-        typedef TDataExchange2Thread<TBaseTransportEvent> TTransportEventList;
+        using TTransportEventList = rigtorp::MPMCQueue<PBaseTransportEvent>;
         TTransportEventList mTransportEventList;
     public:
         TSessionManager();

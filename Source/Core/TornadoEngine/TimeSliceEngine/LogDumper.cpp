@@ -40,13 +40,12 @@ namespace nsTornadoEngine
     //-------------------------------------------------------------------------------------
     void TLogDumper::FlushToFile()
     {
-        std::list<nsBase::nsCommon::TEventInfo> events;
-        mEventHub->TakeEvents(mRegisterDstId, events);
+        auto events = mEventHub->TakeEvents(mRegisterDstId);
 
         for (auto&& event : events) {
-            if (event.source == mSource) {
+            if (event->source == mSource) {
                 auto str = std::format("{} [{}|{}]:{} -> {}", 
-                    event.time, event.level, event.source, event.message, event.fileLocation);
+                    event->time, event->level, event->source, event->message, event->fileLocation);
                 mFile.WriteF("%s\n", str.c_str());
             }
         }

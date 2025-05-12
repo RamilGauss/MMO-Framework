@@ -13,15 +13,13 @@ namespace nsBase::nsCommon
 {
     struct TGlobalEventHub : TEventHub
     {
-        TGlobalEventHub() : TEventHub(SingletonManager()->Get<TThreadIndexator>())
-        {
-        }
+        TGlobalEventHub() {}
     };
 
     TEventHub* GetEventHub(std::string&& source, std::source_location loc)
     {
         auto eventHub = SingletonManager()->Get<TGlobalEventHub>();
-        auto index = SingletonManager()->Get<TThreadIndexator>()->GetThreadIndex();
+        auto index = TThreadIndexator::GetIndex();
         eventHub->SetSourceLocation(std::move(loc), index);
         eventHub->SetSource(std::move(source), index);
         return eventHub;

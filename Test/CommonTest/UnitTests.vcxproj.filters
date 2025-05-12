@@ -82,5 +82,8 @@
     <ClInclude Include="FileParser.h">
       <Filter>Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="MoodyCamelQueue.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

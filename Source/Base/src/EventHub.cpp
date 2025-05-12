@@ -11,9 +11,8 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsCommon
 {
-    TEventHub::TEventHub(TThreadIndexator* threadIndexator)
+    TEventHub::TEventHub()
     {
-        mThreadIndexator = threadIndexator;
     }
     //--------------------------------------------------------------------------------------
     void TEventHub::SetupTimer(std::function<std::string()> timerFunction)
@@ -23,76 +22,42 @@ namespace nsBase::nsCommon
     //--------------------------------------------------------------------------------------
     const std::source_location& TEventHub::GetSourceLocationForThisThread()
     {
-        auto index = mThreadIndexator->GetThreadIndex();
+        auto index = TThreadIndexator::GetIndex();
         return mSrcLocations[index];
     }
     //--------------------------------------------------------------------------------------
     const std::string& TEventHub::GetSourceForThisThread()
     {
-        auto index = mThreadIndexator->GetThreadIndex();
+        auto index = TThreadIndexator::GetIndex();
         return mSources[index];
-    }
-    //--------------------------------------------------------------------------------------
-    TEventHub::TStringListPtr TEventHub::GetPipeForThisThread()
-    {
-        auto index = mThreadIndexator->GetThreadIndex();
-        auto&& pipe = mEventPipes[index];
-        if (pipe == nullptr) {
-            pipe.reset(new TStringList());
-        }
-        return pipe;
     }
     //--------------------------------------------------------------------------------------
     int TEventHub::RegisterDestination()
     {
-        mDstOffsetInEvents.push_back(0);
+        mEventPipes[mRegisterCount] = std::make_shared<TEventInfoQueue>(100'000);
         return mRegisterCount++;
     }
     //--------------------------------------------------------------------------------------
-    void TEventHub::TakeEvents(int dstId, std::list<TEventInfo>& events)
+    std::vector<PEventInfo> TEventHub::TakeEvents(int dstId)
     {
-        RefreshEvents();
-        if (mEvents.empty()) {
-            return;
-        }
-
-        auto offset = mDstOffsetInEvents[dstId];
-        mDstOffsetInEvents[dstId] = mEvents.size();
-        for (int i = offset; i < mEvents.size(); i++) {
-            events.push_back(*mEvents[i]);
-        }
-        auto minOffset = CalculateMinOffset();
-        for (int i = 0; i < minOffset; i++) {
-            mEvents.pop_back();
-        }
-        for (auto& offset : mDstOffsetInEvents) {
-            offset -= minOffset;
-        }
-    }
-    //--------------------------------------------------------------------------------------
-    int TEventHub::CalculateMinOffset()
-    {
-        int minOffset = std::numeric_limits<int>::max();
-        for (auto& offset : mDstOffsetInEvents) {
-            minOffset = std::min(minOffset, offset);
-        }
-        return minOffset;
-    }
-    //--------------------------------------------------------------------------------------
-    void TEventHub::RefreshEvents()
-    {
-        auto count = mThreadIndexator->GetCount();
-        for (int i = 0; i < count; i++) {
-            auto pipe = mEventPipes[i];
-            if (pipe) {
-                TEventInfo** pFirst = pipe->GetFirst();
-                while (pFirst) {
-                    mEvents.push_back(pFirst[0]);
-                    pipe->UnlinkData(pFirst);
-                    pipe->RemoveFirst();
-                    pFirst = pipe->GetFirst();
-                }
+        std::vector<PEventInfo> events;
+        auto pipe = mEventPipes[dstId];
+        while (true) {
+            PEventInfo event;
+            pipe->try_pop(event);
+            if (event) {
+                events.push_back(event);
+            } else {
+                break;
             }
+        }
+        return events;
+    }
+    //--------------------------------------------------------------------------------------
+    void TEventHub::AddEvent(PEventInfo event)
+    {
+        for (size_t i = 0; i < mRegisterCount; i++) {
+            mEventPipes[i]->push(event);
         }
     }
     //--------------------------------------------------------------------------------------

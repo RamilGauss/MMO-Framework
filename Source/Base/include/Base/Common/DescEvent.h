@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <memory>
+
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/ContainerTypes.h"
 #include "Base/Common/HiTimer.h"
@@ -46,4 +48,6 @@ namespace nsEvent
         }
     };
 #pragma pack(pop)
+
+    using PEvent = std::shared_ptr<TEvent>;
 }

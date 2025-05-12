@@ -19,6 +19,73 @@ See for more information LICENSE.md.
 
 #### "DONE"
 
+2025.05.07:
+
+[ RUN      ] Benchmarker.DataExchange2ThreadQueue_Producer_1_Consumer_1
+DataExchange2ThreadQueue        1x1:    7585k EPS
+[       OK ] Benchmarker.DataExchange2ThreadQueue_Producer_1_Consumer_1 (3996 ms)
+[ RUN      ] Benchmarker.AtomicQueue_Producer_1_Consumer_1
+AtomicQueue     1x1:    7624k EPS
+[       OK ] Benchmarker.AtomicQueue_Producer_1_Consumer_1 (3926 ms)
+[ RUN      ] Benchmarker.BoostQueue_Producer_1_Consumer_1
+BoostQueue      1x1:    3966k EPS
+[       OK ] Benchmarker.BoostQueue_Producer_1_Consumer_1 (7578 ms)
+[ RUN      ] Benchmarker.MoodyCamelQueue_Producer_1_Consumer_1
+MoodyCamelQueue 1x1:    7809k EPS
+[       OK ] Benchmarker.MoodyCamelQueue_Producer_1_Consumer_1 (3850 ms)
+[ RUN      ] Benchmarker.RigtorpQueue_Producer_1_Consumer_1
+RigtorpQueue    1x1:    11208k EPS
+[       OK ] Benchmarker.RigtorpQueue_Producer_1_Consumer_1 (2736 ms)
+[ RUN      ] Benchmarker.AtomicQueue_Producer_3_Consumer_1
+AtomicQueue     3x1:    5580k EPS
+[       OK ] Benchmarker.AtomicQueue_Producer_3_Consumer_1 (5376 ms)
+[ RUN      ] Benchmarker.BoostQueue_Producer_3_Consumer_1
+BoostQueue      3x1:    4588k EPS
+[       OK ] Benchmarker.BoostQueue_Producer_3_Consumer_1 (8056 ms)
+[ RUN      ] Benchmarker.MoodyCamelQueue_Producer_3_Consumer_1
+MoodyCamelQueue 3x1:    7072k EPS
+[       OK ] Benchmarker.MoodyCamelQueue_Producer_3_Consumer_1 (4261 ms)
+[ RUN      ] Benchmarker.RigtorpQueue_Producer_3_Consumer_1
+RigtorpQueue    3x1:    12334k EPS
+[       OK ] Benchmarker.RigtorpQueue_Producer_3_Consumer_1 (2445 ms)
+[ RUN      ] Benchmarker.AtomicQueue_Producer_4_Consumer_1
+AtomicQueue     4x1:    5187k EPS
+[       OK ] Benchmarker.AtomicQueue_Producer_4_Consumer_1 (5811 ms)
+[ RUN      ] Benchmarker.BoostQueue_Producer_4_Consumer_1
+BoostQueue      4x1:    4279k EPS
+[       OK ] Benchmarker.BoostQueue_Producer_4_Consumer_1 (9228 ms)
+[ RUN      ] Benchmarker.MoodyCamelQueue_Producer_4_Consumer_1
+MoodyCamelQueue 4x1:    5887k EPS
+[       OK ] Benchmarker.MoodyCamelQueue_Producer_4_Consumer_1 (5119 ms)
+[ RUN      ] Benchmarker.RigtorpQueue_Producer_4_Consumer_1
+RigtorpQueue    4x1:    11631k EPS
+[       OK ] Benchmarker.RigtorpQueue_Producer_4_Consumer_1 (2596 ms)
+[ RUN      ] Benchmarker.AtomicQueue_Producer_8_Consumer_1
+AtomicQueue     8x1:    3275k EPS
+[       OK ] Benchmarker.AtomicQueue_Producer_8_Consumer_1 (9314 ms)
+[ RUN      ] Benchmarker.BoostQueue_Producer_8_Consumer_1
+BoostQueue      8x1:    3721k EPS
+[       OK ] Benchmarker.BoostQueue_Producer_8_Consumer_1 (8836 ms)
+[ RUN      ] Benchmarker.MoodyCamelQueue_Producer_8_Consumer_1
+MoodyCamelQueue 8x1:    5756k EPS
+[       OK ] Benchmarker.MoodyCamelQueue_Producer_8_Consumer_1 (5380 ms)
+[ RUN      ] Benchmarker.RigtorpQueue_Producer_8_Consumer_1
+RigtorpQueue    8x1:    8067k EPS
+[       OK ] Benchmarker.RigtorpQueue_Producer_8_Consumer_1 (3745 ms)
+[ RUN      ] Benchmarker.AtomicQueue_Producer_4_Consumer_2
+AtomicQueue     4x2:    5058k EPS
+[       OK ] Benchmarker.AtomicQueue_Producer_4_Consumer_2 (11859 ms)
+[ RUN      ] Benchmarker.BoostQueue_Producer_4_Consumer_2
+BoostQueue      4x2:    4255k EPS
+[       OK ] Benchmarker.BoostQueue_Producer_4_Consumer_2 (18731 ms)
+[ RUN      ] Benchmarker.MoodyCamelQueue_Producer_4_Consumer_2
+MoodyCamelQueue 4x2:    8971k EPS
+[       OK ] Benchmarker.MoodyCamelQueue_Producer_4_Consumer_2 (6705 ms)
+[ RUN      ] Benchmarker.RigtorpQueue_Producer_4_Consumer_2
+RigtorpQueue    4x2:    11632k EPS
+[       OK ] Benchmarker.RigtorpQueue_Producer_4_Consumer_2 (5224 ms)
+[----------] 21 tests from Benchmarker (134791 ms total)
+
 2025.01.20:
 Глобальные объекты это не зло. И так же синглтоны.  
 Нужно создать условия для подменяемости объектов. В таком случае будет возможность создавать условия для тестирования.

@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/DescEvent.h"
-#include "Base/Common/DataExchange2Thread.h"
+#include "Base/Common/MPMCQueue.h"
 
 /*
   поглотитель событий. работает в связке с TSrcEvent
@@ -23,7 +23,7 @@ See for more information LICENSE.md.
 
 class DllExport TDstEvent
 {
-    TDataExchange2Thread<nsEvent::TEvent>* mListEvent = nullptr;
+    rigtorp::MPMCQueue<nsEvent::PEvent> mListEvent;
 public:
     TDstEvent();
     virtual ~TDstEvent();
@@ -33,22 +33,22 @@ public:
     template<typename T>
     void AddEventInQueueWithoutCopy(int srcType, void* ptr_src, T* data, unsigned int time_create_ms);
 
-    void Translate(nsEvent::TEvent* pEvent);
+    void Translate(nsEvent::PEvent pEvent);
 public:
     // забрал объект - уничтожь с помощью delete
-    nsEvent::TEvent* GetEvent();
+    nsEvent::PEvent GetEvent();
 };
 //-------------------------------------------------------------------------------------
 template<typename T>
 void TDstEvent::AddEventInQueueWithoutCopy(int srcType, void* ptr_src, T* data, unsigned int time_create_ms)
 {
-    nsEvent::TEvent* pEvent = new nsEvent::TEvent();
+    auto pEvent = std::make_shared<nsEvent::TEvent>();
     pEvent->Init<T>(time_create_ms);
 
     pEvent->srcType = srcType;
     pEvent->pSrc = ptr_src;
     pEvent->pContainer->EntrustByCount((char*)data, 1);
 
-    mListEvent->Add(pEvent);
+    mListEvent.push(pEvent);
 }
 //-------------------------------------------------------------------------------------

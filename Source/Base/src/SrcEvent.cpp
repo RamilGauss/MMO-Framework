@@ -31,7 +31,7 @@ void TSrcEvent::SetSelfID(int srcType)
     mTypeObject = srcType;
 }
 //------------------------------------------------------------
-void TSrcEvent::Translate(nsEvent::TEvent* pEvent, bool use_self_info)
+void TSrcEvent::Translate(nsEvent::PEvent pEvent, bool use_self_info)
 {
     if (use_self_info) {
         pEvent->srcType = mTypeObject;

@@ -17,15 +17,7 @@ namespace nsBase::nsCommon
     class DllExport TThreadIndexator
     {
         static const int MAX_THREAD_COUNT = 1024;
-        std::array<size_t, MAX_THREAD_COUNT> mThreadIdHashes = { 0 };
-
-        std::mutex mMutex;
-
-        std::atomic_int mCount = 0;
     public:
-        void AddThreadId(std::thread::id threadId = std::this_thread::get_id());
-        int GetThreadIndex(std::thread::id threadId = std::this_thread::get_id()) const;
-
-        int GetCount() const;
+        static int GetIndex();
     };
 }

@@ -9,42 +9,24 @@ See for more information LICENSE.md.
 
 namespace nsBase::nsCommon
 {
-    void TThreadIndexator::AddThreadId(std::thread::id threadId)
+    int TThreadIndexator::GetIndex()
     {
-        int index = 0;
+        static std::array<std::thread::id, MAX_THREAD_COUNT> g_ids = {};
+        static std::atomic_int g_count(0);
+        static std::mutex g_m;
 
-        auto hashThreadId = std::hash<std::thread::id>{}(threadId);
-
-        std::lock_guard<std::mutex> guard(mMutex);
-
-        for (auto& idHash : mThreadIdHashes) {
-            if (idHash == 0) {
-                idHash = hashThreadId;
-                break;
+        auto id = std::this_thread::get_id();
+        int count = g_count.load();
+        for (int i = 0; i < count; i++) {
+            if (g_ids[i] == id) {
+                return i;
             }
-            index++;
         }
 
-        mCount.fetch_add(1);
-    }
-    //----------------------------------------------------------------------------------------------------
-    int TThreadIndexator::GetThreadIndex(std::thread::id threadId) const
-    {
-        auto hashThreadId = std::hash<std::thread::id>{}(threadId);
-        int index = 0;
-        for (const auto& idHash : mThreadIdHashes) {
-            if (idHash == hashThreadId) {
-                break;
-            }
-            index++;
-        }
-
+        std::lock_guard<std::mutex> guard(g_m);
+        auto index = g_count.fetch_add(1);
+        g_ids[index] = id;
         return index;
-    }
-    //----------------------------------------------------------------------------------------------------
-    int TThreadIndexator::GetCount() const
-    {
-        return mCount.load();
     }
     //----------------------------------------------------------------------------------------------------
 }

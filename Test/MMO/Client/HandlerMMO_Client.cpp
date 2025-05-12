@@ -14,6 +14,7 @@ See for more information LICENSE.md.
 #include "CommonParam.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
 #include "Base/Common/GlobalEventHub.h"
+#include "Base/Common/BL_Debug.h"
 
 THandlerMMO_Client::THandlerMMO_Client() : THandlerMMO(nullptr, eClient)
 {}

@@ -58,14 +58,17 @@ void THandlerMMO::Work()
 {
     int count = 0;
 
-    nsEvent::TEvent* pEvent = GetEvent();
-    while (pEvent) {
-        // обработать событие
-        HandleFromMMOEngine(pEvent);
-        delete pEvent;
-        pEvent = GetEvent();
+    while (true) {
+        auto pEvent = GetEvent();
+        if (pEvent) {
+            // обработать событие
+            HandleFromMMOEngine(pEvent.get());
+            pEvent = GetEvent();
 
-        count++;
+            count++;
+        } else {
+            break;
+        }
     }
 
     WorkInherit();

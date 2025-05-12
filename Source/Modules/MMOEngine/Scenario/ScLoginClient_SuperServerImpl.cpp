@@ -7,6 +7,7 @@ See for more information LICENSE.md.
 
 #include "ScLoginClient_SuperServerImpl.h"
 #include "Base/Common/Logger.h"
+#include "Base/Common/BL_Debug.h"
 #include "ContextScLoginClient.h"
 #include "SessionManager.h"
 #include "Events.h"

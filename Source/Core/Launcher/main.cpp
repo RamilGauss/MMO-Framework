@@ -44,8 +44,6 @@ void IncorrectPathToProject(const std::string& absProjectPath);
 #ifdef WIN32
 INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR cmdLine, INT)
 {
-    SingletonManager()->Get<nsBase::nsCommon::TThreadIndexator>()->AddThreadId();
-
     char** argv = __argv;
     int argc = __argc;
 #else

@@ -209,7 +209,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\Base\Common\AllocatorPool.h" />
     <ClInclude Include="include\Base\Common\ArrContainer.h" />
     <ClInclude Include="include\Base\Common\AsyncAwaitable.h" />
     <ClInclude Include="include\Base\Common\BiMap.h" />
@@ -228,6 +227,7 @@
     <ClInclude Include="include\Base\Common\EventHub.h" />
     <ClInclude Include="include\Base\Common\FramedThread.h" />
     <ClInclude Include="include\Base\Common\GlobalEventHub.h" />
+    <ClInclude Include="include\Base\Common\MPMCQueue.h" />
     <ClInclude Include="include\Base\Common\StrandHolder.h" />
     <ClInclude Include="include\Base\Common\ThreadIndexator.h" />
     <ClInclude Include="include\Base\Common\ThreadSharedValue.h" />
@@ -240,12 +240,9 @@
     <ClInclude Include="include\Base\Common\CRC8.h" />
     <ClInclude Include="include\Base\Common\CryptoAES_Impl.h" />
     <ClInclude Include="include\Base\Common\CryptoRSA_Impl.h" />
-    <ClInclude Include="include\Base\Common\DataExchange2Thread.h" />
-    <ClInclude Include="include\Base\Common\DataExchange2ThreadElement.h" />
     <ClInclude Include="include\Base\Common\DescCallBack.h" />
     <ClInclude Include="include\Base\Common\DescEvent.h" />
     <ClInclude Include="include\Base\Common\DstEvent.h" />
-    <ClInclude Include="include\Base\Common\ExecuteInstructionEngine.h" />
     <ClInclude Include="include\Base\Common\FastUpperBound.h" />
     <ClInclude Include="include\Base\Common\FileOperation.h" />
     <ClInclude Include="include\Base\Common\GuidGenerator.h" />
@@ -316,7 +313,6 @@
     <ClCompile Include="src\ISubProcess.cpp" />
     <ClCompile Include="src\LoaderDLLFactory.cpp" />
     <ClCompile Include="src\LockFreeFifo.cpp" />
-    <ClCompile Include="src\AllocatorPool.cpp" />
     <ClCompile Include="src\ArrContainer.cpp" />
     <ClCompile Include="src\BL_Debug.cpp" />
     <ClCompile Include="src\BreakPacket.cpp" />
@@ -326,10 +322,8 @@
     <ClCompile Include="src\CRC8.cpp" />
     <ClCompile Include="src\CryptoAES_Impl.cpp" />
     <ClCompile Include="src\CryptoRSA_Impl.cpp" />
-    <ClCompile Include="src\DataExchange2ThreadElement.cpp" />
     <ClCompile Include="src\DescCallBack.cpp" />
     <ClCompile Include="src\DstEvent.cpp" />
-    <ClCompile Include="src\ExecuteInstructionEngine.cpp" />
     <ClCompile Include="src\FileOperation.cpp" />
     <ClCompile Include="src\HiTimer.cpp" />
     <ClCompile Include="src\InfoFile.cpp" />

@@ -17,9 +17,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Base\Common\AllocatorPool.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Base\Common\ArrContainer.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -57,12 +54,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\CryptoRSA_Impl.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Base\Common\DataExchange2Thread.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Base\Common\DataExchange2ThreadElement.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\DescCallBack.h">
@@ -165,9 +156,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\SingletonManager.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Base\Common\ExecuteInstructionEngine.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Base\Common\BinaryPushMaster.h">
@@ -299,11 +287,11 @@
     <ClInclude Include="include\Base\Zones\IHopProcess.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Base\Common\MPMCQueue.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\AllocatorPool.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\ArrContainer.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -329,9 +317,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\CryptoRSA_Impl.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DataExchange2ThreadElement.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\DescCallBack.cpp">
@@ -398,9 +383,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SingletonManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ExecuteInstructionEngine.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\BinaryPopMaster.cpp">
