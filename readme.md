@@ -87,4 +87,4 @@ This is achieved by using the cluster organization within the Server.
 To view the architectural decisions need Enterprise Architect 7.0+.
 [Article on habrahabr](http://habrahabr.ru/post/233915/).
 
-Dependencies got via the [conan](http://conan.io).
+Dependencies got via the [vcpkg](http://vcpkg.io) and [cmake](https://cmake.org/).
