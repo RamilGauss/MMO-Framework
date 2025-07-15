@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ShaderFactory.h"
-#include "Shader.h"
+#include "GraphicEngine/ShaderFactory.h"
+#include "GraphicEngine/Shader.h"
 
 using namespace nsGraphicEngine;
 

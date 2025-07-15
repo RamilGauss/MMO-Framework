@@ -5,13 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ManagerContextClientLogining.h"
 
 #include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/BL_Debug.h"
 
-#include "ContainerContextSc.h"
-#include "EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
+#include "MMOEngine/SubSystem/ContainerContextSc.h"
+#include "MMOEngine/SubSystem/ManagerContextClientLogining.h"
 
 using namespace nsMMOEngine;
 

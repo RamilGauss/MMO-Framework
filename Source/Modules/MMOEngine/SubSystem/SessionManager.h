@@ -11,15 +11,16 @@ See for more information LICENSE.md.
 
 #include "Base/Common/ShareMisc.h"
 #include "Base/Common/MPMCQueue.h"
-
-#include "Session.h"
 #include "Base/Common/Mutex.h"
-#include "SessionNavigator.h"
 #include "Base/Common/CallBackRegistrator.h"
-#include "DescRecvSession.h"
-#include "TransportManager.h"
-#include "Structs.h"
-#include "TransportEvents.h"
+
+#include "MMOEngine/Include/Structs.h"
+
+#include "MMOEngine/SubSystem/Session.h"
+#include "MMOEngine/SubSystem/SessionNavigator.h"
+#include "MMOEngine/SubSystem/DescRecvSession.h"
+#include "MMOEngine/SubSystem/TransportManager.h"
+#include "MMOEngine/SubSystem/TransportEvents.h"
 
 namespace nsMMOEngine
 {

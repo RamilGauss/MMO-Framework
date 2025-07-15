@@ -30,7 +30,7 @@ TEST(Parser, FunctionWithDefaultArgument)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "FunctionWithDefaultArgument");
         if (type->mName == "FunctionWithDefaultArgument") {
-            ASSERT_TRUE(type->mMethods.size(), 3);
+            ASSERT_EQ(type->mMethods.size(), 3);
 
             auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMethods.size(), 1);

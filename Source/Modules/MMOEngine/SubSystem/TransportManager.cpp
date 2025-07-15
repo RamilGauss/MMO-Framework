@@ -5,14 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TransportManager.h"
-
-#include "ReceiverTransport.h"
-#include "IMakerTransport.h"
-#include "INetTransport.h"
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/GlobalEventHub.h"
-#include "EnumMMO.h"
+
+#include "MMOEngine/Include/IMakerTransport.h"
+#include "MMOEngine/Include/INetTransport.h"
+#include "MMOEngine/Include/EnumMMO.h"
+
+#include "MMOEngine/SubSystem/TransportManager.h"
+#include "MMOEngine/SubSystem/ReceiverTransport.h"
 
 using namespace nsMMOEngine;
 using namespace std;

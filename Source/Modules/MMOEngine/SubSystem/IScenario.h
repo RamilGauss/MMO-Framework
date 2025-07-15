@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DescRecvSession.h"
+#include "MMOEngine/SubSystem/DescRecvSession.h"
 
 #include "Base/Common/SrcEvent.h"
 #include "Base/Common/CallBackRegistrator.h"

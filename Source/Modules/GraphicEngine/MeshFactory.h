@@ -7,14 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <string>
-#include <map>
 #include <array>
+#include <functional>
 #include <list>
+#include <map>
+#include <string>
 
 #include "Base/Common/TypeDef.h"
-
-#include <functional>
 
 namespace nsGraphicEngine
 {

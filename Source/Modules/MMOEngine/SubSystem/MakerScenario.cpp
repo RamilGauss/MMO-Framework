@@ -5,20 +5,21 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "MakerScenario.h"
-#include "IScenario.h"
-
 #include <stddef.h>
+
 #include "Base/Common/BL_Debug.h"
 
-#include "ScenarioDisconnectClient.h"
-#include "ScenarioFlow.h"
-#include "ScenarioLoginClient.h"
-#include "ScenarioLoginMaster.h"
-#include "ScenarioLoginSlave.h"
-#include "ScenarioSendToClient.h"
-#include "ScenarioSynchroSlave.h"
-#include "ScenarioRecommutationClient.h"
+#include "MMOEngine/SubSystem/MakerScenario.h"
+#include "MMOEngine/SubSystem/IScenario.h"
+
+#include "MMOEngine/Scenario/ScenarioDisconnectClient.h"
+#include "MMOEngine/Scenario/ScenarioFlow.h"
+#include "MMOEngine/Scenario/ScenarioLoginClient.h"
+#include "MMOEngine/Scenario/ScenarioLoginMaster.h"
+#include "MMOEngine/Scenario/ScenarioLoginSlave.h"
+#include "MMOEngine/Scenario/ScenarioSendToClient.h"
+#include "MMOEngine/Scenario/ScenarioSynchroSlave.h"
+#include "MMOEngine/Scenario/ScenarioRecommutationClient.h"
 
 using namespace nsMMOEngine;
 

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "TypeFactoryHeaderFileGenerator.h"
 #include "TypeFactorySourceFileGenerator.h"
 
-#include "GeneratorList.h"
+#include "CodeGeneratorImplementation/GeneratorList.h"
 
 using namespace nsCodeGeneratorImplementation;
 

@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ReceiverTransport.h"
-#include "SessionManager.h"
-#include "INetTransport.h"
 #include "Base/Common/CallBackRegistrator.h"
+#include "MMOEngine/Include/INetTransport.h"
+#include "MMOEngine/SubSystem/ReceiverTransport.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
 
 using namespace nsMMOEngine;
 

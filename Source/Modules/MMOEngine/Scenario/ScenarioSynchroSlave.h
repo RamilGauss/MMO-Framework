@@ -7,10 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IScenario.h"
-#include "ContextScSynchroSlave.h"
-#include "MakerScenario.h"
-#include "ScenarioBaseHeader.h"
+#include "MMOEngine/SubSystem/IScenario.h"
+#include "MMOEngine/SubSystem/MakerScenario.h"
+#include "MMOEngine/SubSystem/ScenarioBaseHeader.h"
+
+#include "MMOEngine/ScenarioContext/ContextScSynchroSlave.h"
 
 #pragma pack(push, 1)
 

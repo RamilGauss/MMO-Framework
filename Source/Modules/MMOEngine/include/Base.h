@@ -7,15 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
 
 #include <list>
 #include <memory>
 
-#include "Structs.h"
+#include "Base/Common/TypeDef.h"
 #include "Base/Common/SrcEvent.h"
-#include "IMakerTransport.h"
-#include "EnumMMO.h"
+
+#include "MMOEngine/Include/Structs.h"
+#include "MMOEngine/Include/IMakerTransport.h"
+#include "MMOEngine/Include/EnumMMO.h"
 
 namespace nsECSFramework
 {

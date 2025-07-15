@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "MakerScenario.h"
-#include "BaseScRecommutationClient_Struct.h"
+#include "MMOEngine/SubSystem/MakerScenario.h"
+#include "MMOEngine/Scenario/BaseScRecommutationClient_Struct.h"
 
 using namespace nsMMOEngine;
 using namespace nsRecommutationClientStruct;

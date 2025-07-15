@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "LineTokenEntity.h"
 
-#include "magic_enum.hpp"
+#include <magic_enum/magic_enum.hpp>
 
 #include "fmt/core.h"
 

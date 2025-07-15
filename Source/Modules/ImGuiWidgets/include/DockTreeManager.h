@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 
 #include "GraphicEngine/IRenderable.h"
 
-#include "DockTree.h"
-#include "LightDockTreeManager.h"
+#include "ImGuiWidgets/Include/DockTree.h"
+#include "ImGuiWidgets/Include/LightDockTreeManager.h"
 
 namespace nsImGuiWidgets
 {

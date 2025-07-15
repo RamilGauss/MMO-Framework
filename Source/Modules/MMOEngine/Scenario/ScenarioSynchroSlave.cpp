@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ScenarioSynchroSlave.h"
-#include "SessionManager.h"
 #include "Base/Common/BL_Debug.h"
+
+#include "MMOEngine/Scenario/ScenarioSynchroSlave.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
 
 using namespace nsMMOEngine;
 

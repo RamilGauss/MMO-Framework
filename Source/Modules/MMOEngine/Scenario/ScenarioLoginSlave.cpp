@@ -5,15 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ScenarioLoginSlave.h"
 #include "Base/Common/BL_Debug.h"
-#include "SessionManager.h"
+#include "Base/Common/SrcEvent_ex.h"
 #include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/HiTimer.h"
-#include "Events.h"
-#include "EnumMMO.h"
 
-#include "Base/Common/SrcEvent_ex.h"
+#include "MMOEngine/Scenario/ScenarioLoginSlave.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
+#include "MMOEngine/Include/Events.h"
+#include "MMOEngine/Include/EnumMMO.h"
+
 
 using namespace nsMMOEngine;
 

@@ -15,12 +15,12 @@ See for more information LICENSE.md.
 #include "GraphicEngine/IRenderable.h"
 #include "GraphicEngine/KeyMouseEventContainer.h"
 
-#include "Title.h"
-#include "Size.h"
-#include "Position.h"
-#include "Visibility.h"
-#include "Identity.h"
-#include "Color.h"
+#include "ImGuiWidgets/Include/Title.h"
+#include "ImGuiWidgets/Include/Size.h"
+#include "ImGuiWidgets/Include/Position.h"
+#include "ImGuiWidgets/Include/Visibility.h"
+#include "ImGuiWidgets/Include/Identity.h"
+#include "ImGuiWidgets/Include/Color.h"
 
 namespace nsImGuiWidgets
 {

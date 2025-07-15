@@ -14,8 +14,8 @@ See for more information LICENSE.md.
 #include "imgui.h"
 #include "Base/Common/TypeDef.h"
 
-#include "Node.h"
-#include "InputText.h"
+#include "ImGuiWidgets/Include/Node.h"
+#include "ImGuiWidgets/Include/InputText.h"
 
 namespace nsImGuiWidgets
 {

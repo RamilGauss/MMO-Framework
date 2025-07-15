@@ -5,8 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ScenarioRecommutationClient.h"
-#include "SessionManager.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
+
+#include "MMOEngine/Scenario/ScenarioRecommutationClient.h"
 
 #pragma warning(disable:4355)
 

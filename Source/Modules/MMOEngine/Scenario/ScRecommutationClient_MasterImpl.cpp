@@ -5,11 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ScRecommutationClient_MasterImpl.h"
-#include "ContextScRecommutationClient.h"
-#include "SessionManager.h"
 #include "Base/Common/BL_Debug.h"
-#include "DescRequestConnectForRecipient.h"
+
+#include "MMOEngine/SubSystem/SessionManager.h"
+#include "MMOEngine/Scenario/ScRecommutationClient_MasterImpl.h"
+#include "MMOEngine/Scenario/DescRequestConnectForRecipient.h"
+#include "MMOEngine/ScenarioContext/ContextScRecommutationClient.h"
 
 using namespace nsMMOEngine;
 using namespace nsRecommutationClientStruct;

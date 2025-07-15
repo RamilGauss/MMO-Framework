@@ -5,10 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SessionNavigator.h"
-#include "Session.h"
 #include "Base/Common/Logger.h"
-#include "Base.h"
+
+#include "MMOEngine/Include/Base.h"
+
+#include "MMOEngine/SubSystem/SessionNavigator.h"
+#include "MMOEngine/SubSystem/Session.h"
 
 using namespace std;
 

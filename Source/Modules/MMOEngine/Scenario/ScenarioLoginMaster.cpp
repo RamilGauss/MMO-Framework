@@ -5,13 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ScenarioLoginMaster.h"
 #include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/SrcEvent_ex.h"
 
-#include "Events.h"
-#include "SessionManager.h"
-#include "EnumMMO.h"
+#include "MMOEngine/Include/Events.h"
+#include "MMOEngine/Include/EnumMMO.h"
+
+#include "MMOEngine/SubSystem/SessionManager.h"
+#include "MMOEngine/Scenario/ScenarioLoginMaster.h"
 
 using namespace nsMMOEngine;
 

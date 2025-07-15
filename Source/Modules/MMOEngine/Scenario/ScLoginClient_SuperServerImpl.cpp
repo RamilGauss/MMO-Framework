@@ -5,13 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ScLoginClient_SuperServerImpl.h"
 #include "Base/Common/Logger.h"
 #include "Base/Common/BL_Debug.h"
-#include "ContextScLoginClient.h"
-#include "SessionManager.h"
-#include "Events.h"
-#include "EnumMMO.h"
+
+#include "MMOEngine/Include/Events.h"
+#include "MMOEngine/Include/EnumMMO.h"
+
+#include "MMOEngine/SubSystem/SessionManager.h"
+
+#include "MMOEngine/ScenarioContext/ContextScLoginClient.h"
+#include "MMOEngine/Scenario/ScLoginClient_SuperServerImpl.h"
 
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;

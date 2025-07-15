@@ -10,11 +10,11 @@ See for more information LICENSE.md.
 
 #include <list>
 
-#include "Base/Common/TypeDef.h"
-
 #include <SDL.h>
 
-#include "IRenderable.h"
+#include "Base/Common/TypeDef.h"
+
+#include "GraphicEngine/IRenderable.h"
 
 struct ImGuiContext;
 

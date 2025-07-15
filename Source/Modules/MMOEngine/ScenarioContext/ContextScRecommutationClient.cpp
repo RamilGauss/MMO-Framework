@@ -5,8 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ContextScRecommutationClient.h"
-#include "EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
+
+#include "MMOEngine/ScenarioContext/ContextScRecommutationClient.h"
 
 using namespace nsMMOEngine;
 

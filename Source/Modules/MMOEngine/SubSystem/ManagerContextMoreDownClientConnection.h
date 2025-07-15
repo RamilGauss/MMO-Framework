@@ -8,7 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <map>
-#include "DelegateManagerContextSc.h"
+
+#include "MMOEngine/SubSystem/DelegateManagerContextSc.h"
 
 namespace nsMMOEngine
 {

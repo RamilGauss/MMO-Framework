@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "BaseScLoginClient.h"
+#include "MMOEngine/Scenario/BaseScLoginClient.h"
 
 namespace nsMMOEngine
 {

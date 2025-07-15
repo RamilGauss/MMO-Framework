@@ -1,6 +1,0 @@
-{
-    "vsVersion": "VS2022",
-    "includeMacros": "CONAN_INCLUDES",
-    "libMacros": "CONAN_LIBS",
-    "preprocessorMacros": "CONAN_PREPROCESSOR"
-}

@@ -8,8 +8,9 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "MMOEngine/include/Master.h"
-#include "Packets.h"
-#include "BaseTransport.h"
+
+#include "ClusterMonitorProtocol/Packets.h"
+#include "ClusterMonitorProtocol/BaseTransport.h"
 
 namespace nsClusterMonitorProtocol
 {

@@ -7,10 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "INetTransport.h"
 #include "Base/Common/ContainerTypes.h"
 #include "Base/Common/HiTimer.h"
-#include "EnumMMO.h"
+
+#include "MMOEngine/Include/INetTransport.h"
+#include "MMOEngine/Include/EnumMMO.h"
 
 namespace nsMMOEngine
 {

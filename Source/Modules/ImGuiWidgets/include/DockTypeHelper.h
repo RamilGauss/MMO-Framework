@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "DockNode.h"
+#include "ImGuiWidgets/Include/DockNode.h"
 
 namespace nsImGuiWidgets
 {

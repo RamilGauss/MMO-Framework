@@ -11,14 +11,14 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "Widget.h"
-#include "Focus.h"
-#include "Anchors.h"
-#include "MinSize.h"
-#include "MaxSize.h"
-#include "VerticalAlign.h"
-#include "HorizontalAlign.h"
-#include "MinDistanceToParent.h"
+#include "ImGuiWidgets/Include/Widget.h"
+#include "ImGuiWidgets/Include/Focus.h"
+#include "ImGuiWidgets/Include/Anchors.h"
+#include "ImGuiWidgets/Include/MinSize.h"
+#include "ImGuiWidgets/Include/MaxSize.h"
+#include "ImGuiWidgets/Include/VerticalAlign.h"
+#include "ImGuiWidgets/Include/HorizontalAlign.h"
+#include "ImGuiWidgets/Include/MinDistanceToParent.h"
 
 namespace nsImGuiWidgets
 {

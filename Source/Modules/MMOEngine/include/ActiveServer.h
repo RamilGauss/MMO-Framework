@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "BaseServer.h"
+#include "MMOEngine/Include/BaseServer.h"
 
 namespace nsMMOEngine
 {

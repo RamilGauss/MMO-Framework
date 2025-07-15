@@ -6,6 +6,7 @@
 .project
 .metadata
 bin/
+build/
 Trash/
 tmp/
 Temp/

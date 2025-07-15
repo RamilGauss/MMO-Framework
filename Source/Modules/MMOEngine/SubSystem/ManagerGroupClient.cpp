@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "Base/Common/GlobalEventHub.h"
 
-#include "ManagerGroupClient.h"
+#include "MMOEngine/SubSystem/ManagerGroupClient.h"
 
-#include "EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
 
 using namespace nsMMOEngine;
 using namespace std;

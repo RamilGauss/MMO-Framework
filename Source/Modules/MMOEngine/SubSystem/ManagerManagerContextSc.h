@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <set>
-#include "ScContextManager.h"
+#include "MMOEngine/SubSystem/ScContextManager.h"
 
 namespace nsMMOEngine
 {

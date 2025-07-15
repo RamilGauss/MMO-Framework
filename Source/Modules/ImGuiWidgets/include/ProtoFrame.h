@@ -9,11 +9,12 @@ See for more information LICENSE.md.
 
 #include <list>
 
+#include "Base/Common/CallbackPool.h"
+
 #include "GraphicEngine/Events.h"
 
-#include "Unit.h"
-#include "WidgetContainer.h"
-#include "Base/Common/CallbackPool.h"
+#include "ImGuiWidgets/Include/Unit.h"
+#include "ImGuiWidgets/Include/WidgetContainer.h"
 
 namespace nsImGuiWidgets
 {

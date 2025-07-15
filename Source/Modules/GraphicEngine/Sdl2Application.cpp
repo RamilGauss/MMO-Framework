@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Sdl2Application.h"
+#include "GraphicEngine/Sdl2Application.h"
 
 using namespace nsGraphicEngine;
 

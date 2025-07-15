@@ -7,8 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 #include "Base/Common/ShareMisc.h"
-#include "INetTransport.h"
 #include "Base/Common/ContainerTypes.h"
+
+#include "MMOEngine/Include/INetTransport.h"
 
 namespace nsMMOEngine
 {

@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BaseLogic.h"
-#include "Base.h"
-#include "ContainerContextSc.h"
+#include "MMOEngine/Include/Base.h"
+
+#include "MMOEngine/SubSystem/BaseLogic.h"
+#include "MMOEngine/SubSystem/ContainerContextSc.h"
 
 using namespace nsMMOEngine;
 

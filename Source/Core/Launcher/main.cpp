@@ -25,6 +25,7 @@ See for more information LICENSE.md.
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/ThreadIndexator.h"
 
+#include "TimeSliceEngine/LogDumper.h"
 #include "TimeSliceEngine/TimeSliceEngine.h"
 #include "TimeSliceEngine/ProjectConfigurator.h"
 #include "TimeSliceEngine/ProjectConfigContainer.h"

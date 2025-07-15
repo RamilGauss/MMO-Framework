@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IScenario.h"
-#include "ContextScRecommutationClient.h"
+#include "MMOEngine/SubSystem/IScenario.h"
+#include "MMOEngine/ScenarioContext/ContextScRecommutationClient.h"
 
-#include "ScRecommutationClient_ClientImpl.h"
-#include "ScRecommutationClient_MasterImpl.h"
-#include "ScRecommutationClient_SlaveImpl.h"
+#include "MMOEngine/Scenario/ScRecommutationClient_ClientImpl.h"
+#include "MMOEngine/Scenario/ScRecommutationClient_MasterImpl.h"
+#include "MMOEngine/Scenario/ScRecommutationClient_SlaveImpl.h"
 
 namespace nsMMOEngine
 {

@@ -9,13 +9,14 @@ See for more information LICENSE.md.
 #include "Base/Common/SrcEvent_ex.h"
 #include "Base/Common/MD5.h"
 
-#include "ScLoginClient_ClientImpl.h"
-#include "ContextScLoginClient.h"
-#include "SessionManager.h"
-#include "Base.h"
-#include "Events.h"
-#include "EnumMMO.h"
-#include "IScenario.h"
+#include "MMOEngine/Include/Base.h"
+#include "MMOEngine/Include/Events.h"
+#include "MMOEngine/Include/EnumMMO.h"
+
+#include "MMOEngine/Scenario/ScLoginClient_ClientImpl.h"
+#include "MMOEngine/ScenarioContext/ContextScLoginClient.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
+#include "MMOEngine/SubSystem/IScenario.h"
 
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;

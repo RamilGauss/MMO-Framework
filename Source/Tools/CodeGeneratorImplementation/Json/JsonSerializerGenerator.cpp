@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "JsonSerializerGenerator.h"
-#include "JsonSerializerHeaderFileGenerator.h"
-#include "JsonSerializerSourceFileGenerator.h"
+#include "CodeGeneratorImplementation/Json/JsonSerializerGenerator.h"
+#include "CodeGeneratorImplementation/Json/JsonSerializerHeaderFileGenerator.h"
+#include "CodeGeneratorImplementation/Json/JsonSerializerSourceFileGenerator.h"
 
-#include "GeneratorList.h"
+#include "CodeGeneratorImplementation/GeneratorList.h"
 
 using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;

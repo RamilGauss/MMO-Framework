@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 #include <vector>
 #include <map>
 
-#include "LightDockNode.h"
-#include "DockTree.h"
+#include "ImGuiWidgets/Include/LightDockNode.h"
+#include "ImGuiWidgets/Include/DockTree.h"
 
 namespace nsImGuiWidgets
 {

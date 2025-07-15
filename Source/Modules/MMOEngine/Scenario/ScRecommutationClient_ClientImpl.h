@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "BaseScRecommutationClient.h"
+#include "MMOEngine/Scenario/BaseScRecommutationClient.h"
 
 namespace nsMMOEngine
 {

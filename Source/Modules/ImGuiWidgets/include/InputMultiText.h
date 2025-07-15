@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Unit.h"
-#include "InputTextValue.h"
-
 #include "Base/Common/CallbackPool.h"
+
+#include "ImGuiWidgets/Include/Unit.h"
+#include "ImGuiWidgets/Include/InputTextValue.h"
 
 namespace nsImGuiWidgets
 {

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <vector>
 
-#include "LightWindowNode.h"
+#include "ImGuiWidgets/Include/LightWindowNode.h"
 
 namespace nsImGuiWidgets
 {

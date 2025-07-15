@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IScenario.h"
-#include "DescRecvSession.h"
-#include "ScenarioBaseHeader.h"
+#include "MMOEngine/SubSystem/IScenario.h"
+#include "MMOEngine/SubSystem/DescRecvSession.h"
+#include "MMOEngine/SubSystem/ScenarioBaseHeader.h"
 
 namespace nsMMOEngine
 {

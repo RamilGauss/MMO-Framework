@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include "Base/Common/BL_Debug.h"
 
 #include "ContainerContextSc.h"
-#include "EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
 
 using namespace nsMMOEngine;
 using namespace std;

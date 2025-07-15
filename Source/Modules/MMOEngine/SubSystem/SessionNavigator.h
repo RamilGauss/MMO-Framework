@@ -10,9 +10,9 @@ See for more information LICENSE.md.
 #include <map>
 #include <set>
 #include <list>
+#include <functional>
 
 #include "Base/Common/ShareMisc.h"
-#include <functional>
 
 namespace nsMMOEngine
 {

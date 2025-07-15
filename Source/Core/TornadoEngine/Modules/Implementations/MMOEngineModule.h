@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "Modules/Interfaces/IMMOEngineModule.h"
 
-#include "MMOEngine/include/Base.h"
-#include "MMOEngine/include/INetTransport.h"
-#include "NetTransport/MakerNetTransport.h"
+#include "MMOEngine/Include/Base.h"
+#include "MMOEngine/Include/INetTransport.h"
+#include "NetTransport/Include/MakerNetTransport.h"
 
 namespace nsTornadoEngine
 {

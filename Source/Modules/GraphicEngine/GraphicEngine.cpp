@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "GraphicEngine.h"
-#include "IRenderable.h"
-#include "GraphicEngineContext.h"
+#include "GraphicEngine/GraphicEngine.h"
+#include "GraphicEngine/IRenderable.h"
+#include "GraphicEngine/GraphicEngineContext.h"
 
 using namespace nsGraphicEngine;
 

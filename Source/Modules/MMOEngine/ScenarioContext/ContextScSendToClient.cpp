@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ContextScSendToClient.h"
 #include "Base/Common/BL_Debug.h"
-#include "SessionManager.h"
+
+#include "MMOEngine/ScenarioContext/ContextScSendToClient.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
 
 using namespace nsMMOEngine;
 

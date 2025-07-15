@@ -6,14 +6,16 @@ See for more information LICENSE.md.
 */
 
 #include "Base/Common/Logger.h"
-
-#include "ScenarioLoginClient.h"
 #include "Base/Common/HiTimer.h"
-#include "SessionManager.h"
-#include "Base.h"
-#include "Events.h"
-#include "EnumMMO.h"
 #include "Base/Common/BL_Debug.h"
+
+#include "MMOEngine/Include/Base.h"
+#include "MMOEngine/Include/Events.h"
+#include "MMOEngine/Include/EnumMMO.h"
+
+#include "MMOEngine/SubSystem/SessionManager.h"
+
+#include "MMOEngine/Scenario/ScenarioLoginClient.h"
 
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;

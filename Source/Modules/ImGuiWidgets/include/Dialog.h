@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "RootFrame.h"
+#include "ImGuiWidgets/Include/RootFrame.h"
 
 namespace nsImGuiWidgets
 {

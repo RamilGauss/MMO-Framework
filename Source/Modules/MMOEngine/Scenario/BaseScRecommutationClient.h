@@ -7,11 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IScenario.h"
-#include "DescRecvSession.h"
-#include "BaseScRecommutationClient_Struct.h"
 #include "Base/Common/DescCallBack.h"
 #include "Base/Common/MapCallBack.h"
+
+#include "MMOEngine/SubSystem/IScenario.h"
+#include "MMOEngine/SubSystem/DescRecvSession.h"
+#include "MMOEngine/Scenario/BaseScRecommutationClient_Struct.h"
 
 namespace nsMMOEngine
 {

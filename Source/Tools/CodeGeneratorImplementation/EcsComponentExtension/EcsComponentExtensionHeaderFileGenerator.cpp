@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <set>
 
-#include "Constants.h"
+#include "CodeGeneratorImplementation/Constants.h"
 
 using namespace nsCodeGeneratorImplementation;
 

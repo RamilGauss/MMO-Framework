@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 
-#include "GeneratorList.h"
+#include "CodeGeneratorImplementation/GeneratorList.h"
 #include "IncludeListGenerator.h"
 #include "IncludeListFileGenerator.h"
 #include <filesystem>

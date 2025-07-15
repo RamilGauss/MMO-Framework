@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Title.h"
-#include "Visibility.h"
+#include "ImGuiWidgets/Include/Title.h"
+#include "ImGuiWidgets/Include/Visibility.h"
 #include "GraphicEngine/IRenderable.h"
 
 namespace nsImGuiWidgets

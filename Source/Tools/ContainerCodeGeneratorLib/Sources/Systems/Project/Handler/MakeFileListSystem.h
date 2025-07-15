@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/ExecuteSystem.h>
+#include <ECS/Include/ExecuteSystem.h>
 
 namespace nsContainerCodeGenerator::nsProject::nsHandler
 {

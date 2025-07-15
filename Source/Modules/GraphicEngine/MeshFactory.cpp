@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "MeshFactory.h"
-#include "Mesh.h"
+#include "GraphicEngine/MeshFactory.h"
+#include "GraphicEngine/Mesh.h"
 
 using namespace nsGraphicEngine;
 

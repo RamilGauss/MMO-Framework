@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "MemberExtendedTypeInfo.h"
 #include "fmt/core.h"
-#include "magic_enum.hpp"
+#include <magic_enum/magic_enum.hpp>
 
 using namespace nsCppParser;
 

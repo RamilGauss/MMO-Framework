@@ -1,0 +1,19 @@
+{
+    "$comment" : "",
+    "dependencies" : [
+        { "name": "fmt",            "version>=": "11.0.2"},
+        { "name": "openssl",        "version>=": "3.4.0"},
+        { "name": "gtest",          "version>=": "1.17.0"},
+        { "name": "sdl2",           "version>=": "2.32.8"},
+        { "name": "boost",          "version>=": "1.86.0"},
+        { "name": "rapidjson",      "version>=": "2025-02-26"},
+        { "name": "magic-enum",     "version>=": "0.9.7"},
+        { "name": "lz4",            "version>=": "1.10.0"},
+        { "name": "bullet3",        "version>=": "3.25"},
+        { "name": "stb",            "version>=": "2024-07-29#1"},
+        { "name": "glad",           "version>=": "0.1.36"},
+        { "name": "glm",            "version>=": "1.0.1"},
+        { "name": "inja",           "version>=": "3.4.0"},
+        { "name": "freetype",       "version>=": "2.13.3"}
+    ]
+}

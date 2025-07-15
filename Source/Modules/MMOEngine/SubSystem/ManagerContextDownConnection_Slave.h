@@ -7,8 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ManagerContextDownConnection.h"
 #include <vector>
+
+#include "MMOEngine/SubSystem/ManagerContextDownConnection.h"
 
 namespace nsMMOEngine
 {

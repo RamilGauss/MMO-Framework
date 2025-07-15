@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ScenarioFlow.h"
-#include "Events.h"
-#include "SessionManager.h"
+#include "MMOEngine/Include/Events.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
+#include "MMOEngine/Scenario/ScenarioFlow.h"
 
 using namespace nsMMOEngine;
 

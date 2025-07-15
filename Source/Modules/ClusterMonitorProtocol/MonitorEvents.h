@@ -8,7 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/ContainerTypes.h"
-#include "Packets.h"
+
+#include "ClusterMonitorProtocol/Packets.h"
 
 namespace nsClusterMonitorProtocol
 {

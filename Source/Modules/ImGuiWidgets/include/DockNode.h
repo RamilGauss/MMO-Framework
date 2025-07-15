@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Identity.h"
-#include "Size.h"
-#include "Position.h"
+#include "ImGuiWidgets/Include/Identity.h"
+#include "ImGuiWidgets/Include/Size.h"
+#include "ImGuiWidgets/Include/Position.h"
 
 #include <vector>
 #include <string>

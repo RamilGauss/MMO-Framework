@@ -5,21 +5,23 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ClientOnMasterLogic.h"
-
-#include "ScenarioLoginClient.h"
-#include "Base.h"
-#include "Events.h"
-#include "ControlScenario.h"
-#include "Components.h"
 #include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/SaveToFile.h"
 
-#include "ScenarioFlow.h"
-#include "ScenarioLoginClient.h"
-#include "ScenarioRecommutationClient.h"
-#include "ScenarioSendToClient.h"
-#include "ScenarioDisconnectClient.h"
+#include "MMOEngine/SubSystem/ClientOnMasterLogic.h"
+
+#include "MMOEngine/Include/Base.h"
+#include "MMOEngine/Include/Events.h"
+
+#include "MMOEngine/SubSystem/ControlScenario.h"
+#include "MMOEngine/SubSystem/Components.h"
+
+#include "MMOEngine/Scenario/ScenarioLoginClient.h"
+#include "MMOEngine/Scenario/ScenarioFlow.h"
+#include "MMOEngine/Scenario/ScenarioLoginClient.h"
+#include "MMOEngine/Scenario/ScenarioRecommutationClient.h"
+#include "MMOEngine/Scenario/ScenarioSendToClient.h"
+#include "MMOEngine/Scenario/ScenarioDisconnectClient.h"
 
 using namespace nsMMOEngine;
 

@@ -9,8 +9,9 @@ See for more information LICENSE.md.
 
 #include "Base/Common/SetOrderElement.h"
 #include "ECS/include/EntityManager.h"
-#include "BaseLogic.h"
-#include "EnumMMO.h"
+
+#include "MMOEngine/Include/EnumMMO.h"
+#include "MMOEngine/SubSystem/BaseLogic.h"
 
 namespace nsMMOEngine
 {

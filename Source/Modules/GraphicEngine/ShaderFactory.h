@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "Shader.h"
+#include "GraphicEngine/Shader.h"
 
 namespace nsGraphicEngine
 {

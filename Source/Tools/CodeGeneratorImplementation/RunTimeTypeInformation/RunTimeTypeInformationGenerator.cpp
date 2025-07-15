@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "RunTimeTypeInformationHeaderFileGenerator.h"
 #include "RunTimeTypeInformationSourceFileGenerator.h"
 
-#include "GeneratorList.h"
+#include "CodeGeneratorImplementation/GeneratorList.h"
 
 using namespace nsCodeGeneratorImplementation;
 

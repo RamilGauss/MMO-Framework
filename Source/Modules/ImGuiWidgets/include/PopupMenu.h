@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Widget.h"
-#include "WidgetContainer.h"
+#include "ImGuiWidgets/Include/Widget.h"
+#include "ImGuiWidgets/Include/WidgetContainer.h"
 
 namespace nsImGuiWidgets
 {

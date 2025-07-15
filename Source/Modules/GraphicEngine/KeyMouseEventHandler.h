@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 #include <SDL_video.h>
 #include <SDL_syswm.h>
 
-#include "KeyMouseEventContainer.h"
+#include "GraphicEngine/KeyMouseEventContainer.h"
 
 namespace nsGraphicEngine
 {

@@ -104,14 +104,14 @@ TEST(EventHub, TakeEventsFromFewDestinations_Ok)
 
     auto events0 = nsFixture::GetEventHub()->TakeEvents(regId0);
 
-    ASSERT_TRUE(events0.size(), 1);
+    ASSERT_EQ(events0.size(), 1);
 
     nsFixture::GetEventHub()->AddWarningEvent("{}", 42);
     nsFixture::GetEventHub()->AddErrorEvent("{}", 42);
 
     auto events1 = nsFixture::GetEventHub()->TakeEvents(regId1);
 
-    ASSERT_TRUE(events1.size(), 3);
+    ASSERT_EQ(events1.size(), 3);
 
     events0 = nsFixture::GetEventHub()->TakeEvents(regId0);
 

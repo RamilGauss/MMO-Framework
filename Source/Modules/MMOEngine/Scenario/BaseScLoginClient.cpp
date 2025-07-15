@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BaseScLoginClient.h"
-#include "ContextScLoginClient.h"
-#include "ScenarioLoginClient.h"
+#include "MMOEngine/ScenarioContext/ContextScLoginClient.h"
+#include "MMOEngine/Scenario/BaseScLoginClient.h"
+#include "MMOEngine/Scenario/ScenarioLoginClient.h"
 
 using namespace nsMMOEngine;
 using namespace nsLoginClientStruct;

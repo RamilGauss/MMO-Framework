@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Unit.h"
-
 #include "Base/Common/CallbackPool.h"
+
+#include "ImGuiWidgets/Include/Unit.h"
 
 namespace nsImGuiWidgets
 {

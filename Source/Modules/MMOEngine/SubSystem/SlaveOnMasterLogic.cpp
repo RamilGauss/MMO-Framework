@@ -5,22 +5,23 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SlaveOnMasterLogic.h"
-#include "IScenario.h"
-#include "Components.h"
-#include "Base.h"
-#include "ControlScenario.h"
-#include "ContainerContextSc.h"
-
 #include "ECS/include/EntityManager.h"
 #include "Base/Common/GlobalEventHub.h"
-#include "ScenarioFlow.h"
-#include "ScenarioLoginClient.h"
-#include "ScenarioLoginSlave.h"
-#include "ScenarioSynchroSlave.h"
-#include "ScenarioRecommutationClient.h"
-#include "ScenarioDisconnectClient.h"
-#include "Events.h"
+
+#include "MMOEngine/Include/Base.h"
+#include "MMOEngine/Include/Events.h"
+#include "MMOEngine/SubSystem/SlaveOnMasterLogic.h"
+#include "MMOEngine/SubSystem/IScenario.h"
+#include "MMOEngine/SubSystem/Components.h"
+#include "MMOEngine/SubSystem/ControlScenario.h"
+#include "MMOEngine/SubSystem/ContainerContextSc.h"
+
+#include "MMOEngine/Scenario/ScenarioFlow.h"
+#include "MMOEngine/Scenario/ScenarioLoginClient.h"
+#include "MMOEngine/Scenario/ScenarioLoginSlave.h"
+#include "MMOEngine/Scenario/ScenarioSynchroSlave.h"
+#include "MMOEngine/Scenario/ScenarioRecommutationClient.h"
+#include "MMOEngine/Scenario/ScenarioDisconnectClient.h"
 
 using namespace nsMMOEngine;
 

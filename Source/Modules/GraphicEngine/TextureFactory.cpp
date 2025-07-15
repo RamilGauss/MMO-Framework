@@ -16,8 +16,8 @@ See for more information LICENSE.md.
 #include "stb_image_write.h"
 #include "stb_image.h"
 
-#include "TextureFactory.h"
-#include "Texture.h"
+#include "GraphicEngine/TextureFactory.h"
+#include "GraphicEngine/Texture.h"
 
 using namespace nsGraphicEngine;
 

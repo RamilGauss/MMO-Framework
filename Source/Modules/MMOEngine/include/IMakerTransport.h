@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "INetTransport.h"
+#include "MMOEngine/Include/INetTransport.h"
 
 namespace nsMMOEngine
 {

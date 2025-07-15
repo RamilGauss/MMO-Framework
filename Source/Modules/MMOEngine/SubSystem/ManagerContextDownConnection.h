@@ -9,7 +9,8 @@ See for more information LICENSE.md.
 
 #include <map>
 #include <set>
-#include "DelegateManagerContextSc.h"
+
+#include "MMOEngine/SubSystem/DelegateManagerContextSc.h"
 
 namespace nsMMOEngine
 {

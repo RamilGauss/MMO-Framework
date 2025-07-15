@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
-
 #include <vector>
+
+#include "Base/Common/TypeDef.h"
 
 namespace nsGraphicEngine
 {

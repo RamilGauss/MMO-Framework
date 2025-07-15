@@ -13,7 +13,8 @@ See for more information LICENSE.md.
 #include <glad/glad.h>
 
 #include "Base/Common/TypeDef.h"
-#include "KeyMouseEventHandler.h"
+
+#include "GraphicEngine/KeyMouseEventHandler.h"
 
 namespace nsGraphicEngine
 {

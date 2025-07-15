@@ -9,13 +9,14 @@ See for more information LICENSE.md.
 
 #include <list>
 
+#include "Base/Common/CallbackPool.h"
+
 #include "GraphicEngine/Events.h"
 
-#include "ProtoFrame.h"
-#include "Base/Common/CallbackPool.h"
-#include "Padding.h"
-#include "Spacing.h"
-#include "Grid.h"
+#include "ImGuiWidgets/Include/ProtoFrame.h"
+#include "ImGuiWidgets/Include/Padding.h"
+#include "ImGuiWidgets/Include/Spacing.h"
+#include "ImGuiWidgets/Include/Grid.h"
 
 namespace nsImGuiWidgets
 {

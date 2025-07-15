@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Unit.h"
-#include "InputDoubleValue.h"
+#include "ImGuiWidgets/Include/Unit.h"
+#include "ImGuiWidgets/Include/InputDoubleValue.h"
 
 namespace nsImGuiWidgets
 {

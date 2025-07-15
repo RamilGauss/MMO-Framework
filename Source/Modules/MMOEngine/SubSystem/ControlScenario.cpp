@@ -10,15 +10,15 @@ See for more information LICENSE.md.
 #include "Base/Common/BL_Debug.h"
 #include "DescRecvSession.h"
 
-#include "ScenarioDisconnectClient.h"
-#include "ScenarioFlow.h"
-#include "ScenarioLoginClient.h"
-#include "ScenarioLoginSlave.h"
-#include "ScenarioLoginMaster.h"
-#include "ScenarioRecommutationClient.h"
-#include "ScenarioSendToClient.h"
-#include "ScenarioSynchroSlave.h"
-#include "SessionManager.h"
+#include "MMOEngine/Scenario/ScenarioDisconnectClient.h"
+#include "MMOEngine/Scenario/ScenarioFlow.h"
+#include "MMOEngine/Scenario/ScenarioLoginClient.h"
+#include "MMOEngine/Scenario/ScenarioLoginSlave.h"
+#include "MMOEngine/Scenario/ScenarioLoginMaster.h"
+#include "MMOEngine/Scenario/ScenarioRecommutationClient.h"
+#include "MMOEngine/Scenario/ScenarioSendToClient.h"
+#include "MMOEngine/Scenario/ScenarioSynchroSlave.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
 
 using namespace nsMMOEngine;
 

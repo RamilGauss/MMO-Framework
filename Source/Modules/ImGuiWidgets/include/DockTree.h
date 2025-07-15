@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "DockNode.h"
+#include "ImGuiWidgets/Include/DockNode.h"
 
 namespace nsImGuiWidgets
 {

@@ -7,10 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include "Base/Common/CallbackPool.h"
+
 #include "GraphicEngine/Events.h"
 
-#include "Frame.h"
-#include "Base/Common/CallbackPool.h"
+#include "ImGuiWidgets/Include/Frame.h"
 
 namespace nsImGuiWidgets
 {

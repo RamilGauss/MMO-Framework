@@ -8,10 +8,11 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <vector>
-#include "Unit.h"
-#include "CheckBoxValue.h"
 
 #include "Base/Common/CallbackPool.h"
+
+#include "ImGuiWidgets/Include/Unit.h"
+#include "ImGuiWidgets/Include/CheckBoxValue.h"
 
 namespace nsImGuiWidgets
 {

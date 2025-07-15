@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "EntitySplitter.h"
 #include "LineLexemaEntity.h"
 
-#include "magic_enum.hpp"
+#include <magic_enum/magic_enum.hpp>
 
 using namespace nsCppParser;
 

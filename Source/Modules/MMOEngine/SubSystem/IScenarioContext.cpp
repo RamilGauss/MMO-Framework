@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "IScenarioContext.h"
-#include "Base.h"
 #include <stddef.h>
+
+#include "IScenarioContext.h"
+#include "MMOEngine/Include/Base.h"
 #include "IScenario.h"
 #include "ScContextManager.h"
 

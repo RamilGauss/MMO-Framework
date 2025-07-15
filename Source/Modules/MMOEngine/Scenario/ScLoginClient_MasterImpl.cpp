@@ -8,12 +8,13 @@ See for more information LICENSE.md.
 #include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/SrcEvent_ex.h"
 
-#include "ScLoginClient_MasterImpl.h"
-#include "ContextScLoginClient.h"
-#include "SessionManager.h"
-#include "Base.h"
-#include "Events.h"
-#include "EnumMMO.h"
+#include "MMOEngine/Include/Base.h"
+#include "MMOEngine/Include/Events.h"
+#include "MMOEngine/Include/EnumMMO.h"
+
+#include "MMOEngine/Scenario/ScLoginClient_MasterImpl.h"
+#include "MMOEngine/ScenarioContext/ContextScLoginClient.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
 
 using namespace std;
 using namespace nsMMOEngine;

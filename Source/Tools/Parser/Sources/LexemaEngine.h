@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include <memory>
 #include "ILexema.h"
 
-#include "magic_enum.hpp"
+#include <magic_enum/magic_enum.hpp>
 
 namespace nsCppParser
 {

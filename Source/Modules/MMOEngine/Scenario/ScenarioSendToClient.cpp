@@ -5,10 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ScenarioSendToClient.h"
-#include "SessionManager.h"
-#include "Events.h"
 #include "Base/Common/SrcEvent_ex.h"
+
+#include "MMOEngine/Include/Events.h"
+
+#include "MMOEngine/Scenario/ScenarioSendToClient.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
 
 using namespace nsMMOEngine;
 

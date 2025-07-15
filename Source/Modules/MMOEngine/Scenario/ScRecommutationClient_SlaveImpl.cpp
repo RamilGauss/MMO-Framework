@@ -8,12 +8,13 @@ See for more information LICENSE.md.
 #include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/SrcEvent_ex.h"
 
-#include "ScRecommutationClient_SlaveImpl.h"
-#include "SessionManager.h"
-#include "BaseScRecommutationClient_Struct.h"
-#include "ContextScRecommutationClient.h"
-#include "DescRequestConnectForRecipient.h"
-#include "Events.h"
+#include "MMOEngine/Include/Events.h"
+
+#include "MMOEngine/Scenario/ScRecommutationClient_SlaveImpl.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
+#include "MMOEngine/Scenario/BaseScRecommutationClient_Struct.h"
+#include "MMOEngine/ScenarioContext/ContextScRecommutationClient.h"
+#include "MMOEngine/Scenario/DescRequestConnectForRecipient.h"
 
 using namespace nsMMOEngine;
 using namespace nsRecommutationClientStruct;

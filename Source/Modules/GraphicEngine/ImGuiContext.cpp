@@ -8,12 +8,12 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "ImGuiContext.h"
+#include "GraphicEngine/ImGuiContext.h"
 
-#include "imgui/imgui_internal.h"
+#include "GraphicEngine/imgui/imgui_internal.h"
 
-#include "imgui_impl_sdl.h"
-#include "imgui_impl_opengl3.h"
+#include "GraphicEngine/imgui/backends/imgui_impl_sdl.h"
+#include "GraphicEngine/imgui/backends/imgui_impl_opengl3.h"
 
 #include <glad/glad.h>
 

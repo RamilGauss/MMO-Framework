@@ -133,7 +133,7 @@ TEST(Parser, MethodNames)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "MethodNames");
         if (type->mName == "MethodNames") {
-            ASSERT_TRUE(type->mMethods.size(), 3);
+            ASSERT_EQ(type->mMethods.size(), 3);
 
             auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMethods.size(), 1);
@@ -159,7 +159,7 @@ TEST(Parser, MethodCategory)
 
     for (auto& type : res->mTypeList) {
         if (type->mName == "MethodCategory") {
-            ASSERT_TRUE(type->mMethods.size(), 3);
+            ASSERT_EQ(type->mMethods.size(), 3);
 
             auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMethods.size(), 7);
@@ -201,7 +201,7 @@ TEST(Parser, MethodCategoryDtor)
 
     for (auto& type : res->mTypeList) {
         if (type->mName == "BaseMethodCategory") {
-            ASSERT_TRUE(type->mMethods.size(), 3);
+            ASSERT_EQ(type->mMethods.size(), 3);
 
             auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMethods.size(), 2);
@@ -234,7 +234,7 @@ TEST(Parser, MethodPragma)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "MethodPragma");
         if (type->mName == "MethodPragma") {
-            ASSERT_TRUE(type->mMethods.size(), 3);
+            ASSERT_EQ(type->mMethods.size(), 3);
 
             auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMethods.size(), 1);
@@ -273,7 +273,7 @@ TEST(Parser, SizeOfInMethod)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "Y");
         if (type->mName == "Y") {
-            ASSERT_TRUE(type->mMethods.size(), 3);
+            ASSERT_EQ(type->mMethods.size(), 3);
 
             auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMethods.size(), 0);
@@ -300,7 +300,7 @@ TEST(Parser, FunctionContent)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "X");
         if (type->mName == "X") {
-            ASSERT_TRUE(type->mMethods.size(), 3);
+            ASSERT_EQ(type->mMethods.size(), 3);
 
             auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMethods.size(), 0);
@@ -326,7 +326,7 @@ TEST(Parser, VirtualMethodOverride)
 
     for (auto& type : res->mTypeList) {
         if (type->mName == "X") {
-            ASSERT_TRUE(type->mMethods.size(), 3);
+            ASSERT_EQ(type->mMethods.size(), 3);
 
             auto& publicMethods = type->mMethods[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMethods.size(), 0);

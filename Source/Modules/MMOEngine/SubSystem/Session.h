@@ -8,10 +8,11 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/BreakPacket.h"
-#include "INetTransport.h"
 #include "Base/Common/CryptoAES_Impl.h"
 #include "Base/Common/SHA256.h"
 #include "Base/Common/CRC8.h"
+
+#include "MMOEngine/Include/INetTransport.h"
 
 namespace nsMMOEngine
 {

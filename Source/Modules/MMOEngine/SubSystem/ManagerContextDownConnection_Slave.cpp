@@ -5,14 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ManagerContextDownConnection_Slave.h"
+#include "MMOEngine/SubSystem/ManagerContextDownConnection_Slave.h"
 
 #include <algorithm>
 
 #include "Base/Common/Logger.h"
-#include "ContainerContextSc.h"
-#include "Base.h"
 #include "Base/Common/BL_Debug.h"
+
+#include "MMOEngine/Include/Base.h"
+
+#include "MMOEngine/SubSystem/ContainerContextSc.h"
 
 using namespace nsMMOEngine;
 

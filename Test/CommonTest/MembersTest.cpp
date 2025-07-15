@@ -116,7 +116,7 @@ TEST(Parser, Members)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "A");
         if (type->mName == "A") {
-            ASSERT_TRUE(type->mMembers.size(), 3);
+            ASSERT_EQ(type->mMembers.size(), 3);
 
             auto& publicMembers = type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMembers.size(), 1);
@@ -145,7 +145,7 @@ TEST(Parser, MembersExtended)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "MWE");
         if (type->mName == "MWE") {
-            ASSERT_TRUE(type->mMembers.size(), 3);
+            ASSERT_EQ(type->mMembers.size(), 3);
 
             auto& publicMembers = type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMembers.size(), 3);
@@ -178,7 +178,7 @@ TEST(Parser, MemberCategory)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "MemberCategory");
         if (type->mName == "MemberCategory") {
-            ASSERT_TRUE(type->mMembers.size(), 3);
+            ASSERT_EQ(type->mMembers.size(), 3);
 
             auto& publicMembers = type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMembers.size(), 5);
@@ -219,7 +219,7 @@ TEST(Parser, MemberPragma)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "MemberPragma");
         if (type->mName == "MemberPragma") {
-            ASSERT_TRUE(type->mMembers.size(), 3);
+            ASSERT_EQ(type->mMembers.size(), 3);
 
             auto& publicMembers = type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMembers.size(), 1);
@@ -249,7 +249,7 @@ TEST(Parser, MemberWithComments)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "X");
         if (type->mName == "X") {
-            ASSERT_TRUE(type->mMembers.size(), 3);
+            ASSERT_EQ(type->mMembers.size(), 3);
 
             auto& publicMembers = type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMembers.size(), 2);
@@ -321,7 +321,7 @@ TEST(Parser, MemberBuiltInTypes)
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "X");
         if (type->mName == "X") {
-            ASSERT_TRUE(type->mMembers.size(), 3);
+            ASSERT_EQ(type->mMembers.size(), 3);
 
             auto& publicMembers = type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC];
             ASSERT_EQ(publicMembers.size(), 21);

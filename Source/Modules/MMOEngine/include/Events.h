@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "BaseEvent.h"
-#include "Master.h"
+#include "MMOEngine/Include/BaseEvent.h"
+#include "MMOEngine/Include/Master.h"
 
 // только Асинхронные события
 

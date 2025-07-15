@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/BreakPacket.h"
-#include "StateTimeWait.h"
+#include "MMOEngine/SubSystem/StateTimeWait.h"
 
 class TSrcEvent;
 namespace nsMMOEngine

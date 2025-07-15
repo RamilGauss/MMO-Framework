@@ -5,12 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BaseTransport.h"
-#include "MMOEngine/include/BaseEvent.h"
-#include "MMOEngine/include/Events.h"
-#include "MonitorEvents.h"
-
 #include "Base/Common/SrcEvent_ex.h"
+
+#include "MMOEngine/Include/BaseEvent.h"
+#include "MMOEngine/Include/Events.h"
+
+#include "ClusterMonitorProtocol/BaseTransport.h"
+#include "ClusterMonitorProtocol/MonitorEvents.h"
 
 using namespace nsClusterMonitorProtocol;
 

@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ProtoFrame.h"
-
 #include <functional>
 #include <list>
+
+#include "ImGuiWidgets/Include/ProtoFrame.h"
 
 namespace nsImGuiWidgets
 {

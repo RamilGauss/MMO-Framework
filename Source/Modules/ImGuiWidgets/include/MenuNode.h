@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <functional>
 
-#include "Node.h"
+#include "ImGuiWidgets/Include/Node.h"
 
 namespace nsImGuiWidgets
 {

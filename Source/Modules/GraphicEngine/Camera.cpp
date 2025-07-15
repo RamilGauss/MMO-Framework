@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Camera.h"
+#include "GraphicEngine/Camera.h"
 
 #include <glm/gtx/euler_angles.hpp>
 

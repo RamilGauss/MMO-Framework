@@ -5,12 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BaseMasterLogic.h"
-#include "Master.h"
-#include "ECS/include/EntityManager.h"
-#include "Events.h"
 #include "Base/Common/GlobalEventHub.h"
-#include "Components.h"
+
+#include "ECS/include/EntityManager.h"
+
+#include "MMOEngine/Include/Master.h"
+#include "MMOEngine/Include/Events.h"
+
+#include "MMOEngine/SubSystem/BaseMasterLogic.h"
+#include "MMOEngine/SubSystem/Components.h"
 
 using namespace nsMMOEngine;
 using namespace nsECSFramework;

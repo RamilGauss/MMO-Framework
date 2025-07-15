@@ -8,7 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <map>
-#include "MakerScenario.h"
+
+#include "MMOEngine/SubSystem/MakerScenario.h"
 
 namespace nsMMOEngine
 {

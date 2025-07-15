@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 #include <glm/mat4x4.hpp>
 #include <glm/vec2.hpp>
 
-#include "Texture.h"
+#include "GraphicEngine/Texture.h"
 
 namespace nsGraphicEngine
 {

@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "GraphicEngineContext.h"
-#include "ShaderFactory.h"
-#include "ShaderPrefabs.h"
+#include "GraphicEngine/GraphicEngineContext.h"
+#include "GraphicEngine/ShaderFactory.h"
+#include "GraphicEngine/ShaderPrefabs.h"
 
-#include "TextureFactory.h"
-#include "Texture.h"
+#include "GraphicEngine/TextureFactory.h"
+#include "GraphicEngine/Texture.h"
 
 using namespace nsGraphicEngine;
 

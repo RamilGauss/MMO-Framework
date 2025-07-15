@@ -7,11 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
-#include "Events.h"
-
 #include <list>
 #include <array>
+
+#include "Base/Common/TypeDef.h"
+
+#include "GraphicEngine/Events.h"
 
 namespace nsGraphicEngine
 {

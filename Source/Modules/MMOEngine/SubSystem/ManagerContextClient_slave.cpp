@@ -8,9 +8,10 @@ See for more information LICENSE.md.
 #include "Base/Common/GlobalEventHub.h"
 #include "Base/Common/BL_Debug.h"
 
-#include "ManagerContextClient_slave.h"
-#include "ContainerContextSc.h"
-#include "EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
+
+#include "MMOEngine/SubSystem/ManagerContextClient_slave.h"
+#include "MMOEngine/SubSystem/ContainerContextSc.h"
 
 using namespace nsMMOEngine;
 using namespace std;

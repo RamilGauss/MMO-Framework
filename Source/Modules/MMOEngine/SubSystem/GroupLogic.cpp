@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "GroupLogic.h"
-#include "Components.h"
-#include "Events.h"
-#include "ScenarioRecommutationClient.h"
-#include "Base.h"
-#include "ControlScenario.h"
+#include "MMOEngine/Include/Events.h"
+#include "MMOEngine/Include/Base.h"
+#include "MMOEngine/SubSystem/GroupLogic.h"
+#include "MMOEngine/SubSystem/Components.h"
+#include "MMOEngine/Scenario/ScenarioRecommutationClient.h"
+#include "MMOEngine/SubSystem/ControlScenario.h"
 
 using namespace nsMMOEngine;
 

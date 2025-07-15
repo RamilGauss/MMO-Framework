@@ -9,11 +9,12 @@ See for more information LICENSE.md.
 
 #include <vector>
 
-#include "IScenario.h"
-#include "ContextScDisconnectClient.h"
-#include "MakerScenario.h"
 #include "Base/Common/CallBackRegistrator.h"
-#include "ScenarioBaseHeader.h"
+
+#include "MMOEngine/SubSystem/IScenario.h"
+#include "MMOEngine/ScenarioContext/ContextScDisconnectClient.h"
+#include "MMOEngine/SubSystem/MakerScenario.h"
+#include "MMOEngine/SubSystem/ScenarioBaseHeader.h"
 
 #pragma pack(push, 1)
 

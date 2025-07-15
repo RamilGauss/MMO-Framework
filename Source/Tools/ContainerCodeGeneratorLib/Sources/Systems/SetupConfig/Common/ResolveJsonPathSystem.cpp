@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include <filesystem>
 #include <fmt/core.h>
 
-#include <ECS/include/ExecuteSystem.h>
+#include <ECS/Include/ExecuteSystem.h>
 #include <ECS/include/Helper.h>
 
 #include "Config.h"

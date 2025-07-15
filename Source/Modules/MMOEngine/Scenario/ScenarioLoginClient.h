@@ -7,16 +7,18 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IScenario.h"
-#include "ContextScLoginClient.h"
-#include "MakerScenario.h"
 #include "Base/Common/ShareMisc.h"
 #include "Base/Common/CallBackRegistrator.h"
 
-#include "ScLoginClient_ClientImpl.h"
-#include "ScLoginClient_MasterImpl.h"
-#include "ScLoginClient_SlaveImpl.h"
-#include "ScLoginClient_SuperServerImpl.h"
+#include "MMOEngine/SubSystem/IScenario.h"
+#include "MMOEngine/SubSystem/MakerScenario.h"
+
+#include "MMOEngine/ScenarioContext/ContextScLoginClient.h"
+
+#include "MMOEngine/Scenario/ScLoginClient_ClientImpl.h"
+#include "MMOEngine/Scenario/ScLoginClient_MasterImpl.h"
+#include "MMOEngine/Scenario/ScLoginClient_SlaveImpl.h"
+#include "MMOEngine/Scenario/ScLoginClient_SuperServerImpl.h"
 
 namespace nsMMOEngine
 {

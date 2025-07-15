@@ -6,8 +6,9 @@ See for more information LICENSE.md.
 */
 
 #pragma once
-#include "ContainerContextSc.h"
-#include "EnumMMO.h"
+
+#include "MMOEngine/Include/EnumMMO.h"
+#include "MMOEngine/SubSystem/ContainerContextSc.h"
 
 namespace nsMMOEngine
 {

@@ -7,11 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IScenarioContext.h"
-#include "Base/Common/BreakPacket.h"
 #include <list>
+
+#include "Base/Common/BreakPacket.h"
 #include "Base/Common/MemoryPool.h"
 #include "Base/Common/SingletonManager.h"
+
+#include "MMOEngine/SubSystem/IScenarioContext.h"
 
 namespace nsMMOEngine
 {

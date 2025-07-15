@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include <vector>
 
-#include "Unit.h"
-#include "ComboBoxCurrentIndex.h"
-#include "ComboBoxItems.h"
+#include "ImGuiWidgets/Include/Unit.h"
+#include "ImGuiWidgets/Include/ComboBoxCurrentIndex.h"
+#include "ImGuiWidgets/Include/ComboBoxItems.h"
 
 namespace nsImGuiWidgets
 {

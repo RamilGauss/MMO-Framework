@@ -9,10 +9,11 @@ See for more information LICENSE.md.
 // т.к. возможно есть активные сценарии, поэтому что бы не ждать их окончания
 // и тут же отреагировать
 
-#include "ScenarioDisconnectClient.h"
 #include "Base/Common/Logger.h"
 #include "Base/Common/BL_Debug.h"
-#include "SessionManager.h"
+
+#include "MMOEngine/Scenario/ScenarioDisconnectClient.h"
+#include "MMOEngine/SubSystem/SessionManager.h"
 
 using namespace std;
 using namespace nsMMOEngine;

@@ -7,15 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
 #include <list>
 
-#include "GraphicEngine.h"
-#include "IRenderable.h"
-#include "Camera.h"
-#include "RenderableObject.h"
-#include "Light.h"
-#include "ImGuiContext.h"
+#include "Base/Common/TypeDef.h"
+
+#include "GraphicEngine/GraphicEngine.h"
+#include "GraphicEngine/IRenderable.h"
+#include "GraphicEngine/Camera.h"
+#include "GraphicEngine/RenderableObject.h"
+#include "GraphicEngine/Light.h"
+#include "GraphicEngine/ImGuiContext.h"
 
 namespace nsGraphicEngine
 {

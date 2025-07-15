@@ -28,7 +28,7 @@ TEST(Parser, Using)
 
     for (auto& type : res->mTypeList) {
         ASSERT_EQ(type->mName, "Using");
-        ASSERT_TRUE(type->mMembers.size(), 3);
+        ASSERT_EQ(type->mMembers.size(), 3);
 
         auto& publicMembers = type->mMembers[(int) nsCppParser::AccessLevel::PUBLIC];
         ASSERT_EQ(publicMembers.size(), 0);

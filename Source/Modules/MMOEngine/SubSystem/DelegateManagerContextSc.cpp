@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "DelegateManagerContextSc.h"
-#include "ContainerContextSc.h"
-#include "Base.h"
+#include "MMOEngine/Include/Base.h"
+#include "MMOEngine/SubSystem/DelegateManagerContextSc.h"
+#include "MMOEngine/SubSystem/ContainerContextSc.h"
 
 using namespace nsMMOEngine;
 

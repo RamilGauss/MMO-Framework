@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "BinaryMarshallerHeaderFileGenerator.h"
 #include "BinaryMarshallerSourceFileGenerator.h"
 
-#include "GeneratorList.h"
+#include "CodeGeneratorImplementation/GeneratorList.h"
 
 using namespace nsCodeGeneratorImplementation;
 

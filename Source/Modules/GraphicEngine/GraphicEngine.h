@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "Sdl2Application.h"
+#include "GraphicEngine/Sdl2Application.h"
 
 namespace nsGraphicEngine
 {

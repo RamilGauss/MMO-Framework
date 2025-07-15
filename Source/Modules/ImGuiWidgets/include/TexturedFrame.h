@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Frame.h"
-#include "TextureReference.h"
-#include "TextureSize.h"
-#include "TextureUv.h"
+#include "ImGuiWidgets/Include/Frame.h"
+#include "ImGuiWidgets/Include/TextureReference.h"
+#include "ImGuiWidgets/Include/TextureSize.h"
+#include "ImGuiWidgets/Include/TextureUv.h"
 
 namespace nsImGuiWidgets
 {

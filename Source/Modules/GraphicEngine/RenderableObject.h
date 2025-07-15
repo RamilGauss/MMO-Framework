@@ -8,12 +8,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-
 #include "Base/Common/TypeDef.h"
 
-#include "Shader.h"
-#include "Mesh.h"
-#include "Texture.h"
+#include "GraphicEngine/Shader.h"
+#include "GraphicEngine/Mesh.h"
+#include "GraphicEngine/Texture.h"
 
 namespace nsGraphicEngine
 {

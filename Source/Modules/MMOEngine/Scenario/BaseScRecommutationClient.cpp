@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BaseScRecommutationClient.h"
-#include "ContextScRecommutationClient.h"
-#include "ScenarioRecommutationClient.h"
+#include "MMOEngine/Scenario/BaseScRecommutationClient.h"
+#include "MMOEngine/Scenario/ScenarioRecommutationClient.h"
+
+#include "MMOEngine/ScenarioContext/ContextScRecommutationClient.h"
 
 using namespace nsMMOEngine;
 using namespace nsRecommutationClientStruct;

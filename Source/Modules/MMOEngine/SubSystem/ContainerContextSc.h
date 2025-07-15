@@ -7,17 +7,18 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ScContextManager.h"
 #include <list>
 
-#include "ContextScDisconnectClient.h"
-#include "ContextScFlow.h"
-#include "ContextScLoginClient.h"
-#include "ContextScLoginSlave.h"
-#include "ContextScLoginMaster.h"
-#include "ContextScRecommutationClient.h"
-#include "ContextScSynchroSlave.h"
-#include "ContextScSendToClient.h"
+#include "MMOEngine/SubSystem/ScContextManager.h"
+
+#include "MMOEngine/ScenarioContext/ContextScDisconnectClient.h"
+#include "MMOEngine/ScenarioContext/ContextScFlow.h"
+#include "MMOEngine/ScenarioContext/ContextScLoginClient.h"
+#include "MMOEngine/ScenarioContext/ContextScLoginSlave.h"
+#include "MMOEngine/ScenarioContext/ContextScLoginMaster.h"
+#include "MMOEngine/ScenarioContext/ContextScRecommutationClient.h"
+#include "MMOEngine/ScenarioContext/ContextScSynchroSlave.h"
+#include "MMOEngine/ScenarioContext/ContextScSendToClient.h"
 
 namespace nsMMOEngine
 {

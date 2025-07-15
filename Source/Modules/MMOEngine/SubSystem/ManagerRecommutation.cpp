@@ -5,10 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ManagerRecommutation.h"
-#include "Base/Common/BL_Debug.h"
-#include "EnumMMO.h"
 #include "Base/Common/GlobalEventHub.h"
+#include "Base/Common/BL_Debug.h"
+
+#include "MMOEngine/Include/EnumMMO.h"
+#include "MMOEngine/SubSystem/ManagerRecommutation.h"
 
 using namespace nsMMOEngine;
 using namespace std;

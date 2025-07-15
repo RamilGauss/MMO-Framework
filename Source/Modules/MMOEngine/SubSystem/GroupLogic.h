@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "BaseMasterLogic.h"
-#include "EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
+#include "MMOEngine/SubSystem/BaseMasterLogic.h"
 
 namespace nsMMOEngine
 {

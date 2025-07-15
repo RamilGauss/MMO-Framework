@@ -11,10 +11,10 @@ See for more information LICENSE.md.
 
 #include "GraphicEngine/Texture.h"
 
-#include "Widget.h"
-#include "WidgetContainer.h"
-#include "TextureReference.h"
-#include "TextureSize.h"
+#include "ImGuiWidgets/Include/Widget.h"
+#include "ImGuiWidgets/Include/WidgetContainer.h"
+#include "ImGuiWidgets/Include/TextureReference.h"
+#include "ImGuiWidgets/Include/TextureSize.h"
 
 namespace nsImGuiWidgets
 {
