@@ -9,6 +9,7 @@ See for more information LICENSE.md.
 
 #include <list>
 #include <string>
+#include <cstdint>
 
 #include "Base/Common/TypeDef.h"
 

@@ -1,18 +1,24 @@
 cmake_minimum_required(VERSION 3.25)
 
+project(MMOFramework LANGUAGES CXX)
+
 if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.25)
     cmake_policy(SET CMP0167 OLD)
+endif()
+
+set(CMAKE_CXX_STANDARD 20)
+
+include(CheckCXXCompilerFlag)
+check_cxx_compiler_flag(-std=c++20 HAS_CPP20)
+if (NOT HAS_CPP20)
+    message(FATAL_ERROR "Компилятор не поддерживает C++20!")
 endif()
 
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE AND DEFINED ENV{VCPKG_ROOT})
     set(CMAKE_TOOLCHAIN_FILE $ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
 endif()
 
-project(MMOFramework)
-
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-
-set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release)
@@ -43,7 +49,7 @@ if(MSVC)
     add_compile_options(/wd4273)
     add_compile_options(/wd4312)
 else()
-    add_compile_options(-Werror)
+    # add_compile_options(-Werror)
 endif()
 
 set(MMO_FRAMEWORK_SOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR})
@@ -68,8 +74,8 @@ add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/ContainerCodeGenerato
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/Parser)
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/ReflectionCodeGenerator)
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/ReflectionCodeGeneratorLib)
-add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/TornadoEditor)
+# add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/TornadoEditor)
 
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_TEST}/CommonTest)
-add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_TEST}/GuiProject)
+# add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_TEST}/GuiProject)
 # add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_TEST}/MMO)

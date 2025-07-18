@@ -91,7 +91,7 @@ public:
     void Notify(T1 t1)
     {
         for (auto pair : mMapObjFunc)
-            pair.second.Call<T1>(t1);
+            pair.second.template Call<T1>(t1);
     }
 };
 //-------------------------------------------------------------
@@ -102,7 +102,7 @@ public:
     void Notify(T1 t1, T2 t2)
     {
         for (auto pair : mMapObjFunc)
-            pair.second.Call<T1, T2>(t1, t2);
+            pair.second.template Call<T1, T2>(t1, t2);
     }
 };
 //-------------------------------------------------------------
@@ -113,7 +113,7 @@ public:
     void Notify(T1 t1, T2 t2, T3 t3)
     {
         for (auto pair : mMapObjFunc)
-            pair.second.Call<T1, T2, T3>(t1, t2, t3);
+            pair.second.template Call<T1, T2, T3>(t1, t2, t3);
     }
 };
 //-------------------------------------------------------------
