@@ -1,9 +1,11 @@
 find_package(Boost REQUIRED COMPONENTS
     asio
+    dll
     system
     coroutine
     filesystem
     wave
+    uuid
 )
 
 find_package(fmt REQUIRED)
