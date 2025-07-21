@@ -23,7 +23,7 @@ See for more information LICENSE.md.
 template <typename ... Args>
 class TCallbackPool
 {
-    template <typename ... Args>
+    template <typename ... TArgs>
     class TDescFunc
     {
         static const size_t POINTER_SIZE = sizeof(int*);
@@ -36,7 +36,7 @@ class TCallbackPool
             memcpy(&mFunc[0], &pFunc, sizeof(F));
             memcpy(&mObject[0], &pObject, sizeof(A1));
         }
-        void Call(Args ... args)
+        void Call(TArgs ... args)
         {
             if (mLambda != nullptr) {
                 mLambda(args...);
@@ -44,7 +44,7 @@ class TCallbackPool
             }
 
             class TF {};
-            typedef void (TF::* TFunc)(Args ...);
+            typedef void (TF::* TFunc)(TArgs ...);
             TF* pT = nullptr;
             TFunc tf;
             memcpy(&tf, &mFunc, sizeof(TFunc));

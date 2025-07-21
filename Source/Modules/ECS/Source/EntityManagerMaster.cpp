@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <algorithm>
+
 #include "EntityManagerMaster.h"
 
 using namespace nsECSFramework;

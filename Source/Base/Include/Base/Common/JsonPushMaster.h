@@ -64,10 +64,10 @@ public:// methods
     {
         obj.AddMember(Value(sKey, Allocator()), value, Allocator());
     }
-    static void Push(Jobj& obj, const char* sKey, Jobj& addedObj)
-    {
-        obj.AddMember(Value(sKey, Allocator()), addedObj, Allocator());
-    }
+    // static void Push(Jobj& obj, const char* sKey, Jobj& addedObj)
+    // {
+    //     obj.AddMember(Value(sKey, Allocator()), addedObj, Allocator());
+    // }
     template<typename ValueType,
         typename std::enable_if<std::is_integral<ValueType>::value ||
         std::is_floating_point<ValueType>::value>::type* = nullptr>

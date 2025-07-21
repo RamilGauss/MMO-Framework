@@ -6,8 +6,6 @@ See for more information LICENSE.md.
 */
 
 
-#pragma once
-
 #include "ProjectConfigUnloader.h"
 
 using namespace nsTornadoEngine;
