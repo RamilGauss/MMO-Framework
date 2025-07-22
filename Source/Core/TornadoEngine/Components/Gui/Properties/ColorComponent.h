@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/IComponent.h"
 
-#include <ImGuiWidgets/include/Color.h>
+#include "ImGuiWidgets/Include/Color.h"
 
 namespace nsGuiWrapper
 {

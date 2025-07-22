@@ -7,6 +7,8 @@ add_library(PhysicEngineLib SHARED ${PhysicEngineSources})
 target_include_directories(PhysicEngineLib PRIVATE 
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Base/Include
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Modules/PhysicEngine
+    ${BULLET_INCLUDE_DIRS}
+    ${BULLET_LIBRARY_DIRS}
 )
 
 target_link_libraries(PhysicEngineLib PRIVATE

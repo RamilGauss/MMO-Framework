@@ -110,8 +110,4 @@ nsBase::nsCommon::TEventHub* TModules::Log(const std::source_location loc) const
     return nsBase::nsCommon::GetEventHub("Project", loc);
 }
 //----------------------------------------------------------
-TModules::TModules()
-{
 
-}
-//----------------------------------------------------------

@@ -11,6 +11,8 @@ target_include_directories(TornadoEngineLib PRIVATE
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Modules
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Modules/GraphicEngine/imgui
     ${SDL2_INCLUDE_DIRS}
+    ${BULLET_INCLUDE_DIRS}
+    ${BULLET_LIBRARY_DIRS}
 )
 
 target_link_libraries(TornadoEngineLib PRIVATE

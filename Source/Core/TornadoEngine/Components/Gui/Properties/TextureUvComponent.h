@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "Share/PropertyOf.h"
 
 #include "ECS/Include/IComponent.h"
-#include <ImGuiWidgets/include/TextureUv.h>
+#include "ImGuiWidgets/Include/TextureUv.h"
 
 namespace nsGuiWrapper
 {

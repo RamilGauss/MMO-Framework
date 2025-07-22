@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Share/PropertyOf.h"
 
 #include "ECS/Include/IComponent.h"
-#include <ImGuiWidgets/include/MaxSize.h>
+#include "ImGuiWidgets/Include/MaxSize.h"
 
 namespace nsGuiWrapper
 {

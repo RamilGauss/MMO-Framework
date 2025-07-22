@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "Modules/Common/Modules.h"
 #include "Modules/Implementations/GraphicEngineModule.h"
 
-#include <ImGuiWidgets/include/MainWindow.h>
+#include "ImGuiWidgets/Include/MainWindow.h"
 
 #include "Components/Meta/UniverseIndexComponent.h"
 

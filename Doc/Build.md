@@ -23,9 +23,12 @@ cmake --build ./build/ --config Relase -j10
 ```
 
 ``` bash
-sudo apt-get update && sudo apt-get -y install cmake pkg-config curl zip unzip tar git linux-libc-dev iproute2 gpg autoconf automake autoconf-archive
+sudo apt-get update && sudo apt-get -y install cmake g++ pkg-config curl zip unzip tar git linux-libc-dev gpg autoconf automake autoconf-archive
 sudo apt install build-essential ninja-build
 sudo apt install libx11-dev libxft-dev libxext-dev
+sudo apt install libwayland-dev libxkbcommon-dev libegl1-mesa-dev
+sudo apt install libibus-1.0-dev
+sudo apt install libtool
 
 export CC=/usr/bin/gcc
 export CXX=/usr/bin/g++

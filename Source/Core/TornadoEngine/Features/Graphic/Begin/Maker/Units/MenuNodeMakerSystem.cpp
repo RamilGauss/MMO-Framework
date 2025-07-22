@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "MenuNodeMakerSystem.h"
 
-#include <ImGuiWidgets/include/MenuNode.h>
+#include "ImGuiWidgets/Include/MenuNode.h"
 
 #include <Modules/Common/Modules.h>
 #include <Modules/PropertyManager/PropertyManager.h>

@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/GlobalEventHub.h"
 
-#include "MMOEngine/include/EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
 
 #include "NetTransport/Include/NetWorkThread.h"
 #include "NetTransport/Include/INetControl.h"

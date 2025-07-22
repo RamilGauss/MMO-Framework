@@ -8,6 +8,7 @@ target_include_directories(ContainerCodeGenerator PRIVATE
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Base/Include
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Modules
+    ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/ContainerCodeGeneratorLib/Sources
 )
 
 target_link_libraries(ContainerCodeGenerator PRIVATE 

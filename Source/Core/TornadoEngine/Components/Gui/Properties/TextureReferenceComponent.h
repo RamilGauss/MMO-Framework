@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 #include "Share/PropertyOf.h"
 
 #include "ECS/Include/IComponent.h"
-#include <ImGuiWidgets/include/TextureReference.h>
+#include "ImGuiWidgets/Include/TextureReference.h"
 
 namespace nsGuiWrapper
 {

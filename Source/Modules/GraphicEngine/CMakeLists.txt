@@ -24,4 +24,6 @@ target_link_libraries(GraphicEngineLib PRIVATE
 )
 
 add_compile_definitions(GLM_ENABLE_EXPERIMENTAL)
-add_compile_definitions(GRAPHICENGINE_EXPORTS)
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    add_compile_definitions(GRAPHICENGINE_EXPORTS)
+endif()

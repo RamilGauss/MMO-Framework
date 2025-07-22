@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "MMOEngine/include/Master.h"
+#include "MMOEngine/Include/Master.h"
 
 #include "ClusterMonitorProtocol/Packets.h"
 #include "ClusterMonitorProtocol/BaseTransport.h"

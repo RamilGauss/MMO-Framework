@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 #include "Modules/Implementations/SoundEngineModule.h"
 #include "Modules/Implementations/MMOEngineModule.h"
 #include "Modules/Implementations/NetTransportModule.h"
-#include "Modules/Implementations/DatabaseModule.h"
+#include "Modules/Implementations/DataBaseModule.h"
 
 using namespace nsTornadoEngine;
 

@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <source_location>
+
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/EventHub.h"
 
@@ -76,6 +78,7 @@ namespace nsTornadoEngine
         // Core logger
         nsBase::nsCommon::TEventHub* CoreLog(const std::source_location loc = std::source_location::current()) const;
         nsBase::nsCommon::TEventHub* Log(const std::source_location loc = std::source_location::current()) const;
+        TModules() = default;
     protected:
         friend class TModulesAccessor;
 
@@ -104,9 +107,6 @@ namespace nsTornadoEngine
 
         TGizmo* gizmo = nullptr;
         TPropertyManager* propertyMng = nullptr;
-
-        friend class TSingletonManager;
-        TModules();
     };
 
     extern DllExport TModules* Modules();

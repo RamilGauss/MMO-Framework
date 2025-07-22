@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/GlobalEventHub.h"
 
-#include "MMOEngine/include/INetTransport.h"
-#include "MMOEngine/include/EnumMMO.h"
+#include "MMOEngine/Include/INetTransport.h"
+#include "MMOEngine/Include/EnumMMO.h"
 #include "Base/Common/ResolverSelf_IP_v4.h"
 #include "NetTransport/Include/NetControlTCP.h"
 

@@ -7,9 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
-
 #include <functional>
+#include <list>
+
+#include "Base/Common/TypeDef.h"
 
 namespace nsTornadoEngine
 {

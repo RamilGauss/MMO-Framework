@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "LabelMakerSystem.h"
 
-#include <ImGuiWidgets/include/Label.h>
+#include "ImGuiWidgets/Include/Label.h"
 
 #include <Modules/Common/Modules.h>
 #include <Modules/PropertyManager/PropertyManager.h>

@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Share/PropertyOf.h"
 
 #include "ECS/Include/IComponent.h"
-#include <ImGuiWidgets/include/TextureSize.h>
+#include "ImGuiWidgets/Include/TextureSize.h"
 
 namespace nsGuiWrapper
 {

@@ -9,10 +9,10 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/EntityManager.h"
 
-#include <ImGuiWidgets/include/Widget.h>
-#include <ImGuiWidgets/include/MenuNode.h>
-#include <ImGuiWidgets/include/TreeNode.h>
-#include <ImGuiWidgets/include/Label.h>
+#include "ImGuiWidgets/Include/Widget.h"
+#include "ImGuiWidgets/Include/MenuNode.h"
+#include "ImGuiWidgets/Include/TreeNode.h"
+#include "ImGuiWidgets/Include/Label.h"
 
 
 namespace nsGraphicWrapper

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/Mutex.h"
 
-#include "MMOEngine/include/INetTransport.h"
+#include "MMOEngine/Include/INetTransport.h"
 
 #include "NetTransport/Include/NetWorkThread.h"
 #include "NetTransport/Include/NetControlTCP.h"

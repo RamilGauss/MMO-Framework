@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 #include <boost/asio/placeholders.hpp>
 #include <boost/asio/buffer.hpp>
 #include <boost/bind.hpp>
-#include "MMOEngine/include/EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
 
 using namespace std;
 using namespace boost::asio;

@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
+#include <limits>
 #include <map>
 #include <vector>
 

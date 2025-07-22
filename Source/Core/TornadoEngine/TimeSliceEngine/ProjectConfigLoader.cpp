@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "ProjectConfigLoader.h"
 #include "Base/Common/LoaderDLLFactory.h"
 #include "Base/Common/TextFile.h"
-#include "Generated Files/TornadoEngineJsonSerializer.h"
+#include "Generated files/TornadoEngineJsonSerializer.h"
 #include "Base/Common/PathOperations.h"
 
 #include "Modules/Resources/Common/ResourceManager.h"

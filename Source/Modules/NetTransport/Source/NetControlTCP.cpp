@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 #include "NetTransport/Include/HistoryPacketTCP.h"
 #include "NetTransport/Include/HeaderTCP.h"
 #include "NetTransport/Include/NetTransport_Boost.h"
-#include "MMOEngine/include/EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
 
 using namespace std;
 

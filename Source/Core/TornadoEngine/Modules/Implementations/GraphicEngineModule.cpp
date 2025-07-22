@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/PathOperations.h"
 
-#include "ImGuiWidgets/include/Widget.h"
+#include "ImGuiWidgets/Include/Widget.h"
 
 #include "TimeSliceEngine/ProjectConfigContainer.h"
 #include "Modules/Common/Modules.h"

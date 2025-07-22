@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Share/PropertyOf.h"
 
 #include "ECS/Include/IComponent.h"
-#include <ImGuiWidgets/include/Spacing.h>
+#include "ImGuiWidgets/Include/Spacing.h"
 
 namespace nsGuiWrapper
 {

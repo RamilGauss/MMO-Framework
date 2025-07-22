@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include "NetTransport/Include/HistoryPacketTCP.h"
 #include "NetTransport/Include/HeaderTCP.h"
 
-#include "MMOEngine/include/INetTransport.h"
-#include "MMOEngine/include/EnumMMO.h"
+#include "MMOEngine/Include/INetTransport.h"
+#include "MMOEngine/Include/EnumMMO.h"
 
 THistoryPacketTCP::THistoryPacketTCP()
 {

@@ -117,7 +117,7 @@ namespace nsTornadoEngine
     };
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static void TTornadoEngineJsonSerializer::Serialize(Type* p, std::string& str)
+    void TTornadoEngineJsonSerializer::Serialize(Type* p, std::string& str)
     {
     #undef GetObject
         rapidjson::Document doc(rapidjson::Type::kObjectType);
@@ -132,7 +132,7 @@ namespace nsTornadoEngine
     }
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static bool TTornadoEngineJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
+    bool TTornadoEngineJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
     {
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         const auto parseFlags = rapidjson::ParseFlag::kParseFullPrecisionFlag | rapidjson::ParseFlag::kParseCommentsFlag | rapidjson::ParseFlag::kParseTrailingCommasFlag;

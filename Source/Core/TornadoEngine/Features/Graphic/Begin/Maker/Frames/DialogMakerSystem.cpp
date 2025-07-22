@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "DialogMakerSystem.h"
 
-#include <ImGuiWidgets/include/Dialog.h>
+#include "ImGuiWidgets/Include/Dialog.h"
 
 #include <Modules/Common/Modules.h>
 #include <Modules/PropertyManager/PropertyManager.h>

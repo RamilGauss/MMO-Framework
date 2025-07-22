@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 #include "Modules/Common/IContext.h"
 
-#include <ImGuiWidgets/include/DialogStack.h>
+#include "ImGuiWidgets/Include/DialogStack.h"
 #include <GraphicEngine/GraphicEngineContext.h>
 
 namespace nsTornadoEngine

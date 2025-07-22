@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 
 #include "NetTransport/Include/NetTransport_Boost.h"
 #include "NetTransport/Include/NetControlTCP.h"
-#include "MMOEngine/include/EnumMMO.h"
+#include "MMOEngine/Include/EnumMMO.h"
 
 using namespace std;
 

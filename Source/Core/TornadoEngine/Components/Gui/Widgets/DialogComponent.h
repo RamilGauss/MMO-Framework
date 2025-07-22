@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 
 #include "ECS/Include/IComponent.h"
-#include <ImGuiWidgets/include/Dialog.h>
+#include "ImGuiWidgets/Include/Dialog.h"
 
 namespace nsGuiWrapper
 {

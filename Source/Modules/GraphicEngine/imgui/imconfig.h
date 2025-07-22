@@ -1,9 +1,11 @@
 #pragma once
 
+#ifdef WIN32
 #ifdef GRAPHICENGINE_EXPORTS
 #define IMGUI_API             __declspec(dllexport)
 #else
 #define IMGUI_API             __declspec(dllimport)
+#endif
 #endif
 //-----------------------------------------------------------------------------
 // COMPILE-TIME OPTIONS FOR DEAR IMGUI

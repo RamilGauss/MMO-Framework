@@ -8,6 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <string>
+#include <typeinfo>
 
 #include "Base/Common/TypeDef.h"
 

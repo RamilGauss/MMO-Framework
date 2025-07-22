@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 #include "Components/Gui/Widgets/DialogComponent.h"
 #include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
-#include <ImGuiWidgets/include/MenuNode.h>
+#include "ImGuiWidgets/Include/MenuNode.h"
 
 using namespace nsGraphicWrapper;
 

@@ -20,6 +20,6 @@ namespace nsTornadoEngine
         uint32_t GetTotalPartCount(nsBase::nsZones::SharedPtrHopProcessContext pCtx) override;
 
     private:
-        static const int PART_SIZE = 10;
+        const int PART_SIZE = 10;
     };
 }

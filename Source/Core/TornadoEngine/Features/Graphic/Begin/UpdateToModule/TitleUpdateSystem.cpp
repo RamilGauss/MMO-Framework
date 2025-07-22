@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "TitleUpdateSystem.h"
 
-#include <ImGuiWidgets/include/Window.h>
+#include "ImGuiWidgets/Include/Window.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

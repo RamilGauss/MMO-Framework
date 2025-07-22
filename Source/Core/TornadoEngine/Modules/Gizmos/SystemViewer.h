@@ -16,11 +16,11 @@ See for more information LICENSE.md.
 #include "GraphicEngine/IRenderable.h"
 #include "GraphicEngine/imgui/imgui.h"
 
-#include "ImGuiWidgets/include/Window.h"
-#include "ImGuiWidgets/include/TreeView.h"
-#include "ImGuiWidgets/include/Label.h"
-#include "ImGuiWidgets/include/TreeNode.h"
-#include "ImGuiWidgets/include/Button.h"
+#include "ImGuiWidgets/Include/Window.h"
+#include "ImGuiWidgets/Include/TreeView.h"
+#include "ImGuiWidgets/Include/Label.h"
+#include "ImGuiWidgets/Include/TreeNode.h"
+#include "ImGuiWidgets/Include/Button.h"
 
 #include "ECS/Include/Feature.h"
 

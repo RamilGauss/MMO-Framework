@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Base/Common/Logger.h"
 #include "Base/Common/GuidGenerator.h"
 
-#include "Generated Files/TornadoEngineJsonSerializer.h"
+#include "Generated files/TornadoEngineJsonSerializer.h"
 #include "TimeSliceEngine/ProjectConfigContainer.h"
 
 #include "Modules/Common/Modules.h"

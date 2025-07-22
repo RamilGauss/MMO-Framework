@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TextFile.h"
 
 #include "ResourceContentMap.h"
-#include "Generated Files/TornadoEngineJsonSerializer.h"
+#include "Generated files/TornadoEngineJsonSerializer.h"
 #include "Modules/Common/Modules.h"
 
 namespace nsTornadoEngine

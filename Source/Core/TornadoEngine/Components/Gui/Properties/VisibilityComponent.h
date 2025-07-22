@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Share/PropertyOf.h"
 
 #include "ECS/Include/IComponent.h"
-#include <ImGuiWidgets/include/Visibility.h>
+#include "ImGuiWidgets/Include/Visibility.h"
 
 namespace nsGuiWrapper
 {
