@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "ResolvePathesSystem.h"
 
-#include <ECS/Include/ExecuteSystem.h>
-#include <ECS/Include/Helper.h>
+#include "ECS/Include/ExecuteSystem.h"
+#include "ECS/Include/Helper.h"
 
 #include "Base/Common/PathOperations.h"
 

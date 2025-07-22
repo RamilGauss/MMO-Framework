@@ -72,7 +72,7 @@ namespace nsJson
     };
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static void TJsonSerializer::Serialize(Type* p, std::string& str)
+    void TJsonSerializer::Serialize(Type* p, std::string& str)
     {
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         auto obj = doc.GetObject();
@@ -86,7 +86,7 @@ namespace nsJson
     }
     //------------------------------------------------------------------------------------------------------------
     template <typename Type>
-    static bool TJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
+    bool TJsonSerializer::Deserialize(Type* p, const std::string& str, std::string& err)
     {
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         const auto parseFlags = rapidjson::ParseFlag::kParseFullPrecisionFlag | rapidjson::ParseFlag::kParseCommentsFlag | rapidjson::ParseFlag::kParseTrailingCommasFlag;

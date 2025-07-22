@@ -48,7 +48,7 @@
                     "outFile": "coreComponentEcsOut.json"
                 },
                 "keyValueMap": {
-                    "entityManagerHeaderPath": "ECS/include/EntityManager.h"
+                    "entityManagerHeaderPath": "ECS/Include/EntityManager.h"
                 }
             },
             "JsonSerializerGenerator": {

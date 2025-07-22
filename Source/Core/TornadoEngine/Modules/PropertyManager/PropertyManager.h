@@ -15,7 +15,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/TypeName.h"
 
-#include <ECS/include/EntityManager.h>
+#include "ECS/Include/EntityManager.h"
 
 #include "Share/IPropertyOf.h"
 #include "TimeSliceEngine/ProjectConfigContainer.h"

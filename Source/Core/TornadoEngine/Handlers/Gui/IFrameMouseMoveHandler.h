@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "IHandler.h"
 
-#include <ECS/include/Config.h>
+#include "ECS/Include/Config.h"
 #include <GraphicEngine/Events.h>
 
 namespace nsGuiWrapper

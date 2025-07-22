@@ -11,7 +11,7 @@ I
 
 #include "IGlobalHandler.h"
 
-#include <ECS/include/Config.h>
+#include "ECS/Include/Config.h"
 
 namespace nsLogicWrapper
 {

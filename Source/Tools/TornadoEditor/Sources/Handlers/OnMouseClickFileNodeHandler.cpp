@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <filesystem>
 
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 
 #include "Modules/Common/Modules.h"
 #include "StopAccessor.h"

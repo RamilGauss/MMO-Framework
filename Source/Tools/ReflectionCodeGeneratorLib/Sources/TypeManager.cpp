@@ -9,10 +9,6 @@ See for more information LICENSE.md.
 
 using namespace nsReflectionCodeGenerator;
 
-TTypeManager::TTypeManager()
-{
-}
-//--------------------------------------------------------------------------------------------------------
 void TTypeManager::Add(nsCppParser::TTypeInfo* typeInfo)
 {
     mFullNameTypeMap.insert({typeInfo->GetTypeNameWithNameSpace(), typeInfo});

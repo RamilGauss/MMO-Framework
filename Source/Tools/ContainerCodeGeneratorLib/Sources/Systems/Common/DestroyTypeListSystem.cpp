@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "DestroyTypeListSystem.h"
 
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 
 #include "Components/TypeListComponent.h"
 

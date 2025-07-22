@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/OnUpdateInstantReactiveSystem.h>
-#include <ECS/include/InitSystem.h>
+#include <ECS/Include/OnUpdateInstantReactiveSystem.h>
+#include "ECS/Include/InitSystem.h"
 
 #include "Components/Gui/Properties/InputTextValueComponent.h"
 #include "Share/HandlerPool.h"

@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "IHandler.h"
 
-#include <ECS/include/Config.h>
+#include "ECS/Include/Config.h"
 
 namespace nsLogicWrapper
 {

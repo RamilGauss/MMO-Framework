@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 #include "InputTextValueComponent.h"
 #include "Components/Gui/Properties/TitleComponent.h"
 #include "Components/Meta/SceneInstanceGuidComponent.h"
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 #include "AbsoluteFilePathComponent.h"
 #include "EditorInfoTagComponent.h"
 #include "FilePathNodeComponent.h"

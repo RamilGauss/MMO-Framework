@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 #include <filesystem>
 
-#include <ECS/include/OnAddCollectReactiveSystem.h>
+#include "ECS/Include/OnAddCollectReactiveSystem.h"
 
 #include "FileHierarchyWindowRefreshTagComponent.h"
 #include "Modules/Resources/Common/GameObject.h"

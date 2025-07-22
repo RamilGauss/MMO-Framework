@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 
 #include <list>
 
-#include "ECS/include/Entity.h"
-#include "ECS/include/EntityManager.h"
+#include "ECS/Include/Entity.h"
+#include "ECS/Include/EntityManager.h"
 
 namespace nsTornadoEngine
 {

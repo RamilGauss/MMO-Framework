@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TextFile.h"
 
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 
 #include "Components/ReflectionConfigComponent.h"
 #include "ReflectionCodeGeneratorLib/Sources/JsonSerializer.h"

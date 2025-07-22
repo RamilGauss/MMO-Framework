@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <set>
 #include <string>
 
-#include <ECS/include/IComponent.h>
+#include "ECS/Include/IComponent.h"
 
 namespace nsContainerCodeGenerator
 {

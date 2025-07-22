@@ -5,8 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "VariableDeclarationLexema.h"
+#include <list>
 #include "Base/Common/BL_Debug.h"
+#include "VariableDeclarationLexema.h"
 
 using namespace nsCppParser;
 

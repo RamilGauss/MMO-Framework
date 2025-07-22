@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include <fmt/core.h>
 
 #include "Base/Common/PathOperations.h"
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 
 #include "Constants.h"
 #include "MessageException.h"
@@ -33,7 +33,7 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
         TPathValidator::ValidateAndThrow("projectConfig.relPathToSources", configComponent->value.projectConfig.relPathToSources);
 
         auto rootPath = std::filesystem::path(configComponent->value.projectConfig.relPathToSources).root_name();
-        if (rootPath.wstring() != std::wstring(&std::filesystem::path::preferred_separator)) {
+        if (rootPath.wstring() != std::wstring(1, std::filesystem::path::preferred_separator)) {
 
             auto root = rootPath.string();
             std::string upperRoot = root;

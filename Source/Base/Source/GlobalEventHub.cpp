@@ -13,7 +13,7 @@ namespace nsBase::nsCommon
 {
     struct TGlobalEventHub : TEventHub
     {
-        TGlobalEventHub() {}
+        TGlobalEventHub() = default;
     };
 
     TEventHub* GetEventHub(std::string&& source, std::source_location loc)

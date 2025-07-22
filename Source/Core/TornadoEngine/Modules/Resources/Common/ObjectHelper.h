@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "Base/Common/TypeDef.h"
-#include <ECS/include/EntityManager.h>
+#include "ECS/Include/EntityManager.h"
 
 #include "ResourceContentMap.h"
 #include "Modules/Resources/Common/GuidConstants.h"

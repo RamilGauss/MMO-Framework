@@ -5,13 +5,13 @@ Project Ecs System
 // File has been generated at 2025_01_30 15:40:58.452
 #pragma once
 
-#include "ECS/include/BaseCollectReactiveSystem.h"
-#include "ECS/include/BaseReactiveSystem.h"
-#include "ECS/include/ExecuteSystem.h"
-#include "ECS/include/Feature.h"
-#include "ECS/include/InitSystem.h"
-#include "ECS/include/System.h"
-#include "ECS/include/TearDownSystem.h"
+#include "ECS/Include/BaseCollectReactiveSystem.h"
+#include "ECS/Include/BaseReactiveSystem.h"
+#include "ECS/Include/ExecuteSystem.h"
+#include "ECS/Include/Feature.h"
+#include "ECS/Include/InitSystem.h"
+#include "ECS/Include/System.h"
+#include "ECS/Include/TearDownSystem.h"
 #include "BootstrapperFeature.h"
 #include "BootstrapperSystem.h"
 #include "FileHierarchyWindowInitSystem.h"

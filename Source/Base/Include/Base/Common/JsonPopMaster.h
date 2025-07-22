@@ -20,7 +20,7 @@ class DllExport TJsonPopMaster : public TJsonMaster
     {
         std::string what = "Unpack JSON error, member \"" + std::string(sKey) + "\", ";
         what += std::string(caseDesc);
-        throw std::exception(what.data());
+        throw std::runtime_error(what.data());
     }
 
     static void GetMemberList(const Jobj& jobj, std::string& memberList)

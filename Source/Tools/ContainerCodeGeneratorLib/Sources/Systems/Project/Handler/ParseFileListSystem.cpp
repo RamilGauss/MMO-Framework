@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TextFile.h"
 #include "Base/Common/PathOperations.h"
 
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 
 #include <Parser/Sources/Parser.h>
 

@@ -18,9 +18,8 @@ namespace nsReflectionCodeGenerator
     public:
         void Add(nsCppParser::TTypeInfo* typeInfo);
         nsCppParser::TTypeInfo* Get(const std::string& fullTypeName);
-    protected:
-        TTypeManager();
-        friend class TSingletonManager;
+
+        TTypeManager() = default;
     private:
         std::map<std::string, nsCppParser::TTypeInfo*> mFullNameTypeMap;
     };

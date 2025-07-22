@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/Logger.h"
 
-#include "ECS/include/EntityManager.h"
+#include "ECS/Include/EntityManager.h"
 
 #include "MMOEngine/Include/Master.h"
 #include "MMOEngine/Include/Events.h"

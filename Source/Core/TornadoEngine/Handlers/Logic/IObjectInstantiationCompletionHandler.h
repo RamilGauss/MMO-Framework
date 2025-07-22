@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "Handlers/Common/ILocalHandler.h"
 
-#include <ECS/include/Config.h>
+#include "ECS/Include/Config.h"
 
 namespace nsLogicWrapper
 {

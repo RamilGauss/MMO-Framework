@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "FileHierarchyWindowInitSystem.h"
 
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 
 #include "FileHierarchyWindowTagComponent.h"
 #include "Modules/Common/Modules.h"

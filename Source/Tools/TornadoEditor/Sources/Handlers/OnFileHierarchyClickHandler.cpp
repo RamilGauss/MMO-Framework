@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "Modules/Common/Modules.h"
 #include "Modules/Resources/Prefab/PrefabManager.h"
 
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 #include "FileHierarchyWindowTagComponent.h"
 #include "Components/Meta/SceneInstanceGuidComponent.h"
 

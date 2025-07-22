@@ -2,7 +2,7 @@
 
 #include "Base/Common/TypeDef.h"
 
-#include <ECS/include/IComponent.h>
+#include "ECS/Include/IComponent.h"
 
 #include "GuidReference.h"
 

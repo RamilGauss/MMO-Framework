@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 #include <list>
 
-#include <ECS/include/EntityManager.h>
+#include "ECS/Include/EntityManager.h"
 #include "GraphicEngine/KeyMouseEventContainer.h"
 
 #include "Modules/Resources/Scene/SceneManager.h"

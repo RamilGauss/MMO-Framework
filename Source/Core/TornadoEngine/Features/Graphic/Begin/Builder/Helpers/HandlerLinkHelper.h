@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/Logger.h"
 
-#include <ECS/include/EntityManager.h>
+#include "ECS/Include/EntityManager.h"
 
 #include "Components/Meta/SceneGuidComponent.h"
 #include "Components/Meta/PrefabGuidComponent.h"

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/InitSystem.h>
+#include "ECS/Include/InitSystem.h"
 
 namespace nsTornadoEditor
 {

@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 
 #include "Base/Common/SingletonManager.h"
-#include "ECS/include/EntityManagerMaster.h"
-#include "ECS/include/EntityManager.h"
+#include "ECS/Include/EntityManagerMaster.h"
+#include "ECS/Include/EntityManager.h"
 
 #include "GraphicEngine/imgui/imgui_internal.h"
 

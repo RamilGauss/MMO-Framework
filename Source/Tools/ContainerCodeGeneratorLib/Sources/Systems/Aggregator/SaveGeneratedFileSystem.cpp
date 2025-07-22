@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/TextFile.h"
 
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 
 #include "Constants.h"
 

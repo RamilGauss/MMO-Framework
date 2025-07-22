@@ -224,7 +224,7 @@ namespace nsBinary
     }
     //-----------------------------------------------------------------------------
     template <typename Type>
-    static Type* TBinaryMarshaller::Allocate()
+    Type* TBinaryMarshaller::Allocate()
     {
         return TMemoryObjectPoolAllocator::AllocateFunc<Type>();
     }

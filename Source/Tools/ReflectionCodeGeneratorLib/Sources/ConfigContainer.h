@@ -14,10 +14,9 @@ namespace nsReflectionCodeGenerator
 {
     class TConfigContainer
     {
-    protected:
-        TConfigContainer() {}
-        friend class TSingletonManager;
     public:
+        TConfigContainer() = default;
+        
         TConfig mConfig;
 
         TConfig* Config() { return &mConfig; }

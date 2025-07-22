@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/SetOrderElement.h"
-#include "ECS/include/EntityManager.h"
+#include "ECS/Include/EntityManager.h"
 
 #include "MMOEngine/Include/EnumMMO.h"
 #include "MMOEngine/SubSystem/BaseLogic.h"

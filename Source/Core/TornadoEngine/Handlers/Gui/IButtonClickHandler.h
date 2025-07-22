@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/Config.h>
+#include "ECS/Include/Config.h"
 
 #include "Handlers/Common/ILocalHandler.h"
 

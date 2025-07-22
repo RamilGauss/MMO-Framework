@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "Base/Common/TypeDef.h"
-#include "ECS/include/System.h"
+#include "ECS/Include/System.h"
 
 namespace nsTornadoEngine
 {

@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <cstddef>
+
 #include "Base/Common/TypeDef.h"
 
 namespace nsECSFramework

@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include <ECS/include/EntityManager.h>
-#include <ECS/include/Feature.h>
-#include <ECS/include/Helper.h>
+#include "ECS/Include/EntityManager.h"
+#include "ECS/Include/Feature.h"
+#include "ECS/Include/Helper.h"
 
 #include "Config.h"
 

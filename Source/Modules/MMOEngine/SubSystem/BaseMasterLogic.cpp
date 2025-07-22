@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/GlobalEventHub.h"
 
-#include "ECS/include/EntityManager.h"
+#include "ECS/Include/EntityManager.h"
 
 #include "MMOEngine/Include/Master.h"
 #include "MMOEngine/Include/Events.h"

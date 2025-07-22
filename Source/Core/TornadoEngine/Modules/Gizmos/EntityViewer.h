@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 
 #include "GraphicEngine/IRenderable.h"
 
-#include "ECS/include/Config.h"
+#include "ECS/Include/Config.h"
 #include "GraphicEngine/imgui/imgui.h"
 
 

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ECS/include/EntityManager.h"
+#include "ECS/Include/EntityManager.h"
 
 namespace nsMMOEngine
 {

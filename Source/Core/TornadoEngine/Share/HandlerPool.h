@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/BL_Debug.h"
 
-#include <ECS/include/Config.h>
+#include "ECS/Include/Config.h"
 
 namespace nsTornadoEngine
 {

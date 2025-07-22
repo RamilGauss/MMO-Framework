@@ -9,7 +9,7 @@ Project Component
 #include <map>
 #include <functional>
 #include "Base/Common/TypeDef.h"
-#include <ECS/include/EntityManager.h>
+#include "ECS/Include/EntityManager.h"
 #include "ComponentIncludeList.h"
 
 namespace nsTornadoEditor

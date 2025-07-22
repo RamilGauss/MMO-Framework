@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <vector>
 
-#include <ECS/include/Feature.h>
+#include "ECS/Include/Feature.h"
 
 namespace nsTornadoEngine
 {

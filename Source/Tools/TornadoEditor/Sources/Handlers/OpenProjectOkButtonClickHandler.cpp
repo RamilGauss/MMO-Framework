@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include "OpenProjectOkButtonClickHandler.h"
 
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 
 #include "Base/Common/TextFile.h"
 

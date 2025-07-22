@@ -23,8 +23,7 @@ namespace nsECSFramework
         void RemoveEntityManager(TEntityManager* pEntMng);
 
         const std::vector<TEntityManager*>& GetEntityManager() const;
-    protected:
-        friend class TSingletonManager;
-        TEntityManagerMaster();
+
+        TEntityManagerMaster() = default;
     };
 }

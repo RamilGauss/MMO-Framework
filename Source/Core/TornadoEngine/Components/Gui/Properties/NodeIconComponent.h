@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include <ECS/include/IComponent.h>
+#include "ECS/Include/IComponent.h"
 #include <ImGuiWidgets/include/TextureSize.h>
 
 #include "Share/PropertyOf.h"

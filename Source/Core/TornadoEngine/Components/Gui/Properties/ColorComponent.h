@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/include/IComponent.h>
+#include "ECS/Include/IComponent.h"
 
 #include <ImGuiWidgets/include/Color.h>
 

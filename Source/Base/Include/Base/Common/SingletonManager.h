@@ -21,7 +21,7 @@ class DllExport TSingletonManager
 
     TRunTimeTypeIndex<TSingletonManager> mGlobalTypeIdentifier;
 public:
-    template<typename Type>
+    template <typename Type>
     Type* Get()
     {
         auto index = mGlobalTypeIdentifier.Type<Type>();

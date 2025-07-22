@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
-#include <ECS/include/Helper.h>
+#include "ECS/Include/Helper.h"
 
 #include "Components/CoreConfigComponent.h"
 

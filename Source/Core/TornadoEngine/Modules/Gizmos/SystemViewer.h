@@ -22,7 +22,7 @@ See for more information LICENSE.md.
 #include "ImGuiWidgets/include/TreeNode.h"
 #include "ImGuiWidgets/include/Button.h"
 
-#include "ECS/include/Feature.h"
+#include "ECS/Include/Feature.h"
 
 namespace nsTornadoEngine
 {
