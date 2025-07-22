@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
-
+#include <stdexcept>
 #include <functional>
 #include <set>
 
+#include "Base/Common/TypeDef.h"
 #include "Base/Common/JsonMaster.h"
 
 class DllExport TJsonPopMaster : public TJsonMaster
