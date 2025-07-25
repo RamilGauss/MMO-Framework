@@ -54,9 +54,11 @@ TEST(EventHub, TakeEvents_Ok)
 
     nsFixture::GetEventHub()->SetupTimer([]() {return ""; });
 
-    nsFixture::GetEventHub()->AddInfoEvent("{}", 42);
-    nsFixture::GetEventHub()->AddWarningEvent("{}", 42);
-    nsFixture::GetEventHub()->AddErrorEvent("{}", 42);
+    std::source_location loc = std::source_location::current();
+
+    nsFixture::GetEventHub("Common", loc)->AddInfoEvent("{}", 42);
+    nsFixture::GetEventHub("Common", loc)->AddWarningEvent("{}", 42);
+    nsFixture::GetEventHub("Common", loc)->AddErrorEvent("{}", 42);
 
     auto events = nsFixture::GetEventHub()->TakeEvents(regId);
 
@@ -66,7 +68,7 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Info",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:57:16",
+            .fileLocation = "EventHub.cpp:57:61",
             .source = "Common",
         }));
     expectedEvents.push_back(std::make_shared<TEventInfo>(TEventInfo
@@ -74,7 +76,7 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Warning",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:58:16",
+            .fileLocation = "EventHub.cpp:57:61",
             .source = "Common",
         }));
     expectedEvents.push_back(std::make_shared<TEventInfo>(TEventInfo
@@ -82,7 +84,7 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Error",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:59:16",
+            .fileLocation = "EventHub.cpp:57:61",
             .source = "Common",
         }));
 
@@ -94,8 +96,7 @@ TEST(EventHub, TakeEvents_Ok)
         ASSERT_EQ(event->level, expectedEvent->level);
         ASSERT_EQ(events[i]->message, expectedEvent->message);
         auto eventFileName = std::filesystem::path(event->fileLocation).filename().string();
-        auto expoectedEventFileName = std::filesystem::path(expectedEvent->fileLocation).filename().string();
-        ASSERT_EQ(eventFileName, expoectedEventFileName);
+        ASSERT_EQ(eventFileName, expectedEvent->fileLocation);
         ASSERT_EQ(event->source, expectedEvent->source);
     }
 }
