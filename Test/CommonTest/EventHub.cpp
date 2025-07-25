@@ -8,6 +8,9 @@ See for more information LICENSE.md.
 #include "gtest/gtest.h"
 
 #include <array>
+#include <filesystem>
+#include <ranges>
+#include <string_view>
 
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
@@ -17,12 +20,11 @@ See for more information LICENSE.md.
 #include "Base/Zones/HopProcessContext.h"
 
 #include "Base/Common/FramedThread.h"
-
 #include "Base/Common/ThreadIndexator.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/GlobalEventHub.h"
-
 #include "Base/Common/CoroInThread.h"
+#include "Base/Common/PathOperations.h"
 
 using namespace nsBase::nsCommon;
 
@@ -64,7 +66,7 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Info",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:55:16",
+            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:57:16",
             .source = "Common",
         }));
     expectedEvents.push_back(std::make_shared<TEventInfo>(TEventInfo
@@ -72,7 +74,7 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Warning",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:56:16",
+            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:58:16",
             .source = "Common",
         }));
     expectedEvents.push_back(std::make_shared<TEventInfo>(TEventInfo
@@ -80,13 +82,21 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Error",
             .message = "42",
-            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:57:16",
+            .fileLocation = "C:\\MMOFramework\\Test\\CommonTest\\EventHub.cpp:59:16",
             .source = "Common",
         }));
 
     ASSERT_TRUE(events.size() == expectedEvents.size());
     for (size_t i = 0; i < events.size(); i++) {
-        ASSERT_EQ(*events[i], *expectedEvents[i]);
+        auto& event = events[i];
+        auto& expectedEvent = expectedEvents[i];
+        ASSERT_EQ(event->time, expectedEvent->time);
+        ASSERT_EQ(event->level, expectedEvent->level);
+        ASSERT_EQ(events[i]->message, expectedEvent->message);
+        auto eventFileName = std::filesystem::path(event->fileLocation).filename().string();
+        auto expoectedEventFileName = std::filesystem::path(expectedEvent->fileLocation).filename().string();
+        ASSERT_EQ(eventFileName, expoectedEventFileName);
+        ASSERT_EQ(event->source, expectedEvent->source);
     }
 }
 

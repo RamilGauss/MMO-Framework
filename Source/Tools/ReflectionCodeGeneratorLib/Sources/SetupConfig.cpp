@@ -21,7 +21,7 @@ See for more information LICENSE.md.
 
 namespace fs = std::filesystem;
 using namespace nsReflectionCodeGenerator;
-using namespace nsBase;
+using namespace nsBase::nsCommon;
 
 void TSetupConfig::Init(int argc, char** argv)
 {

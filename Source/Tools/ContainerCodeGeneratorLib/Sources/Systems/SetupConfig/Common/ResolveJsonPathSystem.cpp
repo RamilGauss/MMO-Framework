@@ -43,9 +43,9 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsCommon
 
         auto pathToJsonFile = fs::path(configName).parent_path().string();
         auto currentPath = fs::current_path().string();
-        pathsComponent->absPathDirJson = nsBase::TPathOperations::CalculatePathBy(currentPath, pathToJsonFile);
+        pathsComponent->absPathDirJson = nsBase::nsCommon::TPathOperations::CalculatePathBy(currentPath, pathToJsonFile);
         pathsComponent->absPathDirJson += "\\";
 
-        pathsComponent->absPathJsonFile = nsBase::TPathOperations::CalculatePathBy(pathsComponent->absPathDirJson, configFileName.string());
+        pathsComponent->absPathJsonFile = nsBase::nsCommon::TPathOperations::CalculatePathBy(pathsComponent->absPathDirJson, configFileName.string());
     }
 }

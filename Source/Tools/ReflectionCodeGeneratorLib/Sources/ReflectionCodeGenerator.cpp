@@ -25,6 +25,7 @@ namespace fs = std::filesystem;
 using namespace nsReflectionCodeGenerator;
 using namespace nsCppParser;
 using namespace nsBase;
+using namespace nsBase::nsCommon;
 
 TReflectionCodeGenerator::TReflectionCodeGenerator()
 {
@@ -144,7 +145,7 @@ void TReflectionCodeGenerator::GetFileAbsPathList(TStringList& fileList)
     TStrSet extSet(mConfig->filter.extensions.begin(), mConfig->filter.extensions.end());
 
     for (auto& dir : mConfig->targetForParsing.directories) {
-        nsBase::TPathOperations::AddAbsPathsByDirectory(dir, extSet, fileList, mConfig->targetForParsing.recursive);
+        nsBase::nsCommon::TPathOperations::AddAbsPathsByDirectory(dir, extSet, fileList, mConfig->targetForParsing.recursive);
     }
 }
 //---------------------------------------------------------------------------------------

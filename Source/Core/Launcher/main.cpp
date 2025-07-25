@@ -33,6 +33,7 @@ See for more information LICENSE.md.
 
 using namespace nsTornadoEngine;
 using namespace nsBase;
+using namespace nsBase::nsCommon;
 
 // Назначение: упростить отладку игры разработчику (нет необходимости создавать с десяток
 // исполняемых файлов, достаточно написать скрипт)

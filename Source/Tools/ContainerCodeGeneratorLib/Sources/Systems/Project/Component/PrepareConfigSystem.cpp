@@ -40,7 +40,7 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         std::string fileName = std::string("./") + TConstants::PROJECT_COMPONENT_CONFIG;
         reflectionConfigComponent.absFileName =
-            nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.projectConfig.targetDirectory, fileName);
+            nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.projectConfig.targetDirectory, fileName);
 
         conf.filter.inheritances.push_back({ componentConfig.inheritances });
 
@@ -51,7 +51,7 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
         auto abs = projectConfigComponent->value.projectConfig.parseDirectory;
 
         std::string rel;
-        auto relPathResult = nsBase::TPathOperations::GetRelativePath(absBase, abs, rel);
+        auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
 
         if (!relPathResult) {
             auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
@@ -78,7 +78,7 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         std::string jsonInFileName = std::string("./") + TConstants::CORE_COMPONENT_JSON_OUT;
         std::string absJsonInFileName =
-            nsBase::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, jsonInFileName);
+            nsBase::nsCommon::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, jsonInFileName);
         json.externalSources->inFileList.push_back(absJsonInFileName);
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::JSON, json });
@@ -94,7 +94,7 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         std::string typeInfoInFileName = std::string("./") + TConstants::CORE_COMPONENT_RTTI_OUT;
         std::string absTypeInfoInFileName =
-            nsBase::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, typeInfoInFileName);
+            nsBase::nsCommon::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, typeInfoInFileName);
         rtti.externalSources->inFileList.push_back(absTypeInfoInFileName);
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
@@ -111,7 +111,7 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         std::string entMngInFileName = std::string("./") + TConstants::CORE_COMPONENT_ECS_OUT;
         std::string absEntMngInFileName =
-            nsBase::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, entMngInFileName);
+            nsBase::nsCommon::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, entMngInFileName);
         entMng.externalSources->inFileList.push_back(absEntMngInFileName);
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::ECS_COMPONENT_EXTENSION, entMng });
@@ -127,7 +127,7 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         std::string dynamicCasterInFileName = std::string("./") + TConstants::CORE_COMPONENT_DYNAMIC_CASTER_OUT;
         std::string absDynamicCasterInFileName =
-            nsBase::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, dynamicCasterInFileName);
+            nsBase::nsCommon::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, dynamicCasterInFileName);
         dynamicCaster.externalSources->inFileList.push_back(absDynamicCasterInFileName);
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
@@ -143,7 +143,7 @@ namespace nsContainerCodeGenerator::nsProject::nsComponent
 
         std::string typeFactoryInFileName = std::string("./") + TConstants::CORE_COMPONENT_TYPE_FACTORY_OUT;
         std::string absTypeFactoryInFileName =
-            nsBase::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, typeFactoryInFileName);
+            nsBase::nsCommon::TPathOperations::CalculatePathBy(coreConfigComponent->value.coreConfig.targetDirectory, typeFactoryInFileName);
         rtti.externalSources->inFileList.push_back(typeFactoryInFileName);
 
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });

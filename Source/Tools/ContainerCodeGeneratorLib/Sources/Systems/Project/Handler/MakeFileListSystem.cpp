@@ -34,13 +34,13 @@ namespace nsContainerCodeGenerator::nsProject::nsHandler
 
         TFileListComponent fileListComponent;
 
-        nsBase::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
+        nsBase::nsCommon::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
 
         auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
 
         targetDir = projectConfigComponent->value.projectConfig.parseDirectory;
 
-        nsBase::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
+        nsBase::nsCommon::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
 
         mEntMng->SetComponent(eid, fileListComponent);
     }

@@ -53,7 +53,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsDynamicCaster
         auto& impl = projectConfigComponent->value.aggregator.componentImpl.dynamicCasterImpl;
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".h");
 
         nsBase::nsCommon::TTextGenerator txtGen(lines);

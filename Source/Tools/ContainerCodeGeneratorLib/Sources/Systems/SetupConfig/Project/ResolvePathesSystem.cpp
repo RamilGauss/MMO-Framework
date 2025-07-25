@@ -32,6 +32,6 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
     {
         auto pathsComponent = nsECSFramework::SingleComponent<TPathsComponent>(mEntMng);
 
-        path = nsBase::TPathOperations::CalculatePathBy(pathsComponent->absPathDirJson, path);
+        path = nsBase::nsCommon::TPathOperations::CalculatePathBy(pathsComponent->absPathDirJson, path);
     }
 }

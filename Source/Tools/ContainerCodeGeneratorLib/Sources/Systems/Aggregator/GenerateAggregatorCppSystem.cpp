@@ -59,7 +59,7 @@ namespace nsContainerCodeGenerator::nsAggregator
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             projectConfigComponent->value.aggregator.impl.fileName + ".cpp");
 
         nsBase::nsCommon::TTextGenerator txtGen(lines);

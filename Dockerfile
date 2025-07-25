@@ -1,32 +1,28 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG PROXY_PASS
 
-RUN apt-get update && apt-get -y install cmake pkg-config curl zip unzip tar git linux-libc-dev iproute2 gpg autoconf automake autoconf-archive
+RUN apt-get update && apt-get -y install cmake g++ pkg-config curl zip unzip tar git linux-libc-dev gpg wget iproute2 iputils-ping autoconf automake autoconf-archive mc
+RUN apt-get -y install build-essential libx11-dev libxft-dev libxext-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libibus-1.0-dev libtool net-tools
+RUN apt-get -y install libcurl4-openssl-dev libssl-dev python3-jinja2
 
-RUN echo "deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-19 main" > /etc/apt/sources.list.d/llvm.list
-RUN curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/llvm.gpg > /dev/null
-RUN apt-get update && apt-get -y install clang-19 lld-19 libc++-19-dev clang-format-19
+RUN export CC=/usr/bin/gcc
+RUN export CXX=/usr/bin/g++
 
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-19 100 && \
-    update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-19 100  && \
-    update-alternatives --install /usr/bin/lld lld /usr/bin/lld-19 100  && \
-    update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-19 100  && \
-    update-alternatives --install /usr/bin/clang-format-diff clang-format-diff /usr/bin/clang-format-diff-19 100
+WORKDIR /
+RUN git clone https://github.com/Microsoft/vcpkg.git
+RUN ./vcpkg/bootstrap-vcpkg.sh
 
-RUN printf '#!/bin/bash\nexec /usr/bin/clang -stdlib=libc++ "$@"\n' | tee /usr/bin/clang-libc++ > /dev/null && chmod +x /usr/bin/clang-libc++
-RUN printf '#!/bin/bash\nexec /usr/bin/clang++ -stdlib=libc++ "$@"\n' | tee /usr/bin/clang++-libc++ > /dev/null && chmod +x /usr/bin/clang++-libc++
-
-RUN update-alternatives --install /usr/bin/cc cc /usr/bin/clang-libc++ 100  && \
-    update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-libc++ 100  && \
-    update-alternatives --install /usr/bin/ld ld /usr/bin/lld 100
-
-RUN git clone --depth 1 --progress https://github.com/Microsoft/vcpkg.git && /vcpkg/bootstrap-vcpkg.sh
+WORKDIR /root
+RUN touch .curlrc
+RUN echo "hsts = /root/hsts.txt" > .curlrc
 
 COPY . /MMOFramework
 WORKDIR /MMOFramework
-# RUN cmake -DCMAKE_TOOLCHAIN_FILE="/vcpkg/scripts/buildsystems/vcpkg.cmake" -S . -B ./build/ -DBUILD_PROCESSES=8
-# RUN cmake --build .\build\ --config Relase -j8
+
+RUN curl -O https://ftp.gnu.org/pub/gnu/gperf/gperf-3.1.tar.gz
+RUN cmake -D CMAKE_C_COMPILER="/usr/bin/gcc" -D CMAKE_CXX_COMPILER="/usr/bin/g++" -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_TOOLCHAIN_FILE="../vcpkg/scripts/buildsystems/vcpkg.cmake" -S . -B ./build/ -DBUILD_PROCESSES=10
+RUN cmake --build ./build/ --config Debug -j10
 
 CMD ["tail", "-f", "/dev/null"]

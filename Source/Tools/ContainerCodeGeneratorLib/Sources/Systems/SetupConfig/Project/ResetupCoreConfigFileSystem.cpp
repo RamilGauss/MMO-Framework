@@ -28,7 +28,7 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
         auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
         auto filePathComponent = nsECSFramework::SingleComponent<TFilePathComponent>(mEntMng);
 
-        filePathComponent->value = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.absCorePath, 
+        filePathComponent->value = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.absCorePath,
             projectConfigComponent->value.relCoreConfigPath);
     }
 }

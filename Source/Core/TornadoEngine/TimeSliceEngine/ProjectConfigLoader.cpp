@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 #include "Modules/Common/Modules.h"
 
 using namespace nsTornadoEngine;
-using namespace nsBase;
+using namespace nsBase::nsCommon;
 
 TProjectConfigContainer* TProjectConfigLoader::mPcc = nullptr;
 

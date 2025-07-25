@@ -90,14 +90,14 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsRtti
         auto& impl = projectConfigComponent->value.aggregator.systemImpl.rttiImpl;
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
 
         auto absBase = projectConfigComponent->value.projectConfig.relPathToSources;
         auto abs = projectConfigComponent->value.projectConfig.targetDirectory;
 
         std::string relToProjectSources;
-        nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
+        nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
         pathRelToProjectSources /= projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.fileName;

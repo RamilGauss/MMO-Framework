@@ -38,7 +38,7 @@ namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
 
         std::string fileName = std::string("./") + TConstants::PROJECT_ECS_SYSTEM_CONFIG;
         reflectionConfigComponent.absFileName =
-            nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.projectConfig.targetDirectory, fileName);
+            nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.projectConfig.targetDirectory, fileName);
 
         auto inheritances = TConstants::GetSystemInheritances();
         for (auto& inheritance : inheritances) {
@@ -51,7 +51,7 @@ namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
         auto abs = projectConfigComponent->value.projectConfig.parseDirectory;
 
         std::string rel;
-        auto relPathResult = nsBase::TPathOperations::GetRelativePath(absBase, abs, rel);
+        auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
 
         if (!relPathResult) {
             auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
@@ -61,11 +61,11 @@ namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
         conf.targetForParsing.directories.push_back(rel);
 
         auto absCorePath = projectConfigComponent->value.absCorePath;
-        auto absCoreConfigFilePath = nsBase::TPathOperations::CalculatePathBy(absCorePath, projectConfigComponent->value.relCoreConfigPath);
-        auto absCoreConfigDirPath = nsBase::TPathOperations::FileDirPath(absCoreConfigFilePath);
+        auto absCoreConfigFilePath = nsBase::nsCommon::TPathOperations::CalculatePathBy(absCorePath, projectConfigComponent->value.relCoreConfigPath);
+        auto absCoreConfigDirPath = nsBase::nsCommon::TPathOperations::FileDirPath(absCoreConfigFilePath);
 
         auto ecsRel = coreConfigComponent->value.ecsDirectory;
-        auto ecsAbsPath = nsBase::TPathOperations::CalculatePathBy(absCoreConfigDirPath, ecsRel);
+        auto ecsAbsPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(absCoreConfigDirPath, ecsRel);
 
         conf.targetForParsing.directories.push_back(ecsAbsPath);
 

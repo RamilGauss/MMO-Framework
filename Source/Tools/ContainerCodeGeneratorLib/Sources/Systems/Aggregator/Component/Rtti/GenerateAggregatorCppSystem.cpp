@@ -107,20 +107,20 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsRtti
         auto& impl = projectConfigComponent->value.aggregator.componentImpl.rttiImpl;
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".cpp");
 
         auto absBase = projectConfigComponent->value.absCorePath;
         auto abs = coreConfigComponent->value.coreConfig.targetDirectory;
 
         std::string relToCoreSources;
-        nsBase::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
+        nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
 
         absBase = projectConfigComponent->value.projectConfig.relPathToSources;
         abs = projectConfigComponent->value.projectConfig.targetDirectory;
 
         std::string relToProjectSources;
-        nsBase::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
+        nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
         std::filesystem::path pathRelToProjectSources(relToProjectSources);
         pathRelToProjectSources /= projectConfigComponent->value.projectConfig.componentConfig.rtti.fileName;

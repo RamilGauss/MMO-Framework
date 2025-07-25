@@ -48,7 +48,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName + ".h");
 
         nsBase::nsCommon::TTextGenerator txtGen(lines);

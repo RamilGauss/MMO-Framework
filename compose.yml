@@ -1,8 +1,0 @@
-services:
-  compilation:
-    build:
-      context: .
-      dockerfile: Dockerfile.build
-    image: compilation_image
-    volumes:
-      - .:/MMOFramework  # Mount the current directory to access source and output

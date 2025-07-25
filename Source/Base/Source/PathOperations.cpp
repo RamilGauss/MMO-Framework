@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/PathOperations.h"
 
-using namespace nsBase;
+using namespace nsBase::nsCommon;
 
 namespace fs = std::filesystem;
 

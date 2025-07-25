@@ -39,7 +39,7 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
 
         std::string fileName = std::string("./") + TConstants::CORE_COMPONENT_CONFIG;
         reflectionConfigComponent.absFileName =
-            nsBase::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
+            nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
 
         conf.filter.inheritances.push_back({ componentConfig.inheritances });
 
@@ -49,7 +49,7 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
         auto abs = configComponent->value.coreConfig.parseDirectory;
 
         std::string rel;
-        auto relPathResult = nsBase::TPathOperations::GetRelativePath(absBase, abs, rel);
+        auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
 
         if (!relPathResult) {
             auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);

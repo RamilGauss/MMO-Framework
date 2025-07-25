@@ -54,7 +54,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeFactory
         auto& impl = projectConfigComponent->value.aggregator.systemImpl.typeFactoryImpl;
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
             impl.impl.fileName + ".h");
 
         nsBase::nsCommon::TTextGenerator txtGen(lines);

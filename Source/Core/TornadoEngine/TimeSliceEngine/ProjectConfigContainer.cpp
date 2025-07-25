@@ -25,7 +25,7 @@ void nsTornadoEngine::SetProject(nsTornadoEngine::TProjectConfigContainer* pProj
 //---------------------------------------------------------------------
 
 using namespace nsTornadoEngine;
-using namespace nsBase;
+using namespace nsBase::nsCommon;
 
 std::string TProjectConfigContainer::GetBinaryAbsPath()
 {

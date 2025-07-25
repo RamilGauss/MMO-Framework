@@ -39,7 +39,7 @@ namespace nsContainerCodeGenerator::nsCore::nsImGuiWidgets
 
         std::string fileName = std::string("./") + TConstants::CORE_IMGUI_WIDGETS_CONFIG;
         reflectionConfigComponent.absFileName =
-            nsBase::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
+            nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
 
         conf.targetForParsing.recursive = true;
 
@@ -47,7 +47,7 @@ namespace nsContainerCodeGenerator::nsCore::nsImGuiWidgets
         auto abs = imGuiWidgetsConfig.imGuiWidgetsDirectory;
 
         std::string rel;
-        auto relPathResult = nsBase::TPathOperations::GetRelativePath(absBase, abs, rel);
+        auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
 
         if (!relPathResult) {
             auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);

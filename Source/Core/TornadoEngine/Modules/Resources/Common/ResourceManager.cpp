@@ -22,7 +22,7 @@ namespace nsTornadoEngine
     std::string TResourceManager::Create(const std::string& absPath)
     {
         std::string relPath;
-        bool convertRes = nsBase::TPathOperations::GetRelativePath(mContentMapPath, absPath, relPath);
+        bool convertRes = nsBase::nsCommon::TPathOperations::GetRelativePath(mContentMapPath, absPath, relPath);
 
         auto newGuid = nsBase::nsCommon::TGuidGenerator::Generate();
 
@@ -46,7 +46,7 @@ namespace nsTornadoEngine
     std::string TResourceManager::GetGuid(const std::string& absPath)
     {
         for (auto& guidPath : mResourceContentMap.guidPathMap) {
-            auto resourcesAbsPath = nsBase::TPathOperations::CalculatePathBy(mContentMapPath, guidPath.second);
+            auto resourcesAbsPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(mContentMapPath, guidPath.second);
 
             if (absPath == resourcesAbsPath || absPath == guidPath.second) {
                 return guidPath.first;
@@ -62,8 +62,8 @@ namespace nsTornadoEngine
         if (fit == mResourceContentMap.guidPathMap.end()) {
             return "";
         }
-        auto contentMapDirAbsPath = nsBase::TPathOperations::TPathOperations::FileDirPath(mContentMapPath);
-        return nsBase::TPathOperations::CalculatePathBy(contentMapDirAbsPath, fit->second);
+        auto contentMapDirAbsPath = nsBase::nsCommon::TPathOperations::TPathOperations::FileDirPath(mContentMapPath);
+        return nsBase::nsCommon::TPathOperations::CalculatePathBy(contentMapDirAbsPath, fit->second);
     }
     //------------------------------------------------------------------------------------
     void TResourceManager::Rename(const std::string& guid, const std::string& newAbsPath)
@@ -74,7 +74,7 @@ namespace nsTornadoEngine
         }
 
         std::string relPath;
-        bool convertRes = nsBase::TPathOperations::GetRelativePath(mContentMapPath, newAbsPath, relPath);
+        bool convertRes = nsBase::nsCommon::TPathOperations::GetRelativePath(mContentMapPath, newAbsPath, relPath);
 
         fit->second = relPath;
 
