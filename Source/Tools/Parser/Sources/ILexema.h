@@ -7,13 +7,12 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
-
-#include "LineTokenEntity.h"
-
+#include "fmt/core.h"
 #include <magic_enum/magic_enum.hpp>
 
-#include "fmt/core.h"
+#include "Base/Common/TypeDef.h"
+
+#include "Parser/Sources/LineTokenEntity.h"
 
 namespace nsCppParser
 {

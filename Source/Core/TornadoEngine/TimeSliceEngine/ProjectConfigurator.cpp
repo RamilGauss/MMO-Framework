@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ProjectConfigurator.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigurator.h"
 
-#include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "ProjectConfigLoader.h"
-#include "ProjectConfigUnloader.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigLoader.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigUnloader.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Common/ModuleManager.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Common/ModuleManager.h"
 
 using namespace nsTornadoEngine;
 

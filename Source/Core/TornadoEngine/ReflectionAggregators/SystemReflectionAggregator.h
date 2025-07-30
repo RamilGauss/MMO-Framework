@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ITypeFactory.h"
-#include "IRunTimeTypeInformation.h"
-#include "IDynamicCaster.h"
+#include "TornadoEngine/ReflectionAggregators/ITypeFactory.h"
+#include "TornadoEngine/ReflectionAggregators/IRunTimeTypeInformation.h"
+#include "TornadoEngine/ReflectionAggregators/IDynamicCaster.h"
 
 namespace nsTornadoEngine
 {

@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #include "SystemBuilderSystem.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Implementations/LogicModule.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Implementations/LogicModule.h"
 
 using namespace nsLogicWrapper;
 

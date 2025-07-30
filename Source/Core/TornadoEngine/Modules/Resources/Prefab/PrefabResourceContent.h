@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Modules/Resources/Common/GuidConstants.h"
-#include "Modules/Resources/Common/EntityContent.h"
-#include "PrefabPatch.h"
+#include "TornadoEngine/Modules/Resources/Common/GuidConstants.h"
+#include "TornadoEngine/Modules/Resources/Common/EntityContent.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabPatch.h"
 
 namespace nsTornadoEngine
 {

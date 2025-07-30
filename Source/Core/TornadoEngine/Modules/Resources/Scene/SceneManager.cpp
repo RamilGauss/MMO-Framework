@@ -5,33 +5,33 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Modules/Resources/Scene/SceneManager.h"
 
 #include "Base/Common/HiTimer.h"
 #include "Base/Common/TextFile.h"
 #include "Base/Common/Logger.h"
 #include "Base/Common/GuidGenerator.h"
 
-#include "Generated files/TornadoEngineJsonSerializer.h"
-#include "TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/GeneratedFiles/TornadoEngineJsonSerializer.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Resources/Common/HandlerCallCollector.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
-#include "Modules/Resources/Scene/StateGraph/SceneStateGraph.h"
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Common/HandlerCallCollector.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneStateGraph.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Scene/SceneManager.h"
 
-#include "Components/Meta/GuidComponent.h"
-#include "Components/Meta/ParentGuidComponent.h"
-#include "Components/Meta/SceneOriginalGuidComponent.h"
-#include "Components/Meta/SceneInstanceGuidComponent.h"
-#include "Components/Meta/NeedDestroyObjectTagComponent.h"
-#include "Components/Meta/SceneRootComponent.h"
-#include "Components/Meta/SceneGuidComponent.h"
-#include "Components/Meta/UniverseIndexComponent.h"
-#include "Components/Meta/UniverseGuidComponent.h"
+#include "TornadoEngine/Components/Meta/GuidComponent.h"
+#include "TornadoEngine/Components/Meta/ParentGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneOriginalGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Meta/NeedDestroyObjectTagComponent.h"
+#include "TornadoEngine/Components/Meta/SceneRootComponent.h"
+#include "TornadoEngine/Components/Meta/SceneGuidComponent.h"
+#include "TornadoEngine/Components/Meta/UniverseIndexComponent.h"
+#include "TornadoEngine/Components/Meta/UniverseGuidComponent.h"
 
-#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 namespace nsTornadoEngine
 {

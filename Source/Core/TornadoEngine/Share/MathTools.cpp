@@ -12,11 +12,13 @@ See for more information LICENSE.md.
 #define _USE_MATH_DEFINES
 #include <cmath>
 
-#include "MathTools.h"
 #include <memory.h>
 #include <stddef.h>
 #include <stdlib.h>
+
 #include "Base/Common/BL_Debug.h"
+
+#include "TornadoEngine/Share/MathTools.h"
 
 namespace nsMathTools
 {

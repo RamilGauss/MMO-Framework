@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "NeedDestroyObjectSystem.h"
+#include "TornadoEngine/Features/Logic/End/Object/NeedDestroyObjectSystem.h"
 
 namespace nsLogicWrapper
 {

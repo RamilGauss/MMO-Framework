@@ -13,9 +13,9 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "Types.h"
-#include "TypeReference.h"
-#include "FriendInfo.h"
+#include "Parser/Sources/Types.h"
+#include "Parser/Sources/TypeReference.h"
+#include "Parser/Sources/FriendInfo.h"
 
 namespace nsCppParser
 {

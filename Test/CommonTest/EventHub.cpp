@@ -68,7 +68,7 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Info",
             .message = "42",
-            .fileLocation = "EventHub.cpp" + ":" + std::to_string(loc.line()) + ":" + std::to_string(loc.column()),
+            .fileLocation = "EventHub.cpp:" + std::to_string(loc.line()) + ":" + std::to_string(loc.column()),
             .source = "Common",
         }));
     expectedEvents.push_back(std::make_shared<TEventInfo>(TEventInfo
@@ -76,7 +76,7 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Warning",
             .message = "42",
-            .fileLocation = "EventHub.cpp" + ":" + std::to_string(loc.line()) + ":" + std::to_string(loc.column()),
+            .fileLocation = "EventHub.cpp:" + std::to_string(loc.line()) + ":" + std::to_string(loc.column()),
             .source = "Common",
         }));
     expectedEvents.push_back(std::make_shared<TEventInfo>(TEventInfo
@@ -84,7 +84,7 @@ TEST(EventHub, TakeEvents_Ok)
             .time = "",
             .level = "Error",
             .message = "42",
-            .fileLocation = "EventHub.cpp" + ":" + std::to_string(loc.line()) + ":" + std::to_string(loc.column()),
+            .fileLocation = "EventHub.cpp:" + std::to_string(loc.line()) + ":" + std::to_string(loc.column()),
             .source = "Common",
         }));
 

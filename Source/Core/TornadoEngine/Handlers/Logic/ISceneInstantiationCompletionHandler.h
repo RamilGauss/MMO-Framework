@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 I
 #include <string>
 
-#include "IGlobalHandler.h"
+#include "TornadoEngine/Handlers/Common/IGlobalHandler.h"
 
 #include "ECS/Include/Config.h"
 

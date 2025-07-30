@@ -10,8 +10,8 @@ See for more information LICENSE.md.
 #include "ECS/Include/OnUpdateInstantReactiveSystem.h"
 #include "ECS/Include/InitSystem.h"
 
-#include "Components/Gui/Properties/TitleComponent.h"
-#include "Share/HandlerPool.h"
+#include "TornadoEngine/Components/Gui/Properties/TitleComponent.h"
+#include "TornadoEngine/Share/HandlerPool.h"
 
 namespace nsGraphicWrapper
 {

@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Tokenizer.h"
-
 #include <boost/wave/cpplexer/cpp_lex_token.hpp>    // token class
 #include <boost/wave/cpplexer/cpp_lex_iterator.hpp> // lexer class
 
 #include "Base/Common/LoadFromFile.h"
 #include "Base/Common/SingletonManager.h"
-#include "TokenInfo.h"
+
+#include "Parser/Sources/TokenInfo.h"
+#include "Parser/Sources/Tokenizer.h"
 
 using namespace boost::wave;
 using namespace nsCppParser;

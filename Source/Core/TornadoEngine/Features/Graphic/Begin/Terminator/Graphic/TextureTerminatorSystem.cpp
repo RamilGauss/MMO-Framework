@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TextureTerminatorSystem.h"
-
 #include "GraphicEngine/TextureFactory.h"
+
+#include "TornadoEngine/Features/Graphic/Begin/Terminator/Graphic/TextureTerminatorSystem.h"
 
 using namespace nsGraphicWrapper;
 

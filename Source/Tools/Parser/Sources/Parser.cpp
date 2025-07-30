@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Parser.h"
-#include "Tokenizer.h"
-#include "EntitySplitter.h"
-#include "LineLexemaEntity.h"
-
 #include <magic_enum/magic_enum.hpp>
+
+#include "Parser/Sources/Parser.h"
+#include "Parser/Sources/Tokenizer.h"
+#include "Parser/Sources/EntitySplitter.h"
+#include "Parser/Sources/LineLexemaEntity.h"
 
 using namespace nsCppParser;
 

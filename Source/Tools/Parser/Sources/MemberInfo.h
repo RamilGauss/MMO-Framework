@@ -8,8 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include <set>
-#include "MemberExtendedTypeInfo.h"
-#include "Types.h"
+#include "Parser/Sources/MemberExtendedTypeInfo.h"
+#include "Parser/Sources/Types.h"
 
 namespace nsCppParser
 {

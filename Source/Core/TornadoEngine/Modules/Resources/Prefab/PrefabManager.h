@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "InstantiatePrefabParams.h"
-#include "Modules/Resources/Common/ObjectManager.h"
-#include "Modules/Resources/Common/GameObject.h"
+#include "TornadoEngine/Modules/Resources/Prefab/InstantiatePrefabParams.h"
+#include "TornadoEngine/Modules/Resources/Common/ObjectManager.h"
+#include "TornadoEngine/Modules/Resources/Common/GameObject.h"
 
 namespace nsTornadoEngine
 {

@@ -14,8 +14,8 @@ See for more information LICENSE.md.
 #include "ECS/Include/IComponent.h"
 #include "ImGuiWidgets/Include/TreeNode.h"
 
-#include "Share/PropertyOf.h"
-#include "Modules/Resources/Common/GuidConstants.h"
+#include "TornadoEngine/Share/PropertyOf.h"
+#include "TornadoEngine/Modules/Resources/Common/GuidConstants.h"
 
 namespace nsGuiWrapper
 {

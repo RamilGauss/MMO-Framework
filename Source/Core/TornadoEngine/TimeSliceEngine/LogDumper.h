@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include "Base/Common/SaveToFile.h"
 #include "Base/Common/TypeDef.h"
 
-#include "TimeSliceEngine/ProjectConfig.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfig.h"
 
 namespace nsTornadoEngine
 {

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnAddCollectReactiveSystem.h"
 
-#include "Components/Gui/Properties/MaxSizeComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/MaxSizeComponent.h"
 
 namespace nsGraphicWrapper
 {

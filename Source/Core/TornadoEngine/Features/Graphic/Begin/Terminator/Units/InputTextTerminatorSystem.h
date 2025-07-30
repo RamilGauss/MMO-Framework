@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnRemoveInstantReactiveSystem.h"
 
-#include "Components/Gui/Widgets/InputTextComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/InputTextComponent.h"
 
 namespace nsGraphicWrapper
 {

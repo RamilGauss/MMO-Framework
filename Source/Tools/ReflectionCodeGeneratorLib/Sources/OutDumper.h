@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IOutDumper.h"
+#include "ReflectionCodeGeneratorLib/Sources/IOutDumper.h"
 
 namespace nsReflectionCodeGenerator
 {

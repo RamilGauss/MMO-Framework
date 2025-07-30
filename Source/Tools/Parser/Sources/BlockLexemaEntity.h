@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "Base/Common/TypeDef.h"
-#include "ILexemaEntity.h"
+#include "Parser/Sources/ILexemaEntity.h"
 
 namespace nsCppParser
 {

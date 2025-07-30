@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ComponentDeserializingProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Async/ComponentDeserializingProcess.h"
 
-#include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/ReflectionAggregators/ScenePartReflectionAggregator.h"
 
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneContext.h"
 
 namespace nsTornadoEngine
 {

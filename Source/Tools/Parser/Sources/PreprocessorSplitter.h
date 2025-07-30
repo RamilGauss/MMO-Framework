@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 #include <memory>
 
 #include "Base/Common/TypeDef.h"
-#include "ITokenEntity.h"
+#include "Parser/Sources/ITokenEntity.h"
 
 namespace nsCppParser
 {

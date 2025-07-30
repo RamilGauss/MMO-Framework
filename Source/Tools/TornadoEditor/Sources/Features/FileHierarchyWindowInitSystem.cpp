@@ -5,7 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "FileHierarchyWindowInitSystem.h"
 
 #include "ECS/Include/Helper.h"
 
@@ -16,10 +15,12 @@ See for more information LICENSE.md.
 #include "MainWindowTagComponent.h"
 #include "MainWindowPrefabGuidComponent.h"
 
-#include "Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
 
-#include "Components/Gui/Properties/PositionComponent.h"
-#include "Components/Gui/Properties/SizeComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/PositionComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/SizeComponent.h"
+
+#include "FileHierarchyWindowInitSystem.h"
 
 namespace nsTornadoEditor
 {

@@ -5,24 +5,25 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TypeInfoCollector.h"
-#include "BlockLexemaEntity.h"
-#include "LineLexemaEntity.h"
 #include "Base/Common/BL_Debug.h"
 
-#include "EmptyLexema.h"
-#include "NamespaceLexema.h"
-#include "ClassLexema.h"
-#include "StructLexema.h"
-#include "AccessLexema.h"
-#include "EnumLexema.h"
-#include "EnumValuesLexema.h"
-#include "FriendLexema.h"
-#include "FunctionDefinitionLexema.h"
-#include "FunctionDeclarationLexema.h"
-#include "VariableDeclarationLexema.h"
-#include "PragmaLexema.h"
-#include "IdentifierLexema.h"
+#include "Parser/Sources/TypeInfoCollector.h"
+#include "Parser/Sources/BlockLexemaEntity.h"
+#include "Parser/Sources/LineLexemaEntity.h"
+
+#include "Parser/Sources/EmptyLexema.h"
+#include "Parser/Sources/NamespaceLexema.h"
+#include "Parser/Sources/ClassLexema.h"
+#include "Parser/Sources/StructLexema.h"
+#include "Parser/Sources/AccessLexema.h"
+#include "Parser/Sources/EnumLexema.h"
+#include "Parser/Sources/EnumValuesLexema.h"
+#include "Parser/Sources/FriendLexema.h"
+#include "Parser/Sources/FunctionDefinitionLexema.h"
+#include "Parser/Sources/FunctionDeclarationLexema.h"
+#include "Parser/Sources/VariableDeclarationLexema.h"
+#include "Parser/Sources/PragmaLexema.h"
+#include "Parser/Sources/IdentifierLexema.h"
 
 using namespace nsCppParser;
 

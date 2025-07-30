@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnAddCollectReactiveSystem.h"
 
-#include "Components/Gui/Properties/MinSizeComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/MinSizeComponent.h"
 
 namespace nsGraphicWrapper
 {

@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "BlockLexemaEntity.h"
-#include "LineLexemaEntity.h"
+#include "Parser/Sources/BlockLexemaEntity.h"
+#include "Parser/Sources/LineLexemaEntity.h"
 
 using namespace nsCppParser;
 

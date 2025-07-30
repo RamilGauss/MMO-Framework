@@ -12,19 +12,19 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/EntityManager.h"
 
-#include "Components/Meta/SceneGuidComponent.h"
-#include "Components/Meta/PrefabGuidComponent.h"
-#include "Components/Meta/SceneInstanceGuidComponent.h"
-#include "Components/Meta/PrefabOriginalGuidComponent.h"
-#include "Components/Meta/SceneOriginalGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneGuidComponent.h"
+#include "TornadoEngine/Components/Meta/PrefabGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Meta/PrefabOriginalGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneOriginalGuidComponent.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Resources/Common/GuidConstants.h"
-#include "Modules/Resources/Common/HandlerCallCollector.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Common/GuidConstants.h"
+#include "TornadoEngine/Modules/Resources/Common/HandlerCallCollector.h"
 
-#include "TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
 
-#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 namespace nsGraphicWrapper
 {

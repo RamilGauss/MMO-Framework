@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TimeSliceEngine/ProjectConfigContainer.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/PathOperations.h"
 
-#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 static nsTornadoEngine::TProjectConfigContainer* g_ProjectPtr = nullptr;
 

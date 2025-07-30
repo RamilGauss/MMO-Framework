@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "InputTextValueUpdaterSystem.h"
-#include "Components/Gui/Widgets/InputTextComponent.h"
+#include "TornadoEngine/Features/Graphic/Begin/UpdateToModule/InputTextValueUpdaterSystem.h"
+#include "TornadoEngine/Components/Gui/Widgets/InputTextComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

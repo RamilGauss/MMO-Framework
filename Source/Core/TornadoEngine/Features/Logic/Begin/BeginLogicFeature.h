@@ -8,7 +8,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "ECS/Include/Feature.h"
-#include "HandlerCallCollectorNotifySystem.h"
+
+#include "TornadoEngine/Features/Logic/Begin/HandlerCallCollectorNotifySystem.h"
 
 namespace nsLogicWrapper
 {

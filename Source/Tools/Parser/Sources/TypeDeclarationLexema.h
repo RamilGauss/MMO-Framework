@@ -11,8 +11,8 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "ILexema.h"
-#include "Types.h"
+#include "Parser/Sources/ILexema.h"
+#include "Parser/Sources/Types.h"
 
 namespace nsCppParser
 {

@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ConfigContainer.h"
+#include "ReflectionCodeGeneratorLib/Sources/ConfigContainer.h"
 
 namespace nsReflectionCodeGenerator
 {
@@ -29,7 +29,7 @@ namespace nsReflectionCodeGenerator
         void DefaultConfig();
     private:
         bool TryLoadConfig();
-        void ResolvePathes();
+        void ConvertConfigToCache();
 
         void ResolveJsonPath();
     };

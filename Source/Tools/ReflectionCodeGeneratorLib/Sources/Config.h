@@ -75,14 +75,6 @@ namespace nsReflectionCodeGenerator
     struct DllExport TIncludeListParams
     {
         std::string includeListFileName;
-
-        // "../../Modules/ECS/yyy"
-        // C:/Sources/Modules/ECS/yyy/file.h => #include "yyy/file.h"
-        // "../../Modules/ECS"
-        // C:/Sources/Modules/ECS/yyy/file.h => #include "ECS/yyy/file.h"
-        // "../../Modules"
-        // C:/Sources/Modules/ECS/yyy/file.h => #include "Modules/ECS/yyy/file.h"
-        std::list<std::string> dirToInclude;
     };
 
 #pragma REFLECTION_ATTRIBUTE
@@ -96,6 +88,14 @@ namespace nsReflectionCodeGenerator
         std::map<std::string, TSerializer> implementations;
 
         TIncludeListParams includeListParams;
+
+        // "../../Modules/ECS/yyy"
+        // C:/Sources/Modules/ECS/yyy/file.h => #include "yyy/file.h"
+        // "../../Modules/ECS"
+        // C:/Sources/Modules/ECS/yyy/file.h => #include "ECS/yyy/file.h"
+        // "../../Modules"
+        // C:/Sources/Modules/ECS/yyy/file.h => #include "Modules/ECS/yyy/file.h"
+        std::list<std::string> sourceRootPaths;
     };
 
 #pragma REFLECTION_ATTRIBUTE

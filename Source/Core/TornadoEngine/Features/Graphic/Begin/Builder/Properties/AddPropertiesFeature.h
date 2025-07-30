@@ -9,17 +9,17 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "AnchorsAddSystem.h"
-#include "FocusAddSystem.h"
-#include "HorizontalAlignAddSystem.h"
-#include "MaxSizeAddSystem.h"
-#include "MinSizeAddSystem.h"
-#include "MinDistanceToParentAddSystem.h"
-#include "PositionAddSystem.h"
-#include "SizeAddSystem.h"
-#include "TitleAddSystem.h"
-#include "VerticalAlignAddSystem.h"
-#include "VisibilityAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/AnchorsAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/FocusAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/HorizontalAlignAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/MaxSizeAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/MinSizeAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/MinDistanceToParentAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/PositionAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/SizeAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/TitleAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/VerticalAlignAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/VisibilityAddSystem.h"
 
 namespace nsGraphicWrapper
 {

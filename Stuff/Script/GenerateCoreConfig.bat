@@ -1,2 +1,2 @@
 set PATH=%PATH%;%DEP_PATH_MMO_FRAMEWORK%\Bin
-start ../../Exe/ReflectionCodeGenerator_d.exe "..\..\Source\Core\TornadoEngine\Configs\ReflectionConfig.json"
+start ../../build/Debug/ReflectionCodeGenerator_d.exe core "..\..\Source\Core\TornadoEngine\Configs\ReflectionConfig.json"

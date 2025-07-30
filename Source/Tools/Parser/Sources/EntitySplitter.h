@@ -10,9 +10,9 @@ See for more information LICENSE.md.
 #include <list>
 
 #include "Base/Common/TypeDef.h"
-#include "BlockTokenEntity.h"
-#include "TokenInfo.h"
-#include "LineTokenEntity.h"
+#include "Parser/Sources/BlockTokenEntity.h"
+#include "Parser/Sources/TokenInfo.h"
+#include "Parser/Sources/LineTokenEntity.h"
 
 namespace nsCppParser
 {

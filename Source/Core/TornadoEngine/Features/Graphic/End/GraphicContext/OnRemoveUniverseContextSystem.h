@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnRemoveInstantReactiveSystem.h"
 
-#include "Components/Meta/UniverseIndexComponent.h"
+#include "TornadoEngine/Components/Meta/UniverseIndexComponent.h"
 
 namespace nsGraphicWrapper
 {

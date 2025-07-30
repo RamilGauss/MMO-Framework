@@ -9,11 +9,9 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "Features/Graphic/End/UpdateFromModule/GuiUpdaterFromModuleFeature.h"
-
-#include "Features/Graphic/End/GraphicContext/OnRemoveUniverseContextSystem.h"
-
-#include "Features/Graphic/End/GraphicContext/CleanUpUniverseContextSystem.h"
+#include "TornadoEngine/Features/Graphic/End/UpdateFromModule/GuiUpdaterFromModuleFeature.h"
+#include "TornadoEngine/Features/Graphic/End/GraphicContext/OnRemoveUniverseContextSystem.h"
+#include "TornadoEngine/Features/Graphic/End/GraphicContext/CleanUpUniverseContextSystem.h"
 
 namespace nsGraphicWrapper
 {

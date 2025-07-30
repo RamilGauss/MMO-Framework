@@ -5,11 +5,13 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SystemMakerSystem.h"
-#include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "Modules/Common/Modules.h"
 #include "Base/Common/Logger.h"
-#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
+
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/ReflectionAggregators/ScenePartReflectionAggregator.h"
+
+#include "TornadoEngine/Features/Logic/End/Maker/SystemMakerSystem.h"
 
 using namespace nsLogicWrapper;
 

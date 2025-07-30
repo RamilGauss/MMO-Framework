@@ -14,7 +14,6 @@ See for more information LICENSE.md.
 #include "ImGuiWidgets/Include/TreeNode.h"
 #include "ImGuiWidgets/Include/Label.h"
 
-
 namespace nsGraphicWrapper
 {
     class DllExport TUnitBuilderHelper

@@ -5,22 +5,21 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "DialogBuilderSystem.h"
-
 #include "ImGuiWidgets/Include/Dialog.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Implementations/GraphicEngineModule.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Implementations/GraphicEngineModule.h"
 
-#include "Components/Gui/Properties/PositionComponent.h"
-#include "Components/Gui/Properties/SizeComponent.h"
-#include "Components/Gui/Properties/TitleComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/PositionComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/SizeComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/TitleComponent.h"
 
-#include "Components/Meta/PrefabOriginalGuidComponent.h"
-#include "Components/Meta/SceneOriginalGuidComponent.h"
+#include "TornadoEngine/Components/Meta/PrefabOriginalGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneOriginalGuidComponent.h"
 
-#include "Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
-#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Frames/DialogBuilderSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

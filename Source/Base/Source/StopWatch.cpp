@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #include "Base/Common/StopWatch.h"
 #include "Base/Common/HiTimer.h"
 
-namespace nsBase
+namespace nsBase::nsCommon
 {
     void TStopWatch::Start()
     {

@@ -6,11 +6,11 @@ See for more information LICENSE.md.
 */
 
 
-#include "LexemaEngine.h"
-#include "LexemaFactory.h"
+#include "fmt/core.h"
 #include "Base/Common/BL_Debug.h"
 
-#include "fmt/core.h"
+#include "Parser/Sources/LexemaEngine.h"
+#include "Parser/Sources/LexemaFactory.h"
 
 using namespace nsCppParser;
 

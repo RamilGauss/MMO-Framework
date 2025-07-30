@@ -1,14 +1,14 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_23 17:27:34.484
-	
-#include "JsonSerializer.h"
+// ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2025_07_29 11:54:23.175
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
+#include "ReflectionCodeGeneratorLib/Sources/JsonSerializer.h"
+#include "Parser/Sources/GeneratedFiles/JsonSerializer.h"
 
 using namespace nsJson;
 
@@ -27,7 +27,7 @@ void TJsonSerializer::Init()
     
     auto globalTypeIdentifier = SingletonManager()->Get<TRunTimeTypeIndex<>>();
     
-    std::map<int, TypeFunc> m;
+    std::list<TypeFunc> funcs;
     
     TypeFunc _nsReflectionCodeGenerator_TClassDescTypeFunc;
     _nsReflectionCodeGenerator_TClassDescTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -37,9 +37,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TClassDesc>((nsReflectionCodeGenerator::TClassDesc*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TClassDescTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TClassDesc>();
+    _nsReflectionCodeGenerator_TClassDescTypeFunc.rtti = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TClassDesc>();
     
-    m.insert({ rtti__nsReflectionCodeGenerator_TClassDescTypeFunc, _nsReflectionCodeGenerator_TClassDescTypeFunc });
+    funcs.push_back(_nsReflectionCodeGenerator_TClassDescTypeFunc);
     
     TypeFunc _nsReflectionCodeGenerator_TConfigTypeFunc;
     _nsReflectionCodeGenerator_TConfigTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -49,9 +49,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TConfig>((nsReflectionCodeGenerator::TConfig*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TConfigTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TConfig>();
+    _nsReflectionCodeGenerator_TConfigTypeFunc.rtti = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TConfig>();
     
-    m.insert({ rtti__nsReflectionCodeGenerator_TConfigTypeFunc, _nsReflectionCodeGenerator_TConfigTypeFunc });
+    funcs.push_back(_nsReflectionCodeGenerator_TConfigTypeFunc);
     
     TypeFunc _nsReflectionCodeGenerator_TExternalSourceTypeFunc;
     _nsReflectionCodeGenerator_TExternalSourceTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -61,9 +61,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TExternalSource>((nsReflectionCodeGenerator::TExternalSource*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TExternalSource>();
+    _nsReflectionCodeGenerator_TExternalSourceTypeFunc.rtti = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TExternalSource>();
     
-    m.insert({ rtti__nsReflectionCodeGenerator_TExternalSourceTypeFunc, _nsReflectionCodeGenerator_TExternalSourceTypeFunc });
+    funcs.push_back(_nsReflectionCodeGenerator_TExternalSourceTypeFunc);
     
     TypeFunc _nsReflectionCodeGenerator_TExternalSourcesTypeFunc;
     _nsReflectionCodeGenerator_TExternalSourcesTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -73,9 +73,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TExternalSources>((nsReflectionCodeGenerator::TExternalSources*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TExternalSources>();
+    _nsReflectionCodeGenerator_TExternalSourcesTypeFunc.rtti = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TExternalSources>();
     
-    m.insert({ rtti__nsReflectionCodeGenerator_TExternalSourcesTypeFunc, _nsReflectionCodeGenerator_TExternalSourcesTypeFunc });
+    funcs.push_back(_nsReflectionCodeGenerator_TExternalSourcesTypeFunc);
     
     TypeFunc _nsReflectionCodeGenerator_TFilterTypeFunc;
     _nsReflectionCodeGenerator_TFilterTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -85,9 +85,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TFilter>((nsReflectionCodeGenerator::TFilter*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TFilterTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TFilter>();
+    _nsReflectionCodeGenerator_TFilterTypeFunc.rtti = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TFilter>();
     
-    m.insert({ rtti__nsReflectionCodeGenerator_TFilterTypeFunc, _nsReflectionCodeGenerator_TFilterTypeFunc });
+    funcs.push_back(_nsReflectionCodeGenerator_TFilterTypeFunc);
     
     TypeFunc _nsReflectionCodeGenerator_TIncludeListParamsTypeFunc;
     _nsReflectionCodeGenerator_TIncludeListParamsTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -97,9 +97,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TIncludeListParams>((nsReflectionCodeGenerator::TIncludeListParams*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TIncludeListParamsTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TIncludeListParams>();
+    _nsReflectionCodeGenerator_TIncludeListParamsTypeFunc.rtti = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TIncludeListParams>();
     
-    m.insert({ rtti__nsReflectionCodeGenerator_TIncludeListParamsTypeFunc, _nsReflectionCodeGenerator_TIncludeListParamsTypeFunc });
+    funcs.push_back(_nsReflectionCodeGenerator_TIncludeListParamsTypeFunc);
     
     TypeFunc _nsReflectionCodeGenerator_TSerializerTypeFunc;
     _nsReflectionCodeGenerator_TSerializerTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -109,9 +109,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TSerializer>((nsReflectionCodeGenerator::TSerializer*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TSerializerTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TSerializer>();
+    _nsReflectionCodeGenerator_TSerializerTypeFunc.rtti = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TSerializer>();
     
-    m.insert({ rtti__nsReflectionCodeGenerator_TSerializerTypeFunc, _nsReflectionCodeGenerator_TSerializerTypeFunc });
+    funcs.push_back(_nsReflectionCodeGenerator_TSerializerTypeFunc);
     
     TypeFunc _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc;
     _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -121,9 +121,9 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TTargetForCodeGeneration>((nsReflectionCodeGenerator::TTargetForCodeGeneration*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TTargetForCodeGeneration>();
+    _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc.rtti = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TTargetForCodeGeneration>();
     
-    m.insert({ rtti__nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc, _nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc });
+    funcs.push_back(_nsReflectionCodeGenerator_TTargetForCodeGenerationTypeFunc);
     
     TypeFunc _nsReflectionCodeGenerator_TTargetForParsingTypeFunc;
     _nsReflectionCodeGenerator_TTargetForParsingTypeFunc.serializeFunc = [] (void* p, std::string& str) {
@@ -133,18 +133,18 @@ void TJsonSerializer::Init()
         return Deserialize<nsReflectionCodeGenerator::TTargetForParsing>((nsReflectionCodeGenerator::TTargetForParsing*) p, str, err);
     };
     
-    auto rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TTargetForParsing>();
+    _nsReflectionCodeGenerator_TTargetForParsingTypeFunc.rtti = globalTypeIdentifier->Type<nsReflectionCodeGenerator::TTargetForParsing>();
     
-    m.insert({ rtti__nsReflectionCodeGenerator_TTargetForParsingTypeFunc, _nsReflectionCodeGenerator_TTargetForParsingTypeFunc });
+    funcs.push_back(_nsReflectionCodeGenerator_TTargetForParsingTypeFunc);
     
     int max = 0;
-    for (auto& vt : m) {
-        max = std::max(vt.first, max);
+    for (auto& f : funcs) {
+        max = std::max(f.rtti, max);
     }
     
     mTypeFuncVector.resize(max + 1);
-    for (auto& vt : m) {
-        mTypeFuncVector[vt.first] = vt.second;
+    for (auto& f : funcs) {
+        mTypeFuncVector[f.rtti] = f;
     }
 }
 //---------------------------------------------------------------------------------------
@@ -167,53 +167,6 @@ bool TJsonSerializer::Has(int rtti)
         return false;
     }
     return mTypeFuncVector[rtti].serializeFunc != nullptr;
-}
-//---------------------------------------------------------------------------------------
-std::string TJsonSerializer::_SerializeEnum(nsCppParser::TypeCategory* p)
-{
-    switch (*p) {
-        case nsCppParser::TypeCategory::ARRAY:
-            return "ARRAY";
-        case nsCppParser::TypeCategory::BOOL:
-            return "BOOL";
-        case nsCppParser::TypeCategory::CEIL_NUMBER:
-            return "CEIL_NUMBER";
-        case nsCppParser::TypeCategory::LIST:
-            return "LIST";
-        case nsCppParser::TypeCategory::MAP:
-            return "MAP";
-        case nsCppParser::TypeCategory::NUMBER:
-            return "NUMBER";
-        case nsCppParser::TypeCategory::REFLECTION:
-            return "REFLECTION";
-        case nsCppParser::TypeCategory::SET:
-            return "SET";
-        case nsCppParser::TypeCategory::SMART_POINTER:
-            return "SMART_POINTER";
-        case nsCppParser::TypeCategory::STRING:
-            return "STRING";
-        case nsCppParser::TypeCategory::VECTOR:
-            return "VECTOR";
-        default:;
-    }
-    return "";
-}
-//---------------------------------------------------------------------------------------
-void TJsonSerializer::_DeserializeEnum(std::string& str, nsCppParser::TypeCategory* p)
-{
-    std::map<std::string, nsCppParser::TypeCategory> m;
-    m.insert({"ARRAY", nsCppParser::TypeCategory::ARRAY});
-    m.insert({"BOOL", nsCppParser::TypeCategory::BOOL});
-    m.insert({"CEIL_NUMBER", nsCppParser::TypeCategory::CEIL_NUMBER});
-    m.insert({"LIST", nsCppParser::TypeCategory::LIST});
-    m.insert({"MAP", nsCppParser::TypeCategory::MAP});
-    m.insert({"NUMBER", nsCppParser::TypeCategory::NUMBER});
-    m.insert({"REFLECTION", nsCppParser::TypeCategory::REFLECTION});
-    m.insert({"SET", nsCppParser::TypeCategory::SET});
-    m.insert({"SMART_POINTER", nsCppParser::TypeCategory::SMART_POINTER});
-    m.insert({"STRING", nsCppParser::TypeCategory::STRING});
-    m.insert({"VECTOR", nsCppParser::TypeCategory::VECTOR});
-    *p = m[str];
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TClassDesc* p, Jobj& obj)
@@ -258,7 +211,7 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TExternalSource* p, 
     PUM::Push(obj, "nameSpaceName", p->nameSpaceName);
     PUM::Push(obj, "typeName", p->typeName);
     PUM::Value customizedTypes_a0(rapidjson::kArrayType);
-    for(auto& customizedTypes_e0 : p->customizedTypes) {
+    for(auto customizedTypes_e0 : p->customizedTypes) {
         PUM::PushBack(customizedTypes_a0, customizedTypes_e0);
     }
     PUM::Push(obj, "customizedTypes", customizedTypes_a0);
@@ -362,26 +315,11 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TFilter* p, const 
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TIncludeListParams* p, Jobj& obj)
 {
     PUM::Push(obj, "includeListFileName", p->includeListFileName);
-    PUM::Value dirToInclude_a0(rapidjson::kArrayType);
-    for(auto& dirToInclude_e0 : p->dirToInclude) {
-        PUM::PushBack(dirToInclude_a0, dirToInclude_e0);
-    }
-    PUM::Push(obj, "dirToInclude", dirToInclude_a0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TIncludeListParams* p, const Jobj& obj)
 {
     POM::PopStr(obj, "includeListFileName", p->includeListFileName);
-    if (POM::IsArray(obj, "dirToInclude")) {
-        auto dirToInclude_a0 = POM::FindArray(obj, "dirToInclude");
-        for(auto& dirToInclude_e0 : dirToInclude_a0) {
-            p->dirToInclude.push_back(dirToInclude_e0.GetString());
-        }
-    } else {
-        std::string dirToInclude_t0;
-        POM::PopStr(obj, "dirToInclude", dirToInclude_t0);
-        p->dirToInclude.push_back(dirToInclude_t0);
-    }
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TSerializer* p, Jobj& obj)
@@ -421,7 +359,7 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForCodeGenera
     PUM::Push(obj, "header", p->header);
     auto typeCustomizerMap_c0 = PUM::AddObject(obj, "typeCustomizerMap");
     for(auto& typeCustomizerMap_e0 : p->typeCustomizerMap) {
-        auto typeCustomizerMap_c1 = _SerializeEnum(&typeCustomizerMap_e0.second);
+        auto typeCustomizerMap_c1 = nsCppParser::TJsonSerializer::_SerializeEnum(&typeCustomizerMap_e0.second);
         PUM::Push(typeCustomizerMap_c0, PUM::ConvertToString(typeCustomizerMap_e0.first).data(), typeCustomizerMap_c1);
     }
     PUM::Push(obj, "appendTypeCustomizerMap", p->appendTypeCustomizerMap);
@@ -432,6 +370,7 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForCodeGenera
     }
     auto includeListParams_o = PUM::AddObject(obj, "includeListParams");
     _Serialize(&(p->includeListParams), includeListParams_o);
+    PUM::Push(obj, "sourceRootPath", p->sourceRootPath);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj)
@@ -442,7 +381,7 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGene
     for(auto& typeCustomizerMap_e0 : typeCustomizerMap_a0) {
         std::string typeCustomizerMap_o1 = typeCustomizerMap_e0.value.GetString();
         nsCppParser::TypeCategory typeCustomizerMap_c1;
-        _DeserializeEnum(typeCustomizerMap_o1, &typeCustomizerMap_c1);
+        nsCppParser::TJsonSerializer::_DeserializeEnum(typeCustomizerMap_o1, &typeCustomizerMap_c1);
         p->typeCustomizerMap.insert({ typeCustomizerMap_e0.name.GetString(), typeCustomizerMap_c1 });
     }
     POM::PopBool(obj, "appendTypeCustomizerMap", p->appendTypeCustomizerMap);
@@ -455,6 +394,7 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGene
     }
     auto includeListParams_o0 = POM::FindObject(obj, "includeListParams");
     _Deserialize(&(p->includeListParams), includeListParams_o0);
+    POM::PopStr(obj, "sourceRootPath", p->sourceRootPath);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj)

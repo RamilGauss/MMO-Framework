@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IGenerator.h"
-
 #include "Parser/Sources/TypeInfo.h"
+
+#include "ReflectionCodeGeneratorLib/Sources/IGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {

@@ -1,0 +1,59 @@
+{
+    "reflectionCodeGeneratorFileName": "../../../../Exe/ReflectionCodeGenerator_d.exe",
+    "entityManagerHeaderPath": "ECS/Include/EntityManager.h",
+    "ecsDirectory": "../../../Modules/ECS",
+
+    "engineSourcePath": "..",
+
+    "coreConfig": {
+        "exportDeclaration": "DllExport",
+        "targetDirectory": "../GeneratedFiles/Container",
+        "nameSpace": "nsTornadoEngine",
+        "parseDirectory": "..",
+
+        "componentConfig": {
+            "includeListFileName": "ComponentIncludeList",
+            "inheritances": "nsECSFramework::IComponent",
+            "rtti": {
+                "fileName": "ComponentRtti",
+                "typeName": "TComponentRtti"
+            },
+            "json": {
+                "fileName": "ComponentJson",
+                "typeName": "TComponentJson"
+            },
+            "binary": {
+                "fileName": "ComponentBinary",
+                "typeName": "TComponentBinary"
+            },
+            "imGui": {
+                "fileName": "ComponentImGui",
+                "typeName": "TComponentImGui"
+            },
+            "entMng": {
+                "fileName": "ComponentEntMng",
+                "typeName": "TComponentEntMng"
+            },
+            "dynamicCaster": {
+                "fileName": "ComponentDynamicCaster",
+                "typeName": "TComponentDynamicCaster"
+            },
+            "typeFactory": {
+                "fileName": "ComponentTypeFactory",
+                "typeName": "TComponentTypeFactory"
+            }
+        },
+        "imGuiWidgetsConfig": {
+            "includeListFileName": "ImGuiWidgetsIncludeList",
+            "imGuiWidgetsDirectory": "../../../Modules/ImGuiWidgets",
+            "rtti": {
+                "fileName": "ImGuiWidgetsRtti",
+                "typeName": "TImGuiWidgetsRtti"
+            },
+            "dynamicCaster": {
+                "fileName": "ImGuiWidgetsDynamicCaster",
+                "typeName": "TImGuiWidgetsDynamicCaster"
+            }
+        }
+    }
+}

@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TypeDeclarationLexema.h"
-
 #include "Base/Common/StringExtensions.h"
 
-#include "ILexema.h"
-#include "Types.h"
+#include "Parser/Sources/TypeDeclarationLexema.h"
+
+#include "Parser/Sources/ILexema.h"
+#include "Parser/Sources/Types.h"
 
 using namespace nsCppParser;
 using namespace boost::wave;

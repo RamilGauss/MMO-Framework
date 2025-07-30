@@ -5,8 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Modules/Resources/Scene/UniverseManager.h"
 #include "Base/Common/BL_Debug.h"
+
+#include "TornadoEngine/Modules/Resources/Scene/UniverseManager.h"
 
 using namespace nsTornadoEngine;
 

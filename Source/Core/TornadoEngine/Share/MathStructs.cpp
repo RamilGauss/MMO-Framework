@@ -12,9 +12,10 @@ See for more information LICENSE.md.
 #define _USE_MATH_DEFINES
 #include <cmath>
 
-#include "Share/MathStructs.h"
-#include "MathTools.h"
 #include "Base/Common/BL_Debug.h"
+
+#include "TornadoEngine/Share/MathStructs.h"
+#include "TornadoEngine/Share/MathTools.h"
 
 using namespace nsMathTools;
 

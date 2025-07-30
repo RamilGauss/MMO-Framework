@@ -9,12 +9,12 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "Modules/Resources/Common/ObjectManager.h"
+#include "TornadoEngine/Modules/Resources/Common/ObjectManager.h"
 
-#include "Modules/Resources/Scene/UniverseManager.h"
-#include "Modules/Resources/Scene/InstantiateSceneParams.h"
-#include "Modules/Resources/Scene/SceneState.h"
-#include "Modules/Resources/Scene/SceneCacheManager.h"
+#include "TornadoEngine/Modules/Resources/Scene/UniverseManager.h"
+#include "TornadoEngine/Modules/Resources/Scene/InstantiateSceneParams.h"
+#include "TornadoEngine/Modules/Resources/Scene/SceneState.h"
+#include "TornadoEngine/Modules/Resources/Scene/SceneCacheManager.h"
 
 namespace nsTornadoEngine
 {

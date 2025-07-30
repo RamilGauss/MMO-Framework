@@ -9,7 +9,8 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/TypeDef.h"
-#include "TimeSliceEngine/ProjectConfigContainer.h"
+
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
 
 namespace nsTornadoEngine
 {

@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "PositionUpdaterSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/UpdateToModule/PositionUpdaterSystem.h"
 
-#include "Components/Gui/Widgets/ButtonComponent.h"
-#include "Components/Gui/Widgets/DialogComponent.h"
-#include "Components/Gui/Widgets/FrameComponent.h"
-#include "Components/Gui/Widgets/InputTextComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/ButtonComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/DialogComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/FrameComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/InputTextComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

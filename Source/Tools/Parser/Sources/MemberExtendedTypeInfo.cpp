@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "MemberExtendedTypeInfo.h"
 #include "fmt/core.h"
 #include <magic_enum/magic_enum.hpp>
+
+#include "Parser/Sources/MemberExtendedTypeInfo.h"
 
 using namespace nsCppParser;
 

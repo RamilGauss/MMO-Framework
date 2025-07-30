@@ -10,18 +10,17 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "Base/Common/TypeDef.h"
+#include "Base/Common/GuidGenerator.h"
+
 #include "ECS/Include/EntityManager.h"
 
-#include "ResourceContentMap.h"
-#include "Modules/Resources/Common/GuidConstants.h"
+#include "TornadoEngine/Components/Meta/ParentGuidComponent.h"
+#include "TornadoEngine/Components/Meta/GuidComponent.h"
 
-#include "Base/Common/GuidGenerator.h"
-#include "Components/Meta/ParentGuidComponent.h"
-#include "Components/Meta/GuidComponent.h"
-
-#include "Modules/Resources/Common/EntityContent.h"
-
-#include "Modules/Resources/Common/ResourceManager.h"
+#include "TornadoEngine/Modules/Resources/Common/ResourceContentMap.h"
+#include "TornadoEngine/Modules/Resources/Common/GuidConstants.h"
+#include "TornadoEngine/Modules/Resources/Common/EntityContent.h"
+#include "TornadoEngine/Modules/Resources/Common/ResourceManager.h"
 
 namespace nsTornadoEngine
 {

@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnRemoveInstantReactiveSystem.h"
 
-#include "Components/Logic/SystemComponent.h"
+#include "TornadoEngine/Components/Logic/SystemComponent.h"
 
 namespace nsLogicWrapper
 {

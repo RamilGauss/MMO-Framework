@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "SystemTerminatorSystem.h"
-#include "GlobalHandlerTerminatorSystem.h"
-#include "LocalHandlerTerminatorSystem.h"
+#include "TornadoEngine/Features/Logic/End/Terminator/SystemTerminatorSystem.h"
+#include "TornadoEngine/Features/Logic/End/Terminator/GlobalHandlerTerminatorSystem.h"
+#include "TornadoEngine/Features/Logic/End/Terminator/LocalHandlerTerminatorSystem.h"
 
 namespace nsLogicWrapper
 {

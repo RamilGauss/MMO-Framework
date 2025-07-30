@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include <string>
 #include <list>
 
-#include "ModuleType.h"
+#include "TornadoEngine/TimeSliceEngine/ModuleType.h"
 
 namespace nsTornadoEngine
 {

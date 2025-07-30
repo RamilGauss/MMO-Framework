@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnUpdateCollectReactiveSystem.h"
 
-#include "Components/Gui/Properties/HorizontalAlignComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/HorizontalAlignComponent.h"
 
 namespace nsGraphicWrapper
 {

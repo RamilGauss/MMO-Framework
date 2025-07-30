@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Archetype.h"
-#include "RelativeProperties.h"
+#include "TornadoEngine/Modules/PropertyManager/Archetype.h"
+#include "TornadoEngine/Modules/PropertyManager/RelativeProperties.h"
 
 namespace nsTornadoEngine
 {

@@ -7,12 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
 #include <array>
 #include <memory>
-#include "ILexema.h"
-
 #include <magic_enum/magic_enum.hpp>
+
+#include "Base/Common/TypeDef.h"
+
+#include "Parser/Sources/ILexema.h"
 
 namespace nsCppParser
 {

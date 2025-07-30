@@ -10,9 +10,9 @@ See for more information LICENSE.md.
 #include <list>
 #include <memory>
 
-#include "TypeInfo.h"
-#include "ILexema.h"
-#include "TypeDeclarationLexema.h"
+#include "Parser/Sources/TypeInfo.h"
+#include "Parser/Sources/ILexema.h"
+#include "Parser/Sources/TypeDeclarationLexema.h"
 
 namespace nsCppParser
 {

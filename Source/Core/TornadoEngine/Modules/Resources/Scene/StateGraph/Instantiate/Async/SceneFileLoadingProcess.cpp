@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SceneFileLoadingProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneContext.h"
 
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneFileLoadingProcess.h"
 
 namespace nsTornadoEngine
 {

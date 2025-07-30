@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <string>
 #include <list>
 
-#include "IDumper.h"
+#include "ReflectionCodeGeneratorLib/Sources/IDumper.h"
 
 namespace nsReflectionCodeGenerator
 {

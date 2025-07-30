@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ICodeGenerator.h"
+#include "ReflectionCodeGeneratorLib/Sources/ICodeGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {

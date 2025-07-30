@@ -25,11 +25,10 @@ See for more information LICENSE.md.
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/ThreadIndexator.h"
 
-#include "TimeSliceEngine/LogDumper.h"
-#include "TimeSliceEngine/TimeSliceEngine.h"
-#include "TimeSliceEngine/ProjectConfigurator.h"
-#include "TimeSliceEngine/ProjectConfigContainer.h"
-
+#include "TornadoEngine/TimeSliceEngine/LogDumper.h"
+#include "TornadoEngine/TimeSliceEngine/TimeSliceEngine.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigurator.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
 
 using namespace nsTornadoEngine;
 using namespace nsBase;

@@ -5,22 +5,22 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ButtonBuilderSystem.h"
 
 #include "ImGuiWidgets/Include/Button.h"
 
-#include "Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
-#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
+#include "TornadoEngine/Components/Gui/Properties/TitleComponent.h"
 
-#include "Components/Gui/Properties/TitleComponent.h"
+#include "TornadoEngine/Handlers/Gui/IButtonClickHandler.h"
 
-#include "Handlers/Gui/IButtonClickHandler.h"
+#include "TornadoEngine/Components/Meta/PrefabOriginalGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneOriginalGuidComponent.h"
 
-#include "Components/Meta/PrefabOriginalGuidComponent.h"
-#include "Components/Meta/SceneOriginalGuidComponent.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Common/HandlerCallCollector.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Resources/Common/HandlerCallCollector.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Units/ButtonBuilderSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

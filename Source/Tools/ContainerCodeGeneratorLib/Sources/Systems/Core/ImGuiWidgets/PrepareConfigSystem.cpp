@@ -89,7 +89,7 @@ namespace nsContainerCodeGenerator::nsCore::nsImGuiWidgets
 
         conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.coreConfig.imGuiWidgetsConfig.includeListFileName;
 
-        conf.targetForCodeGeneration.includeListParams.dirToInclude = { configComponent->value.coreConfig.imGuiWidgetsConfig.imGuiWidgetsDirectory };
+        conf.targetForCodeGeneration.sourceRootPaths = {configComponent->value.coreConfig.imGuiWidgetsConfig.imGuiWidgetsDirectory};
 
         mEntMng->SetComponent(eid, reflectionConfigComponent);
     }

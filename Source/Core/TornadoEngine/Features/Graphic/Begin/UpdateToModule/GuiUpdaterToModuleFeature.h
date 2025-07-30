@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "Features/Graphic/Begin/UpdateToModule/TitleUpdaterSystem.h"
-#include "Features/Graphic/Begin/UpdateToModule/InputTextValueUpdaterSystem.h"
-#include "Features/Graphic/Begin/UpdateToModule/CameraUpdaterToModuleSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/UpdateToModule/TitleUpdaterSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/UpdateToModule/InputTextValueUpdaterSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/UpdateToModule/CameraUpdaterToModuleSystem.h"
 
 namespace nsGraphicWrapper
 {

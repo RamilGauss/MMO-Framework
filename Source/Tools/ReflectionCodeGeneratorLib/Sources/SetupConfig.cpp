@@ -5,19 +5,21 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SetupConfig.h"
 
 #include <fstream>
 #include <filesystem>
 #include <fmt/core.h>
 
-#include "Requirements.h"
 #include "Base/Common/SingletonManager.h"
-#include "Config.h"
-#include "JsonSerializer.h"
 #include "Base/Common/LoadFromFile.h"
 #include "Base/Common/TextFile.h"
 #include "Base/Common/PathOperations.h"
+
+#include "ReflectionCodeGeneratorLib/Sources/Config.h"
+#include "ReflectionCodeGeneratorLib/Sources/Cache.h"
+#include "ReflectionCodeGeneratorLib/Sources/JsonSerializer.h"
+#include "ReflectionCodeGeneratorLib/Sources/Requirements.h"
+#include "ReflectionCodeGeneratorLib/Sources/SetupConfig.h"
 
 namespace fs = std::filesystem;
 using namespace nsReflectionCodeGenerator;
@@ -47,7 +49,7 @@ bool TSetupConfig::Work()
 #else
         return false;
 #endif
-    ResolvePathes();
+    ConvertConfigToCache();
     return true;
 }
 //---------------------------------------------------------------------------------------------
@@ -65,21 +67,21 @@ void TSetupConfig::ShowManual()
 //---------------------------------------------------------------------------------------
 void TSetupConfig::DefaultConfig()
 {
-    auto mConfig = mConfigContainer->Config();
-    mConfig->targetForParsing.recursive = true;
-    mConfig->targetForParsing.directories.push_back("./Sources");
-    mConfig->targetForParsing.directories.push_back("../Parser/Sources");
+    auto config = mConfigContainer->Config();
+    config->targetForParsing.recursive = true;
+    config->targetForParsing.directories.push_back("./Sources");
+    config->targetForParsing.directories.push_back("../Parser/Sources");
 
-    mConfig->filter.attribute = "REFLECTION_ATTRIBUTE";
-    mConfig->filter.extensions.push_back(".h");
-    mConfig->filter.extensions.push_back(".hh");
-    mConfig->filter.extensions.push_back(".hpp");
+    config->filter.attribute = "REFLECTION_ATTRIBUTE";
+    config->filter.extensions.push_back(".h");
+    config->filter.extensions.push_back(".hh");
+    config->filter.extensions.push_back(".hpp");
 
-    mConfig->targetForCodeGeneration.directory = "./Sources";
-    mConfig->targetForCodeGeneration.header = "\tReflectionCodeGenerator";
+    config->targetForCodeGeneration.directory = "./Sources";
+    config->targetForCodeGeneration.header = "\tReflectionCodeGenerator";
 
-    mConfig->targetForCodeGeneration.appendTypeCustomizerMap = true;
-    mConfig->targetForCodeGeneration.includeListParams.includeListFileName = "IncludeList";
+    config->targetForCodeGeneration.appendTypeCustomizerMap = true;
+    config->targetForCodeGeneration.includeListParams.includeListFileName = "IncludeList";
 
     TSerializer jsonSerializer;
     jsonSerializer.exportDeclaration = "DllExport";
@@ -90,7 +92,7 @@ void TSetupConfig::DefaultConfig()
     jsonSerializer.externalSources.reset(new TExternalSources());
     jsonSerializer.externalSources->outFile = "./Sources/JsonOutFile.json";
 
-    mConfig->targetForCodeGeneration.implementations.insert({"JsonSerializerGenerator", jsonSerializer});
+    config->targetForCodeGeneration.implementations.insert({"JsonSerializerGenerator", jsonSerializer});
 
     TSerializer binaryMarshaller;
     binaryMarshaller.exportDeclaration = "DllExport";
@@ -102,7 +104,7 @@ void TSetupConfig::DefaultConfig()
     binaryMarshaller.externalSources.reset(new TExternalSources());
     binaryMarshaller.externalSources->outFile = "./Sources/BinaryOutFile.json";
 
-    mConfig->targetForCodeGeneration.implementations.insert({"BinaryMarshallerGenerator", binaryMarshaller});
+    config->targetForCodeGeneration.implementations.insert({"BinaryMarshallerGenerator", binaryMarshaller});
 }
 //---------------------------------------------------------------------------------------
 bool TSetupConfig::TryLoadConfig()
@@ -119,22 +121,36 @@ bool TSetupConfig::TryLoadConfig()
     return fillRes;
 }
 //---------------------------------------------------------------------------------------
-void TSetupConfig::ResolvePathes()
+void TSetupConfig::ConvertConfigToCache()
 {
-    auto pConfig = mConfigContainer->Config();
+    auto config = mConfigContainer->Config();
+    auto cache = SingletonManager()->Get<TCache>();
 
     // input
-    for (auto& dir : pConfig->targetForParsing.directories) {
-        dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
+    for (auto& dir : config->targetForParsing.directories) {
+        auto absPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
+        cache->targetForParsingAbsPaths.push_back(absPath);
     }
 
-    for (auto& dirToInclude : pConfig->targetForCodeGeneration.includeListParams.dirToInclude) {
-        dirToInclude = TPathOperations::CalculatePathBy(mAbsPathDirJson, dirToInclude);
+    cache->targetForCodeGenerationAbsPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, config->targetForCodeGeneration.directory);
+    cache->includeAbsFilePath = TPathOperations::CalculatePathBy(mAbsPathDirJson, config->targetForCodeGeneration.includeListParams.includeListFileName);
+
+    for (auto& impl : config->targetForCodeGeneration.implementations) {
+        TSerializerExt ser;
+        ser.className = impl.second.className;
+        ser.exportDeclaration = impl.second.exportDeclaration;
+        ser.nameSpaceName = impl.second.nameSpaceName;
+        ser.fileName = impl.second.fileName;
+        ser.absFilePath = TPathOperations::CalculatePathBy(mAbsPathDirJson, impl.second.fileName);
+        ser.filePathForInclude = TPathOperations::GetRelativePath(mAbsPathDirJson, impl.second.fileName);
+        cache->implementations.insert({impl.first, ser});
     }
 
-    // output
-    auto& dir = pConfig->targetForCodeGeneration.directory;
-    dir = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
+    auto& sourceRootPaths = pConfig->targetForCodeGeneration.sourceRootPaths;
+    if (sourceRootPaths.empty()) {
+        sourceRootPaths = ".";
+    }
+    sourceRootPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, sourceRootPath);
 }
 //---------------------------------------------------------------------------------------
 void TSetupConfig::ResolveJsonPath()

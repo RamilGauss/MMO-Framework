@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IJsonSerializer.h"
-#include "IBinaryMarshaller.h"
-#include "IImGuiSerializer.h"
-#include "IEcsComponentExtension.h"
-#include "IRunTimeTypeInformation.h"
-#include "ITypeFactory.h"
-#include "IDynamicCaster.h"
+#include "TornadoEngine/ReflectionAggregators/IJsonSerializer.h"
+#include "TornadoEngine/ReflectionAggregators/IBinaryMarshaller.h"
+#include "TornadoEngine/ReflectionAggregators/IImGuiSerializer.h"
+#include "TornadoEngine/ReflectionAggregators/IEcsComponentExtension.h"
+#include "TornadoEngine/ReflectionAggregators/IRunTimeTypeInformation.h"
+#include "TornadoEngine/ReflectionAggregators/ITypeFactory.h"
+#include "TornadoEngine/ReflectionAggregators/IDynamicCaster.h"
 
 namespace nsTornadoEngine
 {

@@ -6,7 +6,7 @@ add_library(TornadoEngineLib SHARED ${TornadoEngineSources})
 
 target_include_directories(TornadoEngineLib PRIVATE 
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Base/Include
-    ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Core/TornadoEngine
+    ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Core
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Modules
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Modules/GraphicEngine/imgui

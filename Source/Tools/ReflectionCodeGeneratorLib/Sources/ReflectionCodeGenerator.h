@@ -13,19 +13,20 @@ See for more information LICENSE.md.
 #include <set>
 #include <filesystem>
 
-#include "Config.h"
-#include "SetupConfig.h"
-#include "ProgramInfo.h"
-
-#include "OutDumper.h"
-#include "Dumper.h"
-
-#include "ITargetCodeGenerator.h"
-#include "IIncludeListGenerator.h"
-
 #include "Base/Common/TypeDef.h"
 
 #include "Parser/Sources/Parser.h"
+
+#include "ReflectionCodeGeneratorLib/Sources/Cache.h"
+#include "ReflectionCodeGeneratorLib/Sources/Config.h"
+#include "ReflectionCodeGeneratorLib/Sources/SetupConfig.h"
+#include "ReflectionCodeGeneratorLib/Sources/ProgramInfo.h"
+
+#include "ReflectionCodeGeneratorLib/Sources/OutDumper.h"
+#include "ReflectionCodeGeneratorLib/Sources/Dumper.h"
+
+#include "ReflectionCodeGeneratorLib/Sources/ITargetCodeGenerator.h"
+#include "ReflectionCodeGeneratorLib/Sources/IIncludeListGenerator.h"
 
 namespace nsReflectionCodeGenerator
 {
@@ -75,6 +76,7 @@ namespace nsReflectionCodeGenerator
 
         TTypeManager* mTypeManager = nullptr;
         TConfig* mConfig = nullptr;
+        TCache* mCache = nullptr;
 
         std::list<ITargetCodeGenerator*> mAddedGenerators;
 
@@ -129,5 +131,7 @@ namespace nsReflectionCodeGenerator
         nsCppParser::TTypeInfo* Find(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
             const std::list<std::string>& withinClassTypeNameList);
 
+        void CollectAbsPaths(const std::string& dir, std::unordered_set<std::string>& fileList);
+        void FindAbsPathAllFiles();
     };
  }

@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "Modules/Resources/Common/GuidConstants.h"
-#include "Share/MathStructs.h"
+#include "TornadoEngine/Modules/Resources/Common/GuidConstants.h"
+#include "TornadoEngine/Share/MathStructs.h"
 
 namespace nsTornadoEngine
 {

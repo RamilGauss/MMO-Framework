@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "ModuleType.h"
+#include "TornadoEngine/TimeSliceEngine/ModuleType.h"
 
 namespace nsTornadoEngine
 {

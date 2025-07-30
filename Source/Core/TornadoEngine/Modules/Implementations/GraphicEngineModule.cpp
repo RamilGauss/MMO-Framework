@@ -5,15 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Modules/Implementations/GraphicEngineModule.h"
-
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/PathOperations.h"
 
 #include "ImGuiWidgets/Include/Widget.h"
 
-#include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "Modules/Common/Modules.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Implementations/GraphicEngineModule.h"
 
 using namespace nsGraphicEngine;
 using namespace nsTornadoEngine; 

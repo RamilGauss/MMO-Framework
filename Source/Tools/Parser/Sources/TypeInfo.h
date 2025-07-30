@@ -13,9 +13,9 @@ See for more information LICENSE.md.
 #include <memory>
 #include <array>
 
-#include "MemberInfo.h"
-#include "InheritanceInfo.h"
-#include "MethodInfo.h"
+#include "Parser/Sources/MemberInfo.h"
+#include "Parser/Sources/InheritanceInfo.h"
+#include "Parser/Sources/MethodInfo.h"
 
 namespace nsCppParser
 {

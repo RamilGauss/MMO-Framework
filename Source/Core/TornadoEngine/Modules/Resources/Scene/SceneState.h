@@ -12,7 +12,6 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "Base/Common/TypeDef.h"
-
 #include "Base/Zones/ContextStateInProcess.h"
 
 namespace nsTornadoEngine

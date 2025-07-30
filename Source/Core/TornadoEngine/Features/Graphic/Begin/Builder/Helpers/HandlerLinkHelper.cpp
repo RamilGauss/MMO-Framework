@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Helpers/HandlerLinkHelper.h"
 
-#include "Modules/Resources/Common/GameObject.h"
+#include "TornadoEngine/Modules/Resources/Common/GameObject.h"
 
-#include "Components/Meta/UniverseGuidComponent.h"
-#include "Components/Meta/GuidComponent.h"
-#include "Components/Handler/LocalHandlerComponent.h"
-#include "Components/Handler/GlobalHandlerComponent.h"
+#include "TornadoEngine/Components/Meta/UniverseGuidComponent.h"
+#include "TornadoEngine/Components/Meta/GuidComponent.h"
+#include "TornadoEngine/Components/Handler/LocalHandlerComponent.h"
+#include "TornadoEngine/Components/Handler/GlobalHandlerComponent.h"
 
 namespace nsGraphicWrapper
 {

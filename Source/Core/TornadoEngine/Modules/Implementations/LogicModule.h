@@ -11,10 +11,10 @@ See for more information LICENSE.md.
 #include <vector>
 #include <list>
 
-#include "Modules/Interfaces/ILogicModule.h"
+#include "TornadoEngine/Modules/Interfaces/ILogicModule.h"
 
-#include "Features/Logic/Begin/BeginLogicFeature.h"
-#include "Features/Logic/End/EndLogicFeature.h"
+#include "TornadoEngine/Features/Logic/Begin/BeginLogicFeature.h"
+#include "TornadoEngine/Features/Logic/End/EndLogicFeature.h"
 
 namespace nsTornadoEngine
 {

@@ -7,11 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Handlers/Common/ILocalHandler.h"
-
 #include "ECS/Include/Config.h"
 
-#include "Components/Gui/Widgets/MenuNodeComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/MenuNodeComponent.h"
+#include "TornadoEngine/Handlers/Common/ILocalHandler.h"
 
 namespace nsGuiWrapper
 {

@@ -19,7 +19,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TextFile.h"
 #include "Base/Common/PathOperations.h"
 
-#include "Generated files/JsonSerializer.h"
+#include "GeneratedFiles/JsonSerializer.h"
 
 #include "Components/FilePathComponent.h"
 #include "Components/PathsComponent.h"

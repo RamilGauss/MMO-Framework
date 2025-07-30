@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CancelInstantiateProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/CancelInstantiate/CancelInstantiateProcess.h"
 //#include "Base/Zones/IContext.h"
 
 namespace nsTornadoEngine

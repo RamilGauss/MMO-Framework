@@ -5,11 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ICodeGenerator.h"
-#include "Base/Common/SingletonManager.h"
-#include "ConfigContainer.h"
 #include <filesystem>
 #include "fmt/core.h"
+
+#include "Base/Common/SingletonManager.h"
+#include "Base/Common/PathOperations.h"
+
+#include "ReflectionCodeGeneratorLib/Sources/ConfigContainer.h"
+#include "ReflectionCodeGeneratorLib/Sources/ICodeGenerator.h"
 
 namespace fs = std::filesystem;
 using namespace nsReflectionCodeGenerator;
@@ -28,9 +31,8 @@ void ICodeGenerator::Init(TPairList& result)
 //----------------------------------------------------------------------------------
 std::string ICodeGenerator::GeneratedFileFullPath(std::string fileNameWithExt)
 {
-    fs::path dir(mConfig->targetForCodeGeneration.directory);
-    auto path = dir.append(fileNameWithExt);
-    return path.string();
+    auto fileNameRelPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(mConfig->targetForCodeGeneration.sourceRootPaths, fileNameWithExt);
+    return fileNameRelPath;
 }
 //----------------------------------------------------------------------------------
 

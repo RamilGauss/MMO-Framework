@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "Share/MathStructs.h"
-#include "Share/PropertyOf.h"
+#include "TornadoEngine/Share/MathStructs.h"
+#include "TornadoEngine/Share/PropertyOf.h"
 
 #include "ECS/Include/IComponent.h"
 #include "ImGuiWidgets/Include/TextureUv.h"

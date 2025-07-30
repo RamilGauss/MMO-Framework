@@ -5,19 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "EntityInstantiatingProcess.h"
-
 #include <iterator>
 
 #include "Base/Common/GuidGenerator.h"
 
-#include "Modules/Resources/Common/ObjectHelper.h"
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Common/ObjectHelper.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneContext.h"
 
-#include "Components/Meta/UniverseIndexComponent.h"
-#include "Components/Meta/UniverseGuidComponent.h"
-#include "Components/Meta/SceneOriginalGuidComponent.h"
-#include "Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Meta/UniverseIndexComponent.h"
+#include "TornadoEngine/Components/Meta/UniverseGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneOriginalGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
+
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Sync/EntityInstantiatingProcess.h"
 
 namespace nsTornadoEngine
 {

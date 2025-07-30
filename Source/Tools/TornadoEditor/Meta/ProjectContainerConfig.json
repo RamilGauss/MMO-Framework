@@ -7,7 +7,7 @@
     "projectConfig": {
         "relPathToSources": ".",
 
-        "targetDirectory": "./Generated files/Container",
+        "targetDirectory": "./GeneratedFiles/Container",
         "exportDeclaration": "DllExport",
         "nameSpace": "nsTornadoEditor",
         "parseDirectory": "../Sources",
@@ -117,7 +117,7 @@
             "typeName": "TScenePartReflectionAggregator"
         },
 
-        "targetDirectory": "./Generated files/Aggregator",
+        "targetDirectory": "./GeneratedFiles/Aggregator",
 
         "exportDeclaration": "DllExport",
         "cExportDeclaration": "DllExport_C",

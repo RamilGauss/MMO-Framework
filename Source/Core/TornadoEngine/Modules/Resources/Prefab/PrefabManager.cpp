@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Modules/Resources/Common/ObjectHelper.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
+#include "TornadoEngine/Modules/Resources/Common/ObjectHelper.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
 
-#include "Generated files/TornadoEngineJsonSerializer.h"
+#include "TornadoEngine/GeneratedFiles/TornadoEngineJsonSerializer.h"
 
 namespace nsTornadoEngine
 {

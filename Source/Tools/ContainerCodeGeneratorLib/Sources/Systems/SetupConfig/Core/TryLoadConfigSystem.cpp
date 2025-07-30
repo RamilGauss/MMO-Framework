@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 #include "Components/CoreConfigComponent.h"
 #include "Components/PathsComponent.h"
 
-#include "Generated files/JsonSerializer.h"
+#include "GeneratedFiles/JsonSerializer.h"
 
 namespace nsContainerCodeGenerator::nsSetupConfig::nsCore
 {

@@ -13,8 +13,9 @@ See for more information LICENSE.md.
 #include <string>
 
 #include "Base/Common/TypeDef.h"
-#include "IContext.h"
 #include "Base/Common/ColanderVector.h"
+
+#include "TornadoEngine/Modules/Common/IContext.h"
 
 namespace nsTornadoEngine
 {

@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "VisibilityUpdateSystem.h"
-
 #include "ImGuiWidgets/Include/Window.h"
+
+#include "TornadoEngine/Features/Graphic/Begin/UpdateToModule/VisibilityUpdateSystem.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

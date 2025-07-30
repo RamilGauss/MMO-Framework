@@ -95,7 +95,7 @@ namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
 
         conf.targetForCodeGeneration.includeListParams.includeListFileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.includeListFileName;
-        conf.targetForCodeGeneration.includeListParams.dirToInclude.push_back(ecsAbsPath);
+        conf.targetForCodeGeneration.sourceRootPath = ecsAbsPath;
 
         mEntMng->SetComponent(eid, reflectionConfigComponent);
     }

@@ -1,16 +1,15 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.4.0, build 58 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, TypeInformation]
-// File has been generated at 2022_12_23 17:27:34.483
-	
+// ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2025_07_29 11:54:23.174
 #pragma once
 
 #include <vector>
 #include <string>
 #include <functional>
 #include "Base/Common/JsonMaster.h"
-#include "IncludeList.h"
+#include "ReflectionCodeGeneratorLib/Sources/IncludeList.h"
 
 namespace nsJson
 {
@@ -21,14 +20,15 @@ namespace nsJson
     
         struct TypeFunc
         {
+            int rtti = 0;
             std::function<void(void*, std::string&)>  serializeFunc;
             std::function<bool(void*, const std::string&, std::string&)> deserializeFunc;
         };
     
         static std::vector<TypeFunc> mTypeFuncVector;
-    
-        static void Init();
     public:
+        static void Init();
+    
         template <typename Type>
         static void Serialize(Type* p, std::string& str);
         template <typename Type>
@@ -39,9 +39,6 @@ namespace nsJson
         static bool Has(int rtti);
     
     public:
-        static std::string _SerializeEnum(nsCppParser::TypeCategory* p);
-        static void _DeserializeEnum(std::string& str, nsCppParser::TypeCategory* p);
-        
         static void _Serialize(nsReflectionCodeGenerator::TClassDesc* p, Jobj& obj);
         static void _Deserialize(nsReflectionCodeGenerator::TClassDesc* p, const Jobj& obj);
         
@@ -74,6 +71,7 @@ namespace nsJson
     template <typename Type>
     void TJsonSerializer::Serialize(Type* p, std::string& str)
     {
+    #undef GetObject
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         auto obj = doc.GetObject();
     
@@ -91,16 +89,16 @@ namespace nsJson
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         const auto parseFlags = rapidjson::ParseFlag::kParseFullPrecisionFlag | rapidjson::ParseFlag::kParseCommentsFlag | rapidjson::ParseFlag::kParseTrailingCommasFlag;
         rapidjson::ParseResult ok = doc.Parse<parseFlags>(str.data());
-        if ( !ok ) {
+        if (!ok) {
             auto errStr = GetParseError_En(ok.Code());
             err = "JSON parse error : " + std::string(errStr) + ", offset " + std::to_string(ok.Offset()) + "\n";
             return false;
         }
     
-        try{
+        try {
             auto obj = doc.GetObject();
             _Deserialize( p, obj );
-        } catch( std::exception& ex ) {
+        } catch (std::exception& ex) {
             err = ex.what();
             return false;
         }

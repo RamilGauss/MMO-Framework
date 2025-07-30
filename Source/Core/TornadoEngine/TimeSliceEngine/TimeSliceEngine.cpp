@@ -9,7 +9,6 @@ See for more information LICENSE.md.
 #include <stdarg.h>
 #include "fmt/core.h"
 
-#include "TimeSliceEngine/TimeSliceEngine.h"
 #include "Base/Common/BL_Debug.h"
 #include "Base/Common/ShareMisc.h"
 #include "Base/Common/HiTimer.h"
@@ -18,13 +17,14 @@ See for more information LICENSE.md.
 #include "Base/Common/ThreadIndexator.h"
 #include "Base/Common/SingletonManager.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Common/ModuleManager.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Common/ModuleManager.h"
 
-#include "TimeSliceEngine/IModule.h"
-#include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "TimeSliceEngine/ProjectConfigLoader.h"
-#include "TimeSliceEngine/ProjectConfigUnloader.h"
+#include "TornadoEngine/TimeSliceEngine/TimeSliceEngine.h"
+#include "TornadoEngine/TimeSliceEngine/IModule.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigLoader.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigUnloader.h"
 
 using namespace nsTornadoEngine;
 

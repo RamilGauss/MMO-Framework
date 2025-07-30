@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "SystemMakerSystem.h"
-#include "GlobalHandlerMakerSystem.h"
-#include "LocalHandlerMakerSystem.h"
+#include "TornadoEngine/Features/Logic/End/Maker/SystemMakerSystem.h"
+#include "TornadoEngine/Features/Logic/End/Maker/GlobalHandlerMakerSystem.h"
+#include "TornadoEngine/Features/Logic/End/Maker/LocalHandlerMakerSystem.h"
 
 namespace nsLogicWrapper
 {

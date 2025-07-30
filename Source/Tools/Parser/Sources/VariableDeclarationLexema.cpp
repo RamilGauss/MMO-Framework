@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include <list>
 #include "Base/Common/BL_Debug.h"
-#include "VariableDeclarationLexema.h"
+#include "Parser/Sources/VariableDeclarationLexema.h"
 
 using namespace nsCppParser;
 

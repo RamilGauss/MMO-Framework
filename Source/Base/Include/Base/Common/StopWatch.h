@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-namespace nsBase
+namespace nsBase::nsCommon
 {
     class DllExport TStopWatch
     {

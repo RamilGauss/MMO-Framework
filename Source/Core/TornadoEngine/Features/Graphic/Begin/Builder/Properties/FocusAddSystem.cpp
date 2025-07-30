@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "FocusAddSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/FocusAddSystem.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

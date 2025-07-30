@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
-
 #include <string>
 #include <list>
-#include "TokenInfo.h"
+
+#include "Base/Common/TypeDef.h"
+#include "Parser/Sources/TokenInfo.h"
 
 namespace nsCppParser
 {

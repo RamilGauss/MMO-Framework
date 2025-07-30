@@ -5,8 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Dumper.h"
 #include "Base/Common/SaveToFile.h"
+
+#include "ReflectionCodeGeneratorLib/Sources/Dumper.h"
 
 using namespace nsReflectionCodeGenerator;
 
@@ -23,4 +24,3 @@ void TDumper::Save(const std::string& absFileName, std::list<std::string>& conte
     }
     stf.Close();
 }
-    

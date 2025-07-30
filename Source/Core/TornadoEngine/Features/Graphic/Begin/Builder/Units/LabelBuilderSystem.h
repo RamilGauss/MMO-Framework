@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnAddCollectReactiveSystem.h"
 
-#include "Components/Gui/Widgets/LabelComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/LabelComponent.h"
 
 namespace nsGraphicWrapper
 {

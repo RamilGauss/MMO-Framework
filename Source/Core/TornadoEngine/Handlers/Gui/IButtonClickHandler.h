@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Config.h"
 
-#include "Handlers/Common/ILocalHandler.h"
+#include "TornadoEngine/Handlers/Common/ILocalHandler.h"
 
-#include "Components/Gui/Widgets/ButtonComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/ButtonComponent.h"
 
 namespace nsGuiWrapper
 {

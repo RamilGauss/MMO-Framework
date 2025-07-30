@@ -9,13 +9,13 @@ See for more information LICENSE.md.
 
 #include "Base/Zones/IHopProcess.h"
 
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/ComponentDeserializingProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneDeserializingProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneFileLoadingProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Async/ComponentDeserializingProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneDeserializingProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Async/SceneFileLoadingProcess.h"
 
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Sync/EntityInstantiatingProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Sync/PrefabInstantiatingProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Instantiate/Sync/UniverseIndexCreatingProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Sync/EntityInstantiatingProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Sync/PrefabInstantiatingProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Sync/UniverseIndexCreatingProcess.h"
 
 namespace nsBase::nsZones
 {

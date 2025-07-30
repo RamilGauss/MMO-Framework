@@ -139,7 +139,7 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
         auto sourceAbsPath = configComponent->value.engineSourcePath;
         sourceAbsPath += "\\";
 
-        conf.targetForCodeGeneration.includeListParams.dirToInclude.push_back(sourceAbsPath);
+        conf.targetForCodeGeneration.sourceRootPaths = {sourceAbsPath};
 
         mEntMng->SetComponent(eid, reflectionConfigComponent);
     }

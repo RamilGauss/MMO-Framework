@@ -9,10 +9,11 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "Config.h"
-#include "TypeManager.h"
-#include "ProgramInfo.h"
-#include "TypeNameDataBase.h"
+#include "ReflectionCodeGeneratorLib/Sources/Cache.h"
+#include "ReflectionCodeGeneratorLib/Sources/Config.h"
+#include "ReflectionCodeGeneratorLib/Sources/TypeManager.h"
+#include "ReflectionCodeGeneratorLib/Sources/ProgramInfo.h"
+#include "ReflectionCodeGeneratorLib/Sources/TypeNameDataBase.h"
 
 namespace nsReflectionCodeGenerator
 {
@@ -21,6 +22,7 @@ namespace nsReflectionCodeGenerator
     protected:
         TConfig* mConfig = nullptr;
         TTypeManager* mTypeManager = nullptr;
+        TCache* mCache = nullptr;
     public:
         using TStrList = std::list<std::string>;
         using TStrListPair = std::pair<std::string, TStrList>;

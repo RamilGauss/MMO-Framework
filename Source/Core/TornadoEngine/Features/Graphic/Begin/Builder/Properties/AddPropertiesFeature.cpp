@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "AddPropertiesFeature.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Properties/AddPropertiesFeature.h"
 
 namespace nsGraphicWrapper
 {

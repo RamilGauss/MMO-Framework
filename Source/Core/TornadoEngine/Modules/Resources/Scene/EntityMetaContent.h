@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Modules/Resources/Common/EntityContent.h"
+#include "TornadoEngine/Modules/Resources/Common/EntityContent.h"
 
 namespace nsTornadoEngine
 {

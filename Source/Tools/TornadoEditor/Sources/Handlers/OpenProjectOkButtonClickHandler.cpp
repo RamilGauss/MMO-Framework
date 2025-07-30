@@ -25,7 +25,7 @@ See for more information LICENSE.md.
 #include "AbsoluteFilePathComponent.h"
 #include "ProjectConfigComponent.h"
 
-#include "Generated files/TornadoEngineJsonSerializer.h"
+#include "GeneratedFiles/TornadoEngineJsonSerializer.h"
 #include "Components/Gui/Properties/TitleComponent.h"
 #include "LabelValueComponent.h"
 #include "FileHierarchyWindowTagComponent.h"

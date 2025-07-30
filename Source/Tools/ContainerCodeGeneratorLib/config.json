@@ -18,7 +18,7 @@
         "memberIgnore": ""
     },
     "targetForCodeGeneration": {
-        "directory": "./Sources/Generated files",
+        "directory": "./Sources/GeneratedFiles",
         "includeListParams": {
             "includeListFileName": "IncludeList",
             "dirToInclude": []
@@ -35,7 +35,7 @@
                 "keyValueMap": {},
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "./Sources/Generated files/JsonOutFile.json"
+                    "outFile": "./Sources/GeneratedFiles/JsonOutFile.json"
                 }
             }
         }

@@ -12,8 +12,9 @@ See for more information LICENSE.md.
 #include <list>
 #include <map>
 #include <functional>
-#include "Types.h"
-#include "MemberExtendedTypeInfo.h"
+
+#include "Parser/Sources/Types.h"
+#include "Parser/Sources/MemberExtendedTypeInfo.h"
 
 namespace nsCppParser
 {

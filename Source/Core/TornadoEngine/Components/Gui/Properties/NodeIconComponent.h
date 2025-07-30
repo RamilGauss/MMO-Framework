@@ -14,7 +14,7 @@ See for more information LICENSE.md.
 #include "ECS/Include/IComponent.h"
 #include "ImGuiWidgets/Include/TextureSize.h"
 
-#include "Share/PropertyOf.h"
+#include "TornadoEngine/Share/PropertyOf.h"
 
 namespace nsGuiWrapper
 {

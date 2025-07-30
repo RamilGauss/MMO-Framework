@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CommentRemover.h"
-#include "LineTokenEntity.h"
+#include "Parser/Sources/CommentRemover.h"
+#include "Parser/Sources/LineTokenEntity.h"
 
 using namespace nsCppParser;
 

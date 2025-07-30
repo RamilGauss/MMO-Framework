@@ -7,14 +7,14 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
 
 #include <string>
 
+#include "Base/Common/TypeDef.h"
 #include "GraphicEngine/IRenderable.h"
 
-#include "EntityViewer.h"
-#include "SystemViewer.h"
+#include "TornadoEngine/Modules/Gizmos/EntityViewer.h"
+#include "TornadoEngine/Modules/Gizmos/SystemViewer.h"
 
 namespace nsTornadoEngine
 {

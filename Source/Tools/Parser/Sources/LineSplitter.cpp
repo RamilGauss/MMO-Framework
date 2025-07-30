@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "LineSplitter.h"
-#include "LineTokenEntity.h"
-#include "PreprocessorSplitter.h"
-#include "ColonSplitter.h"
-#include "CommentRemover.h"
+#include "Parser/Sources/LineSplitter.h"
+#include "Parser/Sources/LineTokenEntity.h"
+#include "Parser/Sources/PreprocessorSplitter.h"
+#include "Parser/Sources/ColonSplitter.h"
+#include "Parser/Sources/CommentRemover.h"
 
 using namespace nsCppParser;
 

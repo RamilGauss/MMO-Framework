@@ -9,10 +9,10 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "Share/PropertyOf.h"
-
 #include "ECS/Include/IComponent.h"
 #include "ImGuiWidgets/Include/Focus.h"
+
+#include "TornadoEngine/Share/PropertyOf.h"
 
 namespace nsGuiWrapper
 {

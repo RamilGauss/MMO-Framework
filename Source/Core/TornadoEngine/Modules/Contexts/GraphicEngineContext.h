@@ -11,10 +11,10 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "Modules/Common/IContext.h"
-
 #include "ImGuiWidgets/Include/DialogStack.h"
-#include <GraphicEngine/GraphicEngineContext.h>
+#include "GraphicEngine/GraphicEngineContext.h"
+
+#include "TornadoEngine/Modules/Common/IContext.h"
 
 namespace nsTornadoEngine
 {

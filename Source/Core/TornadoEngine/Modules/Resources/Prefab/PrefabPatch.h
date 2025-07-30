@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "PrefabPatchOperation.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabPatchOperation.h"
 
 namespace nsTornadoEngine
 {

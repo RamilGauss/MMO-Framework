@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "StartedScenesInitSystem.h"
-#include "SceneInstantiatingSystem.h"
+#include "TornadoEngine/Features/Logic/End/Scene/StartedScenesInitSystem.h"
+#include "TornadoEngine/Features/Logic/End/Scene/SceneInstantiatingSystem.h"
 
 namespace nsLogicWrapper
 {

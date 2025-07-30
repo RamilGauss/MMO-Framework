@@ -12,10 +12,10 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 
 #include "ECS/Include/IComponent.h"
-#include <GraphicEngine/RenderableObject.h>
+#include "GraphicEngine/RenderableObject.h"
 
-#include "Share/MathStructs.h"
-#include "Share/PropertyOf.h"
+#include "TornadoEngine/Share/MathStructs.h"
+#include "TornadoEngine/Share/PropertyOf.h"
 
 namespace nsCommonWrapper
 {

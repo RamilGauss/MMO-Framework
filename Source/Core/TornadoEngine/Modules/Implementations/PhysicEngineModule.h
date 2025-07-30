@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <memory>
 
-#include "Modules/Interfaces/IPhysicEngineModule.h"
+#include "TornadoEngine/Modules/Interfaces/IPhysicEngineModule.h"
 
 namespace nsTornadoEngine
 {

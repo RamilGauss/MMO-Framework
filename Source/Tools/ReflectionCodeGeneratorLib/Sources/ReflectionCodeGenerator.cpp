@@ -5,7 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ReflectionCodeGenerator.h"
 
 #include <algorithm>
 #include <iterator>
@@ -18,7 +17,8 @@ See for more information LICENSE.md.
 #include "Base/Common/LoadFromFile.h"
 #include "Base/Common/SaveToFile.h"
 
-#include "JsonSerializer.h"
+#include "ReflectionCodeGeneratorLib/Sources/ReflectionCodeGenerator.h"
+#include "ReflectionCodeGeneratorLib/Sources/JsonSerializer.h"
 
 namespace fs = std::filesystem;
 
@@ -31,6 +31,7 @@ TReflectionCodeGenerator::TReflectionCodeGenerator()
 {
     mTypeManager = SingletonManager()->Get<TTypeManager>();
     mConfig = SingletonManager()->Get<TConfigContainer>()->Config();
+    mCache = SingletonManager()->Get<TCache>();
 
     mDumper = &mDumperImpl;
     mOutDumper = &mOutDumperImpl;
@@ -91,6 +92,8 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
         // DFT U Customized = Reference.
         // DFT \ Customized = Generate.
         FillTypeNameDataBase();
+
+        FindAbsPathAllFiles();
 
         // Generate by each of Generator implementations (by Generate)
         CollectDumpFromGenerators();
@@ -587,5 +590,47 @@ TTypeInfo* TReflectionCodeGenerator::Find(TMemberExtendedTypeInfo* pMemberExtend
     }
 
     return nullptr;
+}
+//-----------------------------------------------------------------------------------------------------------
+void TReflectionCodeGenerator::CollectAbsPaths(const std::string& dir, std::unordered_set<std::string>& fileList)
+{
+    std::unordered_set<std::string> extSet(mConfig->filter.extensions.begin(), mConfig->filter.extensions.end());
+
+    fs::recursive_directory_iterator dirIt((char*)dir.data());
+
+    for (auto& p : dirIt) {
+        auto path = p.path();
+        std::string ext = path.extension().string();
+        if (extSet.find(ext) == extSet.end()) {
+            continue;
+        }
+        auto str = std::filesystem::canonical(path).string();
+        fileList.insert(str);
+    }
+}
+//-----------------------------------------------------------------------------------------------------------
+void TReflectionCodeGenerator::FindAbsPathAllFiles()
+{
+    const auto& sourceRootPath = mConfig->targetForCodeGeneration.sourceRootPath;
+    CollectAbsPaths(sourceRootPath, mCache->absPathAllFilesInDir);
+
+    auto& includeListFileName = mConfig->targetForCodeGeneration.includeListParams.includeListFileName;
+    std::filesystem::path targetDirPath(mConfig->targetForCodeGeneration.directory);
+    auto absPathIncludeFilePath = targetDirPath / includeListFileName;
+    auto absPathIncludeFile = absPathIncludeFilePath.string();
+
+    std::string includeRelPath;
+    TPathOperations::GetRelativePath(sourceRootPath, absPathIncludeFile, includeRelPath);
+    mConfig->targetForCodeGeneration.includeListParams.includeListFileName = includeRelPath;
+
+    for (auto& gen : mGenerators) {
+        auto fileName = gen.generator->GetSerializer()->fileName;
+        auto absFileNamePath = targetDirPath / fileName;
+        auto absFileName = absFileNamePath.string();
+
+        std::string fileNameRelPath;
+        TPathOperations::GetRelativePath(sourceRootPath, absFileName, fileNameRelPath);
+        gen.generator->GetSerializer()->fileName = fileNameRelPath;
+    }
 }
 //-----------------------------------------------------------------------------------------------------------

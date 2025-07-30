@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "FunctionLexema.h"
+#include "Parser/Sources/FunctionLexema.h"
 
 namespace nsCppParser
 {

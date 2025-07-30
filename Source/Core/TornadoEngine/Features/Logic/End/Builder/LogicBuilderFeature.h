@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "SystemBuilderSystem.h"
+#include "TornadoEngine/Features/Logic/End/Builder/SystemBuilderSystem.h"
 
 namespace nsLogicWrapper
 {

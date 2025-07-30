@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Modules/Common/LogicWrapperModule.h"
-#include "Modules/Common/FeatureManager.h"
+#include "TornadoEngine/Modules/Common/LogicWrapperModule.h"
+#include "TornadoEngine/Modules/Common/FeatureManager.h"
 
 namespace nsTornadoEngine
 {

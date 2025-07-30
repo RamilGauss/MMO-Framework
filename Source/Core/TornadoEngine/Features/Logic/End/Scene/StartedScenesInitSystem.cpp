@@ -5,11 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "StartedScenesInitSystem.h"
-#include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "Modules/Common/Modules.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
 
-#include "Modules/Resources/Scene/SceneManager.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Scene/SceneManager.h"
+
+#include "TornadoEngine/Features/Logic/End/Scene/StartedScenesInitSystem.h"
 
 using namespace nsLogicWrapper;
 using namespace nsTornadoEngine;

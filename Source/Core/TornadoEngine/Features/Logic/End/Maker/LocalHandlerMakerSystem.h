@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnAddCollectReactiveSystem.h"
 
-#include "Components/Handler/LocalHandlerComponent.h"
+#include "TornadoEngine/Components/Handler/LocalHandlerComponent.h"
 
 namespace nsLogicWrapper
 {

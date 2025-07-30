@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SortingEntityByRankProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Save/SortingEntityByRankProcess.h"
 
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneContext.h"
 
 namespace nsTornadoEngine
 {

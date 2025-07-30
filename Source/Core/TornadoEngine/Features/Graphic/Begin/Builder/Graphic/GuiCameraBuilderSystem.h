@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnAddCollectReactiveSystem.h"
 
-#include "Components/Graphic/GuiCameraTagComponent.h"
+#include "TornadoEngine/Components/Graphic/GuiCameraTagComponent.h"
 
 namespace nsGraphicWrapper
 {

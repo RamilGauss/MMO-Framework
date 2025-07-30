@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "MainWindowMakerSystem.h"
-
 #include "ImGuiWidgets/Include/MainWindow.h"
 
-#include <Modules/Common/Modules.h>
-#include <Modules/PropertyManager/PropertyManager.h>
+#include "TornadoEngine/Features/Graphic/Begin/Maker/Frames/MainWindowMakerSystem.h"
+
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/PropertyManager/PropertyManager.h"
 
 using namespace nsGraphicWrapper;
 

@@ -6,14 +6,16 @@ See for more information LICENSE.md.
 */
 
 
-#include "ProjectConfigLoader.h"
 #include "Base/Common/LoaderDLLFactory.h"
 #include "Base/Common/TextFile.h"
-#include "Generated files/TornadoEngineJsonSerializer.h"
 #include "Base/Common/PathOperations.h"
 
-#include "Modules/Resources/Common/ResourceManager.h"
-#include "Modules/Common/Modules.h"
+#include "TornadoEngine/GeneratedFiles/TornadoEngineJsonSerializer.h"
+
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigLoader.h"
+
+#include "TornadoEngine/Modules/Resources/Common/ResourceManager.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
 
 using namespace nsTornadoEngine;
 using namespace nsBase::nsCommon;

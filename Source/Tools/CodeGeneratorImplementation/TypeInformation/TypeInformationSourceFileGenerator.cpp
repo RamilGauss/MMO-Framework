@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 #include "fmt/core.h"
 #include "Base/Common/BL_Debug.h"
 
-#include "Parser/Sources/Generated files/JsonSerializer.h"
+#include "Parser/Sources/GeneratedFiles/JsonSerializer.h"
 
 using namespace nsCodeGeneratorImplementation;
 using namespace nsCppParser;
@@ -24,7 +24,7 @@ void TTypeInformationSourceFileGenerator::Work()
 
     AddInclude("Base/Common/SingletonManager.h");
     AddInclude("Base/Common/RunTimeTypeIndex.h");
-    AddInclude("Parser/Sources/Generated files/JsonSerializer.h");
+    AddInclude("Parser/Sources/GeneratedFiles/JsonSerializer.h");
 
     AddEmptyLine();
 

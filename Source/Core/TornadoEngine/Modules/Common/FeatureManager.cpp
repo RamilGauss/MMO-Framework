@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Modules/Common/FeatureManager.h"
+#include "TornadoEngine/Modules/Common/FeatureManager.h"
 
 using namespace nsTornadoEngine;
 using namespace nsECSFramework;

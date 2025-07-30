@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ComponentReflectionAggregator.h"
-#include "HandlerReflectionAggregator.h"
-#include "SystemReflectionAggregator.h"
-#include "MenuItemReflectionAggregator.h"
-#include "ImGuiWidgetsReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/ComponentReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/HandlerReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/SystemReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/MenuItemReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/ImGuiWidgetsReflectionAggregator.h"
 
 namespace nsTornadoEngine
 {

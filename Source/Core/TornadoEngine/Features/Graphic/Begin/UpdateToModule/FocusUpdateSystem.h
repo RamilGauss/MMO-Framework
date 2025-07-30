@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnUpdateCollectReactiveSystem.h"
 
-#include "Components/Gui/Properties/FocusComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/FocusComponent.h"
 
 namespace nsGraphicWrapper
 {

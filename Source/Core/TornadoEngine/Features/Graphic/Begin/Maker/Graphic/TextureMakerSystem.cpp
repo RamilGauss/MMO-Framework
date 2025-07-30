@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TextureMakerSystem.h"
-
-#include "Modules/Common/Modules.h"
-#include "Modules/Resources/Common/ResourceManager.h"
-
 #include "GraphicEngine/TextureFactory.h"
+
+#include "TornadoEngine/Features/Graphic/Begin/Maker/Graphic/TextureMakerSystem.h"
+
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Common/ResourceManager.h"
 
 using namespace nsGraphicWrapper;
 

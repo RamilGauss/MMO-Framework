@@ -5,17 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "PrefabInstantiatingProcess.h"
-
 #include <iterator>
 
-#include "Components/Meta/SceneOriginalGuidComponent.h"
-#include "Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneOriginalGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
 
-#include "Modules/Resources/Common/ObjectHelper.h"
-#include "Modules/Resources/Prefab/InstantiatePrefabParams.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Common/ObjectHelper.h"
+#include "TornadoEngine/Modules/Resources/Prefab/InstantiatePrefabParams.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneContext.h"
+
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/Sync/PrefabInstantiatingProcess.h"
 
 namespace nsTornadoEngine
 {

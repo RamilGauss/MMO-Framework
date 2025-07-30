@@ -5,10 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Modules/Resources/Common/GameObject.h"
-#include "Modules/Resources/Common/GuidConstants.h"
-#include "Components/Meta/ParentGuidComponent.h"
-#include "Components/Meta/GuidComponent.h"
+#include "TornadoEngine/Modules/Resources/Common/GameObject.h"
+#include "TornadoEngine/Modules/Resources/Common/GuidConstants.h"
+
+#include "TornadoEngine/Components/Meta/ParentGuidComponent.h"
+#include "TornadoEngine/Components/Meta/GuidComponent.h"
 
 namespace nsTornadoEngine
 {

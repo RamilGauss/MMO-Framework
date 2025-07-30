@@ -18,10 +18,10 @@
         "memberIgnore": ""
     },
     "targetForCodeGeneration": {
-        "directory": "./Sources/Generated files",
+        "sourceRootPaths": ["./Sources"],
+        "directory": "./Sources/GeneratedFiles",
         "includeListParams": {
-            "includeListFileName": "IncludeList",
-            "dirToInclude": ["."]
+            "includeListFileName": "IncludeList"
         },
         "header": "\tParser",
         "typeCustomizerMap": {},
@@ -35,7 +35,7 @@
                 "keyValueMap": {},
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "./Sources/Generated files/JsonOutFile.json"
+                    "outFile": "./Sources/GeneratedFiles/JsonOutFile.json"
                 }
             }
         }

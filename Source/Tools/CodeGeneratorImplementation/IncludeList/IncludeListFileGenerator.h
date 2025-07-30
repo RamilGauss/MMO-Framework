@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <unordered_set>
+
 #include "ReflectionCodeGeneratorLib/Sources/IFileGenerator.h"
 
 namespace nsCodeGeneratorImplementation
@@ -21,9 +23,5 @@ namespace nsCodeGeneratorImplementation
 
     private:
         void AddIncludes();
-
-        using TStrSet = std::set<std::string>;
-
-        void CollectAbsPaths(const std::string& dir, TStrSet& fileList);
     };
 }

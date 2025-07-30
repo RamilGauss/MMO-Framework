@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "ILexema.h"
-#include "TypeReference.h"
-#include "MethodInfo.h"
+#include "Parser/Sources/ILexema.h"
+#include "Parser/Sources/TypeReference.h"
+#include "Parser/Sources/MethodInfo.h"
 
 namespace nsCppParser
 {

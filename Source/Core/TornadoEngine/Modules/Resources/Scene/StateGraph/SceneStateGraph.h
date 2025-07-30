@@ -18,7 +18,7 @@ See for more information LICENSE.md.
 #include "Base/Zones/ZoneManager.h"
 #include "Base/Zones/Zone.h"
 
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneContext.h"
 
 namespace nsTornadoEngine
 {

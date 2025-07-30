@@ -12,9 +12,9 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/TextFile.h"
 
-#include "ResourceContentMap.h"
-#include "Generated files/TornadoEngineJsonSerializer.h"
-#include "Modules/Common/Modules.h"
+#include "TornadoEngine/GeneratedFiles/TornadoEngineJsonSerializer.h"
+#include "TornadoEngine/Modules/Resources/Common/ResourceContentMap.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
 
 namespace nsTornadoEngine
 {

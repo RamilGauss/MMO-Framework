@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "EntitySplitter.h"
-
 #include <boost/wave/token_ids.hpp>
+
+#include "Parser/Sources/EntitySplitter.h"
 
 using namespace nsCppParser;
 using namespace boost::wave;

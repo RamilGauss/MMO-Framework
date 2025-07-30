@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ExtendedInfoTypeExtractor.h"
-
 #include <cassert>
 #include "Base/Common/BL_Debug.h"
+
+#include "Parser/Sources/ExtendedInfoTypeExtractor.h"
 
 using namespace nsCppParser;
 

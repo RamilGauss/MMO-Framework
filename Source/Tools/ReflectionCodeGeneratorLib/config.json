@@ -19,15 +19,13 @@
         "memberIgnore": "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {
+        "sourceRootPaths": [".."],
         "directory": "./Sources",
         "includeListParams": {
-            "includeListFileName": "IncludeList",
-            "dirToInclude": []
+            "includeListFileName": "IncludeList"
         },
         "header": "\tReflectionCodeGenerator",
-        "typeCustomizerMap": {
-            "vector_static_t": "VECTOR"
-        },
+        "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,
         "implementations": {
             "JsonSerializerGenerator": {
@@ -37,17 +35,8 @@
                 "className": "TJsonSerializer",
                 "keyValueMap": {},
                 "externalSources": {
-                    "inFileList": [],
+                    "inFileList": ["../Parser/Sources/GeneratedFiles/JsonOutFile.json"],
                     "outFile": "./Sources/JsonOutFile.json"
-                }
-            },
-            "BinaryMarshallerGenerator": {
-                "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsBinary",
-                "fileName": "BinaryMarshaller",
-                "className": "TBinaryMarshaller",
-                "keyValueMap": {
-                    "beginId": "666"
                 }
             }
         }

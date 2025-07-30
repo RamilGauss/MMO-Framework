@@ -8,10 +8,10 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "Base/Common/TypeDef.h"
-
-#include "ILexema.h"
-#include "Types.h"
 #include "Base/Common/BL_Debug.h"
+
+#include "Parser/Sources/ILexema.h"
+#include "Parser/Sources/Types.h"
 
 namespace nsCppParser
 {

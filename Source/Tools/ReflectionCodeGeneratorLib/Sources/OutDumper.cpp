@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "OutDumper.h"
-#include "JsonSerializer.h"
 #include "Base/Common/SaveToFile.h"
+
+#include "ReflectionCodeGeneratorLib/Sources/OutDumper.h"
+#include "ReflectionCodeGeneratorLib/Sources/JsonSerializer.h"
 
 using namespace nsReflectionCodeGenerator;
 

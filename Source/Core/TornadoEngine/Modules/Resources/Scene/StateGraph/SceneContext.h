@@ -17,11 +17,11 @@ See for more information LICENSE.md.
 
 #include "Base/Zones/HopProcessContext.h"
 
-#include "Modules/Resources/Scene/InstantiateSceneParams.h"
-#include "Modules/Resources/Scene/EntityMetaContent.h"
-#include "Modules/Resources/Scene/SceneResourceContent.h"
-#include "Modules/Resources/Scene/SceneCacheManager.h"
-#include "Modules/Resources/Scene/UniverseManager.h"
+#include "TornadoEngine/Modules/Resources/Scene/InstantiateSceneParams.h"
+#include "TornadoEngine/Modules/Resources/Scene/EntityMetaContent.h"
+#include "TornadoEngine/Modules/Resources/Scene/SceneResourceContent.h"
+#include "TornadoEngine/Modules/Resources/Scene/SceneCacheManager.h"
+#include "TornadoEngine/Modules/Resources/Scene/UniverseManager.h"
 
 namespace nsECSFramework
 {

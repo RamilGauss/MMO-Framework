@@ -9,12 +9,12 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "Features/Graphic/Begin/GraphicContext/OnAddUniverseContextSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/GraphicContext/OnAddUniverseContextSystem.h"
 
-#include "Features/Graphic/Begin/Maker/GuiMakerFeature.h"
-#include "Features/Graphic/Begin/Builder/GuiBuilderFeature.h"
-#include "Features/Graphic/Begin/Terminator/GuiTerminatorFeature.h"
-#include "Features/Graphic/Begin/UpdateToModule/GuiUpdaterToModuleFeature.h"
+#include "TornadoEngine/Features/Graphic/Begin/Maker/GuiMakerFeature.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/GuiBuilderFeature.h"
+#include "TornadoEngine/Features/Graphic/Begin/Terminator/GuiTerminatorFeature.h"
+#include "TornadoEngine/Features/Graphic/Begin/UpdateToModule/GuiUpdaterToModuleFeature.h"
 
 namespace nsGraphicWrapper
 {

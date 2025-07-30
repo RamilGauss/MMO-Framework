@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
-
 #include <list>
+
+#include "Base/Common/TypeDef.h"
 
 #include "ECS/Include/Entity.h"
 #include "ECS/Include/EntityManager.h"

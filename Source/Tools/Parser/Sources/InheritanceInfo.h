@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "MemberInfo.h"
-#include "Types.h"
-#include "TypeReference.h"
+#include "Parser/Sources/MemberInfo.h"
+#include "Parser/Sources/Types.h"
+#include "Parser/Sources/TypeReference.h"
 
 namespace nsCppParser
 {

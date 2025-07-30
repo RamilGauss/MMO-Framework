@@ -9,10 +9,10 @@ See for more information LICENSE.md.
 
 #include "Base/Common/CallBackRegistrator.h"
 
-#include "Modules/Interfaces/IGraphicEngineModule.h"
+#include "TornadoEngine/Modules/Interfaces/IGraphicEngineModule.h"
 
-#include "Features/Graphic/Begin/BeginGraphicFeature.h"
-#include "Features/Graphic/End/EndGraphicFeature.h"
+#include "TornadoEngine/Features/Graphic/Begin/BeginGraphicFeature.h"
+#include "TornadoEngine/Features/Graphic/End/EndGraphicFeature.h"
 
 namespace nsTornadoEngine
 {

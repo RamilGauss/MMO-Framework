@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
-#include "IdentifierToken.h"
+#include "Parser/Sources/IdentifierToken.h"
 
 namespace nsCppParser
 {

@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "OnAddUniverseContextSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/GraphicContext/OnAddUniverseContextSystem.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Implementations/GraphicEngineModule.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Implementations/GraphicEngineModule.h"
 
 using namespace nsGraphicWrapper;
 

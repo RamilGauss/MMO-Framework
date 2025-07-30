@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Modules/Common/IContextManager.h"
-#include "Modules/Contexts/GraphicEngineContext.h"
-
-#include "Modules/Common/LogicWrapperModule.h"
 #include "GraphicEngine/GraphicEngine.h"
+
+#include "TornadoEngine/Modules/Contexts/GraphicEngineContext.h"
+#include "TornadoEngine/Modules/Common/IContextManager.h"
+#include "TornadoEngine/Modules/Common/LogicWrapperModule.h"
 
 namespace nsTornadoEngine
 {

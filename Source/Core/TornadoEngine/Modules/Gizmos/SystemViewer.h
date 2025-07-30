@@ -13,6 +13,8 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/StatisticsValue.h"
 
+#include "ECS/Include/Feature.h"
+
 #include "GraphicEngine/IRenderable.h"
 #include "GraphicEngine/imgui/imgui.h"
 
@@ -21,8 +23,6 @@ See for more information LICENSE.md.
 #include "ImGuiWidgets/Include/Label.h"
 #include "ImGuiWidgets/Include/TreeNode.h"
 #include "ImGuiWidgets/Include/Button.h"
-
-#include "ECS/Include/Feature.h"
 
 namespace nsTornadoEngine
 {

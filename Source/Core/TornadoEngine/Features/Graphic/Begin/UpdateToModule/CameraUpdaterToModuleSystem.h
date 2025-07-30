@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/ExecuteSystem.h"
 
-#include "Components/Gui/Properties/TitleComponent.h"
-#include "Share/HandlerPool.h"
+#include "TornadoEngine/Components/Gui/Properties/TitleComponent.h"
+#include "TornadoEngine/Share/HandlerPool.h"
 
 namespace nsGraphicWrapper
 {

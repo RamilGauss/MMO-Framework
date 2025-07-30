@@ -13,15 +13,15 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/SingletonManager.h"
 
-#include "ITokenEntity.h"
-#include "TypeInfo.h"
-#include "BlockTokenEntity.h"
-#include "LineSplitter.h"
-#include "ParserResultContainer.h"
-#include "LexemaEngine.h"
-#include "BlockLexemaEntity.h"
-#include "TypeInfoCollector.h"
-#include "ExtendedInfoTypeExtractor.h"
+#include "Parser/Sources/ITokenEntity.h"
+#include "Parser/Sources/TypeInfo.h"
+#include "Parser/Sources/BlockTokenEntity.h"
+#include "Parser/Sources/LineSplitter.h"
+#include "Parser/Sources/ParserResultContainer.h"
+#include "Parser/Sources/LexemaEngine.h"
+#include "Parser/Sources/BlockLexemaEntity.h"
+#include "Parser/Sources/TypeInfoCollector.h"
+#include "Parser/Sources/ExtendedInfoTypeExtractor.h"
 
 namespace nsCppParser
 {

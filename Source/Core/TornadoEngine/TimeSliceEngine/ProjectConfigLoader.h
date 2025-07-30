@@ -14,9 +14,9 @@ See for more information LICENSE.md.
 #include "Base/Common/Logger.h"
 #include "Base/Common/TextFile.h"
 
-#include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "TimeSliceEngine/TimeSliceEngine.h"
-#include "Generated files/TornadoEngineJsonSerializer.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/TimeSliceEngine/TimeSliceEngine.h"
+#include "TornadoEngine/GeneratedFiles/TornadoEngineJsonSerializer.h"
 
 namespace nsTornadoEngine
 {

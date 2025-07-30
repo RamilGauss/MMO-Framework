@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include <ECS/Include/OnUpdateInstantReactiveSystem.h>
+#include "ECS/Include/OnUpdateInstantReactiveSystem.h"
 #include "ECS/Include/InitSystem.h"
 
-#include "Components/Gui/Properties/InputTextValueComponent.h"
-#include "Share/HandlerPool.h"
+#include "TornadoEngine/Components/Gui/Properties/InputTextValueComponent.h"
+#include "TornadoEngine/Share/HandlerPool.h"
 
 namespace nsGraphicWrapper
 {

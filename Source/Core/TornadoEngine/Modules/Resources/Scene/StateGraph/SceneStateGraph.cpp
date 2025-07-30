@@ -5,16 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SceneStateGraph.h"
 
 #include "Base/Zones/ContextState.h"
 
-#include "Modules/Resources/Scene/StateGraph/Instantiate/InstantiateProcess.h"
-#include "Modules/Resources/Scene/StateGraph/CancelInstantiate/CancelInstantiateProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Destroy/DestroyProcess.h"
-#include "Modules/Resources/Scene/StateGraph/Save/SaveProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Instantiate/InstantiateProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/CancelInstantiate/CancelInstantiateProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Destroy/DestroyProcess.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Save/SaveProcess.h"
 
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneStateGraph.h"
 
 namespace nsTornadoEngine
 {

@@ -5,20 +5,19 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "EntityViewer.h"
-
-
 #include "Base/Common/SingletonManager.h"
+
 #include "ECS/Include/EntityManagerMaster.h"
 #include "ECS/Include/EntityManager.h"
 
 #include "GraphicEngine/imgui/imgui_internal.h"
 
-#include "Components/Meta/GuidComponent.h"
-#include "Components/Meta/NameComponent.h"
+#include "TornadoEngine/Modules/Gizmos/EntityViewer.h"
+#include "TornadoEngine/Components/Meta/GuidComponent.h"
+#include "TornadoEngine/Components/Meta/NameComponent.h"
 
-#include "TimeSliceEngine/ProjectConfigContainer.h"
-#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/ReflectionAggregators/ScenePartReflectionAggregator.h"
 
 using namespace nsTornadoEngine;
 

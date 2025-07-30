@@ -5,8 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TypeReference.h"
 #include "Base/Common/StringExtensions.h"
+#include "Parser/Sources/TypeReference.h"
 
 namespace nsCppParser
 {

@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 #include <memory>
-#include "TypeManager.h"
+#include "Parser/Sources/TypeManager.h"
 
 using namespace nsCppParser;
 

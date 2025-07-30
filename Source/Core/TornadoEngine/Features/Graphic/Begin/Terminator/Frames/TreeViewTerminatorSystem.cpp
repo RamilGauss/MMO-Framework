@@ -5,17 +5,17 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TreeViewTerminatorSystem.h"
-
-#include "Components/Meta/GuidComponent.h"
-#include "Components/Meta/ParentGuidComponent.h"
-#include "Components/Gui/Widgets/FrameComponent.h"
-#include "Components/Gui/Widgets/WindowComponent.h"
-#include "Components/Gui/Widgets/FrameComponent.h"
-#include "Components/Gui/Widgets/DialogComponent.h"
-#include "Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
-
 #include "ImGuiWidgets/Include/TreeView.h"
+
+#include "TornadoEngine/Components/Meta/GuidComponent.h"
+#include "TornadoEngine/Components/Meta/ParentGuidComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/FrameComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/WindowComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/FrameComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/DialogComponent.h"
+
+#include "TornadoEngine/Features/Graphic/Begin/Terminator/Frames/TreeViewTerminatorSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/Builder/Helpers/UnitBuilderHelper.h"
 
 using namespace nsGraphicWrapper;
 

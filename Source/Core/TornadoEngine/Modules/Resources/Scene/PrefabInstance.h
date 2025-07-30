@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include <string>
 
-#include "Share/MathStructs.h"
+#include "TornadoEngine/Share/MathStructs.h"
 
 namespace nsTornadoEngine
 {

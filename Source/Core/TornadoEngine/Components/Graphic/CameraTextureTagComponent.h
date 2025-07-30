@@ -12,7 +12,7 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 
 #include "ECS/Include/IComponent.h"
-#include <GraphicEngine/Texture.h>
+#include "GraphicEngine/Texture.h"
 
 namespace nsGraphicWrapper
 {

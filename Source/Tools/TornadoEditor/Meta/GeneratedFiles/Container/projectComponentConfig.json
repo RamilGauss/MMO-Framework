@@ -1,0 +1,102 @@
+{
+    "targetForParsing": {
+        "directories": [
+            "..\\..\\..\\Sources"
+        ],
+        "recursive": true
+    },
+    "filter": {
+        "extensions": [
+            ".h",
+            ".h++",
+            ".hh",
+            ".hpp",
+            ".hxx"
+        ],
+        "attribute": "",
+        "inheritances": [
+            [
+                "nsECSFramework::IComponent"
+            ]
+        ],
+        "memberIgnore": "IGNORE_ATTRIBUTE"
+    },
+    "targetForCodeGeneration": {
+        "directory": ".",
+        "header": "Project Component",
+        "typeCustomizerMap": {},
+        "appendTypeCustomizerMap": true,
+        "implementations": {
+            "DynamicCaster": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "TComponentDynamicCaster",
+                "fileName": "ComponentDynamicCaster",
+                "externalSources": {
+                    "inFileList": [
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\GeneratedFiles\\Container\\coreComponentDynamicCasterOut.json"
+                    ],
+                    "outFile": ""
+                },
+                "keyValueMap": {}
+            },
+            "EcsComponentExtension": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "TComponentEntMng",
+                "fileName": "ComponentEntMng",
+                "externalSources": {
+                    "inFileList": [
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\GeneratedFiles\\Container\\coreComponentEcsOut.json"
+                    ],
+                    "outFile": ""
+                },
+                "keyValueMap": {
+                    "entityManagerHeaderPath": "ECS/Include/EntityManager.h"
+                }
+            },
+            "JsonSerializerGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "TComponentJson",
+                "fileName": "ComponentJson",
+                "externalSources": {
+                    "inFileList": [
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\GeneratedFiles\\Container\\coreComponentJsonOut.json"
+                    ],
+                    "outFile": ""
+                },
+                "keyValueMap": {}
+            },
+            "RunTimeTypeInformationGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "TComponentRtti",
+                "fileName": "ComponentRtti",
+                "externalSources": {
+                    "inFileList": [
+                        "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\GeneratedFiles\\Container\\coreComponentRttiOut.json",
+                        "./coreComponentTypeFactoryOut.json"
+                    ],
+                    "outFile": ""
+                },
+                "keyValueMap": {}
+            },
+            "TypeFactoryGenerator": {
+                "exportDeclaration": "DllExport",
+                "nameSpaceName": "nsTornadoEditor",
+                "className": "TComponentTypeFactory",
+                "fileName": "ComponentTypeFactory",
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": ""
+                },
+                "keyValueMap": {}
+            }
+        },
+        "includeListParams": {
+            "includeListFileName": "ComponentIncludeList",
+            "dirToInclude": []
+        }
+    }
+}

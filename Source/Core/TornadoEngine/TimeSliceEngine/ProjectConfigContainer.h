@@ -15,11 +15,10 @@ See for more information LICENSE.md.
 #include "Base/Common/ILoaderDLL.h"
 #include "Base/Common/GlobalEventHub.h"
 
-#include "DeveloperTool_DLL.h"
-#include "ProjectConfig.h"
-#include "ConveyorConfig.h"
-
-#include "FrameworkResources.h"
+#include "TornadoEngine/TimeSliceEngine/DeveloperTool_DLL.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfig.h"
+#include "TornadoEngine/TimeSliceEngine/ConveyorConfig.h"
+#include "TornadoEngine/TimeSliceEngine/FrameworkResources.h"
 
 namespace nsECSFramework
 {

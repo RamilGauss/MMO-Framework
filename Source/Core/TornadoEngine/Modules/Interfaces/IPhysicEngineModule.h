@@ -7,8 +7,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Modules/Common/LogicWrapperModule.h"
 #include "PhysicEngine/PhysicEngine_Bullet.h"
+
+#include "TornadoEngine/Modules/Common/LogicWrapperModule.h"
 
 namespace nsTornadoEngine
 {

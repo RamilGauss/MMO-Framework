@@ -5,10 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SceneInstantiatingSystem.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Common/ModuleManager.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Common/ModuleManager.h"
+#include "TornadoEngine/Features/Logic/End/Scene/SceneInstantiatingSystem.h"
 
 using namespace nsTornadoEngine;
 

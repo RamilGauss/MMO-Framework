@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CollectGuidsProcess.h"
+#include "TornadoEngine/GeneratedFiles/TornadoEngineJsonSerializer.h"
 
-#include "Modules/Resources/Scene/StateGraph/SceneContext.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/SceneContext.h"
 
-#include "Generated files/TornadoEngineJsonSerializer.h"
+#include "TornadoEngine/Modules/Resources/Scene/StateGraph/Save/CollectGuidsProcess.h"
 
 namespace nsTornadoEngine
 {

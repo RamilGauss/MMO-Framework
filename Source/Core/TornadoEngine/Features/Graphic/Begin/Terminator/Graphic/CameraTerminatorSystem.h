@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnRemoveInstantReactiveSystem.h"
 
-#include "Components/Graphic/CameraComponent.h"
+#include "TornadoEngine/Components/Graphic/CameraComponent.h"
 
 namespace nsGraphicWrapper
 {

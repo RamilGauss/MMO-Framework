@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CameraUpdaterToModuleSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/UpdateToModule/CameraUpdaterToModuleSystem.h"
 
-#include "Components/Graphic/CameraComponent.h"
-#include "Components/Graphic/CameraWindowSizeComponent.h"
-#include "Components/Graphic/CameraWindowPositionComponent.h"
+#include "TornadoEngine/Components/Graphic/CameraComponent.h"
+#include "TornadoEngine/Components/Graphic/CameraWindowSizeComponent.h"
+#include "TornadoEngine/Components/Graphic/CameraWindowPositionComponent.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Implementations/GraphicEngineModule.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Implementations/GraphicEngineModule.h"
 
 using namespace nsGraphicWrapper;
 

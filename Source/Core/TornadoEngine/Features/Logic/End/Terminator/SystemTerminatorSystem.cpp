@@ -7,14 +7,14 @@ See for more information LICENSE.md.
 
 #include "Base/Common/Logger.h"
 
-#include "SystemTerminatorSystem.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfigContainer.h"
 
-#include "TimeSliceEngine/ProjectConfigContainer.h"
+#include "TornadoEngine/Modules/Implementations/LogicModule.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
 
-#include "Modules/Implementations/LogicModule.h"
-#include "Modules/Common/Modules.h"
+#include "TornadoEngine/ReflectionAggregators/ScenePartReflectionAggregator.h"
 
-#include "ReflectionAggregators/ScenePartReflectionAggregator.h"
+#include "TornadoEngine/Features/Logic/End/Terminator/SystemTerminatorSystem.h"
 
 using namespace nsLogicWrapper;
 

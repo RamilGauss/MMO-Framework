@@ -18,12 +18,12 @@ void TJsonSerializerSourceFileGenerator::Work()
     AddHeader(mConfig->targetForCodeGeneration.header);
     AddTimeHeader();
 
-    AddInclude(mSerializer->fileName + ".h");
     AddInclude("Base/Common/JsonPopMaster.h");
     AddInclude("Base/Common/JsonPushMaster.h");
 
     AddInclude("Base/Common/SingletonManager.h");
     AddInclude("Base/Common/RunTimeTypeIndex.h");
+    AddInclude(mSerializer->fileName + ".h");
 
     AddIncludeForExternalSources();
 

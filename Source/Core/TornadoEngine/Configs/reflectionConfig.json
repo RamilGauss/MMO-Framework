@@ -18,10 +18,10 @@
         "memberIgnore": "IGNORE_ATTRIBUTE"
     },
     "targetForCodeGeneration": {
-        "directory": "../Generated files",
+        "sourceRootPaths": ["../../"],
+        "directory": "../GeneratedFiles",
         "includeListParams": {
-            "includeListFileName": "ReflectionIncludeList",
-            "dirToInclude": ["../"]
+            "includeListFileName": "ReflectionIncludeList"
         },
         "header": "\tReflectionCodeGenerator",
         "typeCustomizerMap": {},

@@ -10,7 +10,7 @@ See for more information LICENSE.md.
 #include <map>
 #include "Base/Common/TypeDef.h"
 
-#include "ILexema.h"
+#include "Parser/Sources/ILexema.h"
 
 namespace nsCppParser
 {

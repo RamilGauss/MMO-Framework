@@ -5,7 +5,7 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TypeInfo.h"
+#include "Parser/Sources/TypeInfo.h"
 
 using namespace nsCppParser;
 

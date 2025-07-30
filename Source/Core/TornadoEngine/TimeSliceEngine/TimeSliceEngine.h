@@ -15,11 +15,11 @@ See for more information LICENSE.md.
 #include "Base/Common/TypeDef.h"
 #include "Base/Common/CallbackPool.h"
 
-#include "ProjectConfig.h"
-#include "TimeSliceEngine/LogDumper.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfig.h"
+#include "TornadoEngine/TimeSliceEngine/LogDumper.h"
 
-#include "StopAccessor.h"
-#include "ModuleType.h"
+#include "TornadoEngine/TimeSliceEngine/StopAccessor.h"
+#include "TornadoEngine/TimeSliceEngine/ModuleType.h"
 
 namespace nsTornadoEngine
 {

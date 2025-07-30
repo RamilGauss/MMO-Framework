@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TitleUpdaterSystem.h"
+#include "TornadoEngine/Features/Graphic/Begin/UpdateToModule/TitleUpdaterSystem.h"
 
-#include "Components/Gui/Widgets/ButtonComponent.h"
-#include "Components/Gui/Widgets/DialogComponent.h"
-#include "Components/Gui/Widgets/InputTextComponent.h"
-#include "Components/Gui/Widgets/MenuNodeComponent.h"
-#include "Components/Gui/Widgets/WindowComponent.h"
-#include "Components/Gui/Widgets/TreeNodeComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/ButtonComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/DialogComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/InputTextComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/MenuNodeComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/WindowComponent.h"
+#include "TornadoEngine/Components/Gui/Widgets/TreeNodeComponent.h"
 
 using namespace nsGraphicWrapper;
 using namespace nsGuiWrapper;

@@ -5,9 +5,10 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ITargetCodeGenerator.h"
 #include "Base/Common/SingletonManager.h"
-#include "ConfigContainer.h"
+
+#include "ReflectionCodeGeneratorLib/Sources/ITargetCodeGenerator.h"
+#include "ReflectionCodeGeneratorLib/Sources/ConfigContainer.h"
 
 using namespace nsReflectionCodeGenerator;
 
