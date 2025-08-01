@@ -24,25 +24,25 @@ void TIncludeListFileGenerator::Work()
 //-----------------------------------------------------------------------------------
 void TIncludeListFileGenerator::AddIncludes()
 {
-    const auto& sourceRootPath = mConfig->targetForCodeGeneration.sourceRootPath;
-    const auto& absPathAllFilesInDir = mCache->absPathAllFilesInDir;
+    //const auto& sourceRootPath = mConfig->targetForCodeGeneration.sourceRootPath;
+    //const auto& absPathAllFilesInDir = mCache->absPathAllFilesInDir;
 
-    for (auto& absFileName : *mHeaderSetPtr) {
-        fs::path filePath(absFileName);
-        if (absPathAllFilesInDir.contains(absFileName)) {
+    //for (auto& absFileName : *mHeaderSetPtr) {
+    //    fs::path filePath(absFileName);
+    //    if (absPathAllFilesInDir.contains(absFileName)) {
 
-            fs::path dirPath(sourceRootPath);
-            auto dirName = dirPath.filename();
-            auto relativePath = fs::relative(absFileName, sourceRootPath);
+    //        fs::path dirPath(sourceRootPath);
+    //        auto dirName = dirPath.filename();
+    //        auto relativePath = fs::relative(absFileName, sourceRootPath);
 
-            if (dirName.generic_string().size()) {
-                dirName += fs::path::preferred_separator;
-            }
-            dirName += relativePath;
+    //        if (dirName.generic_string().size()) {
+    //            dirName += fs::path::preferred_separator;
+    //        }
+    //        dirName += relativePath;
 
-            AddInclude(dirName.generic_string());
-        }
-    }
+    //        AddInclude(dirName.generic_string());
+    //    }
+    //}
 }
 //-----------------------------------------------------------------------------------
 void TIncludeListFileGenerator::SetIncludes(std::set<std::string>* headerSet)

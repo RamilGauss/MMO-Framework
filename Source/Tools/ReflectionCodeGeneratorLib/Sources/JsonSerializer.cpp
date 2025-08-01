@@ -368,9 +368,9 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForCodeGenera
         auto implementations_a0 = PUM::AddObject(implementations_c0, PUM::ConvertToString(implementations_e0.first).data());
         _Serialize(&(implementations_e0.second), implementations_a0);
     }
-    auto includeListParams_o = PUM::AddObject(obj, "includeListParams");
-    _Serialize(&(p->includeListParams), includeListParams_o);
-    PUM::Push(obj, "sourceRootPath", p->sourceRootPath);
+    //auto includeListParams_o = PUM::AddObject(obj, "includeListParams");
+    //_Serialize(&(p->includeListParams), includeListParams_o);
+    //PUM::Push(obj, "sourceRootPath", p->sourceRootPath);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj)
@@ -392,9 +392,9 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGene
         _Deserialize(&implementations_c1, implementations_o1);
         p->implementations.insert({ implementations_e0.name.GetString(), implementations_c1 });
     }
-    auto includeListParams_o0 = POM::FindObject(obj, "includeListParams");
-    _Deserialize(&(p->includeListParams), includeListParams_o0);
-    POM::PopStr(obj, "sourceRootPath", p->sourceRootPath);
+    //auto includeListParams_o0 = POM::FindObject(obj, "includeListParams");
+    //_Deserialize(&(p->includeListParams), includeListParams_o0);
+    //POM::PopStr(obj, "sourceRootPath", p->sourceRootPath);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj)

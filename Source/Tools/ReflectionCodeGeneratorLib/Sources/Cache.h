@@ -7,7 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <map>
+#include <memory>
 #include <string>
+#include <set>
 #include <unordered_set>
 
 #include "Base/Common/TypeDef.h"
@@ -40,7 +43,6 @@ namespace nsReflectionCodeGenerator
         std::string typeName;
 
         std::string absFilePath;
-
         std::string filePathForInclude;
 
         std::set<std::string> customizedTypes;
@@ -54,18 +56,16 @@ namespace nsReflectionCodeGenerator
 
     struct DllExport TSerializerExt : TClassDescExt
     {
-        std::shared_ptr<TExternalSourcesExt> externalSources;
+        TExternalSourcesExt externalSources;
     };
 
     struct DllExport TCache
     {
-    public:
-        TCache() = default;
-
         std::list<std::string> targetForParsingAbsPaths;
         
         std::string targetForCodeGenerationAbsPath;
         std::string includeAbsFilePath;
+        std::string includeFileForInclude;
 
         std::map<std::string, TSerializerExt> implementations;
 

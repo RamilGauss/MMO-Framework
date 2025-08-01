@@ -12,10 +12,18 @@ See for more information LICENSE.md.
 
 using namespace nsReflectionCodeGenerator;
 
-IGenerator::IGenerator()
+void IGenerator::SetConfig(TConfig* config)
 {
-    mTypeManager = SingletonManager()->Get<TTypeManager>();
-    mConfig = SingletonManager()->Get<TConfigContainer>()->Config();
-    mCache = SingletonManager()->Get<TCache>();
+    mConfig = config;
+}
+//----------------------------------------------------------------------------------
+void IGenerator::SetTypeManager(TTypeManager* typeManager)
+{
+    mTypeManager = typeManager;
+}
+//----------------------------------------------------------------------------------
+void IGenerator::SetCache(TCache* cache)
+{
+    mCache = cache;
 }
 //----------------------------------------------------------------------------------

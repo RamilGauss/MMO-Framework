@@ -16,11 +16,12 @@ namespace nsReflectionCodeGenerator
         int mArgc = 0;
         char** mArgv = nullptr;
     public:
-        void Init(int argc, char** argv);
+        void Init(TConfigContainer* configContainer, TCache* cache, int argc, char** argv);
         bool Work();
 
     public:
-        TConfigContainer* mConfigContainer;
+        TConfigContainer* mConfigContainer = nullptr;
+        TCache* mCache = nullptr;
 
         std::string mAbsPathDirJson;
         std::string mAbsPathJsonFile;

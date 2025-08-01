@@ -29,17 +29,14 @@ using namespace nsBase::nsCommon;
 
 TReflectionCodeGenerator::TReflectionCodeGenerator()
 {
-    mTypeManager = SingletonManager()->Get<TTypeManager>();
-    mConfig = SingletonManager()->Get<TConfigContainer>()->Config();
-    mCache = SingletonManager()->Get<TCache>();
-
+    mConfig = mConfigContainer.Config();
     mDumper = &mDumperImpl;
     mOutDumper = &mOutDumperImpl;
 }
 //--------------------------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::Init(int argc, char** argv)
 {
-    mSetupConfig.Init(argc, argv);
+    mSetupConfig.Init(&mConfigContainer, &mCache, argc, argv);
 }
 //--------------------------------------------------------------------------------------------------------
 TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
@@ -66,7 +63,7 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
 
         // Add to TypeManager
         for (auto& type : mTypeList) {
-            mTypeManager->Add(type);
+            mTypeManager.Add(type);
         }
 
         // Solve Filtered.
@@ -118,6 +115,9 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
 //---------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::AddGenerator(ITargetCodeGenerator* generator)
 {
+    generator->SetCache(&mCache);
+    generator->SetConfig(mConfig);
+    generator->SetTypeManager(&mTypeManager);
     mAddedGenerators.push_back(generator);
 }
 //---------------------------------------------------------------------------------------
@@ -311,7 +311,7 @@ void TReflectionCodeGenerator::AddDependencies(ITargetCodeGenerator* generator, 
     // Continue searching of new deps
     for (auto& dep : newDependenciesTypeNameSet) {
 
-        auto depType = mTypeManager->Get(dep);
+        auto depType = mTypeManager.Get(dep);
         if (depType != nullptr) {
             AddDependencies(generator, depType, dependenciesTypeNameSetOut);
         }
@@ -338,7 +338,7 @@ void TReflectionCodeGenerator::FilterDependenciesByTypeManager()
 {
     for (auto& genInfo : mGenerators) {
         for (auto& dep : genInfo.unionedDependenciesTypeNameSet) {
-            auto type = mTypeManager->Get(dep);
+            auto type = mTypeManager.Get(dep);
             if (type != nullptr) {
                 genInfo.unionedDependenciesTypeSet.insert(type);
             }
@@ -411,7 +411,7 @@ void TReflectionCodeGenerator::FillIncludeList()
 
         auto& addForGenerate = genInfo.generator->GetTypeNameDB()->GetForGenerate();
         for (auto& forGenerate : addForGenerate) {
-            auto type = mTypeManager->Get(forGenerate.GetFullType());
+            auto type = mTypeManager.Get(forGenerate.GetFullType());
             if (type == nullptr) {
                 continue;
             }
@@ -583,7 +583,7 @@ TTypeInfo* TReflectionCodeGenerator::Find(TMemberExtendedTypeInfo* pMemberExtend
             fullType = pMemberExtendedInfo->mLongType;
         }
 
-        auto type = mTypeManager->Get(fullType);
+        auto type = mTypeManager.Get(fullType);
         if (type != nullptr) {
             return type;
         }
@@ -611,26 +611,26 @@ void TReflectionCodeGenerator::CollectAbsPaths(const std::string& dir, std::unor
 //-----------------------------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::FindAbsPathAllFiles()
 {
-    const auto& sourceRootPath = mConfig->targetForCodeGeneration.sourceRootPath;
-    CollectAbsPaths(sourceRootPath, mCache->absPathAllFilesInDir);
+    //const auto& sourceRootPath = mConfig->targetForCodeGeneration.sourceRootPath;
+    //CollectAbsPaths(sourceRootPath, mCache.absPathAllFilesInDir);
 
-    auto& includeListFileName = mConfig->targetForCodeGeneration.includeListParams.includeListFileName;
-    std::filesystem::path targetDirPath(mConfig->targetForCodeGeneration.directory);
-    auto absPathIncludeFilePath = targetDirPath / includeListFileName;
-    auto absPathIncludeFile = absPathIncludeFilePath.string();
+    //auto& includeListFileName = mConfig->targetForCodeGeneration.includeListParams.includeListFileName;
+    //std::filesystem::path targetDirPath(mConfig->targetForCodeGeneration.directory);
+    //auto absPathIncludeFilePath = targetDirPath / includeListFileName;
+    //auto absPathIncludeFile = absPathIncludeFilePath.string();
 
-    std::string includeRelPath;
-    TPathOperations::GetRelativePath(sourceRootPath, absPathIncludeFile, includeRelPath);
-    mConfig->targetForCodeGeneration.includeListParams.includeListFileName = includeRelPath;
+    //std::string includeRelPath;
+    //TPathOperations::GetRelativePath(sourceRootPath, absPathIncludeFile, includeRelPath);
+    //mConfig->targetForCodeGeneration.includeListParams.includeListFileName = includeRelPath;
 
-    for (auto& gen : mGenerators) {
-        auto fileName = gen.generator->GetSerializer()->fileName;
-        auto absFileNamePath = targetDirPath / fileName;
-        auto absFileName = absFileNamePath.string();
+    //for (auto& gen : mGenerators) {
+    //    auto fileName = gen.generator->GetSerializer()->fileName;
+    //    auto absFileNamePath = targetDirPath / fileName;
+    //    auto absFileName = absFileNamePath.string();
 
-        std::string fileNameRelPath;
-        TPathOperations::GetRelativePath(sourceRootPath, absFileName, fileNameRelPath);
-        gen.generator->GetSerializer()->fileName = fileNameRelPath;
-    }
+    //    std::string fileNameRelPath;
+    //    TPathOperations::GetRelativePath(sourceRootPath, absFileName, fileNameRelPath);
+    //    gen.generator->GetSerializer()->fileName = fileNameRelPath;
+    //}
 }
 //-----------------------------------------------------------------------------------------------------------

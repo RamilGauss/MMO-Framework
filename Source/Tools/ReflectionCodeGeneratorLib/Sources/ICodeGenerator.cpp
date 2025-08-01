@@ -31,8 +31,10 @@ void ICodeGenerator::Init(TPairList& result)
 //----------------------------------------------------------------------------------
 std::string ICodeGenerator::GeneratedFileFullPath(std::string fileNameWithExt)
 {
-    auto fileNameRelPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(mConfig->targetForCodeGeneration.sourceRootPaths, fileNameWithExt);
-    return fileNameRelPath;
+    //auto fileNameRelPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(mConfig->targetForCodeGeneration.sourceRootPaths, fileNameWithExt);
+    //return fileNameRelPath;
+
+    return {};
 }
 //----------------------------------------------------------------------------------
 

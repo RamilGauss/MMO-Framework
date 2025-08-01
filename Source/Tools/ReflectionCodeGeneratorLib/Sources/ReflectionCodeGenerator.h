@@ -21,6 +21,7 @@ See for more information LICENSE.md.
 #include "ReflectionCodeGeneratorLib/Sources/Config.h"
 #include "ReflectionCodeGeneratorLib/Sources/SetupConfig.h"
 #include "ReflectionCodeGeneratorLib/Sources/ProgramInfo.h"
+#include "ReflectionCodeGeneratorLib/Sources/TypeManager.h"
 
 #include "ReflectionCodeGeneratorLib/Sources/OutDumper.h"
 #include "ReflectionCodeGeneratorLib/Sources/Dumper.h"
@@ -74,9 +75,11 @@ namespace nsReflectionCodeGenerator
 
         TSetupConfig mSetupConfig;
 
-        TTypeManager* mTypeManager = nullptr;
+        TTypeManager mTypeManager;
+        TConfigContainer mConfigContainer;
+        TCache mCache;
+
         TConfig* mConfig = nullptr;
-        TCache* mCache = nullptr;
 
         std::list<ITargetCodeGenerator*> mAddedGenerators;
 

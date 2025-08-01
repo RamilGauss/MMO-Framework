@@ -25,11 +25,12 @@ namespace fs = std::filesystem;
 using namespace nsReflectionCodeGenerator;
 using namespace nsBase::nsCommon;
 
-void TSetupConfig::Init(int argc, char** argv)
+void TSetupConfig::Init(TConfigContainer* configContainer, TCache* cache, int argc, char** argv)
 {
     mArgc = argc;
     mArgv = argv;
-    mConfigContainer = SingletonManager()->Get<TConfigContainer>();
+    mConfigContainer = configContainer;
+    mCache = cache;
 }
 //---------------------------------------------------------------------------------------------
 bool TSetupConfig::Work()
@@ -124,16 +125,15 @@ bool TSetupConfig::TryLoadConfig()
 void TSetupConfig::ConvertConfigToCache()
 {
     auto config = mConfigContainer->Config();
-    auto cache = SingletonManager()->Get<TCache>();
 
     // input
     for (auto& dir : config->targetForParsing.directories) {
         auto absPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
-        cache->targetForParsingAbsPaths.push_back(absPath);
+        mCache->targetForParsingAbsPaths.push_back(absPath);
     }
 
-    cache->targetForCodeGenerationAbsPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, config->targetForCodeGeneration.directory);
-    cache->includeAbsFilePath = TPathOperations::CalculatePathBy(mAbsPathDirJson, config->targetForCodeGeneration.includeListParams.includeListFileName);
+    mCache->targetForCodeGenerationAbsPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, config->targetForCodeGeneration.directory);
+    mCache->includeAbsFilePath = TPathOperations::CalculatePathBy(mAbsPathDirJson, config->targetForCodeGeneration.includeListParams.includeListFileName);
 
     for (auto& impl : config->targetForCodeGeneration.implementations) {
         TSerializerExt ser;
@@ -142,15 +142,15 @@ void TSetupConfig::ConvertConfigToCache()
         ser.nameSpaceName = impl.second.nameSpaceName;
         ser.fileName = impl.second.fileName;
         ser.absFilePath = TPathOperations::CalculatePathBy(mAbsPathDirJson, impl.second.fileName);
-        ser.filePathForInclude = TPathOperations::GetRelativePath(mAbsPathDirJson, impl.second.fileName);
-        cache->implementations.insert({impl.first, ser});
+        //ser.filePathForInclude = TPathOperations::GetRelativePath(mAbsPathDirJson, impl.second.fileName);
+        mCache->implementations.emplace(impl.first, std::move(ser));
     }
 
-    auto& sourceRootPaths = pConfig->targetForCodeGeneration.sourceRootPaths;
-    if (sourceRootPaths.empty()) {
-        sourceRootPaths = ".";
-    }
-    sourceRootPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, sourceRootPath);
+    // auto& sourceRootPaths = config->targetForCodeGeneration.sourceRootPaths;
+    // if (sourceRootPaths.empty()) {
+        // sourceRootPaths = ".";
+    // }
+    // sourceRootPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, sourceRootPath);
 }
 //---------------------------------------------------------------------------------------
 void TSetupConfig::ResolveJsonPath()

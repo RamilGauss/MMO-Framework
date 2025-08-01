@@ -28,8 +28,12 @@ namespace nsReflectionCodeGenerator
         using TStrListPair = std::pair<std::string, TStrList>;
         using TPairList = std::list<TStrListPair>;
     public:
-        IGenerator();
+        IGenerator() = default;
 
         virtual void Work() = 0;
+
+        void SetConfig(TConfig* config);
+        void SetTypeManager(TTypeManager* typeManager);
+        void SetCache(TCache* cache);
     };
 }
