@@ -7,6 +7,8 @@ See for more information LICENSE.md.
 
 #include "gtest/gtest.h"
 
+#include "Base/Common/PathOperations.h"
+
 #include "FileParser.h"
 
 std::string fileContent = R"(

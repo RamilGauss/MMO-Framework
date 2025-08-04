@@ -47,13 +47,14 @@ namespace nsReflectionCodeGenerator
 
         TStrListPair* pStrListPair = nullptr;
         TTypeNameDataBase* mTypeNameDbPtr = nullptr;
-        TSerializer* mSerializer = nullptr;
+        TSerializerExt* mSerializer = nullptr;
 
     private:
         int mTabCounter = 0;
 
     public:
-        void Init(TTypeNameDataBase* typeNameDbPtr, TStrListPair& strListPair, TSerializer* serializer);
+        void Init(TResolvedConfig* resolvedConfig, TTypeManager* typeManager, 
+            TTypeNameDataBase* typeNameDbPtr, TStrListPair& strListPair, TSerializerExt* serializer);
 
     protected:
         void AddHeader(const std::string& header);

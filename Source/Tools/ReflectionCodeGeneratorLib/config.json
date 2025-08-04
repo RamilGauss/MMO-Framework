@@ -1,5 +1,5 @@
 {
-    "targetForParsing": {
+    "/targetForParsing": {
         "directories": [
             "./Sources",
             "../Parser/Sources"

@@ -16,7 +16,7 @@ See for more information LICENSE.md.
 #include "Base/Common/PathOperations.h"
 
 #include "ReflectionCodeGeneratorLib/Sources/Config.h"
-#include "ReflectionCodeGeneratorLib/Sources/Cache.h"
+#include "ReflectionCodeGeneratorLib/Sources/ResolvedConfig.h"
 #include "ReflectionCodeGeneratorLib/Sources/JsonSerializer.h"
 #include "ReflectionCodeGeneratorLib/Sources/Requirements.h"
 #include "ReflectionCodeGeneratorLib/Sources/SetupConfig.h"
@@ -25,12 +25,11 @@ namespace fs = std::filesystem;
 using namespace nsReflectionCodeGenerator;
 using namespace nsBase::nsCommon;
 
-void TSetupConfig::Init(TConfigContainer* configContainer, TCache* cache, int argc, char** argv)
+void TSetupConfig::Init(TResolvedConfig* resolvedConfig, int argc, char** argv)
 {
     mArgc = argc;
     mArgv = argv;
-    mConfigContainer = configContainer;
-    mCache = cache;
+    mResolvedConfig = resolvedConfig;
 }
 //---------------------------------------------------------------------------------------------
 bool TSetupConfig::Work()
@@ -50,7 +49,7 @@ bool TSetupConfig::Work()
 #else
         return false;
 #endif
-    ConvertConfigToCache();
+    ResolveConfig();
     return true;
 }
 //---------------------------------------------------------------------------------------------
@@ -68,21 +67,22 @@ void TSetupConfig::ShowManual()
 //---------------------------------------------------------------------------------------
 void TSetupConfig::DefaultConfig()
 {
-    auto config = mConfigContainer->Config();
-    config->targetForParsing.recursive = true;
-    config->targetForParsing.directories.push_back("./Sources");
-    config->targetForParsing.directories.push_back("../Parser/Sources");
+    mConfig.targetForParsing.recursive = true;
+    mConfig.targetForParsing.directories.push_back("./Sources");
+    mConfig.targetForParsing.directories.push_back("../Parser/Sources");
 
-    config->filter.attribute = "REFLECTION_ATTRIBUTE";
-    config->filter.extensions.push_back(".h");
-    config->filter.extensions.push_back(".hh");
-    config->filter.extensions.push_back(".hpp");
+    mConfig.filter.attribute = "REFLECTION_ATTRIBUTE";
+    mConfig.filter.extensions.push_back(".h");
+    mConfig.filter.extensions.push_back(".hh");
+    mConfig.filter.extensions.push_back(".hpp");
 
-    config->targetForCodeGeneration.directory = "./Sources";
-    config->targetForCodeGeneration.header = "\tReflectionCodeGenerator";
+    mConfig.targetForCodeGeneration.sourceRootPaths = {".."};
 
-    config->targetForCodeGeneration.appendTypeCustomizerMap = true;
-    config->targetForCodeGeneration.includeListParams.includeListFileName = "IncludeList";
+    mConfig.targetForCodeGeneration.directory = "./Sources";
+    mConfig.targetForCodeGeneration.header = "\tReflectionCodeGenerator";
+
+    mConfig.targetForCodeGeneration.appendTypeCustomizerMap = true;
+    mConfig.targetForCodeGeneration.includeListParams.includeListFileName = "IncludeList";
 
     TSerializer jsonSerializer;
     jsonSerializer.exportDeclaration = "DllExport";
@@ -91,26 +91,14 @@ void TSetupConfig::DefaultConfig()
     jsonSerializer.nameSpaceName = "nsJson";
 
     jsonSerializer.externalSources.reset(new TExternalSources());
+    jsonSerializer.externalSources->inFileList = { "../Parser/Sources/GeneratedFiles/JsonOutFile.json" };
     jsonSerializer.externalSources->outFile = "./Sources/JsonOutFile.json";
 
-    config->targetForCodeGeneration.implementations.insert({"JsonSerializerGenerator", jsonSerializer});
-
-    TSerializer binaryMarshaller;
-    binaryMarshaller.exportDeclaration = "DllExport";
-    binaryMarshaller.className = "TBinaryMarshaller";
-    binaryMarshaller.fileName = "BinaryMarshaller";
-    binaryMarshaller.nameSpaceName = "nsBinary";
-    binaryMarshaller.keyValueMap.insert({"beginId", "666"});
-
-    binaryMarshaller.externalSources.reset(new TExternalSources());
-    binaryMarshaller.externalSources->outFile = "./Sources/BinaryOutFile.json";
-
-    config->targetForCodeGeneration.implementations.insert({"BinaryMarshallerGenerator", binaryMarshaller});
+    mConfig.targetForCodeGeneration.implementations.insert({"JsonSerializerGenerator", jsonSerializer});
 }
 //---------------------------------------------------------------------------------------
 bool TSetupConfig::TryLoadConfig()
 {
-    auto mConfig = mConfigContainer->Config();
     std::string str;
     nsBase::nsCommon::TTextFile::Load(mAbsPathJsonFile, str);
     if (str.length() == 0) {
@@ -118,39 +106,101 @@ bool TSetupConfig::TryLoadConfig()
     }
 
     std::string err;
-    auto fillRes = nsJson::TJsonSerializer::Deserialize(mConfig, str, err);
+    auto fillRes = nsJson::TJsonSerializer::Deserialize(&mConfig, str, err);
     return fillRes;
 }
 //---------------------------------------------------------------------------------------
-void TSetupConfig::ConvertConfigToCache()
+void TSetupConfig::ResolveConfig()
 {
-    auto config = mConfigContainer->Config();
+    mResolvedConfig->header = mConfig.targetForCodeGeneration.header;
+    mResolvedConfig->filter.attribute = mConfig.filter.attribute;
+    mResolvedConfig->filter.extensions = mConfig.filter.extensions;
+    mResolvedConfig->filter.inheritances = mConfig.filter.inheritances;
+    mResolvedConfig->filter.memberIgnore = mConfig.filter.memberIgnore;
 
-    // input
-    for (auto& dir : config->targetForParsing.directories) {
+    mResolvedConfig->targetParsingRecursive = mConfig.targetForParsing.recursive;
+
+    for (auto& dir : mConfig.targetForParsing.directories) {
         auto absPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, dir);
-        mCache->targetForParsingAbsPaths.push_back(absPath);
+        mResolvedConfig->targetForParsingAbsPaths.push_back(absPath);
     }
 
-    mCache->targetForCodeGenerationAbsPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, config->targetForCodeGeneration.directory);
-    mCache->includeAbsFilePath = TPathOperations::CalculatePathBy(mAbsPathDirJson, config->targetForCodeGeneration.includeListParams.includeListFileName);
+    mResolvedConfig->typeCustomizerMap = mConfig.targetForCodeGeneration.typeCustomizerMap;
+    mResolvedConfig->appendTypeCustomizerMap = mConfig.targetForCodeGeneration.appendTypeCustomizerMap;
 
-    for (auto& impl : config->targetForCodeGeneration.implementations) {
+    mResolvedConfig->targetForCodeGenerationAbsPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, mConfig.targetForCodeGeneration.directory);
+
+    std::unordered_set<std::string> extSet(mResolvedConfig->filter.extensions.begin(), mResolvedConfig->filter.extensions.end());
+
+    for (auto& sourceRootPath : mConfig.targetForCodeGeneration.sourceRootPaths) {
+        TSourceRoot sourceRoot;
+        sourceRoot.original = sourceRootPath;
+        sourceRoot.absOriginalPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, sourceRootPath);
+
+        CollectAbsPaths(sourceRoot.absOriginalPath, extSet, sourceRoot.absPathAllFilesInDir);
+
+        mResolvedConfig->sourceRoots.push_back(sourceRoot);
+    }
+
+    for (auto& impl : mConfig.targetForCodeGeneration.implementations) {
         TSerializerExt ser;
+
+        if (impl.second.externalSources) {
+            ser.externalSources = std::make_shared<TExternalSourcesExt>();
+
+            for (auto& inFile : impl.second.externalSources->inFileList) {
+                auto absInFilePath = TPathOperations::CalculatePathBy(mAbsPathDirJson, inFile);
+                ser.externalSources->inAbsFilePathList.push_back(absInFilePath);
+            }
+            ser.externalSources->outAbsFilePath = TPathOperations::CalculatePathBy(mAbsPathDirJson, impl.second.externalSources->outFile);
+
+            for (auto& inAbsFilePath : ser.externalSources->inAbsFilePathList) {
+                TContainer data;
+                nsBase::nsCommon::TLoadFromFile lff;
+
+                auto isOpen = lff.ReOpen((char*)inAbsFilePath.c_str());
+                if (isOpen == false) {
+                    continue;
+                }
+                lff.ReadSmall(data);
+
+                std::string content;
+                content.append(data.GetPtr(), data.GetSize());
+
+                std::string err;
+                TExternalSource extSrc;
+                auto deserResult = nsJson::TJsonSerializer::Deserialize(&extSrc, content, err);
+                if (deserResult == false) {
+                    continue;
+                }
+
+                auto pathToJsonFile = fs::path(inAbsFilePath).parent_path().string();
+
+                TExternalSourceExt externalSourceExt;
+
+                externalSourceExt.fileName = extSrc.fileName;
+                externalSourceExt.customizedTypes = extSrc.customizedTypes;
+                externalSourceExt.nameSpaceName = extSrc.nameSpaceName;
+                externalSourceExt.typeName = extSrc.typeName;
+
+                externalSourceExt.absFilePath = TPathOperations::CalculatePathBy(pathToJsonFile, externalSourceExt.fileName);
+                externalSourceExt.filePathForInclude = ResolveInclude(externalSourceExt.absFilePath, mResolvedConfig->sourceRoots);
+
+                ser.externalSources->loadedExternalSources.emplace_back(std::move(externalSourceExt));
+            }
+        }
+
+        ser.keyValueMap = impl.second.keyValueMap;
         ser.className = impl.second.className;
         ser.exportDeclaration = impl.second.exportDeclaration;
         ser.nameSpaceName = impl.second.nameSpaceName;
         ser.fileName = impl.second.fileName;
-        ser.absFilePath = TPathOperations::CalculatePathBy(mAbsPathDirJson, impl.second.fileName);
-        //ser.filePathForInclude = TPathOperations::GetRelativePath(mAbsPathDirJson, impl.second.fileName);
-        mCache->implementations.emplace(impl.first, std::move(ser));
+        ser.absFilePath = TPathOperations::CalculatePathBy(mResolvedConfig->targetForCodeGenerationAbsPath, impl.second.fileName);
+        ser.filePathForInclude = ResolveInclude(ser.absFilePath, mResolvedConfig->sourceRoots);
+        mResolvedConfig->implementations.emplace(impl.first, std::move(ser));
     }
-
-    // auto& sourceRootPaths = config->targetForCodeGeneration.sourceRootPaths;
-    // if (sourceRootPaths.empty()) {
-        // sourceRootPaths = ".";
-    // }
-    // sourceRootPath = TPathOperations::CalculatePathBy(mAbsPathDirJson, sourceRootPath);
+    mResolvedConfig->includeAbsFilePath = TPathOperations::CalculatePathBy(mResolvedConfig->targetForCodeGenerationAbsPath, mConfig.targetForCodeGeneration.includeListParams.includeListFileName);
+    mResolvedConfig->includeFileForInclude = ResolveInclude(mResolvedConfig->includeAbsFilePath, mResolvedConfig->sourceRoots);
 }
 //---------------------------------------------------------------------------------------
 void TSetupConfig::ResolveJsonPath()
@@ -169,5 +219,38 @@ void TSetupConfig::ResolveJsonPath()
     mAbsPathDirJson += "\\";
 
     mAbsPathJsonFile = TPathOperations::CalculatePathBy(mAbsPathDirJson, configFileName.string());
+}
+//---------------------------------------------------------------------------------------
+void TSetupConfig::CollectAbsPaths(const std::string& dir, 
+    const std::unordered_set<std::string>& extSet, std::unordered_set<std::string>& fileList)
+{
+    fs::recursive_directory_iterator dirIt((char*)dir.data());
+
+    for (auto& p : dirIt) {
+        auto path = p.path();
+        std::string ext = path.extension().string();
+        if (extSet.find(ext) == extSet.end()) {
+            continue;
+        }
+        auto str = std::filesystem::canonical(path).string();
+        fileList.insert(str);
+    }
+}
+//---------------------------------------------------------------------------------------
+std::string TSetupConfig::ResolveInclude(const std::string& absFilePath, const std::list<TSourceRoot>& sourceRoots)
+{
+    for (auto srcRoot : sourceRoots ) {
+        auto isSubPath = TPathOperations::IsCoherent(srcRoot.absOriginalPath, absFilePath);
+        if (isSubPath == false) {
+            continue;
+        }
+        std::string relPath;
+        auto inDir = TPathOperations::GetRelativePath(srcRoot.absOriginalPath, absFilePath, relPath);
+        if (inDir) {
+            return relPath;
+        }
+    }
+
+    return {};
 }
 //---------------------------------------------------------------------------------------

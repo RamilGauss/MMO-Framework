@@ -29,14 +29,13 @@ using namespace nsBase::nsCommon;
 
 TReflectionCodeGenerator::TReflectionCodeGenerator()
 {
-    mConfig = mConfigContainer.Config();
     mDumper = &mDumperImpl;
     mOutDumper = &mOutDumperImpl;
 }
 //--------------------------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::Init(int argc, char** argv)
 {
-    mSetupConfig.Init(&mConfigContainer, &mCache, argc, argv);
+    mSetupConfig.Init(&mResolvedConfig, argc, argv);
 }
 //--------------------------------------------------------------------------------------------------------
 TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
@@ -90,8 +89,6 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
         // DFT \ Customized = Generate.
         FillTypeNameDataBase();
 
-        FindAbsPathAllFiles();
-
         // Generate by each of Generator implementations (by Generate)
         CollectDumpFromGenerators();
 
@@ -115,8 +112,7 @@ TReflectionCodeGenerator::Result TReflectionCodeGenerator::Work()
 //---------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::AddGenerator(ITargetCodeGenerator* generator)
 {
-    generator->SetCache(&mCache);
-    generator->SetConfig(mConfig);
+    generator->SetResolvedConfig(&mResolvedConfig);
     generator->SetTypeManager(&mTypeManager);
     mAddedGenerators.push_back(generator);
 }
@@ -124,6 +120,7 @@ void TReflectionCodeGenerator::AddGenerator(ITargetCodeGenerator* generator)
 void TReflectionCodeGenerator::SetIncludeListGenerator(IIncludeListGenerator* includeList)
 {
     mIncludeList = includeList;
+    mIncludeList->SetResolvedConfig(&mResolvedConfig);
 }
 //---------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::SetDumper(IDumper* dumper)
@@ -145,10 +142,10 @@ void TReflectionCodeGenerator::GetFileAbsPathList(TStringList& fileList)
 {
     fileList.clear();
 
-    TStrSet extSet(mConfig->filter.extensions.begin(), mConfig->filter.extensions.end());
+    TStrSet extSet(mResolvedConfig.filter.extensions.begin(), mResolvedConfig.filter.extensions.end());
 
-    for (auto& dir : mConfig->targetForParsing.directories) {
-        nsBase::nsCommon::TPathOperations::AddAbsPathsByDirectory(dir, extSet, fileList, mConfig->targetForParsing.recursive);
+    for (auto& dir : mResolvedConfig.targetForParsingAbsPaths) {
+        nsBase::nsCommon::TPathOperations::AddAbsPathsByDirectory(dir, extSet, fileList, mResolvedConfig.targetParsingRecursive);
     }
 }
 //---------------------------------------------------------------------------------------
@@ -160,8 +157,8 @@ bool TReflectionCodeGenerator::GetTypeList(TStringList& fileList, TTypeInfoPtrLi
     nsBase::nsCommon::TLoadFromFile lff;
     TContainer data;
 
-    parser.SetupTypes(mConfig->targetForCodeGeneration.typeCustomizerMap,
-        mConfig->targetForCodeGeneration.appendTypeCustomizerMap);
+    parser.SetupTypes(mResolvedConfig.typeCustomizerMap,
+        mResolvedConfig.appendTypeCustomizerMap);
 
     for (auto& fileAbsPath : fileList) {
         fs::path filePath(fileAbsPath);
@@ -198,8 +195,8 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
 {
     filteredTypeList.clear();
 
-    const auto& filterInheritances = mConfig->filter.inheritances;
-    auto attribute = mConfig->filter.attribute;
+    const auto& filterInheritances = mResolvedConfig.filter.inheritances;
+    auto attribute = mResolvedConfig.filter.attribute;
 
     for (auto& type : typeList) {
 
@@ -247,36 +244,12 @@ void TReflectionCodeGenerator::FilterTypeList(TTypeInfoPtrList& typeList, TTypeI
 //---------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::LoadExternalSources()
 {
-    TContainer data;
-    nsBase::nsCommon::TLoadFromFile lff;
-
     for (auto& genInfo : mGenerators) {
-
-        auto externalSources = genInfo.generator->GetSerializer()->externalSources.get();
-        if (externalSources == nullptr) {
+        auto& extSrc = genInfo.generator->GetSerializer()->externalSources;
+        if (extSrc == nullptr) {
             continue;
         }
-
-        for (auto& inFile : externalSources->inFileList) {
-
-            auto absPath = TPathOperations::CalculatePathBy(mSetupConfig.mAbsPathDirJson, inFile);
-
-            auto isOpen = lff.ReOpen((char*)absPath.c_str());
-            if (isOpen == false) {
-                continue;
-            }
-            lff.ReadSmall(data);
-
-            std::string content;
-            content.append(data.GetPtr(), data.GetSize());
-
-            std::string err;
-            TExternalSource extSrc;
-            auto deserResult = nsJson::TJsonSerializer::Deserialize(&extSrc, content, err);
-            if (deserResult == false) {
-                continue;
-            }
-
+        for (auto& extSrc : extSrc->loadedExternalSources) {
             genInfo.extSrcVector.push_back(extSrc);
         }
     }
@@ -408,14 +381,17 @@ void TReflectionCodeGenerator::CollectDumpFromGenerators()
 void TReflectionCodeGenerator::FillIncludeList()
 {
     for (auto& genInfo : mGenerators) {
-
         auto& addForGenerate = genInfo.generator->GetTypeNameDB()->GetForGenerate();
         for (auto& forGenerate : addForGenerate) {
             auto type = mTypeManager.Get(forGenerate.GetFullType());
             if (type == nullptr) {
                 continue;
             }
-            mIncludeList->AddInclude(type->mAbsFileName);
+            auto includeFile = TSetupConfig::ResolveInclude(type->mAbsFileName, mResolvedConfig.sourceRoots);
+            if (includeFile.empty()) {
+                continue;
+            }
+            mIncludeList->AddInclude(includeFile);
         }
     }
 }
@@ -443,11 +419,6 @@ void TReflectionCodeGenerator::SaveOut()
             continue;
         }
 
-        auto absFilePath = TPathOperations::CalculatePathBy(mSetupConfig.mAbsPathDirJson, externalSources->outFile);
-        if (externalSources->outFile.size() == 0) {
-            continue;
-        }
-
         TExternalSource extSrc;
         extSrc.fileName = ser->fileName;
         extSrc.nameSpaceName = ser->nameSpaceName;
@@ -458,7 +429,7 @@ void TReflectionCodeGenerator::SaveOut()
             extSrc.customizedTypes.insert(gen.GetFullType());
         }
 
-        mOutDumper->Save(extSrc, absFilePath);
+        mOutDumper->Save(extSrc, externalSources->outAbsFilePath);
     }
 }
 //---------------------------------------------------------------------------------------
@@ -498,7 +469,7 @@ void TReflectionCodeGenerator::ConvertStringToTypeCategory(std::map<std::string,
 //---------------------------------------------------------------------------------------
 void TReflectionCodeGenerator::ThinningMembersInTypes()
 {
-    if (mConfig->filter.memberIgnore.empty()) {
+    if (mResolvedConfig.filter.memberIgnore.empty()) {
         return;
     }
     for (auto& type : mTypeList) {
@@ -507,7 +478,7 @@ void TReflectionCodeGenerator::ThinningMembersInTypes()
         pubMem.clear();
 
         for (auto& member : copyPubMem) {
-            if (member->mPragmaTextSet.contains(mConfig->filter.memberIgnore)) {
+            if (member->mPragmaTextSet.contains(mResolvedConfig.filter.memberIgnore)) {
                 continue;
             }
             pubMem.push_back(member);
@@ -590,47 +561,5 @@ TTypeInfo* TReflectionCodeGenerator::Find(TMemberExtendedTypeInfo* pMemberExtend
     }
 
     return nullptr;
-}
-//-----------------------------------------------------------------------------------------------------------
-void TReflectionCodeGenerator::CollectAbsPaths(const std::string& dir, std::unordered_set<std::string>& fileList)
-{
-    std::unordered_set<std::string> extSet(mConfig->filter.extensions.begin(), mConfig->filter.extensions.end());
-
-    fs::recursive_directory_iterator dirIt((char*)dir.data());
-
-    for (auto& p : dirIt) {
-        auto path = p.path();
-        std::string ext = path.extension().string();
-        if (extSet.find(ext) == extSet.end()) {
-            continue;
-        }
-        auto str = std::filesystem::canonical(path).string();
-        fileList.insert(str);
-    }
-}
-//-----------------------------------------------------------------------------------------------------------
-void TReflectionCodeGenerator::FindAbsPathAllFiles()
-{
-    //const auto& sourceRootPath = mConfig->targetForCodeGeneration.sourceRootPath;
-    //CollectAbsPaths(sourceRootPath, mCache.absPathAllFilesInDir);
-
-    //auto& includeListFileName = mConfig->targetForCodeGeneration.includeListParams.includeListFileName;
-    //std::filesystem::path targetDirPath(mConfig->targetForCodeGeneration.directory);
-    //auto absPathIncludeFilePath = targetDirPath / includeListFileName;
-    //auto absPathIncludeFile = absPathIncludeFilePath.string();
-
-    //std::string includeRelPath;
-    //TPathOperations::GetRelativePath(sourceRootPath, absPathIncludeFile, includeRelPath);
-    //mConfig->targetForCodeGeneration.includeListParams.includeListFileName = includeRelPath;
-
-    //for (auto& gen : mGenerators) {
-    //    auto fileName = gen.generator->GetSerializer()->fileName;
-    //    auto absFileNamePath = targetDirPath / fileName;
-    //    auto absFileName = absFileNamePath.string();
-
-    //    std::string fileNameRelPath;
-    //    TPathOperations::GetRelativePath(sourceRootPath, absFileName, fileNameRelPath);
-    //    gen.generator->GetSerializer()->fileName = fileNameRelPath;
-    //}
 }
 //-----------------------------------------------------------------------------------------------------------

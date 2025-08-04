@@ -16,11 +16,14 @@ See for more information LICENSE.md.
 using namespace nsReflectionCodeGenerator;
 using namespace nsCppParser;
 
-void IFileGenerator::Init(TTypeNameDataBase* typeNameDbPtr, TStrListPair& strListPair, TSerializer* serializer)
+void IFileGenerator::Init(TResolvedConfig* resolvedConfig, TTypeManager* typeManager,
+     TTypeNameDataBase* typeNameDbPtr, TStrListPair& strListPair, TSerializerExt* serializer)
 {
     pStrListPair = &strListPair;
     mSerializer = serializer;
     mTypeNameDbPtr = typeNameDbPtr;
+    mResolvedConfig = resolvedConfig;
+    mTypeManager = typeManager;
 }
 //----------------------------------------------------------------------------------
 void IFileGenerator::AddHeader(const std::string& header)

@@ -28,10 +28,10 @@ void TIncludeListGenerator::Work()
 
     auto& pair = mPairList->back();
 
-    pair.first = GeneratedFileFullPath(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
+    pair.first = mResolvedConfig->includeAbsFilePath + ".h";
 
     fileGenerator.SetIncludes(&mHeaderSet);
-    fileGenerator.Init(nullptr, pair, nullptr);
+    fileGenerator.Init(mResolvedConfig, mTypeManager, nullptr, pair, nullptr);
     fileGenerator.Work();
 }
 //-----------------------------------------------------------------------------------

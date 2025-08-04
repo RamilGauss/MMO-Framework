@@ -12,7 +12,7 @@ using namespace nsCodeGeneratorImplementation;
 
 void TRunTimeTypeInformationHeaderFileGenerator::Work()
 {
-    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
     AddPragmaOnce();
@@ -25,7 +25,7 @@ void TRunTimeTypeInformationHeaderFileGenerator::Work()
     AddEmptyLine();
     AddInclude("Base/Common/TypeDef.h");
 
-    AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
+    AddInclude(mResolvedConfig->includeFileForInclude + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

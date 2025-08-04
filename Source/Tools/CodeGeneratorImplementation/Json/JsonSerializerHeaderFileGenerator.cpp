@@ -14,7 +14,7 @@ using namespace nsCppParser;
 
 void TJsonSerializerHeaderFileGenerator::Work()
 {
-    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
     AddPragmaOnce();
@@ -23,7 +23,7 @@ void TJsonSerializerHeaderFileGenerator::Work()
     AddStandartInclude("string");
     AddStandartInclude("functional");
     AddInclude("Base/Common/JsonMaster.h");
-    AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
+    AddInclude(mResolvedConfig->includeFileForInclude + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

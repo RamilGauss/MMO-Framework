@@ -95,3 +95,12 @@ bool TPathOperations::GetRelativePath(const std::string& absBase, const std::str
     return true;
 }
 //---------------------------------------------------------------------------------------
+bool TPathOperations::IsCoherent(const std::string& absL, const std::string& absR)
+{
+    auto pos = absR.find(absL);
+    if (pos == 0) {
+        return true;
+    }
+    return false;
+}
+//---------------------------------------------------------------------------------------

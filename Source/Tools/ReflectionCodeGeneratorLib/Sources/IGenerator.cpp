@@ -8,22 +8,16 @@ See for more information LICENSE.md.
 #include "Base/Common/SingletonManager.h"
 
 #include "ReflectionCodeGeneratorLib/Sources/IGenerator.h"
-#include "ReflectionCodeGeneratorLib/Sources/ConfigContainer.h"
 
 using namespace nsReflectionCodeGenerator;
 
-void IGenerator::SetConfig(TConfig* config)
-{
-    mConfig = config;
-}
-//----------------------------------------------------------------------------------
 void IGenerator::SetTypeManager(TTypeManager* typeManager)
 {
     mTypeManager = typeManager;
 }
 //----------------------------------------------------------------------------------
-void IGenerator::SetCache(TCache* cache)
+void IGenerator::SetResolvedConfig(TResolvedConfig* resolvedConfig)
 {
-    mCache = cache;
+    mResolvedConfig = resolvedConfig;
 }
 //----------------------------------------------------------------------------------

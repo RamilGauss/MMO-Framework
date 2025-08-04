@@ -8,7 +8,6 @@ See for more information LICENSE.md.
 #include "Base/Common/SingletonManager.h"
 
 #include "ReflectionCodeGeneratorLib/Sources/ITargetCodeGenerator.h"
-#include "ReflectionCodeGeneratorLib/Sources/ConfigContainer.h"
 
 using namespace nsReflectionCodeGenerator;
 
@@ -28,10 +27,10 @@ bool ITargetCodeGenerator::HasSerializer()
     return GetSerializer() != nullptr;
 }
 //----------------------------------------------------------------------------------
-TSerializer* ITargetCodeGenerator::GetSerializer()
+TSerializerExt* ITargetCodeGenerator::GetSerializer()
 {
-    auto fit = mConfig->targetForCodeGeneration.implementations.find(mName);
-    if (fit == mConfig->targetForCodeGeneration.implementations.end()) {
+    auto fit = mResolvedConfig->implementations.find(mName);
+    if (fit == mResolvedConfig->implementations.end()) {
         return nullptr;
     }
     return &(fit->second);

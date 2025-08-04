@@ -13,7 +13,7 @@ using namespace nsCodeGeneratorImplementation;
 
 void TTypeFactoryHeaderFileGenerator::Work()
 {
-    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
     AddPragmaOnce();
@@ -24,7 +24,7 @@ void TTypeFactoryHeaderFileGenerator::Work()
 
     AddInclude("Base/Common/TypeDef.h");
 
-    AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
+    AddInclude(mResolvedConfig->includeFileForInclude + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

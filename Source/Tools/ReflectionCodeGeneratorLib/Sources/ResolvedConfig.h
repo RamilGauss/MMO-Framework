@@ -15,8 +15,22 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TypeDef.h"
 
+#include "Parser/Sources/Types.h"
+
 namespace nsReflectionCodeGenerator
 {
+    struct DllExport TFilterExt
+    {
+        std::vector<std::string> extensions;
+        
+        // Filter by pragma or parent
+        std::string attribute;// #pragma ATTRIBUTE
+        // or
+        std::list<std::list<std::string>> inheritances;// ["ns::TypeA" and "ns::TypeC"] or ["ns::TypeB"]
+
+        std::string memberIgnore;// #pragma IGNORE_ATTRIBUTE
+    };
+
     struct DllExport TSourceRoot
     {
         std::string original;
@@ -50,18 +64,28 @@ namespace nsReflectionCodeGenerator
 
     struct DllExport TExternalSourcesExt
     {
+        std::list<TExternalSourceExt> loadedExternalSources;
+
         std::list<std::string> inAbsFilePathList;
         std::string outAbsFilePath;
     };
 
     struct DllExport TSerializerExt : TClassDescExt
     {
-        TExternalSourcesExt externalSources;
+        std::shared_ptr<TExternalSourcesExt> externalSources;
+        std::map<std::string, std::string> keyValueMap;
     };
 
-    struct DllExport TCache
+    struct DllExport TResolvedConfig
     {
+        std::string header;
+        TFilterExt filter;
+
         std::list<std::string> targetForParsingAbsPaths;
+        bool targetParsingRecursive;
+
+        std::map<std::string, nsCppParser::TypeCategory> typeCustomizerMap;
+        bool appendTypeCustomizerMap;
         
         std::string targetForCodeGenerationAbsPath;
         std::string includeAbsFilePath;

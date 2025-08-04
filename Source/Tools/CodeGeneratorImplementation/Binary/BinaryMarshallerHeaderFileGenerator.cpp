@@ -13,7 +13,7 @@ using namespace nsCodeGeneratorImplementation;
 
 void TBinaryMarshallerHeaderFileGenerator::Work()
 {
-    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
     AddPragmaOnce();
@@ -29,7 +29,7 @@ void TBinaryMarshallerHeaderFileGenerator::Work()
     AddInclude("lz4.h");
 
     AddEmptyLine();
-    AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
+    AddInclude(mResolvedConfig->includeFileForInclude + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

@@ -11,7 +11,6 @@ See for more information LICENSE.md.
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/PathOperations.h"
 
-#include "ReflectionCodeGeneratorLib/Sources/ConfigContainer.h"
 #include "ReflectionCodeGeneratorLib/Sources/ICodeGenerator.h"
 
 namespace fs = std::filesystem;
@@ -27,14 +26,6 @@ void ICodeGenerator::Init(TPairList& result)
     mPairList = &result;
 
     fmt::print("Begin code generator {}\n", mName);
-}
-//----------------------------------------------------------------------------------
-std::string ICodeGenerator::GeneratedFileFullPath(std::string fileNameWithExt)
-{
-    //auto fileNameRelPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(mConfig->targetForCodeGeneration.sourceRootPaths, fileNameWithExt);
-    //return fileNameRelPath;
-
-    return {};
 }
 //----------------------------------------------------------------------------------
 

@@ -10,6 +10,7 @@ See for more information LICENSE.md.
 #include "Parser/Sources/TypeInfo.h"
 
 #include "ReflectionCodeGeneratorLib/Sources/ICodeGenerator.h"
+#include "ReflectionCodeGeneratorLib/Sources/ResolvedConfig.h"
 
 namespace nsReflectionCodeGenerator
 {
@@ -22,7 +23,7 @@ namespace nsReflectionCodeGenerator
 
         virtual void GetDependencies(const nsCppParser::TTypeInfo* typeName, std::set<std::string>& dependencies) = 0;
 
-        TSerializer* GetSerializer();
+        TSerializerExt* GetSerializer();
         bool HasSerializer();
         TTypeNameDataBase* GetTypeNameDB();
     };

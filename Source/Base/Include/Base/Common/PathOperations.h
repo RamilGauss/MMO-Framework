@@ -25,6 +25,7 @@ namespace nsBase::nsCommon
         static void AddAbsPathsByDirectory(const std::string& directory, const std::set<std::string>& extensions,
             std::list<std::string>& fileList, bool recursive = true);
 
+        static bool IsCoherent(const std::string& absL, const std::string& absR);
 
         // Example:
         // absBase = "C:\X\D"

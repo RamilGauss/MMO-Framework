@@ -13,7 +13,7 @@ using namespace nsCodeGeneratorImplementation;
 
 void TDynamicCasterHeaderFileGenerator::Work()
 {
-    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
     AddPragmaOnce();
@@ -27,7 +27,7 @@ void TDynamicCasterHeaderFileGenerator::Work()
 
     AddInclude("Base/Common/TypeDef.h");
 
-    AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
+    AddInclude(mResolvedConfig->includeFileForInclude + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

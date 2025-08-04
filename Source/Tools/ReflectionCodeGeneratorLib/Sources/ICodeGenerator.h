@@ -23,7 +23,5 @@ namespace nsReflectionCodeGenerator
 
         // abs path file - list parts of file
         void Init(TPairList& result);
-    protected:
-        std::string GeneratedFileFullPath(std::string fileNameWithExt);
     };
 }

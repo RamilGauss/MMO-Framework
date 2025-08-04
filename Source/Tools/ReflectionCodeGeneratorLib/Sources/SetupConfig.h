@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ReflectionCodeGeneratorLib/Sources/ConfigContainer.h"
+#include "ReflectionCodeGeneratorLib/Sources/Config.h"
 
 namespace nsReflectionCodeGenerator
 {
@@ -16,22 +16,26 @@ namespace nsReflectionCodeGenerator
         int mArgc = 0;
         char** mArgv = nullptr;
     public:
-        void Init(TConfigContainer* configContainer, TCache* cache, int argc, char** argv);
+        void Init(TResolvedConfig* resolvedConfig, int argc, char** argv);
         bool Work();
 
-    public:
-        TConfigContainer* mConfigContainer = nullptr;
-        TCache* mCache = nullptr;
+        static std::string ResolveInclude(const std::string& absFilePath, const std::list<TSourceRoot>& sourceRoots);
+    protected:
+        TConfig mConfig;
+        TResolvedConfig* mResolvedConfig = nullptr;
 
         std::string mAbsPathDirJson;
         std::string mAbsPathJsonFile;
-    protected:
         void ShowManual();
         void DefaultConfig();
     private:
         bool TryLoadConfig();
-        void ConvertConfigToCache();
+        void ResolveConfig();
 
         void ResolveJsonPath();
+
+        void CollectAbsPaths(const std::string& dir,
+           const std::unordered_set<std::string>& extSet, std::unordered_set<std::string>& fileList);
+
     };
 }

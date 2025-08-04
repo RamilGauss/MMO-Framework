@@ -38,9 +38,9 @@ void TJsonSerializerGenerator::GenerateHeader()
     auto& pair = mPairList->back();
 
     auto impl = GetSerializer();
-    pair.first = GeneratedFileFullPath(impl->fileName + ".h");
+    pair.first = impl->fileName + ".h";
 
-    fileGenerator.Init(&mTypeNameDB, pair, impl);
+    fileGenerator.Init(mResolvedConfig, mTypeManager, &mTypeNameDB, pair, impl);
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------
@@ -53,9 +53,9 @@ void TJsonSerializerGenerator::GenerateSource()
     auto& pair = mPairList->back();
 
     auto impl = GetSerializer();
-    pair.first = GeneratedFileFullPath(impl->fileName + ".cpp");
+    pair.first = impl->fileName + ".cpp";
 
-    fileGenerator.Init(&mTypeNameDB, pair, impl);
+    fileGenerator.Init(mResolvedConfig, mTypeManager, &mTypeNameDB, pair, impl);
     fileGenerator.Work();
 }
 //----------------------------------------------------------------------------------

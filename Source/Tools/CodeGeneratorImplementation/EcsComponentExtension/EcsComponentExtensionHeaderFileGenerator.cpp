@@ -15,7 +15,7 @@ using namespace nsCodeGeneratorImplementation;
 
 void TEcsComponentExtensionHeaderFileGenerator::Work()
 {
-    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
     AddPragmaOnce();
@@ -34,7 +34,7 @@ void TEcsComponentExtensionHeaderFileGenerator::Work()
         AddInclude(entityManagerHeaderPath);
     }
 
-    AddInclude(mConfig->targetForCodeGeneration.includeListParams.includeListFileName + ".h");
+    AddInclude(mResolvedConfig->includeFileForInclude + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

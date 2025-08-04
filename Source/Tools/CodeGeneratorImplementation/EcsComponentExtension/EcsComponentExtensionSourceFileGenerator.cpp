@@ -15,7 +15,7 @@ using namespace nsCodeGeneratorImplementation;
 
 void TEcsComponentExtensionSourceFileGenerator::Work()
 {
-    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
     AddInclude(mSerializer->fileName + ".h");

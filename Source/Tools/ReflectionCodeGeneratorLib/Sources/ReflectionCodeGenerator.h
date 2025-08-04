@@ -17,7 +17,7 @@ See for more information LICENSE.md.
 
 #include "Parser/Sources/Parser.h"
 
-#include "ReflectionCodeGeneratorLib/Sources/Cache.h"
+#include "ReflectionCodeGeneratorLib/Sources/ResolvedConfig.h"
 #include "ReflectionCodeGeneratorLib/Sources/Config.h"
 #include "ReflectionCodeGeneratorLib/Sources/SetupConfig.h"
 #include "ReflectionCodeGeneratorLib/Sources/ProgramInfo.h"
@@ -76,10 +76,7 @@ namespace nsReflectionCodeGenerator
         TSetupConfig mSetupConfig;
 
         TTypeManager mTypeManager;
-        TConfigContainer mConfigContainer;
-        TCache mCache;
-
-        TConfig* mConfig = nullptr;
+        TResolvedConfig mResolvedConfig;
 
         std::list<ITargetCodeGenerator*> mAddedGenerators;
 
@@ -87,8 +84,8 @@ namespace nsReflectionCodeGenerator
         {
             ITargetCodeGenerator* generator;
 
-            std::vector<TExternalSource> extSrcVector;
-            std::map<std::string, TExternalSource*> typeNameExtSrcMap;
+            std::vector<TExternalSourceExt> extSrcVector;
+            std::map<std::string, TExternalSourceExt*> typeNameExtSrcMap;
 
             std::set<std::string> dependenciesTypeNameSet;
             std::set<nsCppParser::TTypeInfo*> depAndFilterSet;
@@ -133,8 +130,5 @@ namespace nsReflectionCodeGenerator
 
         nsCppParser::TTypeInfo* Find(nsCppParser::TMemberExtendedTypeInfo* pMemberExtendedInfo,
             const std::list<std::string>& withinClassTypeNameList);
-
-        void CollectAbsPaths(const std::string& dir, std::unordered_set<std::string>& fileList);
-        void FindAbsPathAllFiles();
     };
  }

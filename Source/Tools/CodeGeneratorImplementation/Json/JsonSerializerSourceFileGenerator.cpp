@@ -15,7 +15,7 @@ using namespace nsCppParser;
 
 void TJsonSerializerSourceFileGenerator::Work()
 {
-    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
     AddInclude("Base/Common/JsonPopMaster.h");

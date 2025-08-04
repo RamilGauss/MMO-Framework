@@ -14,7 +14,7 @@ using namespace nsCodeGeneratorImplementation;
 
 void TIncludeListFileGenerator::Work()
 {
-    AddHeader(mConfig->targetForCodeGeneration.header);
+    AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
     AddPragmaOnce();
@@ -24,25 +24,9 @@ void TIncludeListFileGenerator::Work()
 //-----------------------------------------------------------------------------------
 void TIncludeListFileGenerator::AddIncludes()
 {
-    //const auto& sourceRootPath = mConfig->targetForCodeGeneration.sourceRootPath;
-    //const auto& absPathAllFilesInDir = mCache->absPathAllFilesInDir;
-
-    //for (auto& absFileName : *mHeaderSetPtr) {
-    //    fs::path filePath(absFileName);
-    //    if (absPathAllFilesInDir.contains(absFileName)) {
-
-    //        fs::path dirPath(sourceRootPath);
-    //        auto dirName = dirPath.filename();
-    //        auto relativePath = fs::relative(absFileName, sourceRootPath);
-
-    //        if (dirName.generic_string().size()) {
-    //            dirName += fs::path::preferred_separator;
-    //        }
-    //        dirName += relativePath;
-
-    //        AddInclude(dirName.generic_string());
-    //    }
-    //}
+    for (auto& includeFile : *mHeaderSetPtr) {
+        AddInclude(includeFile);
+    }
 }
 //-----------------------------------------------------------------------------------
 void TIncludeListFileGenerator::SetIncludes(std::set<std::string>* headerSet)
