@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ContainerCodeGenerator.h"
+#include "ContainerCodeGeneratorLib/Sources/ContainerCodeGenerator.h"
 
-#include "Systems/SetupConfig/Project/ConfigFeature.h"
-#include "Systems/Aggregator/GeneratorFeature.h"
-#include "Systems/Project/GeneratorFeature.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Project/ConfigFeature.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Aggregator/GeneratorFeature.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/GeneratorFeature.h"
 
 // Автоматизация
 // Управляющий над кодогенератором для нужд ядра и проекта в редакторе.

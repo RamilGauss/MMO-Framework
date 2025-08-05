@@ -1,14 +1,13 @@
 /*
-	ReflectionCodeGenerator
+	ContainerCodeGenerator
 */
-// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2024_01_20 12:38:19.086
-	
-#include "JsonSerializer.h"
+// ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2025_08_05 10:31:58.287
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
+#include "ContainerCodeGeneratorLib/Sources/GeneratedFiles/JsonSerializer.h"
 
 using namespace nsContainerCodeGenerator;
 
@@ -440,7 +439,7 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TCoreContainerConfig*
     PUM::Push(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
     PUM::Push(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
     PUM::Push(obj, "ecsDirectory", p->ecsDirectory);
-    PUM::Push(obj, "engineSourcePath", p->engineSourcePath);
+    PUM::Push(obj, "sourceRootPath", p->sourceRootPath);
     auto coreConfig_o = PUM::AddObject(obj, "coreConfig");
     _Serialize(&(p->coreConfig), coreConfig_o);
 }
@@ -450,7 +449,7 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TCoreContainerConfi
     POM::PopStr(obj, "reflectionCodeGeneratorFileName", p->reflectionCodeGeneratorFileName);
     POM::PopStr(obj, "entityManagerHeaderPath", p->entityManagerHeaderPath);
     POM::PopStr(obj, "ecsDirectory", p->ecsDirectory);
-    POM::PopStr(obj, "engineSourcePath", p->engineSourcePath);
+    POM::PopStr(obj, "sourceRootPath", p->sourceRootPath);
     auto coreConfig_o0 = POM::FindObject(obj, "coreConfig");
     _Deserialize(&(p->coreConfig), coreConfig_o0);
 }
@@ -459,7 +458,7 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TEcsSystemConfig* p, 
 {
     _Serialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
     PUM::Value inheritances_a0(rapidjson::kArrayType);
-    for(auto& inheritances_e0 : p->inheritances) {
+    for(auto inheritances_e0 : p->inheritances) {
         PUM::PushBack(inheritances_a0, inheritances_e0);
     }
     PUM::Push(obj, "inheritances", inheritances_a0);
@@ -641,7 +640,7 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TProjectConfig* p, 
 void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TProjectContainerConfig* p, Jobj& obj)
 {
     PUM::Value baseHandlerTypeNames_a0(rapidjson::kArrayType);
-    for(auto& baseHandlerTypeNames_e0 : p->baseHandlerTypeNames) {
+    for(auto baseHandlerTypeNames_e0 : p->baseHandlerTypeNames) {
         PUM::PushBack(baseHandlerTypeNames_a0, baseHandlerTypeNames_e0);
     }
     PUM::Push(obj, "baseHandlerTypeNames", baseHandlerTypeNames_a0);
@@ -699,7 +698,7 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TSystemConfig* p, Job
 {
     _Serialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
     PUM::Value inheritances_a0(rapidjson::kArrayType);
-    for(auto& inheritances_e0 : p->inheritances) {
+    for(auto inheritances_e0 : p->inheritances) {
         PUM::PushBack(inheritances_a0, inheritances_e0);
     }
     PUM::Push(obj, "inheritances", inheritances_a0);

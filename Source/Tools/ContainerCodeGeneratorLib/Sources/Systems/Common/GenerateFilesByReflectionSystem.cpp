@@ -5,16 +5,16 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "GenerateFilesByReflectionSystem.h"
-
 #include <fmt/core.h>
 
 #include "ECS/Include/Helper.h"
 
-#include "MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/MessageException.h"
 
-#include "Components/CoreConfigComponent.h"
-#include "Components/ReflectionConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ReflectionConfigComponent.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/GenerateFilesByReflectionSystem.h"
 
 namespace nsContainerCodeGenerator::nsCommon
 {

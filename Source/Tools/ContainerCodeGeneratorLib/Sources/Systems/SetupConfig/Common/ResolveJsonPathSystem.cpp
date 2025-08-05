@@ -5,24 +5,25 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ResolveJsonPathSystem.h"
 
 #include <fstream>
 #include <filesystem>
 #include <fmt/core.h>
 
-#include "ECS/Include/ExecuteSystem.h"
-#include "ECS/Include/Helper.h"
-
-#include "Config.h"
 #include "Base/Common/LoadFromFile.h"
 #include "Base/Common/TextFile.h"
 #include "Base/Common/PathOperations.h"
 
-#include "GeneratedFiles/JsonSerializer.h"
+#include "ECS/Include/ExecuteSystem.h"
+#include "ECS/Include/Helper.h"
 
-#include "Components/FilePathComponent.h"
-#include "Components/PathsComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Common/ResolveJsonPathSystem.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Config.h"
+#include "ContainerCodeGeneratorLib/Sources/GeneratedFiles/JsonSerializer.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Components/FilePathComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/PathsComponent.h"
 
 namespace nsContainerCodeGenerator::nsSetupConfig::nsCommon
 {

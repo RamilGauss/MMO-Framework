@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #include <fmt/core.h>
 
-#include "MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/MessageException.h"
 
 namespace nsContainerCodeGenerator
 {

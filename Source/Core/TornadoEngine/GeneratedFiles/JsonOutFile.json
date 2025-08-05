@@ -1,0 +1,32 @@
+{
+    "fileName": "TornadoEngineJsonSerializer",
+    "nameSpaceName": "nsTornadoEngine",
+    "typeName": "TTornadoEngineJsonSerializer",
+    "customizedTypes": [
+        "nsMathTools::TMatrix16",
+        "nsMathTools::TMatrix9",
+        "nsMathTools::TOrientation",
+        "nsMathTools::TPlane",
+        "nsMathTools::TPoint2",
+        "nsMathTools::TQuaternion",
+        "nsMathTools::TVector2",
+        "nsMathTools::TVector3",
+        "nsMathTools::TVector4",
+        "nsTornadoEngine::FieldAccessType",
+        "nsTornadoEngine::ModuleType",
+        "nsTornadoEngine::TArchetypeField",
+        "nsTornadoEngine::TComponentContent",
+        "nsTornadoEngine::TConveyorConfig",
+        "nsTornadoEngine::TEntityContent",
+        "nsTornadoEngine::TFrameworkResources",
+        "nsTornadoEngine::TLoggerConfig",
+        "nsTornadoEngine::TPrefabInstance",
+        "nsTornadoEngine::TPrefabPatch",
+        "nsTornadoEngine::TPrefabPatchOperation",
+        "nsTornadoEngine::TPrefabPatchOperation::Operation",
+        "nsTornadoEngine::TPrefabResourceContent",
+        "nsTornadoEngine::TProjectConfig",
+        "nsTornadoEngine::TResourceContentMap",
+        "nsTornadoEngine::TSceneResourceContent"
+    ]
+}

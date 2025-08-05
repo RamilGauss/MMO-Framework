@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 #include "ECS/Include/Feature.h"
 #include "ECS/Include/Helper.h"
 
-#include "Config.h"
+#include "ContainerCodeGeneratorLib/Sources/Config.h"
 
 // Автоматизация
 // Управляющий над кодогенератором для нужд ядра и проекта в редакторе.

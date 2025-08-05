@@ -30,7 +30,7 @@
                 "fileName": "ImGuiWidgetsDynamicCaster",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "coreImGuiWidgetsDynamicCasterOut.json"
+                    "outFile": "CoreImGuiWidgetsDynamicCasterOut.json"
                 },
                 "keyValueMap": {}
             },
@@ -41,16 +41,16 @@
                 "fileName": "ImGuiWidgetsRtti",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "coreImGuiWidgetsRttiOut.json"
+                    "outFile": "CoreImGuiWidgetsRttiOut.json"
                 },
                 "keyValueMap": {}
             }
         },
         "includeListParams": {
-            "includeListFileName": "ImGuiWidgetsIncludeList",
-            "dirToInclude": [
-                "c:\\MMOFramework\\Source\\Modules\\ImGuiWidgets"
-            ]
-        }
+            "includeListFileName": "ImGuiWidgetsIncludeList"
+        },
+        "sourceRootPaths": [
+            "C:\\MMOFramework\\Source\\Modules\\ImGuiWidgets"
+        ]
     }
 }

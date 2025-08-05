@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ResolvePathesSystem.h"
+
+#include "Base/Common/PathOperations.h"
 
 #include "ECS/Include/ExecuteSystem.h"
 #include "ECS/Include/Helper.h"
 
-#include "Base/Common/PathOperations.h"
-
-#include "Components/ProjectConfigComponent.h"
-#include "Components/PathsComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Project/ResolvePathesSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ProjectConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/PathsComponent.h"
 
 namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
 {

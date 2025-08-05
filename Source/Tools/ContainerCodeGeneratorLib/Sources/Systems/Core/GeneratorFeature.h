@@ -9,15 +9,15 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "Systems/Common/SaveConfigFileSystem.h"
-#include "Systems/Common/GenerateFilesByReflectionSystem.h"
-#include "Systems/Common/DestroyReflectionConfigSystem.h"
-#include "Systems/Common/DestroyFileListSystem.h"
-#include "Systems/Common/DestroyTypeListSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/SaveConfigFileSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/GenerateFilesByReflectionSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/DestroyReflectionConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/DestroyFileListSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/DestroyTypeListSystem.h"
 
-#include "Systems/Core/DeleteGeneratedFilesSystem.h"
-#include "Systems/Core/Component/PrepareConfigSystem.h"
-#include "Systems/Core/ImGuiWidgets/PrepareConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Core/DeleteGeneratedFilesSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Core/Component/PrepareConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Core/ImGuiWidgets/PrepareConfigSystem.h"
 
 namespace nsContainerCodeGenerator::nsCore
 {

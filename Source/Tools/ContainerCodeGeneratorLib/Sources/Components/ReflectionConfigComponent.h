@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/IComponent.h"
 
-#include <ReflectionCodeGeneratorLib/Sources/Config.h>
+#include "ReflectionCodeGeneratorLib/Sources/Config.h"
 
 namespace nsContainerCodeGenerator
 {

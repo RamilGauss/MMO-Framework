@@ -7,7 +7,6 @@ add_library(ContainerCodeGeneratorLib SHARED ${ParserSources})
 target_include_directories(ContainerCodeGeneratorLib PRIVATE 
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Base/Include
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools
-    ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/ContainerCodeGeneratorLib/Sources
     ${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Modules
 )
 

@@ -5,7 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "CoreContainerCodeGenerator.h"
 
 #include <fmt/core.h>
 #include <fmt/color.h>
@@ -14,10 +13,11 @@ See for more information LICENSE.md.
 
 #include "Base/Common/LoadFromFile.h"
 
-#include "MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/CoreContainerCodeGenerator.h"
 
-#include "Components/CoreConfigComponent.h"
-#include "Components/FilePathComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/FilePathComponent.h"
 
 namespace nsContainerCodeGenerator
 {

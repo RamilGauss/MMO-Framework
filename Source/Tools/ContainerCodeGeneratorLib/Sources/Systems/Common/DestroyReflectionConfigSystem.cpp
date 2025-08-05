@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "DestroyReflectionConfigSystem.h"
-
 #include "ECS/Include/Helper.h"
 
-#include "Components/ReflectionConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ReflectionConfigComponent.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/DestroyReflectionConfigSystem.h"
 
 namespace nsContainerCodeGenerator::nsCommon
 {

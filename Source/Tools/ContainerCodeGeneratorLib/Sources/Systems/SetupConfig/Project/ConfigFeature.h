@@ -9,16 +9,16 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "Systems/SetupConfig/Common/ResolveJsonPathSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Common/ResolveJsonPathSystem.h"
 
-#include "Systems/SetupConfig/Project/TryLoadConfigSystem.h"
-#include "Systems/SetupConfig/Project/ResolvePathesSystem.h"
-#include "Systems/SetupConfig/Project/ValidateConfigSystem.h"
-#include "Systems/SetupConfig/Project/ResetupCoreConfigFileSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Project/TryLoadConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Project/ResolvePathesSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Project/ValidateConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Project/ResetupCoreConfigFileSystem.h"
 
-#include "Systems/SetupConfig/Core/TryLoadConfigSystem.h"
-#include "Systems/SetupConfig/Core/ResolvePathesSystem.h"
-#include "Systems/SetupConfig/Core/ValidateConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Core/TryLoadConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Core/ResolvePathesSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Core/ValidateConfigSystem.h"
 
 namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
 {

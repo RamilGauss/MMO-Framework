@@ -5,8 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "MakeFileListSystem.h"
-
 #include <filesystem>
 
 #include <fmt/core.h>
@@ -15,11 +13,13 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Helper.h"
 
-#include "Constants.h"
+#include "ContainerCodeGeneratorLib/Sources/Constants.h"
 
-#include "Components/CoreConfigComponent.h"
-#include "Components/ProjectConfigComponent.h"
-#include "Components/FileListComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ProjectConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/FileListComponent.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/Handler/MakeFileListSystem.h"
 
 namespace nsContainerCodeGenerator::nsProject::nsHandler
 {

@@ -1,8 +1,8 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2025_01_30 15:40:51.217
+// ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2025_08_05 13:10:21.470
 #pragma once
 
 #include <string>
@@ -10,7 +10,7 @@ Core Component
 #include <functional>
 #include "Base/Common/TypeDef.h"
 #include "ECS/Include/EntityManager.h"
-#include "ComponentIncludeList.h"
+#include "TornadoEngine/GeneratedFiles/Container/ComponentIncludeList.h"
 
 namespace nsTornadoEngine
 {

@@ -5,15 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ResolvePathesSystem.h"
+#include "Base/Common/PathOperations.h"
 
 #include "ECS/Include/ExecuteSystem.h"
 #include "ECS/Include/Helper.h"
 
-#include "Base/Common/PathOperations.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Core/ResolvePathesSystem.h"
 
-#include "Components/CoreConfigComponent.h"
-#include "Components/PathsComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/PathsComponent.h"
 
 namespace nsContainerCodeGenerator::nsSetupConfig::nsCore
 {
@@ -26,7 +26,7 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsCore
         ResolvePath(configComponent->value.coreConfig.parseDirectory);
         ResolvePath(configComponent->value.coreConfig.targetDirectory);
         ResolvePath(configComponent->value.coreConfig.imGuiWidgetsConfig.imGuiWidgetsDirectory);
-        ResolvePath(configComponent->value.engineSourcePath);
+        ResolvePath(configComponent->value.sourceRootPath);
     }
     //------------------------------------------------------------------------------------------------------
     void TResolvePathesSystem::ResolvePath(std::string& path)

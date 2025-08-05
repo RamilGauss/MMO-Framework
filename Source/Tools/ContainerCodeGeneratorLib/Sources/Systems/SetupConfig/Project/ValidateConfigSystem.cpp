@@ -5,7 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ValidateConfigSystem.h"
 
 #include <filesystem>
 
@@ -14,11 +13,13 @@ See for more information LICENSE.md.
 #include "Base/Common/PathOperations.h"
 #include "ECS/Include/Helper.h"
 
-#include "Constants.h"
-#include "MessageException.h"
-#include "PathValidator.h"
+#include "ContainerCodeGeneratorLib/Sources/Constants.h"
+#include "ContainerCodeGeneratorLib/Sources/MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/PathValidator.h"
 
-#include "Components/ProjectConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Project/ValidateConfigSystem.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Components/ProjectConfigComponent.h"
 
 namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
 {

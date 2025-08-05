@@ -5,8 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "GenerateAggregatorHeaderSystem.h"
-
 #include <fmt/core.h>
 
 #include "Base/Common/TextGenerator.h"
@@ -14,12 +12,14 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Helper.h"
 
-#include "Constants.h"
-#include "MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/Constants.h"
+#include "ContainerCodeGeneratorLib/Sources/MessageException.h"
 
-#include "Components/CoreConfigComponent.h"
-#include "Components/ProjectConfigComponent.h"
-#include "Components/GeneratedFilesComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ProjectConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/GeneratedFilesComponent.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Aggregator/System/TypeFactory/GenerateAggregatorHeaderSystem.h"
 
 namespace nsContainerCodeGenerator::nsAggregator::nsSystem::nsTypeFactory
 {

@@ -1,14 +1,12 @@
 /*
 	Parser
 */
-// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_10_29 17:34:32.253
-	
+// ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2025_08_05 10:28:18.743
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
-
 #include "Parser/Sources/GeneratedFiles/JsonSerializer.h"
 
 using namespace nsCppParser;
@@ -304,7 +302,7 @@ void TJsonSerializer::_Deserialize(nsCppParser::TMemberExtendedTypeInfo* p, cons
 void TJsonSerializer::_Serialize(nsCppParser::TMemberInfo* p, Jobj& obj)
 {
     PUM::Value mPragmaTextSet_a0(rapidjson::kArrayType);
-    for(auto& mPragmaTextSet_e0 : p->mPragmaTextSet) {
+    for(auto mPragmaTextSet_e0 : p->mPragmaTextSet) {
         PUM::PushBack(mPragmaTextSet_a0, mPragmaTextSet_e0);
     }
     PUM::Push(obj, "mPragmaTextSet", mPragmaTextSet_a0);
@@ -347,14 +345,14 @@ void TJsonSerializer::_Serialize(nsCppParser::TTypeInfo* p, Jobj& obj)
     PUM::Push(obj, "mFileName", p->mFileName);
     PUM::Push(obj, "mAbsFileName", p->mAbsFileName);
     PUM::Value mPragmaTextSet_a0(rapidjson::kArrayType);
-    for(auto& mPragmaTextSet_e0 : p->mPragmaTextSet) {
+    for(auto mPragmaTextSet_e0 : p->mPragmaTextSet) {
         PUM::PushBack(mPragmaTextSet_a0, mPragmaTextSet_e0);
     }
     PUM::Push(obj, "mPragmaTextSet", mPragmaTextSet_a0);
     auto mType_c0 = _SerializeEnum(&(p->mType));
     PUM::Push(obj, "mType", mType_c0);
     PUM::Value mEnumKeys_a0(rapidjson::kArrayType);
-    for(auto& mEnumKeys_e0 : p->mEnumKeys) {
+    for(auto mEnumKeys_e0 : p->mEnumKeys) {
         PUM::PushBack(mEnumKeys_a0, mEnumKeys_e0);
     }
     PUM::Push(obj, "mEnumKeys", mEnumKeys_a0);

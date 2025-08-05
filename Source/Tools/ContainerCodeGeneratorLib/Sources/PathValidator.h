@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Base/Common/TypeDef.h"
-
 #include <string>
+
+#include "Base/Common/TypeDef.h"
 
 namespace nsContainerCodeGenerator
 {

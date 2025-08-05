@@ -8,7 +8,7 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "ECS/Include/IComponent.h"
-#include "Config.h"
+#include "ContainerCodeGeneratorLib/Sources/Config.h"
 
 namespace nsContainerCodeGenerator
 {

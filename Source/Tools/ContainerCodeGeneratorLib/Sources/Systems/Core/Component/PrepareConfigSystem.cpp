@@ -5,8 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "PrepareConfigSystem.h"
-
 #include <filesystem>
 
 #include <fmt/core.h>
@@ -14,14 +12,16 @@ See for more information LICENSE.md.
 #include "Base/Common/PathOperations.h"
 #include "ECS/Include/Helper.h"
 
-#include "Constants.h"
-#include "MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/Constants.h"
+#include "ContainerCodeGeneratorLib/Sources/MessageException.h"
 
-#include "Components/CoreConfigComponent.h"
-#include "Components/ReflectionConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ReflectionConfigComponent.h"
 
 #include "CodeGeneratorImplementation/GeneratorList.h"
 #include "CodeGeneratorImplementation/Constants.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Core/Component/PrepareConfigSystem.h"
 
 namespace nsContainerCodeGenerator::nsCore::nsComponent
 {
@@ -132,16 +132,10 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
 
         // Binary
 
-
         conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.coreConfig.componentConfig.includeListFileName;
 
-
-        auto sourceAbsPath = configComponent->value.engineSourcePath;
-        sourceAbsPath += "\\";
-
-        conf.targetForCodeGeneration.sourceRootPaths = {sourceAbsPath};
+        conf.targetForCodeGeneration.sourceRootPaths = {configComponent->value.sourceRootPath};
 
         mEntMng->SetComponent(eid, reflectionConfigComponent);
     }
 }
-

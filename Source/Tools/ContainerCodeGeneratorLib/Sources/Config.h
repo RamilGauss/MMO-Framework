@@ -180,7 +180,7 @@ namespace nsContainerCodeGenerator
         std::string entityManagerHeaderPath;
         std::string ecsDirectory;
 
-        std::string engineSourcePath;
+        std::string sourceRootPath;
 
         TCoreConfig coreConfig;
     };

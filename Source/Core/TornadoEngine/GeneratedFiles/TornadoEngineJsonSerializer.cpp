@@ -1,13 +1,13 @@
 /*
 	ReflectionCodeGenerator
 */
-// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2025_07_28 14:49:26.817
-#include "TornadoEngineJsonSerializer.h"
+// ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2025_08_05 12:17:11.346
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
+#include "TornadoEngine/GeneratedFiles/TornadoEngineJsonSerializer.h"
 
 using namespace nsTornadoEngine;
 

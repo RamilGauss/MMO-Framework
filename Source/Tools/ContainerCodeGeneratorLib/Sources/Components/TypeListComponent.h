@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/IComponent.h"
 
-#include <Parser/Sources/TypeInfo.h>
+#include "Parser/Sources/TypeInfo.h"
 
 namespace nsContainerCodeGenerator
 {

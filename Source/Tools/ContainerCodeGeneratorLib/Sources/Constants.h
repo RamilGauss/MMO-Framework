@@ -17,28 +17,28 @@ namespace nsContainerCodeGenerator
     struct DllExport TConstants
     {
         // Core configs
-        constexpr static char CORE_COMPONENT_CONFIG [] = "coreComponentConfig.json";
+        constexpr static char CORE_COMPONENT_CONFIG [] = "CoreComponentConfig.json";
 
         // Core configs out
-        constexpr static char CORE_COMPONENT_JSON_OUT[]           = "coreComponentJsonOut.json";
-        constexpr static char CORE_COMPONENT_RTTI_OUT[]           = "coreComponentRttiOut.json";
-        constexpr static char CORE_COMPONENT_ECS_OUT[]            = "coreComponentEcsOut.json";
-        constexpr static char CORE_COMPONENT_BINARY_OUT[]         = "coreComponentBinaryOut.json";
-        constexpr static char CORE_COMPONENT_IMGUI_OUT[]          = "coreComponentImGuiOut.json";
-        constexpr static char CORE_COMPONENT_DYNAMIC_CASTER_OUT[] = "coreComponentDynamicCasterOut.json";
-        constexpr static char CORE_COMPONENT_TYPE_FACTORY_OUT[]   = "coreComponentTypeFactoryOut.json";
+        constexpr static char CORE_COMPONENT_JSON_OUT[]           = "CoreComponentJsonOut.json";
+        constexpr static char CORE_COMPONENT_RTTI_OUT[]           = "CoreComponentRttiOut.json";
+        constexpr static char CORE_COMPONENT_ECS_OUT[]            = "CoreComponentEcsOut.json";
+        constexpr static char CORE_COMPONENT_BINARY_OUT[]         = "CoreComponentBinaryOut.json";
+        constexpr static char CORE_COMPONENT_IMGUI_OUT[]          = "CoreComponentImGuiOut.json";
+        constexpr static char CORE_COMPONENT_DYNAMIC_CASTER_OUT[] = "CoreComponentDynamicCasterOut.json";
+        constexpr static char CORE_COMPONENT_TYPE_FACTORY_OUT[]   = "CoreComponentTypeFactoryOut.json";
 
-        constexpr static char CORE_IMGUI_WIDGETS_CONFIG[] = "coreImGuiWidgetsConfig.json";
+        constexpr static char CORE_IMGUI_WIDGETS_CONFIG[] = "CoreImGuiWidgetsConfig.json";
 
-        constexpr static char CORE_IMGUI_WIDGETS_RTTI_OUT[] = "coreImGuiWidgetsRttiOut.json";
-        constexpr static char CORE_IMGUI_WIDGETS_DYNAMIC_CASTER_OUT[] = "coreImGuiWidgetsDynamicCasterOut.json";
+        constexpr static char CORE_IMGUI_WIDGETS_RTTI_OUT[] = "CoreImGuiWidgetsRttiOut.json";
+        constexpr static char CORE_IMGUI_WIDGETS_DYNAMIC_CASTER_OUT[] = "CoreImGuiWidgetsDynamicCasterOut.json";
 
         //-----------------------------------------------------------------------------------------------------
         // Project configs
-        constexpr static char PROJECT_COMPONENT_CONFIG[]  = "projectComponentConfig.json";
-        constexpr static char PROJECT_HANDLER_CONFIG[]    = "projectHandlerConfig.json";
-        constexpr static char PROJECT_ECS_SYSTEM_CONFIG[] = "projectEcsSystemConfig.json";
-        constexpr static char PROJECT_SYSTEM_CONFIG[]     = "projectSystemConfig.json";
+        constexpr static char PROJECT_COMPONENT_CONFIG[]  = "ProjectComponentConfig.json";
+        constexpr static char PROJECT_HANDLER_CONFIG[]    = "ProjectHandlerConfig.json";
+        constexpr static char PROJECT_ECS_SYSTEM_CONFIG[] = "ProjectEcsSystemConfig.json";
+        constexpr static char PROJECT_SYSTEM_CONFIG[]     = "ProjectSystemConfig.json";
 
         //-----------------------------------------------------------------------------------------------------
         constexpr static char IGNORE_ATTRIBUTE[] = "IGNORE_ATTRIBUTE";

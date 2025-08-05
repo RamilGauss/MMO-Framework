@@ -5,23 +5,23 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "PrepareConfigSystem.h"
-
 #include <fmt/core.h>
 
 #include "Base/Common/PathOperations.h"
 #include "ECS/Include/Helper.h"
 
-#include "Constants.h"
-#include "MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/Constants.h"
+#include "ContainerCodeGeneratorLib/Sources/MessageException.h"
 
-#include "Components/CoreConfigComponent.h"
-#include "Components/ProjectConfigComponent.h"
-#include "Components/HandlerListComponent.h"
-#include "Components/ReflectionConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ProjectConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/HandlerListComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ReflectionConfigComponent.h"
 
 #include "CodeGeneratorImplementation/GeneratorList.h"
 #include "CodeGeneratorImplementation/Constants.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/EcsSystem/PrepareConfigSystem.h"
 
 namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
 {
@@ -95,7 +95,7 @@ namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
         conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
 
         conf.targetForCodeGeneration.includeListParams.includeListFileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.includeListFileName;
-        conf.targetForCodeGeneration.sourceRootPath = ecsAbsPath;
+        conf.targetForCodeGeneration.sourceRootPaths = {ecsAbsPath};
 
         mEntMng->SetComponent(eid, reflectionConfigComponent);
     }

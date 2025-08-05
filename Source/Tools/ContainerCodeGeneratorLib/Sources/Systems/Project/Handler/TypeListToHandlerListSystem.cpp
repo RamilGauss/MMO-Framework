@@ -5,8 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TypeListToHandlerListSystem.h"
-
 #include <filesystem>
 
 #include "Base/Common/TextFile.h"
@@ -14,11 +12,13 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Helper.h"
 
-#include <Parser/Sources/Parser.h>
+#include "Parser/Sources/Parser.h"
 
-#include "Components/ProjectConfigComponent.h"
-#include "Components/HandlerListComponent.h"
-#include "Components/TypeListComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ProjectConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/HandlerListComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/TypeListComponent.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/Handler/TypeListToHandlerListSystem.h"
 
 namespace nsContainerCodeGenerator::nsProject::nsHandler
 {

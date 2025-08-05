@@ -5,8 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ParseFileListSystem.h"
-
 #include <filesystem>
 
 #include "Base/Common/TextFile.h"
@@ -14,10 +12,12 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Helper.h"
 
-#include <Parser/Sources/Parser.h>
+#include "Parser/Sources/Parser.h"
 
-#include "Components/FileListComponent.h"
-#include "Components/TypeListComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/FileListComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/TypeListComponent.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/Handler/ParseFileListSystem.h"
 
 namespace nsContainerCodeGenerator::nsProject::nsHandler
 {

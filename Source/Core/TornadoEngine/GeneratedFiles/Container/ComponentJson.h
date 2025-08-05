@@ -1,15 +1,15 @@
 /*
 Core Component
 */
-// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2025_01_30 15:40:51.201
+// ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2025_08_05 13:10:21.456
 #pragma once
 
 #include <vector>
 #include <string>
 #include <functional>
 #include "Base/Common/JsonMaster.h"
-#include "ComponentIncludeList.h"
+#include "TornadoEngine/GeneratedFiles/Container/ComponentIncludeList.h"
 
 namespace nsTornadoEngine
 {
@@ -281,16 +281,16 @@ namespace nsTornadoEngine
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         const auto parseFlags = rapidjson::ParseFlag::kParseFullPrecisionFlag | rapidjson::ParseFlag::kParseCommentsFlag | rapidjson::ParseFlag::kParseTrailingCommasFlag;
         rapidjson::ParseResult ok = doc.Parse<parseFlags>(str.data());
-        if ( !ok ) {
+        if (!ok) {
             auto errStr = GetParseError_En(ok.Code());
             err = "JSON parse error : " + std::string(errStr) + ", offset " + std::to_string(ok.Offset()) + "\n";
             return false;
         }
     
-        try{
+        try {
             auto obj = doc.GetObject();
             _Deserialize( p, obj );
-        } catch( std::exception& ex ) {
+        } catch (std::exception& ex) {
             err = ex.what();
             return false;
         }

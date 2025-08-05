@@ -9,21 +9,21 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "Systems/Common/SaveConfigFileSystem.h"
-#include "Systems/Common/GenerateFilesByReflectionSystem.h"
-#include "Systems/Common/DestroyReflectionConfigSystem.h"
-#include "Systems/Common/DestroyFileListSystem.h"
-#include "Systems/Common/DestroyTypeListSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/SaveConfigFileSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/GenerateFilesByReflectionSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/DestroyReflectionConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/DestroyFileListSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/DestroyTypeListSystem.h"
 
-#include "Systems/Project/DeleteGeneratedFilesSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/DeleteGeneratedFilesSystem.h"
 
-#include "Systems/Project/Component/PrepareConfigSystem.h"
-#include "Systems/Project/EcsSystem/PrepareConfigSystem.h"
-#include "Systems/Project/Handler/MakeFileListSystem.h"
-#include "Systems/Project/Handler/TypeListToHandlerListSystem.h"
-#include "Systems/Project/Handler/PrepareConfigSystem.h"
-#include "Systems/Project/Handler/ParseFileListSystem.h"
-#include "Systems/Project/System/PrepareConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/Component/PrepareConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/EcsSystem/PrepareConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/Handler/MakeFileListSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/Handler/TypeListToHandlerListSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/Handler/PrepareConfigSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/Handler/ParseFileListSystem.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Project/System/PrepareConfigSystem.h"
 
 namespace nsContainerCodeGenerator::nsProject
 {

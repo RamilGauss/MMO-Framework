@@ -5,9 +5,9 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "Constants.h"
-
 #include <fmt/core.h>
+
+#include "ContainerCodeGeneratorLib/Sources/Constants.h"
 
 namespace nsContainerCodeGenerator
 {

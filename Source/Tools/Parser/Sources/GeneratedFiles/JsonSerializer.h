@@ -1,9 +1,8 @@
 /*
 	Parser
 */
-// ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2023_10_29 17:34:32.251
-	
+// ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
+// File has been generated at 2025_08_05 10:28:18.742
 #pragma once
 
 #include <vector>
@@ -81,6 +80,7 @@ namespace nsCppParser
     template <typename Type>
     void TJsonSerializer::Serialize(Type* p, std::string& str)
     {
+    #undef GetObject
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         auto obj = doc.GetObject();
     
@@ -98,16 +98,16 @@ namespace nsCppParser
         rapidjson::Document doc(rapidjson::Type::kObjectType);
         const auto parseFlags = rapidjson::ParseFlag::kParseFullPrecisionFlag | rapidjson::ParseFlag::kParseCommentsFlag | rapidjson::ParseFlag::kParseTrailingCommasFlag;
         rapidjson::ParseResult ok = doc.Parse<parseFlags>(str.data());
-        if ( !ok ) {
+        if (!ok) {
             auto errStr = GetParseError_En(ok.Code());
             err = "JSON parse error : " + std::string(errStr) + ", offset " + std::to_string(ok.Offset()) + "\n";
             return false;
         }
     
-        try{
+        try {
             auto obj = doc.GetObject();
             _Deserialize( p, obj );
-        } catch( std::exception& ex ) {
+        } catch (std::exception& ex) {
             err = ex.what();
             return false;
         }

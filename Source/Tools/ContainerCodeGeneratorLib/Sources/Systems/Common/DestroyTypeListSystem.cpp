@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "DestroyTypeListSystem.h"
-
 #include "ECS/Include/Helper.h"
 
-#include "Components/TypeListComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/TypeListComponent.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Common/DestroyTypeListSystem.h"
 
 namespace nsContainerCodeGenerator::nsCommon
 {

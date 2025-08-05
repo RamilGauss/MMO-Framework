@@ -28,11 +28,9 @@ void TEcsComponentExtensionHeaderFileGenerator::Work()
     auto fit = mSerializer->keyValueMap.find(TConstants::s_EntityManagerHeaderPath);
     std::string entityManagerHeaderPath = "EntityManager.h";
     if (fit != mSerializer->keyValueMap.end()) {
-        entityManagerHeaderPath = mSerializer->keyValueMap[TConstants::s_EntityManagerHeaderPath];
-        AddStandartInclude(entityManagerHeaderPath);
-    } else {
-        AddInclude(entityManagerHeaderPath);
+        entityManagerHeaderPath = fit->second;
     }
+    AddInclude(entityManagerHeaderPath);
 
     AddInclude(mResolvedConfig->includeFileForInclude + ".h");
     AddEmptyLine();

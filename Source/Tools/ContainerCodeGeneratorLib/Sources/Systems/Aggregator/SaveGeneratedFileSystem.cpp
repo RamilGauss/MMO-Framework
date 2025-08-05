@@ -5,8 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "SaveGeneratedFileSystem.h"
-
 #include <fmt/core.h>
 
 #include "Base/Common/HiTimer.h"
@@ -14,9 +12,10 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Helper.h"
 
-#include "Constants.h"
+#include "ContainerCodeGeneratorLib/Sources/Constants.h"
 
-#include "Components/GeneratedFilesComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/GeneratedFilesComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/Aggregator/SaveGeneratedFileSystem.h"
 
 namespace nsContainerCodeGenerator::nsAggregator
 {

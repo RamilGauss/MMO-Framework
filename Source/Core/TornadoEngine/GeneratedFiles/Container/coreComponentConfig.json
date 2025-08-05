@@ -34,7 +34,7 @@
                 "fileName": "ComponentDynamicCaster",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "coreComponentDynamicCasterOut.json"
+                    "outFile": "CoreComponentDynamicCasterOut.json"
                 },
                 "keyValueMap": {}
             },
@@ -45,7 +45,7 @@
                 "fileName": "ComponentEntMng",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "coreComponentEcsOut.json"
+                    "outFile": "CoreComponentEcsOut.json"
                 },
                 "keyValueMap": {
                     "entityManagerHeaderPath": "ECS/Include/EntityManager.h"
@@ -58,7 +58,7 @@
                 "fileName": "ComponentJson",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "coreComponentJsonOut.json"
+                    "outFile": "CoreComponentJsonOut.json"
                 },
                 "keyValueMap": {}
             },
@@ -69,7 +69,7 @@
                 "fileName": "ComponentRtti",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "coreComponentRttiOut.json"
+                    "outFile": "CoreComponentRttiOut.json"
                 },
                 "keyValueMap": {}
             },
@@ -80,16 +80,16 @@
                 "fileName": "ComponentTypeFactory",
                 "externalSources": {
                     "inFileList": [],
-                    "outFile": "coreComponentTypeFactoryOut.json"
+                    "outFile": "CoreComponentTypeFactoryOut.json"
                 },
                 "keyValueMap": {}
             }
         },
         "includeListParams": {
-            "includeListFileName": "ComponentIncludeList",
-            "dirToInclude": [
-                "c:\\MMOFramework\\Source\\Core\\TornadoEngine\\"
-            ]
-        }
+            "includeListFileName": "ComponentIncludeList"
+        },
+        "sourceRootPaths": [
+            "C:\\MMOFramework\\Source\\Core\\TornadoEngine\\"
+        ]
     }
 }

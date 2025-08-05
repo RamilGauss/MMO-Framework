@@ -5,7 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "TryLoadConfigSystem.h"
 
 #include <fmt/core.h>
 
@@ -13,12 +12,13 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Helper.h"
 
-#include "MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Core/TryLoadConfigSystem.h"
 
-#include "Components/CoreConfigComponent.h"
-#include "Components/PathsComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/PathsComponent.h"
 
-#include "GeneratedFiles/JsonSerializer.h"
+#include "ContainerCodeGeneratorLib/Sources/GeneratedFiles/JsonSerializer.h"
 
 namespace nsContainerCodeGenerator::nsSetupConfig::nsCore
 {

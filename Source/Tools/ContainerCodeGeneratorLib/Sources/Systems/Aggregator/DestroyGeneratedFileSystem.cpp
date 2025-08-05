@@ -5,11 +5,11 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "DestroyGeneratedFileSystem.h"
-
 #include "ECS/Include/Helper.h"
 
-#include "Components/GeneratedFilesComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/GeneratedFilesComponent.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Aggregator/DestroyGeneratedFileSystem.h"
 
 namespace nsContainerCodeGenerator::nsAggregator
 {

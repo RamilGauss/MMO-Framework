@@ -32,7 +32,11 @@
                 "nameSpaceName": "nsTornadoEngine",
                 "fileName": "TornadoEngineJsonSerializer",
                 "className": "TTornadoEngineJsonSerializer",
-                "keyValueMap": {}
+                "keyValueMap": {},
+                "externalSources": {
+                    "inFileList": [],
+                    "outFile": "../GeneratedFiles/JsonOutFile.json"
+                }
             }
         }
     }

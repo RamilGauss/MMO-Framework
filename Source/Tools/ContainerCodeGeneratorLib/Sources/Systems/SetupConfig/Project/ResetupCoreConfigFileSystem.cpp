@@ -5,7 +5,6 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ResetupCoreConfigFileSystem.h"
 
 #include <fmt/core.h>
 
@@ -14,12 +13,13 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Helper.h"
 
-#include "MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/MessageException.h"
+#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Project/ResetupCoreConfigFileSystem.h"
 
-#include "Components/CoreConfigComponent.h"
-#include "Components/ProjectConfigComponent.h"
-#include "Components/FilePathComponent.h"
-#include "Components/PathsComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ProjectConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/FilePathComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/PathsComponent.h"
 
 namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
 {

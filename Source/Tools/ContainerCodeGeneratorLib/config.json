@@ -18,12 +18,12 @@
         "memberIgnore": ""
     },
     "targetForCodeGeneration": {
+        "sourceRootPaths": [".."],
         "directory": "./Sources/GeneratedFiles",
         "includeListParams": {
-            "includeListFileName": "IncludeList",
-            "dirToInclude": []
+            "includeListFileName": "IncludeList"
         },
-        "header": "\tReflectionCodeGenerator",
+        "header": "\tContainerCodeGenerator",
         "typeCustomizerMap": {},
         "appendTypeCustomizerMap": true,
         "implementations": {

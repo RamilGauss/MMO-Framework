@@ -1,1 +1,1 @@
-call ../../../../Exe/ContainerCodeGenerator_d.exe core coreContainerConfig.json
+call ../../../../build/ContainerCodeGenerator.exe core coreContainerConfig.json

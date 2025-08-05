@@ -5,12 +5,12 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "AddGeneratedFilesComponentSystem.h"
-
 #include "ECS/Include/Helper.h"
 
-#include "Components/ProjectConfigComponent.h"
-#include "Components/GeneratedFilesComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ProjectConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/GeneratedFilesComponent.h"
+
+#include "ContainerCodeGeneratorLib/Sources/Systems/Aggregator/AddGeneratedFilesComponentSystem.h"
 
 namespace nsContainerCodeGenerator::nsAggregator
 {
