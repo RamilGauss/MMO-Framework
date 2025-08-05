@@ -39,7 +39,7 @@ void TBinaryMarshallerGenerator::GenerateHeader()
 
     auto impl = GetSerializer();
 
-    pair.first = impl->fileName + ".h";
+    pair.first = impl->absFilePath + ".h";
 
     fileGenerator.Init(mResolvedConfig, mTypeManager, &mTypeNameDB, pair, impl);
     fileGenerator.Work();
@@ -55,7 +55,7 @@ void TBinaryMarshallerGenerator::GenerateSource()
 
     auto impl = GetSerializer();
 
-    pair.first = impl->fileName + ".cpp";
+    pair.first = impl->absFilePath + ".cpp";
 
     fileGenerator.Init(mResolvedConfig, mTypeManager, &mTypeNameDB, pair, impl);
     fileGenerator.Work();

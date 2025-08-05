@@ -349,7 +349,7 @@ void IFileGenerator::AddIncludeForExternalSources()
     for (auto& fullTypeRef : fullTypeNameReferenceMap) {
         auto& refType = fullTypeRef.second;
         if (refType.refType == TTypeNameDataBase::ReferenceType::CUSTOMIZED) {
-            fileNameSet.insert(refType.reflectionInfo->fileName + ".h");
+            fileNameSet.insert(refType.reflectionInfo->filePathForInclude + ".h");
         }
     }
 

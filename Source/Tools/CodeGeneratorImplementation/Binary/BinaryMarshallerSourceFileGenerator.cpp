@@ -19,7 +19,7 @@ void TBinaryMarshallerSourceFileGenerator::Work()
     AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
-    AddInclude(mSerializer->fileName + ".h");
+    AddInclude(mSerializer->filePathForInclude + ".h");
 
     AddIncludeForExternalSources();
     AddEmptyLine();

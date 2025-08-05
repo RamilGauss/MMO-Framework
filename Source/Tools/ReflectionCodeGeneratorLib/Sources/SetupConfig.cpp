@@ -247,6 +247,7 @@ std::string TSetupConfig::ResolveInclude(const std::string& absFilePath, const s
         std::string relPath;
         auto inDir = TPathOperations::GetRelativePath(srcRoot.absOriginalPath, absFilePath, relPath);
         if (inDir) {
+            std::replace(relPath.begin(), relPath.end(), '\\', '/');
             return relPath;
         }
     }

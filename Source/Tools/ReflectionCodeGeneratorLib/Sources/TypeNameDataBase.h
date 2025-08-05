@@ -31,6 +31,9 @@ namespace nsReflectionCodeGenerator
             std::string fileName;
             std::string nameSpace;
             std::string className;
+
+            std::string absFilePath;
+            std::string filePathForInclude;
         };
 
         struct DllExport TTypeInfo

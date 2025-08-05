@@ -2,7 +2,7 @@
 	ReflectionCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2025_07_29 11:54:23.175
+// File has been generated at 2025_08_05 10:16:16.655
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
 #include "Base/Common/SingletonManager.h"
@@ -368,9 +368,13 @@ void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForCodeGenera
         auto implementations_a0 = PUM::AddObject(implementations_c0, PUM::ConvertToString(implementations_e0.first).data());
         _Serialize(&(implementations_e0.second), implementations_a0);
     }
-    //auto includeListParams_o = PUM::AddObject(obj, "includeListParams");
-    //_Serialize(&(p->includeListParams), includeListParams_o);
-    //PUM::Push(obj, "sourceRootPath", p->sourceRootPath);
+    auto includeListParams_o = PUM::AddObject(obj, "includeListParams");
+    _Serialize(&(p->includeListParams), includeListParams_o);
+    PUM::Value sourceRootPaths_a0(rapidjson::kArrayType);
+    for(auto& sourceRootPaths_e0 : p->sourceRootPaths) {
+        PUM::PushBack(sourceRootPaths_a0, sourceRootPaths_e0);
+    }
+    PUM::Push(obj, "sourceRootPaths", sourceRootPaths_a0);
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGeneration* p, const Jobj& obj)
@@ -392,9 +396,18 @@ void TJsonSerializer::_Deserialize(nsReflectionCodeGenerator::TTargetForCodeGene
         _Deserialize(&implementations_c1, implementations_o1);
         p->implementations.insert({ implementations_e0.name.GetString(), implementations_c1 });
     }
-    //auto includeListParams_o0 = POM::FindObject(obj, "includeListParams");
-    //_Deserialize(&(p->includeListParams), includeListParams_o0);
-    //POM::PopStr(obj, "sourceRootPath", p->sourceRootPath);
+    auto includeListParams_o0 = POM::FindObject(obj, "includeListParams");
+    _Deserialize(&(p->includeListParams), includeListParams_o0);
+    if (POM::IsArray(obj, "sourceRootPaths")) {
+        auto sourceRootPaths_a0 = POM::FindArray(obj, "sourceRootPaths");
+        for(auto& sourceRootPaths_e0 : sourceRootPaths_a0) {
+            p->sourceRootPaths.push_back(sourceRootPaths_e0.GetString());
+        }
+    } else {
+        std::string sourceRootPaths_t0;
+        POM::PopStr(obj, "sourceRootPaths", sourceRootPaths_t0);
+        p->sourceRootPaths.push_back(sourceRootPaths_t0);
+    }
 }
 //---------------------------------------------------------------------------------------
 void TJsonSerializer::_Serialize(nsReflectionCodeGenerator::TTargetForParsing* p, Jobj& obj)

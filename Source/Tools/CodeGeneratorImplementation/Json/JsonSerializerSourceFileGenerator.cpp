@@ -23,7 +23,7 @@ void TJsonSerializerSourceFileGenerator::Work()
 
     AddInclude("Base/Common/SingletonManager.h");
     AddInclude("Base/Common/RunTimeTypeIndex.h");
-    AddInclude(mSerializer->fileName + ".h");
+    AddInclude(mSerializer->filePathForInclude + ".h");
 
     AddIncludeForExternalSources();
 

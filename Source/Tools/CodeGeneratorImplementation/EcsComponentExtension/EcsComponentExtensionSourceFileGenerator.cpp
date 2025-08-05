@@ -18,7 +18,7 @@ void TEcsComponentExtensionSourceFileGenerator::Work()
     AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
-    AddInclude(mSerializer->fileName + ".h");
+    AddInclude(mSerializer->filePathForInclude + ".h");
     AddEmptyLine();
 
     auto namespaceName = mSerializer->nameSpaceName;

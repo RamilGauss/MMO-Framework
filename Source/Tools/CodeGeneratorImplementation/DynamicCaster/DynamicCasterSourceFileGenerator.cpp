@@ -17,7 +17,7 @@ void TDynamicCasterSourceFileGenerator::Work()
     AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
-    AddInclude(mSerializer->fileName + ".h");
+    AddInclude(mSerializer->filePathForInclude + ".h");
     AddInclude("Base/Common/SingletonManager.h");
     AddInclude("Base/Common/RunTimeTypeIndex.h");
 

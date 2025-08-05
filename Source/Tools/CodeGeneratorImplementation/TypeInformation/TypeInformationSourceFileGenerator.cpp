@@ -19,7 +19,7 @@ void TTypeInformationSourceFileGenerator::Work()
     AddHeader(mResolvedConfig->header);
     AddTimeHeader();
 
-    AddInclude(mSerializer->fileName + ".h");
+    AddInclude(mSerializer->filePathForInclude + ".h");
     AddEmptyLine();
 
     AddInclude("Base/Common/SingletonManager.h");

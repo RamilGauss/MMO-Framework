@@ -1,5 +1,5 @@
 {
-    "fileName": "ReflectionCodeGeneratorLib\\Sources\\JsonSerializer",
+    "fileName": "JsonSerializer",
     "nameSpaceName": "nsJson",
     "typeName": "TJsonSerializer",
     "customizedTypes": [

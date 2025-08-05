@@ -360,6 +360,8 @@ void TReflectionCodeGenerator::FillTypeNameDataBase()
 
                 referenceInfo.refType = TTypeNameDataBase::ReferenceType::CUSTOMIZED;
                 referenceInfo.reflectionInfo.reset(new TTypeNameDataBase::TReflectionInfo());
+                referenceInfo.reflectionInfo->absFilePath = extSrc->absFilePath;
+                referenceInfo.reflectionInfo->filePathForInclude = extSrc->filePathForInclude;
                 referenceInfo.reflectionInfo->fileName = extSrc->fileName;
                 referenceInfo.reflectionInfo->className = extSrc->typeName;
                 referenceInfo.reflectionInfo->nameSpace = extSrc->nameSpaceName;
