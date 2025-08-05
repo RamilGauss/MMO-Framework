@@ -89,7 +89,7 @@
             "includeListFileName": "ComponentIncludeList"
         },
         "sourceRootPaths": [
-            "C:\\MMOFramework\\Source\\Core\\TornadoEngine\\"
+            "C:\\MMOFramework\\Source\\Core"
         ]
     }
 }

@@ -53,6 +53,7 @@ namespace nsContainerCodeGenerator
     struct DllExport TImGuiWidgetsConfig : TIncludeListFileName
     {
         std::string imGuiWidgetsDirectory;
+        std::string sourceRootPath;
 
         TGeneratedClass rtti;
         TGeneratedClass dynamicCaster;

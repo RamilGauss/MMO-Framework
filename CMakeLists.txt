@@ -74,8 +74,8 @@ add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/ContainerCodeGenerato
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/Parser)
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/ReflectionCodeGenerator)
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/ReflectionCodeGeneratorLib)
-# add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/TornadoEditor)
+add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Tools/TornadoEditor)
 
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_TEST}/CommonTest)
-# add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_TEST}/GuiProject)
+add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_TEST}/GuiProject)
 # add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_TEST}/MMO)

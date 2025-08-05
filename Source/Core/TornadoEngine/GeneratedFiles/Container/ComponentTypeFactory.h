@@ -2,14 +2,14 @@
 Core Component
 */
 // ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2025_08_05 13:10:21.468
+// File has been generated at 2025_08_05 15:26:46.765
 #pragma once
 
 #include <string>
 #include <vector>
 #include <functional>
 #include "Base/Common/TypeDef.h"
-#include "ComponentIncludeList.h"
+#include "TornadoEngine/GeneratedFiles/Container/ComponentIncludeList.h"
 
 namespace nsTornadoEngine
 {

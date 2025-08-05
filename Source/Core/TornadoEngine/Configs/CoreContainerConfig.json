@@ -46,6 +46,7 @@
         "imGuiWidgetsConfig": {
             "includeListFileName": "ImGuiWidgetsIncludeList",
             "imGuiWidgetsDirectory": "../../../Modules/ImGuiWidgets",
+            "sourceRootPath": "../../../Modules",
             "rtti": {
                 "fileName": "ImGuiWidgetsRtti",
                 "typeName": "TImGuiWidgetsRtti"

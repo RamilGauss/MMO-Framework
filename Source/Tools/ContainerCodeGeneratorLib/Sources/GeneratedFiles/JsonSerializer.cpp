@@ -2,7 +2,7 @@
 	ContainerCodeGenerator
 */
 // ReflectionCodeGenerator version 2.5.1, build 60 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
-// File has been generated at 2025_08_05 10:31:58.287
+// File has been generated at 2025_08_05 15:14:35.357
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
 #include "Base/Common/SingletonManager.h"
@@ -565,6 +565,7 @@ void TJsonSerializer::_Serialize(nsContainerCodeGenerator::TImGuiWidgetsConfig* 
 {
     _Serialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
     PUM::Push(obj, "imGuiWidgetsDirectory", p->imGuiWidgetsDirectory);
+    PUM::Push(obj, "sourceRootPath", p->sourceRootPath);
     auto rtti_o = PUM::AddObject(obj, "rtti");
     _Serialize(&(p->rtti), rtti_o);
     auto dynamicCaster_o = PUM::AddObject(obj, "dynamicCaster");
@@ -575,6 +576,7 @@ void TJsonSerializer::_Deserialize(nsContainerCodeGenerator::TImGuiWidgetsConfig
 {
     _Deserialize((nsContainerCodeGenerator::TIncludeListFileName*)p, obj);// Inheritances
     POM::PopStr(obj, "imGuiWidgetsDirectory", p->imGuiWidgetsDirectory);
+    POM::PopStr(obj, "sourceRootPath", p->sourceRootPath);
     auto rtti_o0 = POM::FindObject(obj, "rtti");
     _Deserialize(&(p->rtti), rtti_o0);
     auto dynamicCaster_o0 = POM::FindObject(obj, "dynamicCaster");

@@ -50,7 +50,8 @@
             "includeListFileName": "ImGuiWidgetsIncludeList"
         },
         "sourceRootPaths": [
-            "C:\\MMOFramework\\Source\\Modules\\ImGuiWidgets"
+            "C:\\MMOFramework\\Source\\Core",
+            "C:\\MMOFramework\\Source\\Modules"
         ]
     }
 }
