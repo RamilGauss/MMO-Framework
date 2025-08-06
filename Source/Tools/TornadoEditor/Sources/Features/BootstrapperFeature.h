@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "BootstrapperSystem.h"
+#include "TornadoEditor/Sources/Features/BootstrapperSystem.h"
 
 namespace nsTornadoEditor
 {

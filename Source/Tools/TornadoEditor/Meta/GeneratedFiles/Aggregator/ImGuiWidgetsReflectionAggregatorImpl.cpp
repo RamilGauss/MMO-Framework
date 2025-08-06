@@ -16,13 +16,7 @@ using namespace nsTornadoEditor;
 
 TImGuiWidgetsReflectionAggregatorImpl::TImGuiWidgetsReflectionAggregatorImpl()
 {
-    mRtti = new TImGuiWidgetsRttiImpl();
-    mDynamicCaster = new TImGuiWidgetsDynamicCasterImpl();
-}
-//--------------------------------------------------------------------------------------------------
-TImGuiWidgetsReflectionAggregatorImpl::~TImGuiWidgetsReflectionAggregatorImpl()
-{
-    delete mRtti;
-    delete mDynamicCaster;
+    mRtti = std::make_shared<TImGuiWidgetsRttiImpl>();
+    mDynamicCaster = std::make_shared<TImGuiWidgetsDynamicCasterImpl>();
 }
 //--------------------------------------------------------------------------------------------------

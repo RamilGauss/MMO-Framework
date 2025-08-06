@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 // File has been generated at 2025_01_30 15:40:58.491
-#include "HandlerTypeFactoryImpl.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/HandlerTypeFactoryImpl.h"
 
-#include "GeneratedFiles\Container\HandlerTypeFactory.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Container/HandlerTypeFactory.h"
 
 using namespace nsTornadoEditor;
 

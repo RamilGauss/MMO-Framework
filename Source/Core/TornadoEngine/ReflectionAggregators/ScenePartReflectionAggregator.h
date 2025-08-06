@@ -28,10 +28,10 @@ namespace nsTornadoEngine
             mImGuiWidgets->Init();
         }
 
-        TComponentReflectionAggregator* mComponents = nullptr;
-        THandlerReflectionAggregator* mHandlers = nullptr;
-        TSystemReflectionAggregator* mSystems = nullptr;
-        TMenuItemReflectionAggregator* mMenuItems = nullptr;
-        TImGuiWidgetsReflectionAggregator* mImGuiWidgets = nullptr;
+        std::shared_ptr<TComponentReflectionAggregator> mComponents;
+        std::shared_ptr<THandlerReflectionAggregator> mHandlers;
+        std::shared_ptr<TSystemReflectionAggregator> mSystems;
+        std::shared_ptr<TMenuItemReflectionAggregator> mMenuItems;
+        std::shared_ptr<TImGuiWidgetsReflectionAggregator> mImGuiWidgets;
     };
 }

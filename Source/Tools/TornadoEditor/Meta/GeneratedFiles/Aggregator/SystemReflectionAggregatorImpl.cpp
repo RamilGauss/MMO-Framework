@@ -17,15 +17,8 @@ using namespace nsTornadoEditor;
 
 TSystemReflectionAggregatorImpl::TSystemReflectionAggregatorImpl()
 {
-    mTypeFactory = new TSystemTypeFactoryImpl();
-    mDynamicCaster = new TSystemDynamicCasterImpl();
-    mRtti = new TSystemRttiImpl();
-}
-//--------------------------------------------------------------------------------------------------
-TSystemReflectionAggregatorImpl::~TSystemReflectionAggregatorImpl()
-{
-    delete mTypeFactory;
-    delete mDynamicCaster;
-    delete mRtti;
+    mTypeFactory = std::make_shared<TSystemTypeFactoryImpl>();
+    mDynamicCaster = std::make_shared<TSystemDynamicCasterImpl>();
+    mRtti = std::make_shared<TSystemRttiImpl>();
 }
 //--------------------------------------------------------------------------------------------------

@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 // File has been generated at 2025_01_30 15:40:58.491
-#include "ComponentTypeFactoryImpl.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ComponentTypeFactoryImpl.h"
 
-#include "TornadoEngine\GeneratedFiles\Container\ComponentTypeFactory.h"
-#include "GeneratedFiles\Container\ComponentTypeFactory.h"
+#include "TornadoEngine/GeneratedFiles/Container/ComponentTypeFactory.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentTypeFactory.h"
 
 using namespace nsTornadoEditor;
 

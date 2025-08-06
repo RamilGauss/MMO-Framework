@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IButtonClickHandler.h"
-#include "ProjectConfig.h"
+#include "TornadoEngine/Handlers/Gui/IButtonClickHandler.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfig.h"
 
 namespace nsTornadoEditor
 {

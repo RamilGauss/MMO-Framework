@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 // File has been generated at 2025_01_30 15:40:58.491
 #pragma once
 
-#include "ITypeFactory.h"
+#include "TornadoEngine/ReflectionAggregators/ITypeFactory.h"
 
 namespace nsTornadoEditor
 {

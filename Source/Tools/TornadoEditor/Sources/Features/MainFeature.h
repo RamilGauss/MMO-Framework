@@ -9,10 +9,10 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "FileHierarchyWindowRefreshSystem.h"
-#include "ObjectHierarchyWindowRefreshSystem.h"
+#include "TornadoEditor/Sources/Features/FileHierarchyWindowRefreshSystem.h"
+#include "TornadoEditor/Sources/Features/ObjectHierarchyWindowRefreshSystem.h"
 
-#include "InitWindowsFeature.h"
+#include "TornadoEditor/Sources/Features/InitWindowsFeature.h"
 
 namespace nsTornadoEditor
 {

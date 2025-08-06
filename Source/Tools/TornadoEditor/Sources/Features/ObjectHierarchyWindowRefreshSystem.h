@@ -9,7 +9,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnAddCollectReactiveSystem.h"
 
-#include "ObjectHierarchyWindowRefreshTagComponent.h"
+#include "TornadoEditor/Sources/Components/ObjectHierarchyWindowRefreshTagComponent.h"
 
 namespace nsTornadoEditor
 {

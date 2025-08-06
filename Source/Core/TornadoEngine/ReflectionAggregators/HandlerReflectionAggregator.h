@@ -24,8 +24,8 @@ namespace nsTornadoEngine
             mTypeFactory->Init();
         }
 
-        IRunTimeTypeInformation* mRtti = nullptr;
-        ITypeInformation* mTypeInfo = nullptr;
-        ITypeFactory* mTypeFactory = nullptr;
+        std::shared_ptr<IRunTimeTypeInformation> mRtti;
+        std::shared_ptr<ITypeInformation> mTypeInfo;
+        std::shared_ptr<ITypeFactory> mTypeFactory;
     };
 }

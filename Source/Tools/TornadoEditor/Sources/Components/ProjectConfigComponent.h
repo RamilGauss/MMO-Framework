@@ -13,7 +13,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/IComponent.h"
 
-#include "ProjectConfig.h"
+#include "TornadoEngine/TimeSliceEngine/ProjectConfig.h"
 
 namespace nsTornadoEditor
 {

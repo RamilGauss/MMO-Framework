@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 // File has been generated at 2025_01_30 15:40:55.071
-#include "ImGuiWidgetsRttiImpl.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ImGuiWidgetsRttiImpl.h"
 
-#include "TornadoEngine\GeneratedFiles\Container\ImGuiWidgetsRtti.h"
+#include "TornadoEngine/GeneratedFiles/Container/ImGuiWidgetsRtti.h"
 
 using namespace nsTornadoEditor;
 

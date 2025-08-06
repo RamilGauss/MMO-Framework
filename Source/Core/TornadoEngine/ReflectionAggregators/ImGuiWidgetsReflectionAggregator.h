@@ -22,7 +22,7 @@ namespace nsTornadoEngine
             mDynamicCaster->Init();
         }
 
-        IRunTimeTypeInformation* mRtti = nullptr;
-        IDynamicCaster* mDynamicCaster = nullptr;
+        std::shared_ptr<IRunTimeTypeInformation> mRtti;
+        std::shared_ptr<IDynamicCaster> mDynamicCaster;
     };
 }

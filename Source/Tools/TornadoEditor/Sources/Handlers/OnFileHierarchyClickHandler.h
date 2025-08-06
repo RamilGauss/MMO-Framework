@@ -7,7 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IMenuNodeClickHandler.h"
+#include "TornadoEngine/Handlers/Gui/IMenuNodeClickHandler.h"
 
 namespace nsTornadoEditor
 {

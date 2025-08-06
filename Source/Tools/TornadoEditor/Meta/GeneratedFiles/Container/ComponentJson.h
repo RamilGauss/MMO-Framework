@@ -9,7 +9,7 @@ Project Component
 #include <string>
 #include <functional>
 #include "Base/Common/JsonMaster.h"
-#include "ComponentIncludeList.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentIncludeList.h"
 
 namespace nsTornadoEditor
 {

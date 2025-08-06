@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 // File has been generated at 2025_01_30 15:40:58.491
-#include "SystemDynamicCasterImpl.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/SystemDynamicCasterImpl.h"
 
-#include "GeneratedFiles\Container\EcsDynamicCaster.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Container/EcsDynamicCaster.h"
 
 using namespace nsTornadoEditor;
 

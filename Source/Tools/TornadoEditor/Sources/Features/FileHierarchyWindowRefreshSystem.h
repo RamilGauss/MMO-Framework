@@ -12,8 +12,8 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/OnAddCollectReactiveSystem.h"
 
-#include "FileHierarchyWindowRefreshTagComponent.h"
-#include "Modules/Resources/Common/GameObject.h"
+#include "TornadoEngine/Modules/Resources/Common/GameObject.h"
+#include "TornadoEditor/Sources/Components/FileHierarchyWindowRefreshTagComponent.h"
 
 namespace nsTornadoEditor
 {

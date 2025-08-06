@@ -5,14 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "OnFileHierarchyClickHandler.h"
-
-#include "Modules/Common/Modules.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
-
 #include "ECS/Include/Helper.h"
-#include "FileHierarchyWindowTagComponent.h"
-#include "Components/Meta/SceneInstanceGuidComponent.h"
+
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
+
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
+
+#include "TornadoEditor/Sources/Handlers/OnFileHierarchyClickHandler.h"
+#include "TornadoEditor/Sources/Components/FileHierarchyWindowTagComponent.h"
 
 using namespace nsTornadoEditor;
 

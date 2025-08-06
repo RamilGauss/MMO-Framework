@@ -7,8 +7,8 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 // File has been generated at 2025_01_30 15:40:58.491
-#include "DeveloperTool_DLL.h"
-#include "ScenePartReflectionAggregatorImpl.h"
+#include "TornadoEngine/TimeSliceEngine/DeveloperTool_DLL.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ScenePartReflectionAggregatorImpl.h"
 
 using namespace nsTornadoEngine;
 

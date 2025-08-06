@@ -32,12 +32,12 @@ namespace nsTornadoEngine
             mTypeFactory->Init();
         }
 
-        IRunTimeTypeInformation* mRtti = nullptr;
-        IJsonSerializer* mJson = nullptr;
-        IBinaryMarshaller* mBin = nullptr;
-        IImGuiSerializer* mImGui = nullptr;
-        IEcsComponentExtension* mEntMng = nullptr;
-        IDynamicCaster* mDynamicCaster = nullptr;
-        ITypeFactory* mTypeFactory = nullptr;
+        std::shared_ptr<IRunTimeTypeInformation> mRtti;
+        std::shared_ptr<IJsonSerializer> mJson;
+        std::shared_ptr<IBinaryMarshaller> mBin;
+        std::shared_ptr<IImGuiSerializer> mImGui;
+        std::shared_ptr<IEcsComponentExtension> mEntMng;
+        std::shared_ptr<IDynamicCaster> mDynamicCaster;
+        std::shared_ptr<ITypeFactory> mTypeFactory;
     };
 }

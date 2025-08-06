@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 // File has been generated at 2025_01_30 15:40:55.071
-#include "ComponentRttiImpl.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ComponentRttiImpl.h"
 
-#include "GeneratedFiles\Container\ComponentRtti.h"
-#include "TornadoEngine\GeneratedFiles\Container\ComponentRtti.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentRtti.h"
+#include "TornadoEngine/GeneratedFiles/Container/ComponentRtti.h"
 
 using namespace nsTornadoEditor;
 

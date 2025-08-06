@@ -18,17 +18,9 @@ using namespace nsTornadoEditor;
 
 TScenePartReflectionAggregatorImpl::TScenePartReflectionAggregatorImpl()
 {
-    mComponents = new TComponentReflectionAggregatorImpl();
-    mHandlers = new THandlerReflectionAggregatorImpl();
-    mSystems = new TSystemReflectionAggregatorImpl();
-    mImGuiWidgets = new TImGuiWidgetsReflectionAggregatorImpl();
-}
-//--------------------------------------------------------------------------------------------------
-TScenePartReflectionAggregatorImpl::~TScenePartReflectionAggregatorImpl()
-{
-    delete mComponents;
-    delete mHandlers;
-    delete mSystems;
-    delete mImGuiWidgets;
+    mComponents = std::make_shared<TComponentReflectionAggregatorImpl>();
+    mHandlers = std::make_shared<THandlerReflectionAggregatorImpl>();
+    mSystems = std::make_shared<TSystemReflectionAggregatorImpl>();
+    mImGuiWidgets = std::make_shared<TImGuiWidgetsReflectionAggregatorImpl>();
 }
 //--------------------------------------------------------------------------------------------------

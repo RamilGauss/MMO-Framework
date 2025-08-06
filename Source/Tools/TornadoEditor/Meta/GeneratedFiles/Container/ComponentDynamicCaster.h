@@ -12,7 +12,7 @@ Project Component
 #include <functional>
 
 #include "Base/Common/TypeDef.h"
-#include "ComponentIncludeList.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentIncludeList.h"
 
 namespace nsTornadoEditor
 {

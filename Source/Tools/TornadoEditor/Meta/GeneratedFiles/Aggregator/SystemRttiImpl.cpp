@@ -7,9 +7,9 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 // File has been generated at 2025_01_30 15:40:58.491
-#include "SystemRttiImpl.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/SystemRttiImpl.h"
 
-#include "GeneratedFiles\Container\EcsRtti.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Container/EcsRtti.h"
 
 using namespace nsTornadoEditor;
 

@@ -5,13 +5,13 @@ Project Handler
 // File has been generated at 2025_01_30 15:40:58.007
 #pragma once
 
-#include "CurrentPathToInputTextHandler.h"
-#include "DialogButtonClickHandler.h"
-#include "OnExitClickHandler.h"
-#include "OnFileHierarchyClickHandler.h"
-#include "OnMouseClickFileNodeHandler.h"
-#include "OnOpenComponentViewerClickHandler.h"
-#include "OnOpenProjectClickHandler.h"
-#include "OnOpenSystemViewerClickHandler.h"
-#include "OpenProjectCancelButtonClickHandler.h"
-#include "OpenProjectOkButtonClickHandler.h"
+#include "TornadoEditor/Sources/Handlers/CurrentPathToInputTextHandler.h"
+#include "TornadoEditor/Sources/Handlers/DialogButtonClickHandler.h"
+#include "TornadoEditor/Sources/Handlers/OnExitClickHandler.h"
+#include "TornadoEditor/Sources/Handlers/OnFileHierarchyClickHandler.h"
+#include "TornadoEditor/Sources/Handlers/OnMouseClickFileNodeHandler.h"
+#include "TornadoEditor/Sources/Handlers/OnOpenComponentViewerClickHandler.h"
+#include "TornadoEditor/Sources/Handlers/OnOpenProjectClickHandler.h"
+#include "TornadoEditor/Sources/Handlers/OnOpenSystemViewerClickHandler.h"
+#include "TornadoEditor/Sources/Handlers/OpenProjectCancelButtonClickHandler.h"
+#include "TornadoEditor/Sources/Handlers/OpenProjectOkButtonClickHandler.h"

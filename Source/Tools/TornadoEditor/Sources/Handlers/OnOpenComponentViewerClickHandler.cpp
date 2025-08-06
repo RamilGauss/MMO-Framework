@@ -5,14 +5,14 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "OnOpenComponentViewerClickHandler.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Gizmos/Gizmo.h"
+#include "TornadoEngine/Modules/Implementations/GraphicEngineModule.h"
 
-#include "Modules/Common/Modules.h"
-#include "Modules/Gizmos/Gizmo.h"
+#include "TornadoEngine/Components/Meta/UniverseIndexComponent.h"
+#include "TornadoEngine/Modules/Contexts/GraphicEngineContext.h"
 
-#include "Modules/Implementations/GraphicEngineModule.h"
-#include "Components/Meta/UniverseIndexComponent.h"
-#include "GraphicEngineContext.h"
+#include "TornadoEditor/Sources/Handlers/OnOpenComponentViewerClickHandler.h"
 
 using namespace nsTornadoEditor;
 

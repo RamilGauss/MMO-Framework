@@ -9,14 +9,13 @@ See for more information LICENSE.md.
 
 #include <filesystem>
 
-#include "IObjectInstantiationCompletionHandler.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
+#include "TornadoEngine/TimeSliceEngine/StopAccessor.h"
 
-#include "Modules/Common/Modules.h"
-#include "StopAccessor.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
-
-#include "InputTextValueComponent.h"
-#include "Components/Gui/Properties/TitleComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/TitleComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/InputTextValueComponent.h"
+#include "TornadoEngine/Handlers/Logic/IObjectInstantiationCompletionHandler.h"
 
 namespace nsTornadoEditor
 {

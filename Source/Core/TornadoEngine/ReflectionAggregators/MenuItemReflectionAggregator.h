@@ -22,6 +22,6 @@ namespace nsTornadoEngine
             mRtti->Init();
         }
 
-        IRunTimeTypeInformation* mRtti = nullptr;
+        std::shared_ptr<IRunTimeTypeInformation> mRtti;
     };
 }

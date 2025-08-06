@@ -5,16 +5,15 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "OnOpenProjectClickHandler.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/TimeSliceEngine/StopAccessor.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
 
-#include "Modules/Common/Modules.h"
-#include "StopAccessor.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
 
-#include "Components/Meta/SceneInstanceGuidComponent.h"
-
-#include "SceneObjectReferenceComponent.h"
-#include "PrefabReferenceComponent.h"
+#include "TornadoEngine/Components/Logic/SceneObjectReferenceComponent.h"
+#include "TornadoEngine/Components/Logic/PrefabReferenceComponent.h"
+#include "TornadoEditor/Sources/Handlers/OnOpenProjectClickHandler.h"
 
 using namespace nsTornadoEditor;
 

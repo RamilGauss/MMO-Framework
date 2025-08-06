@@ -5,25 +5,28 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "OnMouseClickFileNodeHandler.h"
 
 #include <filesystem>
 
 #include "ECS/Include/Helper.h"
 
-#include "Modules/Common/Modules.h"
-#include "StopAccessor.h"
-#include "Modules/Resources/Scene/SceneManager.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
-#include "Modules/Resources/Common/GameObject.h"
-#include "Components/Meta/SceneInstanceGuidComponent.h"
-#include "FilePathNodeComponent.h"
-#include "ObjectHierarchyWindowTagComponent.h"
-#include "ObjectHierarchyWindowRefreshTagComponent.h"
-#include "EditorInfoTagComponent.h"
-#include "AssetAbsoluteFilePathComponent.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Scene/SceneManager.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
+#include "TornadoEngine/Modules/Resources/Common/GameObject.h"
 
-#include "SelectedTreeNodeGuidComponent.h"
+#include "TornadoEngine/TimeSliceEngine/StopAccessor.h"
+
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/SelectedTreeNodeGuidComponent.h"
+
+#include "TornadoEditor/Sources/Components/FilePathNodeComponent.h"
+#include "TornadoEditor/Sources/Components/ObjectHierarchyWindowTagComponent.h"
+#include "TornadoEditor/Sources/Components/ObjectHierarchyWindowRefreshTagComponent.h"
+#include "TornadoEditor/Sources/Components/EditorInfoTagComponent.h"
+#include "TornadoEditor/Sources/Components/AssetAbsoluteFilePathComponent.h"
+
+#include "TornadoEditor/Sources/Handlers/OnMouseClickFileNodeHandler.h"
 
 using namespace nsTornadoEditor;
 using namespace nsTornadoEngine;

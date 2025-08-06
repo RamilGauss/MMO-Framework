@@ -3,7 +3,7 @@ Project Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
 // File has been generated at 2025_01_30 15:40:56.587
-#include "ComponentJson.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentJson.h"
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
 #include "Base/Common/SingletonManager.h"

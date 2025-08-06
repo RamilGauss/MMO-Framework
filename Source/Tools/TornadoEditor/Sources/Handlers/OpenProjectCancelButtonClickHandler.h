@@ -7,16 +7,15 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IButtonClickHandler.h"
+#include "TornadoEngine/Handlers/Gui/IButtonClickHandler.h"
 
-#include "Modules/Common/Modules.h"
-#include "StopAccessor.h"
-#include "Modules/Resources/Scene/SceneManager.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/TimeSliceEngine/StopAccessor.h"
+#include "TornadoEngine/Modules/Resources/Scene/SceneManager.h"
 
-#include "Components/Meta/SceneInstanceGuidComponent.h"
-
-#include "SceneObjectReferenceComponent.h"
-#include "PrefabReferenceComponent.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Logic/SceneObjectReferenceComponent.h"
+#include "TornadoEngine/Components/Logic/PrefabReferenceComponent.h"
 
 namespace nsTornadoEditor
 {

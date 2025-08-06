@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Feature.h"
 
-#include "FileHierarchyWindowInitSystem.h"
-#include "ObjectHierarchyWindowInitSystem.h"
+#include "TornadoEditor/Sources/Features/FileHierarchyWindowInitSystem.h"
+#include "TornadoEditor/Sources/Features/ObjectHierarchyWindowInitSystem.h"
 
 namespace nsTornadoEditor
 {

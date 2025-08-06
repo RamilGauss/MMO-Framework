@@ -9,13 +9,12 @@ See for more information LICENSE.md.
 // File has been generated at 2025_01_30 15:40:58.491
 #pragma once
 
-#include "SystemReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/SystemReflectionAggregator.h"
 
 namespace nsTornadoEditor
 {
     struct DllExport TSystemReflectionAggregatorImpl : public nsTornadoEngine::TSystemReflectionAggregator
     {
         TSystemReflectionAggregatorImpl();
-        virtual ~TSystemReflectionAggregatorImpl();
     };
 }

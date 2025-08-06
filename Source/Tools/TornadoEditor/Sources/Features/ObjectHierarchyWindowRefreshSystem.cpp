@@ -5,26 +5,28 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
-#include "ObjectHierarchyWindowRefreshSystem.h"
-
-#include "Modules/Common/Modules.h"
-#include "Modules/Resources/Common/GameObject.h"
-#include <filesystem>
-#include "Modules/Common/Modules.h"
-#include "StopAccessor.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
-
-#include "Components/Meta/GuidComponent.h"
-#include "InputTextValueComponent.h"
-#include "Components/Gui/Properties/TitleComponent.h"
-#include "Components/Meta/SceneInstanceGuidComponent.h"
-#include "ECS/Include/Helper.h"
-#include "AbsoluteFilePathComponent.h"
-#include "EditorInfoTagComponent.h"
-#include "FilePathNodeComponent.h"
-#include "Components/Gui/Properties/NodeIconComponent.h"
-
 #include <iostream>
+#include <filesystem>
+
+#include "ECS/Include/Helper.h"
+
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Common/GameObject.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
+#include "TornadoEngine/TimeSliceEngine/StopAccessor.h"
+
+#include "TornadoEngine/Components/Gui/Properties/NodeIconComponent.h"
+#include "TornadoEngine/Components/Meta/GuidComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/TitleComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/InputTextValueComponent.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
+
+#include "TornadoEditor/Sources/Components/AbsoluteFilePathComponent.h"
+#include "TornadoEditor/Sources/Components/EditorInfoTagComponent.h"
+#include "TornadoEditor/Sources/Components/FilePathNodeComponent.h"
+
+#include "TornadoEditor/Sources/Features/ObjectHierarchyWindowRefreshSystem.h"
 
 namespace fs = std::filesystem;
 

@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IWindowCloseEventHandler.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/TimeSliceEngine/StopAccessor.h"
 
-#include "Modules/Common/Modules.h"
-#include "StopAccessor.h"
+#include "TornadoEngine/Handlers/Gui/IWindowCloseEventHandler.h"
 
 namespace nsTornadoEditor
 {

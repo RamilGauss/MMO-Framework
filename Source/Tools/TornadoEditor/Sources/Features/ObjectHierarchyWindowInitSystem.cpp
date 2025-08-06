@@ -9,18 +9,18 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Helper.h"
 
-#include "FileHierarchyWindowTagComponent.h"
-#include "Modules/Common/Modules.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
 
-#include "Modules/Interfaces/IGraphicEngineModule.h"
-#include "MainWindowTagComponent.h"
-#include "MainWindowPrefabGuidComponent.h"
+#include "TornadoEngine/Modules/Interfaces/IGraphicEngineModule.h"
 
-#include "Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/PositionComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/SizeComponent.h"
 
-#include "Components/Gui/Properties/PositionComponent.h"
-#include "Components/Gui/Properties/SizeComponent.h"
+#include "TornadoEditor/Sources/Components/FileHierarchyWindowTagComponent.h"
+#include "TornadoEditor/Sources/Components/MainWindowTagComponent.h"
+#include "TornadoEditor/Sources/Components/MainWindowPrefabGuidComponent.h"
 
 namespace nsTornadoEditor
 {

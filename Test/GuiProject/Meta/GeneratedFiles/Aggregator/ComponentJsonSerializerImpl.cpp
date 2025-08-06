@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 // File has been generated at 2025_01_30 15:40:55.071
-#include "ComponentJsonSerializerImpl.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ComponentJsonSerializerImpl.h"
 
-#include "TornadoEngine\GeneratedFiles\Container\ComponentJson.h"
-#include "GeneratedFiles\Container\ComponentJson.h"
+#include "TornadoEngine/GeneratedFiles/Container/ComponentJson.h"
+#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentJson.h"
 
 using namespace nsTornadoEditor;
 

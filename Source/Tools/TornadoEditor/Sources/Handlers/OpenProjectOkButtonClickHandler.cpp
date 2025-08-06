@@ -11,25 +11,27 @@ See for more information LICENSE.md.
 
 #include "Base/Common/TextFile.h"
 
-#include "Modules/Common/Modules.h"
-#include "StopAccessor.h"
-#include "Modules/Resources/Scene/SceneManager.h"
-#include "Modules/Resources/Prefab/PrefabManager.h"
-#include "Modules/Resources/Common/GameObject.h"
+#include "TornadoEngine/Modules/Common/Modules.h"
+#include "TornadoEngine/TimeSliceEngine/StopAccessor.h"
+#include "TornadoEngine/Modules/Resources/Scene/SceneManager.h"
+#include "TornadoEngine/Modules/Resources/Prefab/PrefabManager.h"
+#include "TornadoEngine/Modules/Resources/Common/GameObject.h"
 
-#include "Components/Meta/SceneInstanceGuidComponent.h"
-#include "SceneObjectReferenceComponent.h"
-#include "PrefabReferenceComponent.h"
-#include "EditorInfoTagComponent.h"
-#include "InputTextValueComponent.h"
-#include "AbsoluteFilePathComponent.h"
-#include "ProjectConfigComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/TitleComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/InputTextValueComponent.h"
+#include "TornadoEngine/Components/Gui/Properties/LabelValueComponent.h"
+#include "TornadoEngine/Components/Meta/SceneInstanceGuidComponent.h"
+#include "TornadoEngine/Components/Logic/SceneObjectReferenceComponent.h"
+#include "TornadoEngine/Components/Logic/PrefabReferenceComponent.h"
 
-#include "GeneratedFiles/TornadoEngineJsonSerializer.h"
-#include "Components/Gui/Properties/TitleComponent.h"
-#include "LabelValueComponent.h"
-#include "FileHierarchyWindowTagComponent.h"
-#include "FileHierarchyWindowRefreshTagComponent.h"
+#include "TornadoEngine/GeneratedFiles/TornadoEngineJsonSerializer.h"
+
+#include "TornadoEditor/Sources/Components/EditorInfoTagComponent.h"
+#include "TornadoEditor/Sources/Components/AbsoluteFilePathComponent.h"
+#include "TornadoEditor/Sources/Components/ProjectConfigComponent.h"
+
+#include "TornadoEditor/Sources/Components/FileHierarchyWindowTagComponent.h"
+#include "TornadoEditor/Sources/Components/FileHierarchyWindowRefreshTagComponent.h"
 
 using namespace nsTornadoEditor;
 using namespace nsTornadoEngine;

@@ -9,8 +9,8 @@ See for more information LICENSE.md.
 #include "TornadoEngine/Modules/Common/Modules.h"
 #include "TornadoEngine/Modules/Resources/Scene/SceneManager.h"
 
-#include "BootstrapperSystem.h"
-#include "EditorInfoTagComponent.h"
+#include "TornadoEditor/Sources/Features/BootstrapperSystem.h"
+#include "TornadoEditor/Sources/Components/EditorInfoTagComponent.h"
 
 using namespace nsTornadoEditor;
 
