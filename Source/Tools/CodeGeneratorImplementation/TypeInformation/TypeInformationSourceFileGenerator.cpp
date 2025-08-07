@@ -17,9 +17,7 @@ using namespace nsCppParser;
 void TTypeInformationSourceFileGenerator::Work()
 {
     AddHeader(mResolvedConfig->header);
-    if (mResolvedConfig->addTimeStamp) {
-        AddTimeHeader();
-    }
+    AddProgramInfo();
 
     AddInclude(mSerializer->filePathForInclude + ".h");
     AddEmptyLine();

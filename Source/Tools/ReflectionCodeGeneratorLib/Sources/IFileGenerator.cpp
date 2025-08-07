@@ -36,12 +36,10 @@ void IFileGenerator::AddHeader(const std::string& header)
     AddList(strList);
 }
 //----------------------------------------------------------------------------------
-void IFileGenerator::AddTimeHeader()
+void IFileGenerator::AddProgramInfo()
 {
-    auto s = s_TimeHeader;
-
-    s = fmt::format(fmt::runtime(s), TProgramInfo::Get(), ht_GetTimeStr());
-
+    auto s = s_ProgramInfoHeader;
+    s = fmt::format(fmt::runtime(s), TProgramInfo::Get());
     Add(s);
 }
 //----------------------------------------------------------------------------------

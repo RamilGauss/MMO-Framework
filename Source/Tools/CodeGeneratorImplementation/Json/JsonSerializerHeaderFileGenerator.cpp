@@ -15,9 +15,7 @@ using namespace nsCppParser;
 void TJsonSerializerHeaderFileGenerator::Work()
 {
     AddHeader(mResolvedConfig->header);
-    if (mResolvedConfig->addTimeStamp) {
-        AddTimeHeader();
-    }
+    AddProgramInfo();
 
     AddPragmaOnce();
     AddEmptyLine();

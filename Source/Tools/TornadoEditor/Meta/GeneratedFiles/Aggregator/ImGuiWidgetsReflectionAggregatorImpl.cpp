@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2025_01_30 15:40:58.491
+
 #include "ImGuiWidgetsReflectionAggregatorImpl.h"
 
 #include "ImGuiWidgetsDynamicCasterImpl.h"

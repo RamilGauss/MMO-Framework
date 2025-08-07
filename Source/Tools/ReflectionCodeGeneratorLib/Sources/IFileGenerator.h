@@ -18,7 +18,7 @@ namespace nsReflectionCodeGenerator
     class DllExport IFileGenerator : public IGenerator
     {
     protected:
-        const std::string s_TimeHeader = "// {}\n// File has been generated at {}";
+        const std::string s_ProgramInfoHeader = "// {}\n";
 
         const std::string s_TypeObject = "p";
 
@@ -58,7 +58,7 @@ namespace nsReflectionCodeGenerator
 
     protected:
         void AddHeader(const std::string& header);
-        void AddTimeHeader();
+        void AddProgramInfo();
 
         void AddSwitch(const std::string& expr);
         void AddCase(const std::string& condition);

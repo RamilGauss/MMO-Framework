@@ -6,7 +6,7 @@ See for more information LICENSE.md.
 */
 
 // ContainerCodeGenerator
-// File has been generated at 2025_01_30 15:40:55.071
+
 #include "HandlerTypeInformationImpl.h"
 
 #include "GeneratedFiles\Container\HandlerTypeInfo.h"
