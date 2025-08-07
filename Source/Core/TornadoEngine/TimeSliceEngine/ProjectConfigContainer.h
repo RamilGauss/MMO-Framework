@@ -58,5 +58,3 @@ namespace nsTornadoEngine
     DllExport_C TProjectConfigContainer* Project();
     DllExport_C void SetProject(TProjectConfigContainer* pProject);
 }
-
-

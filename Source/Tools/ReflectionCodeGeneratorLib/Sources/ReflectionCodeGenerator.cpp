@@ -389,7 +389,7 @@ void TReflectionCodeGenerator::FillIncludeList()
             if (type == nullptr) {
                 continue;
             }
-            auto includeFile = TSetupConfig::ResolveInclude(type->mAbsFileName, mResolvedConfig.sourceRoots);
+            auto includeFile = TPathOperations::ResolveInclude(mResolvedConfig.absSourceRootPaths, type->mAbsFileName);
             if (includeFile.empty()) {
                 continue;
             }

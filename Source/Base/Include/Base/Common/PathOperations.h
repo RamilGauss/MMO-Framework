@@ -32,6 +32,8 @@ namespace nsBase::nsCommon
         // abs = C:\Y\S
         // rel => ..\..\Y\S
         static bool GetRelativePath(const std::string& absBase, const std::string& abs, std::string& rel);
+
+        static std::string ResolveInclude(const std::list<std::string>& sourceRoots, const std::string& absFilePath);
     private:
         template <typename DirectoryIterator>
         static void AddAbsPathsByDirectory(const std::string& directory, const std::set<std::string>& extensions, 

@@ -18,8 +18,6 @@ namespace nsReflectionCodeGenerator
     public:
         void Init(TResolvedConfig* resolvedConfig, int argc, char** argv);
         bool Work();
-
-        static std::string ResolveInclude(const std::string& absFilePath, const std::list<TSourceRoot>& sourceRoots);
     protected:
         TConfig mConfig;
         TResolvedConfig* mResolvedConfig = nullptr;
@@ -36,6 +34,5 @@ namespace nsReflectionCodeGenerator
 
         void CollectAbsPaths(const std::string& dir,
            const std::unordered_set<std::string>& extSet, std::unordered_set<std::string>& fileList);
-
     };
 }

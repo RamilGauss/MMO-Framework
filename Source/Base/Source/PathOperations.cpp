@@ -104,3 +104,21 @@ bool TPathOperations::IsCoherent(const std::string& absL, const std::string& abs
     return false;
 }
 //---------------------------------------------------------------------------------------
+std::string TPathOperations::ResolveInclude(const std::list<std::string>& sourceRoots, const std::string& absFilePath)
+{
+    for (auto& absOriginalPath : sourceRoots ) {
+        auto isSubPath = TPathOperations::IsCoherent(absOriginalPath, absFilePath);
+        if (isSubPath == false) {
+            continue;
+        }
+        std::string relPath;
+        auto inDir = TPathOperations::GetRelativePath(absOriginalPath, absFilePath, relPath);
+        if (inDir) {
+            std::replace(relPath.begin(), relPath.end(), '\\', '/');
+            return relPath;
+        }
+    }
+
+    return {};
+}
+//---------------------------------------------------------------------------------------

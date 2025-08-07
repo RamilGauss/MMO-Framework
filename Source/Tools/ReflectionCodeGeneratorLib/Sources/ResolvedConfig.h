@@ -94,5 +94,7 @@ namespace nsReflectionCodeGenerator
         std::map<std::string, TSerializerExt> implementations;
 
         std::list<TSourceRoot> sourceRoots;
+
+        std::list<std::string> absSourceRootPaths;
     };
 }

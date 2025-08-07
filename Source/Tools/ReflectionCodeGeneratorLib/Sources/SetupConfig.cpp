@@ -140,6 +140,7 @@ void TSetupConfig::ResolveConfig()
         CollectAbsPaths(sourceRoot.absOriginalPath, extSet, sourceRoot.absPathAllFilesInDir);
 
         mResolvedConfig->sourceRoots.push_back(sourceRoot);
+        mResolvedConfig->absSourceRootPaths.push_back(sourceRoot.absOriginalPath);
     }
 
     for (auto& impl : mConfig.targetForCodeGeneration.implementations) {
@@ -184,7 +185,7 @@ void TSetupConfig::ResolveConfig()
                 externalSourceExt.typeName = extSrc.typeName;
 
                 externalSourceExt.absFilePath = TPathOperations::CalculatePathBy(pathToJsonFile, externalSourceExt.fileName);
-                externalSourceExt.filePathForInclude = ResolveInclude(externalSourceExt.absFilePath, mResolvedConfig->sourceRoots);
+                externalSourceExt.filePathForInclude = TPathOperations::ResolveInclude(mResolvedConfig->absSourceRootPaths, externalSourceExt.absFilePath);
 
                 ser.externalSources->loadedExternalSources.emplace_back(std::move(externalSourceExt));
             }
@@ -196,11 +197,11 @@ void TSetupConfig::ResolveConfig()
         ser.nameSpaceName = impl.second.nameSpaceName;
         ser.fileName = impl.second.fileName;
         ser.absFilePath = TPathOperations::CalculatePathBy(mResolvedConfig->targetForCodeGenerationAbsPath, impl.second.fileName);
-        ser.filePathForInclude = ResolveInclude(ser.absFilePath, mResolvedConfig->sourceRoots);
+        ser.filePathForInclude = TPathOperations::ResolveInclude(mResolvedConfig->absSourceRootPaths, ser.absFilePath);
         mResolvedConfig->implementations.emplace(impl.first, std::move(ser));
     }
     mResolvedConfig->includeAbsFilePath = TPathOperations::CalculatePathBy(mResolvedConfig->targetForCodeGenerationAbsPath, mConfig.targetForCodeGeneration.includeListParams.includeListFileName);
-    mResolvedConfig->includeFileForInclude = ResolveInclude(mResolvedConfig->includeAbsFilePath, mResolvedConfig->sourceRoots);
+    mResolvedConfig->includeFileForInclude = TPathOperations::ResolveInclude(mResolvedConfig->absSourceRootPaths, mResolvedConfig->includeAbsFilePath);
 }
 //---------------------------------------------------------------------------------------
 void TSetupConfig::ResolveJsonPath()
@@ -235,23 +236,5 @@ void TSetupConfig::CollectAbsPaths(const std::string& dir,
         auto str = std::filesystem::canonical(path).string();
         fileList.insert(str);
     }
-}
-//---------------------------------------------------------------------------------------
-std::string TSetupConfig::ResolveInclude(const std::string& absFilePath, const std::list<TSourceRoot>& sourceRoots)
-{
-    for (auto srcRoot : sourceRoots ) {
-        auto isSubPath = TPathOperations::IsCoherent(srcRoot.absOriginalPath, absFilePath);
-        if (isSubPath == false) {
-            continue;
-        }
-        std::string relPath;
-        auto inDir = TPathOperations::GetRelativePath(srcRoot.absOriginalPath, absFilePath, relPath);
-        if (inDir) {
-            std::replace(relPath.begin(), relPath.end(), '\\', '/');
-            return relPath;
-        }
-    }
-
-    return {};
 }
 //---------------------------------------------------------------------------------------
