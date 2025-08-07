@@ -15,7 +15,9 @@ using namespace nsCppParser;
 void TRunTimeTypeInformationSourceFileGenerator::Work()
 {
     AddHeader(mResolvedConfig->header);
-    AddTimeHeader();
+    if (mResolvedConfig->addTimeStamp) {
+        AddTimeHeader();
+    }
 
     AddInclude(mSerializer->filePathForInclude + ".h");
     AddEmptyLine();

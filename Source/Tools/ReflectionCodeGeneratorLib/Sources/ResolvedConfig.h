@@ -78,6 +78,7 @@ namespace nsReflectionCodeGenerator
 
     struct DllExport TResolvedConfig
     {
+        bool addTimeStamp = false;
         std::string header;
         TFilterExt filter;
 

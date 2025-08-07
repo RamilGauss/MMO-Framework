@@ -13,7 +13,9 @@ using namespace nsCodeGeneratorImplementation;
 void TTypeInformationHeaderFileGenerator::Work()
 {
     AddHeader(mResolvedConfig->header);
-    AddTimeHeader();
+    if (mResolvedConfig->addTimeStamp) {
+        AddTimeHeader();
+    }
 
     AddPragmaOnce();
     AddEmptyLine();

@@ -15,7 +15,9 @@ using namespace nsCodeGeneratorImplementation;
 void TIncludeListFileGenerator::Work()
 {
     AddHeader(mResolvedConfig->header);
-    AddTimeHeader();
+    if (mResolvedConfig->addTimeStamp) {
+        AddTimeHeader();
+    }
 
     AddPragmaOnce();
     AddEmptyLine();

@@ -14,7 +14,9 @@ using namespace nsCodeGeneratorImplementation;
 void TBinaryMarshallerHeaderFileGenerator::Work()
 {
     AddHeader(mResolvedConfig->header);
-    AddTimeHeader();
+    if (mResolvedConfig->addTimeStamp) {
+        AddTimeHeader();
+    }
 
     AddPragmaOnce();
     AddEmptyLine();

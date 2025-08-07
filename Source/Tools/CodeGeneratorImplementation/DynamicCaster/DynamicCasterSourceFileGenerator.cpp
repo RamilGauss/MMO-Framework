@@ -15,7 +15,9 @@ using namespace nsReflectionCodeGenerator;
 void TDynamicCasterSourceFileGenerator::Work()
 {
     AddHeader(mResolvedConfig->header);
-    AddTimeHeader();
+    if (mResolvedConfig->addTimeStamp) {
+        AddTimeHeader();
+    }
 
     AddInclude(mSerializer->filePathForInclude + ".h");
     AddInclude("Base/Common/SingletonManager.h");

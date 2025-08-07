@@ -13,7 +13,9 @@ using namespace nsCodeGeneratorImplementation;
 void TRunTimeTypeInformationHeaderFileGenerator::Work()
 {
     AddHeader(mResolvedConfig->header);
-    AddTimeHeader();
+    if (mResolvedConfig->addTimeStamp) {
+        AddTimeHeader();
+    }
 
     AddPragmaOnce();
     AddEmptyLine();

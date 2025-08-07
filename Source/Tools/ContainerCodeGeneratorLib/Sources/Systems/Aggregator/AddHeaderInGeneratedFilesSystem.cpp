@@ -29,13 +29,11 @@ namespace nsContainerCodeGenerator::nsAggregator
         }
 
         for (auto& gen : generatedFilesComponent->value) {
-
             std::string content;
 
             content += TConstants::GetHeader();
             content += "\n";
-            content += fmt::format("// {}\n// File has been generated at {}\n", 
-                TConstants::GetProgramName(), ht_GetTimeStr());
+            content += fmt::format("// {}\n", TConstants::GetProgramName());
             content += gen.content;
 
             gen.content = content;

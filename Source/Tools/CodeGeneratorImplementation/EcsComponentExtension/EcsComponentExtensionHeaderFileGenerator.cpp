@@ -16,7 +16,9 @@ using namespace nsCodeGeneratorImplementation;
 void TEcsComponentExtensionHeaderFileGenerator::Work()
 {
     AddHeader(mResolvedConfig->header);
-    AddTimeHeader();
+    if (mResolvedConfig->addTimeStamp) {
+        AddTimeHeader();
+    }
 
     AddPragmaOnce();
     AddEmptyLine();
