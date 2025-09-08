@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ComponentRttiImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentRttiImpl.h"
 
-#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentRtti.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentRtti.h"
 #include "TornadoEngine/GeneratedFiles/Container/ComponentRtti.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TComponentRttiImpl::TComponentRttiImpl()
 {

@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ComponentReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/ComponentReflectionAggregator.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     struct DllExport TComponentReflectionAggregatorImpl : public nsTornadoEngine::TComponentReflectionAggregator
     {

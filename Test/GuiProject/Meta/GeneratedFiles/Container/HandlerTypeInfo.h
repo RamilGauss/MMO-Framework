@@ -14,7 +14,7 @@ Project Handler
 #include "Parser/Sources/TypeInfo.h"
 #include "HandlerIncludeList.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     class DllExport THandlerTypeInfo
     {

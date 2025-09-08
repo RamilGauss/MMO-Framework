@@ -1,5 +1,3 @@
-include(${MMO_FRAMEWORK_SOURCES_DIR}/Dependencies.cmake)
-
 file(GLOB_RECURSE ContainerCodeGeneratorSources *.h *.cpp)
 
 add_executable(ContainerCodeGenerator ${ContainerCodeGeneratorSources})

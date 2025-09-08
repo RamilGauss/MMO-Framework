@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "SystemTypeFactoryImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/SystemTypeFactoryImpl.h"
 
-#include "GeneratedFiles\Container\SystemTypeFactory.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/SystemTypeFactory.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TSystemTypeFactoryImpl::TSystemTypeFactoryImpl()
 {

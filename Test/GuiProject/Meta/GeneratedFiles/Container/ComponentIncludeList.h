@@ -5,4 +5,4 @@ Project Component
 
 #pragma once
 
-#include "ScenePrefabTestComponent.h"
+#include "GuiProject/Sources/Components/ScenePrefabTestComponent.h"

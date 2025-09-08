@@ -9,7 +9,7 @@ Project Handler
 #include "Base/Common/RunTimeTypeIndex.h"
 #include "Parser/Sources/GeneratedFiles/JsonSerializer.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 std::vector<std::shared_ptr<nsCppParser::TTypeInfo>> THandlerTypeInfo::mTypeInoVector;
 

@@ -13,19 +13,16 @@ See for more information LICENSE.md.
 #include "HandlerTypeInformationImpl.h"
 #include "HandlerRttiImpl.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 THandlerReflectionAggregatorImpl::THandlerReflectionAggregatorImpl()
 {
-    mTypeFactory = new THandlerTypeFactoryImpl();
-    mRtti = new THandlerRttiImpl();
-    mTypeInfo = new THandlerTypeInformationImpl();
+    mTypeFactory = std::make_shared<THandlerTypeFactoryImpl>();
+    mRtti = std::make_shared<THandlerRttiImpl>();
+    mTypeInfo = std::make_shared<THandlerTypeInformationImpl>();
 }
 //--------------------------------------------------------------------------------------------------
 THandlerReflectionAggregatorImpl::~THandlerReflectionAggregatorImpl()
 {
-    delete mTypeFactory;
-    delete mRtti;
-    delete mTypeInfo;
 }
 //--------------------------------------------------------------------------------------------------

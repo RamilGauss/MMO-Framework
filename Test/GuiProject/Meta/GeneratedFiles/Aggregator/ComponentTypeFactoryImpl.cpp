@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ComponentTypeFactoryImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentTypeFactoryImpl.h"
 
 #include "TornadoEngine/GeneratedFiles/Container/ComponentTypeFactory.h"
-#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentTypeFactory.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentTypeFactory.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TComponentTypeFactoryImpl::TComponentTypeFactoryImpl()
 {

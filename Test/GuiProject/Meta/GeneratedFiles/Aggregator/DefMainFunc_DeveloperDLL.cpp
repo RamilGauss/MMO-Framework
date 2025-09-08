@@ -7,14 +7,14 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "DeveloperTool_DLL.h"
-#include "ScenePartReflectionAggregatorImpl.h"
+#include "TornadoEngine/TimeSliceEngine/DeveloperTool_DLL.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ScenePartReflectionAggregatorImpl.h"
 
 using namespace nsTornadoEngine;
 
 DllExport_C TScenePartReflectionAggregator* GetScenePartReflectionAggregator()
 {
-    return new nsTornadoEditor::TScenePartReflectionAggregatorImpl();
+    return new nsGuiProject::TScenePartReflectionAggregatorImpl();
 }
 //--------------------------------------------------------------------------------------------------
 DllExport_C void FreeScenePartReflectionAggregator(TScenePartReflectionAggregator * p)

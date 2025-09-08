@@ -5,7 +5,7 @@ Project Component
 
 #include "ComponentEntMng.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 using namespace nsECSFramework;
 
 std::vector<TComponentEntMng::Data> TComponentEntMng::mRttiVector;

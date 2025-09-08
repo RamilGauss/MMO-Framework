@@ -2,17 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 project(MMOFramework LANGUAGES CXX)
 
-# if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.25)
-    # cmake_policy(SET CMP0167 OLD)
-# endif()
-
 set(CMAKE_CXX_STANDARD 20)
-
-# include(CheckCXXCompilerFlag)
-# check_cxx_compiler_flag(-std=c++20 HAS_CPP20)
-# if (NOT HAS_CPP20)
-#     message(FATAL_ERROR "Компилятор не поддерживает C++20!")
-# endif()
 
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE AND DEFINED ENV{VCPKG_ROOT})
     set(CMAKE_TOOLCHAIN_FILE $ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
@@ -55,6 +45,8 @@ endif()
 set(MMO_FRAMEWORK_SOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(MMO_FRAMEWORK_SOURCES_DIR_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/Source)
 set(MMO_FRAMEWORK_SOURCES_DIR_TEST ${CMAKE_CURRENT_SOURCE_DIR}/Test)
+
+include(${MMO_FRAMEWORK_SOURCES_DIR}/Dependencies.cmake)
 
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Base)
 add_subdirectory(${MMO_FRAMEWORK_SOURCES_DIR_SOURCE}/Core/Launcher)

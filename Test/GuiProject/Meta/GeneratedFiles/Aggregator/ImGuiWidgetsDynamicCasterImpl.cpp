@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ImGuiWidgetsDynamicCasterImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ImGuiWidgetsDynamicCasterImpl.h"
 
 #include "TornadoEngine/GeneratedFiles/Container/ImGuiWidgetsDynamicCaster.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TImGuiWidgetsDynamicCasterImpl::TImGuiWidgetsDynamicCasterImpl()
 {

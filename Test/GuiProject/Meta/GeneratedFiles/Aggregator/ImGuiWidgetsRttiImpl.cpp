@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ImGuiWidgetsRttiImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ImGuiWidgetsRttiImpl.h"
 
 #include "TornadoEngine/GeneratedFiles/Container/ImGuiWidgetsRtti.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TImGuiWidgetsRttiImpl::TImGuiWidgetsRttiImpl()
 {

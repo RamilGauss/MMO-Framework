@@ -54,7 +54,7 @@
         "implementations": {
             "DynamicCaster": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "TEcsDynamicCaster",
                 "fileName": "EcsDynamicCaster",
                 "externalSources": null,
@@ -62,7 +62,7 @@
             },
             "RunTimeTypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "TEcsRtti",
                 "fileName": "EcsRtti",
                 "externalSources": null,

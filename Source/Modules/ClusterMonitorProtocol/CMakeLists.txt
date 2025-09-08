@@ -1,5 +1,3 @@
-include(${MMO_FRAMEWORK_SOURCES_DIR}/Dependencies.cmake)
-
 file(GLOB_RECURSE ClusterMonitorProtocolSources *.h *.cpp)
 
 add_library(ClusterMonitorProtocolLib SHARED ${ClusterMonitorProtocolSources})

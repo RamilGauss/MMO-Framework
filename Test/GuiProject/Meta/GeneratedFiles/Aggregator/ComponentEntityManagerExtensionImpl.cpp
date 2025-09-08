@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ComponentEntityManagerExtensionImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentEntityManagerExtensionImpl.h"
 
-#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentEntMng.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentEntMng.h"
 #include "TornadoEngine/GeneratedFiles/Container/ComponentEntMng.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TComponentEntityManagerExtensionImpl::TComponentEntityManagerExtensionImpl()
 {

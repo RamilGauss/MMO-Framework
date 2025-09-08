@@ -53,7 +53,7 @@
         "implementations": {
             "TypeFactoryGenerator": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "TSystemTypeFactory",
                 "fileName": "SystemTypeFactory",
                 "externalSources": null,

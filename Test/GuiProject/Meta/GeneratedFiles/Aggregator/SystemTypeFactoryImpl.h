@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ITypeFactory.h"
+#include "TornadoEngine/ReflectionAggregators/ITypeFactory.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     struct DllExport TSystemTypeFactoryImpl : public nsTornadoEngine::ITypeFactory
     {

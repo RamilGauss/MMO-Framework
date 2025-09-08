@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "HandlerTypeFactoryImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/HandlerTypeFactoryImpl.h"
 
-#include "GeneratedFiles\Container\HandlerTypeFactory.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/HandlerTypeFactory.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 THandlerTypeFactoryImpl::THandlerTypeFactoryImpl()
 {

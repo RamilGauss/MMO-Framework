@@ -8,7 +8,7 @@ Project Handler
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 std::list<std::string> THandlerRtti::mTypeNameList;
 std::list<int> THandlerRtti::mRttiList;

@@ -15,23 +15,18 @@ See for more information LICENSE.md.
 #include "ComponentDynamicCasterImpl.h"
 #include "ComponentTypeFactoryImpl.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TComponentReflectionAggregatorImpl::TComponentReflectionAggregatorImpl()
 {
-    mJson = new TComponentJsonSerializerImpl();
-    mEntMng = new TComponentEntityManagerExtensionImpl();
-    mRtti = new TComponentRttiImpl();
-    mDynamicCaster = new TComponentDynamicCasterImpl();
-    mTypeFactory = new TComponentTypeFactoryImpl();
+    mJson = std::make_shared<TComponentJsonSerializerImpl>();
+    mEntMng = std::make_shared<TComponentEntityManagerExtensionImpl>();
+    mRtti = std::make_shared<TComponentRttiImpl>();
+    mDynamicCaster = std::make_shared<TComponentDynamicCasterImpl>();
+    mTypeFactory = std::make_shared<TComponentTypeFactoryImpl>();
 }
 //--------------------------------------------------------------------------------------------------
 TComponentReflectionAggregatorImpl::~TComponentReflectionAggregatorImpl()
 {
-    delete mJson;
-    delete mEntMng;
-    delete mRtti;
-    delete mDynamicCaster;
-    delete mTypeFactory;
 }
 //--------------------------------------------------------------------------------------------------

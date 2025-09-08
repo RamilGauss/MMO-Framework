@@ -7,7 +7,7 @@ Project Component
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 std::vector<std::vector<TComponentDynamicCaster::Data>> TComponentDynamicCaster::mDataVector;
 std::map<int, std::set<int>> TComponentDynamicCaster::mRttiCombinations;

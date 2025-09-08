@@ -14,7 +14,7 @@ Project Ecs System
 #include "Base/Common/TypeDef.h"
 #include "EcsSystemIncludeList.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     class DllExport TEcsDynamicCaster
     {

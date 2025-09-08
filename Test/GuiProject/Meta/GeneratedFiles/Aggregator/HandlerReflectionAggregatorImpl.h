@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "HandlerReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/HandlerReflectionAggregator.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     struct DllExport THandlerReflectionAggregatorImpl : public nsTornadoEngine::THandlerReflectionAggregator
     {

@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ComponentJsonSerializerImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentJsonSerializerImpl.h"
 
 #include "TornadoEngine/GeneratedFiles/Container/ComponentJson.h"
-#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentJson.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentJson.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TComponentJsonSerializerImpl::TComponentJsonSerializerImpl()
 {

@@ -1,5 +1,3 @@
-include(${MMO_FRAMEWORK_SOURCES_DIR}/Dependencies.cmake)
-
 file(GLOB_RECURSE GraphicEngineSources *.h *.cpp)
 
 add_library(GraphicEngineLib SHARED ${GraphicEngineSources})

@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IRunTimeTypeInformation.h"
+#include "TornadoEngine/ReflectionAggregators/IRunTimeTypeInformation.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     struct DllExport TSystemRttiImpl : public nsTornadoEngine::IRunTimeTypeInformation
     {

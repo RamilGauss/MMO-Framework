@@ -4,6 +4,7 @@ find_package(Boost REQUIRED COMPONENTS
     system
     coroutine
     filesystem
+    # program_options
     wave
     uuid
 )

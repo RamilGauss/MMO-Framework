@@ -1,5 +1,3 @@
-include(${MMO_FRAMEWORK_SOURCES_DIR}/Dependencies.cmake)
-
 file(GLOB_RECURSE ReflectionCodeGeneratorLibSources *.h *.cpp)
 
 add_library(ReflectionCodeGeneratorLib SHARED ${ReflectionCodeGeneratorLibSources})

@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "HandlerRttiImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/HandlerRttiImpl.h"
 
-#include "GeneratedFiles\Container\HandlerRtti.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/HandlerRtti.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 THandlerRttiImpl::THandlerRttiImpl()
 {

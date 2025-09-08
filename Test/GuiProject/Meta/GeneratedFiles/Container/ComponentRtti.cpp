@@ -8,7 +8,7 @@ Project Component
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 std::list<std::string> TComponentRtti::mTypeNameList;
 std::list<int> TComponentRtti::mRttiList;

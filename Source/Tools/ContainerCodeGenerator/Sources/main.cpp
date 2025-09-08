@@ -7,13 +7,17 @@ See for more information LICENSE.md.
 
 #include <locale.h>
 
+// #include <boost/program_options.hpp>
+
 #include "Base/Common/BL_Debug.h"
 #include "ContainerCodeGeneratorLib/Sources/CoreContainerCodeGenerator.h"
 #include "ContainerCodeGeneratorLib/Sources/ProjectContainerCodeGenerator.h"
 
+// namespace po = boost::program_options;
+
 void PrintUsage(char* argv[])
 {
-    printf("usage: %s [\"core\"|\"project\"] [filePath]", argv[0]);
+    printf("usage: %s --type \"core\"|\"project\" --task_file filePath --common_options json_content", argv[0]);
 }
 
 int main(int argc, char* argv[])
@@ -32,6 +36,35 @@ int main(int argc, char* argv[])
 
     std::string generatorType = argv[1];
     std::string filePath = argv[2];
+
+    //###
+    // po::options_description desc("Allowed options");
+    // desc.add_options()
+    //     ("help,h", "produce help message")
+    //     ("compression,c", po::value<int>()->default_value(9), "set compression level")
+    //     ("input-file", po::value<std::string>(), "input file path");
+
+    // po::variables_map vm;
+    // try {
+    //     po::store(po::parse_command_line(argc, argv, desc), vm);
+    //     po::notify(vm);
+    // } catch (const po::error& e) {
+    //     std::cerr << "Error: " << e.what() << std::endl;
+    //     return 1;
+    // }
+
+    // if (vm.count("help")) {
+    //     std::cout << desc << std::endl;
+    //     return 0;
+    // }
+
+    // if (vm.count("input-file")) {
+    //     std::cout << "Input file: " << vm["input-file"].as<std::string>() << std::endl;
+    // }
+
+    // std::cout << "Compression level: " << vm["compression"].as<int>() << std::endl;
+    //###
+
 
     nsContainerCodeGenerator::TContainerCodeGenerator* ccg = nullptr;
     if (generatorType == "core") {

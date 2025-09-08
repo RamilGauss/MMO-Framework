@@ -12,17 +12,15 @@ See for more information LICENSE.md.
 #include "ImGuiWidgetsDynamicCasterImpl.h"
 #include "ImGuiWidgetsRttiImpl.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TImGuiWidgetsReflectionAggregatorImpl::TImGuiWidgetsReflectionAggregatorImpl()
 {
-    mRtti = new TImGuiWidgetsRttiImpl();
-    mDynamicCaster = new TImGuiWidgetsDynamicCasterImpl();
+    mRtti = std::make_shared<TImGuiWidgetsRttiImpl>();
+    mDynamicCaster = std::make_shared<TImGuiWidgetsDynamicCasterImpl>();
 }
 //--------------------------------------------------------------------------------------------------
 TImGuiWidgetsReflectionAggregatorImpl::~TImGuiWidgetsReflectionAggregatorImpl()
 {
-    delete mRtti;
-    delete mDynamicCaster;
 }
 //--------------------------------------------------------------------------------------------------

@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "SystemDynamicCasterImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/SystemDynamicCasterImpl.h"
 
-#include "GeneratedFiles\Container\EcsDynamicCaster.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/EcsDynamicCaster.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TSystemDynamicCasterImpl::TSystemDynamicCasterImpl()
 {

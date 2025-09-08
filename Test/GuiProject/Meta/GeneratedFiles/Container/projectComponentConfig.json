@@ -29,7 +29,7 @@
         "implementations": {
             "DynamicCaster": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "TComponentDynamicCaster",
                 "fileName": "ComponentDynamicCaster",
                 "externalSources": {
@@ -42,7 +42,7 @@
             },
             "EcsComponentExtension": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "TComponentEntMng",
                 "fileName": "ComponentEntMng",
                 "externalSources": {
@@ -57,7 +57,7 @@
             },
             "JsonSerializerGenerator": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "TComponentJson",
                 "fileName": "ComponentJson",
                 "externalSources": {
@@ -70,7 +70,7 @@
             },
             "RunTimeTypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "TComponentRtti",
                 "fileName": "ComponentRtti",
                 "externalSources": {
@@ -84,7 +84,7 @@
             },
             "TypeFactoryGenerator": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "TComponentTypeFactory",
                 "fileName": "ComponentTypeFactory",
                 "externalSources": {

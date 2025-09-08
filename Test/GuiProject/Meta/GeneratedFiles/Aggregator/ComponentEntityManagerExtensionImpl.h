@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IEcsComponentExtension.h"
+#include "TornadoEngine/ReflectionAggregators/IEcsComponentExtension.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     struct DllExport TComponentEntityManagerExtensionImpl : public nsTornadoEngine::IEcsComponentExtension
     {

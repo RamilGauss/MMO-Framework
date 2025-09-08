@@ -14,21 +14,17 @@ See for more information LICENSE.md.
 #include "SystemReflectionAggregatorImpl.h"
 #include "ImGuiWidgetsReflectionAggregatorImpl.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TScenePartReflectionAggregatorImpl::TScenePartReflectionAggregatorImpl()
 {
-    mComponents = new TComponentReflectionAggregatorImpl();
-    mHandlers = new THandlerReflectionAggregatorImpl();
-    mSystems = new TSystemReflectionAggregatorImpl();
-    mImGuiWidgets = new TImGuiWidgetsReflectionAggregatorImpl();
+    mComponents = std::make_shared<TComponentReflectionAggregatorImpl>();
+    mHandlers = std::make_shared<THandlerReflectionAggregatorImpl>();
+    mSystems = std::make_shared<TSystemReflectionAggregatorImpl>();
+    mImGuiWidgets = std::make_shared<TImGuiWidgetsReflectionAggregatorImpl>();
 }
 //--------------------------------------------------------------------------------------------------
 TScenePartReflectionAggregatorImpl::~TScenePartReflectionAggregatorImpl()
 {
-    delete mComponents;
-    delete mHandlers;
-    delete mSystems;
-    delete mImGuiWidgets;
 }
 //--------------------------------------------------------------------------------------------------

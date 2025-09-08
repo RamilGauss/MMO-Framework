@@ -7,7 +7,7 @@ Project Handler
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 std::vector<THandlerTypeFactory::Data> THandlerTypeFactory::mDataVector;
 void THandlerTypeFactory::Init()

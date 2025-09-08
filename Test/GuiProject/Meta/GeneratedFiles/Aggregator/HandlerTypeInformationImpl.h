@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ITypeInformation.h"
+#include "TornadoEngine/ReflectionAggregators/ITypeInformation.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     struct DllExport THandlerTypeInformationImpl : public nsTornadoEngine::ITypeInformation
     {

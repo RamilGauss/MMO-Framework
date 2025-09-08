@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "SystemRttiImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/SystemRttiImpl.h"
 
-#include "GeneratedFiles\Container\EcsRtti.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/EcsRtti.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TSystemRttiImpl::TSystemRttiImpl()
 {

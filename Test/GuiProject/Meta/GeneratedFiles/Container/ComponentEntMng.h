@@ -12,7 +12,7 @@ Project Component
 #include "ECS/Include/EntityManager.h"
 #include "ComponentIncludeList.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     class DllExport TComponentEntMng
     {

@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IDynamicCaster.h"
+#include "TornadoEngine/ReflectionAggregators/IDynamicCaster.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     struct DllExport TImGuiWidgetsDynamicCasterImpl : public nsTornadoEngine::IDynamicCaster
     {

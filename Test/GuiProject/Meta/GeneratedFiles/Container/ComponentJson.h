@@ -11,7 +11,7 @@ Project Component
 #include "Base/Common/JsonMaster.h"
 #include "ComponentIncludeList.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     class DllExport TComponentJson
     {

@@ -1,5 +1,3 @@
-include(${MMO_FRAMEWORK_SOURCES_DIR}/Dependencies.cmake)
-
 file(GLOB_RECURSE BaseSources *.h *.cpp)
 
 add_library(BaseLib SHARED ${BaseSources})

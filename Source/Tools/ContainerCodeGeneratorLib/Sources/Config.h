@@ -174,6 +174,16 @@ namespace nsContainerCodeGenerator
     };
 
 #pragma REFLECTION_ATTRIBUTE
+    struct DllExport TCommonConfig
+    {
+        std::string reflectionCodeGeneratorFileName;
+        std::string entityManagerHeaderPath;
+        std::string ecsDirectory;
+        std::string absCorePath;
+        std::string relCoreConfigPath;
+    };
+
+#pragma REFLECTION_ATTRIBUTE
     struct DllExport TCoreContainerConfig
     {
         std::string reflectionCodeGeneratorFileName;

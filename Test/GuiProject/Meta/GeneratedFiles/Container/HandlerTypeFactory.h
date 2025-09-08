@@ -11,7 +11,7 @@ Project Handler
 #include "Base/Common/TypeDef.h"
 #include "HandlerIncludeList.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     class DllExport THandlerTypeFactory
     {

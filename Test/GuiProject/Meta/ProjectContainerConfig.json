@@ -9,7 +9,7 @@
 
         "targetDirectory": "./GeneratedFiles/Container",
         "exportDeclaration": "DllExport",
-        "nameSpace": "nsTornadoEditor",
+        "nameSpace": "nsGuiProject",
         "parseDirectory": "../Sources",
 
         "componentConfig": {

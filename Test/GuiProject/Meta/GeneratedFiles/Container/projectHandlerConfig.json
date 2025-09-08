@@ -41,7 +41,7 @@
         "implementations": {
             "RunTimeTypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "THandlerRtti",
                 "fileName": "HandlerRtti",
                 "externalSources": null,
@@ -49,7 +49,7 @@
             },
             "TypeFactoryGenerator": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "THandlerTypeFactory",
                 "fileName": "HandlerTypeFactory",
                 "externalSources": null,
@@ -57,7 +57,7 @@
             },
             "TypeInformationGenerator": {
                 "exportDeclaration": "DllExport",
-                "nameSpaceName": "nsTornadoEditor",
+                "nameSpaceName": "nsGuiProject",
                 "className": "THandlerTypeInfo",
                 "fileName": "HandlerTypeInfo",
                 "externalSources": null,

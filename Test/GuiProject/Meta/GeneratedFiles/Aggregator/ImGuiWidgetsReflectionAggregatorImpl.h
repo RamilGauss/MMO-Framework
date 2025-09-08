@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ImGuiWidgetsReflectionAggregator.h"
+#include "TornadoEngine/ReflectionAggregators/ImGuiWidgetsReflectionAggregator.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     struct DllExport TImGuiWidgetsReflectionAggregatorImpl : public nsTornadoEngine::TImGuiWidgetsReflectionAggregator
     {

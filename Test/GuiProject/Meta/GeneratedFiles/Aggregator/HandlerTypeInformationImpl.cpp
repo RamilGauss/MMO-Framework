@@ -7,11 +7,11 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "HandlerTypeInformationImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/HandlerTypeInformationImpl.h"
 
-#include "GeneratedFiles\Container\HandlerTypeInfo.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/HandlerTypeInfo.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 THandlerTypeInformationImpl::THandlerTypeInformationImpl()
 {

@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "TornadoEditor/Meta/GeneratedFiles/Aggregator/ComponentDynamicCasterImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentDynamicCasterImpl.h"
 
 #include "TornadoEngine/GeneratedFiles/Container/ComponentDynamicCaster.h"
-#include "TornadoEditor/Meta/GeneratedFiles/Container/ComponentDynamicCaster.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentDynamicCaster.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 TComponentDynamicCasterImpl::TComponentDynamicCasterImpl()
 {

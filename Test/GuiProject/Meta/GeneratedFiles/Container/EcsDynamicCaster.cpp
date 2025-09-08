@@ -7,7 +7,7 @@ Project Ecs System
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
 
-using namespace nsTornadoEditor;
+using namespace nsGuiProject;
 
 std::vector<std::vector<TEcsDynamicCaster::Data>> TEcsDynamicCaster::mDataVector;
 std::map<int, std::set<int>> TEcsDynamicCaster::mRttiCombinations;

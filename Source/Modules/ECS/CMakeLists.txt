@@ -1,5 +1,3 @@
-include(${MMO_FRAMEWORK_SOURCES_DIR}/Dependencies.cmake)
-
 file(GLOB_RECURSE ECSSources *.h *.cpp)
 
 add_library(ECSLib SHARED ${ECSSources})

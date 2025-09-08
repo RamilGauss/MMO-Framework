@@ -9,9 +9,9 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "IJsonSerializer.h"
+#include "TornadoEngine/ReflectionAggregators/IJsonSerializer.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     struct DllExport TComponentJsonSerializerImpl : public nsTornadoEngine::IJsonSerializer
     {

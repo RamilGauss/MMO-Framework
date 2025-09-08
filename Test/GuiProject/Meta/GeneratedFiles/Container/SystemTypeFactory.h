@@ -10,7 +10,7 @@ Project System
 #include "Base/Common/TypeDef.h"
 #include "SystemIncludeList.h"
 
-namespace nsTornadoEditor
+namespace nsGuiProject
 {
     class DllExport TSystemTypeFactory
     {
