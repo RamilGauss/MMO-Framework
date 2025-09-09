@@ -6,6 +6,7 @@
         "boost-system",
         "boost-coroutine",
         "boost-filesystem",
+        "boost-program-options",
         "boost-wave",
         "boost-uuid",
         { "name": "fmt",            "version>=": "11.0.2"},
