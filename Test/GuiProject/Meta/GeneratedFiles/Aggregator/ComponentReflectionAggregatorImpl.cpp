@@ -7,13 +7,13 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "ComponentReflectionAggregatorImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentReflectionAggregatorImpl.h"
 
-#include "ComponentJsonSerializerImpl.h"
-#include "ComponentEntityManagerExtensionImpl.h"
-#include "ComponentRttiImpl.h"
-#include "ComponentDynamicCasterImpl.h"
-#include "ComponentTypeFactoryImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentJsonSerializerImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentEntityManagerExtensionImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentRttiImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentDynamicCasterImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentTypeFactoryImpl.h"
 
 using namespace nsGuiProject;
 

@@ -7,10 +7,10 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "ImGuiWidgetsReflectionAggregatorImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ImGuiWidgetsReflectionAggregatorImpl.h"
 
-#include "ImGuiWidgetsDynamicCasterImpl.h"
-#include "ImGuiWidgetsRttiImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ImGuiWidgetsDynamicCasterImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ImGuiWidgetsRttiImpl.h"
 
 using namespace nsGuiProject;
 

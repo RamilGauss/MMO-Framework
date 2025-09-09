@@ -9,7 +9,7 @@ Project Component
 #include <string>
 #include <functional>
 #include "Base/Common/JsonMaster.h"
-#include "ComponentIncludeList.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentIncludeList.h"
 
 namespace nsGuiProject
 {

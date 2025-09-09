@@ -3,11 +3,12 @@ Project Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
 
-#include "ComponentJson.h"
 #include "Base/Common/JsonPopMaster.h"
 #include "Base/Common/JsonPushMaster.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
+
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentJson.h"
 
 using namespace nsGuiProject;
 

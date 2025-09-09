@@ -12,7 +12,7 @@ Project Handler
 
 #include "Base/Common/TypeDef.h"
 #include "Parser/Sources/TypeInfo.h"
-#include "HandlerIncludeList.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/HandlerIncludeList.h"
 
 namespace nsGuiProject
 {

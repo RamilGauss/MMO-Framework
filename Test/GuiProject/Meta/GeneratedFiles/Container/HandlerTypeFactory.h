@@ -9,7 +9,8 @@ Project Handler
 #include <vector>
 #include <functional>
 #include "Base/Common/TypeDef.h"
-#include "HandlerIncludeList.h"
+
+#include "GuiProject/Meta/GeneratedFiles/Container/HandlerIncludeList.h"
 
 namespace nsGuiProject
 {

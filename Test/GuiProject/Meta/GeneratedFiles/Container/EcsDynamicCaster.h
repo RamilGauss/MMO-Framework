@@ -12,7 +12,8 @@ Project Ecs System
 #include <functional>
 
 #include "Base/Common/TypeDef.h"
-#include "EcsSystemIncludeList.h"
+
+#include "GuiProject/Meta/GeneratedFiles/Container/EcsSystemIncludeList.h"
 
 namespace nsGuiProject
 {

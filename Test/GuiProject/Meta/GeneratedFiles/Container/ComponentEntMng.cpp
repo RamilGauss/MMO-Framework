@@ -3,7 +3,7 @@ Project Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
 
-#include "ComponentEntMng.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentEntMng.h"
 
 using namespace nsGuiProject;
 using namespace nsECSFramework;

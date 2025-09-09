@@ -3,7 +3,7 @@ Project Component
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
 
-#include "ComponentDynamicCaster.h"
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentDynamicCaster.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
 

@@ -3,9 +3,10 @@ Project System
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
 
-#include "SystemTypeFactory.h"
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
+
+#include "GuiProject/Meta/GeneratedFiles/Container/SystemTypeFactory.h"
 
 using namespace nsGuiProject;
 

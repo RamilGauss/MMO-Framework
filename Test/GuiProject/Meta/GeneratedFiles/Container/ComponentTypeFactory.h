@@ -9,7 +9,8 @@ Project Component
 #include <vector>
 #include <functional>
 #include "Base/Common/TypeDef.h"
-#include "ComponentIncludeList.h"
+
+#include "GuiProject/Meta/GeneratedFiles/Container/ComponentIncludeList.h"
 
 namespace nsGuiProject
 {

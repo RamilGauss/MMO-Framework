@@ -7,12 +7,12 @@ See for more information LICENSE.md.
 
 // ContainerCodeGenerator
 
-#include "ScenePartReflectionAggregatorImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ScenePartReflectionAggregatorImpl.h"
 
-#include "ComponentReflectionAggregatorImpl.h"
-#include "HandlerReflectionAggregatorImpl.h"
-#include "SystemReflectionAggregatorImpl.h"
-#include "ImGuiWidgetsReflectionAggregatorImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ComponentReflectionAggregatorImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/HandlerReflectionAggregatorImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/SystemReflectionAggregatorImpl.h"
+#include "GuiProject/Meta/GeneratedFiles/Aggregator/ImGuiWidgetsReflectionAggregatorImpl.h"
 
 using namespace nsGuiProject;
 

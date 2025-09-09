@@ -3,11 +3,12 @@ Project Handler
 */
 // ReflectionCodeGenerator version 2.5.0, build 59 [Binary, DynamicCaster, Json, EcsComponentExtension, ImGui, Reflection, RTTI, TypeInformation]
 
-#include "HandlerTypeInfo.h"
 
 #include "Base/Common/SingletonManager.h"
 #include "Base/Common/RunTimeTypeIndex.h"
 #include "Parser/Sources/GeneratedFiles/JsonSerializer.h"
+
+#include "GuiProject/Meta/GeneratedFiles/Container/HandlerTypeInfo.h"
 
 using namespace nsGuiProject;
 
