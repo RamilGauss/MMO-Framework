@@ -33,14 +33,14 @@ namespace nsContainerCodeGenerator::nsSetupConfig::nsProject
         nsBase::nsCommon::TTextFile::Load(pathsComponent->absPathJsonFile, str);
         if (str.length() == 0) {
             auto msg = fmt::format("Not loaded file \"{}\"\n", pathsComponent->absPathJsonFile);
-            throw MSG_EXCEPTION(msg);
+            throw TMessageException(msg);
         }
 
         std::string err;
         auto fillRes = TJsonSerializer::Deserialize(&projectConfigComponent->value, str, err);
         if (!fillRes) {
             auto msg = fmt::format("Deserilaize error in \"{}\", {}\n", pathsComponent->absPathJsonFile, err);
-            throw MSG_EXCEPTION(msg);
+            throw TMessageException(msg);
         }
     }
 }

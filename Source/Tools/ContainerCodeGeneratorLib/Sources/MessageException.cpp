@@ -5,15 +5,20 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <sstream>
+#include <boost/stacktrace/stacktrace.hpp>
 #include <fmt/core.h>
 
 #include "ContainerCodeGeneratorLib/Sources/MessageException.h"
 
 namespace nsContainerCodeGenerator
 {
-    TMessageException::TMessageException(const std::string& what, const char* fileName, int line)
+    TMessageException::TMessageException(const std::string& what)
     {
-        mWhat = fmt::format("{}, {}: {}", what, fileName, line);
+        std::ostringstream ss;
+        boost::stacktrace::stacktrace stacktrace;
+        ss << stacktrace;
+        mWhat = fmt::format("{}:\n{}", what, ss.str());
     }
     //---------------------------------------------------------------------------------------------
     const char* TMessageException::what() const noexcept

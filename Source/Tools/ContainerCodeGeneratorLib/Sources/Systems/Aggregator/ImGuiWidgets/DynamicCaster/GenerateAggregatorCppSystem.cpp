@@ -106,7 +106,7 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets::nsDynamicCaste
             generatedFile.content = txtGen.Render();
         } catch (...) {
             std::string msg = "Render error";
-            throw MSG_EXCEPTION(msg);
+            throw TMessageException(msg);
         }
 
         generatedFilesComponent->value.push_back(generatedFile);

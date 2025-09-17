@@ -38,6 +38,6 @@ namespace nsContainerCodeGenerator::nsCommon
         }
 
         auto msg = fmt::format("ReflectionCodeGenerator returns {}", cmdResult);
-        throw MSG_EXCEPTION(msg);
+        throw TMessageException(msg);
     }
 }

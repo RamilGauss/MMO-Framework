@@ -20,11 +20,13 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     add_compile_definitions(PLATFORM_LINUX)
+    add_compile_definitions(BOOST_STACKTRACE_USE_BACKTRACE)
     add_compile_options(-fPIC)
 endif()
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     add_compile_definitions(PLATFORM_WINDOWS)
     add_compile_definitions(_WIN32_WINNT=0x0A00) # Windows 10
+    add_compile_definitions(BOOST_STACKTRACE_USE_WINDBG)
 endif()
 
 if(MSVC AND (NOT BUILD_PROCESSES STREQUAL ""))

@@ -17,13 +17,8 @@ namespace nsContainerCodeGenerator
     class DllExport TMessageException : public std::exception
     {
         std::string mWhat;
-
     public:
-        TMessageException(const std::string& what, const char* fileName, int line);
-
+        TMessageException(const std::string& what);
         const char* what() const noexcept;
     };
-
-#define MSG_EXCEPTION(what) TMessageException(what, __FILE__, __LINE__)
-
 }

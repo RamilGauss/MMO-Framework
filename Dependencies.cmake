@@ -9,6 +9,13 @@ find_package(Boost REQUIRED COMPONENTS
     uuid
 )
 
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    find_package(Boost_stacktrace_basic REQUIRED)
+endif()
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    find_package(Boost_stacktrace_windbg REQUIRED)
+endif()
+
 find_package(fmt REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(GTest REQUIRED)

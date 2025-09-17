@@ -52,7 +52,7 @@ namespace nsContainerCodeGenerator::nsProject::nsSystem
 
         if (!relPathResult) {
             auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
-            throw MSG_EXCEPTION(msg);
+            throw TMessageException(msg);
         }
 
         conf.targetForParsing.directories.push_back(rel);
