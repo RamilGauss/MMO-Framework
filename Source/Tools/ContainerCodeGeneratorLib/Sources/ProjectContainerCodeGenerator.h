@@ -9,7 +9,6 @@ See for more information LICENSE.md.
 
 #include "ContainerCodeGeneratorLib/Sources/ContainerCodeGenerator.h"
 
-#include "ContainerCodeGeneratorLib/Sources/Systems/SetupConfig/Project/ConfigFeature.h"
 #include "ContainerCodeGeneratorLib/Sources/Systems/Aggregator/GeneratorFeature.h"
 #include "ContainerCodeGeneratorLib/Sources/Systems/Project/GeneratorFeature.h"
 
@@ -22,12 +21,12 @@ namespace nsContainerCodeGenerator
 {
     class DllExport TProjectContainerCodeGenerator : public TContainerCodeGenerator
     {
-        nsSetupConfig::nsProject::TConfigFeature mSetupConfigFeature;
         nsProject::TGeneratorFeature         mProjectGeneratorFeature;
         nsAggregator::TGeneratorFeature      mAggregatorDumperFeature;
 
     public:
         [[nodiscard]]
-        Result Generate(const std::string& filePath) override;
+        Result Generate(const TPathSetting& pathSetting, 
+            const TCoreConfig& coreConfig, const TProjectConfig& projectConfig) override;
     };
 }

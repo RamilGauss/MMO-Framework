@@ -7,13 +7,16 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ECS/Include/IComponent.h"
-#include "ContainerCodeGeneratorLib/Sources/Configs/CoreConfig.h"
+#include <string>
+
+#include "Base/Common/TypeDef.h"
 
 namespace nsContainerCodeGenerator
 {
-    struct DllExport TCoreConfigComponent : nsECSFramework::IComponent
+#pragma REFLECTION_ATTRIBUTE
+    struct DllExport TCodeGenerationResult
     {
-        mutable TCoreConfig value;
+        std::string fileName;
+        std::string typeName;
     };
 }

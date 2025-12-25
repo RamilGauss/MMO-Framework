@@ -13,7 +13,9 @@ See for more information LICENSE.md.
 #include "ECS/Include/Feature.h"
 #include "ECS/Include/Helper.h"
 
-#include "ContainerCodeGeneratorLib/Sources/Config.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/PathSetting.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/CoreConfig.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/ProjectConfig.h"
 
 // Автоматизация
 // Управляющий над кодогенератором для нужд ядра и проекта в редакторе.
@@ -39,11 +41,10 @@ namespace nsContainerCodeGenerator
         virtual ~TContainerCodeGenerator();
 
         [[nodiscard]]
-        virtual Result Generate(const std::string& filePath) = 0;
+        virtual Result Generate(const TPathSetting& pathSetting, 
+            const TCoreConfig& coreConfig, const TProjectConfig& projectConfig) = 0;
 
     protected:
-        void CreateSingleEntity(const std::string& filePath);
-
         Result Execute();
     };
 }

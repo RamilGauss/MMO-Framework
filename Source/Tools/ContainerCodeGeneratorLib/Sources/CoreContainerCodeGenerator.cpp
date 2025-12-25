@@ -17,22 +17,27 @@ See for more information LICENSE.md.
 #include "ContainerCodeGeneratorLib/Sources/CoreContainerCodeGenerator.h"
 
 #include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
-#include "ContainerCodeGeneratorLib/Sources/Components/FilePathComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ConfigTagComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/PathSettingComponent.h"
 
 namespace nsContainerCodeGenerator
 {
-    TContainerCodeGenerator::Result TCoreContainerCodeGenerator::Generate(const std::string& filePath)
+    TContainerCodeGenerator::Result TCoreContainerCodeGenerator::Generate(const TPathSetting& pathSetting, 
+            const TCoreConfig& coreConfig, const TProjectConfig& projectConfig)
     {
-        CreateSingleEntity(filePath);
+        auto singleId = nsECSFramework::SingleEntity<TConfigTagComponent>(&mEntMng);
 
-        TCoreConfigComponent configComponent;
-        auto singleId = nsECSFramework::SingleEntity<TFilePathComponent>(&mEntMng);
-        mEntMng.SetComponent(singleId, configComponent);
+        TPathSettingComponent pathSettingcomponent;
+        pathSettingcomponent.value = pathSetting;
+        mEntMng.SetComponent(singleId, pathSettingcomponent);
+
+        TCoreConfigComponent coreConfigComponent;
+        coreConfigComponent.value = coreConfig;
+        mEntMng.SetComponent(singleId, coreConfigComponent);
 
         mMainFeature.SetEntMng(&mEntMng);
 
         // Form the logic conveyor.
-        mMainFeature.Add(&mSetupConfigFeature);
         mMainFeature.Add(&mCoreGeneratorFeature);
 
         return Execute();

@@ -10,8 +10,13 @@ See for more information LICENSE.md.
 #include <boost/program_options.hpp>
 
 #include "Base/Common/BL_Debug.h"
+
 #include "ContainerCodeGeneratorLib/Sources/CoreContainerCodeGenerator.h"
 #include "ContainerCodeGeneratorLib/Sources/ProjectContainerCodeGenerator.h"
+
+#include "ContainerCodeGeneratorLib/Sources/GeneratedFiles/JsonSerializer.h"
+
+#include "ContainerCodeGenerator/Sources/ConfigPrefabs.h"
 
 namespace po = boost::program_options;
 
@@ -26,9 +31,9 @@ int main(int argc, char* argv[])
     po::options_description desc("Allowed options");
     desc.add_options()
         ("help,h", "Help")
-        ("type,t", po::value<std::string>(), "type of task")
-        ("task_file,f", po::value<std::string>(), "path to task file")
-        ("common_options,c", po::value<std::string>(), "content of common options in json format");
+        ("type,t", po::value<std::string>(), "type of task, [core, project]")
+        ("path_setting,p", po::value<std::string>(), "content of path setting (see nsContainerCodeGenerator::TPathSetting) in json format")
+        ("project_namespace,n", po::value<std::string>(), "project namespace");
 
     po::variables_map vm;
     try {
@@ -47,17 +52,21 @@ int main(int argc, char* argv[])
     if (vm.count("type")) {
         type = vm["type"].as<std::string>();
     }
-    std::string taskFile;
-    if (vm.count("task_file")) {
-        taskFile = vm["task_file"].as<std::string>();
+    std::string pathSettingJson;
+    if (vm.count("path_setting")) {
+        pathSettingJson = vm["path_setting"].as<std::string>();
     }
-    std::string commonOptions;
-    if (vm.count("common_options")) {
-        commonOptions = vm["common_options"].as<std::string>();
-    }
-    if (type.empty() || taskFile.empty() || commonOptions.empty()) {
+    if (type.empty() || pathSettingJson.empty()) {
         std::cout << desc << std::endl;
         return -3;
+    }
+    std::string projectNameSpace;
+    if (type == "project") {
+        projectNameSpace = vm["project_namespace"].as<std::string>();
+        if (projectNameSpace.empty()) {
+            std::cout << desc << std::endl;
+            return -4;
+        }
     }
     std::shared_ptr<nsContainerCodeGenerator::TContainerCodeGenerator> ccg;
     if (type == "core") {
@@ -68,5 +77,17 @@ int main(int argc, char* argv[])
         std::cout << desc << std::endl;
         return -3;
     }
-    return static_cast<int>(ccg->Generate(taskFile));
+
+    nsContainerCodeGenerator::TPathSetting pathSetting;
+    std::string err;
+    auto deserRes = nsContainerCodeGenerator::TJsonSerializer::Deserialize(&pathSetting, pathSettingJson, err);
+    if (deserRes == false) {
+        std::cout << "Fail with deserilize" << pathSettingJson << ", cause " << err << std::endl;
+        return -5;
+    }
+
+    TConfigPrefabs configPrefabs;
+    auto coreConfig = configPrefabs.MakeCoreDefault();
+    auto projectConfig = configPrefabs.MakeProjectDefault(projectNameSpace);
+    return static_cast<int>(ccg->Generate(pathSetting, coreConfig, projectConfig));
 }

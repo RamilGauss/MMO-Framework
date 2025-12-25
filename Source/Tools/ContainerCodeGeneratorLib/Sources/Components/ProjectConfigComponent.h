@@ -8,12 +8,12 @@ See for more information LICENSE.md.
 #pragma once
 
 #include "ECS/Include/IComponent.h"
-#include "ContainerCodeGeneratorLib/Sources/Config.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/ProjectConfig.h"
 
 namespace nsContainerCodeGenerator
 {
     struct DllExport TProjectConfigComponent : nsECSFramework::IComponent
     {
-        mutable TProjectContainerConfig value;
+        mutable TProjectConfig value;
     };
 }

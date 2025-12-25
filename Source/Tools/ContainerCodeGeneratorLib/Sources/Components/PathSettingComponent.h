@@ -7,14 +7,13 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "Base/Common/TypeDef.h"
+#include "ECS/Include/IComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/PathSetting.h"
 
 namespace nsContainerCodeGenerator
 {
-
-struct TResolvedConfig
-{
-    
-};
-
+    struct DllExport TPathSettingComponent : nsECSFramework::IComponent
+    {
+        mutable TPathSetting value;
+    };
 }

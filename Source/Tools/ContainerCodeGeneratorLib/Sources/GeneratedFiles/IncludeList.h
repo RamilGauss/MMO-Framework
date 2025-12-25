@@ -5,4 +5,8 @@
 
 #pragma once
 
-#include "ContainerCodeGeneratorLib/Sources/Config.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/CodeGenerationResult.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/CodeGenerationResultList.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/CoreConfig.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/PathSetting.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/ProjectConfig.h"

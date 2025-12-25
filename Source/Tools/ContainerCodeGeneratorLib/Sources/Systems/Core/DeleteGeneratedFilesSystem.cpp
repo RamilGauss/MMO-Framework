@@ -11,7 +11,7 @@ See for more information LICENSE.md.
 
 #include "ECS/Include/Helper.h"
 
-#include "ContainerCodeGeneratorLib/Sources/Components/CoreConfigComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/PathSettingComponent.h"
 
 #include "ContainerCodeGeneratorLib/Sources/Systems/Core/DeleteGeneratedFilesSystem.h"
 
@@ -19,9 +19,9 @@ namespace nsContainerCodeGenerator::nsCore
 {
     void TDeleteGeneratedFilesSystem::Execute()
     {
-        auto configComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
+        auto pathSettingComponent = nsECSFramework::SingleComponent<TPathSettingComponent>(mEntMng);
 
-        auto targetDir = std::filesystem::path(configComponent->value.coreConfig.targetDirectory);
+        auto targetDir = std::filesystem::path(pathSettingComponent->value.generatedFilesDir);
 
         for (const auto& entry : std::filesystem::directory_iterator(targetDir)) {
             std::filesystem::remove_all(entry.path());

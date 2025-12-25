@@ -39,59 +39,20 @@ namespace nsContainerCodeGenerator
         static bool Has(int rtti);
     
     public:
-        static void _Serialize(nsContainerCodeGenerator::TAggregator* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TAggregator* p, const Jobj& obj);
+        static void _Serialize(nsContainerCodeGenerator::TCodeGenerationResult* p, Jobj& obj);
+        static void _Deserialize(nsContainerCodeGenerator::TCodeGenerationResult* p, const Jobj& obj);
         
-        static void _Serialize(nsContainerCodeGenerator::TAggregatorClass* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TAggregatorClass* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TComponentAggregator* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TComponentAggregator* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TComponentConfig* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TComponentConfig* p, const Jobj& obj);
+        static void _Serialize(nsContainerCodeGenerator::TCodeGenerationResultList* p, Jobj& obj);
+        static void _Deserialize(nsContainerCodeGenerator::TCodeGenerationResultList* p, const Jobj& obj);
         
         static void _Serialize(nsContainerCodeGenerator::TCoreConfig* p, Jobj& obj);
         static void _Deserialize(nsContainerCodeGenerator::TCoreConfig* p, const Jobj& obj);
         
-        static void _Serialize(nsContainerCodeGenerator::TCoreContainerConfig* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TCoreContainerConfig* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TEcsSystemConfig* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TEcsSystemConfig* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TGeneratedClass* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TGeneratedClass* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::THandlerAggregator* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::THandlerAggregator* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::THandlerConfig* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::THandlerConfig* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TImGuiWidgetsAggregator* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TImGuiWidgetsAggregator* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TImGuiWidgetsConfig* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TImGuiWidgetsConfig* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TIncludeListFileName* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TIncludeListFileName* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TParentClass* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TParentClass* p, const Jobj& obj);
+        static void _Serialize(nsContainerCodeGenerator::TPathSetting* p, Jobj& obj);
+        static void _Deserialize(nsContainerCodeGenerator::TPathSetting* p, const Jobj& obj);
         
         static void _Serialize(nsContainerCodeGenerator::TProjectConfig* p, Jobj& obj);
         static void _Deserialize(nsContainerCodeGenerator::TProjectConfig* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TProjectContainerConfig* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TProjectContainerConfig* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TSystemAggregator* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TSystemAggregator* p, const Jobj& obj);
-        
-        static void _Serialize(nsContainerCodeGenerator::TSystemConfig* p, Jobj& obj);
-        static void _Deserialize(nsContainerCodeGenerator::TSystemConfig* p, const Jobj& obj);
         
     };
     //------------------------------------------------------------------------------------------------------------

@@ -7,13 +7,11 @@ See for more information LICENSE.md.
 
 #pragma once
 
-#include "ECS/Include/IComponent.h"
 #include "ContainerCodeGeneratorLib/Sources/Configs/CoreConfig.h"
+#include "ContainerCodeGeneratorLib/Sources/Configs/ProjectConfig.h"
 
-namespace nsContainerCodeGenerator
+struct TConfigPrefabs
 {
-    struct DllExport TCoreConfigComponent : nsECSFramework::IComponent
-    {
-        mutable TCoreConfig value;
-    };
-}
+    nsContainerCodeGenerator::TCoreConfig MakeCoreDefault() const;
+    nsContainerCodeGenerator::TProjectConfig MakeProjectDefault(const std::string& projectNameSpace) const;
+};

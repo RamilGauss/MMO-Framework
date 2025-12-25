@@ -16,8 +16,7 @@ See for more information LICENSE.md.
 #include "ContainerCodeGeneratorLib/Sources/ContainerCodeGenerator.h"
 #include "ContainerCodeGeneratorLib/Sources/MessageException.h"
 
-#include "ContainerCodeGeneratorLib/Sources/Components/FilePathComponent.h"
-#include "ContainerCodeGeneratorLib/Sources/Components/PathsComponent.h"
+#include "ContainerCodeGeneratorLib/Sources/Components/ConfigTagComponent.h"
 
 #include "ContainerCodeGeneratorLib/Sources/GeneratedFiles/JsonSerializer.h"
 
@@ -27,24 +26,15 @@ namespace nsContainerCodeGenerator
         mEntMng("ContainerCodeGenerator", 100)
     {
         mEntMng.Setup();
+
+        auto eid = mEntMng.CreateEntity();
+        TConfigTagComponent configTagComponent;
+        mEntMng.SetComponent(eid, configTagComponent);
     }
     //-------------------------------------------------------------------------------------------
     TContainerCodeGenerator::~TContainerCodeGenerator()
     {
 
-    }
-    //-------------------------------------------------------------------------------------------
-    void TContainerCodeGenerator::CreateSingleEntity(const std::string& filePath)
-    {
-        auto singleEid = mEntMng.CreateEntity();
-
-        // Input
-        TFilePathComponent filePathComponent;
-        filePathComponent.value = filePath;
-        mEntMng.SetComponent(singleEid, filePathComponent);
-
-        TPathsComponent pathsComponent;
-        mEntMng.SetComponent(singleEid, pathsComponent);
     }
     //-------------------------------------------------------------------------------------------
     TContainerCodeGenerator::Result TContainerCodeGenerator::Execute()
