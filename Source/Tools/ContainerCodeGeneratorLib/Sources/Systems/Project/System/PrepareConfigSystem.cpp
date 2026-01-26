@@ -33,48 +33,48 @@ namespace nsContainerCodeGenerator::nsProject::nsSystem
 
         auto& conf = reflectionConfigComponent.value;
 
-        std::string fileName = std::string("./") + TConstants::PROJECT_SYSTEM_CONFIG;
-        reflectionConfigComponent.absFileName =
-            nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.projectConfig.targetDirectory, fileName);
+        //std::string fileName = std::string("./") + TConstants::PROJECT_SYSTEM_CONFIG;
+        //reflectionConfigComponent.absFileName =
+        //    nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.projectConfig.targetDirectory, fileName);
 
-        auto inheritances = TConstants::GetSystemInheritances();
-        for (auto& inheritance : inheritances) {
-            conf.filter.inheritances.push_back({ inheritance });
-        }
+        //auto inheritances = TConstants::GetSystemInheritances();
+        //for (auto& inheritance : inheritances) {
+        //    conf.filter.inheritances.push_back({ inheritance });
+        //}
 
-        conf.targetForParsing.recursive = true;
+        //conf.targetForParsing.recursive = true;
 
-        auto absBase = configComponent->value.projectConfig.targetDirectory;
-        auto abs = configComponent->value.projectConfig.parseDirectory;
+        //auto absBase = configComponent->value.projectConfig.targetDirectory;
+        //auto abs = configComponent->value.projectConfig.parseDirectory;
 
-        std::string rel;
-        auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
+        //std::string rel;
+        //auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
 
-        if (!relPathResult) {
-            auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
-            throw TMessageException(msg);
-        }
+        //if (!relPathResult) {
+        //    auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
+        //    throw TMessageException(msg);
+        //}
 
-        conf.targetForParsing.directories.push_back(rel);
+        //conf.targetForParsing.directories.push_back(rel);
 
-        auto ext = TConstants::GetHeaderExtensions();
-        conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
-        conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
+        //auto ext = TConstants::GetHeaderExtensions();
+        //conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
+        //conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
 
-        conf.targetForCodeGeneration.directory = ".";
-        conf.targetForCodeGeneration.header = "Project System";
+        //conf.targetForCodeGeneration.directory = ".";
+        //conf.targetForCodeGeneration.header = "Project System";
 
-        // TypeFactory
-        nsReflectionCodeGenerator::TSerializer typeFactory;
-        typeFactory.className = configComponent->value.projectConfig.systemConfig.typeFactory.typeName;
-        typeFactory.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
-        typeFactory.fileName = configComponent->value.projectConfig.systemConfig.typeFactory.fileName;
-        typeFactory.nameSpaceName = configComponent->value.projectConfig.nameSpace;
+        //// TypeFactory
+        //nsReflectionCodeGenerator::TSerializer typeFactory;
+        //typeFactory.className = configComponent->value.projectConfig.systemConfig.typeFactory.typeName;
+        //typeFactory.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
+        //typeFactory.fileName = configComponent->value.projectConfig.systemConfig.typeFactory.fileName;
+        //typeFactory.nameSpaceName = configComponent->value.projectConfig.nameSpace;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });
 
-        conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.projectConfig.systemConfig.includeListFileName;
+        //conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.projectConfig.systemConfig.includeListFileName;
 
-        mEntMng->SetComponent(eid, reflectionConfigComponent);
+        //mEntMng->SetComponent(eid, reflectionConfigComponent);
     }
 }

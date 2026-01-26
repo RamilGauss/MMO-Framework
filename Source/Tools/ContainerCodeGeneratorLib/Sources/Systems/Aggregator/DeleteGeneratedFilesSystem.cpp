@@ -20,10 +20,10 @@ namespace nsContainerCodeGenerator::nsAggregator
     {
         auto configComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
 
-        auto targetDir = std::filesystem::path(configComponent->value.aggregator.targetDirectory);
+        //auto targetDir = std::filesystem::path(configComponent->value.aggregator.targetDirectory);
 
-        for (const auto& entry : std::filesystem::directory_iterator(targetDir)) {
-            std::filesystem::remove_all(entry.path());
-        }
+        //for (const auto& entry : std::filesystem::directory_iterator(targetDir)) {
+        //    std::filesystem::remove_all(entry.path());
+        //}
     }
 }

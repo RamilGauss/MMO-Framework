@@ -31,23 +31,23 @@ namespace nsContainerCodeGenerator::nsProject::nsHandler
 
         THandlerListComponent handlerListComponent;
 
-        auto baseHandlerTypeNames = configComponent->value.baseHandlerTypeNames;
+        //auto baseHandlerTypeNames = configComponent->value.baseHandlerTypeNames;
 
-        for (auto& type : typeListComponent->value) {
+        //for (auto& type : typeListComponent->value) {
 
-            auto fit = std::find_if(type.mInheritanceVec.begin(), type.mInheritanceVec.end(),
-                [&baseHandlerTypeNames](const nsCppParser::TInheritanceInfo& inheritanceInfo) -> bool
-            {
-                return (baseHandlerTypeNames.contains(inheritanceInfo.mOriginalName));
-            });
+        //    auto fit = std::find_if(type.mInheritanceVec.begin(), type.mInheritanceVec.end(),
+        //        [&baseHandlerTypeNames](const nsCppParser::TInheritanceInfo& inheritanceInfo) -> bool
+        //    {
+        //        return (baseHandlerTypeNames.contains(inheritanceInfo.mOriginalName));
+        //    });
 
-            if (fit == type.mInheritanceVec.end()) {
-                continue;
-            }
+        //    if (fit == type.mInheritanceVec.end()) {
+        //        continue;
+        //    }
 
-            handlerListComponent.value.insert(type.GetTypeNameWithNameSpace());
-        }
+        //    handlerListComponent.value.insert(type.GetTypeNameWithNameSpace());
+        //}
 
-        mEntMng->SetComponent(eid, handlerListComponent);
+        //mEntMng->SetComponent(eid, handlerListComponent);
     }
 }

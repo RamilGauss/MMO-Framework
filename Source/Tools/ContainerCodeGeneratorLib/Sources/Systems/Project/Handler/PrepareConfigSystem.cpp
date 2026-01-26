@@ -33,71 +33,71 @@ namespace nsContainerCodeGenerator::nsProject::nsHandler
         auto configComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
         auto coreHandlerListComponent = nsECSFramework::SingleComponent<THandlerListComponent>(mEntMng);
 
-        const auto& handlerConfig = configComponent->value.projectConfig.handlerConfig;
+        //const auto& handlerConfig = configComponent->value.projectConfig.handlerConfig;
 
-        TReflectionConfigComponent reflectionConfigComponent;
+        //TReflectionConfigComponent reflectionConfigComponent;
 
-        auto& conf = reflectionConfigComponent.value;
+        //auto& conf = reflectionConfigComponent.value;
 
-        std::string fileName = std::string("./") + TConstants::PROJECT_HANDLER_CONFIG;
-        reflectionConfigComponent.absFileName =
-            nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.projectConfig.targetDirectory, fileName);
+        //std::string fileName = std::string("./") + TConstants::PROJECT_HANDLER_CONFIG;
+        //reflectionConfigComponent.absFileName =
+        //    nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.projectConfig.targetDirectory, fileName);
 
-        for (auto& handler : coreHandlerListComponent->value) {
-            conf.filter.inheritances.push_back({ handler });
-        }
+        //for (auto& handler : coreHandlerListComponent->value) {
+        //    conf.filter.inheritances.push_back({ handler });
+        //}
 
-        conf.targetForParsing.recursive = true;
+        //conf.targetForParsing.recursive = true;
 
-        auto absBase = configComponent->value.projectConfig.targetDirectory;
-        auto abs = configComponent->value.projectConfig.parseDirectory;
+        //auto absBase = configComponent->value.projectConfig.targetDirectory;
+        //auto abs = configComponent->value.projectConfig.parseDirectory;
 
-        std::string rel;
-        auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
+        //std::string rel;
+        //auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
 
-        if (!relPathResult) {
-            auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
-            throw TMessageException(msg);
-        }
+        //if (!relPathResult) {
+        //    auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
+        //    throw TMessageException(msg);
+        //}
 
-        conf.targetForParsing.directories.push_back(rel);
+        //conf.targetForParsing.directories.push_back(rel);
 
-        auto ext = TConstants::GetHeaderExtensions();
-        conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
-        conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
+        //auto ext = TConstants::GetHeaderExtensions();
+        //conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
+        //conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
 
-        conf.targetForCodeGeneration.directory = ".";
-        conf.targetForCodeGeneration.header = "Project Handler";
+        //conf.targetForCodeGeneration.directory = ".";
+        //conf.targetForCodeGeneration.header = "Project Handler";
 
-        // TypeInformation
-        nsReflectionCodeGenerator::TSerializer typeInfo;
-        typeInfo.className = configComponent->value.projectConfig.handlerConfig.typeInfo.typeName;
-        typeInfo.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
-        typeInfo.fileName = configComponent->value.projectConfig.handlerConfig.typeInfo.fileName;
-        typeInfo.nameSpaceName = configComponent->value.projectConfig.nameSpace;
+        //// TypeInformation
+        //nsReflectionCodeGenerator::TSerializer typeInfo;
+        //typeInfo.className = configComponent->value.projectConfig.handlerConfig.typeInfo.typeName;
+        //typeInfo.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
+        //typeInfo.fileName = configComponent->value.projectConfig.handlerConfig.typeInfo.fileName;
+        //typeInfo.nameSpaceName = configComponent->value.projectConfig.nameSpace;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, typeInfo });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_INFORMATION, typeInfo });
 
-        // rtti
-        nsReflectionCodeGenerator::TSerializer rtti;
-        rtti.className = configComponent->value.projectConfig.handlerConfig.rtti.typeName;
-        rtti.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
-        rtti.fileName = configComponent->value.projectConfig.handlerConfig.rtti.fileName;
-        rtti.nameSpaceName = configComponent->value.projectConfig.nameSpace;
+        //// rtti
+        //nsReflectionCodeGenerator::TSerializer rtti;
+        //rtti.className = configComponent->value.projectConfig.handlerConfig.rtti.typeName;
+        //rtti.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
+        //rtti.fileName = configComponent->value.projectConfig.handlerConfig.rtti.fileName;
+        //rtti.nameSpaceName = configComponent->value.projectConfig.nameSpace;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
 
-        // TypeFactory
-        nsReflectionCodeGenerator::TSerializer typeFactory;
-        typeFactory.className = configComponent->value.projectConfig.handlerConfig.typeFactory.typeName;
-        typeFactory.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
-        typeFactory.fileName = configComponent->value.projectConfig.handlerConfig.typeFactory.fileName;
-        typeFactory.nameSpaceName = configComponent->value.projectConfig.nameSpace;
+        //// TypeFactory
+        //nsReflectionCodeGenerator::TSerializer typeFactory;
+        //typeFactory.className = configComponent->value.projectConfig.handlerConfig.typeFactory.typeName;
+        //typeFactory.exportDeclaration = configComponent->value.projectConfig.exportDeclaration;
+        //typeFactory.fileName = configComponent->value.projectConfig.handlerConfig.typeFactory.fileName;
+        //typeFactory.nameSpaceName = configComponent->value.projectConfig.nameSpace;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });
 
-        conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.projectConfig.handlerConfig.includeListFileName;
+        //conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.projectConfig.handlerConfig.includeListFileName;
 
-        mEntMng->SetComponent(eid, reflectionConfigComponent);
+        //mEntMng->SetComponent(eid, reflectionConfigComponent);
     }
 }

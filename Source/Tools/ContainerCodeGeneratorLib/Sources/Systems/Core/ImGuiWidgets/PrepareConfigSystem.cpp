@@ -31,69 +31,69 @@ namespace nsContainerCodeGenerator::nsCore::nsImGuiWidgets
 
         auto configComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
 
-        const auto& imGuiWidgetsConfig = configComponent->value.coreConfig.imGuiWidgetsConfig;
+        //const auto& imGuiWidgetsConfig = configComponent->value.coreConfig.imGuiWidgetsConfig;
 
-        TReflectionConfigComponent reflectionConfigComponent;
+        //TReflectionConfigComponent reflectionConfigComponent;
 
-        auto& conf = reflectionConfigComponent.value;
+        //auto& conf = reflectionConfigComponent.value;
 
-        std::string fileName = std::string("./") + TConstants::CORE_IMGUI_WIDGETS_CONFIG;
-        reflectionConfigComponent.absFileName =
-            nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
+        //std::string fileName = std::string("./") + TConstants::CORE_IMGUI_WIDGETS_CONFIG;
+        //reflectionConfigComponent.absFileName =
+        //    nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
 
-        conf.targetForParsing.recursive = true;
+        //conf.targetForParsing.recursive = true;
 
-        auto absBase = configComponent->value.coreConfig.targetDirectory;
-        auto abs = imGuiWidgetsConfig.imGuiWidgetsDirectory;
+        //auto absBase = configComponent->value.coreConfig.targetDirectory;
+        //auto abs = imGuiWidgetsConfig.imGuiWidgetsDirectory;
 
-        std::string rel;
-        auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
+        //std::string rel;
+        //auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
 
-        if (!relPathResult) {
-            auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
-            throw TMessageException(msg);
-        }
+        //if (!relPathResult) {
+        //    auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
+        //    throw TMessageException(msg);
+        //}
 
-        conf.targetForParsing.directories.push_back(rel);
+        //conf.targetForParsing.directories.push_back(rel);
 
-        auto ext = TConstants::GetHeaderExtensions();
-        conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
-        conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
+        //auto ext = TConstants::GetHeaderExtensions();
+        //conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
+        //conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
 
-        conf.targetForCodeGeneration.directory = ".";
-        conf.targetForCodeGeneration.header = "Core Component";
+        //conf.targetForCodeGeneration.directory = ".";
+        //conf.targetForCodeGeneration.header = "Core Component";
 
-        // rtti
-        nsReflectionCodeGenerator::TSerializer rtti;
-        rtti.className = configComponent->value.coreConfig.imGuiWidgetsConfig.rtti.typeName;
-        rtti.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        rtti.fileName = configComponent->value.coreConfig.imGuiWidgetsConfig.rtti.fileName;
-        rtti.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+        //// rtti
+        //nsReflectionCodeGenerator::TSerializer rtti;
+        //rtti.className = configComponent->value.coreConfig.imGuiWidgetsConfig.rtti.typeName;
+        //rtti.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        //rtti.fileName = configComponent->value.coreConfig.imGuiWidgetsConfig.rtti.fileName;
+        //rtti.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
-        rtti.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
-        rtti.externalSources->outFile = TConstants::CORE_IMGUI_WIDGETS_RTTI_OUT;
+        //rtti.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        //rtti.externalSources->outFile = TConstants::CORE_IMGUI_WIDGETS_RTTI_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
 
-        // DynamicCaster
-        nsReflectionCodeGenerator::TSerializer dynamicCaster;
-        dynamicCaster.className = configComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.typeName;
-        dynamicCaster.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        dynamicCaster.fileName = configComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.fileName;
-        dynamicCaster.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+        //// DynamicCaster
+        //nsReflectionCodeGenerator::TSerializer dynamicCaster;
+        //dynamicCaster.className = configComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.typeName;
+        //dynamicCaster.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        //dynamicCaster.fileName = configComponent->value.coreConfig.imGuiWidgetsConfig.dynamicCaster.fileName;
+        //dynamicCaster.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
-        dynamicCaster.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
-        dynamicCaster.externalSources->outFile = TConstants::CORE_IMGUI_WIDGETS_DYNAMIC_CASTER_OUT;
+        //dynamicCaster.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        //dynamicCaster.externalSources->outFile = TConstants::CORE_IMGUI_WIDGETS_DYNAMIC_CASTER_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
 
-        conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.coreConfig.imGuiWidgetsConfig.includeListFileName;
+        //conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.coreConfig.imGuiWidgetsConfig.includeListFileName;
 
-        conf.targetForCodeGeneration.sourceRootPaths = {
-            configComponent->value.sourceRootPath,
-            configComponent->value.coreConfig.imGuiWidgetsConfig.sourceRootPath
-        };
+        //conf.targetForCodeGeneration.sourceRootPaths = {
+        //    configComponent->value.sourceRootPath,
+        //    configComponent->value.coreConfig.imGuiWidgetsConfig.sourceRootPath
+        //};
 
-        mEntMng->SetComponent(eid, reflectionConfigComponent);
+        //mEntMng->SetComponent(eid, reflectionConfigComponent);
     }
 }

@@ -51,22 +51,22 @@ namespace nsContainerCodeGenerator::nsAggregator
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
         TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
-            projectConfigComponent->value.aggregator.dllCppFileName);
+        //generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        //    projectConfigComponent->value.aggregator.dllCppFileName);
 
         nsBase::nsCommon::TTextGenerator txtGen(lines);
 
         inja::json data;
 
-        data["DLL_HEADER_FILE_NAME"] = projectConfigComponent->value.aggregator.dllHeaderFileName;
-        data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.impl.fileName;
-        data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
-        data["DLL_EXPORT_C"] = projectConfigComponent->value.aggregator.cExportDeclaration;
-        data["PARENT_FILE_NAME"] = projectConfigComponent->value.aggregator.parent.typeName;
-        data["GET_FUNC_NAME"] = projectConfigComponent->value.aggregator.getFuncName;
-        data["FREE_FUNC_NAME"] = projectConfigComponent->value.aggregator.freeFuncName;
-        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
-        data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.impl.typeName;
+        //data["DLL_HEADER_FILE_NAME"] = projectConfigComponent->value.aggregator.dllHeaderFileName;
+        //data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.impl.fileName;
+        //data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
+        //data["DLL_EXPORT_C"] = projectConfigComponent->value.aggregator.cExportDeclaration;
+        //data["PARENT_FILE_NAME"] = projectConfigComponent->value.aggregator.parent.typeName;
+        //data["GET_FUNC_NAME"] = projectConfigComponent->value.aggregator.getFuncName;
+        //data["FREE_FUNC_NAME"] = projectConfigComponent->value.aggregator.freeFuncName;
+        //data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
+        //data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.impl.typeName;
 
         try {
             txtGen.Apply(data);

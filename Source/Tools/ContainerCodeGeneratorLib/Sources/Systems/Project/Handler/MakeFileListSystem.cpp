@@ -29,19 +29,19 @@ namespace nsContainerCodeGenerator::nsProject::nsHandler
 
         auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
 
-        // Search in core sources!
-        auto targetDir = coreConfigComponent->value.coreConfig.parseDirectory;
+        //// Search in core sources!
+        //auto targetDir = coreConfigComponent->value.coreConfig.parseDirectory;
 
-        TFileListComponent fileListComponent;
+        //TFileListComponent fileListComponent;
 
-        nsBase::nsCommon::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
+        //nsBase::nsCommon::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
 
-        auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
+        //auto projectConfigComponent = nsECSFramework::SingleComponent<TProjectConfigComponent>(mEntMng);
 
-        targetDir = projectConfigComponent->value.projectConfig.parseDirectory;
+        //targetDir = projectConfigComponent->value.projectConfig.parseDirectory;
 
-        nsBase::nsCommon::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
+        //nsBase::nsCommon::TPathOperations::AddAbsPathsByDirectory(targetDir, TConstants::GetHeaderExtensions(), fileListComponent.value, true);
 
-        mEntMng->SetComponent(eid, fileListComponent);
+        //mEntMng->SetComponent(eid, fileListComponent);
     }
 }

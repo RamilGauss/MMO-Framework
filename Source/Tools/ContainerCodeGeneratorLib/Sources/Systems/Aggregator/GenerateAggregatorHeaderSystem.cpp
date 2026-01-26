@@ -46,29 +46,29 @@ namespace nsContainerCodeGenerator::nsAggregator
         auto coreConfigComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
-            projectConfigComponent->value.aggregator.impl.fileName + ".h");
+        //TGeneratedFile generatedFile;
+        //generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        //    projectConfigComponent->value.aggregator.impl.fileName + ".h");
 
-        nsBase::nsCommon::TTextGenerator txtGen(lines);
+        //nsBase::nsCommon::TTextGenerator txtGen(lines);
 
-        inja::json data;
+        //inja::json data;
 
-        data["PARENT_FILE_NAME"] = projectConfigComponent->value.aggregator.parent.fileName;
-        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
-        data["DLL_EXPORT"] = projectConfigComponent->value.projectConfig.exportDeclaration;
-        data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
-        data["PARENT_TYPE_NAME"] = projectConfigComponent->value.aggregator.parent.typeName;
-        data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.impl.typeName;
+        //data["PARENT_FILE_NAME"] = projectConfigComponent->value.aggregator.parent.fileName;
+        //data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
+        //data["DLL_EXPORT"] = projectConfigComponent->value.projectConfig.exportDeclaration;
+        //data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
+        //data["PARENT_TYPE_NAME"] = projectConfigComponent->value.aggregator.parent.typeName;
+        //data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.impl.typeName;
 
-        try {
-            txtGen.Apply(data);
-            generatedFile.content = txtGen.Render();
-        } catch (...) {
-            std::string msg = "Render error";
-            throw TMessageException(msg);
-        }
+        //try {
+        //    txtGen.Apply(data);
+        //    generatedFile.content = txtGen.Render();
+        //} catch (...) {
+        //    std::string msg = "Render error";
+        //    throw TMessageException(msg);
+        //}
 
-        generatedFilesComponent->value.push_back(generatedFile);
+        //generatedFilesComponent->value.push_back(generatedFile);
     }
 }

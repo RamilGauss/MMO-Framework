@@ -27,17 +27,17 @@ namespace nsContainerCodeGenerator::nsCommon
             return;
         }
 
-        auto cmd = fmt::format("{} \"{}\"", 
-            configComponent->value.reflectionCodeGeneratorFileName, 
-            reflectionConfigComponent->absFileName);
+        //auto cmd = fmt::format("{} \"{}\"", 
+        //    configComponent->value.reflectionCodeGeneratorFileName, 
+        //    reflectionConfigComponent->absFileName);
 
-        auto cmdResult = std::system(cmd.c_str());
+        //auto cmdResult = std::system(cmd.c_str());
 
-        if (cmdResult == 0) {
-            return;
-        }
+        //if (cmdResult == 0) {
+        //    return;
+        //}
 
-        auto msg = fmt::format("ReflectionCodeGenerator returns {}", cmdResult);
-        throw TMessageException(msg);
+        //auto msg = fmt::format("ReflectionCodeGenerator returns {}", cmdResult);
+        //throw TMessageException(msg);
     }
 }

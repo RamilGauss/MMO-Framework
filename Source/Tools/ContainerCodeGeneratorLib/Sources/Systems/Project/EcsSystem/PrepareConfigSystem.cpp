@@ -36,67 +36,67 @@ namespace nsContainerCodeGenerator::nsProject::nsEcsSystem
 
         auto& conf = reflectionConfigComponent.value;
 
-        std::string fileName = std::string("./") + TConstants::PROJECT_ECS_SYSTEM_CONFIG;
-        reflectionConfigComponent.absFileName =
-            nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.projectConfig.targetDirectory, fileName);
+        //std::string fileName = std::string("./") + TConstants::PROJECT_ECS_SYSTEM_CONFIG;
+        //reflectionConfigComponent.absFileName =
+        //    nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.projectConfig.targetDirectory, fileName);
 
-        auto inheritances = TConstants::GetSystemInheritances();
-        for (auto& inheritance : inheritances) {
-            conf.filter.inheritances.push_back({ inheritance });
-        }
+        //auto inheritances = TConstants::GetSystemInheritances();
+        //for (auto& inheritance : inheritances) {
+        //    conf.filter.inheritances.push_back({ inheritance });
+        //}
 
-        conf.targetForParsing.recursive = true;
+        //conf.targetForParsing.recursive = true;
 
-        auto absBase = projectConfigComponent->value.projectConfig.targetDirectory;
-        auto abs = projectConfigComponent->value.projectConfig.parseDirectory;
+        //auto absBase = projectConfigComponent->value.projectConfig.targetDirectory;
+        //auto abs = projectConfigComponent->value.projectConfig.parseDirectory;
 
-        std::string rel;
-        auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
+        //std::string rel;
+        //auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
 
-        if (!relPathResult) {
-            auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
-            throw TMessageException(msg);
-        }
+        //if (!relPathResult) {
+        //    auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
+        //    throw TMessageException(msg);
+        //}
 
-        conf.targetForParsing.directories.push_back(rel);
+        //conf.targetForParsing.directories.push_back(rel);
 
-        auto absCorePath = projectConfigComponent->value.absCorePath;
-        auto absCoreConfigFilePath = nsBase::nsCommon::TPathOperations::CalculatePathBy(absCorePath, projectConfigComponent->value.relCoreConfigPath);
-        auto absCoreConfigDirPath = nsBase::nsCommon::TPathOperations::FileDirPath(absCoreConfigFilePath);
+        //auto absCorePath = projectConfigComponent->value.absCorePath;
+        //auto absCoreConfigFilePath = nsBase::nsCommon::TPathOperations::CalculatePathBy(absCorePath, projectConfigComponent->value.relCoreConfigPath);
+        //auto absCoreConfigDirPath = nsBase::nsCommon::TPathOperations::FileDirPath(absCoreConfigFilePath);
 
-        auto ecsRel = coreConfigComponent->value.ecsDirectory;
-        auto ecsAbsPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(absCoreConfigDirPath, ecsRel);
+        //auto ecsRel = coreConfigComponent->value.ecsDirectory;
+        //auto ecsAbsPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(absCoreConfigDirPath, ecsRel);
 
-        conf.targetForParsing.directories.push_back(ecsAbsPath);
+        //conf.targetForParsing.directories.push_back(ecsAbsPath);
 
-        auto ext = TConstants::GetHeaderExtensions();
-        conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
-        conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
+        //auto ext = TConstants::GetHeaderExtensions();
+        //conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
+        //conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
 
-        conf.targetForCodeGeneration.directory = ".";
-        conf.targetForCodeGeneration.header = "Project Ecs System";
+        //conf.targetForCodeGeneration.directory = ".";
+        //conf.targetForCodeGeneration.header = "Project Ecs System";
 
-        // TypeInformation
-        nsReflectionCodeGenerator::TSerializer rtti;
-        rtti.className = projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.typeName;
-        rtti.exportDeclaration = projectConfigComponent->value.projectConfig.exportDeclaration;
-        rtti.fileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.fileName;
-        rtti.nameSpaceName = projectConfigComponent->value.projectConfig.nameSpace;
+        //// TypeInformation
+        //nsReflectionCodeGenerator::TSerializer rtti;
+        //rtti.className = projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.typeName;
+        //rtti.exportDeclaration = projectConfigComponent->value.projectConfig.exportDeclaration;
+        //rtti.fileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.rtti.fileName;
+        //rtti.nameSpaceName = projectConfigComponent->value.projectConfig.nameSpace;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
 
-        // DynamicCaster
-        nsReflectionCodeGenerator::TSerializer dynamicCaster;
-        dynamicCaster.className = projectConfigComponent->value.projectConfig.ecsSystemConfig.dynamicCaster.typeName;
-        dynamicCaster.exportDeclaration = projectConfigComponent->value.projectConfig.exportDeclaration;
-        dynamicCaster.fileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.dynamicCaster.fileName;
-        dynamicCaster.nameSpaceName = projectConfigComponent->value.projectConfig.nameSpace;
+        //// DynamicCaster
+        //nsReflectionCodeGenerator::TSerializer dynamicCaster;
+        //dynamicCaster.className = projectConfigComponent->value.projectConfig.ecsSystemConfig.dynamicCaster.typeName;
+        //dynamicCaster.exportDeclaration = projectConfigComponent->value.projectConfig.exportDeclaration;
+        //dynamicCaster.fileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.dynamicCaster.fileName;
+        //dynamicCaster.nameSpaceName = projectConfigComponent->value.projectConfig.nameSpace;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
 
-        conf.targetForCodeGeneration.includeListParams.includeListFileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.includeListFileName;
-        conf.targetForCodeGeneration.sourceRootPaths = {ecsAbsPath};
+        //conf.targetForCodeGeneration.includeListParams.includeListFileName = projectConfigComponent->value.projectConfig.ecsSystemConfig.includeListFileName;
+        //conf.targetForCodeGeneration.sourceRootPaths = {ecsAbsPath};
 
-        mEntMng->SetComponent(eid, reflectionConfigComponent);
+        //mEntMng->SetComponent(eid, reflectionConfigComponent);
     }
 }

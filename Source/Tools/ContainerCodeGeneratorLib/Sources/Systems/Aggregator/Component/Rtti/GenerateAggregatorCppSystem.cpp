@@ -104,52 +104,52 @@ namespace nsContainerCodeGenerator::nsAggregator::nsComponent::nsRtti
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        auto& impl = projectConfigComponent->value.aggregator.componentImpl.rttiImpl;
+        //auto& impl = projectConfigComponent->value.aggregator.componentImpl.rttiImpl;
 
-        TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
-            impl.impl.fileName + ".cpp");
+        //TGeneratedFile generatedFile;
+        //generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        //    impl.impl.fileName + ".cpp");
 
-        auto absBase = projectConfigComponent->value.absCorePath;
-        auto abs = coreConfigComponent->value.coreConfig.targetDirectory;
+        //auto absBase = projectConfigComponent->value.absCorePath;
+        //auto abs = coreConfigComponent->value.coreConfig.targetDirectory;
 
-        std::string relToCoreSources;
-        nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
+        //std::string relToCoreSources;
+        //nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, relToCoreSources);
 
-        absBase = projectConfigComponent->value.projectConfig.relPathToSources;
-        abs = projectConfigComponent->value.projectConfig.targetDirectory;
+        //absBase = projectConfigComponent->value.projectConfig.relPathToSources;
+        //abs = projectConfigComponent->value.projectConfig.targetDirectory;
 
-        std::string relToProjectSources;
-        nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
+        //std::string relToProjectSources;
+        //nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, relToProjectSources);
 
-        std::filesystem::path pathRelToProjectSources(relToProjectSources);
-        pathRelToProjectSources /= projectConfigComponent->value.projectConfig.componentConfig.rtti.fileName;
+        //std::filesystem::path pathRelToProjectSources(relToProjectSources);
+        //pathRelToProjectSources /= projectConfigComponent->value.projectConfig.componentConfig.rtti.fileName;
 
-        std::filesystem::path pathRelToCoreSources(relToCoreSources);
-        pathRelToCoreSources /= coreConfigComponent->value.coreConfig.componentConfig.rtti.fileName;
+        //std::filesystem::path pathRelToCoreSources(relToCoreSources);
+        //pathRelToCoreSources /= coreConfigComponent->value.coreConfig.componentConfig.rtti.fileName;
 
-        nsBase::nsCommon::TTextGenerator txtGen(lines);
+        //nsBase::nsCommon::TTextGenerator txtGen(lines);
 
-        inja::json data;
+        //inja::json data;
 
-        data["IMPL_FILE_NAME"] = impl.impl.fileName;
-        data["IMPL_TYPE_NAME"] = impl.impl.typeName;
-        data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
-        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
+        //data["IMPL_FILE_NAME"] = impl.impl.fileName;
+        //data["IMPL_TYPE_NAME"] = impl.impl.typeName;
+        //data["CORE_NAMESPACE"] = coreConfigComponent->value.coreConfig.nameSpace;
+        //data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
 
-        data["CORE_RTTI_FILE_NAME"] = pathRelToCoreSources.string();
-        data["PROJECT_RTTI_FILE_NAME"] = pathRelToProjectSources.string();
-        data["CORE_RTTI_TYPE_NAME"] = coreConfigComponent->value.coreConfig.componentConfig.rtti.typeName;
-        data["PROJECT_RTTI_TYPE_NAME"] = projectConfigComponent->value.projectConfig.componentConfig.rtti.typeName;
+        //data["CORE_RTTI_FILE_NAME"] = pathRelToCoreSources.string();
+        //data["PROJECT_RTTI_FILE_NAME"] = pathRelToProjectSources.string();
+        //data["CORE_RTTI_TYPE_NAME"] = coreConfigComponent->value.coreConfig.componentConfig.rtti.typeName;
+        //data["PROJECT_RTTI_TYPE_NAME"] = projectConfigComponent->value.projectConfig.componentConfig.rtti.typeName;
 
-        try {
-            txtGen.Apply(data);
-            generatedFile.content = txtGen.Render();
-        } catch (...) {
-            std::string msg = "Render error";
-            throw TMessageException(msg);
-        }
+        //try {
+        //    txtGen.Apply(data);
+        //    generatedFile.content = txtGen.Render();
+        //} catch (...) {
+        //    std::string msg = "Render error";
+        //    throw TMessageException(msg);
+        //}
 
-        generatedFilesComponent->value.push_back(generatedFile);
+        //generatedFilesComponent->value.push_back(generatedFile);
     }
 }

@@ -21,10 +21,10 @@ namespace nsContainerCodeGenerator::nsCore
     {
         auto pathSettingComponent = nsECSFramework::SingleComponent<TPathSettingComponent>(mEntMng);
 
-        auto targetDir = std::filesystem::path(pathSettingComponent->value.generatedFilesDir);
+        //auto targetDir = std::filesystem::path(pathSettingComponent->value.generatedFilesDir);
 
-        for (const auto& entry : std::filesystem::directory_iterator(targetDir)) {
-            std::filesystem::remove_all(entry.path());
-        }
+        //for (const auto& entry : std::filesystem::directory_iterator(targetDir)) {
+        //    std::filesystem::remove_all(entry.path());
+        //}
     }
 }

@@ -56,33 +56,33 @@ namespace nsContainerCodeGenerator::nsAggregator::nsHandler
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
-            projectConfigComponent->value.aggregator.handlerImpl.impl.fileName + ".cpp");
+        //TGeneratedFile generatedFile;
+        //generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        //    projectConfigComponent->value.aggregator.handlerImpl.impl.fileName + ".cpp");
 
-        nsBase::nsCommon::TTextGenerator txtGen(lines);
+        //nsBase::nsCommon::TTextGenerator txtGen(lines);
 
-        inja::json data;
+        //inja::json data;
 
-        data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.impl.fileName;
-        data["TYPE_FACTORY_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.fileName;
-        data["RTTI_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.rttiImpl.impl.fileName;
-        data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.fileName;
+        //data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.impl.fileName;
+        //data["TYPE_FACTORY_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.fileName;
+        //data["RTTI_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.rttiImpl.impl.fileName;
+        //data["TYPE_INFO_FILE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.fileName;
 
-        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
-        data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.impl.typeName;
-        data["TYPE_FACTORY_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.typeName;
-        data["RTTI_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.rttiImpl.impl.typeName;
-        data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.typeName;
+        //data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
+        //data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.impl.typeName;
+        //data["TYPE_FACTORY_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeFactoryImpl.impl.typeName;
+        //data["RTTI_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.rttiImpl.impl.typeName;
+        //data["TYPE_INFO_TYPE_NAME"] = projectConfigComponent->value.aggregator.handlerImpl.typeInfoImpl.impl.typeName;
 
-        try {
-            txtGen.Apply(data);
-            generatedFile.content = txtGen.Render();
-        } catch (...) {
-            std::string msg = "Render error";
-            throw TMessageException(msg);
-        }
+        //try {
+        //    txtGen.Apply(data);
+        //    generatedFile.content = txtGen.Render();
+        //} catch (...) {
+        //    std::string msg = "Render error";
+        //    throw TMessageException(msg);
+        //}
 
-        generatedFilesComponent->value.push_back(generatedFile);
+        //generatedFilesComponent->value.push_back(generatedFile);
     }
 }

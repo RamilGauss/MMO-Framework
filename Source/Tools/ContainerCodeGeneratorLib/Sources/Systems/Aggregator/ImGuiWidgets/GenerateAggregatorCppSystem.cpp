@@ -54,32 +54,32 @@ namespace nsContainerCodeGenerator::nsAggregator::nsImGuiWidgets
 
         auto generatedFilesComponent = nsECSFramework::SingleComponent<TGeneratedFilesComponent>(mEntMng);
 
-        TGeneratedFile generatedFile;
-        generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
-            projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName + ".cpp");
+        //TGeneratedFile generatedFile;
+        //generatedFile.absPath = nsBase::nsCommon::TPathOperations::CalculatePathBy(projectConfigComponent->value.aggregator.targetDirectory,
+        //    projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName + ".cpp");
 
-        nsBase::nsCommon::TTextGenerator txtGen(lines);
+        //nsBase::nsCommon::TTextGenerator txtGen(lines);
 
-        inja::json data;
+        //inja::json data;
 
-        data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
-        
-        data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName;
-        data["DYNAMIC_CASTER_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.fileName;
-        data["RTTI_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.rttiImpl.impl.fileName;
-        
-        data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.typeName;
-        data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.typeName;
-        data["RTTI_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.rttiImpl.impl.typeName;
+        //data["PROJECT_NAMESPACE"] = projectConfigComponent->value.projectConfig.nameSpace;
+        //
+        //data["IMPL_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.fileName;
+        //data["DYNAMIC_CASTER_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.fileName;
+        //data["RTTI_FILE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.rttiImpl.impl.fileName;
+        //
+        //data["IMPL_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.impl.typeName;
+        //data["DYNAMIC_CASTER_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.dynamicCasterImpl.impl.typeName;
+        //data["RTTI_TYPE_NAME"] = projectConfigComponent->value.aggregator.imGuiWidgetsImpl.rttiImpl.impl.typeName;
 
-        try {
-            txtGen.Apply(data);
-            generatedFile.content = txtGen.Render();
-        } catch (...) {
-            std::string msg = "Render error";
-            throw TMessageException(msg);
-        }
+        //try {
+        //    txtGen.Apply(data);
+        //    generatedFile.content = txtGen.Render();
+        //} catch (...) {
+        //    std::string msg = "Render error";
+        //    throw TMessageException(msg);
+        //}
 
-        generatedFilesComponent->value.push_back(generatedFile);
+        //generatedFilesComponent->value.push_back(generatedFile);
     }
 }

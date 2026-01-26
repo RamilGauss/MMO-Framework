@@ -31,111 +31,111 @@ namespace nsContainerCodeGenerator::nsCore::nsComponent
 
         auto configComponent = nsECSFramework::SingleComponent<TCoreConfigComponent>(mEntMng);
 
-        const auto& componentConfig = configComponent->value.coreConfig.componentConfig;
+        //const auto& componentConfig = configComponent->value.coreConfig.componentConfig;
 
-        TReflectionConfigComponent reflectionConfigComponent;
+        //TReflectionConfigComponent reflectionConfigComponent;
 
-        auto& conf = reflectionConfigComponent.value;
+        //auto& conf = reflectionConfigComponent.value;
 
-        std::string fileName = std::string("./") + TConstants::CORE_COMPONENT_CONFIG;
-        reflectionConfigComponent.absFileName =
-            nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
+        //std::string fileName = std::string("./") + TConstants::CORE_COMPONENT_CONFIG;
+        //reflectionConfigComponent.absFileName =
+        //    nsBase::nsCommon::TPathOperations::CalculatePathBy(configComponent->value.coreConfig.targetDirectory, fileName);
 
-        conf.filter.inheritances.push_back({ componentConfig.inheritances });
+        //conf.filter.inheritances.push_back({ componentConfig.inheritances });
 
-        conf.targetForParsing.recursive = true;
+        //conf.targetForParsing.recursive = true;
 
-        auto absBase = configComponent->value.coreConfig.targetDirectory;
-        auto abs = configComponent->value.coreConfig.parseDirectory;
+        //auto absBase = configComponent->value.coreConfig.targetDirectory;
+        //auto abs = configComponent->value.coreConfig.parseDirectory;
 
-        std::string rel;
-        auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
+        //std::string rel;
+        //auto relPathResult = nsBase::nsCommon::TPathOperations::GetRelativePath(absBase, abs, rel);
 
-        if (!relPathResult) {
-            auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
-            throw TMessageException(msg);
-        }
+        //if (!relPathResult) {
+        //    auto msg = fmt::format("Attempt get relative path from {} to {} has been fail.", absBase, abs);
+        //    throw TMessageException(msg);
+        //}
 
-        conf.targetForParsing.directories.push_back(rel);
+        //conf.targetForParsing.directories.push_back(rel);
 
-        auto ext = TConstants::GetHeaderExtensions();
-        conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
-        conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
+        //auto ext = TConstants::GetHeaderExtensions();
+        //conf.filter.extensions = std::vector<std::string>(ext.begin(), ext.end());
+        //conf.filter.memberIgnore = TConstants::IGNORE_ATTRIBUTE;
 
-        conf.targetForCodeGeneration.directory = ".";
-        conf.targetForCodeGeneration.header = "Core Component";
+        //conf.targetForCodeGeneration.directory = ".";
+        //conf.targetForCodeGeneration.header = "Core Component";
 
-        // Json
-        nsReflectionCodeGenerator::TSerializer json;
-        json.className = configComponent->value.coreConfig.componentConfig.json.typeName;
-        json.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        json.fileName = configComponent->value.coreConfig.componentConfig.json.fileName;
-        json.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+        //// Json
+        //nsReflectionCodeGenerator::TSerializer json;
+        //json.className = configComponent->value.coreConfig.componentConfig.json.typeName;
+        //json.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        //json.fileName = configComponent->value.coreConfig.componentConfig.json.fileName;
+        //json.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
-        json.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
-        json.externalSources->outFile = TConstants::CORE_COMPONENT_JSON_OUT;
+        //json.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        //json.externalSources->outFile = TConstants::CORE_COMPONENT_JSON_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::JSON, json });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::JSON, json });
 
-        // TypeInformation
-        nsReflectionCodeGenerator::TSerializer rtti;
-        rtti.className = configComponent->value.coreConfig.componentConfig.rtti.typeName;
-        rtti.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        rtti.fileName = configComponent->value.coreConfig.componentConfig.rtti.fileName;
-        rtti.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+        //// TypeInformation
+        //nsReflectionCodeGenerator::TSerializer rtti;
+        //rtti.className = configComponent->value.coreConfig.componentConfig.rtti.typeName;
+        //rtti.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        //rtti.fileName = configComponent->value.coreConfig.componentConfig.rtti.fileName;
+        //rtti.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
-        rtti.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
-        rtti.externalSources->outFile = TConstants::CORE_COMPONENT_RTTI_OUT;
+        //rtti.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        //rtti.externalSources->outFile = TConstants::CORE_COMPONENT_RTTI_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::RUN_TIME_TYPE_INFORMATION, rtti });
 
-        // EcsExtensions
-        nsReflectionCodeGenerator::TSerializer entMng;
-        entMng.className = configComponent->value.coreConfig.componentConfig.entMng.typeName;
-        entMng.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        entMng.fileName = configComponent->value.coreConfig.componentConfig.entMng.fileName;
-        entMng.nameSpaceName = configComponent->value.coreConfig.nameSpace;
-        entMng.keyValueMap.insert({ nsCodeGeneratorImplementation::TConstants::s_EntityManagerHeaderPath, configComponent->value.entityManagerHeaderPath });
+        //// EcsExtensions
+        //nsReflectionCodeGenerator::TSerializer entMng;
+        //entMng.className = configComponent->value.coreConfig.componentConfig.entMng.typeName;
+        //entMng.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        //entMng.fileName = configComponent->value.coreConfig.componentConfig.entMng.fileName;
+        //entMng.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+        //entMng.keyValueMap.insert({ nsCodeGeneratorImplementation::TConstants::s_EntityManagerHeaderPath, configComponent->value.entityManagerHeaderPath });
 
-        entMng.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
-        entMng.externalSources->outFile = TConstants::CORE_COMPONENT_ECS_OUT;
+        //entMng.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        //entMng.externalSources->outFile = TConstants::CORE_COMPONENT_ECS_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::ECS_COMPONENT_EXTENSION, entMng });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::ECS_COMPONENT_EXTENSION, entMng });
 
-        // DynamicCaster
-        nsReflectionCodeGenerator::TSerializer dynamicCaster;
-        dynamicCaster.className = configComponent->value.coreConfig.componentConfig.dynamicCaster.typeName;
-        dynamicCaster.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        dynamicCaster.fileName = configComponent->value.coreConfig.componentConfig.dynamicCaster.fileName;
-        dynamicCaster.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+        //// DynamicCaster
+        //nsReflectionCodeGenerator::TSerializer dynamicCaster;
+        //dynamicCaster.className = configComponent->value.coreConfig.componentConfig.dynamicCaster.typeName;
+        //dynamicCaster.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        //dynamicCaster.fileName = configComponent->value.coreConfig.componentConfig.dynamicCaster.fileName;
+        //dynamicCaster.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
-        dynamicCaster.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
-        dynamicCaster.externalSources->outFile = TConstants::CORE_COMPONENT_DYNAMIC_CASTER_OUT;
+        //dynamicCaster.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        //dynamicCaster.externalSources->outFile = TConstants::CORE_COMPONENT_DYNAMIC_CASTER_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::DYNAMIC_CASTER, dynamicCaster });
 
-        // TypeFactory
-        nsReflectionCodeGenerator::TSerializer typeFactory;
-        typeFactory.className = configComponent->value.coreConfig.componentConfig.typeFactory.typeName;
-        typeFactory.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
-        typeFactory.fileName = configComponent->value.coreConfig.componentConfig.typeFactory.fileName;
-        typeFactory.nameSpaceName = configComponent->value.coreConfig.nameSpace;
+        //// TypeFactory
+        //nsReflectionCodeGenerator::TSerializer typeFactory;
+        //typeFactory.className = configComponent->value.coreConfig.componentConfig.typeFactory.typeName;
+        //typeFactory.exportDeclaration = configComponent->value.coreConfig.exportDeclaration;
+        //typeFactory.fileName = configComponent->value.coreConfig.componentConfig.typeFactory.fileName;
+        //typeFactory.nameSpaceName = configComponent->value.coreConfig.nameSpace;
 
-        typeFactory.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
-        typeFactory.externalSources->outFile = TConstants::CORE_COMPONENT_TYPE_FACTORY_OUT;
+        //typeFactory.externalSources.reset(new nsReflectionCodeGenerator::TExternalSources());
+        //typeFactory.externalSources->outFile = TConstants::CORE_COMPONENT_TYPE_FACTORY_OUT;
 
-        conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });
+        //conf.targetForCodeGeneration.implementations.insert({ nsCodeGeneratorImplementation::TGeneratorList::TYPE_FACTORY, typeFactory });
 
 
-        // TODO: Add
-        // ImGui
+        //// TODO: Add
+        //// ImGui
 
-        // Binary
+        //// Binary
 
-        conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.coreConfig.componentConfig.includeListFileName;
+        //conf.targetForCodeGeneration.includeListParams.includeListFileName = configComponent->value.coreConfig.componentConfig.includeListFileName;
 
-        conf.targetForCodeGeneration.sourceRootPaths = {configComponent->value.sourceRootPath};
+        //conf.targetForCodeGeneration.sourceRootPaths = {configComponent->value.sourceRootPath};
 
-        mEntMng->SetComponent(eid, reflectionConfigComponent);
+        //mEntMng->SetComponent(eid, reflectionConfigComponent);
     }
 }
