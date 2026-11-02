@@ -16,3 +16,7 @@ target_link_libraries(NetTransportLib PRIVATE
     magic_enum::magic_enum
     fmt::fmt-header-only
 )
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_link_libraries(NetTransportLib PRIVATE ws2_32 mswsock)
+endif()

@@ -36,7 +36,7 @@ bool TLoaderDLL_Win32::Init(const char* sPath)
 //------------------------------------------------------------------
 void* TLoaderDLL_Win32::Get(const char* nameFunc)
 {
-    void* ptrFunc = GetProcAddress(hModule, nameFunc);
+    void* ptrFunc = reinterpret_cast<void*>(GetProcAddress(hModule, nameFunc));
     if (ptrFunc == nullptr) {
         BL_FIX_BUG();
     }

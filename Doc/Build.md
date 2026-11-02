@@ -18,11 +18,12 @@ cmake -D CMAKE_C_COMPILER="/usr/bin/gcc" -D CMAKE_CXX_COMPILER="/usr/bin/g++" -D
 git clone https://github.com/Microsoft/vcpkg.git
 ./vcpkg/bootstrap-vcpkg.bat
 cmake -DCMAKE_TOOLCHAIN_FILE="C:/vcpkg/scripts/buildsystems/vcpkg.cmake" -S . -B ./build/ -DBUILD_PROCESSES=10
+cmake -G "Ninja" -DCMAKE_C_COMPILER="gcc" -DCMAKE_CXX_COMPILER="g++" -DCMAKE_TOOLCHAIN_FILE="$Env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" -S . -DCMAKE_BUILD_TYPE=Release -B .\build\ -DVCPKG_TARGET_TRIPLET=x64-mingw-static
 ```
 
 # Build
 
 ``` shell
-cmake --build ./build/ --config Debug -j10
-cmake --build ./build/ --config Relase -j10
+cmake --build .\build\ --config Debug -j 16
+cmake --build .\build\ --config Release -j 16
 ```

@@ -10,7 +10,7 @@
         "boost-stacktrace",
         "boost-wave",
         "boost-uuid",
-        { "name": "fmt",            "version>=": "11.0.2"},
+        { "name": "fmt",            "version>=": "12.2.0"},
         { "name": "openssl",        "version>=": "3.4.0"},
         { "name": "gtest",          "version>=": "1.17.0"},
         { "name": "sdl2",           "version>=": "2.32.8"},

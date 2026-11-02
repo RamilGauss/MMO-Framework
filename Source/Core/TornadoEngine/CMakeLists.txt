@@ -22,6 +22,7 @@ target_link_libraries(TornadoEngineLib PRIVATE
     MMOEngineLib
     NetTransportLib
     PhysicEngineLib
+    ${BULLET_LIBRARIES}
     ${Boost_LIBRARIES}
     OpenSSL::SSL
     OpenSSL::Crypto

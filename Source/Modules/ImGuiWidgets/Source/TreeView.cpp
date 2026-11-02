@@ -5,6 +5,8 @@ Contacts: [ramil2085@mail.ru, ramil2085@gmail.com]
 See for more information LICENSE.md.
 */
 
+#include <algorithm>
+
 #include "ImGuiWidgets/Include/TreeView.h"
 #include "ImGuiWidgets/Include/TreeNode.h"
 #include "ImGuiWidgets/Include/Helper.h"

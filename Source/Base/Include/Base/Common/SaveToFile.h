@@ -7,6 +7,7 @@ See for more information LICENSE.md.
 
 #pragma once
 
+#include <cstring>
 #include <stdio.h>
 #include <vector>
 
